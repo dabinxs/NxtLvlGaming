@@ -97,6 +97,43 @@ code {
 .wave-anim-2 { animation: wave-flow 11s ease-in-out infinite reverse; }
 .wave-anim-3 { animation: wave-flow 14s ease-in-out infinite; }
 
+/* ---- 3D rotating carousel (empty rectangles) ---- */
+.carousel-3d-scene {
+  perspective: 1500px;
+  perspective-origin: 50% 45%;
+}
+.carousel-3d-ring {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  animation: ring-spin 45s linear infinite;
+}
+.carousel-3d-scene:hover .carousel-3d-ring { animation-play-state: paused; }
+@keyframes ring-spin {
+  from { transform: rotateY(0deg); }
+  to { transform: rotateY(360deg); }
+}
+.carousel-3d-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background:
+    linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0));
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.55);
+  overflow: hidden;
+}
+.carousel-3d-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, rgba(13,20,38,0.35), rgba(6,10,22,0.65));
+}
+
 /* ---- Fade / rise entrance ---- */
 @keyframes rise {
   from { opacity: 0; transform: translateY(24px); }
