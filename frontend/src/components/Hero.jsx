@@ -72,11 +72,11 @@ const Hero = () => {
       <HeroWaves />
 
       <div className="relative z-10 mx-auto flex min-h-screen max-w-[1280px] flex-col justify-center px-5 pt-28 md:px-8">
-        <div className="max-w-3xl">
-          <h1 className="font-display text-[clamp(2.6rem,8vw,5.6rem)] font-extrabold uppercase leading-[0.95] tracking-tight text-white animate-rise" style={{ fontWeight: 800 }}>
+        <div className="max-w-4xl">
+          <h1 className="font-display text-[clamp(2.4rem,6.2vw,5rem)] font-extrabold uppercase leading-[0.95] tracking-tight text-white animate-rise" style={{ fontWeight: 800 }}>
             Take Your Event
             <br />
-            To The <span className="blue-gradient-text">Next Level</span>
+            To The Next Level
           </h1>
 
           <p className="mt-6 max-w-md text-[15px] leading-relaxed text-white/60 animate-rise" style={{ animationDelay: "0.1s" }}>
@@ -90,7 +90,7 @@ const Hero = () => {
               className="group inline-flex items-center gap-2.5 rounded-full blue-gradient-bg px-7 py-3.5 text-[13px] font-semibold uppercase tracking-wide text-white shadow-[0_10px_30px_rgba(0,102,253,0.4)] transition-transform hover:scale-[1.04]"
             >
               <Play className="h-4 w-4 fill-white" />
-              Play Your Event
+              Plan Your Event
             </a>
             <a
               href="#gaming-division"

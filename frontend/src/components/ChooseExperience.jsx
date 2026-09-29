@@ -1,17 +1,43 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { experiences } from "../mock";
 
 const ChooseExperience = () => {
   const [active, setActive] = useState(2); // center card (Gaming Event)
   const total = experiences.length;
+  const timer = useRef(null);
 
-  const go = (dir) => {
-    setActive((prev) => (prev + dir + total) % total);
+  const startAuto = () => {
+    stopAuto();
+    timer.current = setInterval(() => {
+      setActive((prev) => (prev + 1) % total);
+    }, 4000);
+  };
+  const stopAuto = () => {
+    if (timer.current) clearInterval(timer.current);
   };
 
+  useEffect(() => {
+    startAuto();
+    return stopAuto;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const goManual = (updater) => {
+    stopAuto();
+    setActive(updater);
+    startAuto();
+  };
+
+  const go = (dir) => goManual((prev) => (prev + dir + total) % total);
+
   return (
-    <section id="experience" className="relative overflow-hidden bg-[#05070f] py-24">
+    <section
+      id="experience"
+      className="relative overflow-hidden bg-[#05070f] py-24"
+      onMouseEnter={stopAuto}
+      onMouseLeave={startAuto}
+    >
       <h2 className="mb-14 text-center font-display text-[clamp(1.8rem,4.5vw,3rem)] font-extrabold uppercase tracking-tight text-white" style={{ fontWeight: 800 }}>
         Choose Your Experience
       </h2>
@@ -22,27 +48,30 @@ const ChooseExperience = () => {
           if (offset > total / 2) offset -= total;
           if (offset < -total / 2) offset += total;
 
-          const isCenter = offset === 0;
           const abs = Math.abs(offset);
-          if (abs > 2) return null;
+          // only render 3 cards: center + immediate neighbours
+          if (abs > 1) return null;
 
-          const translateX = offset * 300;
-          const scale = isCenter ? 1 : abs === 1 ? 0.82 : 0.66;
+          const isCenter = offset === 0;
+          const translateX = offset * 560;
+          const scale = isCenter ? 1 : 0.86;
           const zIndex = 20 - abs;
-          const opacity = abs > 1 ? 0.35 : 1;
-          const blur = isCenter ? 0 : abs === 1 ? 1.5 : 3;
+          const opacity = isCenter ? 1 : 0.5;
+          const blur = isCenter ? 0 : 2;
 
           return (
             <div
               key={exp.id}
-              onClick={() => !isCenter && setActive(i)}
-              className="absolute top-1/2 left-1/2 w-[500px] max-w-[85vw] cursor-pointer overflow-hidden rounded-2xl border border-white/10 shadow-2xl transition-all duration-500 ease-out"
+              onClick={() => !isCenter && goManual(i)}
+              className={`absolute left-1/2 top-1/2 w-[560px] max-w-[88vw] overflow-hidden rounded-2xl border border-white/10 shadow-2xl transition-all duration-700 ease-out ${
+                isCenter ? "cursor-default" : "cursor-pointer"
+              }`}
               style={{
                 transform: `translate(-50%, -50%) translateX(${translateX}px) scale(${scale})`,
                 zIndex,
                 opacity,
                 filter: `blur(${blur}px)`,
-                height: "380px",
+                height: "400px",
               }}
             >
               <img
@@ -51,13 +80,13 @@ const ChooseExperience = () => {
                 className="h-full w-full object-cover"
                 draggable={false}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#040814] via-[#040814]/30 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#040814] via-[#040814]/25 to-transparent" />
               {isCenter && (
-                <div className="absolute inset-x-0 bottom-0 p-8">
+                <div className="absolute inset-x-0 bottom-0 px-8 pb-9 text-center">
                   <h3 className="font-display text-4xl font-extrabold uppercase leading-none text-white" style={{ fontWeight: 800 }}>
                     {exp.title} <span className="blue-gradient-text">{exp.highlight}</span>
                   </h3>
-                  <p className="mt-3 max-w-sm text-sm text-white/70">{exp.desc}</p>
+                  <p className="mx-auto mt-3 max-w-md text-sm text-white/70">{exp.desc}</p>
                 </div>
               )}
             </div>
@@ -77,7 +106,7 @@ const ChooseExperience = () => {
           {experiences.map((_, i) => (
             <button
               key={i}
-              onClick={() => setActive(i)}
+              onClick={() => goManual(i)}
               className={`h-1.5 rounded-full transition-all duration-300 ${
                 i === active ? "w-7 blue-gradient-bg" : "w-1.5 bg-white/25"
               }`}
