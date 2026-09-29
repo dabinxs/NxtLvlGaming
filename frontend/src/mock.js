@@ -1,12 +1,146 @@
 // Mock data for the Next Level Gaming Events landing page (frontend-only)
 
 export const navLinks = [
-  { label: "EVENTS", href: "#experience" },
-  { label: "EXPERIENCE", href: "#gaming-division" },
+  { label: "EVENTS", href: "#experience", menu: "events" },
+  { label: "EXPERIENCE", href: "#gaming-division", menu: "experience" },
   { label: "NOVELTIES", href: "#who-we-are" },
   { label: "ABOUT", href: "#who-we-are" },
   { label: "CONTACT", href: "#footer" },
 ];
+
+// Mega panel content for the EVENTS / EXPERIENCE dropdowns
+export const megaMenus = {
+  events: {
+    label: "EVENTS",
+    groups: [
+      {
+        title: "Gaming Events",
+        icon: "Gamepad2",
+        items: [
+          {
+            title: "Gaming Parties",
+            icon: "Gamepad2",
+            desc: "Multiplayer gaming setups, consoles, giant screens, and entertainment for any crowd.",
+          },
+          {
+            title: "Gaming Tournaments",
+            icon: "Trophy",
+            desc: "Full-scale competitive gaming events with tournament setups, multiple stations, and organized gameplay.",
+          },
+          {
+            title: "Social Gaming",
+            icon: "Users",
+            desc: "Casual multiplayer experiences designed to bring guests together and keep everyone engaged.",
+          },
+        ],
+      },
+      {
+        title: "Movie Nights",
+        icon: "Clapperboard",
+        items: [
+          {
+            title: "Outdoor Movie Nights",
+            icon: "Projector",
+            desc: "Large-screen outdoor cinema experiences with professional projection, sound, and comfortable event setups.",
+          },
+          {
+            title: "Indoor Movie Nights",
+            icon: "Film",
+            desc: "Cinema-style entertainment brought directly to schools, venues, parties, and private events.",
+          },
+        ],
+      },
+      {
+        title: "Trivia Nights",
+        icon: "Brain",
+        items: [
+          {
+            title: "Interactive Trivia",
+            icon: "Lightbulb",
+            desc: "Live trivia experiences with questions, giant screens, and interactive gameplay for groups and events.",
+          },
+          {
+            title: "Custom Trivia",
+            icon: "ListChecks",
+            desc: "Custom categories and questions tailored to your event, audience, or organization.",
+          },
+        ],
+      },
+    ],
+    spotlight: {
+      tag: "MOST BOOKED",
+      title: "Gaming Tournaments",
+      desc: "Tournament stages, casters and multiple stations — built for a live crowd.",
+      cta: "Plan a tournament",
+    },
+  },
+  experience: {
+    label: "EXPERIENCE",
+    groups: [
+      {
+        title: "Virtual Reality",
+        icon: "Glasses",
+        items: [
+          {
+            title: "VR Experiences",
+            icon: "Glasses",
+            desc: "Immersive virtual reality games and experiences designed for individual players or groups.",
+          },
+        ],
+      },
+      {
+        title: "Just Dance",
+        icon: "Music",
+        items: [
+          {
+            title: "Just Dance Party",
+            icon: "Music",
+            desc: "High-energy dance experiences with giant-screen choreography, premium sound, and party lighting.",
+          },
+        ],
+      },
+      {
+        title: "Silent Disco",
+        icon: "Headphones",
+        items: [
+          {
+            title: "Silent Disco",
+            icon: "Headphones",
+            desc: "Wireless LED headphones, multiple music channels, and a unique party experience without traditional speakers.",
+          },
+        ],
+      },
+      {
+        title: "Sim Racing",
+        icon: "Car",
+        items: [
+          {
+            title: "Sim Racing Experience",
+            icon: "Car",
+            desc: "Immersive racing with professional simulators, responsive steering wheels, realistic pedals, and competitive gameplay.",
+          },
+        ],
+      },
+      {
+        title: "360 Video Booth",
+        icon: "Camera",
+        items: [
+          {
+            title: "360 Video Booth",
+            icon: "Camera",
+            desc: "Interactive 360° video experiences with event-ready lighting, effects, and shareable videos.",
+          },
+        ],
+      },
+    ],
+    spotlight: {
+      tag: "CROWD FAVOURITE",
+      title: "360 Video Booth",
+      desc: "Shareable 360° clips with event lighting and effects your guests keep posting.",
+      cta: "Book the booth",
+    },
+  },
+};
 
 export const collaborations = [
   "HARVARD",
