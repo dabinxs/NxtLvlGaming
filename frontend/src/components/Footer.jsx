@@ -1,14 +1,20 @@
-import React from "react";
+import React, { useRef } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { footerColumns } from "../mock";
 import LogoMark from "./LogoMark";
+import InteractiveWordmark from "./InteractiveWordmark";
+import CursorTrail from "./CursorTrail";
 
 const Footer = () => {
+  const shellRef = useRef(null);
+
   return (
     <footer
       id="footer"
+      ref={shellRef}
       className="footer-shell relative mx-3 mt-10 overflow-hidden rounded-t-[42px] bg-[#070b16] pt-20 md:mx-6"
     >
+      <CursorTrail containerRef={shellRef} />
       {/* soft blue wash across the top edge */}
       <div className="pointer-events-none absolute left-1/2 top-0 h-52 w-[70%] -translate-x-1/2 rounded-full bg-[#0066FD]/20 blur-[90px]" />
 
@@ -73,10 +79,13 @@ const Footer = () => {
 
         {/* Giant wordmark */}
         <div className="relative mt-16 select-none">
-          <div className="flex items-baseline justify-center gap-[0.06em] whitespace-nowrap font-display text-[clamp(2.6rem,13.5vw,12rem)] font-black italic leading-[0.9] tracking-[-0.03em]" style={{ fontWeight: 900 }}>
-            <span className="text-white">NEXT</span>
-            <span className="blue-gradient-text">LEVEL</span>
-          </div>
+          <InteractiveWordmark
+            className="flex items-baseline justify-center gap-[0.06em] whitespace-nowrap font-display text-[clamp(2.6rem,13.5vw,12rem)] font-black italic leading-[0.9] tracking-[-0.03em]"
+            segments={[
+              { text: "NEXT", className: "text-white" },
+              { text: "LEVEL", gradient: true },
+            ]}
+          />
         </div>
       </div>
 
