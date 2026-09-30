@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { Play, ArrowRight } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 
 const Hero = () => {
   const sectionRef = useRef(null);
@@ -64,18 +64,17 @@ const Hero = () => {
           <a
             href="#footer"
             data-testid="hero-plan-cta"
-            className="group inline-flex items-center gap-2.5 rounded-full blue-gradient-bg px-8 py-3.5 text-[13px] font-semibold uppercase tracking-wide text-white shadow-[0_10px_30px_rgba(0,102,253,0.4)] transition-transform hover:scale-[1.04]"
+            className="group inline-flex items-center gap-3 rounded-xl bg-[#0090FF] px-8 py-4 text-[13px] font-bold uppercase tracking-[0.06em] text-white shadow-[0_10px_34px_rgba(0,144,255,0.45)] transition-all duration-300 hover:bg-[#0aa0ff] hover:shadow-[0_14px_40px_rgba(0,144,255,0.6)]"
           >
-            <Play className="h-4 w-4 fill-white" />
             Plan Your Event
+            <ChevronRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
           </a>
           <a
             href="#experience"
             data-testid="hero-explore-cta"
-            className="group inline-flex items-center gap-2.5 rounded-full border border-white/20 px-8 py-3.5 text-[13px] font-semibold uppercase tracking-wide text-white transition-all duration-300 hover:border-[#7DDDFF]/60 hover:bg-white/[0.06]"
+            className="group inline-flex items-center rounded-xl border-2 border-white px-8 py-4 text-[13px] font-bold uppercase tracking-[0.06em] text-white transition-all duration-300 hover:bg-white hover:text-[#05070f]"
           >
-            Explore
-            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            Explore Explanation
           </a>
         </div>
       </div>
