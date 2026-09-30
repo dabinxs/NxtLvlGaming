@@ -5,12 +5,15 @@ import LogoMark from "./LogoMark";
 
 const Footer = () => {
   return (
-    <footer id="footer" className="relative overflow-hidden bg-[#070b16] pt-20">
-      {/* top rounded glow border */}
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#0066FD]/50 to-transparent" />
+    <footer
+      id="footer"
+      className="footer-shell relative mx-3 mt-10 overflow-hidden rounded-t-[42px] bg-[#070b16] pt-20 md:mx-6"
+    >
+      {/* soft blue wash across the top edge */}
+      <div className="pointer-events-none absolute left-1/2 top-0 h-52 w-[70%] -translate-x-1/2 rounded-full bg-[#0066FD]/20 blur-[90px]" />
 
       <div className="mx-auto max-w-[1280px] px-5 md:px-8">
-        <div className="grid grid-cols-1 gap-x-20 gap-y-14 lg:grid-cols-[minmax(0,1fr)_auto]">
+        <div className="grid grid-cols-1 gap-x-16 gap-y-14 lg:grid-cols-[minmax(0,1fr)_auto] lg:pr-12">
           {/* Left: CTA */}
           <div className="min-w-0 max-w-[640px]">
             <LogoMark />
@@ -45,18 +48,18 @@ const Footer = () => {
           </div>
 
           {/* Right: link columns */}
-          <div className="grid shrink-0 grid-cols-3 gap-x-14 gap-y-6">
+          <div className="grid shrink-0 grid-cols-3 gap-x-10 gap-y-6">
             {footerColumns.map((col) => (
               <div key={col.title}>
-                <h4 className="mb-4 font-display text-[11px] font-semibold uppercase tracking-[0.25em] text-white/40">
+                <h4 className="mb-4 font-display text-[11px] font-semibold uppercase tracking-[0.18em] text-[#4d9bff]">
                   {col.title}
                 </h4>
-                <ul className="space-y-3">
+                <ul className="space-y-2.5">
                   {col.links.map((link) => (
                     <li key={link}>
                       <a
                         href="#top"
-                        className="text-[13px] text-white/70 transition-colors hover:text-[#7DDDFF]"
+                        className="whitespace-nowrap text-[12.5px] text-white/65 transition-colors hover:text-[#7DDDFF]"
                       >
                         {link}
                       </a>
@@ -90,7 +93,7 @@ const Footer = () => {
               Next Level Gaming Events
             </span>
           </div>
-          <span className="hidden h-px flex-1 bg-white/10 md:block" />
+          <span className="hidden h-px flex-1 bg-white/20 md:block" />
           <span className="shrink-0 text-[11px] uppercase tracking-[0.15em] text-white/40">
             © 2023 Next Level Gaming. All rights reserved.
           </span>
