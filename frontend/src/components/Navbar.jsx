@@ -101,7 +101,7 @@ const Navbar = () => {
       <div className="mx-auto flex w-full max-w-[1180px] items-center justify-center">
         <nav
           data-testid="nav-links-pill"
-          className="hidden items-center gap-1 rounded-2xl border border-white/[0.06] px-3 py-1.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] lg:flex"
+          className="hidden items-center gap-2 rounded-[26px] border-2 border-white/[0.09] px-6 py-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.07)] lg:flex"
           style={{ background: "linear-gradient(180deg, #2C2C2C 0%, #121212 100%)" }}
         >
           {navLinks.map((l) =>
@@ -138,7 +138,7 @@ const Navbar = () => {
         </nav>
 
         <button
-          className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/[0.06] text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] lg:hidden"
+          className="flex h-14 w-14 items-center justify-center rounded-[22px] border-2 border-white/[0.09] text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.07)] lg:hidden"
           style={{ background: "linear-gradient(180deg, #2C2C2C 0%, #121212 100%)" }}
           data-testid="mobile-menu-toggle"
           onClick={() => setOpen((o) => !o)}
@@ -150,7 +150,7 @@ const Navbar = () => {
 
       {/* Mega panel dropdown */}
       <div
-        className={`mx-auto hidden w-full max-w-[1180px] overflow-hidden rounded-2xl border border-white/[0.06] transition-[max-height,opacity,margin] duration-400 lg:block ${
+        className={`mx-auto hidden w-full max-w-[1180px] overflow-hidden rounded-[26px] border-2 border-white/[0.09] transition-[max-height,opacity,margin] duration-400 lg:block ${
           activeMenu ? "mt-3 max-h-[640px] opacity-100" : "mt-0 max-h-0 opacity-0"
         }`}
         style={{
@@ -168,7 +168,7 @@ const Navbar = () => {
       {/* Mobile accordion menu */}
       {open && (
         <div
-          className="mx-auto mt-3 max-h-[calc(100vh-120px)] w-full max-w-[1180px] overflow-y-auto rounded-2xl border border-white/[0.06] px-6 py-5 lg:hidden"
+          className="mx-auto mt-3 max-h-[calc(100vh-120px)] w-full max-w-[1180px] overflow-y-auto rounded-[26px] border-2 border-white/[0.09] px-6 py-6 lg:hidden"
           style={{ background: "linear-gradient(180deg, #2C2C2C 0%, #121212 100%)" }}
           data-testid="mobile-menu"
         >
