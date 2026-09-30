@@ -1,9 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import {
   Menu,
   X,
-  ArrowRight,
-  ArrowDownRight,
   ChevronDown,
   Gamepad2,
   Trophy,
@@ -21,7 +19,6 @@ import {
   Camera,
 } from "lucide-react";
 import { navLinks, megaMenus } from "../mock";
-import LogoMark from "./LogoMark";
 
 const ICONS = {
   Gamepad2,
@@ -80,86 +77,11 @@ const MegaPanel = ({ menuKey }) => {
   );
 };
 
-const STRIP = 14; // full-width top strip height
-const FILLET = 24; // concave curve joining strip + island
-const RADIUS = 26; // island bottom corners
-
-// One continuous SVG silhouette: top strip -> concave fillets -> rounded island
-const NavShape = ({ w, h, x0, x1 }) => {
-  if (!w || !h) return null;
-  const fill = `M0 0 H${w} V${STRIP} H${x1 + FILLET} A${FILLET} ${FILLET} 0 0 0 ${x1} ${
-    STRIP + FILLET
-  } V${h - RADIUS} A${RADIUS} ${RADIUS} 0 0 1 ${x1 - RADIUS} ${h} H${
-    x0 + RADIUS
-  } A${RADIUS} ${RADIUS} 0 0 1 ${x0} ${h - RADIUS} V${
-    STRIP + FILLET
-  } A${FILLET} ${FILLET} 0 0 0 ${x0 - FILLET} ${STRIP} H0 Z`;
-
-  const outline = `M0 ${STRIP} H${x0 - FILLET} A${FILLET} ${FILLET} 0 0 1 ${x0} ${
-    STRIP + FILLET
-  } V${h - RADIUS} A${RADIUS} ${RADIUS} 0 0 0 ${x0 + RADIUS} ${h} H${
-    x1 - RADIUS
-  } A${RADIUS} ${RADIUS} 0 0 0 ${x1} ${h - RADIUS} V${
-    STRIP + FILLET
-  } A${FILLET} ${FILLET} 0 0 1 ${x1 + FILLET} ${STRIP} H${w}`;
-
-  return (
-    <svg
-      aria-hidden="true"
-      data-testid="nav-shape"
-      width={w}
-      height={h}
-      viewBox={`0 0 ${w} ${h}`}
-      className="pointer-events-none absolute left-0 top-0"
-      style={{ filter: "drop-shadow(0 16px 40px rgba(0,0,0,0.5))" }}
-    >
-      <path d={fill} fill="#141b2e" />
-      <path
-        d={outline}
-        fill="none"
-        stroke="rgba(255,255,255,0.22)"
-        strokeWidth="1"
-      />
-    </svg>
-  );
-};
-
 const Navbar = () => {
-  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState(null);
   const [mobileAccordion, setMobileAccordion] = useState(null);
-  const [shape, setShape] = useState({ w: 0, h: 0, x0: 0, x1: 0 });
   const closeTimer = useRef(null);
-  const islandRef = useRef(null);
-
-  useEffect(() => {
-    const measure = () => {
-      const el = islandRef.current;
-      if (!el) return;
-      const r = el.getBoundingClientRect();
-      setShape({
-        w: window.innerWidth,
-        h: Math.round(r.height),
-        x0: Math.round(r.left),
-        x1: Math.round(r.right),
-      });
-    };
-    measure();
-    const ro = new ResizeObserver(measure);
-    if (islandRef.current) ro.observe(islandRef.current);
-    window.addEventListener("resize", measure);
-    return () => {
-      ro.disconnect();
-      window.removeEventListener("resize", measure);
-    };
-  }, []);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 30);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   const openMenu = (key) => {
     clearTimeout(closeTimer.current);
@@ -174,19 +96,9 @@ const Navbar = () => {
     <header
       data-testid="site-navbar"
       onMouseLeave={scheduleClose}
-      className="fixed inset-x-0 top-0 z-50"
+      className="fixed inset-x-0 top-0 z-50 px-4 pt-5"
     >
-      <NavShape {...shape} />
-
-      <div
-        ref={islandRef}
-        className="relative mx-auto w-full max-w-[1180px]"
-      >
-      <div className="flex items-center justify-between px-5 py-3 md:px-7">
-        <a href="#top" aria-label="Next Level Gaming Events">
-          <LogoMark />
-        </a>
-
+      <div className="mx-auto flex w-full max-w-[1180px] items-center justify-center">
         <nav
           data-testid="nav-links-pill"
           className="hidden items-center gap-1 rounded-2xl border border-white/[0.06] px-3 py-1.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] lg:flex"
@@ -225,38 +137,26 @@ const Navbar = () => {
           )}
         </nav>
 
-        <div className="flex items-center gap-3">
-          <a
-            href="#footer"
-            data-testid="nav-quote-cta"
-            className="group hidden items-stretch overflow-hidden rounded-xl border border-white/10 transition-all duration-300 hover:border-[#0066FD]/50 sm:flex"
-          >
-            <span className="flex items-center bg-white/[0.06] px-5 py-2.5 text-[12.5px] font-bold tracking-[0.06em] text-white transition-colors group-hover:bg-white/[0.1]">
-              GET A QUOTE
-            </span>
-            <span className="blue-gradient-bg flex items-center px-3 text-white">
-              <ArrowDownRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:translate-y-0.5" />
-            </span>
-          </a>
-          <button
-            className="text-white lg:hidden"
-            data-testid="mobile-menu-toggle"
-            onClick={() => setOpen((o) => !o)}
-            aria-label="Toggle menu"
-          >
-            {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
-        </div>
+        <button
+          className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/[0.06] text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] lg:hidden"
+          style={{ background: "linear-gradient(180deg, #2C2C2C 0%, #121212 100%)" }}
+          data-testid="mobile-menu-toggle"
+          onClick={() => setOpen((o) => !o)}
+          aria-label="Toggle menu"
+        >
+          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+        </button>
       </div>
 
-      {/* Mega panel inside the nav island */}
+      {/* Mega panel dropdown */}
       <div
-        className={`hidden overflow-hidden border-white/[0.07] transition-[max-height,opacity] duration-400 lg:block ${
-          activeMenu
-            ? "max-h-[640px] border-t opacity-100"
-            : "max-h-0 border-t-0 opacity-0"
+        className={`mx-auto hidden w-full max-w-[1180px] overflow-hidden rounded-2xl border border-white/[0.06] transition-[max-height,opacity,margin] duration-400 lg:block ${
+          activeMenu ? "mt-3 max-h-[640px] opacity-100" : "mt-0 max-h-0 opacity-0"
         }`}
-        style={{ transitionTimingFunction: "cubic-bezier(0.22,1,0.36,1)" }}
+        style={{
+          background: "linear-gradient(180deg, #2C2C2C 0%, #121212 100%)",
+          transitionTimingFunction: "cubic-bezier(0.22,1,0.36,1)",
+        }}
         data-testid="mega-panel"
         onMouseEnter={() => clearTimeout(closeTimer.current)}
       >
@@ -268,7 +168,8 @@ const Navbar = () => {
       {/* Mobile accordion menu */}
       {open && (
         <div
-          className="max-h-[calc(100vh-96px)] overflow-y-auto border-t border-white/[0.07] px-6 py-5 lg:hidden"
+          className="mx-auto mt-3 max-h-[calc(100vh-120px)] w-full max-w-[1180px] overflow-y-auto rounded-2xl border border-white/[0.06] px-6 py-5 lg:hidden"
+          style={{ background: "linear-gradient(180deg, #2C2C2C 0%, #121212 100%)" }}
           data-testid="mobile-menu"
         >
           <div className="flex flex-col divide-y divide-white/5">
@@ -336,16 +237,8 @@ const Navbar = () => {
               )
             )}
           </div>
-          <a
-            href="#footer"
-            onClick={() => setOpen(false)}
-            className="mt-5 inline-flex w-fit items-center gap-2 rounded-full blue-gradient-bg px-5 py-2.5 text-[13px] font-semibold text-white"
-          >
-            GET A QUOTE <ArrowRight className="h-4 w-4" />
-          </a>
         </div>
       )}
-      </div>
     </header>
   );
 };
