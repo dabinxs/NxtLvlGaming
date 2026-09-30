@@ -3,6 +3,7 @@ import {
   Menu,
   X,
   ArrowRight,
+  ArrowDownRight,
   ChevronDown,
   Gamepad2,
   Trophy,
@@ -105,19 +106,25 @@ const Navbar = () => {
     <header
       data-testid="site-navbar"
       onMouseLeave={scheduleClose}
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        scrolled || activeMenu
-          ? "bg-[#060a15]/90 backdrop-blur-xl border-b border-white/5"
-          : "bg-transparent"
-      }`}
+      className="fixed inset-x-0 top-0 z-50 px-3 md:px-6"
     >
-      <div className="mx-auto flex max-w-[1280px] items-center justify-between px-5 py-4 md:px-8">
+      <div
+        className={`mx-auto w-full max-w-[1180px] overflow-hidden rounded-b-[26px] border border-t-0 border-white/[0.07] backdrop-blur-2xl transition-all duration-500 ${
+          scrolled || activeMenu
+            ? "bg-[#080c18]/95 shadow-[0_18px_50px_rgba(0,0,0,0.55)]"
+            : "bg-[#080c18]/85 shadow-[0_12px_36px_rgba(0,0,0,0.4)]"
+        }`}
+        style={{ transitionTimingFunction: "cubic-bezier(0.22,1,0.36,1)" }}
+      >
+      <div className="flex items-center justify-between px-5 py-3 md:px-7">
         <a href="#top" aria-label="Next Level Gaming Events">
           <LogoMark />
         </a>
 
-        <nav className="hidden items-center gap-2 lg:flex">
-          {navLinks.map((l) =>
+        <nav className="hidden items-center gap-1 lg:flex">
+          {navLinks
+            .filter((l) => l.label !== "CONTACT")
+            .map((l) =>
             l.menu ? (
               <button
                 key={l.label}
@@ -150,13 +157,24 @@ const Navbar = () => {
           )}
         </nav>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-5">
           <a
             href="#footer"
-            className="group hidden items-center gap-2 rounded-full blue-gradient-bg px-5 py-2.5 text-[13px] font-semibold text-white shadow-[0_6px_20px_rgba(0,102,253,0.35)] transition-transform hover:scale-[1.03] sm:flex"
+            className="hidden font-display text-[13px] font-medium tracking-[0.1em] text-white/70 transition-colors hover:text-white lg:block"
           >
-            GET A QUOTE
-            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+            CONTACT
+          </a>
+          <a
+            href="#footer"
+            data-testid="nav-quote-cta"
+            className="group hidden items-stretch overflow-hidden rounded-xl border border-white/10 transition-all duration-300 hover:border-[#0066FD]/50 sm:flex"
+          >
+            <span className="flex items-center bg-white/[0.06] px-5 py-2.5 text-[12.5px] font-bold tracking-[0.06em] text-white transition-colors group-hover:bg-white/[0.1]">
+              GET A QUOTE
+            </span>
+            <span className="blue-gradient-bg flex items-center px-3 text-white">
+              <ArrowDownRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:translate-y-0.5" />
+            </span>
           </a>
           <button
             className="text-white lg:hidden"
@@ -169,9 +187,9 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Full-width mega panel */}
+      {/* Mega panel inside the nav island */}
       <div
-        className={`hidden overflow-hidden border-white/5 bg-[#060a15]/95 backdrop-blur-2xl transition-[max-height,opacity] duration-400 lg:block ${
+        className={`hidden overflow-hidden border-white/[0.07] transition-[max-height,opacity] duration-400 lg:block ${
           activeMenu
             ? "max-h-[640px] border-t opacity-100"
             : "max-h-0 border-t-0 opacity-0"
@@ -180,7 +198,7 @@ const Navbar = () => {
         data-testid="mega-panel"
         onMouseEnter={() => clearTimeout(closeTimer.current)}
       >
-        <div className="mx-auto max-w-[1280px] px-5 py-10 md:px-8">
+        <div className="px-6 py-9 md:px-8">
           {activeMenu && <MegaPanel menuKey={activeMenu} />}
         </div>
       </div>
@@ -188,7 +206,7 @@ const Navbar = () => {
       {/* Mobile accordion menu */}
       {open && (
         <div
-          className="max-h-[calc(100vh-72px)] overflow-y-auto border-t border-white/5 bg-[#060a15]/97 px-6 py-5 backdrop-blur-xl lg:hidden"
+          className="max-h-[calc(100vh-96px)] overflow-y-auto border-t border-white/[0.07] px-6 py-5 lg:hidden"
           data-testid="mobile-menu"
         >
           <div className="flex flex-col divide-y divide-white/5">
@@ -265,6 +283,7 @@ const Navbar = () => {
           </a>
         </div>
       )}
+      </div>
     </header>
   );
 };
