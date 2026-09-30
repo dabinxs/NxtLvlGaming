@@ -10,20 +10,21 @@ const Footer = () => {
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#0066FD]/50 to-transparent" />
 
       <div className="mx-auto max-w-[1280px] px-5 md:px-8">
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
+        <div className="grid grid-cols-1 gap-x-20 gap-y-14 lg:grid-cols-[minmax(0,1fr)_auto]">
           {/* Left: CTA */}
-          <div>
+          <div className="min-w-0 max-w-[640px]">
             <LogoMark />
             <p className="mt-8 font-display text-sm font-medium uppercase tracking-[0.2em] text-[#6ea8ff]">
               Ready To Level Up Your Event?
             </p>
             <a
               href="mailto:sales@nextlevelgamingevents.com"
-              className="group mt-3 inline-flex items-center gap-2 font-display text-[clamp(1.4rem,3.5vw,2.2rem)] font-bold text-white transition-colors hover:text-[#7DDDFF]"
+              data-testid="footer-email"
+              className="group mt-3 flex w-fit max-w-full items-center gap-3 font-display text-[clamp(1.05rem,2.2vw,1.85rem)] font-bold text-white transition-colors hover:text-[#7DDDFF]"
               style={{ fontWeight: 700 }}
             >
-              sales@nextlevelgamingevents.com
-              <ArrowUpRight className="h-6 w-6 text-[#7DDDFF] transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+              <span className="truncate">sales@nextlevelgamingevents.com</span>
+              <ArrowUpRight className="h-5 w-5 shrink-0 text-[#7DDDFF] transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
             </a>
 
             <div className="mt-8 flex flex-wrap items-center gap-4">
@@ -33,15 +34,18 @@ const Footer = () => {
               >
                 Get A Quote
               </a>
-              <span className="flex items-center gap-2 text-sm text-white/45">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#7DDDFF]" />
+              <span
+                data-testid="footer-tagline"
+                className="flex items-center gap-2.5 text-[15px] font-medium text-white/85"
+              >
+                <span className="h-2 w-2 rounded-full bg-[#7DDDFF] shadow-[0_0_10px_rgba(125,221,255,0.8)]" />
                 Let's create an unforgettable experience
               </span>
             </div>
           </div>
 
           {/* Right: link columns */}
-          <div className="grid grid-cols-3 gap-6">
+          <div className="grid shrink-0 grid-cols-3 gap-x-14 gap-y-6">
             {footerColumns.map((col) => (
               <div key={col.title}>
                 <h4 className="mb-4 font-display text-[11px] font-semibold uppercase tracking-[0.25em] text-white/40">
@@ -66,7 +70,7 @@ const Footer = () => {
 
         {/* Giant wordmark */}
         <div className="relative mt-16 select-none">
-          <div className="flex justify-between font-display text-[clamp(3rem,15vw,13rem)] font-black italic leading-none tracking-tight" style={{ fontWeight: 900 }}>
+          <div className="flex items-baseline justify-center gap-[0.06em] whitespace-nowrap font-display text-[clamp(2.6rem,13.5vw,12rem)] font-black italic leading-[0.9] tracking-[-0.03em]" style={{ fontWeight: 900 }}>
             <span className="text-white">NEXT</span>
             <span className="blue-gradient-text">LEVEL</span>
           </div>
@@ -74,17 +78,22 @@ const Footer = () => {
       </div>
 
       {/* copyright bar */}
-      <div className="mt-6 border-t border-white/5 py-5">
-        <div className="mx-auto flex max-w-[1280px] flex-col items-center justify-between gap-2 px-5 text-[11px] uppercase tracking-[0.15em] text-white/40 md:flex-row md:px-8">
-          <div className="flex items-center gap-3">
-            <div className="flex gap-1">
-              <span className="h-2.5 w-6 blue-gradient-bg" />
-              <span className="h-2.5 w-2.5 bg-white/20" />
-              <span className="h-2.5 w-2.5 bg-white/20" />
-            </div>
-            <span>Next Level Gaming Events</span>
+      <div className="mt-8 py-6">
+        <div className="mx-auto flex max-w-[1280px] flex-col items-center gap-4 px-5 md:flex-row md:gap-6 md:px-8">
+          <div className="flex shrink-0 items-center gap-3">
+            <span className="flex gap-1.5" aria-hidden="true">
+              <span className="footer-slash" />
+              <span className="footer-slash" />
+              <span className="footer-slash" />
+            </span>
+            <span className="text-[11px] uppercase tracking-[0.18em] text-white/55">
+              Next Level Gaming Events
+            </span>
           </div>
-          <span>© 2023 Next Level Gaming. All rights reserved.</span>
+          <span className="hidden h-px flex-1 bg-white/10 md:block" />
+          <span className="shrink-0 text-[11px] uppercase tracking-[0.15em] text-white/40">
+            © 2023 Next Level Gaming. All rights reserved.
+          </span>
         </div>
       </div>
     </footer>
