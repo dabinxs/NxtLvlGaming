@@ -106,13 +106,29 @@ const Navbar = () => {
     <header
       data-testid="site-navbar"
       onMouseLeave={scheduleClose}
-      className="fixed inset-x-0 top-0 z-50 px-3 md:px-6"
+      className="fixed inset-x-0 top-0 z-50"
     >
+      {/* full-width top strip the island grows out of */}
+      <div className="nav-strip" />
+      {/* faint hairline running along the strip edge */}
+      <div className="nav-hairline" />
+
+      <div className="relative mx-auto w-full max-w-[1180px]">
+        {/* concave fillets joining the island to the strip */}
+        <span className="nav-notch nav-notch-l" />
+        <span className="nav-notch nav-notch-r" />
+        <span className="nav-arc-wrap nav-arc-l">
+          <span className="nav-arc" />
+        </span>
+        <span className="nav-arc-wrap nav-arc-r">
+          <span className="nav-arc" />
+        </span>
+
       <div
-        className={`mx-auto w-full max-w-[1180px] overflow-hidden rounded-b-[26px] border border-t-0 border-white/[0.07] backdrop-blur-2xl transition-all duration-500 ${
+        className={`nav-island rounded-b-[26px] transition-shadow duration-500 ${
           scrolled || activeMenu
-            ? "bg-[#080c18]/95 shadow-[0_18px_50px_rgba(0,0,0,0.55)]"
-            : "bg-[#080c18]/85 shadow-[0_12px_36px_rgba(0,0,0,0.4)]"
+            ? "shadow-[0_18px_50px_rgba(0,0,0,0.55)]"
+            : "shadow-[0_12px_36px_rgba(0,0,0,0.4)]"
         }`}
         style={{ transitionTimingFunction: "cubic-bezier(0.22,1,0.36,1)" }}
       >
@@ -283,6 +299,7 @@ const Navbar = () => {
           </a>
         </div>
       )}
+      </div>
       </div>
     </header>
   );
