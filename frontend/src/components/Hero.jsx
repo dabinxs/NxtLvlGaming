@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { ChevronRight } from "lucide-react";
+import TextScatter from "./TextScatter";
 
 const Hero = () => {
   const sectionRef = useRef(null);
@@ -44,9 +45,7 @@ const Hero = () => {
           className="font-display text-[clamp(2.1rem,5vw,4.2rem)] font-extrabold uppercase leading-[1.06] tracking-tight text-white animate-rise"
           style={{ fontWeight: 800 }}
         >
-          Transform Your Event
-          <br />
-          Into Reality
+          <TextScatter text={"Transform Your Event\nInto Reality"} />
         </h1>
 
         <p
