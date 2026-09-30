@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { Play } from "lucide-react";
 
 // Empty rectangle cards arranged on a rotating 3D cylinder
@@ -36,13 +36,39 @@ const Carousel3D = () => {
 };
 
 const Hero = () => {
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const onMove = (e) => {
+      const el = sectionRef.current;
+      if (!el) return;
+      const r = el.getBoundingClientRect();
+      const inside =
+        e.clientX >= r.left &&
+        e.clientX <= r.right &&
+        e.clientY >= r.top &&
+        e.clientY <= r.bottom;
+      el.style.setProperty("--glow", inside ? "1" : "0");
+      if (inside) {
+        el.style.setProperty("--mx", `${e.clientX - r.left}px`);
+        el.style.setProperty("--my", `${e.clientY - r.top}px`);
+      }
+    };
+    window.addEventListener("mousemove", onMove);
+    return () => window.removeEventListener("mousemove", onMove);
+  }, []);
+
   return (
     <section
       id="top"
+      ref={sectionRef}
       className="relative flex min-h-screen w-full flex-col items-center overflow-hidden bg-[#05070f]"
     >
       {/* white grid lines, fading out towards the carousel */}
       <div className="hero-grid pointer-events-none absolute inset-0 z-0" />
+
+      {/* cursor-follow grid glow trail */}
+      <div className="hero-grid-glow pointer-events-none absolute inset-0 z-0" />
 
       {/* subtle blue ambient glow (no purple) */}
       <div className="pointer-events-none absolute left-1/2 top-[8%] h-[45%] w-[70%] -translate-x-1/2 rounded-full bg-[#0066FD]/12 blur-[130px]" />
