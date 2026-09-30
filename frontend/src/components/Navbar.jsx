@@ -80,12 +80,80 @@ const MegaPanel = ({ menuKey }) => {
   );
 };
 
+const STRIP = 14; // full-width top strip height
+const FILLET = 24; // concave curve joining strip + island
+const RADIUS = 26; // island bottom corners
+
+// One continuous SVG silhouette: top strip -> concave fillets -> rounded island
+const NavShape = ({ w, h, x0, x1 }) => {
+  if (!w || !h) return null;
+  const fill = `M0 0 H${w} V${STRIP} H${x1 + FILLET} A${FILLET} ${FILLET} 0 0 0 ${x1} ${
+    STRIP + FILLET
+  } V${h - RADIUS} A${RADIUS} ${RADIUS} 0 0 1 ${x1 - RADIUS} ${h} H${
+    x0 + RADIUS
+  } A${RADIUS} ${RADIUS} 0 0 1 ${x0} ${h - RADIUS} V${
+    STRIP + FILLET
+  } A${FILLET} ${FILLET} 0 0 0 ${x0 - FILLET} ${STRIP} H0 Z`;
+
+  const outline = `M0 ${STRIP} H${x0 - FILLET} A${FILLET} ${FILLET} 0 0 1 ${x0} ${
+    STRIP + FILLET
+  } V${h - RADIUS} A${RADIUS} ${RADIUS} 0 0 0 ${x0 + RADIUS} ${h} H${
+    x1 - RADIUS
+  } A${RADIUS} ${RADIUS} 0 0 0 ${x1} ${h - RADIUS} V${
+    STRIP + FILLET
+  } A${FILLET} ${FILLET} 0 0 1 ${x1 + FILLET} ${STRIP} H${w}`;
+
+  return (
+    <svg
+      aria-hidden="true"
+      data-testid="nav-shape"
+      width={w}
+      height={h}
+      viewBox={`0 0 ${w} ${h}`}
+      className="pointer-events-none absolute left-0 top-0"
+      style={{ filter: "drop-shadow(0 16px 40px rgba(0,0,0,0.5))" }}
+    >
+      <path d={fill} fill="#141b2e" />
+      <path
+        d={outline}
+        fill="none"
+        stroke="rgba(255,255,255,0.22)"
+        strokeWidth="1"
+      />
+    </svg>
+  );
+};
+
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState(null);
   const [mobileAccordion, setMobileAccordion] = useState(null);
+  const [shape, setShape] = useState({ w: 0, h: 0, x0: 0, x1: 0 });
   const closeTimer = useRef(null);
+  const islandRef = useRef(null);
+
+  useEffect(() => {
+    const measure = () => {
+      const el = islandRef.current;
+      if (!el) return;
+      const r = el.getBoundingClientRect();
+      setShape({
+        w: window.innerWidth,
+        h: Math.round(r.height),
+        x0: Math.round(r.left),
+        x1: Math.round(r.right),
+      });
+    };
+    measure();
+    const ro = new ResizeObserver(measure);
+    if (islandRef.current) ro.observe(islandRef.current);
+    window.addEventListener("resize", measure);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener("resize", measure);
+    };
+  }, []);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 30);
@@ -108,29 +176,11 @@ const Navbar = () => {
       onMouseLeave={scheduleClose}
       className="fixed inset-x-0 top-0 z-50"
     >
-      {/* full-width top strip the island grows out of */}
-      <div className="nav-strip" />
-      {/* faint hairline running along the strip edge */}
-      <div className="nav-hairline" />
-
-      <div className="relative mx-auto w-full max-w-[1180px]">
-        {/* concave fillets joining the island to the strip */}
-        <span className="nav-notch nav-notch-l" />
-        <span className="nav-notch nav-notch-r" />
-        <span className="nav-arc-wrap nav-arc-l">
-          <span className="nav-arc" />
-        </span>
-        <span className="nav-arc-wrap nav-arc-r">
-          <span className="nav-arc" />
-        </span>
+      <NavShape {...shape} />
 
       <div
-        className={`nav-island rounded-b-[26px] transition-shadow duration-500 ${
-          scrolled || activeMenu
-            ? "shadow-[0_18px_50px_rgba(0,0,0,0.55)]"
-            : "shadow-[0_12px_36px_rgba(0,0,0,0.4)]"
-        }`}
-        style={{ transitionTimingFunction: "cubic-bezier(0.22,1,0.36,1)" }}
+        ref={islandRef}
+        className="relative mx-auto w-full max-w-[1180px]"
       >
       <div className="flex items-center justify-between px-5 py-3 md:px-7">
         <a href="#top" aria-label="Next Level Gaming Events">
@@ -291,7 +341,6 @@ const Navbar = () => {
           </a>
         </div>
       )}
-      </div>
       </div>
     </header>
   );
