@@ -1,0 +1,35 @@
+{
+  "summary": "Frontend-only strict visual verification of the new NavShape (inline SVG silhouette) plus regressions. All 9 requested checks PASS on Desktop 1920x800, Desktop 1280x800, and Mobile 390x844. The nav renders as ONE continuous silhouette: full-width 14px top strip, centred island (max-w 1180) hanging below with 26px rounded bottom corners, and 24px concave (inward) fillets joining strip to island on both sides. A single subtle white hairline (rgba(255,255,255,0.22), stroke-width 1) traces the outline continuously with no breaks/doubling/stray rectangles in the left junction crop (x 250-560) or right junction crop (x 1360-1670). Hovering EVENTS grows the silhouette from h=65 to h=232 wrapping the mega panel (verified via SVG height attribute AND getBBox), rounded bottom corners remain, outline follows the taller shape. Moving mouse away collapses back to h=65 with no stale tall background (verified after 1.8s). Centre nav order = EVENTS, EXPERIENCE, NOVELTIES, ABOUT, CONTACT; right side is only GET A QUOTE split CTA. EVENTS mega shows exactly 3 items (Gaming Events, Movie Nights, Trivia Nights); EXPERIENCE crossfades to exactly 5 items (Virtual Reality, Just Dance, Silent Disco, Sim Racing, 360 Video Booth); no 'Crowd Favourite'/spotlight card. Resize 1920->1280 re-measures: shape width -> 1280, island left=50 right=1230 (still centred), curves still joined. Mobile 390x844: hamburger opens accordion inside shape; EVENTS accordion reveals 3 items, EXPERIENCE reveals 5. document.scrollWidth == window.innerWidth at 1920, 1280 and 390 (no horizontal overflow). Regression: 'Choose Your Experience' lenticular carousel renders 5 cards + 5 dots and clicking experience-next advances active dot from index 0 to 1.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/test_reports/screenshots/desktop_navbar.png",
+    "/app/test_reports/screenshots/left_junction.png",
+    "/app/test_reports/screenshots/right_junction.png",
+    "/app/test_reports/screenshots/events_open_v2.png",
+    "/app/test_reports/screenshots/after_close.png",
+    "/app/test_reports/screenshots/desktop_1280.png",
+    "/app/test_reports/screenshots/mobile_events.png",
+    "/app/test_reports/screenshots/mobile_experience.png"
+  ],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "Navbar.jsx NavShape: initial shape state is {w:0,h:0,x0:0,x1:0}. On first paint before useEffect runs, NavShape returns null so no SVG flash — good. However mount is not synchronous with layout; there is a ~1 frame gap where the island div renders without a background before ResizeObserver fires. On slow devices this could show a brief bare island. Consider using useLayoutEffect for the initial measurement.",
+    "Navbar.jsx: onMouseLeave={scheduleClose} is on <header> which has position:fixed inset-x-0 top-0. The header element itself is 0px tall (children absolute/relative) — mouseleave may fire from bounding rect not visual union. In practice testing confirmed panel closes correctly after ~700ms, but behaviour depends on where header's DOM box actually spans; tying open state to a hover-managed container (islandRef) would be more robust.",
+    "Navbar.jsx: SVG uses filter drop-shadow(0 16px 40px rgba(0,0,0,0.5)); shadow may bleed into hero content when the panel is open and extend below. Cosmetic, acceptable.",
+    "Navbar.jsx line 183: className string uses `max-w-[1180px]` — the ResizeObserver correctly re-measures on window resize so the shape stays centred at both 1920 and 1280 breakpoints. Verified.",
+    "Navbar.jsx mobile: mobile-mega-item-* testids for BOTH accordions are always in the DOM (visibility via max-h/opacity). Not a bug; next testing agents must assert visibility via ancestor .max-h-0 or bounding rect."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A", "frontend": "100%"},
+  "test_credentials": "N/A - no auth in this frontend-only app",
+  "seed_data_creation": "none - all mock in /app/frontend/src/mock.js",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Preview URL: https://visual-markup-tool-1.preview.emergentagent.com. NavShape SVG has data-testid='nav-shape' with two paths (fill '#141b2e', outline stroke rgba(255,255,255,0.22)). Verify silhouette continuity via BOTH the getAttribute('height') AND the visual crops (left x 250-560 y 0-120; right x 1360-1670 y 0-120). IMPORTANT: ResizeObserver-driven state updates take ~700-1500ms after hover to settle when mega panel opens due to max-height transition; wait at least 1.5s after hover before measuring shape height. Panel-close timing = 140ms schedule + 400ms max-h transition + RO latency; wait ~1.5s after mouse-away before asserting shape is back to compact h=65. Mobile-mega-item-* testids exist in DOM for both accordions regardless of open state.",
+  "rca of the issue": "N/A - all previously reported navbar issues resolved. The new inline-SVG NavShape approach correctly produces one continuous silhouette measured live via ResizeObserver. Fill path: M0 0 H<w> V14 H<x1+24> arc x1 to island, V<h-26> arc to bottom, H<x0+26> arc up, V<STRIP+FILLET> arc to strip, H0 Z. Outline mirrors from y=14 tracing the bottom edge of strip + concave fillets + rounded island. First hover measurement in my initial run showed h=66 because ResizeObserver hadn't yet caught the max-h transition; re-tested with 1.5s wait -> h=232 (correct, matches panel_h=167 + bar=65). After mouse-away with 1.5s wait -> shape returns to h=65 correctly, no stale background."
+}
