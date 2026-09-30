@@ -187,7 +187,11 @@ const Navbar = () => {
           <LogoMark />
         </a>
 
-        <nav className="hidden items-center gap-1 lg:flex">
+        <nav
+          data-testid="nav-links-pill"
+          className="hidden items-center gap-1 rounded-2xl border border-white/[0.06] px-3 py-1.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] lg:flex"
+          style={{ background: "linear-gradient(180deg, #2C2C2C 0%, #121212 100%)" }}
+        >
           {navLinks.map((l) =>
             l.menu ? (
               <button
@@ -195,15 +199,15 @@ const Navbar = () => {
                 data-testid={`nav-trigger-${l.menu}`}
                 onMouseEnter={() => openMenu(l.menu)}
                 onClick={() => setActiveMenu(activeMenu === l.menu ? null : l.menu)}
-                className={`flex items-center gap-1.5 rounded-full px-4 py-2 font-display text-[13px] font-medium tracking-[0.12em] transition-all duration-300 ${
+                className={`flex items-center gap-1.5 rounded-xl px-4 py-2 font-display text-[15px] font-bold capitalize transition-all duration-300 ${
                   activeMenu === l.menu
                     ? "bg-white/[0.08] text-white"
-                    : "text-white/75 hover:text-white"
+                    : "text-white hover:bg-white/[0.06]"
                 }`}
               >
-                {l.label}
+                {l.label.toLowerCase()}
                 <ChevronDown
-                  className={`h-3.5 w-3.5 transition-transform duration-300 ${
+                  className={`h-4 w-4 transition-transform duration-300 ${
                     activeMenu === l.menu ? "rotate-180 text-[#7DDDFF]" : ""
                   }`}
                 />
@@ -213,9 +217,9 @@ const Navbar = () => {
                 key={l.label}
                 href={l.href}
                 onMouseEnter={scheduleClose}
-                className="rounded-full px-4 py-2 font-display text-[13px] font-medium tracking-[0.12em] text-white/75 transition-colors hover:text-white"
+                className="rounded-xl px-4 py-2 font-display text-[15px] font-bold capitalize text-white transition-colors hover:bg-white/[0.06]"
               >
-                {l.label}
+                {l.label.toLowerCase()}
               </a>
             )
           )}
