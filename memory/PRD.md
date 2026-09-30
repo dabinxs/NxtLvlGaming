@@ -36,12 +36,23 @@ All content is static mock data (`/app/frontend/src/mock.js`). No backend usage.
 - Hero rebuilt: 3D rectangle carousel removed, content vertically centered, two CTAs,
   96px white grid (9% opacity, radial mask, slow drift) with a cursor-follow cyan glow pool.
 
+- Footer interaction (2026-06): `InteractiveWordmark.jsx` — per-letter magnetic spring
+  deformation of the giant NEXT LEVEL wordmark (smoothstep falloff, radius 260, maxY 38 /
+  maxX 12 / rot 5 / scale 1.05 / skew 3, rAF + spring integration, desktop-only, honours
+  prefers-reduced-motion); LEVEL keeps a continuous gradient via per-letter
+  `.letter-gradient` background slices. `CursorTrail.jsx` — lagging blue dot + bending
+  trail scoped to the footer. Footer layout/typography/colours untouched.
+
 ## Verification
 - `iteration_1.json` — nav CONTACT placement, lighter island, curves: 100% pass
 - `iteration_2.json` — continuous SVG silhouette, panel growth, resize, dropdown counts: 100% pass
 - `iteration_3.json` — nav fixed-position stability across scroll, hero rebuild, grid glow,
   two CTAs, no overflow, dropdown + carousel regressions: 9/9 pass
   (the flagged "338px nav at 1280" was a stale open-menu artifact; re-checked = 65px)
+
+- `iteration_4.json` / `iteration_5.json` — footer spacing, bottom bar, stroke, grid: 100% pass
+- `iteration_6.json` — footer wordmark interaction + cursor trail, magnitudes within limits,
+  reduced motion/mobile static, no other elements move, design regression clean: 100% pass
 
 ## Backlog
 - P1: category pages for each dropdown entry (details, gallery, booking)
