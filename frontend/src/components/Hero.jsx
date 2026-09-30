@@ -41,6 +41,9 @@ const Hero = () => {
       id="top"
       className="relative flex min-h-screen w-full flex-col items-center overflow-hidden bg-[#05070f]"
     >
+      {/* white grid lines, fading out towards the carousel */}
+      <div className="hero-grid pointer-events-none absolute inset-0 z-0" />
+
       {/* subtle blue ambient glow (no purple) */}
       <div className="pointer-events-none absolute left-1/2 top-[8%] h-[45%] w-[70%] -translate-x-1/2 rounded-full bg-[#0066FD]/12 blur-[130px]" />
 

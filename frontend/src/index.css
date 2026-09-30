@@ -97,6 +97,34 @@ code {
 .wave-anim-2 { animation: wave-flow 11s ease-in-out infinite reverse; }
 .wave-anim-3 { animation: wave-flow 14s ease-in-out infinite; }
 
+/* ---- Hero background grid (white, fades toward bottom) ---- */
+.hero-grid {
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,0.055) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.055) 1px, transparent 1px);
+  background-size: 76px 76px;
+  background-position: center top;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.9) 0%,
+    rgba(0,0,0,0.75) 38%,
+    rgba(0,0,0,0.25) 58%,
+    rgba(0,0,0,0) 72%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.9) 0%,
+    rgba(0,0,0,0.75) 38%,
+    rgba(0,0,0,0.25) 58%,
+    rgba(0,0,0,0) 72%
+  );
+  animation: grid-drift 24s ease-in-out infinite;
+}
+@keyframes grid-drift {
+  0%, 100% { background-position: center top; }
+  50% { background-position: calc(50% + 38px) 38px; }
+}
+
 /* ---- 3D rotating carousel (empty rectangles) ---- */
 .carousel-3d-scene {
   perspective: 1500px;
