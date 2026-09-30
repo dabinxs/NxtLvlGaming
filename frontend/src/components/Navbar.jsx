@@ -138,9 +138,7 @@ const Navbar = () => {
         </a>
 
         <nav className="hidden items-center gap-1 lg:flex">
-          {navLinks
-            .filter((l) => l.label !== "CONTACT")
-            .map((l) =>
+          {navLinks.map((l) =>
             l.menu ? (
               <button
                 key={l.label}
@@ -173,13 +171,7 @@ const Navbar = () => {
           )}
         </nav>
 
-        <div className="flex items-center gap-5">
-          <a
-            href="#footer"
-            className="hidden font-display text-[13px] font-medium tracking-[0.1em] text-white/70 transition-colors hover:text-white lg:block"
-          >
-            CONTACT
-          </a>
+        <div className="flex items-center gap-3">
           <a
             href="#footer"
             data-testid="nav-quote-cta"
