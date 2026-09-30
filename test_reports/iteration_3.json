@@ -1,0 +1,21 @@
+{
+  "summary": "Frontend-only regression test focused on the reported navbar-scroll bug plus hero rebuild verification. All 9 requested checks passed: navbar remains position:fixed top:0 with stable height (64.75px) and horizontal position (left:0,width:1920) at scrollY 0/400/1200/2500/4000/bottom (4059) and after fast up/down jumps; nav SVG silhouette held top:0/left:0/height:65/width:1920 with no flicker. Carousel-3d-card fully removed (count=0). Hero has exactly two CTAs (hero-plan-cta and hero-explore-cta) both visible; EXPLORE scrolls to Choose Your Experience (choose-experience top:-0.5 after click, scrollY:955). Hero vertically centered at 1920x800 (content span 244-554 vs viewport 800, midpoint ~399). Hero grid visible without cursor (rgba(255,255,255,0.09) background-image confirmed); after mousemove --mx/--my/--glow update (mx=760px, my=520px, glow=1) and cyan highlight appears near cursor (see hero_with_cursor.png). No horizontal overflow at 1920 (sw==iw==1920) or 390 (sw==iw==390). EVENTS dropdown shows exactly 3 items; EXPERIENCE crossfades to exactly 5 items. Mobile hamburger opens both mobile-accordion-events and mobile-accordion-experience. Navbar also stable at 1280 width at scrollY 0/1500/3500.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "Navbar @ 1280px width", "issues": ["Nav bounding-rect height reports 338.17px at 1280 viewport (vs 64.75px at 1920). Likely the nav items wrap onto multiple lines at this breakpoint before the mobile hamburger kicks in. Not a scroll-stability bug (top stays 0, position fixed) but a layout/breakpoint tuning concern worth reviewing."]}
+    ]
+  },
+  "test_report_links": ["/app/test_reports/screenshots/hero_no_cursor.png", "/app/test_reports/screenshots/hero_with_cursor.png"],
+  "action_items": ["Optional: review navbar breakpoint behavior around 1280px — consider showing the mobile menu earlier or tightening spacing so the desktop nav does not wrap into a ~338px tall bar."],
+  "critical_code_review_comments": ["Navbar breakpoint at ~1280 causes desktop nav to wrap (height jumps from 64.75 to 338). Consider switching to hamburger at lg breakpoint or reducing gaps."],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A", "frontend": "100% (9/9 requested checks)"},
+  "seed_data_creation": "None (static mock data)",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Navbar scroll-bug is FIXED — verified at scrollY 0/400/1200/2500/4000/bottom and after rapid scroll jumps at both 1920 and 1280 widths. Nav SVG silhouette (nav-shape) matched header bounding-rect at every position. Only note: at exactly 1280px width the desktop nav wraps into a taller bar (338px) but still stays pinned to top; consider verifying whether this is intentional. Hero rebuild (two CTAs, centered, grid visible + glow, carousel gone) all verified.",
+  "rca of the issue": "Navbar-scroll bug appears to be resolved by the current implementation: header uses position:fixed inset-x-0 top-0 z-50 and the NavShape SVG is remeasured via ResizeObserver, so its bounding rect tracks the header at every scroll position without flicker."
+}
