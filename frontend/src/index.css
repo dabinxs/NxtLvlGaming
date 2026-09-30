@@ -194,6 +194,63 @@ code {
 }
 .mega-stagger { animation: mega-stagger-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) both; }
 
+/* ---- Lenticular carousel ---- */
+.lenticular-scene {
+  perspective: 1700px;
+  perspective-origin: 50% 50%;
+  transform-style: preserve-3d;
+}
+.lenticular-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: clamp(280px, 56vw, 860px);
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform, opacity;
+}
+.lenticular-face {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  background:
+    radial-gradient(120% 80% at 50% 0%, rgba(30, 90, 200, 0.55) 0%, rgba(10, 30, 80, 0.5) 45%, rgba(4, 8, 20, 0.95) 100%),
+    linear-gradient(180deg, #0c2a6b 0%, #071a45 55%, #040814 100%);
+  box-shadow: 0 40px 90px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+/* lenticular ridges + moving sheen */
+.lenticular-sheen {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.035) 0px,
+      rgba(255, 255, 255, 0.035) 1px,
+      transparent 1px,
+      transparent 7px
+    ),
+    linear-gradient(
+      105deg,
+      transparent 35%,
+      rgba(125, 221, 255, 0.12) 50%,
+      transparent 65%
+    );
+  background-size: auto, 260% 100%;
+  animation: lenticular-sweep 6s ease-in-out infinite;
+}
+@keyframes lenticular-sweep {
+  0%, 100% { background-position: 0 0, 120% 0; }
+  50% { background-position: 0 0, -20% 0; }
+}
+
 /* ---- Fade / rise entrance ---- */
 @keyframes rise {
   from { opacity: 0; transform: translateY(24px); }
