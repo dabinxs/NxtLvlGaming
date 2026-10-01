@@ -72,20 +72,27 @@ const ChooseExperience = () => {
                 cursor: isCenter ? "default" : "pointer",
               }}
             >
-              <div className="lenticular-face">
+              <div className="lenticular-face relative">
+                <img
+                  src={exp.image}
+                  alt={`${exp.title} ${exp.highlight}`}
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-700"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#040814] via-[#040814]/60 to-[#040814]/25" />
                 <span className="lenticular-sheen" />
                 <div
-                  className="absolute inset-x-0 bottom-0 px-8 pb-10 text-center transition-opacity duration-300"
+                  className="absolute inset-x-0 bottom-0 z-10 px-8 pb-10 text-center transition-opacity duration-300"
                   style={{ opacity: isCenter ? 1 : 0 }}
                 >
                   <h3
-                    className="font-display text-[clamp(1.6rem,3vw,2.75rem)] font-extrabold leading-none text-white"
+                    className="font-display text-[clamp(1.6rem,3vw,2.75rem)] font-extrabold leading-none text-white drop-shadow-lg"
                     style={{ fontWeight: 800 }}
                   >
                     {exp.title}{" "}
                     <span className="text-[#1E90FF]">{exp.highlight}</span>
                   </h3>
-                  <p className="mx-auto mt-3 max-w-md text-[15px] text-white/70">
+                  <p className="mx-auto mt-3 max-w-md text-[15px] text-white/80 drop-shadow">
                     {exp.desc}
                   </p>
                 </div>

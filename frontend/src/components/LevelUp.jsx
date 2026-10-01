@@ -40,7 +40,7 @@ const LevelUp = () => {
           </p>
 
           <a
-            href="#experience"
+            href="/gaming-events"
             className="group mt-8 inline-flex items-center gap-2 font-display text-[13px] font-semibold uppercase tracking-[0.15em] text-white"
           >
             <span className="blue-gradient-text">Explore The Gaming Events</span>

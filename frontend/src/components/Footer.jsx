@@ -1,27 +1,24 @@
-import React, { useRef } from "react";
+import React from "react";
 import { ArrowUpRight } from "lucide-react";
 import { footerColumns } from "../mock";
 import LogoMark from "./LogoMark";
 import InteractiveWordmark from "./InteractiveWordmark";
-import CursorTrail from "./CursorTrail";
 
 const Footer = () => {
-  const shellRef = useRef(null);
 
   return (
     <footer
       id="footer"
-      ref={shellRef}
-      className="footer-shell relative mx-3 mt-10 overflow-hidden rounded-t-[42px] bg-[#070b16] pt-20 md:mx-6"
+      className="footer-shell relative mx-3 mt-10 overflow-hidden rounded-t-[42px] pt-20 md:mx-6"
+      style={{ background: "linear-gradient(180deg, #202F49 0%, #010E26 100%)" }}
     >
-      <CursorTrail containerRef={shellRef} />
       {/* soft blue wash across the top edge */}
       <div className="pointer-events-none absolute left-1/2 top-0 h-52 w-[70%] -translate-x-1/2 rounded-full bg-[#0066FD]/20 blur-[90px]" />
 
       <div className="mx-auto max-w-[1280px] px-5 md:px-8">
-        <div className="grid grid-cols-1 gap-x-16 gap-y-14 lg:grid-cols-[minmax(0,1fr)_auto] lg:pr-12">
+        <div className="grid grid-cols-1 gap-x-12 gap-y-14 lg:grid-cols-[55%_1fr] lg:pr-12">
           {/* Left: CTA */}
-          <div className="min-w-0 max-w-[640px]">
+          <div className="min-w-0">
             <LogoMark />
             <p className="mt-8 font-display text-sm font-medium uppercase tracking-[0.2em] text-[#6ea8ff]">
               Ready To Level Up Your Event?
@@ -29,10 +26,10 @@ const Footer = () => {
             <a
               href="mailto:sales@nextlevelgamingevents.com"
               data-testid="footer-email"
-              className="group mt-3 flex w-fit max-w-full items-center gap-3 font-display text-[clamp(1.05rem,2.2vw,1.85rem)] font-bold text-white transition-colors hover:text-[#7DDDFF]"
+              className="group mt-3 flex w-full items-center gap-3 font-display text-[clamp(1rem,1.8vw,1.65rem)] font-bold text-white transition-colors hover:text-[#7DDDFF]"
               style={{ fontWeight: 700 }}
             >
-              <span className="truncate">sales@nextlevelgamingevents.com</span>
+              <span className="whitespace-nowrap">sales@nextlevelgamingevents.com</span>
               <ArrowUpRight className="h-5 w-5 shrink-0 text-[#7DDDFF] transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
             </a>
 
@@ -54,7 +51,7 @@ const Footer = () => {
           </div>
 
           {/* Right: link columns */}
-          <div className="grid shrink-0 grid-cols-3 gap-x-10 gap-y-6">
+          <div className="grid shrink-0 grid-cols-3 gap-x-16 gap-y-6 self-start pt-2">
             {footerColumns.map((col) => (
               <div key={col.title}>
                 <h4 className="mb-4 font-display text-[11px] font-semibold uppercase tracking-[0.18em] text-[#4d9bff]">
