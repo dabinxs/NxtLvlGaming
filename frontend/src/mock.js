@@ -3,7 +3,7 @@
 export const navLinks = [
   { label: "EVENTS", href: "#experience", menu: "events" },
   { label: "EXPERIENCE", href: "#gaming-division", menu: "experience" },
-  { label: "NOVELTIES", href: "#who-we-are" },
+  { label: "NOVELTIES", href: "/novelties" },
   { label: "ABOUT", href: "#who-we-are" },
   { label: "CONTACT", href: "#footer" },
 ];

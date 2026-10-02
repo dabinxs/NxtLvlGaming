@@ -19,6 +19,7 @@ import VideoBooth360 from "./components/VideoBooth360";
 import JustDance from "./components/JustDance";
 import SilentDisco from "./components/SilentDisco";
 import SimRacing from "./components/SimRacing";
+import Novelties from "./components/Novelties";
 
 const Landing = () => (
   <div className="App text-foreground">
@@ -50,6 +51,7 @@ function App() {
         <Route path="/just-dance" element={<JustDance />} />
         <Route path="/silent-disco" element={<SilentDisco />} />
         <Route path="/sim-racing" element={<SimRacing />} />
+        <Route path="/novelties" element={<Novelties />} />
       </Routes>
     </BrowserRouter>
   );
