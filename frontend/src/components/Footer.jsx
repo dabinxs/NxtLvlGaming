@@ -1,7 +1,6 @@
 import React from "react";
 import { ArrowUpRight } from "lucide-react";
 import { footerColumns } from "../mock";
-import LogoMark from "./LogoMark";
 import InteractiveWordmark from "./InteractiveWordmark";
 
 const Footer = () => {
@@ -19,8 +18,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 gap-x-12 gap-y-14 lg:grid-cols-[55%_1fr] lg:pr-12">
           {/* Left: CTA */}
           <div className="min-w-0">
-            <LogoMark />
-            <p className="mt-8 font-display text-sm font-medium uppercase tracking-[0.2em] text-[#6ea8ff]">
+            <p className="mt-0 font-display text-sm font-medium uppercase tracking-[0.2em] text-[#6ea8ff]">
               Ready To Level Up Your Event?
             </p>
             <a
@@ -36,7 +34,7 @@ const Footer = () => {
             <a
               href="tel:9786015473"
               data-testid="footer-phone"
-              className="mt-2.5 inline-flex items-center gap-2 font-display text-sm font-medium tracking-wide text-white/80 transition-colors hover:text-[#7DDDFF]"
+              className="mt-3 inline-flex items-center gap-2 font-display text-[17px] md:text-[19px] font-bold tracking-wide text-white/90 transition-colors hover:text-[#7DDDFF]"
             >
               <span>978-601-5473</span>
             </a>
