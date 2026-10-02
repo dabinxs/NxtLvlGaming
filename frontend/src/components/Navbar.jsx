@@ -101,7 +101,7 @@ const Navbar = () => {
           <img
             src="/logo-3d.png"
             alt="Next Level Gaming and Novelties"
-            className="h-28 md:h-36 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+            className="h-16 md:h-22 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
           />
         </a>
         <nav

@@ -141,3 +141,146 @@
     at process.processTimers (node:internal/timers:519:7)
 [error] 
 [error] Error: An unexpected error has occurred.
+[debug] [2026-10-02T16:17:17.999Z] ----------------------------------------------------------------------
+[debug] [2026-10-02T16:17:18.002Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\jenz\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy --only hosting
+[debug] [2026-10-02T16:17:18.003Z] CLI Version:   15.29.0
+[debug] [2026-10-02T16:17:18.003Z] Platform:      win32
+[debug] [2026-10-02T16:17:18.003Z] Node Version:  v20.20.2
+[debug] [2026-10-02T16:17:18.003Z] Detected Agent: antigravity
+[debug] [2026-10-02T16:17:18.004Z] Time:          Sat Oct 03 2026 00:17:18 GMT+0800 (Philippine Standard Time)
+[debug] [2026-10-02T16:17:18.004Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-10-02T16:17:20.602Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-10-02T16:17:20.602Z] > authorizing via signed-in user (j.nziieee@gmail.com)
+[debug] [2026-10-02T16:17:20.602Z] [iam] checking project nextlevelgaming-events for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2026-10-02T16:17:20.605Z] Checked if tokens are valid: true, expires at: 1790959268254
+[debug] [2026-10-02T16:17:20.605Z] Checked if tokens are valid: true, expires at: 1790959268254
+[debug] [2026-10-02T16:17:20.606Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/nextlevelgaming-events:testIamPermissions [none]
+[debug] [2026-10-02T16:17:20.606Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/nextlevelgaming-events:testIamPermissions  x-goog-user-project=nextlevelgaming-events
+[debug] [2026-10-02T16:17:20.607Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/nextlevelgaming-events:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2026-10-02T16:17:21.556Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/nextlevelgaming-events:testIamPermissions 200
+[debug] [2026-10-02T16:17:21.556Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/nextlevelgaming-events:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2026-10-02T16:17:21.557Z] Checked if tokens are valid: true, expires at: 1790959268254
+[debug] [2026-10-02T16:17:21.557Z] Checked if tokens are valid: true, expires at: 1790959268254
+[debug] [2026-10-02T16:17:21.557Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/nextlevelgaming-events [none]
+[debug] [2026-10-02T16:17:22.070Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/nextlevelgaming-events 200
+[debug] [2026-10-02T16:17:22.071Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/nextlevelgaming-events {"projectId":"nextlevelgaming-events","projectNumber":"670541473455","displayName":"Next Level Gaming Events","name":"projects/nextlevelgaming-events","resources":{"hostingSite":"nextlevelgaming-events"},"state":"ACTIVE","labels":{"firebase":"enabled"},"etag":"1_11377d76-6675-439e-b668-983ebac2426c"}
+[info] 
+[info] === Deploying to 'nextlevelgaming-events'...
+[info] 
+[info] i  deploying hosting 
+[debug] [2026-10-02T16:17:22.075Z] Checked if tokens are valid: true, expires at: 1790959268254
+[debug] [2026-10-02T16:17:22.075Z] Checked if tokens are valid: true, expires at: 1790959268254
+[debug] [2026-10-02T16:17:22.075Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/nextlevelgaming-events/sites/nextlevelgaming-events [none]
+[debug] [2026-10-02T16:17:24.087Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/nextlevelgaming-events/sites/nextlevelgaming-events 200
+[debug] [2026-10-02T16:17:24.087Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/nextlevelgaming-events/sites/nextlevelgaming-events {"name":"projects/nextlevelgaming-events/sites/nextlevelgaming-events","defaultUrl":"https://nextlevelgaming-events.web.app","type":"DEFAULT_SITE"}
+[debug] [2026-10-02T16:17:24.092Z] Checked if tokens are valid: true, expires at: 1790959268254
+[debug] [2026-10-02T16:17:24.092Z] Checked if tokens are valid: true, expires at: 1790959268254
+[debug] [2026-10-02T16:17:24.093Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/nextlevelgaming-events/versions [none]
+[debug] [2026-10-02T16:17:24.093Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/nextlevelgaming-events/versions {"status":"CREATED","labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2026-10-02T16:17:26.520Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/nextlevelgaming-events/versions 200
+[debug] [2026-10-02T16:17:26.520Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/nextlevelgaming-events/versions {"name":"projects/670541473455/sites/nextlevelgaming-events/versions/c455a443170dadb3","status":"CREATED","config":{},"labels":{"deployment-tool":"cli-firebase"}}
+[info] i  hosting[nextlevelgaming-events]: beginning deploy... 
+[info] i  hosting[nextlevelgaming-events]: found 34 files in build 
+[debug] [2026-10-02T16:17:34.628Z] [hosting] uploading with 200 concurrency
+[debug] [2026-10-02T16:17:34.859Z] Checked if tokens are valid: true, expires at: 1790959268254
+[debug] [2026-10-02T16:17:34.860Z] Checked if tokens are valid: true, expires at: 1790959268254
+[debug] [2026-10-02T16:17:34.861Z] [hosting] hash cache [YnVpbGQ] stored for 34 files
+[debug] [2026-10-02T16:17:34.862Z] [hosting][hash queue][FINAL] {"max":220,"min":1,"avg":12.558823529411764,"active":0,"complete":34,"success":34,"errored":0,"retried":0,"total":34,"elapsed":229}
+[debug] [2026-10-02T16:17:34.862Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/670541473455/sites/nextlevelgaming-events/versions/c455a443170dadb3:populateFiles [none]
+[debug] [2026-10-02T16:17:34.863Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/670541473455/sites/nextlevelgaming-events/versions/c455a443170dadb3:populateFiles {"files":{"/logo.png":"bbf6c413818be26a4512a488957ad2a4d056b33efbc3242cad8dc9f403d7975a","/logo-3d.png":"bbf6c413818be26a4512a488957ad2a4d056b33efbc3242cad8dc9f403d7975a","/hero-bg.png":"a7be9f5c8a9eb97c19c4862a727dc4a696f89d4843e77bf075f9af1cfcb4087a","/logos/manifest.json":"b3c9b208ce6c1f13509d6680e9a4633c256869adc1647448601abdf30865b9a7","/logos/collab_9.png":"2e7384597e7ab565971f8dd338486ff259fb18e5176179de747dabe8ada69d19","/logos/collab_8.png":"0f919f6e41a1e9b10f1cd2dfe526e13b1e783298fe95de62c0b0bb474a81bd21","/logos/collab_7.png":"e62de0a438d50b4fc96724ddbf8bc0bfe0de5ce2c0d123c34a4ac0c89202ed4a","/logos/collab_6.png":"ee294a21d9d6c55bda11c484ba8cc90cb1c4366309ede30c6f024f99b515f655","/logos/collab_5.png":"33fea1f4a468f005c8649f8bda35cf9bea8552fa90c8e3bd729c55f8b84b6aee","/logos/collab_4.png":"bae0e11d9efff605db56e82a9a14ba03eedf76d6fb534f575d3abff43c7f822e","/logos/collab_3.png":"8b69f164daed38c9a7e0aa492de2640611355c99fdf0976e9cb30ea5d410e0c5","/logos/collab_23.png":"1c9c73c5a9297b00336c270a030a4872837c8c5e3763241ff65c86f182a09b4a","/logos/collab_22.png":"497c9b6245db2c2caf704f804002d40f2bee0d84e88c97269713f48ee748fe1b","/logos/collab_21.png":"989f1cbbeb6f21a0f1c5c3af0f613e4d670934bcba967b1fbd369c1db2f0c83f","/logos/collab_20.png":"4817a6125c2212277da031511e99a31e39b43542e68107a02256057b29c9acb2","/logos/collab_2.png":"567cb89a7c2dc56f4aece50f2683acceb12c29d5c96247f09a111cc28f5e6297","/logos/collab_19.png":"2a52d09d0698f45670024349e2f3b627dcca9fc88fd4834157d385dc958c1ee7","/logos/collab_18.png":"789812530ff94fdcf5c7e24fb7f8252e5aafa8b685b7c8a4aec32012db0e8a3f","/logos/collab_17.png":"eecc395914e863eb1fe54e7899cf6ad7ec1e0376a928fcd56ba8b9212b615aef","/logos/collab_16.png":"ce34b8efea67c169d4100c2ad449b3a7f65a915083d0061ca336fefcc1ff0c2b","/logos/collab_15.png":"7f4f6ee5c05dd032f5128d5013cea2104d042906e5113cd1cb506027cd5a655f","/logos/collab_14.png":"5395bf32e4ae856f5da559d00792e128e4c3dedecf4ae5cd71652659f2bfaeb2","/logos/collab_13.png":"11556b8259cae22085fb61fd9760deb0fdd2b021b46e5ed94e48c9ce0a0c7bb1","/logos/collab_12.png":"a29f93fa02bb6b254508880cda543a252ffee8f7fd3fbb797ecc591d42c580b6","/logos/collab_11.png":"a6dab33294c539496ec26fc8df3a2007256a8f076d9491e6576ec20e73870c0d","/logos/collab_10.png":"5f34eeac106f77c3463fa105e3cd08ca52b1b285a2c25e57c28fb38b550c66fa","/logos/collab_1.png":"a05b5f0321220c646b22c8b78d4f621fcea84a8691ebac179283172571c5198c","/asset-manifest.json":"67cae944c929bbb83479652bcd1da276f4b0650b9405bc29b8c1fe20c013e626","/static/js/main.6fb69430.js.LICENSE.txt":"dd8e288f309396222c207cd6cd8f91904628026bb03f5ed4132bc0e6e1a1ae00","/index.html":"30bb8ce45c193f9901cd374803b7c9d38c65d0ffea0f67ae19beaf5ecfba6fd0","/static/css/main.1d99e084.css.map":"954e51329169f0364fa5f42633e7bc9b8079a64aa5e6bb20e38ce489255ea470","/static/css/main.1d99e084.css":"6cad5c4fa6ae6d81abae10acfcb57b6eba46c778b8685d41130c840017b53811","/static/js/main.6fb69430.js":"3959d47be1f582b54d2aef30ab28fe6b39af436b71437ee65da1dbeef3026ac0","/static/js/main.6fb69430.js.map":"f7edb55f8ed9c487ea646caf316351a2a46c9f5a132ea5df1d6535031cd4d490"}}
+[debug] [2026-10-02T16:17:35.829Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/670541473455/sites/nextlevelgaming-events/versions/c455a443170dadb3:populateFiles 200
+[debug] [2026-10-02T16:17:35.829Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/670541473455/sites/nextlevelgaming-events/versions/c455a443170dadb3:populateFiles {"uploadRequiredHashes":["3959d47be1f582b54d2aef30ab28fe6b39af436b71437ee65da1dbeef3026ac0","954e51329169f0364fa5f42633e7bc9b8079a64aa5e6bb20e38ce489255ea470","30bb8ce45c193f9901cd374803b7c9d38c65d0ffea0f67ae19beaf5ecfba6fd0","6cad5c4fa6ae6d81abae10acfcb57b6eba46c778b8685d41130c840017b53811","67cae944c929bbb83479652bcd1da276f4b0650b9405bc29b8c1fe20c013e626","f7edb55f8ed9c487ea646caf316351a2a46c9f5a132ea5df1d6535031cd4d490"],"uploadUrl":"https://upload-firebasehosting.googleapis.com/upload/sites/nextlevelgaming-events/versions/c455a443170dadb3/files"}
+[debug] [2026-10-02T16:17:35.831Z] Checked if tokens are valid: true, expires at: 1790959268254
+[debug] [2026-10-02T16:17:35.831Z] Checked if tokens are valid: true, expires at: 1790959268254
+[debug] [2026-10-02T16:17:35.831Z] Checked if tokens are valid: true, expires at: 1790959268254
+[debug] [2026-10-02T16:17:35.831Z] Checked if tokens are valid: true, expires at: 1790959268254
+[debug] [2026-10-02T16:17:35.832Z] Checked if tokens are valid: true, expires at: 1790959268254
+[debug] [2026-10-02T16:17:35.832Z] Checked if tokens are valid: true, expires at: 1790959268254
+[debug] [2026-10-02T16:17:35.832Z] Checked if tokens are valid: true, expires at: 1790959268254
+[debug] [2026-10-02T16:17:35.832Z] Checked if tokens are valid: true, expires at: 1790959268254
+[debug] [2026-10-02T16:17:35.833Z] Checked if tokens are valid: true, expires at: 1790959268254
+[debug] [2026-10-02T16:17:35.833Z] Checked if tokens are valid: true, expires at: 1790959268254
+[debug] [2026-10-02T16:17:35.833Z] Checked if tokens are valid: true, expires at: 1790959268254
+[debug] [2026-10-02T16:17:35.833Z] Checked if tokens are valid: true, expires at: 1790959268254
+[debug] [2026-10-02T16:17:35.834Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/nextlevelgaming-events/versions/c455a443170dadb3/files/3959d47be1f582b54d2aef30ab28fe6b39af436b71437ee65da1dbeef3026ac0 [none]
+[debug] [2026-10-02T16:17:35.834Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/nextlevelgaming-events/versions/c455a443170dadb3/files/3959d47be1f582b54d2aef30ab28fe6b39af436b71437ee65da1dbeef3026ac0 [stream]
+[debug] [2026-10-02T16:17:35.836Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/nextlevelgaming-events/versions/c455a443170dadb3/files/954e51329169f0364fa5f42633e7bc9b8079a64aa5e6bb20e38ce489255ea470 [none]
+[debug] [2026-10-02T16:17:35.836Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/nextlevelgaming-events/versions/c455a443170dadb3/files/954e51329169f0364fa5f42633e7bc9b8079a64aa5e6bb20e38ce489255ea470 [stream]
+[debug] [2026-10-02T16:17:35.838Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/nextlevelgaming-events/versions/c455a443170dadb3/files/30bb8ce45c193f9901cd374803b7c9d38c65d0ffea0f67ae19beaf5ecfba6fd0 [none]
+[debug] [2026-10-02T16:17:35.838Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/nextlevelgaming-events/versions/c455a443170dadb3/files/30bb8ce45c193f9901cd374803b7c9d38c65d0ffea0f67ae19beaf5ecfba6fd0 [stream]
+[debug] [2026-10-02T16:17:35.839Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/nextlevelgaming-events/versions/c455a443170dadb3/files/6cad5c4fa6ae6d81abae10acfcb57b6eba46c778b8685d41130c840017b53811 [none]
+[debug] [2026-10-02T16:17:35.839Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/nextlevelgaming-events/versions/c455a443170dadb3/files/6cad5c4fa6ae6d81abae10acfcb57b6eba46c778b8685d41130c840017b53811 [stream]
+[debug] [2026-10-02T16:17:35.840Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/nextlevelgaming-events/versions/c455a443170dadb3/files/67cae944c929bbb83479652bcd1da276f4b0650b9405bc29b8c1fe20c013e626 [none]
+[debug] [2026-10-02T16:17:35.840Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/nextlevelgaming-events/versions/c455a443170dadb3/files/67cae944c929bbb83479652bcd1da276f4b0650b9405bc29b8c1fe20c013e626 [stream]
+[debug] [2026-10-02T16:17:35.841Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/nextlevelgaming-events/versions/c455a443170dadb3/files/f7edb55f8ed9c487ea646caf316351a2a46c9f5a132ea5df1d6535031cd4d490 [none]
+[debug] [2026-10-02T16:17:35.841Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/nextlevelgaming-events/versions/c455a443170dadb3/files/f7edb55f8ed9c487ea646caf316351a2a46c9f5a132ea5df1d6535031cd4d490 [stream]
+[debug] [2026-10-02T16:17:35.850Z] [hosting][populate queue][FINAL] {"max":975,"min":975,"avg":975,"active":0,"complete":1,"success":1,"errored":0,"retried":0,"total":1,"elapsed":991}
+[debug] [2026-10-02T16:17:35.850Z] [hosting] uploads queued: 6
+[info] i  hosting: uploading new files [0/6] (0%) 
+[info] i  hosting: uploading new files [0/6] (0%) 
+[debug] [2026-10-02T16:17:38.749Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/nextlevelgaming-events/versions/c455a443170dadb3/files/954e51329169f0364fa5f42633e7bc9b8079a64aa5e6bb20e38ce489255ea470 200
+[debug] [2026-10-02T16:17:38.750Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/nextlevelgaming-events/versions/c455a443170dadb3/files/954e51329169f0364fa5f42633e7bc9b8079a64aa5e6bb20e38ce489255ea470 [stream]
+[debug] [2026-10-02T16:17:38.802Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/nextlevelgaming-events/versions/c455a443170dadb3/files/30bb8ce45c193f9901cd374803b7c9d38c65d0ffea0f67ae19beaf5ecfba6fd0 200
+[debug] [2026-10-02T16:17:38.802Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/nextlevelgaming-events/versions/c455a443170dadb3/files/30bb8ce45c193f9901cd374803b7c9d38c65d0ffea0f67ae19beaf5ecfba6fd0 [stream]
+[debug] [2026-10-02T16:17:39.015Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/nextlevelgaming-events/versions/c455a443170dadb3/files/3959d47be1f582b54d2aef30ab28fe6b39af436b71437ee65da1dbeef3026ac0 200
+[debug] [2026-10-02T16:17:39.015Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/nextlevelgaming-events/versions/c455a443170dadb3/files/3959d47be1f582b54d2aef30ab28fe6b39af436b71437ee65da1dbeef3026ac0 [stream]
+[debug] [2026-10-02T16:17:39.025Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/nextlevelgaming-events/versions/c455a443170dadb3/files/f7edb55f8ed9c487ea646caf316351a2a46c9f5a132ea5df1d6535031cd4d490 200
+[debug] [2026-10-02T16:17:39.025Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/nextlevelgaming-events/versions/c455a443170dadb3/files/f7edb55f8ed9c487ea646caf316351a2a46c9f5a132ea5df1d6535031cd4d490 [stream]
+[debug] [2026-10-02T16:17:39.082Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/nextlevelgaming-events/versions/c455a443170dadb3/files/67cae944c929bbb83479652bcd1da276f4b0650b9405bc29b8c1fe20c013e626 200
+[debug] [2026-10-02T16:17:39.083Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/nextlevelgaming-events/versions/c455a443170dadb3/files/67cae944c929bbb83479652bcd1da276f4b0650b9405bc29b8c1fe20c013e626 [stream]
+[debug] [2026-10-02T16:17:39.196Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/nextlevelgaming-events/versions/c455a443170dadb3/files/6cad5c4fa6ae6d81abae10acfcb57b6eba46c778b8685d41130c840017b53811 200
+[debug] [2026-10-02T16:17:39.196Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/nextlevelgaming-events/versions/c455a443170dadb3/files/6cad5c4fa6ae6d81abae10acfcb57b6eba46c778b8685d41130c840017b53811 [stream]
+[debug] [2026-10-02T16:17:39.196Z] [hosting][upload queue][FINAL] {"max":3364,"min":2919,"avg":3147.1666666666665,"active":0,"complete":6,"success":6,"errored":0,"retried":0,"total":6,"elapsed":3366}
+[info] i  hosting: upload complete 
+[info] +  hosting[nextlevelgaming-events]: file upload complete 
+[debug] [2026-10-02T16:17:39.197Z] [hosting] deploy completed after 4614ms
+[debug] [2026-10-02T16:17:39.197Z] [
+  {
+    "config": {
+      "public": "build",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ],
+      "site": "nextlevelgaming-events"
+    },
+    "version": "projects/670541473455/sites/nextlevelgaming-events/versions/c455a443170dadb3"
+  }
+]
+[info] i  hosting[nextlevelgaming-events]: finalizing version... 
+[debug] [2026-10-02T16:17:39.200Z] Checked if tokens are valid: true, expires at: 1790959268254
+[debug] [2026-10-02T16:17:39.200Z] Checked if tokens are valid: true, expires at: 1790959268254
+[debug] [2026-10-02T16:17:39.202Z] >>> [apiv2][query] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/nextlevelgaming-events/versions/c455a443170dadb3 updateMask=status%2Cconfig
+[debug] [2026-10-02T16:17:39.202Z] >>> [apiv2][body] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/nextlevelgaming-events/versions/c455a443170dadb3 {"status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]}}
+[debug] [2026-10-02T16:17:41.409Z] <<< [apiv2][status] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/nextlevelgaming-events/versions/c455a443170dadb3 200
+[debug] [2026-10-02T16:17:41.409Z] <<< [apiv2][body] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/nextlevelgaming-events/versions/c455a443170dadb3 {"name":"projects/670541473455/sites/nextlevelgaming-events/versions/c455a443170dadb3","status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2026-10-02T16:17:23.185923Z","createUser":{"email":"j.nziieee@gmail.com"},"finalizeTime":"2026-10-02T16:17:39.328922Z","finalizeUser":{"email":"j.nziieee@gmail.com"}}
+[debug] [2026-10-02T16:17:41.409Z] [hosting] finalized version for nextlevelgaming-events:[object Object]
+[info] +  hosting[nextlevelgaming-events]: version finalized 
+[info] i  hosting[nextlevelgaming-events]: releasing new version... 
+[debug] [2026-10-02T16:17:41.410Z] Checked if tokens are valid: true, expires at: 1790959268254
+[debug] [2026-10-02T16:17:41.410Z] Checked if tokens are valid: true, expires at: 1790959268254
+[debug] [2026-10-02T16:17:41.411Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/nextlevelgaming-events/channels/live/releases versionName=projects%2F670541473455%2Fsites%2Fnextlevelgaming-events%2Fversions%2Fc455a443170dadb3
+[debug] [2026-10-02T16:17:41.411Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/nextlevelgaming-events/channels/live/releases {}
+[debug] [2026-10-02T16:17:43.692Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/nextlevelgaming-events/channels/live/releases 200
+[debug] [2026-10-02T16:17:43.692Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/nextlevelgaming-events/channels/live/releases {"name":"projects/670541473455/sites/nextlevelgaming-events/channels/live/releases/1790957860421000","version":{"name":"projects/670541473455/sites/nextlevelgaming-events/versions/c455a443170dadb3","status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2026-10-02T16:17:23.185923Z","createUser":{"email":"j.nziieee@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocJp-b7nzPbFlzzuCtaklwdZRrllWHBaPwR-g-Yd0U_JlcQ82A=mo"},"finalizeTime":"2026-10-02T16:17:39.328922Z","finalizeUser":{"email":"j.nziieee@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocJp-b7nzPbFlzzuCtaklwdZRrllWHBaPwR-g-Yd0U_JlcQ82A=mo"}},"type":"DEPLOY","releaseTime":"2026-10-02T16:17:40.421Z","releaseUser":{"email":"j.nziieee@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocJp-b7nzPbFlzzuCtaklwdZRrllWHBaPwR-g-Yd0U_JlcQ82A=mo"}}
+[debug] [2026-10-02T16:17:43.693Z] [hosting] release: {"name":"projects/670541473455/sites/nextlevelgaming-events/channels/live/releases/1790957860421000","version":{"name":"projects/670541473455/sites/nextlevelgaming-events/versions/c455a443170dadb3","status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2026-10-02T16:17:23.185923Z","createUser":{"email":"j.nziieee@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocJp-b7nzPbFlzzuCtaklwdZRrllWHBaPwR-g-Yd0U_JlcQ82A=mo"},"finalizeTime":"2026-10-02T16:17:39.328922Z","finalizeUser":{"email":"j.nziieee@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocJp-b7nzPbFlzzuCtaklwdZRrllWHBaPwR-g-Yd0U_JlcQ82A=mo"}},"type":"DEPLOY","releaseTime":"2026-10-02T16:17:40.421Z","releaseUser":{"email":"j.nziieee@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocJp-b7nzPbFlzzuCtaklwdZRrllWHBaPwR-g-Yd0U_JlcQ82A=mo"}}
+[info] +  hosting[nextlevelgaming-events]: release complete 
+[info] 
+[info] +  Deploy complete! 
+[info] 
+[info] Project Console: https://console.firebase.google.com/project/nextlevelgaming-events/overview
+[info] Hosting URL: https://nextlevelgaming-events.web.app
+[debug] [2026-10-02T16:17:53.708Z] Error: Timed out.
+    at Timeout._onTimeout (C:\Users\jenz\AppData\Roaming\npm\node_modules\firebase-tools\lib\utils.js:296:49)
+    at listOnTimeout (node:internal/timers:581:17)
+    at process.processTimers (node:internal/timers:519:7)
+[error] 
+[error] Error: An unexpected error has occurred.
