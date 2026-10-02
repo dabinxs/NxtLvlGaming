@@ -99,9 +99,9 @@ const Navbar = () => {
       <div className="mx-auto flex w-full max-w-[1400px] items-center justify-between">
         <a href="/" className="flex items-center group">
           <img
-            src="/logo.png"
+            src="/logo-3d.png"
             alt="Next Level Gaming and Novelties"
-            className="h-14 md:h-18 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+            className="h-20 md:h-26 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
           />
         </a>
         <nav
