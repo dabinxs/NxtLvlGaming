@@ -97,11 +97,11 @@ const Navbar = () => {
       className="fixed inset-x-0 top-0 z-50 px-4 pt-5"
     >
       <div className="mx-auto flex w-full max-w-[1400px] items-center justify-between">
-        <a href="/" className="hidden lg:block">
+        <a href="/" className="flex items-center group">
           <img
-            src="/logo.png"
-            alt="Next Level Gaming"
-            className="h-16 w-auto object-contain"
+            src="/logo-light.png"
+            alt="Next Level Gaming and Novelties"
+            className="h-14 md:h-18 w-auto object-contain transition-transform duration-300 group-hover:scale-105 drop-shadow-[0_4px_24px_rgba(0,102,253,0.6)]"
           />
         </a>
         <nav
