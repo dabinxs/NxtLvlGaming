@@ -33,6 +33,14 @@ const Footer = () => {
               <ArrowUpRight className="h-5 w-5 shrink-0 text-[#7DDDFF] transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
             </a>
 
+            <a
+              href="tel:9786015473"
+              data-testid="footer-phone"
+              className="mt-2.5 inline-flex items-center gap-2 font-display text-sm font-medium tracking-wide text-white/80 transition-colors hover:text-[#7DDDFF]"
+            >
+              <span>978-601-5473</span>
+            </a>
+
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <a
                 href="#top"
