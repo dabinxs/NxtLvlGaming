@@ -260,8 +260,8 @@ const Novelties = () => {
                 >
                   {/* Physical Printed Photo Frame */}
                   <div className="relative rounded-[4px] bg-[#f4f4f6] p-2 shadow-[0_16px_38px_rgba(0,0,0,0.7)] transition-all duration-400 group-hover:shadow-[0_20px_45px_rgba(0,153,255,0.35)]">
-                    {/* Electric Blue Translucent Tape at top */}
-                    <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-30 h-4 w-12 bg-[#0099FF]/90 shadow-[0_2px_6px_rgba(0,153,255,0.5)] transform -rotate-1 rounded-sm" />
+                    {/* Electric Blue Translucent Tape at top (sharp corners, translucent) */}
+                    <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-30 h-4.5 w-14 bg-[#0052cc]/55 border border-white/20 shadow-[0_2px_8px_rgba(0,82,204,0.3)] transform -rotate-2 rounded-none backdrop-blur-[0.5px]" />
 
                     {/* Inside Photo Image Container */}
                     <div className="relative aspect-[1/1] w-full overflow-hidden bg-black rounded-[2px]">
