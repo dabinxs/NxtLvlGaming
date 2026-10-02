@@ -101,7 +101,7 @@ const Navbar = () => {
           <img
             src="/logo-light.png"
             alt="Next Level Gaming and Novelties"
-            className="h-14 md:h-18 w-auto object-contain transition-transform duration-300 group-hover:scale-105 drop-shadow-[0_4px_24px_rgba(0,102,253,0.6)]"
+            className="h-20 md:h-28 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
           />
         </a>
         <nav
