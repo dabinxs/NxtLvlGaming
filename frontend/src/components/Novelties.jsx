@@ -293,16 +293,13 @@ const Novelties = () => {
         </section>
 
         {/* ================= SECTION 4: SHAPE THE OCCASION (3 STEPS) ================= */}
-        <section className="relative overflow-hidden border-t border-white/10 bg-[#030c18] py-16 md:py-24">
-          {/* Background image uploaded by user (Photo 1) */}
-          <img
-            src="/steps-bg.png"
-            alt="Shape the occasion background"
-            className="absolute inset-0 h-full w-full object-cover object-center pointer-events-none select-none z-0"
-          />
+        <section className="relative overflow-hidden border-t border-white/10 bg-[#020917] py-20 md:py-28">
+          {/* Subtle CSS Lighting Effects */}
+          <div className="pointer-events-none absolute -right-20 -top-20 h-[500px] w-[500px] rounded-full bg-[#0099FF]/15 blur-[140px]" />
+          <div className="pointer-events-none absolute -left-20 -bottom-20 h-[400px] w-[400px] rounded-full bg-[#0066FF]/10 blur-[130px]" />
 
           <div className="relative z-10 mx-auto max-w-[1280px] px-5 md:px-8">
-            {/* Header matching Photo 3 */}
+            {/* Header */}
             <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-16 items-end mb-12 md:mb-16">
               <div className="lg:col-span-7">
                 <div className="flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.22em] text-[#0099FF]">
@@ -315,30 +312,53 @@ const Novelties = () => {
                 </h2>
               </div>
               <div className="lg:col-span-5 flex flex-col justify-end pb-2">
-                <span className="h-[2px] w-7 bg-[#0099FF] mb-4 inline-block" />
-                <p className="text-[14px] md:text-[15px] leading-relaxed text-white/75">
+                <span className="h-[2px] w-6 bg-[#0099FF] mb-4 inline-block" />
+                <p className="text-[14px] md:text-[15.5px] leading-relaxed text-white/75">
                   Choose a mood, a memory or simply something your guests have never tried.
                   We will shape the details around it.
                 </p>
               </div>
             </div>
 
-            {/* 3 Step Cards positioned over the 3 boxes on steps-bg.png */}
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-3 pt-2 md:pt-6">
+            {/* 3 Step Cards with Native Glowing Corner Arcs */}
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-3 pt-2">
               {STEPS.map((step) => (
                 <div
                   key={step.id}
-                  className="group relative rounded-xl bg-[#041224]/80 backdrop-blur-sm border border-white/10 p-6 md:p-8 md:bg-transparent md:backdrop-blur-none md:border-transparent transition-all duration-300"
+                  className="group relative overflow-hidden rounded-[20px] border border-[#0099FF]/40 bg-gradient-to-b from-[#061833] via-[#041226] to-[#020b1a] p-7 md:p-9 shadow-[0_10px_30px_rgba(0,102,255,0.12)] transition-all duration-300 hover:border-[#0099FF] hover:shadow-[0_14px_45px_rgba(0,153,255,0.25)] hover:-translate-y-1"
                 >
-                  <div className="text-[13px] font-bold uppercase tracking-widest text-[#0099FF]">
-                    {step.id}
+                  {/* Top-Right Glowing Corner Arc SVG */}
+                  <div className="pointer-events-none absolute right-0 top-0 h-44 w-44 overflow-hidden rounded-tr-[20px]">
+                    <div className="absolute -right-8 -top-8 h-36 w-36 rounded-full bg-[#0099FF]/25 blur-2xl" />
+                    <svg
+                      viewBox="0 0 160 160"
+                      className="absolute right-0 top-0 h-full w-full"
+                      fill="none"
+                    >
+                      <path
+                        d="M 60 0 C 60 75, 160 75, 160 120"
+                        stroke="#0099FF"
+                        strokeWidth="1.5"
+                        strokeOpacity="0.85"
+                      />
+                      <circle cx="120" cy="78" r="2.5" fill="#7DDDFF" />
+                      <circle cx="120" cy="78" r="6" fill="#0099FF" opacity="0.6" className="blur-[2px]" />
+                      <circle cx="120" cy="78" r="12" fill="#0099FF" opacity="0.25" className="blur-[4px]" />
+                    </svg>
                   </div>
-                  <h3 className="mt-5 md:mt-6 font-serif text-[30px] md:text-[34px] font-extrabold uppercase tracking-wide text-white transition-colors group-hover:text-[#7DDDFF]">
-                    {step.title}
-                  </h3>
-                  <p className="mt-3 md:mt-4 text-[13.5px] md:text-[14.5px] leading-relaxed text-white/70">
-                    {step.desc}
-                  </p>
+
+                  {/* Card Content */}
+                  <div className="relative z-10">
+                    <div className="text-[13px] font-bold uppercase tracking-[0.2em] text-[#0099FF]">
+                      {step.id}
+                    </div>
+                    <h3 className="mt-6 font-serif text-[32px] md:text-[38px] font-extrabold uppercase tracking-wide text-white transition-colors group-hover:text-[#7DDDFF]">
+                      {step.title}
+                    </h3>
+                    <p className="mt-4 text-[14px] md:text-[15px] leading-relaxed text-white/70 font-sans">
+                      {step.desc}
+                    </p>
+                  </div>
                 </div>
               ))}
             </div>
