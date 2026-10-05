@@ -116,26 +116,12 @@ const Novelties = () => {
       <main>
         {/* ================= SECTION 1: HERO ================= */}
         <section className="relative overflow-hidden pt-36 pb-24 md:pt-48 md:pb-36 min-h-[90vh] flex items-center bg-[#041222]">
-          {/* Subtle dotted grid background texture */}
-          <div
-            className="absolute inset-0 pointer-events-none opacity-40"
-            style={{
-              backgroundImage:
-                "radial-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px)",
-              backgroundSize: "24px 24px",
-            }}
+          {/* Background image uploaded by user */}
+          <img
+            src="/novelties-bg.png"
+            alt="Novelties background"
+            className="absolute inset-0 h-full w-full object-cover object-center pointer-events-none select-none z-0"
           />
-
-          {/* Glowing background orbital lines */}
-          <div className="pointer-events-none absolute right-[-10%] top-[-20%] h-[700px] w-[700px] rounded-full border border-white/5 bg-gradient-to-br from-[#0099FF]/15 to-transparent blur-3xl opacity-60" />
-          <div className="pointer-events-none absolute right-[10%] top-[10%] h-[500px] w-[500px] rounded-full border border-[#0099FF]/20" />
-          <div className="pointer-events-none absolute right-[5%] top-[5%] h-[650px] w-[650px] rounded-full border border-white/5" />
-          <div className="pointer-events-none absolute left-[-10%] bottom-[-10%] h-[500px] w-[500px] rounded-full bg-[#0099FF]/10 blur-[140px]" />
-
-          {/* Faint Background Watermark Text "NOVELTIES" */}
-          <div className="pointer-events-none absolute right-[-5%] bottom-[-5%] z-0 select-none font-serif text-[clamp(8rem,20vw,24rem)] font-extrabold text-white/[0.025] tracking-widest uppercase rotate-[-12deg]">
-            NOVELTIES
-          </div>
 
           {/* Vertical scroll text on right edge */}
           <div className="hidden lg:flex pointer-events-none absolute right-8 top-1/2 -translate-y-1/2 z-20 items-center gap-3 rotate-90 origin-right text-[10px] font-bold uppercase tracking-[0.3em] text-white/40">
