@@ -20,6 +20,7 @@ import JustDance from "./components/JustDance";
 import SilentDisco from "./components/SilentDisco";
 import SimRacing from "./components/SimRacing";
 import Novelties from "./components/Novelties";
+import BuildNovelty from "./components/BuildNovelty";
 
 const Landing = () => (
   <div className="App text-foreground">
@@ -52,6 +53,8 @@ function App() {
         <Route path="/silent-disco" element={<SilentDisco />} />
         <Route path="/sim-racing" element={<SimRacing />} />
         <Route path="/novelties" element={<Novelties />} />
+        <Route path="/build-novelty" element={<BuildNovelty />} />
+        <Route path="/build" element={<BuildNovelty />} />
       </Routes>
     </BrowserRouter>
   );

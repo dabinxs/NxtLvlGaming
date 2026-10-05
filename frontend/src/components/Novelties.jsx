@@ -133,7 +133,7 @@ const Novelties = () => {
             {/* Tag */}
             <div className="flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.22em] text-[#0099FF]">
               <span className="h-[2px] w-7 bg-[#0099FF]" />
-              <span>03 / NOVELTIES</span>
+              <span>01 / NOVELTIES</span>
               <span className="text-white/40 font-normal">· CURATED FOR THE UNEXPECTED</span>
             </div>
 
@@ -156,7 +156,7 @@ const Novelties = () => {
             {/* Buttons */}
             <div className="mt-10 flex flex-wrap items-center gap-4">
               <a
-                href="#workshops"
+                href="/build-novelty"
                 className="group inline-flex h-[52px] items-center justify-center gap-2.5 rounded-full bg-[#0099FF] px-8 text-[12px] font-bold uppercase tracking-[0.1em] text-white shadow-[0_0_24px_rgba(0,153,255,0.4)] transition-all duration-300 hover:bg-[#0088EE] hover:shadow-[0_0_36px_rgba(0,153,255,0.6)]"
               >
                 CUSTOMIZE YOUR NOVELTIES
@@ -165,7 +165,8 @@ const Novelties = () => {
             </div>
           </div>
         </section>
-        {/* ================= SECTION 2: THE ART OF THE UNEXPECTED ================= */}
+
+        {/* ================= SECTION 2: THE ART OF THE UNEXPECTED ================= */}
         <section className="relative border-t border-white/10 bg-[#030c18] py-24 md:py-32">
           <div className="mx-auto max-w-[1280px] px-5 md:px-8">
             <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16 items-center">
@@ -295,7 +296,7 @@ const Novelties = () => {
                 04 / CREATIVE WORKSHOPS
               </div>
               <a
-                href="#footer"
+                href="/build-novelty"
                 className="group flex items-center gap-2 text-[12px] font-bold uppercase tracking-[0.15em] text-white hover:text-[#0099FF] transition-colors"
               >
                 CHOOSE AN EXPERIENCE
@@ -306,8 +307,9 @@ const Novelties = () => {
             {/* 10 Card Editorial Photo Grid (5 per row on desktop) */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-6">
               {WORKSHOPS.map((item) => (
-                <div
+                <a
                   key={item.id}
+                  href={`/build-novelty?product=${item.id === '01' ? 'trucker-hats' : item.id === '03' ? 'custom-socks' : item.id === '04' ? 'custom-bracelets' : item.id === '05' ? 'pillow-dolls' : item.id === '06' ? 'sequence-pillows' : item.id === '07' ? 'intention-bracelets' : item.id === '08' ? 'laser-keychains' : item.id === '09' ? 'stamped-rings' : item.id === '10' ? 'plush-bags' : 'trucker-hats'}`}
                   className={`group relative flex flex-col transition-all duration-500 hover:z-30 hover:scale-[1.03] ${item.rotation}`}
                 >
                   {/* Physical Printed Photo Frame */}
@@ -358,7 +360,7 @@ const Novelties = () => {
                       {item.desc}
                     </p>
                   </div>
-                </div>
+                </a>
               ))}
             </div>
           </div>
@@ -383,7 +385,7 @@ const Novelties = () => {
             </h2>
             <div className="mt-10">
               <a
-                href="#footer"
+                href="/build-novelty"
                 className="inline-flex h-[54px] items-center justify-center gap-3 rounded-full bg-[#0099FF] px-10 text-[13px] font-bold uppercase tracking-[0.15em] text-white shadow-[0_0_30px_rgba(0,153,255,0.5)] transition-all duration-300 hover:bg-[#0088EE] hover:shadow-[0_0_50px_rgba(0,153,255,0.7)]"
               >
                 START BUILD →
