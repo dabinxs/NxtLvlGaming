@@ -293,42 +293,50 @@ const Novelties = () => {
         </section>
 
         {/* ================= SECTION 4: SHAPE THE OCCASION (3 STEPS) ================= */}
-        <section className="relative border-t border-white/10 bg-[#030c18] py-24 md:py-32">
-          <div className="mx-auto max-w-[1280px] px-5 md:px-8">
-            {/* Header */}
-            <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-16 items-end mb-16 pb-8 border-b border-white/10">
+        <section className="relative overflow-hidden border-t border-white/10 bg-[#030c18] py-16 md:py-24">
+          {/* Background image uploaded by user (Photo 1) */}
+          <img
+            src="/steps-bg.png"
+            alt="Shape the occasion background"
+            className="absolute inset-0 h-full w-full object-cover object-center pointer-events-none select-none z-0"
+          />
+
+          <div className="relative z-10 mx-auto max-w-[1280px] px-5 md:px-8">
+            {/* Header matching Photo 3 */}
+            <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-16 items-end mb-12 md:mb-16">
               <div className="lg:col-span-7">
                 <div className="flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.22em] text-[#0099FF]">
-                  <span className="h-[2px] w-7 bg-[#0099FF]" />
                   <span>04 / SHAPE THE OCCASION</span>
+                  <span className="h-[1px] flex-1 bg-[#0099FF]/40" />
                 </div>
-                <h2 className="mt-4 font-serif text-[clamp(2.4rem,5vw,4.5rem)] font-extrabold uppercase leading-[1.05] tracking-tight text-white">
+                <h2 className="mt-4 font-serif text-[clamp(2.6rem,5.5vw,4.8rem)] font-extrabold uppercase leading-[1.05] tracking-tight text-white">
                   START WITH A <br />
                   <span className="italic font-serif text-[#0099FF]">FEELING.</span>
                 </h2>
               </div>
-              <div className="lg:col-span-5">
-                <p className="text-[15px] leading-relaxed text-white/70">
+              <div className="lg:col-span-5 flex flex-col justify-end pb-2">
+                <span className="h-[2px] w-7 bg-[#0099FF] mb-4 inline-block" />
+                <p className="text-[14px] md:text-[15px] leading-relaxed text-white/75">
                   Choose a mood, a memory or simply something your guests have never tried.
                   We will shape the details around it.
                 </p>
               </div>
             </div>
 
-            {/* 3 Step Cards */}
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+            {/* 3 Step Cards positioned over the 3 boxes on steps-bg.png */}
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-3 pt-2 md:pt-6">
               {STEPS.map((step) => (
                 <div
                   key={step.id}
-                  className="group relative overflow-hidden rounded-xl border border-white/10 bg-gradient-to-b from-[#071428] to-[#040c1a] p-8 transition-all duration-300 hover:border-[#0099FF]/60 hover:shadow-[0_12px_36px_rgba(0,153,255,0.2)]"
+                  className="group relative rounded-xl bg-[#041224]/80 backdrop-blur-sm border border-white/10 p-6 md:p-8 md:bg-transparent md:backdrop-blur-none md:border-transparent transition-all duration-300"
                 >
-                  <div className="text-[12px] font-bold uppercase tracking-widest text-[#0099FF]">
+                  <div className="text-[13px] font-bold uppercase tracking-widest text-[#0099FF]">
                     {step.id}
                   </div>
-                  <h3 className="mt-6 font-serif text-[28px] font-extrabold uppercase tracking-wide text-white group-hover:text-[#7DDDFF] transition-colors">
+                  <h3 className="mt-5 md:mt-6 font-serif text-[30px] md:text-[34px] font-extrabold uppercase tracking-wide text-white transition-colors group-hover:text-[#7DDDFF]">
                     {step.title}
                   </h3>
-                  <p className="mt-4 text-[14.5px] leading-relaxed text-white/65">
+                  <p className="mt-3 md:mt-4 text-[13.5px] md:text-[14.5px] leading-relaxed text-white/70">
                     {step.desc}
                   </p>
                 </div>
