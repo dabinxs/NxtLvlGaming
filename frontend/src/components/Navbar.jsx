@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import {
   Menu,
   X,
@@ -79,7 +79,30 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState(null);
   const [mobileAccordion, setMobileAccordion] = useState(null);
+  const [showNavbar, setShowNavbar] = useState(true);
+  const lastScrollY = useRef(0);
   const closeTimer = useRef(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY <= 20) {
+        setShowNavbar(true);
+      } else if (currentScrollY > lastScrollY.current + 8) {
+        // Scrolling down -> hide navbar
+        setShowNavbar(false);
+      } else if (currentScrollY < lastScrollY.current - 8) {
+        // Scrolling up -> show navbar
+        setShowNavbar(true);
+      }
+
+      lastScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const openMenu = (key) => {
     clearTimeout(closeTimer.current);
@@ -94,7 +117,9 @@ const Navbar = () => {
     <header
       data-testid="site-navbar"
       onMouseLeave={scheduleClose}
-      className="fixed inset-x-0 top-0 z-50 px-4 pt-5"
+      className={`fixed inset-x-0 top-0 z-50 px-4 pt-5 transition-transform duration-500 ease-in-out ${
+        showNavbar ? "translate-y-0" : "-translate-y-full pointer-events-none"
+      }`}
     >
       <div className="mx-auto flex w-full max-w-[1400px] items-center justify-between">
         <a href="/" className="flex items-center group">
