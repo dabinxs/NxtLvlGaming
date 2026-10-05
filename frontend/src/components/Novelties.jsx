@@ -292,7 +292,7 @@ const Novelties = () => {
             {/* Header bar */}
             <div className="flex flex-wrap items-center justify-between gap-4 mb-16 pb-6 border-b border-white/10">
               <div className="text-[12px] font-bold uppercase tracking-[0.22em] text-[#0099FF]">
-                NOVELTIES / 04 CREATIVE WORKSHOPS
+                04 / CREATIVE WORKSHOPS
               </div>
               <a
                 href="#footer"
