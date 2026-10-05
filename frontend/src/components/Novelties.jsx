@@ -165,8 +165,7 @@ const Novelties = () => {
             </div>
           </div>
         </section>
-
-        {/* ================= SECTION 2: THE ART OF THE UNEXPECTED ================= */}
+        {/* ================= SECTION 2: THE ART OF THE UNEXPECTED ================= */}
         <section className="relative border-t border-white/10 bg-[#030c18] py-24 md:py-32">
           <div className="mx-auto max-w-[1280px] px-5 md:px-8">
             <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16 items-center">
@@ -174,7 +173,7 @@ const Novelties = () => {
               <div className="lg:col-span-6 lg:border-r lg:border-white/10 lg:pr-12">
                 <div className="flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.22em] text-[#0099FF]">
                   <span className="h-[2px] w-7 bg-[#0099FF]" />
-                  <span>03 / NOVELTIES</span>
+                  <span>02 / THE ART OF THE UNEXPECTED</span>
                 </div>
                 <h2 className="mt-4 font-serif text-[clamp(2.4rem,5vw,4.5rem)] font-extrabold uppercase leading-[1.05] tracking-tight text-white">
                   THE ART OF <br />
@@ -204,7 +203,80 @@ const Novelties = () => {
           </div>
         </section>
 
-        {/* ================= SECTION 3: CREATIVE WORKSHOPS (GRID OF 10 PRINTED PHOTO CARDS) ================= */}
+        {/* ================= SECTION 3: SHAPE THE OCCASION (3 STEPS) ================= */}
+        <section className="relative overflow-hidden border-t border-white/10 bg-[#020917] py-20 md:py-28">
+          {/* Subtle CSS Lighting Effects */}
+          <div className="pointer-events-none absolute -right-20 -top-20 h-[500px] w-[500px] rounded-full bg-[#0099FF]/15 blur-[140px]" />
+          <div className="pointer-events-none absolute -left-20 -bottom-20 h-[400px] w-[400px] rounded-full bg-[#0066FF]/10 blur-[130px]" />
+
+          <div className="relative z-10 mx-auto max-w-[1280px] px-5 md:px-8">
+            {/* Header */}
+            <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-16 items-end mb-12 md:mb-16">
+              <div className="lg:col-span-7">
+                <div className="flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.22em] text-[#0099FF]">
+                  <span>03 / SHAPE THE OCCASION</span>
+                  <span className="h-[1px] flex-1 bg-[#0099FF]/40" />
+                </div>
+                <h2 className="mt-4 font-serif text-[clamp(2.6rem,5.5vw,4.8rem)] font-extrabold uppercase leading-[1.05] tracking-tight text-white">
+                  START WITH A <br />
+                  <span className="italic font-serif text-[#0099FF]">FEELING.</span>
+                </h2>
+              </div>
+              <div className="lg:col-span-5 flex flex-col justify-end pb-2">
+                <span className="h-[2px] w-6 bg-[#0099FF] mb-4 inline-block" />
+                <p className="text-[14px] md:text-[15.5px] leading-relaxed text-white/75">
+                  Choose a mood, a memory or simply something your guests have never tried.
+                  We will shape the details around it.
+                </p>
+              </div>
+            </div>
+
+            {/* 3 Step Cards with Native Glowing Corner Arcs */}
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-3 pt-2">
+              {STEPS.map((step) => (
+                <div
+                  key={step.id}
+                  className="group relative overflow-hidden rounded-[20px] border border-[#0099FF]/40 bg-gradient-to-b from-[#061833] via-[#041226] to-[#020b1a] p-7 md:p-9 shadow-[0_10px_30px_rgba(0,102,255,0.12)] transition-all duration-300 hover:border-[#0099FF] hover:shadow-[0_14px_45px_rgba(0,153,255,0.25)] hover:-translate-y-1"
+                >
+                  {/* Top-Right Glowing Corner Arc SVG */}
+                  <div className="pointer-events-none absolute right-0 top-0 h-44 w-44 overflow-hidden rounded-tr-[20px]">
+                    <div className="absolute -right-8 -top-8 h-36 w-36 rounded-full bg-[#0099FF]/25 blur-2xl" />
+                    <svg
+                      viewBox="0 0 160 160"
+                      className="absolute right-0 top-0 h-full w-full"
+                      fill="none"
+                    >
+                      <path
+                        d="M 60 0 C 60 75, 160 75, 160 120"
+                        stroke="#0099FF"
+                        strokeWidth="1.5"
+                        strokeOpacity="0.85"
+                      />
+                      <circle cx="120" cy="78" r="2.5" fill="#7DDDFF" />
+                      <circle cx="120" cy="78" r="6" fill="#0099FF" opacity="0.6" className="blur-[2px]" />
+                      <circle cx="120" cy="78" r="12" fill="#0099FF" opacity="0.25" className="blur-[4px]" />
+                    </svg>
+                  </div>
+
+                  {/* Card Content */}
+                  <div className="relative z-10">
+                    <div className="text-[13px] font-bold uppercase tracking-[0.2em] text-[#0099FF]">
+                      {step.id}
+                    </div>
+                    <h3 className="mt-6 font-serif text-[32px] md:text-[38px] font-extrabold uppercase tracking-wide text-white transition-colors group-hover:text-[#7DDDFF]">
+                      {step.title}
+                    </h3>
+                    <p className="mt-4 text-[14px] md:text-[15px] leading-relaxed text-white/70 font-sans">
+                      {step.desc}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ================= SECTION 4: CREATIVE WORKSHOPS (GRID OF 10 PRINTED PHOTO CARDS) ================= */}
         <section id="workshops" className="relative py-24 md:py-32 bg-[#041222] border-t border-[#0099FF]/30">
           {/* Subtle dotted grid texture */}
           <div
@@ -220,7 +292,7 @@ const Novelties = () => {
             {/* Header bar */}
             <div className="flex flex-wrap items-center justify-between gap-4 mb-16 pb-6 border-b border-white/10">
               <div className="text-[12px] font-bold uppercase tracking-[0.22em] text-[#0099FF]">
-                NOVELTIES / 06 CREATIVE WORKSHOPS
+                NOVELTIES / 04 CREATIVE WORKSHOPS
               </div>
               <a
                 href="#footer"
@@ -284,79 +356,6 @@ const Novelties = () => {
                   <div className="mt-3.5 px-1">
                     <p className="text-white/70 text-[13px] leading-snug font-sans">
                       {item.desc}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ================= SECTION 4: SHAPE THE OCCASION (3 STEPS) ================= */}
-        <section className="relative overflow-hidden border-t border-white/10 bg-[#020917] py-20 md:py-28">
-          {/* Subtle CSS Lighting Effects */}
-          <div className="pointer-events-none absolute -right-20 -top-20 h-[500px] w-[500px] rounded-full bg-[#0099FF]/15 blur-[140px]" />
-          <div className="pointer-events-none absolute -left-20 -bottom-20 h-[400px] w-[400px] rounded-full bg-[#0066FF]/10 blur-[130px]" />
-
-          <div className="relative z-10 mx-auto max-w-[1280px] px-5 md:px-8">
-            {/* Header */}
-            <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-16 items-end mb-12 md:mb-16">
-              <div className="lg:col-span-7">
-                <div className="flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.22em] text-[#0099FF]">
-                  <span>04 / SHAPE THE OCCASION</span>
-                  <span className="h-[1px] flex-1 bg-[#0099FF]/40" />
-                </div>
-                <h2 className="mt-4 font-serif text-[clamp(2.6rem,5.5vw,4.8rem)] font-extrabold uppercase leading-[1.05] tracking-tight text-white">
-                  START WITH A <br />
-                  <span className="italic font-serif text-[#0099FF]">FEELING.</span>
-                </h2>
-              </div>
-              <div className="lg:col-span-5 flex flex-col justify-end pb-2">
-                <span className="h-[2px] w-6 bg-[#0099FF] mb-4 inline-block" />
-                <p className="text-[14px] md:text-[15.5px] leading-relaxed text-white/75">
-                  Choose a mood, a memory or simply something your guests have never tried.
-                  We will shape the details around it.
-                </p>
-              </div>
-            </div>
-
-            {/* 3 Step Cards with Native Glowing Corner Arcs */}
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-3 pt-2">
-              {STEPS.map((step) => (
-                <div
-                  key={step.id}
-                  className="group relative overflow-hidden rounded-[20px] border border-[#0099FF]/40 bg-gradient-to-b from-[#061833] via-[#041226] to-[#020b1a] p-7 md:p-9 shadow-[0_10px_30px_rgba(0,102,255,0.12)] transition-all duration-300 hover:border-[#0099FF] hover:shadow-[0_14px_45px_rgba(0,153,255,0.25)] hover:-translate-y-1"
-                >
-                  {/* Top-Right Glowing Corner Arc SVG */}
-                  <div className="pointer-events-none absolute right-0 top-0 h-44 w-44 overflow-hidden rounded-tr-[20px]">
-                    <div className="absolute -right-8 -top-8 h-36 w-36 rounded-full bg-[#0099FF]/25 blur-2xl" />
-                    <svg
-                      viewBox="0 0 160 160"
-                      className="absolute right-0 top-0 h-full w-full"
-                      fill="none"
-                    >
-                      <path
-                        d="M 60 0 C 60 75, 160 75, 160 120"
-                        stroke="#0099FF"
-                        strokeWidth="1.5"
-                        strokeOpacity="0.85"
-                      />
-                      <circle cx="120" cy="78" r="2.5" fill="#7DDDFF" />
-                      <circle cx="120" cy="78" r="6" fill="#0099FF" opacity="0.6" className="blur-[2px]" />
-                      <circle cx="120" cy="78" r="12" fill="#0099FF" opacity="0.25" className="blur-[4px]" />
-                    </svg>
-                  </div>
-
-                  {/* Card Content */}
-                  <div className="relative z-10">
-                    <div className="text-[13px] font-bold uppercase tracking-[0.2em] text-[#0099FF]">
-                      {step.id}
-                    </div>
-                    <h3 className="mt-6 font-serif text-[32px] md:text-[38px] font-extrabold uppercase tracking-wide text-white transition-colors group-hover:text-[#7DDDFF]">
-                      {step.title}
-                    </h3>
-                    <p className="mt-4 text-[14px] md:text-[15px] leading-relaxed text-white/70 font-sans">
-                      {step.desc}
                     </p>
                   </div>
                 </div>
