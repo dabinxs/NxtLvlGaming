@@ -366,24 +366,26 @@ const Novelties = () => {
         </section>
 
         {/* ================= SECTION 5: CREATE YOUR OWN EXPERIENCE ================= */}
-        <section className="relative overflow-hidden py-24 md:py-36 bg-[#041222]">
-          {/* Subtle background glows */}
-          <div className="pointer-events-none absolute right-0 top-1/2 h-[500px] w-[500px] -translate-y-1/2 rounded-full bg-[#0099FF]/15 blur-[150px]" />
+        <section className="relative overflow-hidden py-20 md:py-32 bg-[#041222]">
+          {/* Background glow */}
+          <div className="pointer-events-none absolute right-0 top-1/2 h-[600px] w-[600px] -translate-y-1/2 rounded-full bg-[#0055cc]/20 blur-[160px]" />
+          <div className="pointer-events-none absolute left-0 bottom-0 h-[300px] w-[300px] rounded-full bg-[#0099FF]/10 blur-[120px]" />
 
-          <div className="mx-auto max-w-[1280px] px-5 md:px-8">
-            <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16 items-center">
+          <div className="mx-auto max-w-[1400px] px-5 md:px-8">
+            <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-8 items-center">
+
               {/* Left Text */}
-              <div className="lg:col-span-6">
+              <div className="lg:col-span-5">
                 <div className="flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.22em] text-[#0099FF]">
                   <span className="h-[2px] w-7 bg-[#0099FF]" />
                   <span>05 / CREATE YOUR OWN EXPERIENCE</span>
                 </div>
-                <h2 className="mt-4 font-serif text-[clamp(2.4rem,5vw,4.5rem)] font-extrabold uppercase leading-[1.05] tracking-tight text-white">
+                <h2 className="mt-4 font-serif text-[clamp(2.8rem,6vw,5.2rem)] font-extrabold uppercase leading-[1.0] tracking-tight text-white">
                   YOUR IDEA <br />
-                  <span className="italic font-serif text-[#0099FF]">MADE </span> <br />
+                  <span className="italic font-serif text-[#0099FF]">MADE </span><br />
                   <span className="italic font-serif text-[#0099FF]">TANGIBLE.</span>
                 </h2>
-                <p className="mt-6 text-[16px] leading-relaxed text-white/70 md:text-[17px]">
+                <p className="mt-6 text-[15px] leading-relaxed text-white/65 md:text-[16px] max-w-sm">
                   Mix novelties, entertainment and event details into a custom experience that
                   feels collected rather than assembled.
                 </p>
@@ -397,57 +399,91 @@ const Novelties = () => {
                 </div>
               </div>
 
-              {/* Right Cards Stack */}
-              <div className="lg:col-span-6 relative flex items-center justify-center pt-8">
-                {/* Annotations */}
-                <div className="hidden sm:block absolute -top-2 left-6 text-[11px] font-mono uppercase tracking-widest text-[#7DDDFF]">
-                  CUSTOM NOVELTIES ⤵
-                </div>
-                <div className="hidden sm:block absolute -top-2 right-6 text-[11px] font-mono uppercase tracking-widest text-[#7DDDFF]">
-                  HANDS-ON EXPERIENCES ⤵
+              {/* Right: Fanned Cards */}
+              <div className="lg:col-span-7 relative flex items-center justify-center min-h-[520px]">
+
+                {/* CUSTOM NOVELTIES label + arrow */}
+                <div className="absolute top-0 left-8 md:left-16 flex flex-col items-center z-20">
+                  <span style={{ fontFamily: "'Caveat', cursive" }} className="text-[18px] md:text-[20px] font-bold text-[#7DDDFF] leading-tight tracking-wide whitespace-nowrap">
+                    CUSTOM<br />NOVELTIES
+                  </span>
+                  <img src="/arrow-curved.png" alt="arrow" className="mt-1 w-14 md:w-20 opacity-80" />
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full">
-                  {/* Card 1 */}
-                  <div className="transform sm:-rotate-6 rounded-2xl border border-white/10 bg-[#071428] p-4 shadow-xl">
-                    <div className="text-[10px] font-bold text-[#0099FF]">01</div>
+                {/* HANDS-ON EXPERIENCES label + arrow */}
+                <div className="absolute top-0 right-4 md:right-10 flex flex-col items-center z-20">
+                  <span style={{ fontFamily: "'Caveat', cursive" }} className="text-[18px] md:text-[20px] font-bold text-[#7DDDFF] leading-tight tracking-wide whitespace-nowrap text-right">
+                    HANDS-ON<br />EXPERIENCES
+                  </span>
+                  <img src="/arrow-straight.png" alt="arrow" className="mt-1 w-8 md:w-12 opacity-80 self-end mr-4" />
+                </div>
+
+                {/* Cards container */}
+                <div className="relative flex items-end justify-center w-full mt-20" style={{ height: "420px" }}>
+
+                  {/* Card 1 — tilted left */}
+                  <div
+                    className="absolute rounded-[22px] border border-white/15 bg-[#06152e] shadow-[0_20px_60px_rgba(0,0,0,0.7)] overflow-hidden"
+                    style={{ width: "210px", height: "320px", left: "calc(50% - 240px)", bottom: "0", transform: "rotate(-10deg)", zIndex: 5 }}
+                  >
+                    <div className="p-4">
+                      <div className="text-[11px] font-bold text-[#0099FF] tracking-widest">01</div>
+                    </div>
                     <img
                       src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=400&q=80"
                       alt="Trucker Hats"
-                      className="mt-2 aspect-[4/3] w-full rounded-lg object-cover"
+                      className="w-full h-[200px] object-cover"
                     />
-                    <h4 className="mt-3 font-serif text-sm font-bold text-white leading-snug">
-                      (PATCHED CITY) Trucker Hats & Beanies
-                    </h4>
+                    <div className="p-4">
+                      <h4 className="font-serif text-[15px] font-bold text-white leading-snug">
+                        (PATCHED CITY)<br />Trucker Hats &amp; Beanies
+                      </h4>
+                    </div>
                   </div>
 
-                  {/* Card 2 (Highlighted Center) */}
-                  <div className="transform sm:scale-105 z-10 rounded-2xl border-2 border-[#0099FF] bg-[#091a38] p-4 shadow-[0_0_30px_rgba(0,153,255,0.4)]">
-                    <div className="text-[10px] font-bold text-[#0099FF]">02</div>
+                  {/* Card 2 — center, highlighted */}
+                  <div
+                    className="absolute rounded-[22px] border-2 border-[#0099FF] bg-[#071a3e] shadow-[0_0_50px_rgba(0,153,255,0.5)] overflow-hidden"
+                    style={{ width: "230px", height: "360px", left: "calc(50% - 115px)", bottom: "0", zIndex: 10 }}
+                  >
+                    <div className="p-4">
+                      <div className="text-[11px] font-bold text-[#0099FF] tracking-widest">02</div>
+                    </div>
                     <img
                       src="https://images.unsplash.com/photo-1622434641406-a158123450f9?auto=format&fit=crop&w=400&q=80"
                       alt="Laser Engraved Keychains"
-                      className="mt-2 aspect-[4/3] w-full rounded-lg object-cover"
+                      className="w-full h-[220px] object-cover"
                     />
-                    <h4 className="mt-3 font-serif text-sm font-bold text-white leading-snug">
-                      Laser-Engraved Wood & Metal Keychains
-                    </h4>
+                    <div className="p-4">
+                      <h4 className="font-serif text-[17px] font-bold text-white leading-snug">
+                        Laser-Engraved<br />Wood &amp; Metal Keychains
+                      </h4>
+                    </div>
                   </div>
 
-                  {/* Card 3 */}
-                  <div className="transform sm:rotate-6 rounded-2xl border border-white/10 bg-[#071428] p-4 shadow-xl">
-                    <div className="text-[10px] font-bold text-[#0099FF]">03</div>
+                  {/* Card 3 — tilted right */}
+                  <div
+                    className="absolute rounded-[22px] border border-white/15 bg-[#06152e] shadow-[0_20px_60px_rgba(0,0,0,0.7)] overflow-hidden"
+                    style={{ width: "210px", height: "320px", left: "calc(50% + 30px)", bottom: "0", transform: "rotate(10deg)", zIndex: 5 }}
+                  >
+                    <div className="p-4">
+                      <div className="text-[11px] font-bold text-[#0099FF] tracking-widest">03</div>
+                    </div>
                     <img
                       src="https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&w=400&q=80"
                       alt="Custom Pillow Dolls"
-                      className="mt-2 aspect-[4/3] w-full rounded-lg object-cover"
+                      className="w-full h-[200px] object-cover"
                     />
-                    <h4 className="mt-3 font-serif text-sm font-bold text-white leading-snug">
-                      Custom Pillow Dolls
-                    </h4>
+                    <div className="p-4">
+                      <h4 className="font-serif text-[15px] font-bold text-white leading-snug">
+                        Custom<br />Pillow Dolls
+                      </h4>
+                    </div>
                   </div>
+
                 </div>
               </div>
+
             </div>
           </div>
         </section>
