@@ -89,18 +89,18 @@ const WORKSHOPS = [
 const STEPS = [
   {
     id: "01",
-    title: "ASK",
-    desc: "Our team specializes in the design of our events to ensure that it is optimal for your guests and your budget.",
+    title: "THINK",
+    desc: "Start with an idea. Tell us what you want to create, the occasion, your style, and the kind of novelty that would make your event memorable.",
   },
   {
     id: "02",
     title: "DESIGN",
-    desc: "Tell us what you're imagining, your audience, your location and the kind of experience you want.",
+    desc: "Make it personal. Choose your colors, designs, materials, and details. Customize your novelty to match your event, theme, or personality.",
   },
   {
     id: "03",
-    title: "PLAY",
-    desc: "Our expert team will be with you every step of the way. All you have to do is ASK!",
+    title: "CREATE",
+    desc: "Bring it to life. From custom hats and bracelets to pillows, keychains, rings, and plush bags, turn your idea into something unique your guests can enjoy and take home.",
   },
 ];
 
