@@ -365,125 +365,121 @@ const Novelties = () => {
           </div>
         </section>
 
-        {/* ================= SECTION 5: CREATE YOUR OWN EXPERIENCE ================= */}
-        <section className="relative overflow-hidden py-20 md:py-32 bg-[#041222]">
-          {/* Background glow */}
+        {/* ================= SECTION 5: YOUR IDEA MADE TANGIBLE BANNER ================= */}
+        <section className="relative overflow-hidden w-full">
+          {/* Background image */}
+          <img
+            src="/tangible-bg.png"
+            alt="Your Idea Made Tangible background"
+            className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none select-none"
+          />
+          {/* Dark overlay for text readability */}
+          <div className="absolute inset-0 bg-[#020917]/40" />
+
+          {/* Centered content */}
+          <div className="relative z-10 flex flex-col items-center justify-center text-center py-24 md:py-32 px-6">
+            <h2 className="font-serif text-[clamp(3rem,7.5vw,6.5rem)] font-extrabold uppercase leading-[1.0] tracking-tight">
+              <span className="text-white">YOUR IDEA</span><br />
+              <span className="italic text-[#00C8FF] drop-shadow-[0_0_40px_rgba(0,200,255,0.6)]">MADE TANGIBLE.</span>
+            </h2>
+            <div className="mt-10">
+              <a
+                href="#footer"
+                className="inline-flex h-[54px] items-center justify-center gap-3 rounded-full bg-[#0099FF] px-10 text-[13px] font-bold uppercase tracking-[0.15em] text-white shadow-[0_0_30px_rgba(0,153,255,0.5)] transition-all duration-300 hover:bg-[#0088EE] hover:shadow-[0_0_50px_rgba(0,153,255,0.7)]"
+              >
+                START BUILD →
+              </a>
+            </div>
+          </div>
+        </section>
+
+        {/* ================= SECTION 5b: FANNED CARDS ================= */}
+        <section className="relative overflow-hidden py-20 md:py-28 bg-[#041222]">
           <div className="pointer-events-none absolute right-0 top-1/2 h-[600px] w-[600px] -translate-y-1/2 rounded-full bg-[#0055cc]/20 blur-[160px]" />
-          <div className="pointer-events-none absolute left-0 bottom-0 h-[300px] w-[300px] rounded-full bg-[#0099FF]/10 blur-[120px]" />
 
           <div className="mx-auto max-w-[1400px] px-5 md:px-8">
-            <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-8 items-center">
+            <div className="relative flex items-center justify-center min-h-[500px]">
 
-              {/* Left Text */}
-              <div className="lg:col-span-5">
-                <div className="flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.22em] text-[#0099FF]">
-                  <span className="h-[2px] w-7 bg-[#0099FF]" />
-                  <span>05 / CREATE YOUR OWN EXPERIENCE</span>
-                </div>
-                <h2 className="mt-4 font-serif text-[clamp(2.8rem,6vw,5.2rem)] font-extrabold uppercase leading-[1.0] tracking-tight text-white">
-                  YOUR IDEA <br />
-                  <span className="italic font-serif text-[#0099FF]">MADE </span><br />
-                  <span className="italic font-serif text-[#0099FF]">TANGIBLE.</span>
-                </h2>
-                <p className="mt-6 text-[15px] leading-relaxed text-white/65 md:text-[16px] max-w-sm">
-                  Mix novelties, entertainment and event details into a custom experience that
-                  feels collected rather than assembled.
-                </p>
-                <div className="mt-10">
-                  <a
-                    href="#footer"
-                    className="inline-flex h-[52px] items-center justify-center gap-2.5 rounded-full bg-[#0099FF] px-8 text-[12px] font-bold uppercase tracking-[0.1em] text-white shadow-[0_0_24px_rgba(0,153,255,0.4)] transition-all duration-300 hover:bg-[#0088EE] hover:shadow-[0_0_36px_rgba(0,153,255,0.6)]"
-                  >
-                    START BUILDING ↗
-                  </a>
-                </div>
+              {/* CUSTOM NOVELTIES label + arrow */}
+              <div className="absolute top-0 left-8 md:left-24 flex flex-col items-center z-20">
+                <span style={{ fontFamily: "'Caveat', cursive" }} className="text-[20px] md:text-[22px] font-bold text-[#7DDDFF] leading-tight tracking-wide whitespace-nowrap">
+                  CUSTOM<br />NOVELTIES
+                </span>
+                <img src="/arrow-curved.png" alt="arrow" className="mt-1 w-14 md:w-20 opacity-80" />
               </div>
 
-              {/* Right: Fanned Cards */}
-              <div className="lg:col-span-7 relative flex items-center justify-center min-h-[520px]">
-
-                {/* CUSTOM NOVELTIES label + arrow */}
-                <div className="absolute top-0 left-8 md:left-16 flex flex-col items-center z-20">
-                  <span style={{ fontFamily: "'Caveat', cursive" }} className="text-[18px] md:text-[20px] font-bold text-[#7DDDFF] leading-tight tracking-wide whitespace-nowrap">
-                    CUSTOM<br />NOVELTIES
-                  </span>
-                  <img src="/arrow-curved.png" alt="arrow" className="mt-1 w-14 md:w-20 opacity-80" />
-                </div>
-
-                {/* HANDS-ON EXPERIENCES label + arrow */}
-                <div className="absolute top-0 right-4 md:right-10 flex flex-col items-center z-20">
-                  <span style={{ fontFamily: "'Caveat', cursive" }} className="text-[18px] md:text-[20px] font-bold text-[#7DDDFF] leading-tight tracking-wide whitespace-nowrap text-right">
-                    HANDS-ON<br />EXPERIENCES
-                  </span>
-                  <img src="/arrow-straight.png" alt="arrow" className="mt-1 w-8 md:w-12 opacity-80 self-end mr-4" />
-                </div>
-
-                {/* Cards container */}
-                <div className="relative flex items-end justify-center w-full mt-20" style={{ height: "420px" }}>
-
-                  {/* Card 1 — tilted left */}
-                  <div
-                    className="absolute rounded-[22px] border border-white/15 bg-[#06152e] shadow-[0_20px_60px_rgba(0,0,0,0.7)] overflow-hidden"
-                    style={{ width: "210px", height: "320px", left: "calc(50% - 240px)", bottom: "0", transform: "rotate(-10deg)", zIndex: 5 }}
-                  >
-                    <div className="p-4">
-                      <div className="text-[11px] font-bold text-[#0099FF] tracking-widest">01</div>
-                    </div>
-                    <img
-                      src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=400&q=80"
-                      alt="Trucker Hats"
-                      className="w-full h-[200px] object-cover"
-                    />
-                    <div className="p-4">
-                      <h4 className="font-serif text-[15px] font-bold text-white leading-snug">
-                        (PATCHED CITY)<br />Trucker Hats &amp; Beanies
-                      </h4>
-                    </div>
-                  </div>
-
-                  {/* Card 2 — center, highlighted */}
-                  <div
-                    className="absolute rounded-[22px] border-2 border-[#0099FF] bg-[#071a3e] shadow-[0_0_50px_rgba(0,153,255,0.5)] overflow-hidden"
-                    style={{ width: "230px", height: "360px", left: "calc(50% - 115px)", bottom: "0", zIndex: 10 }}
-                  >
-                    <div className="p-4">
-                      <div className="text-[11px] font-bold text-[#0099FF] tracking-widest">02</div>
-                    </div>
-                    <img
-                      src="https://images.unsplash.com/photo-1622434641406-a158123450f9?auto=format&fit=crop&w=400&q=80"
-                      alt="Laser Engraved Keychains"
-                      className="w-full h-[220px] object-cover"
-                    />
-                    <div className="p-4">
-                      <h4 className="font-serif text-[17px] font-bold text-white leading-snug">
-                        Laser-Engraved<br />Wood &amp; Metal Keychains
-                      </h4>
-                    </div>
-                  </div>
-
-                  {/* Card 3 — tilted right */}
-                  <div
-                    className="absolute rounded-[22px] border border-white/15 bg-[#06152e] shadow-[0_20px_60px_rgba(0,0,0,0.7)] overflow-hidden"
-                    style={{ width: "210px", height: "320px", left: "calc(50% + 30px)", bottom: "0", transform: "rotate(10deg)", zIndex: 5 }}
-                  >
-                    <div className="p-4">
-                      <div className="text-[11px] font-bold text-[#0099FF] tracking-widest">03</div>
-                    </div>
-                    <img
-                      src="https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&w=400&q=80"
-                      alt="Custom Pillow Dolls"
-                      className="w-full h-[200px] object-cover"
-                    />
-                    <div className="p-4">
-                      <h4 className="font-serif text-[15px] font-bold text-white leading-snug">
-                        Custom<br />Pillow Dolls
-                      </h4>
-                    </div>
-                  </div>
-
-                </div>
+              {/* HANDS-ON EXPERIENCES label + arrow */}
+              <div className="absolute top-0 right-4 md:right-16 flex flex-col items-center z-20">
+                <span style={{ fontFamily: "'Caveat', cursive" }} className="text-[20px] md:text-[22px] font-bold text-[#7DDDFF] leading-tight tracking-wide whitespace-nowrap text-right">
+                  HANDS-ON<br />EXPERIENCES
+                </span>
+                <img src="/arrow-straight.png" alt="arrow" className="mt-1 w-8 md:w-12 opacity-80 self-end mr-4" />
               </div>
 
+              {/* Cards container */}
+              <div className="relative flex items-end justify-center w-full mt-24" style={{ height: "420px" }}>
+
+                {/* Card 1 — tilted left */}
+                <div
+                  className="absolute rounded-[22px] border border-white/15 bg-[#06152e] shadow-[0_20px_60px_rgba(0,0,0,0.7)] overflow-hidden"
+                  style={{ width: "210px", height: "320px", left: "calc(50% - 260px)", bottom: "0", transform: "rotate(-10deg)", zIndex: 5 }}
+                >
+                  <div className="p-4">
+                    <div className="text-[11px] font-bold text-[#0099FF] tracking-widest">01</div>
+                  </div>
+                  <img
+                    src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=400&q=80"
+                    alt="Trucker Hats"
+                    className="w-full h-[200px] object-cover"
+                  />
+                  <div className="p-4">
+                    <h4 className="font-serif text-[15px] font-bold text-white leading-snug">
+                      (PATCHED CITY)<br />Trucker Hats &amp; Beanies
+                    </h4>
+                  </div>
+                </div>
+
+                {/* Card 2 — center, highlighted */}
+                <div
+                  className="absolute rounded-[22px] border-2 border-[#0099FF] bg-[#071a3e] shadow-[0_0_50px_rgba(0,153,255,0.5)] overflow-hidden"
+                  style={{ width: "240px", height: "370px", left: "calc(50% - 120px)", bottom: "0", zIndex: 10 }}
+                >
+                  <div className="p-4">
+                    <div className="text-[11px] font-bold text-[#0099FF] tracking-widest">02</div>
+                  </div>
+                  <img
+                    src="https://images.unsplash.com/photo-1622434641406-a158123450f9?auto=format&fit=crop&w=400&q=80"
+                    alt="Laser Engraved Keychains"
+                    className="w-full h-[225px] object-cover"
+                  />
+                  <div className="p-4">
+                    <h4 className="font-serif text-[17px] font-bold text-white leading-snug">
+                      Laser-Engraved<br />Wood &amp; Metal Keychains
+                    </h4>
+                  </div>
+                </div>
+
+                {/* Card 3 — tilted right */}
+                <div
+                  className="absolute rounded-[22px] border border-white/15 bg-[#06152e] shadow-[0_20px_60px_rgba(0,0,0,0.7)] overflow-hidden"
+                  style={{ width: "210px", height: "320px", left: "calc(50% + 50px)", bottom: "0", transform: "rotate(10deg)", zIndex: 5 }}
+                >
+                  <div className="p-4">
+                    <div className="text-[11px] font-bold text-[#0099FF] tracking-widest">03</div>
+                  </div>
+                  <img
+                    src="https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&w=400&q=80"
+                    alt="Custom Pillow Dolls"
+                    className="w-full h-[200px] object-cover"
+                  />
+                  <div className="p-4">
+                    <h4 className="font-serif text-[15px] font-bold text-white leading-snug">
+                      Custom<br />Pillow Dolls
+                    </h4>
+                  </div>
+                </div>
+
+              </div>
             </div>
           </div>
         </section>
