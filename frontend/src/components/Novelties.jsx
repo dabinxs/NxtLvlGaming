@@ -115,12 +115,12 @@ const Novelties = () => {
 
       <main>
         {/* ================= SECTION 1: HERO ================= */}
-        <section className="relative overflow-hidden pt-36 pb-24 md:pt-48 md:pb-36 min-h-[90vh] flex items-center bg-[#041222]">
-          {/* Background image uploaded by user */}
+        <section className="relative overflow-hidden pt-32 pb-20 md:pt-40 md:pb-28 flex items-center bg-[#041222]">
+          {/* Background image uploaded by user (unzoomed positioning) */}
           <img
             src="/novelties-bg.png"
             alt="Novelties background"
-            className="absolute inset-0 h-full w-full object-cover object-center pointer-events-none select-none z-0"
+            className="absolute inset-0 h-full w-full object-cover object-right pointer-events-none select-none z-0"
           />
 
           {/* Vertical scroll text on right edge */}
