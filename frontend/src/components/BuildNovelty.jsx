@@ -6,13 +6,13 @@ import {
   Type,
   Image as ImageIcon,
   Square,
+  Circle,
   Smile,
   Eraser,
   Undo2,
   Redo2,
-  Plus,
-  Minus,
   Maximize2,
+  Minimize2,
   Trash2,
   Upload,
   Layers,
@@ -26,28 +26,30 @@ import {
   Copy,
   FlipHorizontal,
   FlipVertical,
-  ChevronUp,
-  ChevronDown,
-  ChevronLeft,
-  ChevronRight,
   Box,
   Flame,
   Star,
   Heart,
   Zap,
   Crown,
+  Sticker,
+  RotateCcw,
+  Download,
+  CheckCircle2,
 } from "lucide-react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 
-// Full Catalog of 10 Novelty Products
+// Full Catalog of 10 Novelty Products with Plain Templates
 export const NOVELTY_PRODUCTS = [
   {
     id: "trucker-hats",
     title: "Custom Trucker Hats",
     tag: "HATS & BEANIES",
     desc: "Design your own trucker hat with custom patches, logos, colors, and details that match your style or event.",
-    image: "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=600&q=80",
+    image: "/novelty-templates/hat-front.jpg",
+    sideImage: "/novelty-templates/hat-side.jpg",
+    backImage: "/novelty-templates/hat-back.jpg",
     mockupType: "hat",
     printableLabel: "PRINTABLE PATCH AREA",
     styles: [
@@ -62,11 +64,28 @@ export const NOVELTY_PRODUCTS = [
     ],
   },
   {
+    id: "hats-beanies",
+    title: "Hats & Beanies",
+    tag: "HEADWEAR",
+    desc: "Custom knit beanies and cuff caps with embroidered patches, woven labels, or printed logos.",
+    image: "/novelty-templates/beanie.jpg",
+    mockupType: "beanie",
+    printableLabel: "EMBROIDERY / PATCH REGION",
+    styles: [
+      "Cuff Patch",
+      "Beanie Color",
+      "Knit Pattern",
+      "Text",
+      "Emblem",
+      "Others",
+    ],
+  },
+  {
     id: "custom-socks",
     title: "Custom Socks",
     tag: "SOCKS",
     desc: "Create your own custom crew or ankle socks with patterns, logos, custom artwork or text.",
-    image: "https://images.unsplash.com/photo-1586350977771-b3b0abd50c82?auto=format&fit=crop&w=600&q=80",
+    image: "/novelty-templates/socks.jpg",
     mockupType: "socks",
     printableLabel: "PRINTABLE SOCK REGION",
     styles: [
@@ -84,7 +103,7 @@ export const NOVELTY_PRODUCTS = [
     title: "Bead-tastics Custom Bracelets",
     tag: "BRACELETS",
     desc: "Fun, hand-crafted bead bracelets designed by you, featuring custom text, charm accents, and color themes.",
-    image: "https://images.unsplash.com/photo-1611591475879-c5ec2b810d7a?auto=format&fit=crop&w=600&q=80",
+    image: "/novelty-templates/bead-bracelet.jpg",
     mockupType: "bracelet",
     printableLabel: "CHARM & LETTER BEAD AREA",
     styles: [
@@ -101,7 +120,7 @@ export const NOVELTY_PRODUCTS = [
     title: "Custom Pillow Dolls",
     tag: "PILLOW DOLLS",
     desc: "Turn your favorite photos, characters or gaming avatars into custom contour plush pillow dolls.",
-    image: "https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&w=600&q=80",
+    image: "/novelty-templates/pillow-doll.jpg",
     mockupType: "pillow",
     printableLabel: "FRONT PRINTABLE AREA",
     styles: [
@@ -118,7 +137,7 @@ export const NOVELTY_PRODUCTS = [
     title: "Custom Sequence Pillows",
     tag: "SEQUENCE PILLOWS",
     desc: "Create interactive reversible sequin pillows with custom photos or artwork revealed on swipe.",
-    image: "https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&w=600&q=80",
+    image: "/novelty-templates/sequin-pillow.jpg",
     mockupType: "pillow",
     printableLabel: "SEQUIN REVEAL AREA",
     styles: [
@@ -134,7 +153,7 @@ export const NOVELTY_PRODUCTS = [
     title: "Intention Bracelet",
     tag: "BRACELETS",
     desc: "Design a meaningful hand-crafted bracelet with personalized stamped word, cord color, and purpose.",
-    image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=600&q=80",
+    image: "/novelty-templates/intention-bracelet.jpg",
     mockupType: "bracelet",
     printableLabel: "STAMPED PLATE REGION",
     styles: [
@@ -150,7 +169,7 @@ export const NOVELTY_PRODUCTS = [
     title: "Laser-Engraved Keychains",
     tag: "KEYCHAINS",
     desc: "Personalize high-quality wooden, acrylic or metal keychains with custom laser engraving.",
-    image: "https://images.unsplash.com/photo-1622434641406-a158123450f9?auto=format&fit=crop&w=600&q=80",
+    image: "/novelty-templates/keychain.jpg",
     mockupType: "keychain",
     printableLabel: "LASER ENGRAVING AREA",
     styles: [
@@ -166,7 +185,7 @@ export const NOVELTY_PRODUCTS = [
     title: "Stamped Custom Rings",
     tag: "CUSTOM RINGS",
     desc: "Create custom stamped metallic rings with dates, initials, secret messages, or coordinates.",
-    image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=600&q=80",
+    image: "/novelty-templates/ring.jpg",
     mockupType: "ring",
     printableLabel: "RING STAMPING SURFACE",
     styles: [
@@ -182,7 +201,7 @@ export const NOVELTY_PRODUCTS = [
     title: "Silly Sacks (Plush Bags)",
     tag: "PLUSH BAGS",
     desc: "Bring your imagination to life with custom character plush backpacks, drawstring sacks and pouches.",
-    image: "https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?auto=format&fit=crop&w=600&q=80",
+    image: "/novelty-templates/plush-bag.jpg",
     mockupType: "bag",
     printableLabel: "CUSTOM FRONT PANEL",
     styles: [
@@ -210,9 +229,9 @@ const PRESET_COLORS = [
   "#ec4899", // Pink
 ];
 
-// Preset Templates / Assets for Bottom Strip
+// Preset Templates / Assets for Bottom Strip & Full Sketch Studio
 const TEMPLATES_ASSETS = [
-  { id: "blank", name: "Blank", symbol: null },
+  { id: "blank", name: "Clear", symbol: null },
   { id: "nextlvl", name: "NEXT LEVEL", text: "NEXT LEVEL" },
   { id: "controller", name: "Gaming", symbol: "🎮" },
   { id: "flame", name: "Flame", symbol: "🔥" },
@@ -239,10 +258,16 @@ const BuildNovelty = () => {
     NOVELTY_PRODUCTS.find((p) => p.id === selectedProductId) ||
     NOVELTY_PRODUCTS[0];
 
+  // Product View Mode (for hats: front, side, back)
+  const [activeView, setActiveView] = useState("front");
+
+  // Full Sketch Mode Toggle
+  const [isFullSketchMode, setIsFullSketchMode] = useState(false);
+
   // Active style pills
   const [activePills, setActivePills] = useState([]);
 
-  // Active Tool: "select", "brush", "eraser", "text", "shape"
+  // Active Tool: "select", "brush", "eraser", "text", "shape", "sticker"
   const [tool, setTool] = useState("brush");
   const [brushColor, setBrushColor] = useState("#0099FF");
   const [brushSize, setBrushSize] = useState(6);
@@ -250,18 +275,21 @@ const BuildNovelty = () => {
 
   // Active Canvas Layers
   const [layers, setLayers] = useState([]);
-  const [selectedLayerId, setSelectedLayerId] = useState(null);
 
   // Image Upload Layers
   const [uploadedImages, setUploadedImages] = useState([]);
   const [bgImage, setBgImage] = useState(null);
 
+  // Loaded Product Template Image Object
+  const [productTemplateImg, setProductTemplateImg] = useState(null);
+
   // History stack for Undo/Redo
   const [history, setHistory] = useState([]);
   const [historyIndex, setHistoryIndex] = useState(-1);
 
-  // Canvas Ref
-  const canvasRef = useRef(null);
+  // Canvas Refs (Compact Canvas & Full Sketch Canvas)
+  const compactCanvasRef = useRef(null);
+  const fullCanvasRef = useRef(null);
 
   // Description and Modal State
   const [description, setDescription] = useState("");
@@ -276,6 +304,7 @@ const BuildNovelty = () => {
   // Sync selected product with URL search param
   const handleSelectProduct = (id) => {
     setSelectedProductId(id);
+    setActiveView("front");
     setSearchParams({ product: id });
   };
 
@@ -286,6 +315,25 @@ const BuildNovelty = () => {
     }
   }, [selectedProductId, selectedProduct]);
 
+  // Load Plain Product Template Image
+  useEffect(() => {
+    let imgUrl = selectedProduct.image;
+    if (selectedProduct.id === "trucker-hats") {
+      if (activeView === "side" && selectedProduct.sideImage) {
+        imgUrl = selectedProduct.sideImage;
+      } else if (activeView === "back" && selectedProduct.backImage) {
+        imgUrl = selectedProduct.backImage;
+      }
+    }
+
+    const img = new Image();
+    img.crossOrigin = "anonymous";
+    img.onload = () => {
+      setProductTemplateImg(img);
+    };
+    img.src = imgUrl;
+  }, [selectedProduct, activeView]);
+
   const togglePill = (pillName) => {
     setActivePills((prev) =>
       prev.includes(pillName)
@@ -294,9 +342,14 @@ const BuildNovelty = () => {
     );
   };
 
+  // Active Canvas Ref depending on Full Sketch Mode
+  const getActiveCanvas = useCallback(() => {
+    return isFullSketchMode ? fullCanvasRef.current : compactCanvasRef.current;
+  }, [isFullSketchMode]);
+
   // Save Canvas State for Undo/Redo
   const saveCanvasState = useCallback(() => {
-    const canvas = canvasRef.current;
+    const canvas = getActiveCanvas();
     if (!canvas) return;
     const dataUrl = canvas.toDataURL("image/png");
     setHistory((prev) => {
@@ -304,169 +357,153 @@ const BuildNovelty = () => {
       return [...newHist, dataUrl];
     });
     setHistoryIndex((prev) => prev + 1);
-  }, [historyIndex]);
+  }, [historyIndex, getActiveCanvas]);
 
-  // Redraw Canvas
-  const redrawCanvas = useCallback(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    const w = canvas.width;
-    const h = canvas.height;
+  // Redraw Canvas (called whenever layers, tool, or view changes)
+  const redrawCanvasOnTarget = useCallback(
+    (canvas) => {
+      if (!canvas) return;
+      const ctx = canvas.getContext("2d");
+      const w = canvas.width;
+      const h = canvas.height;
 
-    // 1. Blueprint dark grid background (Matching media_1791286666040.png)
-    ctx.clearRect(0, 0, w, h);
-    ctx.fillStyle = "#070d19";
-    ctx.fillRect(0, 0, w, h);
+      // 1. Clear background & draw subtle studio grid
+      ctx.clearRect(0, 0, w, h);
+      ctx.fillStyle = "#070d19";
+      ctx.fillRect(0, 0, w, h);
 
-    // Subtle grid lines
-    ctx.strokeStyle = "#0e1a30";
-    ctx.lineWidth = 1;
-    const gridSize = 20;
-    for (let x = 0; x < w; x += gridSize) {
-      ctx.beginPath();
-      ctx.moveTo(x, 0);
-      ctx.lineTo(x, h);
-      ctx.stroke();
-    }
-    for (let y = 0; y < h; y += gridSize) {
-      ctx.beginPath();
-      ctx.moveTo(0, y);
-      ctx.lineTo(w, y);
-      ctx.stroke();
-    }
-
-    // 2. Draw Fused Background Image if present
-    if (bgImage) {
-      ctx.drawImage(bgImage, 0, 0, w, h);
-    }
-
-    // 3. Draw Uploaded Overlay Images
-    uploadedImages.forEach((item) => {
-      if (item.imgObj) {
-        ctx.drawImage(item.imgObj, item.x, item.y, item.width, item.height);
+      // Studio Blueprint Grid Lines
+      ctx.strokeStyle = "#0d1b30";
+      ctx.lineWidth = 1;
+      const gridSize = 24;
+      for (let x = 0; x < w; x += gridSize) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, h);
+        ctx.stroke();
       }
-    });
+      for (let y = 0; y < h; y += gridSize) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(w, y);
+        ctx.stroke();
+      }
 
-    // 4. Draw Canvas Layers (Text, Symbols)
-    layers.forEach((layer) => {
-      if (!layer.visible) return;
+      // 2. Draw Plain Realistic Product Template Photo
+      if (productTemplateImg) {
+        ctx.save();
+        // Fit template image neatly in center
+        const imgAspect = productTemplateImg.width / productTemplateImg.height;
+        const canvasAspect = w / h;
+        let drawW, drawH, drawX, drawY;
+
+        if (imgAspect > canvasAspect) {
+          drawW = w * 0.82;
+          drawH = drawW / imgAspect;
+        } else {
+          drawH = h * 0.82;
+          drawW = drawH * imgAspect;
+        }
+        drawX = (w - drawW) / 2;
+        drawY = (h - drawH) / 2;
+
+        ctx.drawImage(productTemplateImg, drawX, drawY, drawW, drawH);
+        ctx.restore();
+      }
+
+      // 3. Draw Fused Background Image if present
+      if (bgImage) {
+        ctx.drawImage(bgImage, 0, 0, w, h);
+      }
+
+      // 4. Draw Uploaded Overlay Images
+      uploadedImages.forEach((item) => {
+        if (item.imgObj) {
+          ctx.drawImage(item.imgObj, item.x, item.y, item.width, item.height);
+        }
+      });
+
+      // 5. Draw Canvas Layers (Text, Symbols)
+      layers.forEach((layer) => {
+        if (!layer.visible) return;
+        ctx.save();
+        if (layer.type === "text") {
+          ctx.font = `bold ${layer.fontSize || 28}px sans-serif`;
+          ctx.fillStyle = layer.color || "#ffffff";
+          ctx.textAlign = "center";
+          ctx.textBaseline = "middle";
+          ctx.fillText(layer.text, layer.x, layer.y);
+        } else if (layer.type === "sticker") {
+          ctx.font = "46px sans-serif";
+          ctx.textAlign = "center";
+          ctx.textBaseline = "middle";
+          ctx.fillText(layer.symbol || "⭐", layer.x, layer.y);
+        }
+        ctx.restore();
+      });
+
+      // 6. Draw Printable Area Dashed Bounding Box Overlay
       ctx.save();
-      if (layer.type === "text") {
-        ctx.font = `bold ${layer.fontSize || 26}px sans-serif`;
-        ctx.fillStyle = layer.color || "#ffffff";
-        ctx.textAlign = "center";
-        ctx.textBaseline = "middle";
-        ctx.fillText(layer.text, layer.x, layer.y);
-      } else if (layer.type === "sticker") {
-        ctx.font = "42px sans-serif";
-        ctx.textAlign = "center";
-        ctx.textBaseline = "middle";
-        ctx.fillText(layer.symbol || "⭐", layer.x, layer.y);
-      }
-      ctx.restore();
-    });
+      const cx = w / 2;
+      const cy = h / 2;
 
-    // 5. Draw Product Mockup Vector Outline Overlay
-    drawMockupOverlay(ctx, w, h, selectedProduct.mockupType);
-  }, [bgImage, uploadedImages, layers, selectedProduct]);
-
-  // Vector Product Mockup Overlay
-  const drawMockupOverlay = (ctx, w, h, mockupType) => {
-    ctx.save();
-    const cx = w / 2;
-    const cy = h / 2;
-
-    if (mockupType === "hat") {
-      // Trucker Hat Vector Template
       ctx.beginPath();
-      ctx.arc(cx, cy - 20, 160, Math.PI * 0.85, Math.PI * 0.15, false);
-      ctx.fillStyle = "#091a33";
-      ctx.fill();
-      ctx.strokeStyle = "#1a2e4d";
-      ctx.lineWidth = 4;
-      ctx.stroke();
-
-      // Front Panel
-      ctx.beginPath();
-      ctx.ellipse(cx, cy - 20, 130, 105, 0, Math.PI, 0, false);
-      ctx.fillStyle = "#f0f4f8";
-      ctx.fill();
-      ctx.strokeStyle = "#cbd5e1";
-      ctx.lineWidth = 3;
-      ctx.stroke();
-
-      // Visor
-      ctx.beginPath();
-      ctx.ellipse(cx, cy + 85, 160, 38, 0, 0, Math.PI * 2);
-      ctx.fillStyle = "#081427";
-      ctx.fill();
-      ctx.strokeStyle = "#0099FF";
-      ctx.lineWidth = 2.5;
-      ctx.stroke();
-
-      // Printable Area Dashed Outline & Blue Badge Pill Tag (Matching media_1791286666040.png)
-      ctx.beginPath();
-      ctx.roundRect(cx - 90, cy - 55, 180, 105, 12);
+      ctx.roundRect(cx - w * 0.22, cy - h * 0.2, w * 0.44, h * 0.4, 14);
       ctx.strokeStyle = "#0099FF";
       ctx.lineWidth = 1.5;
-      ctx.setLineDash([5, 5]);
-      ctx.stroke();
-
-      ctx.fillStyle = "#0099FF";
-      ctx.beginPath();
-      ctx.roundRect(cx - 75, cy - 78, 150, 22, 11);
-      ctx.fill();
-
-      ctx.font = "bold 9px sans-serif";
-      ctx.fillStyle = "#ffffff";
-      ctx.textAlign = "center";
-      ctx.fillText(selectedProduct.printableLabel, cx, cy - 63);
-    } else {
-      // Generic Printable Frame
-      ctx.beginPath();
-      ctx.roundRect(cx - 140, cy - 100, 280, 200, 18);
-      ctx.fillStyle = "#0b182d";
-      ctx.fill();
-      ctx.strokeStyle = "rgba(0,153,255,0.4)";
-      ctx.lineWidth = 2;
       ctx.setLineDash([6, 6]);
       ctx.stroke();
 
+      // Label Pill Badge
       ctx.fillStyle = "#0099FF";
       ctx.beginPath();
-      ctx.roundRect(cx - 85, cy - 120, 170, 22, 11);
+      ctx.roundRect(cx - 85, cy - h * 0.2 - 14, 170, 22, 11);
       ctx.fill();
 
       ctx.font = "bold 9px sans-serif";
       ctx.fillStyle = "#ffffff";
       ctx.textAlign = "center";
-      ctx.fillText(selectedProduct.printableLabel, cx, cy - 105);
-    }
+      ctx.fillText(selectedProduct.printableLabel, cx, cy - h * 0.2 - 1);
+      ctx.restore();
+    },
+    [productTemplateImg, bgImage, uploadedImages, layers, selectedProduct]
+  );
 
-    ctx.restore();
-  };
+  const redrawCanvas = useCallback(() => {
+    if (compactCanvasRef.current) redrawCanvasOnTarget(compactCanvasRef.current);
+    if (fullCanvasRef.current) redrawCanvasOnTarget(fullCanvasRef.current);
+  }, [redrawCanvasOnTarget]);
 
   useEffect(() => {
     redrawCanvas();
   }, [redrawCanvas]);
 
-  // Drawing Handlers
-  const startDrawing = (e) => {
-    const canvas = canvasRef.current;
+  // Drawing Event Handlers
+  const startDrawing = (e, canvasRefTarget) => {
+    const canvas = canvasRefTarget.current;
     if (!canvas) return;
     const rect = canvas.getBoundingClientRect();
     const clientX = e.touches ? e.touches[0].clientX : e.clientX;
     const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-    const x = clientX - rect.left;
-    const y = clientY - rect.top;
+    const x = ((clientX - rect.left) / rect.width) * canvas.width;
+    const y = ((clientY - rect.top) / rect.height) * canvas.height;
 
     if (tool === "text") {
-      const text = prompt("Enter text for canvas:", "NEXT LEVEL");
+      const text = prompt("Enter custom text for novelty design:", "NEXT LEVEL");
       if (text) {
         setLayers((prev) => [
           ...prev,
-          { id: `layer-${Date.now()}`, name: text, type: "text", visible: true, text, color: brushColor, x, y, fontSize: 26 },
+          {
+            id: `layer-${Date.now()}`,
+            name: text,
+            type: "text",
+            visible: true,
+            text,
+            color: brushColor,
+            x,
+            y,
+            fontSize: 28,
+          },
         ]);
         saveCanvasState();
       }
@@ -481,15 +518,15 @@ const BuildNovelty = () => {
     }
   };
 
-  const draw = (e) => {
+  const draw = (e, canvasRefTarget) => {
     if (!isDrawing) return;
-    const canvas = canvasRef.current;
+    const canvas = canvasRefTarget.current;
     if (!canvas) return;
     const rect = canvas.getBoundingClientRect();
     const clientX = e.touches ? e.touches[0].clientX : e.clientX;
     const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-    const x = clientX - rect.left;
-    const y = clientY - rect.top;
+    const x = ((clientX - rect.left) / rect.width) * canvas.width;
+    const y = ((clientY - rect.top) / rect.height) * canvas.height;
 
     const ctx = canvas.getContext("2d");
     ctx.lineWidth = brushSize;
@@ -516,7 +553,7 @@ const BuildNovelty = () => {
     reader.onload = (event) => {
       const img = new Image();
       img.onload = () => {
-        const canvas = canvasRef.current;
+        const canvas = getActiveCanvas() || compactCanvasRef.current;
         if (!canvas) return;
 
         if (isFuse) {
@@ -550,23 +587,46 @@ const BuildNovelty = () => {
       setBgImage(null);
       setUploadedImages([]);
       setLayers([]);
-      const canvas = canvasRef.current;
+      const canvas = getActiveCanvas();
       if (canvas) {
         const ctx = canvas.getContext("2d");
         ctx.clearRect(0, 0, canvas.width, canvas.height);
       }
+      redrawCanvas();
       return;
     }
+
+    const canvas = getActiveCanvas() || compactCanvasRef.current;
+    const cx = canvas ? canvas.width / 2 : 320;
+    const cy = canvas ? canvas.height / 2 : 220;
 
     if (tmpl.symbol) {
       setLayers((prev) => [
         ...prev,
-        { id: `layer-${Date.now()}`, name: tmpl.name, type: "sticker", visible: true, symbol: tmpl.symbol, x: 320, y: 200 },
+        {
+          id: `layer-${Date.now()}`,
+          name: tmpl.name,
+          type: "sticker",
+          visible: true,
+          symbol: tmpl.symbol,
+          x: cx,
+          y: cy,
+        },
       ]);
     } else if (tmpl.text) {
       setLayers((prev) => [
         ...prev,
-        { id: `layer-${Date.now()}`, name: tmpl.name, type: "text", visible: true, text: tmpl.text, color: brushColor, x: 320, y: 200, fontSize: 26 },
+        {
+          id: `layer-${Date.now()}`,
+          name: tmpl.name,
+          type: "text",
+          visible: true,
+          text: tmpl.text,
+          color: brushColor,
+          x: cx,
+          y: cy,
+          fontSize: 28,
+        },
       ]);
     }
     saveCanvasState();
@@ -579,7 +639,7 @@ const BuildNovelty = () => {
       setHistoryIndex(newIndex);
       const img = new Image();
       img.onload = () => {
-        const canvas = canvasRef.current;
+        const canvas = getActiveCanvas();
         if (!canvas) return;
         const ctx = canvas.getContext("2d");
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -595,7 +655,7 @@ const BuildNovelty = () => {
       setHistoryIndex(newIndex);
       const img = new Image();
       img.onload = () => {
-        const canvas = canvasRef.current;
+        const canvas = getActiveCanvas();
         if (!canvas) return;
         const ctx = canvas.getContext("2d");
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -607,7 +667,7 @@ const BuildNovelty = () => {
 
   // Generate / Submit
   const handleGenerate = () => {
-    const canvas = canvasRef.current;
+    const canvas = getActiveCanvas() || compactCanvasRef.current;
     if (!canvas) return;
     setPreviewDataUrl(canvas.toDataURL("image/png"));
     setShowModal(true);
@@ -747,7 +807,7 @@ const BuildNovelty = () => {
               </p>
             </div>
 
-            {/* 2. STYLE SECTION (MATCHING WIREFRAME REFERENCE EXACTLY — NO CONTAINER BORDER, NO COLOR CIRCLES) */}
+            {/* 2. STYLE SECTION */}
             <div className="flex flex-col gap-3">
               <h3 className="text-sm font-bold uppercase tracking-[0.15em] text-white font-sans">
                 STYLE
@@ -776,7 +836,7 @@ const BuildNovelty = () => {
             {/* 3. SKETCH PAD / DESIGN CANVAS STUDIO BOX */}
             <div className="relative rounded-[24px] border border-white/15 bg-[#091424] p-4 sm:p-6 shadow-2xl overflow-hidden">
               
-              {/* Floating Top Tool Bar inside Canvas Box */}
+              {/* Floating Top Tool Bar inside Canvas Box with VIEW FULL SKETCH Button */}
               <div className="flex flex-wrap items-center justify-between gap-3 mb-4 rounded-full border border-white/10 bg-[#050f1c]/90 px-4 py-2 backdrop-blur-md">
                 
                 {/* Tools Group */}
@@ -830,8 +890,8 @@ const BuildNovelty = () => {
                   </button>
                 </div>
 
-                {/* Canvas Actions */}
-                <div className="flex items-center gap-1.5 border-l border-white/10 pl-3">
+                {/* Canvas Actions & VIEW FULL SKETCH ↗ */}
+                <div className="flex items-center gap-2 border-l border-white/10 pl-3">
                   <button
                     onClick={handleUndo}
                     disabled={historyIndex <= 0}
@@ -857,6 +917,15 @@ const BuildNovelty = () => {
                   >
                     <Trash2 className="h-4 w-4" />
                   </button>
+
+                  {/* PROMINENT VIEW FULL SKETCH BUTTON */}
+                  <button
+                    onClick={() => setIsFullSketchMode(true)}
+                    className="ml-2 inline-flex items-center gap-1.5 rounded-full bg-[#0099FF] px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-white shadow-[0_0_15px_rgba(0,153,255,0.4)] hover:bg-[#0088EE] hover:scale-105 transition-all"
+                  >
+                    <Maximize2 className="h-3.5 w-3.5" />
+                    <span>VIEW FULL SKETCH ↗</span>
+                  </button>
                 </div>
               </div>
 
@@ -878,17 +947,17 @@ const BuildNovelty = () => {
                   <span className="text-[10px] font-bold text-[#0099FF]">{brushSize}</span>
                 </div>
 
-                {/* Actual Interactive Canvas */}
+                {/* Actual Interactive Compact Canvas */}
                 <canvas
-                  ref={canvasRef}
+                  ref={compactCanvasRef}
                   width={640}
                   height={440}
-                  onMouseDown={startDrawing}
-                  onMouseMove={draw}
+                  onMouseDown={(e) => startDrawing(e, compactCanvasRef)}
+                  onMouseMove={(e) => draw(e, compactCanvasRef)}
                   onMouseUp={stopDrawing}
                   onMouseLeave={stopDrawing}
-                  onTouchStart={startDrawing}
-                  onTouchMove={draw}
+                  onTouchStart={(e) => startDrawing(e, compactCanvasRef)}
+                  onTouchMove={(e) => draw(e, compactCanvasRef)}
                   onTouchEnd={stopDrawing}
                   className="w-full max-w-[640px] h-[380px] sm:h-[440px] touch-none cursor-crosshair object-contain"
                 />
@@ -1008,6 +1077,223 @@ const BuildNovelty = () => {
           </div>
         </div>
       </main>
+
+      {/* ================= DEDICATED FULL SKETCH STUDIO MODE OVERLAY ================= */}
+      {isFullSketchMode && (
+        <div className="fixed inset-0 z-50 flex flex-col bg-[#040c17] text-white animate-in fade-in duration-200">
+          
+          {/* FULL SKETCH TOP TOOLBAR */}
+          <div className="h-16 border-b border-white/10 bg-[#061426] px-6 flex items-center justify-between shrink-0">
+            <div className="flex items-center gap-4">
+              <button
+                onClick={() => setIsFullSketchMode(false)}
+                className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-bold uppercase tracking-wider text-white hover:bg-white/10 transition-colors"
+              >
+                <ArrowLeft className="h-4 w-4" />
+                <span>← BACK TO CUSTOMIZER</span>
+              </button>
+
+              <div className="h-6 w-px bg-white/10 hidden sm:block" />
+
+              <div>
+                <span className="text-[10px] font-bold uppercase tracking-widest text-[#0099FF]">
+                  FULL SKETCH STUDIO
+                </span>
+                <h3 className="text-sm sm:text-base font-bold text-white leading-none">
+                  {selectedProduct.title}
+                </h3>
+              </div>
+            </div>
+
+            {/* Middle Product View Angle Buttons (Front / Side / Back for Hats) */}
+            {selectedProduct.id === "trucker-hats" && (
+              <div className="hidden md:flex items-center gap-1 rounded-full border border-white/10 bg-[#040b15] p-1">
+                {["front", "side", "back"].map((v) => (
+                  <button
+                    key={v}
+                    onClick={() => setActiveView(v)}
+                    className={`rounded-full px-4 py-1 text-xs font-bold uppercase tracking-wider transition-colors ${
+                      activeView === v
+                        ? "bg-[#0099FF] text-white"
+                        : "text-white/60 hover:text-white"
+                    }`}
+                  >
+                    {v} View
+                  </button>
+                ))}
+              </div>
+            )}
+
+            {/* Right Quick Actions */}
+            <div className="flex items-center gap-2">
+              <button
+                onClick={handleUndo}
+                disabled={historyIndex <= 0}
+                className="p-2.5 rounded-full border border-white/10 bg-white/5 text-white/80 hover:bg-white/10 disabled:opacity-30"
+                title="Undo"
+              >
+                <Undo2 className="h-4 w-4" />
+              </button>
+
+              <button
+                onClick={handleRedo}
+                disabled={historyIndex >= history.length - 1}
+                className="p-2.5 rounded-full border border-white/10 bg-white/5 text-white/80 hover:bg-white/10 disabled:opacity-30"
+                title="Redo"
+              >
+                <Redo2 className="h-4 w-4" />
+              </button>
+
+              <button
+                onClick={() => handleApplyTemplate({ id: "blank" })}
+                className="p-2.5 rounded-full border border-red-500/30 bg-red-500/10 text-red-400 hover:bg-red-500/20"
+                title="Clear Workspace"
+              >
+                <Trash2 className="h-4 w-4" />
+              </button>
+
+              <button
+                onClick={() => setIsFullSketchMode(false)}
+                className="inline-flex items-center gap-2 rounded-full bg-[#0099FF] px-5 py-2 text-xs font-bold uppercase tracking-wider text-white shadow-[0_0_20px_rgba(0,153,255,0.4)] hover:bg-[#0088EE]"
+              >
+                <CheckCircle2 className="h-4 w-4" />
+                <span>SAVE SKETCH</span>
+              </button>
+            </div>
+          </div>
+
+          {/* MAIN FULL SKETCH WORKSPACE BODY */}
+          <div className="flex-1 flex overflow-hidden">
+            
+            {/* LEFT TOOLBOX SIDEBAR */}
+            <div className="w-64 border-r border-white/10 bg-[#061222] p-4 flex flex-col gap-6 shrink-0 overflow-y-auto custom-scrollbar">
+              {/* Tool Selector */}
+              <div>
+                <span className="text-[10px] font-bold uppercase tracking-widest text-white/50 block mb-2">
+                  TOOLS
+                </span>
+                <div className="grid grid-cols-2 gap-2">
+                  {[
+                    { id: "select", name: "Select", icon: MousePointer },
+                    { id: "brush", name: "Draw", icon: Pencil },
+                    { id: "text", name: "Text", icon: Type },
+                    { id: "eraser", name: "Eraser", icon: Eraser },
+                  ].map((t) => {
+                    const Icon = t.icon;
+                    const isActive = tool === t.id;
+                    return (
+                      <button
+                        key={t.id}
+                        onClick={() => setTool(t.id)}
+                        className={`flex flex-col items-center gap-1.5 rounded-xl border p-3 text-xs font-semibold transition-all ${
+                          isActive
+                            ? "border-[#0099FF] bg-[#0099FF]/20 text-white shadow-[0_0_12px_rgba(0,153,255,0.3)]"
+                            : "border-white/10 bg-white/5 text-white/70 hover:bg-white/10 hover:text-white"
+                        }`}
+                      >
+                        <Icon className="h-5 w-5" />
+                        <span>{t.name}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Brush Size Controls */}
+              <div className="flex flex-col gap-2">
+                <div className="flex justify-between items-center text-xs font-bold text-white/70">
+                  <span>BRUSH SIZE</span>
+                  <span className="text-[#0099FF]">{brushSize}px</span>
+                </div>
+                <input
+                  type="range"
+                  min="2"
+                  max="36"
+                  value={brushSize}
+                  onChange={(e) => setBrushSize(Number(e.target.value))}
+                  className="w-full accent-[#0099FF] cursor-pointer"
+                />
+              </div>
+
+              {/* Color Palette */}
+              <div>
+                <span className="text-[10px] font-bold uppercase tracking-widest text-white/50 block mb-2">
+                  COLOR PALETTE
+                </span>
+                <div className="grid grid-cols-4 gap-2">
+                  {PRESET_COLORS.map((hex) => (
+                    <button
+                      key={hex}
+                      onClick={() => setBrushColor(hex)}
+                      style={{ backgroundColor: hex }}
+                      className={`h-9 w-full rounded-lg border border-white/20 transition-transform ${
+                        brushColor === hex ? "ring-2 ring-white scale-110" : "hover:scale-105"
+                      }`}
+                    />
+                  ))}
+                </div>
+                <div className="mt-3 flex items-center gap-2">
+                  <span className="text-xs text-white/60">Custom Hex:</span>
+                  <input
+                    type="color"
+                    value={brushColor}
+                    onChange={(e) => setBrushColor(e.target.value)}
+                    className="h-8 w-12 rounded cursor-pointer border-none bg-transparent"
+                  />
+                  <span className="text-xs font-mono text-white/80">{brushColor}</span>
+                </div>
+              </div>
+
+              {/* Quick Image Upload in Sidebar */}
+              <div className="border-t border-white/10 pt-4 flex flex-col gap-2">
+                <button
+                  onClick={() => fileInputRef.current?.click()}
+                  className="w-full flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/5 p-3 text-xs font-bold uppercase tracking-wider text-white hover:bg-white/10"
+                >
+                  <Upload className="h-4 w-4 text-[#0099FF]" />
+                  <span>Upload Graphic</span>
+                </button>
+              </div>
+            </div>
+
+            {/* CENTER FULL CANVAS AREA */}
+            <div className="flex-1 flex flex-col items-center justify-center bg-[#030912] p-6 relative overflow-hidden">
+              <div className="relative rounded-2xl border border-white/15 bg-[#070e1b] p-4 shadow-2xl">
+                <canvas
+                  ref={fullCanvasRef}
+                  width={800}
+                  height={540}
+                  onMouseDown={(e) => startDrawing(e, fullCanvasRef)}
+                  onMouseMove={(e) => draw(e, fullCanvasRef)}
+                  onMouseUp={stopDrawing}
+                  onMouseLeave={stopDrawing}
+                  onTouchStart={(e) => startDrawing(e, fullCanvasRef)}
+                  onTouchMove={(e) => draw(e, fullCanvasRef)}
+                  onTouchEnd={stopDrawing}
+                  className="w-[800px] h-[540px] touch-none cursor-crosshair object-contain max-w-full max-h-[70vh]"
+                />
+              </div>
+
+              {/* Bottom Sticker / Asset Carousel Strip */}
+              <div className="mt-4 flex items-center gap-3 overflow-x-auto max-w-full px-4 py-2 rounded-full border border-white/10 bg-[#061222]/90 backdrop-blur-md custom-scrollbar">
+                <span className="text-[10px] font-bold uppercase tracking-widest text-white/50 shrink-0">
+                  STICKERS:
+                </span>
+                {TEMPLATES_ASSETS.map((tmpl) => (
+                  <button
+                    key={tmpl.id}
+                    onClick={() => handleApplyTemplate(tmpl)}
+                    className="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-semibold text-white/90 hover:bg-[#0099FF] hover:border-[#0099FF] hover:text-white transition-all shrink-0"
+                  >
+                    <span>{tmpl.symbol || "✨"}</span>
+                    <span>{tmpl.name}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* ================= GENERATE / SUBMISSION MODAL ================= */}
       {showModal && (
