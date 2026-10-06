@@ -1513,6 +1513,177 @@ const BuildNovelty = () => {
                 ))}
               </div>
             </div>
+
+            {/* RIGHT SIDEBAR (Matching media_1791298023510.png & media_1791297977842.png) */}
+            <div className="w-72 border-l border-white/10 bg-[#061222] p-4 flex flex-col gap-5 shrink-0 overflow-y-auto custom-scrollbar">
+              
+              {/* 1. TOP CARD: Product View Switcher Box (Matching user reference photo 4 & 5) */}
+              <div className="rounded-2xl border border-white/10 bg-[#040c18] p-3.5 shadow-lg">
+                <div className="text-[10px] font-bold uppercase tracking-widest text-white/40 mb-2.5">
+                  PRODUCT VIEW
+                </div>
+                <div className="grid grid-cols-4 gap-1.5 text-center">
+                  {/* Preview Button */}
+                  <button
+                    onClick={() => setActiveView("front")}
+                    className={`flex flex-col items-center justify-center p-2 rounded-xl border transition-all ${
+                      activeView === "front" || activeView === "preview"
+                        ? "border-[#0099FF] bg-[#0099FF]/20 text-[#0099FF] shadow-[0_0_12px_rgba(0,153,255,0.3)]"
+                        : "border-white/5 bg-white/5 text-white/60 hover:bg-white/10 hover:text-white"
+                    }`}
+                  >
+                    <Box className="h-5 w-5 mb-1" />
+                    <span className="text-[10px] font-bold">Preview</span>
+                  </button>
+
+                  {/* Front Button */}
+                  <button
+                    onClick={() => setActiveView("front")}
+                    className={`flex flex-col items-center justify-center p-2 rounded-xl border transition-all ${
+                      activeView === "front"
+                        ? "border-[#0099FF] bg-[#0099FF]/20 text-[#0099FF] shadow-[0_0_12px_rgba(0,153,255,0.3)]"
+                        : "border-white/5 bg-white/5 text-white/60 hover:bg-white/10 hover:text-white"
+                    }`}
+                  >
+                    <img
+                      src="/icons/cap-front-icon.png"
+                      alt="Front"
+                      className="h-5 w-5 object-contain mb-1 filter invert brightness-200 opacity-90"
+                    />
+                    <span className="text-[10px] font-bold">Front</span>
+                  </button>
+
+                  {/* Back Button */}
+                  <button
+                    onClick={() => setActiveView("back")}
+                    className={`flex flex-col items-center justify-center p-2 rounded-xl border transition-all ${
+                      activeView === "back"
+                        ? "border-[#0099FF] bg-[#0099FF]/20 text-[#0099FF] shadow-[0_0_12px_rgba(0,153,255,0.3)]"
+                        : "border-white/5 bg-white/5 text-white/60 hover:bg-white/10 hover:text-white"
+                    }`}
+                  >
+                    <img
+                      src="/icons/cap-back-icon.png"
+                      alt="Back"
+                      className="h-5 w-5 object-contain mb-1 filter invert brightness-200 opacity-90"
+                    />
+                    <span className="text-[10px] font-bold">Back</span>
+                  </button>
+
+                  {/* Side Button */}
+                  <button
+                    onClick={() => setActiveView("side")}
+                    className={`flex flex-col items-center justify-center p-2 rounded-xl border transition-all ${
+                      activeView === "side"
+                        ? "border-[#0099FF] bg-[#0099FF]/20 text-[#0099FF] shadow-[0_0_12px_rgba(0,153,255,0.3)]"
+                        : "border-white/5 bg-white/5 text-white/60 hover:bg-white/10 hover:text-white"
+                    }`}
+                  >
+                    <img
+                      src="/icons/cap-side-icon.png"
+                      alt="Side"
+                      className="h-5 w-5 object-contain mb-1 filter invert brightness-200 opacity-90"
+                    />
+                    <span className="text-[10px] font-bold">Side</span>
+                  </button>
+                </div>
+              </div>
+
+              {/* 2. MIDDLE CARD: Color Palette */}
+              <div className="rounded-2xl border border-white/10 bg-[#040c18] p-3.5 shadow-lg">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-white/50">
+                    Color Palette
+                  </span>
+                  <button
+                    onClick={() => setShowFullColorPicker(!showFullColorPicker)}
+                    className={`flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full border transition-all ${
+                      showFullColorPicker
+                        ? "bg-[#0099FF] text-white border-[#0099FF]"
+                        : "bg-[#0099FF]/10 text-[#0099FF] border-[#0099FF]/30 hover:bg-[#0099FF]/20"
+                    }`}
+                  >
+                    <Palette className="h-3 w-3" />
+                    <span>Edit RGB</span>
+                  </button>
+                </div>
+
+                {showFullColorPicker && (
+                  <div className="mb-3">
+                    <RGBSpectrumPicker
+                      activeColor={brushColor}
+                      onChangeColor={setBrushColor}
+                      onClose={() => setShowFullColorPicker(false)}
+                    />
+                  </div>
+                )}
+
+                <div className="grid grid-cols-4 gap-2">
+                  {PRESET_COLORS.map((hex) => (
+                    <button
+                      key={hex}
+                      onClick={() => setBrushColor(hex)}
+                      style={{ backgroundColor: hex }}
+                      className={`h-7 w-full rounded-lg border border-white/20 transition-transform ${
+                        brushColor === hex ? "ring-2 ring-white scale-110" : "hover:scale-105"
+                      }`}
+                    />
+                  ))}
+                </div>
+              </div>
+
+              {/* 3. BOTTOM CARD: Quick Actions (Matching user reference photo 5) */}
+              <div className="rounded-2xl border border-white/10 bg-[#040c18] p-3.5 shadow-lg flex flex-col gap-2">
+                <span className="text-[10px] font-bold uppercase tracking-widest text-white/50 mb-1">
+                  Quick Actions
+                </span>
+                <div className="grid grid-cols-3 gap-2">
+                  <button
+                    onClick={handleUndo}
+                    className="flex flex-col items-center justify-center p-2 rounded-xl border border-white/10 bg-white/5 text-white/80 hover:bg-white/10 text-[10px] font-semibold"
+                  >
+                    <Copy className="h-4 w-4 text-[#0099FF] mb-1" />
+                    <span>Duplicate</span>
+                  </button>
+                  <button
+                    onClick={() => {}}
+                    className="flex flex-col items-center justify-center p-2 rounded-xl border border-white/10 bg-white/5 text-white/80 hover:bg-white/10 text-[10px] font-semibold"
+                  >
+                    <FlipHorizontal className="h-4 w-4 text-[#0099FF] mb-1" />
+                    <span>Flip Horiz</span>
+                  </button>
+                  <button
+                    onClick={() => {}}
+                    className="flex flex-col items-center justify-center p-2 rounded-xl border border-white/10 bg-white/5 text-white/80 hover:bg-white/10 text-[10px] font-semibold"
+                  >
+                    <FlipVertical className="h-4 w-4 text-[#0099FF] mb-1" />
+                    <span>Flip Vert</span>
+                  </button>
+                  <button
+                    onClick={() => {}}
+                    className="flex flex-col items-center justify-center p-2 rounded-xl border border-white/10 bg-white/5 text-white/80 hover:bg-white/10 text-[10px] font-semibold"
+                  >
+                    <Layers className="h-4 w-4 text-[#0099FF] mb-1" />
+                    <span>Forward</span>
+                  </button>
+                  <button
+                    onClick={() => {}}
+                    className="flex flex-col items-center justify-center p-2 rounded-xl border border-white/10 bg-white/5 text-white/80 hover:bg-white/10 text-[10px] font-semibold"
+                  >
+                    <Layers className="h-4 w-4 text-[#0099FF] mb-1" />
+                    <span>Backward</span>
+                  </button>
+                  <button
+                    onClick={() => handleApplyTemplate({ id: "blank" })}
+                    className="flex flex-col items-center justify-center p-2 rounded-xl border border-red-500/20 bg-red-500/10 text-red-400 hover:bg-red-500/20 text-[10px] font-semibold"
+                  >
+                    <Trash2 className="h-4 w-4 text-red-400 mb-1" />
+                    <span>Delete</span>
+                  </button>
+                </div>
+              </div>
+
+            </div>
           </div>
         </div>
       )}
