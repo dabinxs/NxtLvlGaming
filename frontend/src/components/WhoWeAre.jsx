@@ -42,6 +42,7 @@ const WhoWeAre = () => {
               src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&w=1200&q=80"
               alt="Crowd celebrating with confetti"
               className="h-[380px] w-full object-cover"
+              loading="lazy"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#040814]/60 to-transparent" />
           </div>

@@ -9,6 +9,7 @@ const ReadyCTA = () => {
           src="https://images.unsplash.com/photo-1581502446078-63d6464ba4fc?auto=format&fit=crop&w=1600&q=80"
           alt="Dark event venue"
           className="absolute inset-0 h-full w-full object-cover"
+          loading="lazy"
         />
         <div className="absolute inset-0 bg-[#05070f]/80" />
         <div className="absolute inset-0 bg-gradient-to-b from-[#05070f] via-transparent to-[#05070f]" />

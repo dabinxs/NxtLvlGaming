@@ -12,6 +12,7 @@ const LevelUp = () => {
               src="https://images.unsplash.com/photo-1558008258-7ff8888b42b0?auto=format&fit=crop&w=1200&q=80"
               alt="Gaming division setup"
               className="h-[380px] w-full object-cover"
+              loading="lazy"
             />
             <div className="absolute inset-0 bg-gradient-to-tr from-[#0066FD]/25 to-transparent" />
           </div>
