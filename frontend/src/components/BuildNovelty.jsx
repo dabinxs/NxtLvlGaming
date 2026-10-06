@@ -1313,24 +1313,7 @@ const BuildNovelty = () => {
               </div>
             </div>
 
-            {/* Middle Product View Angle Buttons (Front / Side / Back for Hats) */}
-            {selectedProduct.id === "trucker-hats" && (
-              <div className="hidden md:flex items-center gap-1 rounded-full border border-white/10 bg-[#040b15] p-1">
-                {["front", "side", "back"].map((v) => (
-                  <button
-                    key={v}
-                    onClick={() => setActiveView(v)}
-                    className={`rounded-full px-4 py-1 text-xs font-bold uppercase tracking-wider transition-colors ${
-                      activeView === v
-                        ? "bg-[#0099FF] text-white"
-                        : "text-white/60 hover:text-white"
-                    }`}
-                  >
-                    {v} View
-                  </button>
-                ))}
-              </div>
-            )}
+
 
             {/* Right Quick Actions */}
             <div className="flex items-center gap-2">
@@ -1548,7 +1531,14 @@ const BuildNovelty = () => {
                     <img
                       src="/icons/cap-front-icon.png"
                       alt="Front"
-                      className="h-5 w-5 object-contain mb-1 filter invert brightness-200 opacity-90"
+                      style={{
+                        filter:
+                          activeView === "front"
+                            ? "brightness(0) saturate(100%) invert(48%) sepia(98%) saturate(1800%) hue-rotate(182deg)"
+                            : "brightness(0) invert(1)",
+                        opacity: activeView === "front" ? 1 : 0.85,
+                      }}
+                      className="h-5 w-5 object-contain mb-1 transition-all"
                     />
                     <span className="text-[10px] font-bold">Front</span>
                   </button>
@@ -1565,7 +1555,14 @@ const BuildNovelty = () => {
                     <img
                       src="/icons/cap-back-icon.png"
                       alt="Back"
-                      className="h-5 w-5 object-contain mb-1 filter invert brightness-200 opacity-90"
+                      style={{
+                        filter:
+                          activeView === "back"
+                            ? "brightness(0) saturate(100%) invert(48%) sepia(98%) saturate(1800%) hue-rotate(182deg)"
+                            : "brightness(0) invert(1)",
+                        opacity: activeView === "back" ? 1 : 0.85,
+                      }}
+                      className="h-5 w-5 object-contain mb-1 transition-all"
                     />
                     <span className="text-[10px] font-bold">Back</span>
                   </button>
@@ -1582,7 +1579,14 @@ const BuildNovelty = () => {
                     <img
                       src="/icons/cap-side-icon.png"
                       alt="Side"
-                      className="h-5 w-5 object-contain mb-1 filter invert brightness-200 opacity-90"
+                      style={{
+                        filter:
+                          activeView === "side"
+                            ? "brightness(0) saturate(100%) invert(48%) sepia(98%) saturate(1800%) hue-rotate(182deg)"
+                            : "brightness(0) invert(1)",
+                        opacity: activeView === "side" ? 1 : 0.85,
+                      }}
+                      className="h-5 w-5 object-contain mb-1 transition-all"
                     />
                     <span className="text-[10px] font-bold">Side</span>
                   </button>
