@@ -442,29 +442,7 @@ const BuildNovelty = () => {
         ctx.restore();
       });
 
-      // 6. Draw Printable Area Dashed Bounding Box Overlay
-      ctx.save();
-      const cx = w / 2;
-      const cy = h / 2;
 
-      ctx.beginPath();
-      ctx.roundRect(cx - w * 0.22, cy - h * 0.2, w * 0.44, h * 0.4, 14);
-      ctx.strokeStyle = "#0099FF";
-      ctx.lineWidth = 1.5;
-      ctx.setLineDash([6, 6]);
-      ctx.stroke();
-
-      // Label Pill Badge
-      ctx.fillStyle = "#0099FF";
-      ctx.beginPath();
-      ctx.roundRect(cx - 85, cy - h * 0.2 - 14, 170, 22, 11);
-      ctx.fill();
-
-      ctx.font = "bold 9px sans-serif";
-      ctx.fillStyle = "#ffffff";
-      ctx.textAlign = "center";
-      ctx.fillText(selectedProduct.printableLabel, cx, cy - h * 0.2 - 1);
-      ctx.restore();
     },
     [productTemplateImg, bgImage, uploadedImages, layers, selectedProduct]
   );
