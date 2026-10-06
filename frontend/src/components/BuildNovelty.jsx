@@ -36,9 +36,199 @@ import {
   RotateCcw,
   Download,
   CheckCircle2,
+  Palette,
 } from "lucide-react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+
+// Interactive 2D Full RGB Spectrum Color Picker (Matching user reference)
+const RGBSpectrumPicker = ({ activeColor, onChangeColor, onClose }) => {
+  const canvasRef = useRef(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [pickerPos, setPickerPos] = useState({ x: 90, y: 50 });
+  const [brightness, setBrightness] = useState(1);
+  const [hexInput, setHexInput] = useState(activeColor);
+
+  useEffect(() => {
+    setHexInput(activeColor);
+  }, [activeColor]);
+
+  // Draw 2D RGB Spectrum canvas
+  const drawSpectrum = useCallback(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    const w = canvas.width;
+    const h = canvas.height;
+
+    // 1. Horizontal Hue Gradient (Red -> Yellow -> Green -> Cyan -> Blue -> Magenta -> Red)
+    const hueGrad = ctx.createLinearGradient(0, 0, w, 0);
+    hueGrad.addColorStop(0, "#ff0000");
+    hueGrad.addColorStop(0.17, "#ffff00");
+    hueGrad.addColorStop(0.33, "#00ff00");
+    hueGrad.addColorStop(0.5, "#00ffff");
+    hueGrad.addColorStop(0.67, "#0000ff");
+    hueGrad.addColorStop(0.83, "#ff00ff");
+    hueGrad.addColorStop(1, "#ff0000");
+
+    ctx.fillStyle = hueGrad;
+    ctx.fillRect(0, 0, w, h);
+
+    // 2. Vertical White Gradient (Top transparent, bottom solid white)
+    const whiteGrad = ctx.createLinearGradient(0, 0, 0, h);
+    whiteGrad.addColorStop(0, "rgba(255, 255, 255, 0)");
+    whiteGrad.addColorStop(1, "rgba(255, 255, 255, 1)");
+    ctx.fillStyle = whiteGrad;
+    ctx.fillRect(0, 0, w, h);
+
+    // 3. Dark Shade Overlay for Brightness slider
+    if (brightness < 1) {
+      ctx.fillStyle = `rgba(0, 0, 0, ${1 - brightness})`;
+      ctx.fillRect(0, 0, w, h);
+    }
+
+    // 4. Target Circle Marker 'O'
+    ctx.save();
+    ctx.beginPath();
+    ctx.arc(pickerPos.x, pickerPos.y, 8, 0, Math.PI * 2);
+    ctx.strokeStyle = "#000000";
+    ctx.lineWidth = 2.5;
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.arc(pickerPos.x, pickerPos.y, 7, 0, Math.PI * 2);
+    ctx.strokeStyle = "#ffffff";
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+    ctx.restore();
+  }, [pickerPos, brightness]);
+
+  useEffect(() => {
+    drawSpectrum();
+  }, [drawSpectrum]);
+
+  const pickColorAt = (clientX, clientY) => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const rect = canvas.getBoundingClientRect();
+    const x = Math.max(0, Math.min(canvas.width, clientX - rect.left));
+    const y = Math.max(0, Math.min(canvas.height, clientY - rect.top));
+
+    setPickerPos({ x, y });
+
+    const ctx = canvas.getContext("2d");
+    const pixel = ctx.getImageData(Math.round(x), Math.round(y), 1, 1).data;
+    const hex =
+      "#" +
+      [pixel[0], pixel[1], pixel[2]]
+        .map((c) => c.toString(16).padStart(2, "0"))
+        .join("");
+
+    onChangeColor(hex);
+  };
+
+  const getRgbFromHex = (hexStr) => {
+    const cleanHex = (hexStr || "#0099ff").replace("#", "");
+    const r = parseInt(cleanHex.slice(0, 2), 16) || 0;
+    const g = parseInt(cleanHex.slice(2, 4), 16) || 0;
+    const b = parseInt(cleanHex.slice(4, 6), 16) || 0;
+    return { r, g, b };
+  };
+
+  const currentRgb = getRgbFromHex(activeColor);
+
+  return (
+    <div className="flex flex-col gap-3 rounded-2xl border border-white/20 bg-[#061224] p-3.5 shadow-[0_10px_35px_rgba(0,0,0,0.8)] backdrop-blur-md w-[260px] animate-in fade-in duration-150 z-40">
+      <div className="flex items-center justify-between border-b border-white/10 pb-2">
+        <span className="text-[10px] font-bold uppercase tracking-widest text-[#0099FF]">
+          EDIT RGB SPECTRUM
+        </span>
+        {onClose && (
+          <button
+            onClick={onClose}
+            className="text-white/50 hover:text-white text-xs font-bold px-1"
+          >
+            ✕
+          </button>
+        )}
+      </div>
+
+      {/* 2D Spectrum Box & Brightness Slider (Matching user reference) */}
+      <div className="flex items-stretch gap-2.5">
+        <div className="relative rounded-lg border border-white/20 overflow-hidden shrink-0 cursor-crosshair">
+          <canvas
+            ref={canvasRef}
+            width={170}
+            height={130}
+            onMouseDown={(e) => {
+              setIsDragging(true);
+              pickColorAt(e.clientX, e.clientY);
+            }}
+            onMouseMove={(e) => {
+              if (isDragging) pickColorAt(e.clientX, e.clientY);
+            }}
+            onMouseUp={() => setIsDragging(false)}
+            onMouseLeave={() => setIsDragging(false)}
+            onTouchStart={(e) => {
+              setIsDragging(true);
+              if (e.touches[0]) pickColorAt(e.touches[0].clientX, e.touches[0].clientY);
+            }}
+            onTouchMove={(e) => {
+              if (isDragging && e.touches[0])
+                pickColorAt(e.touches[0].clientX, e.touches[0].clientY);
+            }}
+            onTouchEnd={() => setIsDragging(false)}
+            className="w-[170px] h-[130px] block touch-none"
+          />
+        </div>
+
+        {/* Color Swatch & Vertical Lightness Slider */}
+        <div className="flex flex-col justify-between items-center gap-2 flex-1">
+          <div
+            style={{ backgroundColor: activeColor }}
+            className="w-full h-8 rounded-lg border border-white/30 shadow-inner"
+            title="Active Color Preview"
+          />
+          <input
+            type="range"
+            min="0.1"
+            max="1"
+            step="0.02"
+            value={brightness}
+            onChange={(e) => setBrightness(parseFloat(e.target.value))}
+            className="h-[84px] w-2 accent-[#0099FF] cursor-pointer"
+            style={{ writingMode: "vertical-lr", direction: "rtl" }}
+            title="Brightness / Shade Slider"
+          />
+        </div>
+      </div>
+
+      {/* RGB & HEX Value Inputs */}
+      <div className="flex items-center justify-between gap-1 text-[10px] font-mono text-white/80 bg-[#030914] p-2 rounded-lg border border-white/10">
+        <div>
+          <span className="text-white/40 font-sans font-bold mr-1">RGB:</span>
+          <span>
+            {currentRgb.r}, {currentRgb.g}, {currentRgb.b}
+          </span>
+        </div>
+        <div className="flex items-center gap-1">
+          <span className="text-white/40 font-sans font-bold">HEX:</span>
+          <input
+            type="text"
+            value={hexInput}
+            onChange={(e) => {
+              setHexInput(e.target.value);
+              if (/^#[0-9A-F]{6}$/i.test(e.target.value)) {
+                onChangeColor(e.target.value);
+              }
+            }}
+            className="w-16 rounded bg-white/10 px-1 py-0.5 text-[10px] text-white font-mono uppercase text-center border border-white/20 focus:outline-none focus:border-[#0099FF]"
+          />
+        </div>
+      </div>
+    </div>
+  );
+};
 
 // Full Catalog of 10 Novelty Products with Plain Templates
 export const NOVELTY_PRODUCTS = [
@@ -272,6 +462,10 @@ const BuildNovelty = () => {
   const [brushColor, setBrushColor] = useState("#0099FF");
   const [brushSize, setBrushSize] = useState(6);
   const [isDrawing, setIsDrawing] = useState(false);
+
+  // RGB Spectrum Color Picker Popover States
+  const [showColorPicker, setShowColorPicker] = useState(false);
+  const [showFullColorPicker, setShowFullColorPicker] = useState(false);
 
   // Active Canvas Layers
   const [layers, setLayers] = useState([]);
@@ -958,29 +1152,47 @@ const BuildNovelty = () => {
                   className="w-full max-w-[640px] h-[380px] sm:h-[440px] touch-none cursor-crosshair object-contain"
                 />
 
-                {/* Bottom Color Palette Bar */}
-                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 rounded-full bg-[#050f1c]/95 px-4 py-2 border border-white/15 backdrop-blur-md">
-                  <div className="relative h-6 w-6 overflow-hidden rounded-full border border-white/40 cursor-pointer">
-                    <input
-                      type="color"
-                      value={brushColor}
-                      onChange={(e) => setBrushColor(e.target.value)}
-                      className="absolute -inset-2 h-10 w-10 cursor-pointer border-none"
-                    />
-                  </div>
+                {/* Bottom Color Palette Bar with Edit RGB Spectrum Button */}
+                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center">
+                  {showColorPicker && (
+                    <div className="mb-3">
+                      <RGBSpectrumPicker
+                        activeColor={brushColor}
+                        onChangeColor={setBrushColor}
+                        onClose={() => setShowColorPicker(false)}
+                      />
+                    </div>
+                  )}
 
-                  {PRESET_COLORS.map((hex) => (
+                  <div className="flex items-center gap-2 rounded-full bg-[#050f1c]/95 px-4 py-2 border border-white/15 backdrop-blur-md shadow-2xl">
                     <button
-                      key={hex}
-                      onClick={() => setBrushColor(hex)}
-                      style={{ backgroundColor: hex }}
-                      className={`h-5 w-5 rounded-full transition-transform ${
-                        brushColor === hex
-                          ? "ring-2 ring-white scale-125"
-                          : "opacity-80 hover:opacity-100"
+                      onClick={() => setShowColorPicker(!showColorPicker)}
+                      className={`flex items-center gap-1.5 text-xs font-bold px-3 py-1 rounded-full transition-all border ${
+                        showColorPicker
+                          ? "bg-[#0099FF] text-white border-[#0099FF] shadow-[0_0_12px_rgba(0,153,255,0.5)]"
+                          : "bg-white/5 text-[#0099FF] border-white/10 hover:bg-[#0099FF]/20 hover:text-white"
                       }`}
-                    />
-                  ))}
+                      title="Edit RGB Spectrum Color"
+                    >
+                      <Palette className="h-3.5 w-3.5" />
+                      <span>EDIT RGB</span>
+                    </button>
+
+                    <div className="h-4 w-px bg-white/15 mx-1" />
+
+                    {PRESET_COLORS.map((hex) => (
+                      <button
+                        key={hex}
+                        onClick={() => setBrushColor(hex)}
+                        style={{ backgroundColor: hex }}
+                        className={`h-5 w-5 rounded-full transition-transform ${
+                          brushColor === hex
+                            ? "ring-2 ring-white scale-125"
+                            : "opacity-80 hover:opacity-100"
+                        }`}
+                      />
+                    ))}
+                  </div>
                 </div>
               </div>
 
@@ -1213,9 +1425,33 @@ const BuildNovelty = () => {
 
               {/* Color Palette */}
               <div>
-                <span className="text-[10px] font-bold uppercase tracking-widest text-white/50 block mb-2">
-                  COLOR PALETTE
-                </span>
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-white/50">
+                    COLOR PALETTE
+                  </span>
+                  <button
+                    onClick={() => setShowFullColorPicker(!showFullColorPicker)}
+                    className={`flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full border transition-all ${
+                      showFullColorPicker
+                        ? "bg-[#0099FF] text-white border-[#0099FF]"
+                        : "bg-[#0099FF]/10 text-[#0099FF] border-[#0099FF]/30 hover:bg-[#0099FF]/20"
+                    }`}
+                  >
+                    <Palette className="h-3 w-3" />
+                    <span>Edit RGB</span>
+                  </button>
+                </div>
+
+                {showFullColorPicker && (
+                  <div className="mb-3">
+                    <RGBSpectrumPicker
+                      activeColor={brushColor}
+                      onChangeColor={setBrushColor}
+                      onClose={() => setShowFullColorPicker(false)}
+                    />
+                  </div>
+                )}
+
                 <div className="grid grid-cols-4 gap-2">
                   {PRESET_COLORS.map((hex) => (
                     <button
@@ -1227,16 +1463,6 @@ const BuildNovelty = () => {
                       }`}
                     />
                   ))}
-                </div>
-                <div className="mt-3 flex items-center gap-2">
-                  <span className="text-xs text-white/60">Custom Hex:</span>
-                  <input
-                    type="color"
-                    value={brushColor}
-                    onChange={(e) => setBrushColor(e.target.value)}
-                    className="h-8 w-12 rounded cursor-pointer border-none bg-transparent"
-                  />
-                  <span className="text-xs font-mono text-white/80">{brushColor}</span>
                 </div>
               </div>
 
