@@ -454,7 +454,25 @@ const BuildNovelty = () => {
 
   useEffect(() => {
     redrawCanvas();
-  }, [redrawCanvas]);
+    if (isFullSketchMode) {
+      const timer = setTimeout(() => {
+        if (fullCanvasRef.current) {
+          redrawCanvasOnTarget(fullCanvasRef.current);
+          if (compactCanvasRef.current) {
+            const ctx = fullCanvasRef.current.getContext("2d");
+            ctx.drawImage(
+              compactCanvasRef.current,
+              0,
+              0,
+              fullCanvasRef.current.width,
+              fullCanvasRef.current.height
+            );
+          }
+        }
+      }, 50);
+      return () => clearTimeout(timer);
+    }
+  }, [redrawCanvas, isFullSketchMode, redrawCanvasOnTarget]);
 
   // Drawing Event Handlers
   const startDrawing = (e, canvasRefTarget) => {
