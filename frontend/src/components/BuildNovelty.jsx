@@ -469,6 +469,7 @@ const BuildNovelty = () => {
 
   // Active Canvas Layers
   const [layers, setLayers] = useState([]);
+  const [selectedLayerId, setSelectedLayerId] = useState(null);
 
   // Image Upload Layers
   const [uploadedImages, setUploadedImages] = useState([]);
@@ -480,10 +481,16 @@ const BuildNovelty = () => {
   // History stack for Undo/Redo
   const [history, setHistory] = useState([]);
   const [historyIndex, setHistoryIndex] = useState(-1);
+  const historyRef = useRef([]);
+  const historyIndexRef = useRef(-1);
+  const saveCanvasStateRef = useRef(null);
+  const skipNextHistoryCaptureRef = useRef(false);
+  const historyCaptureTimerRef = useRef(null);
 
   // Canvas Refs (Compact Canvas & Full Sketch Canvas)
   const compactCanvasRef = useRef(null);
   const fullCanvasRef = useRef(null);
+  const drawingLayerCanvasRef = useRef(null);
 
   // Description and Modal State
   const [description, setDescription] = useState("");
@@ -496,18 +503,41 @@ const BuildNovelty = () => {
   const fuseInputRef = useRef(null);
 
   // Sync selected product with URL search param
+  const resetCanvasHistory = useCallback(() => {
+    clearTimeout(historyCaptureTimerRef.current);
+    historyRef.current = [];
+    historyIndexRef.current = -1;
+    setHistory([]);
+    setHistoryIndex(-1);
+  }, []);
+
   const handleSelectProduct = (id) => {
+    resetCanvasHistory();
+    setSelectedLayerId(null);
     setSelectedProductId(id);
     setActiveView("front");
     setSearchParams({ product: id });
   };
+
+  useEffect(() => {
+    const productParam = searchParams.get("product");
+    const nextProductId = NOVELTY_PRODUCTS.some((product) => product.id === productParam)
+      ? productParam
+      : NOVELTY_PRODUCTS[0].id;
+    if (nextProductId !== selectedProductId) {
+      resetCanvasHistory();
+      setSelectedLayerId(null);
+      setSelectedProductId(nextProductId);
+      setActiveView("front");
+    }
+  }, [resetCanvasHistory, searchParams, selectedProductId]);
 
   // Set default style selections when product changes
   useEffect(() => {
     if (selectedProduct && selectedProduct.styles) {
       setActivePills(selectedProduct.styles.slice(0, 2));
     }
-  }, [selectedProductId, selectedProduct]);
+  }, [selectedProduct]);
 
   // Load Plain Product Template Image
   useEffect(() => {
@@ -520,12 +550,19 @@ const BuildNovelty = () => {
       }
     }
 
+    let isCurrent = true;
     const img = new Image();
     img.crossOrigin = "anonymous";
     img.onload = () => {
-      setProductTemplateImg(img);
+      if (isCurrent) setProductTemplateImg(img);
+    };
+    img.onerror = () => {
+      if (isCurrent) setProductTemplateImg(null);
     };
     img.src = imgUrl;
+    return () => {
+      isCurrent = false;
+    };
   }, [selectedProduct, activeView]);
 
   const togglePill = (pillName) => {
@@ -536,22 +573,96 @@ const BuildNovelty = () => {
     );
   };
 
+  const duplicateSelectedLayer = () => {
+    const source = layers.find((layer) => layer.id === selectedLayerId) || layers[layers.length - 1];
+    if (!source) return;
+    const copy = {
+      ...source,
+      id: `layer-${Date.now()}-${Math.random().toString(16).slice(2)}`,
+      name: `${source.name || source.text || source.symbol || "Design"} copy`,
+      x: source.x + 24,
+      y: source.y + 24,
+    };
+    setLayers((current) => [...current, copy]);
+    setSelectedLayerId(copy.id);
+  };
+
+  const flipSelectedLayer = (axis) => {
+    if (!selectedLayerId) return;
+    setLayers((current) => current.map((layer) =>
+      layer.id === selectedLayerId
+        ? { ...layer, [axis]: !layer[axis] }
+        : layer
+    ));
+  };
+
+  const moveSelectedLayer = (direction) => {
+    if (!selectedLayerId) return;
+    setLayers((current) => {
+      const index = current.findIndex((layer) => layer.id === selectedLayerId);
+      const nextIndex = index + direction;
+      if (index < 0 || nextIndex < 0 || nextIndex >= current.length) return current;
+      const reordered = [...current];
+      [reordered[index], reordered[nextIndex]] = [reordered[nextIndex], reordered[index]];
+      return reordered;
+    });
+  };
+
+  const deleteSelectedLayer = () => {
+    if (!selectedLayerId) return;
+    setLayers((current) => current.filter((layer) => layer.id !== selectedLayerId));
+    setSelectedLayerId(null);
+  };
+
   // Active Canvas Ref depending on Full Sketch Mode
   const getActiveCanvas = useCallback(() => {
     return isFullSketchMode ? fullCanvasRef.current : compactCanvasRef.current;
   }, [isFullSketchMode]);
 
+  const getDrawingLayerCanvas = useCallback(() => {
+    if (!drawingLayerCanvasRef.current) {
+      const layerCanvas = document.createElement("canvas");
+      layerCanvas.width = 640;
+      layerCanvas.height = 440;
+      drawingLayerCanvasRef.current = layerCanvas;
+    }
+    return drawingLayerCanvasRef.current;
+  }, []);
+
   // Save Canvas State for Undo/Redo
   const saveCanvasState = useCallback(() => {
     const canvas = getActiveCanvas();
     if (!canvas) return;
-    const dataUrl = canvas.toDataURL("image/png");
-    setHistory((prev) => {
-      const newHist = prev.slice(0, historyIndex + 1);
-      return [...newHist, dataUrl];
-    });
-    setHistoryIndex((prev) => prev + 1);
-  }, [historyIndex, getActiveCanvas]);
+    try {
+      const snapshot = {
+        image: canvas.toDataURL("image/png"),
+        layers,
+        uploadedImages,
+        bgImage,
+        drawing: getDrawingLayerCanvas().toDataURL("image/png"),
+      };
+      const currentIndex = historyIndexRef.current;
+      const nextHistory = historyRef.current.slice(0, currentIndex + 1);
+      const previous = nextHistory[nextHistory.length - 1];
+      if (
+        previous?.image === snapshot.image &&
+        previous?.layers === snapshot.layers &&
+        previous?.uploadedImages === snapshot.uploadedImages &&
+        previous?.bgImage === snapshot.bgImage
+      ) return;
+      nextHistory.push(snapshot);
+      historyRef.current = nextHistory;
+      historyIndexRef.current = nextHistory.length - 1;
+      setHistory(nextHistory);
+      setHistoryIndex(historyIndexRef.current);
+    } catch (error) {
+      console.error("Unable to save novelty design history", error);
+    }
+  }, [bgImage, getActiveCanvas, getDrawingLayerCanvas, layers, uploadedImages]);
+
+  useEffect(() => {
+    saveCanvasStateRef.current = saveCanvasState;
+  }, [saveCanvasState]);
 
   // Redraw Canvas (called whenever layers, tool, or view changes)
   const redrawCanvasOnTarget = useCallback(
@@ -626,19 +737,23 @@ const BuildNovelty = () => {
           ctx.fillStyle = layer.color || "#ffffff";
           ctx.textAlign = "center";
           ctx.textBaseline = "middle";
-          ctx.fillText(layer.text, layer.x, layer.y);
         } else if (layer.type === "sticker") {
           ctx.font = "46px sans-serif";
           ctx.textAlign = "center";
           ctx.textBaseline = "middle";
-          ctx.fillText(layer.symbol || "⭐", layer.x, layer.y);
         }
+        ctx.translate(layer.x, layer.y);
+        ctx.scale(layer.flipX ? -1 : 1, layer.flipY ? -1 : 1);
+        ctx.fillText(layer.type === "text" ? layer.text : layer.symbol || "⭐", 0, 0);
         ctx.restore();
       });
 
+      const drawingLayer = getDrawingLayerCanvas();
+      ctx.drawImage(drawingLayer, 0, 0, w, h);
+
 
     },
-    [productTemplateImg, bgImage, uploadedImages, layers, selectedProduct]
+    [getDrawingLayerCanvas, productTemplateImg, bgImage, uploadedImages, layers]
   );
 
   const redrawCanvas = useCallback(() => {
@@ -648,6 +763,13 @@ const BuildNovelty = () => {
 
   useEffect(() => {
     redrawCanvas();
+    historyCaptureTimerRef.current = setTimeout(() => {
+      if (skipNextHistoryCaptureRef.current) {
+        skipNextHistoryCaptureRef.current = false;
+        return;
+      }
+      saveCanvasStateRef.current?.();
+    }, 80);
     if (isFullSketchMode) {
       const timer = setTimeout(() => {
         if (fullCanvasRef.current) {
@@ -664,8 +786,12 @@ const BuildNovelty = () => {
           }
         }
       }, 50);
-      return () => clearTimeout(timer);
+      return () => {
+        clearTimeout(timer);
+        clearTimeout(historyCaptureTimerRef.current);
+      };
     }
+    return () => clearTimeout(historyCaptureTimerRef.current);
   }, [redrawCanvas, isFullSketchMode, redrawCanvasOnTarget]);
 
   // Drawing Event Handlers
@@ -678,13 +804,25 @@ const BuildNovelty = () => {
     const x = ((clientX - rect.left) / rect.width) * canvas.width;
     const y = ((clientY - rect.top) / rect.height) * canvas.height;
 
+    if (tool === "select") {
+      const ctx = canvas.getContext("2d");
+      const hit = [...layers].reverse().find((layer) => {
+        if (layer.type === "text") {
+          ctx.font = `bold ${layer.fontSize || 28}px sans-serif`;
+          const halfWidth = Math.max(22, ctx.measureText(layer.text).width / 2);
+          return Math.abs(x - layer.x) <= halfWidth && Math.abs(y - layer.y) <= (layer.fontSize || 28);
+        }
+        return Math.abs(x - layer.x) <= 30 && Math.abs(y - layer.y) <= 30;
+      });
+      setSelectedLayerId(hit?.id || null);
+      return;
+    }
+
     if (tool === "text") {
       const text = prompt("Enter custom text for novelty design:", "NEXT LEVEL");
       if (text) {
-        setLayers((prev) => [
-          ...prev,
-          {
-            id: `layer-${Date.now()}`,
+        const layer = {
+            id: `layer-${Date.now()}-${Math.random().toString(16).slice(2)}`,
             name: text,
             type: "text",
             visible: true,
@@ -693,18 +831,26 @@ const BuildNovelty = () => {
             x,
             y,
             fontSize: 28,
-          },
-        ]);
-        saveCanvasState();
+          };
+        setLayers((prev) => [...prev, layer]);
+        setSelectedLayerId(layer.id);
       }
       return;
     }
 
     if (tool === "brush" || tool === "eraser") {
       setIsDrawing(true);
-      const ctx = canvas.getContext("2d");
+      const drawingLayer = getDrawingLayerCanvas();
+      const ctx = drawingLayer.getContext("2d");
+      const scaleX = drawingLayer.width / canvas.width;
+      const scaleY = drawingLayer.height / canvas.height;
+      ctx.globalCompositeOperation = tool === "eraser" ? "destination-out" : "source-over";
+      ctx.lineWidth = brushSize * ((scaleX + scaleY) / 2);
+      ctx.lineCap = "round";
+      ctx.lineJoin = "round";
+      ctx.strokeStyle = brushColor;
       ctx.beginPath();
-      ctx.moveTo(x, y);
+      ctx.moveTo(x * scaleX, y * scaleY);
     }
   };
 
@@ -718,18 +864,26 @@ const BuildNovelty = () => {
     const x = ((clientX - rect.left) / rect.width) * canvas.width;
     const y = ((clientY - rect.top) / rect.height) * canvas.height;
 
-    const ctx = canvas.getContext("2d");
-    ctx.lineWidth = brushSize;
+    const drawingLayer = getDrawingLayerCanvas();
+    const ctx = drawingLayer.getContext("2d");
+    const scaleX = drawingLayer.width / canvas.width;
+    const scaleY = drawingLayer.height / canvas.height;
+    ctx.globalCompositeOperation = tool === "eraser" ? "destination-out" : "source-over";
+    ctx.lineWidth = brushSize * ((scaleX + scaleY) / 2);
     ctx.lineCap = "round";
     ctx.lineJoin = "round";
-    ctx.strokeStyle = tool === "eraser" ? "#070d19" : brushColor;
-    ctx.lineTo(x, y);
+    ctx.strokeStyle = brushColor;
+    ctx.lineTo(x * scaleX, y * scaleY);
     ctx.stroke();
+    redrawCanvasOnTarget(canvas);
   };
 
   const stopDrawing = () => {
     if (isDrawing) {
       setIsDrawing(false);
+      const drawingCtx = getDrawingLayerCanvas().getContext("2d");
+      drawingCtx.globalCompositeOperation = "source-over";
+      redrawCanvas();
       saveCanvasState();
     }
   };
@@ -738,6 +892,7 @@ const BuildNovelty = () => {
   const handlePhotoUpload = (e, isFuse = false) => {
     const file = e.target.files && e.target.files[0];
     if (!file) return;
+    e.target.value = "";
 
     const reader = new FileReader();
     reader.onload = (event) => {
@@ -764,7 +919,6 @@ const BuildNovelty = () => {
             },
           ]);
         }
-        saveCanvasState();
       };
       img.src = event.target.result;
     };
@@ -777,12 +931,9 @@ const BuildNovelty = () => {
       setBgImage(null);
       setUploadedImages([]);
       setLayers([]);
-      const canvas = getActiveCanvas();
-      if (canvas) {
-        const ctx = canvas.getContext("2d");
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-      }
-      redrawCanvas();
+      setSelectedLayerId(null);
+      const drawingLayer = getDrawingLayerCanvas();
+      drawingLayer.getContext("2d").clearRect(0, 0, drawingLayer.width, drawingLayer.height);
       return;
     }
 
@@ -790,24 +941,17 @@ const BuildNovelty = () => {
     const cx = canvas ? canvas.width / 2 : 320;
     const cy = canvas ? canvas.height / 2 : 220;
 
-    if (tmpl.symbol) {
-      setLayers((prev) => [
-        ...prev,
-        {
-          id: `layer-${Date.now()}`,
+    if (tmpl.symbol || tmpl.text) {
+      const layer = tmpl.symbol ? {
+          id: `layer-${Date.now()}-${Math.random().toString(16).slice(2)}`,
           name: tmpl.name,
           type: "sticker",
           visible: true,
           symbol: tmpl.symbol,
           x: cx,
           y: cy,
-        },
-      ]);
-    } else if (tmpl.text) {
-      setLayers((prev) => [
-        ...prev,
-        {
-          id: `layer-${Date.now()}`,
+        } : {
+          id: `layer-${Date.now()}-${Math.random().toString(16).slice(2)}`,
           name: tmpl.name,
           type: "text",
           visible: true,
@@ -816,43 +960,53 @@ const BuildNovelty = () => {
           x: cx,
           y: cy,
           fontSize: 28,
-        },
-      ]);
+        };
+      setLayers((prev) => [...prev, layer]);
+      setSelectedLayerId(layer.id);
     }
-    saveCanvasState();
   };
 
   // Undo / Redo
+  const restoreHistorySnapshot = (index) => {
+    const snapshot = historyRef.current[index];
+    if (!snapshot) return;
+    skipNextHistoryCaptureRef.current = true;
+    historyIndexRef.current = index;
+    setHistoryIndex(index);
+    setLayers(snapshot.layers);
+    setUploadedImages(snapshot.uploadedImages);
+    setBgImage(snapshot.bgImage);
+    const drawingLayer = getDrawingLayerCanvas();
+    const drawingCtx = drawingLayer.getContext("2d");
+    drawingCtx.clearRect(0, 0, drawingLayer.width, drawingLayer.height);
+    const drawingImage = new Image();
+    drawingImage.onload = () => {
+      drawingCtx.clearRect(0, 0, drawingLayer.width, drawingLayer.height);
+      drawingCtx.drawImage(drawingImage, 0, 0, drawingLayer.width, drawingLayer.height);
+    };
+    drawingImage.src = snapshot.drawing;
+    setTimeout(() => {
+      skipNextHistoryCaptureRef.current = false;
+    }, 200);
+    const img = new Image();
+    img.onload = () => {
+      const canvas = getActiveCanvas();
+      if (!canvas) return;
+      const ctx = canvas.getContext("2d");
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+    };
+    img.src = snapshot.image;
+  };
+
   const handleUndo = () => {
-    if (historyIndex > 0) {
-      const newIndex = historyIndex - 1;
-      setHistoryIndex(newIndex);
-      const img = new Image();
-      img.onload = () => {
-        const canvas = getActiveCanvas();
-        if (!canvas) return;
-        const ctx = canvas.getContext("2d");
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.drawImage(img, 0, 0);
-      };
-      img.src = history[newIndex];
-    }
+    const nextIndex = historyIndexRef.current - 1;
+    if (nextIndex >= 0) restoreHistorySnapshot(nextIndex);
   };
 
   const handleRedo = () => {
-    if (historyIndex < history.length - 1) {
-      const newIndex = historyIndex + 1;
-      setHistoryIndex(newIndex);
-      const img = new Image();
-      img.onload = () => {
-        const canvas = getActiveCanvas();
-        if (!canvas) return;
-        const ctx = canvas.getContext("2d");
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.drawImage(img, 0, 0);
-      };
-      img.src = history[newIndex];
-    }
+    const nextIndex = historyIndexRef.current + 1;
+    if (nextIndex < historyRef.current.length) restoreHistorySnapshot(nextIndex);
   };
 
   // Generate / Submit
@@ -1638,48 +1792,57 @@ const BuildNovelty = () => {
 
               {/* 3. BOTTOM CARD: Quick Actions (Matching user reference photo 5) */}
               <div className="rounded-2xl border border-white/10 bg-[#040c18] p-3.5 shadow-lg flex flex-col gap-2">
-                <span className="text-[10px] font-bold uppercase tracking-widest text-white/50 mb-1">
-                  Quick Actions
-                </span>
+                <div className="mb-1 flex items-center justify-between gap-2">
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-white/50">Quick Actions</span>
+                  <span className="max-w-32 truncate text-[10px] text-white/50" title={layers.find((layer) => layer.id === selectedLayerId)?.name || "No layer selected"}>
+                    {layers.find((layer) => layer.id === selectedLayerId)?.name || "Select a layer"}
+                  </span>
+                </div>
                 <div className="grid grid-cols-3 gap-2">
                   <button
-                    onClick={handleUndo}
-                    className="flex flex-col items-center justify-center p-2 rounded-xl border border-white/10 bg-white/5 text-white/80 hover:bg-white/10 text-[10px] font-semibold"
+                    onClick={duplicateSelectedLayer}
+                    disabled={!selectedLayerId}
+                    className="flex flex-col items-center justify-center p-2 rounded-xl border border-white/10 bg-white/5 text-white/80 hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-30 text-[10px] font-semibold"
                   >
                     <Copy className="h-4 w-4 text-[#0099FF] mb-1" />
                     <span>Duplicate</span>
                   </button>
                   <button
-                    onClick={() => {}}
-                    className="flex flex-col items-center justify-center p-2 rounded-xl border border-white/10 bg-white/5 text-white/80 hover:bg-white/10 text-[10px] font-semibold"
+                    onClick={() => flipSelectedLayer("flipX")}
+                    disabled={!selectedLayerId}
+                    className="flex flex-col items-center justify-center p-2 rounded-xl border border-white/10 bg-white/5 text-white/80 hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-30 text-[10px] font-semibold"
                   >
                     <FlipHorizontal className="h-4 w-4 text-[#0099FF] mb-1" />
                     <span>Flip Horiz</span>
                   </button>
                   <button
-                    onClick={() => {}}
-                    className="flex flex-col items-center justify-center p-2 rounded-xl border border-white/10 bg-white/5 text-white/80 hover:bg-white/10 text-[10px] font-semibold"
+                    onClick={() => flipSelectedLayer("flipY")}
+                    disabled={!selectedLayerId}
+                    className="flex flex-col items-center justify-center p-2 rounded-xl border border-white/10 bg-white/5 text-white/80 hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-30 text-[10px] font-semibold"
                   >
                     <FlipVertical className="h-4 w-4 text-[#0099FF] mb-1" />
                     <span>Flip Vert</span>
                   </button>
                   <button
-                    onClick={() => {}}
-                    className="flex flex-col items-center justify-center p-2 rounded-xl border border-white/10 bg-white/5 text-white/80 hover:bg-white/10 text-[10px] font-semibold"
+                    onClick={() => moveSelectedLayer(1)}
+                    disabled={!selectedLayerId}
+                    className="flex flex-col items-center justify-center p-2 rounded-xl border border-white/10 bg-white/5 text-white/80 hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-30 text-[10px] font-semibold"
                   >
                     <Layers className="h-4 w-4 text-[#0099FF] mb-1" />
                     <span>Forward</span>
                   </button>
                   <button
-                    onClick={() => {}}
-                    className="flex flex-col items-center justify-center p-2 rounded-xl border border-white/10 bg-white/5 text-white/80 hover:bg-white/10 text-[10px] font-semibold"
+                    onClick={() => moveSelectedLayer(-1)}
+                    disabled={!selectedLayerId}
+                    className="flex flex-col items-center justify-center p-2 rounded-xl border border-white/10 bg-white/5 text-white/80 hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-30 text-[10px] font-semibold"
                   >
                     <Layers className="h-4 w-4 text-[#0099FF] mb-1" />
                     <span>Backward</span>
                   </button>
                   <button
-                    onClick={() => handleApplyTemplate({ id: "blank" })}
-                    className="flex flex-col items-center justify-center p-2 rounded-xl border border-red-500/20 bg-red-500/10 text-red-400 hover:bg-red-500/20 text-[10px] font-semibold"
+                    onClick={deleteSelectedLayer}
+                    disabled={!selectedLayerId}
+                    className="flex flex-col items-center justify-center p-2 rounded-xl border border-red-500/20 bg-red-500/10 text-red-400 hover:bg-red-500/20 disabled:cursor-not-allowed disabled:opacity-30 text-[10px] font-semibold"
                   >
                     <Trash2 className="h-4 w-4 text-red-400 mb-1" />
                     <span>Delete</span>
