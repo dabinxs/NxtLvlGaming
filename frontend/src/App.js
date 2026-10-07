@@ -22,6 +22,7 @@ import SimRacing from "./components/SimRacing";
 import Novelties from "./components/Novelties";
 import BuildNovelty from "./components/BuildNovelty";
 import QuotePage from "./components/QuotePage";
+import ContactPage from "./components/ContactPage";
 
 const Landing = () => (
   <div className="App text-foreground">
@@ -45,6 +46,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/quote" element={<QuotePage />} />
+        <Route path="/contact" element={<ContactPage />} />
         <Route path="/gaming-events" element={<GamingEvents />} />
         <Route path="/movie-nights" element={<MovieNights />} />
         <Route path="/trivia-nights" element={<TriviaNights />} />

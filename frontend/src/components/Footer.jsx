@@ -67,12 +67,15 @@ const Footer = () => {
                 <ul className="space-y-2.5">
                   {col.links.map((link) => (
                     <li key={link}>
-                      <a
-                        href="#top"
-                        className="whitespace-nowrap text-[12.5px] text-white/65 transition-colors hover:text-[#7DDDFF]"
-                      >
-                        {link}
-                      </a>
+                      {link === "Contact" ? (
+                        <Link to="/contact" className="whitespace-nowrap text-[12.5px] text-white/65 transition-colors hover:text-[#7DDDFF]">
+                          {link}
+                        </Link>
+                      ) : (
+                        <a href="#top" className="whitespace-nowrap text-[12.5px] text-white/65 transition-colors hover:text-[#7DDDFF]">
+                          {link}
+                        </a>
+                      )}
                     </li>
                   ))}
                 </ul>

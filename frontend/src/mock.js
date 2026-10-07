@@ -5,7 +5,7 @@ export const navLinks = [
   { label: "EXPERIENCE", href: "#gaming-division", menu: "experience" },
   { label: "NOVELTIES", href: "/novelties" },
   { label: "ABOUT", href: "#who-we-are" },
-  { label: "CONTACT", href: "#footer" },
+  { label: "CONTACT", href: "/contact" },
 ];
 
 // Mega panel content for the EVENTS / EXPERIENCE dropdowns
