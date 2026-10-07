@@ -6,8 +6,6 @@ import {
   CalendarDays,
   Check,
   CheckCircle2,
-  ChevronLeft,
-  ChevronRight,
   Clapperboard,
   Compass,
   Gamepad2,
@@ -21,8 +19,19 @@ import {
   Video,
   X,
 } from "lucide-react";
-import { format, isBefore, startOfDay } from "date-fns";
-import { Calendar } from "./ui/calendar";
+import {
+  addDays,
+  addMonths,
+  format,
+  isBefore,
+  isSameDay,
+  isSameMonth,
+  startOfDay,
+  startOfMonth,
+  startOfWeek,
+  subMonths,
+} from "date-fns";
+import Navbar from "./Navbar";
 import "./QuotePage.css";
 
 const STEPS = ["Event type", "Guests", "Date", "Location", "Experience", "Contact"];
@@ -90,8 +99,14 @@ function QuotePage() {
   const [draft, setDraft] = useState(readDraft);
   const [lookup, setLookup] = useState({ state: "idle", message: "" });
   const [submitted, setSubmitted] = useState(false);
+  const [emailDraftUrl, setEmailDraftUrl] = useState("");
+  const [calendarMonth, setCalendarMonth] = useState(() => startOfMonth(new Date()));
   const locationRequest = useRef(null);
   const dateValue = useMemo(() => (draft.date ? new Date(`${draft.date}T12:00:00`) : undefined), [draft.date]);
+  const calendarDays = useMemo(() => {
+    const firstDay = startOfWeek(startOfMonth(calendarMonth), { weekStartsOn: 0 });
+    return Array.from({ length: 42 }, (_, index) => addDays(firstDay, index));
+  }, [calendarMonth]);
   const mapSrc = useMemo(() => mapEmbedUrl(draft.mapPoint), [draft.mapPoint]);
 
   useEffect(() => {
@@ -160,6 +175,12 @@ function QuotePage() {
     if (step < STEPS.length - 1) setStep((current) => current + 1);
   };
 
+  const selectDate = (date) => {
+    if (isBefore(startOfDay(date), startOfDay(new Date()))) return;
+    update("date", format(date, "yyyy-MM-dd"));
+    update("dateFlexible", false);
+  };
+
   const requestQuote = (event) => {
     event.preventDefault();
     if (!canContinue()) return;
@@ -177,8 +198,10 @@ function QuotePage() {
       `Phone: ${draft.phone || "Not provided"}`,
       `Notes: ${draft.message || "None"}`,
     ];
-    window.location.href = `mailto:sales@nextlevelgamingevents.com?subject=${encodeURIComponent(`Event quote request — ${draft.eventType}`)}&body=${encodeURIComponent(lines.join("\n"))}`;
+    const mailtoUrl = `mailto:sales@nextlevelgamingevents.com?subject=${encodeURIComponent(`Event quote request — ${draft.eventType}`)}&body=${encodeURIComponent(lines.join("\n"))}`;
+    setEmailDraftUrl(mailtoUrl);
     setSubmitted(true);
+    window.location.href = mailtoUrl;
   };
 
   const progressWidth = `${((step + 1) / STEPS.length) * 100}%`;
@@ -186,13 +209,10 @@ function QuotePage() {
 
   return (
     <main className="quote-page min-h-screen text-white">
+      <Navbar />
       <div className="quote-grid" aria-hidden="true" />
       <header className="quote-topbar">
-        <Link to="/" className="quote-brand" aria-label="Next Level Gaming home">
-          <img src="/logo-3d.png" alt="Next Level Gaming" />
-        </Link>
-        <div className="quote-top-note"><span /> Event planning, made easy</div>
-        <Link to="/" className="quote-exit"><X size={16} /> <span>Exit planner</span></Link>
+        <Link to="/" className="quote-exit-button"><X size={16} /> Exit planner</Link>
       </header>
 
       <section className="quote-shell">
@@ -225,6 +245,26 @@ function QuotePage() {
           })}
         </nav>
 
+        {submitted ? (
+          <section className="quote-complete-card" aria-live="polite">
+            <div className="quote-complete-icon"><CheckCircle2 size={35} /></div>
+            <p className="quote-step-count">REQUEST PREPARED <span>·</span> NEXT LEVEL STARTS HERE</p>
+            <h2>Thanks, {draft.name.split(" ")[0]}!<br /><span>Your event is going to be one to remember.</span></h2>
+            <p className="quote-complete-copy">Your quote request is ready in a new email draft. Review the details, then send it to our events team so we can start planning with you.</p>
+            <div className="quote-complete-summary">
+              <div><small>EVENT</small><strong>{draft.eventType}</strong></div>
+              <div><small>GUESTS</small><strong>{draft.guests}</strong></div>
+              <div><small>DATE</small><strong>{draft.date ? format(dateValue, "MMM d, yyyy") : "Flexible"}</strong></div>
+              <div><small>LOCATION</small><strong>{draft.locationFlexible ? "Still deciding" : draft.mapPoint?.label?.split(",")[0] || draft.location}</strong></div>
+              <div><small>EXPERIENCE</small><strong>{draft.package}</strong></div>
+            </div>
+            <div className="quote-complete-actions">
+              {emailDraftUrl && <a href={emailDraftUrl} className="quote-continue-button">OPEN EMAIL DRAFT <Send size={16} /></a>}
+              <Link to="/" className="quote-back-button">BACK TO HOME <ArrowRight size={16} /></Link>
+            </div>
+            <p className="quote-complete-footnote">Your request isn’t sent until you send the email draft. We’ll take it from there.</p>
+          </section>
+        ) : (
         <div className="quote-main-grid">
           <section className="quote-card" aria-live="polite">
             <div className="quote-card-heading">
@@ -264,27 +304,46 @@ function QuotePage() {
               <div className="quote-date-layout">
                 <div className="quote-calendar-wrap">
                   <div className="quote-field-label">PICK YOUR DATE</div>
-                  <Calendar
-                    mode="single"
-                    selected={dateValue}
-                    onSelect={(date) => {
-                      update("date", date ? format(date, "yyyy-MM-dd") : "");
-                      if (date) update("dateFlexible", false);
-                    }}
-                    disabled={(date) => isBefore(startOfDay(date), startOfDay(new Date()))}
-                    fromDate={startOfDay(new Date())}
-                    className="quote-calendar"
-                    classNames={{
-                      caption_label: "quote-calendar-month",
-                      nav_button: "quote-calendar-nav",
-                      head_cell: "quote-calendar-weekday",
-                      day: "quote-calendar-day",
-                      day_selected: "quote-calendar-selected",
-                      day_today: "quote-calendar-today",
-                      day_disabled: "quote-calendar-disabled",
-                      day_outside: "quote-calendar-outside",
-                    }}
-                  />
+                  <div className="quote-calendar" role="group" aria-label="Choose event date">
+                    <div className="quote-calendar-header">
+                      <button
+                        type="button"
+                        className="quote-calendar-nav"
+                        onClick={() => setCalendarMonth((month) => subMonths(month, 1))}
+                        disabled={!isBefore(startOfMonth(new Date()), calendarMonth)}
+                        aria-label="Previous month"
+                      >‹</button>
+                      <strong>{format(calendarMonth, "MMMM yyyy")}</strong>
+                      <button
+                        type="button"
+                        className="quote-calendar-nav"
+                        onClick={() => setCalendarMonth((month) => addMonths(month, 1))}
+                        aria-label="Next month"
+                      >›</button>
+                    </div>
+                    <div className="quote-calendar-grid quote-calendar-weekdays" aria-hidden="true">
+                      {["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"].map((day) => <span key={day}>{day}</span>)}
+                    </div>
+                    <div className="quote-calendar-grid quote-calendar-days">
+                      {calendarDays.map((day) => {
+                        const isPast = isBefore(startOfDay(day), startOfDay(new Date()));
+                        const isSelected = dateValue && isSameDay(day, dateValue);
+                        return (
+                          <button
+                            key={day.toISOString()}
+                            type="button"
+                            onClick={() => selectDate(day)}
+                            disabled={isPast}
+                            className={`quote-calendar-day ${!isSameMonth(day, calendarMonth) ? "is-outside" : ""} ${isSelected ? "is-selected" : ""} ${isSameDay(day, new Date()) ? "is-today" : ""}`}
+                            aria-label={format(day, "EEEE, MMMM d, yyyy")}
+                            aria-pressed={Boolean(isSelected)}
+                          >
+                            {format(day, "d")}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
                 </div>
                 <aside className="quote-date-summary">
                   <span className="quote-date-icon"><CalendarDays size={19} /></span>
@@ -367,7 +426,6 @@ function QuotePage() {
                   <span><strong>Looking good, {draft.name || "event planner"}.</strong><small>{[draft.eventType, draft.guests && `${draft.guests} guests`, draft.date ? format(dateValue, "MMM d, yyyy") : draft.dateFlexible ? "flexible date" : null, draft.locationFlexible ? "location TBD" : draft.mapPoint?.label?.split(",")[0] || draft.location, draft.package].filter(Boolean).join(" · ")}</small></span>
                 </div>
                 <p className="quote-email-note">Selecting “Request my quote” opens a ready-to-send email to our events team. You can review and send it from your email app.</p>
-                {submitted && <p className="quote-submitted" role="status"><CheckCircle2 size={17} /> Your email draft is ready. Send it to get the conversation started.</p>}
               </form>
             )}
 
@@ -396,6 +454,7 @@ function QuotePage() {
             <div className="quote-summary-footer"><span className="quote-sparkle"><Sparkles size={15} /></span><span>No pressure. Your request is a starting point, and our team will help shape the right fit.</span></div>
           </aside>
         </div>
+        )}
         <p className="quote-privacy"><span>YOUR DETAILS STAY PRIVATE</span><span>·</span><span>NO OBLIGATION</span><span>·</span><span>BUILT AROUND YOUR EVENT</span></p>
       </section>
     </main>
