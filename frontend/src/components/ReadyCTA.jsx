@@ -1,5 +1,6 @@
 import React from "react";
 import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const ReadyCTA = () => {
   return (
@@ -20,13 +21,13 @@ const ReadyCTA = () => {
             Your Event?
           </h2>
 
-          <a
-            href="#footer"
+          <Link
+            to="/quote"
             className="group mt-9 inline-flex items-center gap-2.5 rounded-full blue-gradient-bg px-8 py-4 text-[13px] font-semibold uppercase tracking-wide text-white shadow-[0_12px_40px_rgba(0,102,253,0.45)] transition-transform hover:scale-[1.04]"
           >
             Build Your Event
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-          </a>
+          </Link>
         </div>
       </div>
     </section>

@@ -1,5 +1,6 @@
 import React from "react";
 import { ArrowUpRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import { footerColumns } from "../mock";
 import InteractiveWordmark from "./InteractiveWordmark";
 
@@ -40,12 +41,12 @@ const Footer = () => {
             </a>
 
             <div className="mt-8 flex flex-wrap items-center gap-4">
-              <a
-                href="#top"
+              <Link
+                to="/quote"
                 className="inline-flex items-center gap-2 rounded-full blue-gradient-bg px-6 py-3 text-[12px] font-semibold uppercase tracking-wide text-white shadow-[0_8px_24px_rgba(0,102,253,0.35)] transition-transform hover:scale-[1.04]"
               >
                 Get A Quote
-              </a>
+              </Link>
               <span
                 data-testid="footer-tagline"
                 className="flex items-center gap-2.5 text-[15px] font-medium text-white/85"

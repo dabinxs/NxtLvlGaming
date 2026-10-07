@@ -21,6 +21,7 @@ import SilentDisco from "./components/SilentDisco";
 import SimRacing from "./components/SimRacing";
 import Novelties from "./components/Novelties";
 import BuildNovelty from "./components/BuildNovelty";
+import QuotePage from "./components/QuotePage";
 
 const Landing = () => (
   <div className="App text-foreground">
@@ -43,6 +44,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Landing />} />
+        <Route path="/quote" element={<QuotePage />} />
         <Route path="/gaming-events" element={<GamingEvents />} />
         <Route path="/movie-nights" element={<MovieNights />} />
         <Route path="/trivia-nights" element={<TriviaNights />} />

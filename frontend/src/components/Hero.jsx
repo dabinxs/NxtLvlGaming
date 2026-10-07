@@ -1,5 +1,6 @@
 import React from "react";
 import { ChevronRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import TextScatter from "./TextScatter";
 
 const Hero = () => {
@@ -42,14 +43,14 @@ const Hero = () => {
           className="mt-10 flex flex-col items-center gap-3 animate-rise sm:flex-row"
           style={{ animationDelay: "0.2s" }}
         >
-          <a
-            href="#footer"
+          <Link
+            to="/quote"
             data-testid="hero-plan-cta"
             className="group inline-flex h-[54px] items-center justify-center gap-3 rounded-xl border-2 border-transparent bg-[#0066CC] px-8 text-[13px] font-bold uppercase tracking-[0.06em] text-white shadow-[0_10px_34px_rgba(0,102,204,0.35)] transition-all duration-300 hover:bg-[#0077DD] hover:shadow-[0_14px_40px_rgba(0,102,204,0.5)]"
           >
             Plan Your Event
             <ChevronRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-          </a>
+          </Link>
           <a
             href="#experience"
             data-testid="hero-explore-cta"
