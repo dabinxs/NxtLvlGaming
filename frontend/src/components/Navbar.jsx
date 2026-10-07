@@ -76,7 +76,7 @@ const NavDropdown = ({ menuKey }) => {
   );
 };
 
-const Navbar = () => {
+const Navbar = ({ topOnly = false }) => {
   const [open, setOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState(null);
   const [mobileAccordion, setMobileAccordion] = useState(null);
@@ -90,6 +90,10 @@ const Navbar = () => {
 
       if (currentScrollY <= 20) {
         setShowNavbar(true);
+      } else if (topOnly) {
+        // On focused tools, keep the workspace clear while scrolling back up.
+        // The nav returns only when the page itself reaches the top.
+        setShowNavbar(false);
       } else if (currentScrollY > lastScrollY.current + 8) {
         // Scrolling down -> hide navbar
         setShowNavbar(false);
@@ -103,7 +107,7 @@ const Navbar = () => {
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [topOnly]);
 
   const openMenu = (key) => {
     clearTimeout(closeTimer.current);

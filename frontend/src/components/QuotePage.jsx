@@ -113,10 +113,7 @@ function QuotePage() {
     sessionStorage.setItem(STORAGE_KEY, JSON.stringify(draft));
   }, [draft]);
 
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-    return () => locationRequest.current?.abort();
-  }, [step]);
+  useEffect(() => () => locationRequest.current?.abort(), []);
 
   const update = (key, value) => setDraft((current) => ({ ...current, [key]: value }));
   const chooseLocationFlexibility = (value) => {

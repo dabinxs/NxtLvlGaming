@@ -875,7 +875,7 @@ const BuildNovelty = () => {
 
   return (
     <div className="min-h-screen bg-[#040c17] text-white font-sans selection:bg-[#0099FF] selection:text-white flex flex-col justify-between">
-      <Navbar />
+      <Navbar topOnly />
 
       {/* Hidden File Inputs */}
       <input
