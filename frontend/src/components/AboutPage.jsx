@@ -9,15 +9,15 @@ import "./AboutPage.css";
 gsap.registerPlugin(ScrollTrigger);
 
 const storyPhotos = [
-  { className: "about-photo about-photo--one", label: "Story image placeholder", speed: -0.27 },
-  { className: "about-photo about-photo--two", label: "Event image placeholder", speed: 0.16 },
-  { className: "about-photo about-photo--three about-photo--portrait", label: "Yaw Boateng, co-founder", image: "/yaw.avif", speed: 0.32 },
-  { className: "about-photo about-photo--four about-photo--portrait", label: "Calvin Reid, co-founder", image: "/calvin.avif", speed: -0.12 },
-  { className: "about-photo about-photo--five", label: "Event image placeholder", speed: 0.22 },
-  { className: "about-photo about-photo--six", label: "Story image placeholder", speed: -0.34 },
-  { className: "about-photo about-photo--seven", label: "Event image placeholder", speed: 0.28 },
-  { className: "about-photo about-photo--eight", label: "Story image placeholder", speed: -0.18 },
-  { className: "about-photo about-photo--nine", label: "Event image placeholder", speed: 0.36 },
+  { className: "about-photo about-photo--one about-photo--portrait", label: "Calvin Reid, co-founder", image: "/calvin.avif", speed: -0.27 },
+  { className: "about-photo about-photo--two about-photo--portrait", label: "Yaw Boateng, co-founder", image: "/yaw.avif", speed: 0.16 },
+  { className: "about-photo about-photo--three about-photo--portrait", label: "Calvin Reid, co-founder", image: "/calvin.avif", speed: 0.32 },
+  { className: "about-photo about-photo--four about-photo--portrait", label: "Yaw Boateng, co-founder", image: "/yaw.avif", speed: -0.12 },
+  { className: "about-photo about-photo--five about-photo--portrait", label: "Calvin Reid, co-founder", image: "/calvin.avif", speed: 0.22 },
+  { className: "about-photo about-photo--six about-photo--portrait", label: "Yaw Boateng, co-founder", image: "/yaw.avif", speed: -0.34 },
+  { className: "about-photo about-photo--seven about-photo--portrait", label: "Calvin Reid, co-founder", image: "/calvin.avif", speed: 0.28 },
+  { className: "about-photo about-photo--eight about-photo--portrait", label: "Yaw Boateng, co-founder", image: "/yaw.avif", speed: -0.18 },
+  { className: "about-photo about-photo--nine about-photo--portrait", label: "Calvin Reid, co-founder", image: "/calvin.avif", speed: 0.36 },
 ];
 
 const offerings = [
