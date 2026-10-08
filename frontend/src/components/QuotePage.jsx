@@ -206,7 +206,7 @@ function QuotePage() {
 
   return (
     <main className="quote-page min-h-screen text-white">
-      <Navbar />
+      <Navbar topOnly />
       <div className="quote-grid" aria-hidden="true" />
       <header className="quote-topbar">
         <Link to="/" className="quote-exit-button"><X size={16} /> Exit planner</Link>
