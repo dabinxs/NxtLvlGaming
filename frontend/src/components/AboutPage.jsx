@@ -15,6 +15,9 @@ const storyPhotos = [
   { className: "about-photo about-photo--four", label: "Event image placeholder", speed: -0.12 },
   { className: "about-photo about-photo--five", label: "Event image placeholder", speed: 0.22 },
   { className: "about-photo about-photo--six", label: "Story image placeholder", speed: -0.34 },
+  { className: "about-photo about-photo--seven", label: "Event image placeholder", speed: 0.28 },
+  { className: "about-photo about-photo--eight", label: "Story image placeholder", speed: -0.18 },
+  { className: "about-photo about-photo--nine", label: "Event image placeholder", speed: 0.36 },
 ];
 
 const offerings = [
@@ -201,7 +204,7 @@ function AboutPage() {
 
   return (
     <div ref={pageRef} className="about-page" id="top">
-      <Navbar />
+      <Navbar topOnly />
       <main>
         <section className="about-hero" aria-labelledby="about-title" style={{ backgroundImage: "url('/hero-bg.png')" }}>
           <div className="about-hero__glow" aria-hidden="true" />
@@ -227,8 +230,7 @@ function AboutPage() {
           <div className="about-work__pin">
               <div className="about-work__track" tabIndex={0} role="group" aria-label="What we do cards. Use the arrow keys to browse.">
               <div className="about-work__intro">
-                <p className="about-eyebrow">What we do</p>
-                <h2 id="about-work-title">We make it easy to play together.</h2>
+                <h2 id="about-work-title">What we do</h2>
                 <p className="about-work__hint">Three ways to bring people into the moment.</p>
               </div>
               {offerings.map((offering, index) => (
