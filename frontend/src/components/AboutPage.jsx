@@ -11,8 +11,8 @@ gsap.registerPlugin(ScrollTrigger);
 const storyPhotos = [
   { className: "about-photo about-photo--one", label: "Story image placeholder", speed: -0.27 },
   { className: "about-photo about-photo--two", label: "Event image placeholder", speed: 0.16 },
-  { className: "about-photo about-photo--three", label: "Story image placeholder", speed: 0.32 },
-  { className: "about-photo about-photo--four", label: "Event image placeholder", speed: -0.12 },
+  { className: "about-photo about-photo--three about-photo--portrait", label: "Yaw Boateng, co-founder", image: "/yaw.avif", speed: 0.32 },
+  { className: "about-photo about-photo--four about-photo--portrait", label: "Calvin Reid, co-founder", image: "/calvin.avif", speed: -0.12 },
   { className: "about-photo about-photo--five", label: "Event image placeholder", speed: 0.22 },
   { className: "about-photo about-photo--six", label: "Story image placeholder", speed: -0.34 },
   { className: "about-photo about-photo--seven", label: "Event image placeholder", speed: 0.28 },
@@ -24,17 +24,20 @@ const offerings = [
   {
     title: "Gaming & esports",
     copy: "Multiplayer gaming, tournaments and head-to-head competition, with large screens and the sound to bring everyone into the game.",
-    label: "Gaming event image placeholder",
+    image: "/about-gaming-event.jpg",
+    alt: "Guests playing at a Next Level Gaming event",
   },
   {
     title: "Immersive experiences",
     copy: "Virtual reality, 360 video, sim racing and dance experiences give guests new ways to step in and take part.",
-    label: "Experience image placeholder",
+    image: "/about-vr-event.jpeg",
+    alt: "A guest playing a virtual reality rhythm game",
   },
   {
     title: "Big-screen entertainment",
     copy: "Movie nights and shared-screen entertainment, supported by event-ready projection, DJ-quality sound and lighting.",
-    label: "Screen event image placeholder",
+    image: "/about-movie-screen.jpeg",
+    alt: "A large outdoor movie screen set up for an event",
   },
 ];
 
@@ -216,6 +219,7 @@ function AboutPage() {
         <section className="about-story" aria-labelledby="about-story-title">
           {storyPhotos.map((photo) => (
             <div key={photo.className} className={photo.className} data-speed={photo.speed} aria-label={photo.label} role="img">
+              {photo.image && <img className="about-photo__image" src={photo.image} alt="" loading="lazy" decoding="async" />}
               <span>{photo.label}</span>
             </div>
           ))}
@@ -230,12 +234,12 @@ function AboutPage() {
           <div className="about-work__pin">
               <div className="about-work__track" tabIndex={0} role="group" aria-label="What we do cards. Use the arrow keys to browse.">
               <div className="about-work__intro">
-                <h2 id="about-work-title">What we do</h2>
+                <h2 id="about-work-title">WHAT WE<br />DO</h2>
                 <p className="about-work__hint">Three ways to bring people into the moment.</p>
               </div>
               {offerings.map((offering, index) => (
                 <article className="about-work__card" key={offering.title}>
-                  <div className="about-work__image" role="img" aria-label={offering.label}><span>{offering.label}</span></div>
+                  <div className="about-work__image" role="img" aria-label={offering.alt}><img src={offering.image} alt="" loading="lazy" decoding="async" /></div>
                   <div className="about-work__text">
                     <span className="about-work__number">0{index + 1} <i>/ 03</i></span>
                     <div><h3>{offering.title}</h3><p>{offering.copy}</p></div>
