@@ -23,6 +23,7 @@ import Novelties from "./components/Novelties";
 import BuildNovelty from "./components/BuildNovelty";
 import QuotePage from "./components/QuotePage";
 import ContactPage from "./components/ContactPage";
+import AboutPage from "./components/AboutPage";
 
 const Landing = () => (
   <div className="App text-foreground">
@@ -47,6 +48,7 @@ function App() {
         <Route path="/" element={<Landing />} />
         <Route path="/quote" element={<QuotePage />} />
         <Route path="/contact" element={<ContactPage />} />
+        <Route path="/about" element={<AboutPage />} />
         <Route path="/gaming-events" element={<GamingEvents />} />
         <Route path="/movie-nights" element={<MovieNights />} />
         <Route path="/trivia-nights" element={<TriviaNights />} />

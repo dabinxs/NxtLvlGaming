@@ -71,6 +71,10 @@ const Footer = () => {
                         <Link to="/contact" className="whitespace-nowrap text-[12.5px] text-white/65 transition-colors hover:text-[#7DDDFF]">
                           {link}
                         </Link>
+                      ) : link === "About" ? (
+                        <Link to="/about" className="whitespace-nowrap text-[12.5px] text-white/65 transition-colors hover:text-[#7DDDFF]">
+                          {link}
+                        </Link>
                       ) : (
                         <a href="#top" className="whitespace-nowrap text-[12.5px] text-white/65 transition-colors hover:text-[#7DDDFF]">
                           {link}

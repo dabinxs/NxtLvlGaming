@@ -4,7 +4,7 @@ export const navLinks = [
   { label: "EVENTS", href: "#experience", menu: "events" },
   { label: "EXPERIENCE", href: "#gaming-division", menu: "experience" },
   { label: "NOVELTIES", href: "/novelties" },
-  { label: "ABOUT", href: "#who-we-are" },
+  { label: "ABOUT", href: "/about" },
   { label: "CONTACT", href: "/contact" },
 ];
 
