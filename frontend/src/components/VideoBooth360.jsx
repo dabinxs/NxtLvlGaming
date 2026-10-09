@@ -31,19 +31,19 @@ const INCLUDED_FEATURES = [
 
 const GALLERY_IMAGES = [
   {
-    title: "360° Rotating Platform",
-    subtitle: "High-speed camera arm capturing dynamic slow-mo angles",
-    src: "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1200&q=80",
+    title: "Photo Booth Moments",
+    subtitle: "Fun, shareable memories from your event.",
+    src: "/photo-booth-experience-1.png",
   },
   {
-    title: "Instant Sharing Station",
-    subtitle: "AirDrop, SMS, and QR code access in seconds",
-    src: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=1200&q=80",
+    title: "360 Video & Mirror Booth",
+    subtitle: "Choose a cinematic video or an interactive mirror photo.",
+    src: "/photo-booth-experience-2.png",
   },
   {
-    title: "Studio Lighting & Props",
-    subtitle: "Themed props, LED lighting ring, and overlay branding",
-    src: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1200&q=80",
+    title: "Party Props & Poses",
+    subtitle: "Guests strike a pose and make photo booth memories together.",
+    src: "/photo-booth-experience-3.png",
   },
 ];
 
