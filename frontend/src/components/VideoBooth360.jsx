@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import {
   Camera,
   ScanFace,
-  Users,
   Check,
 } from "lucide-react";
 import Navbar from "./Navbar";
