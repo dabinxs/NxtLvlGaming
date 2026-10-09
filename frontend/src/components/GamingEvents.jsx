@@ -42,19 +42,19 @@ const INCLUDED_FEATURES = [
 
 const GALLERY_IMAGES = [
   {
-    title: "Tournament Stage",
-    subtitle: "High-stakes bracketed finals with live commentary",
-    src: "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1200&q=80",
+    title: "Multiplayer Gaming Stations",
+    subtitle: "A range of games set up for guests to play together.",
+    src: "/gaming-events-experience-1.png",
   },
   {
-    title: "Multiplayer Lounges",
-    subtitle: "Turnkey consoles and illuminated stations",
-    src: "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=1200&q=80",
+    title: "Giant Screen Gaming",
+    subtitle: "Bright, large-scale displays bring every match to life.",
+    src: "/gaming-events-experience-2.png",
   },
   {
-    title: "Giant Outdoor Screens",
-    subtitle: "Up to 32ft inflatable screens under the stars",
-    src: "https://images.unsplash.com/photo-1587095951604-b9d924a3fda0?auto=format&fit=crop&w=1200&q=80",
+    title: "Campus Gaming Events",
+    subtitle: "A full gym transformed into a gaming event space.",
+    src: "/gaming-events-experience-3.png",
   },
 ];
 

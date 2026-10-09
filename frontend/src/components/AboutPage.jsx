@@ -29,7 +29,7 @@ const offerings = [
   },
   {
     title: "Immersive experiences",
-    copy: "Virtual reality, 360 video, sim racing and dance experiences give guests new ways to step in and take part.",
+    copy: "Photo booth, virtual reality, sim racing and dance experiences give guests new ways to step in and take part.",
     image: "/about-vr-event.jpeg",
     alt: "A guest playing a virtual reality rhythm game",
   },

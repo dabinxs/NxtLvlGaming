@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
 import {
-  Headphones,
-  FolderHeart,
-  Glasses,
+  Camera,
+  ScanFace,
   Users,
   Check,
 } from "lucide-react";
@@ -11,32 +10,22 @@ import Footer from "./Footer";
 import ReadyCTA from "./ReadyCTA";
 
 const OVERVIEW_POINTS = [
-  "Commercial-grade equipment",
-  "Experiences for all ages and abilities",
-  "Spectator screens keep crowds engaged",
-  "Fully staffed and guided",
+  "Choose a 360 video booth or mirror booth",
+  "Photo and video moments to share",
+  "Props and custom event overlays",
+  "A staffed setup that keeps guests moving",
 ];
 
 const INCLUDED_FEATURES = [
   {
-    icon: Headphones,
-    title: "Premium Headsets",
-    desc: "Latest-generation VR hardware, sanitized and event-ready.",
+    icon: Camera,
+    title: "360 Video Booth",
+    desc: "Guests step onto a platform as a camera circles them for shareable slow-motion video.",
   },
   {
-    icon: FolderHeart,
-    title: "Curated Library",
-    desc: "From rhythm games to simulations — experiences for every comfort level.",
-  },
-  {
-    icon: Glasses,
-    title: "Props",
-    desc: "Curated prop kits matched to your event theme.",
-  },
-  {
-    icon: Users,
-    title: "Social Gaming",
-    desc: "Lounge-style setups built for crowds — drop in, pick up a controller, play.",
+    icon: ScanFace,
+    title: "Mirror Booth",
+    desc: "An interactive full-length mirror lets guests pose for fun photo keepsakes.",
   },
 ];
 
@@ -70,10 +59,10 @@ const VideoBooth360 = () => {
       <main>
         {/* ================= HERO SECTION ================= */}
         <section className="relative overflow-hidden pt-36 pb-20 md:pt-44 md:pb-28">
-          {/* Background image from 360 booth carousel */}
+          {/* Background image from the Photo Booth homepage card */}
           <img
             src="/experience-360-video-booth.png"
-            alt="360 Video Booth party experience"
+            alt="Photo booth experience at an event"
             className="absolute inset-0 h-full w-full object-cover object-center"
           />
           {/* Directional gradient overlay for visibility & text contrast */}
@@ -84,12 +73,14 @@ const VideoBooth360 = () => {
 
           <div className="relative z-10 mx-auto max-w-[1280px] px-5 md:px-8">
             <h1 className="max-w-4xl font-display text-[clamp(2.5rem,6.5vw,5rem)] font-extrabold uppercase italic leading-[1.04] tracking-tight text-white drop-shadow-[0_6px_24px_rgba(0,0,0,0.9)]">
-              360° VIDEO <br />
-              <span className="blue-gradient-text not-italic">BOOTH</span>
+              PHOTO<span className="blue-gradient-text not-italic">BOOTH</span>
             </h1>
 
-            <p className="mt-6 max-w-2xl text-[17px] leading-relaxed text-white/90 drop-shadow-[0_3px_10px_rgba(0,0,0,0.85)] sm:text-[19px]">
-              Slow-motion, shareable video your guests will post before the night ends.
+            <p className="mt-5 font-display text-[15px] font-bold uppercase tracking-[0.16em] text-white/90 sm:text-[18px]">
+              360 Video Booth <span className="px-2 text-[#7DDDFF]">/</span> Mirror Booth
+            </p>
+            <p className="mt-5 max-w-3xl text-[16px] leading-relaxed text-white/90 drop-shadow-[0_3px_10px_rgba(0,0,0,0.85)] sm:text-[18px]">
+              Make your events more fun and memorable with our photobooth experiences. Capture, create, and share amazing moments instantly.
             </p>
           </div>
         </section>
@@ -112,7 +103,7 @@ const VideoBooth360 = () => {
               {/* Right Column */}
               <div className="flex flex-col gap-8 lg:col-span-7">
                 <p className="text-[17px] leading-relaxed text-white/70 sm:text-[18px]">
-                  Premium VR headsets, curated game libraries and guided experiences.
+                  Choose the 360 video booth for cinematic slow-motion clips or the mirror booth for interactive photo keepsakes. Both bring an easy, shareable photo booth experience to your event.
                 </p>
 
                 {/* 2x2 Grid of Points */}
@@ -143,11 +134,11 @@ const VideoBooth360 = () => {
                 <span>WHAT IS INCLUDED</span>
               </div>
               <h2 className="mt-4 font-display text-[clamp(1.9rem,3.8vw,2.9rem)] font-extrabold uppercase leading-[1.12] tracking-tight text-white">
-                Everything Needed For An Unforgettable Video Experience
+                  Choose Your Photo Booth Experience
               </h2>
             </div>
 
-            {/* 4 Feature Cards (2x2) */}
+            {/* Two photo booth options */}
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
               {INCLUDED_FEATURES.map((item) => {
                 const IconComponent = item.icon;

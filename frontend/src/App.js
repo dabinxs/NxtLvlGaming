@@ -53,6 +53,7 @@ function App() {
         <Route path="/movie-nights" element={<MovieNights />} />
         <Route path="/trivia-nights" element={<TriviaNights />} />
         <Route path="/virtual-reality" element={<VirtualReality />} />
+        <Route path="/photo-booth" element={<VideoBooth360 />} />
         <Route path="/360-video-booth" element={<VideoBooth360 />} />
         <Route path="/360-booth" element={<VideoBooth360 />} />
         <Route path="/just-dance" element={<JustDance />} />

@@ -16,7 +16,7 @@ import {
   Send,
   Sparkles,
   Users,
-  Video,
+  Camera,
   X,
 } from "lucide-react";
 import {
@@ -39,7 +39,7 @@ const STEP_ICONS = [Gamepad2, Users, CalendarDays, MapPin, Package, Send];
 const EVENT_TYPES = [
   { title: "Gaming event", icon: Gamepad2 },
   { title: "Movie night", icon: Clapperboard },
-  { title: "360 video booth", icon: Video },
+  { title: "Photo booth", icon: Camera },
   { title: "Trivia night", icon: Sparkles },
   { title: "Virtual reality", icon: Headphones },
   { title: "Something else", icon: Compass },
@@ -50,7 +50,7 @@ const PACKAGES = [
   "Ultimate gaming",
   "Tournament production",
   "Outdoor cinema",
-  "360 booth + branding",
+  "Photo booth + branding",
   "Trivia game show",
   "VR lounge",
   "Custom mix",

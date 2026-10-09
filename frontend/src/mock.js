@@ -61,10 +61,10 @@ export const megaMenus = {
         href: "/sim-racing",
       },
       {
-        title: "360 Video Booth",
+        title: "Photo Booth",
         icon: "Camera",
-        desc: "Interactive 360° videos guests can share.",
-        href: "/360-video-booth",
+        desc: "360 video and mirror booth experiences guests can enjoy and share.",
+        href: "/photo-booth",
       },
     ],
   },
@@ -150,9 +150,9 @@ export const experiences = [
   },
   {
     id: 8,
-    title: "360 Video",
+    title: "Photo",
     highlight: "Booth",
-    desc: "Interactive 360° videos guests can share instantly on social media.",
+    desc: "Make your events more fun and memorable with our photobooth experiences. Capture, create, and share amazing moments instantly.",
     image: "/experience-360-video-booth.png",
   },
 ];
@@ -186,7 +186,7 @@ export const footerColumns = [
   },
   {
     title: "EXPERIENCE",
-    links: ["360 Booth", "Virtual Reality", "Just Dance", "Silent Disco", "Sim Racing"],
+    links: ["Photo Booth", "Virtual Reality", "Just Dance", "Silent Disco", "Sim Racing"],
   },
   {
     title: "COMPANY",
