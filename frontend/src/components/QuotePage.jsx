@@ -191,6 +191,7 @@ function QuotePage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           formType: "quote",
+          website: event.currentTarget.elements.website.value,
           eventType: draft.eventType,
           guests: draft.guests,
           date: draft.date ? format(dateValue, "MMMM d, yyyy") : "Flexible / to be confirmed",

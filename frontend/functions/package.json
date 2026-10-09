@@ -1,0 +1,12 @@
+{
+  "name": "nextlevelgaming-form-mailer",
+  "private": true,
+  "main": "index.js",
+  "engines": {
+    "node": "22"
+  },
+  "dependencies": {
+    "firebase-functions": "^7.4.0",
+    "nodemailer": "^10.0.16"
+  }
+}

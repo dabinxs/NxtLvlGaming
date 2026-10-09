@@ -33,7 +33,11 @@ const ContactPage = () => {
       const response = await fetch(FORM_ENDPOINT, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ formType: "contact", ...form }),
+        body: JSON.stringify({
+          formType: "contact",
+          ...form,
+          website: event.currentTarget.elements.website.value,
+        }),
       });
       if (!response.ok) throw new Error("Message delivery failed");
       setNotice("Your message has been sent. We’ll be in touch soon.");
