@@ -72,7 +72,7 @@ const TriviaNights = () => {
         <section className="relative overflow-hidden pt-36 pb-20 md:pt-44 md:pb-28">
           {/* Background image from trivia nights carousel */}
           <img
-            src="https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&w=1600&q=80"
+            src="/experience-trivia-nights.png"
             alt="Trivia night crowd and friends"
             className="absolute inset-0 h-full w-full object-cover object-center"
           />

@@ -72,7 +72,7 @@ const GamingEvents = () => {
         <section className="relative overflow-hidden pt-36 pb-20 md:pt-44 md:pb-28">
           {/* Background image from gaming events carousel */}
           <img
-            src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1600&q=80"
+            src="/experience-gaming-events.avif"
             alt="Gaming event background"
             className="absolute inset-0 h-full w-full object-cover object-center"
           />

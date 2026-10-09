@@ -72,7 +72,7 @@ const JustDance = () => {
         <section className="relative overflow-hidden pt-36 pb-20 md:pt-44 md:pb-28">
           {/* Background image from Just Dance carousel */}
           <img
-            src="https://images.unsplash.com/photo-1545128485-c400e7702796?auto=format&fit=crop&w=1600&q=80"
+            src="/experience-just-dance.png"
             alt="High energy dance party"
             className="absolute inset-0 h-full w-full object-cover object-center"
           />

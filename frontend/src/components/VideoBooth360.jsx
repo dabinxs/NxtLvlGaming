@@ -72,7 +72,7 @@ const VideoBooth360 = () => {
         <section className="relative overflow-hidden pt-36 pb-20 md:pt-44 md:pb-28">
           {/* Background image from 360 booth carousel */}
           <img
-            src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1600&q=80"
+            src="/experience-360-video-booth.png"
             alt="360 Video Booth party experience"
             className="absolute inset-0 h-full w-full object-cover object-center"
           />

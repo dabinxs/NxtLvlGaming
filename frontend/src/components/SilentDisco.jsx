@@ -72,7 +72,7 @@ const SilentDisco = () => {
         <section className="relative overflow-hidden pt-36 pb-20 md:pt-44 md:pb-28">
           {/* Background image from Silent Disco carousel */}
           <img
-            src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1600&q=80"
+            src="/experience-silent-disco.png"
             alt="Silent disco dance party"
             className="absolute inset-0 h-full w-full object-cover object-center"
           />

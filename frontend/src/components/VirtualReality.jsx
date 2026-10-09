@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import {
-  Camera,
-  Sun,
+  Glasses,
+  Gamepad2,
   Monitor,
   Users,
   Check,
@@ -11,50 +11,51 @@ import Footer from "./Footer";
 import ReadyCTA from "./ReadyCTA";
 
 const OVERVIEW_POINTS = [
-  "Videos deliver instantly to phones",
-  "All-inclusive shoot with overlay branding",
-  "Commercial-grade equipment",
-  "Custom music & logo overlay",
+  "Immersive, motion-tracked gameplay",
+  "A curated lineup of VR games",
+  "Spectator screens share the action",
+  "Friendly staff guide every player",
 ];
 
 const INCLUDED_FEATURES = [
   {
-    icon: Camera,
-    title: "360 Platform",
-    desc: "A camera arm orbits guests on our LED-lit platform for cinematic clips.",
+    icon: Glasses,
+    title: "VR Headsets",
+    desc: "Comfortable headsets bring players into vivid virtual worlds.",
   },
   {
-    icon: Sun,
-    title: "Lighting",
-    desc: "Professional lighting package so every frame looks studio-shot.",
+    icon: Gamepad2,
+    title: "Immersive Play",
+    desc: "Room-scale tracking lets players move naturally through each game.",
   },
   {
     icon: Monitor,
     title: "Spectator Screen",
-    desc: "Live feeds let the crowd watch every virtual move in real time.",
+    desc: "Live gameplay gives friends and crowds a view into the action.",
   },
   {
     icon: Users,
     title: "Guided Play",
-    desc: "Staff guide every guest in and out of VR safely and smoothly.",
+    desc: "Staff help guests get set up and choose a game that suits them.",
   },
 ];
 
-const GALLERY_IMAGES = [
+const VR_GAMES = [
   {
-    title: "Room-Scale Virtual Reality",
-    subtitle: "Full-motion tracking and immersive worlds",
-    src: "https://images.unsplash.com/photo-1592478411213-6153e4ebc07d?auto=format&fit=crop&w=1200&q=80",
+    title: "Dragon Tower",
+    src: "/vr-games/dragon-tower.png",
   },
   {
-    title: "Crowd Spectator Displays",
-    subtitle: "Big screens broadcast what the player sees",
-    src: "https://images.unsplash.com/photo-1593508512255-86ab42a8e620?auto=format&fit=crop&w=1200&q=80",
+    title: "Time Travel Paradox",
+    src: "/vr-games/time-travel-paradox.png",
   },
   {
-    title: "Staffed Multiplayer Experiences",
-    subtitle: "Turnkey equipment, headsets, and attendants",
-    src: "https://images.unsplash.com/photo-1633545495735-25df17fb9f31?auto=format&fit=crop&w=1200&q=80",
+    title: "Depths of Osiris",
+    src: "/vr-games/depths-of-osiris.png",
+  },
+  {
+    title: "Manor Escape",
+    src: "/vr-games/manor-escape.png",
   },
 ];
 
@@ -72,7 +73,7 @@ const VirtualReality = () => {
         <section className="relative overflow-hidden pt-36 pb-24 md:pt-48 md:pb-36">
           {/* Visible VR Hero Background Image */}
           <img
-            src="https://images.unsplash.com/photo-1593508512255-86ab42a8e620?auto=format&fit=crop&w=2000&q=85"
+            src="/experience-virtual-reality.png"
             alt="Virtual Reality background"
             className="absolute inset-0 h-full w-full object-cover object-center scale-105"
           />
@@ -105,15 +106,15 @@ const VirtualReality = () => {
                   <span>OVERVIEW</span>
                 </div>
                 <h2 className="mt-4 font-display text-[clamp(1.9rem,3.8vw,2.9rem)] font-extrabold uppercase leading-[1.12] tracking-tight text-white">
-                  THE BOOTH EVERYONE LINES UP FOR
+                  STEP INTO A NEW WORLD
                 </h2>
               </div>
 
               {/* Right Column */}
               <div className="flex flex-col gap-8 lg:col-span-7">
                 <p className="text-[17px] leading-relaxed text-white/70 sm:text-[18px]">
-                  Guests step onto the platform, the camera orbits, and seconds later they
-                  have a cinematic slow-motion video.
+                  Gear up, choose your adventure, and explore four distinct VR games. Our team
+                  helps every player get started while spectators follow the action on screen.
                 </p>
 
                 {/* 2x2 Grid of Points */}
@@ -181,37 +182,33 @@ const VirtualReality = () => {
             <div className="mb-12">
               <div className="flex items-center gap-3 font-display text-[12px] font-bold uppercase tracking-[0.22em] text-[#7DDDFF]">
                 <span className="h-0.5 w-7 bg-[#0066FD]" />
-                <span>SEE IT IN ACTION</span>
+                <span>VR GAME LIBRARY</span>
               </div>
               <h2 className="mt-4 font-display text-[clamp(2rem,4.2vw,3.2rem)] font-extrabold uppercase italic leading-none tracking-tight text-white">
-                THE <span className="blue-gradient-text not-italic">EXPERIENCE</span>
+                FOUR WORLDS. <span className="blue-gradient-text not-italic">ONE HEADSET.</span>
               </h2>
             </div>
 
-            {/* 3 Showcase Image Cards */}
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-              {GALLERY_IMAGES.map((img, i) => (
+            {/* Four VR game logo cards */}
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              {VR_GAMES.map((game) => (
                 <div
-                  key={i}
+                  key={game.title}
                   className="group relative overflow-hidden rounded-2xl border border-white/10 bg-[#0c1830] transition-all duration-500 hover:border-[#0066FD]/60 hover:shadow-[0_16px_40px_rgba(0,102,253,0.22)]"
                 >
-                  <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#070e1e]">
+                  <div className="relative flex aspect-[4/3] w-full items-center justify-center overflow-hidden bg-[#e9f0f4] p-4">
                     <img
-                      src={img.src}
-                      alt={img.title}
-                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      src={game.src}
+                      alt={`${game.title} game logo`}
+                      className="max-h-full max-w-full object-contain transition-transform duration-700 group-hover:scale-105"
                       loading="lazy"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#05070f] via-transparent to-transparent opacity-80" />
                   </div>
 
                   <div className="p-6">
                     <h3 className="font-display text-[18px] font-extrabold uppercase tracking-wide text-white group-hover:text-[#7DDDFF] transition-colors">
-                      {img.title}
+                      {game.title}
                     </h3>
-                    <p className="mt-2 text-[13.5px] leading-relaxed text-white/60">
-                      {img.subtitle}
-                    </p>
                   </div>
                 </div>
               ))}

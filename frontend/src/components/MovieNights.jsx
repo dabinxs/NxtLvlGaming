@@ -42,19 +42,19 @@ const INCLUDED_FEATURES = [
 
 const GALLERY_IMAGES = [
   {
-    title: "Outdoor Inflatable Cinema",
-    subtitle: "32-foot screens under the night sky",
-    src: "https://images.unsplash.com/photo-1587095951604-b9d924a3fda0?auto=format&fit=crop&w=1200&q=80",
+    title: "Outdoor Movie Night",
+    subtitle: "A big-screen gathering beneath a sunset sky.",
+    src: "/movie-nights-experience-1.png",
   },
   {
-    title: "Indoor Auditorium Screening",
-    subtitle: "Concert-grade acoustics & laser projection",
-    src: "https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=1200&q=80",
+    title: "Indoor Event Screening",
+    subtitle: "A large indoor audience gathered around the screen.",
+    src: "/movie-nights-experience-2.png",
   },
   {
-    title: "Festival & Campus Nights",
-    subtitle: "Turnkey production for crowds of all sizes",
-    src: "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1200&q=80",
+    title: "Private Outdoor Screening",
+    subtitle: "A relaxed cinema setup in a garden setting.",
+    src: "/movie-nights-experience-3.png",
   },
 ];
 
@@ -72,7 +72,7 @@ const MovieNights = () => {
         <section className="relative overflow-hidden pt-36 pb-20 md:pt-44 md:pb-28">
           {/* Background image from movie nights carousel */}
           <img
-            src="https://images.unsplash.com/photo-1587095951604-b9d924a3fda0?auto=format&fit=crop&w=1600&q=80"
+            src="/experience-movie-nights.png"
             alt="Movie Night under the stars"
             className="absolute inset-0 h-full w-full object-cover object-center"
           />
