@@ -163,6 +163,8 @@
 .quote-review-strip strong { color: #e6edfb; font-size: 10px; }
 .quote-review-strip small { overflow: hidden; color: #8394ad; font-size: 9px; text-overflow: ellipsis; white-space: nowrap; }
 .quote-email-note, .quote-submitted { grid-column: 1 / -1; margin: -3px 0 0; color: #72839b; font-size: 10px; line-height: 1.5; }
+.quote-submit-error { grid-column: 1 / -1; margin: -3px 0 0; color: #ff9d9d; font-size: 11px; line-height: 1.5; }
+.quote-honeypot { position: absolute !important; left: -10000px !important; width: 1px !important; height: 1px !important; overflow: hidden !important; }
 .quote-submitted { display: flex; align-items: center; gap: 7px; margin: -1px 0 0; color: #83d3b4; }
 .quote-submitted svg { flex: 0 0 auto; }
 

@@ -8,11 +8,13 @@ import "./ContactPage.css";
 
 const CONTACT_EMAIL = "sales@nextlevelgamingevents.com";
 const CONTACT_PHONE = "978-601-5473";
+const FORM_ENDPOINT = process.env.REACT_APP_FORM_API_URL || "/api/submit-form";
 const topics = ["Plan an event", "Custom novelties", "Partnership", "Something else"];
 
 const ContactPage = () => {
   const [form, setForm] = useState({ name: "", email: "", topic: topics[0], message: "" });
   const [notice, setNotice] = useState("");
+  const [isSending, setIsSending] = useState(false);
   const reduceMotion = useReducedMotion();
   const reveal = (delay = 0) => reduceMotion
     ? {}
@@ -23,12 +25,24 @@ const ContactPage = () => {
     setForm((current) => ({ ...current, [field]: event.target.value }));
   };
 
-  const sendMessage = (event) => {
+  const sendMessage = async (event) => {
     event.preventDefault();
-    const subject = `${form.topic} — ${form.name}`;
-    const body = [`Name: ${form.name}`, `Email: ${form.email}`, `Topic: ${form.topic}`, "", form.message].join("\n");
-    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    setNotice("Your email app is opening with your message ready to send.");
+    setIsSending(true);
+    setNotice("");
+    try {
+      const response = await fetch(FORM_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ formType: "contact", ...form }),
+      });
+      if (!response.ok) throw new Error("Message delivery failed");
+      setNotice("Your message has been sent. We’ll be in touch soon.");
+      setForm({ name: "", email: "", topic: topics[0], message: "" });
+    } catch {
+      setNotice(`We couldn’t send your message. Please try again or email ${CONTACT_EMAIL}.`);
+    } finally {
+      setIsSending(false);
+    }
   };
 
   return (
@@ -87,6 +101,7 @@ const ContactPage = () => {
           </motion.div>
 
           <motion.form className="contact-form-card" onSubmit={sendMessage} {...reveal(0.1)}>
+            <label className="contact-honeypot" aria-hidden="true">Leave this field empty<input name="website" tabIndex={-1} autoComplete="off" /></label>
             <div className="contact-form-card-top"><span>HELLO, HUMAN</span><span>01 <i /> 03</span></div>
             <div className="contact-topic-field">
               <span className="contact-field-label">WHAT’S ON YOUR MIND?</span>
@@ -106,8 +121,8 @@ const ContactPage = () => {
             </div>
 
             <div className="contact-form-bottom">
-              <p aria-live="polite">{notice || "This opens a ready-to-send email in your email app."}</p>
-              <button className="contact-send-button" type="submit"><span>SEND YOUR MESSAGE</span><ArrowRight size={17} /></button>
+              <p aria-live="polite">{notice || "Your message will be sent directly to our team."}</p>
+              <button className="contact-send-button" type="submit" disabled={isSending}><span>{isSending ? "SENDING…" : "SEND YOUR MESSAGE"}</span><ArrowRight size={17} /></button>
             </div>
           </motion.form>
         </section>
