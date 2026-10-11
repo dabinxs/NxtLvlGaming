@@ -35,7 +35,7 @@ import Navbar from "./Navbar";
 import "./QuotePage.css";
 
 const STEPS = ["Event type", "Guests", "Date", "Location", "Experience", "Contact"];
-const FORM_ENDPOINT = process.env.REACT_APP_FORM_API_URL || "/api/submit-form";
+const FORM_ENDPOINT = "https://formsubmit.co/ajax/team@nextlevelgamingevents.com";
 const STEP_ICONS = [Gamepad2, Users, CalendarDays, MapPin, Package, Send];
 const EVENT_TYPES = [
   { title: "Gaming event", icon: Gamepad2 },
@@ -188,22 +188,27 @@ function QuotePage() {
     try {
       const response = await fetch(FORM_ENDPOINT, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
-          formType: "quote",
-          website: event.currentTarget.elements.website.value,
-          eventType: draft.eventType,
+          _subject: `Website quote request: ${draft.eventType}`,
+          _template: "table",
+          _honey: event.currentTarget.elements._honey.value,
+          "Event type": draft.eventType,
           guests: draft.guests,
           date: draft.date ? format(dateValue, "MMMM d, yyyy") : "Flexible / to be confirmed",
           location: draft.locationFlexible ? "Still deciding" : draft.mapPoint?.label || draft.location || "Still deciding",
           experience: draft.package || "Please recommend something",
           name: draft.name,
           email: draft.email,
+          _replyto: draft.email,
           phone: draft.phone,
           message: draft.message,
         }),
       });
-      if (!response.ok) throw new Error("Quote delivery failed");
+      const result = await response.json();
+      if (!response.ok || result.success === false || result.success === "false" || result.error) {
+        throw new Error("Quote delivery failed");
+      }
       setSubmitted(true);
     } catch {
       setSubmitError("We couldn’t send your quote request. Please try again or contact our events team directly.");
@@ -258,7 +263,7 @@ function QuotePage() {
             <div className="quote-complete-icon"><CheckCircle2 size={35} /></div>
             <p className="quote-step-count">REQUEST SENT <span>·</span> NEXT LEVEL STARTS HERE</p>
             <h2>Thanks, {draft.name.split(" ")[0]}!<br /><span>Your event is going to be one to remember.</span></h2>
-            <p className="quote-complete-copy">Your quote request has been sent to our events team. We’ll be in touch soon to start planning with you.</p>
+            <p className="quote-complete-copy">Your quote request has been submitted. If this is your first submission, confirm the one-time activation email in the recipient inbox so delivery can begin.</p>
             <div className="quote-complete-summary">
               <div><small>EVENT</small><strong>{draft.eventType}</strong></div>
               <div><small>GUESTS</small><strong>{draft.guests}</strong></div>
@@ -269,7 +274,7 @@ function QuotePage() {
             <div className="quote-complete-actions">
               <Link to="/" className="quote-back-button">BACK TO HOME <ArrowRight size={16} /></Link>
             </div>
-            <p className="quote-complete-footnote">We’ll take it from here.</p>
+            <p className="quote-complete-footnote">After activation, new requests will arrive automatically.</p>
           </section>
         ) : (
         <div className="quote-main-grid">
@@ -424,7 +429,7 @@ function QuotePage() {
 
             {step === 5 && (
               <form id="quote-contact-form" className="quote-contact-form" onSubmit={requestQuote}>
-                <label className="quote-honeypot" aria-hidden="true">Leave this field empty<input name="website" tabIndex={-1} autoComplete="off" /></label>
+                <label className="quote-honeypot" aria-hidden="true">Leave this field empty<input name="_honey" tabIndex={-1} autoComplete="off" /></label>
                 <label className="quote-form-field"><span>YOUR NAME <b>*</b></span><input required autoComplete="name" value={draft.name} onChange={(event) => update("name", event.target.value)} placeholder="Full name" /></label>
                 <label className="quote-form-field"><span>EMAIL ADDRESS <b>*</b></span><input required type="email" autoComplete="email" value={draft.email} onChange={(event) => update("email", event.target.value)} placeholder="you@example.com" /></label>
                 <label className="quote-form-field"><span>PHONE <small>OPTIONAL</small></span><input type="tel" autoComplete="tel" value={draft.phone} onChange={(event) => update("phone", event.target.value)} placeholder="(555) 000-0000" /></label>
@@ -433,7 +438,7 @@ function QuotePage() {
                   <span className="quote-review-icon"><CheckCircle2 size={17} /></span>
                   <span><strong>Looking good, {draft.name || "event planner"}.</strong><small>{[draft.eventType, draft.guests && `${draft.guests} guests`, draft.date ? format(dateValue, "MMM d, yyyy") : draft.dateFlexible ? "flexible date" : null, draft.locationFlexible ? "location TBD" : draft.mapPoint?.label?.split(",")[0] || draft.location, draft.package].filter(Boolean).join(" · ")}</small></span>
                 </div>
-                <p className="quote-email-note">Your quote request will be sent directly to our events team.</p>
+                <p className="quote-email-note">Your request will be emailed after the one-time recipient activation.</p>
                 {submitError && <p className="quote-submit-error" role="alert">{submitError}</p>}
               </form>
             )}

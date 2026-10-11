@@ -8,7 +8,7 @@ import "./ContactPage.css";
 
 const CONTACT_EMAIL = "sales@nextlevelgamingevents.com";
 const CONTACT_PHONE = "978-601-5473";
-const FORM_ENDPOINT = process.env.REACT_APP_FORM_API_URL || "/api/submit-form";
+const FORM_ENDPOINT = "https://formsubmit.co/ajax/team@nextlevelgamingevents.com";
 const topics = ["Plan an event", "Custom novelties", "Partnership", "Something else"];
 
 const ContactPage = () => {
@@ -32,15 +32,22 @@ const ContactPage = () => {
     try {
       const response = await fetch(FORM_ENDPOINT, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
-          formType: "contact",
-          ...form,
-          website: event.currentTarget.elements.website.value,
+          _subject: `Website contact: ${form.topic}`,
+          _template: "table",
+          _honey: event.currentTarget.elements._honey.value,
+          name: form.name,
+          email: form.email,
+          topic: form.topic,
+          message: form.message,
         }),
       });
-      if (!response.ok) throw new Error("Message delivery failed");
-      setNotice("Your message has been sent. We’ll be in touch soon.");
+      const result = await response.json();
+      if (!response.ok || result.success === false || result.success === "false" || result.error) {
+        throw new Error("Message delivery failed");
+      }
+      setNotice("Message submitted. If this is the first submission, check the inbox for the one-time activation email.");
       setForm({ name: "", email: "", topic: topics[0], message: "" });
     } catch {
       setNotice(`We couldn’t send your message. Please try again or email ${CONTACT_EMAIL}.`);
@@ -105,7 +112,7 @@ const ContactPage = () => {
           </motion.div>
 
           <motion.form className="contact-form-card" onSubmit={sendMessage} {...reveal(0.1)}>
-            <label className="contact-honeypot" aria-hidden="true">Leave this field empty<input name="website" tabIndex={-1} autoComplete="off" /></label>
+            <label className="contact-honeypot" aria-hidden="true">Leave this field empty<input name="_honey" tabIndex={-1} autoComplete="off" /></label>
             <div className="contact-form-card-top"><span>HELLO, HUMAN</span><span>01 <i /> 03</span></div>
             <div className="contact-topic-field">
               <span className="contact-field-label">WHAT’S ON YOUR MIND?</span>
@@ -125,7 +132,7 @@ const ContactPage = () => {
             </div>
 
             <div className="contact-form-bottom">
-              <p aria-live="polite">{notice || "Your message will be sent directly to our team."}</p>
+              <p aria-live="polite">{notice || "Your message will be emailed after the one-time recipient activation."}</p>
               <button className="contact-send-button" type="submit" disabled={isSending}><span>{isSending ? "SENDING…" : "SEND YOUR MESSAGE"}</span><ArrowRight size={17} /></button>
             </div>
           </motion.form>
