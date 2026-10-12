@@ -68,7 +68,7 @@
     "start": "craco start",
     "build": "craco build",
     "deploy": "npm run build && npx firebase-tools deploy --only hosting --project nextlevelgaming-events",
-    "deploy:cms-rules": "npx firebase-tools deploy --only firestore:rules --project nextlevelgaming-events",
+    "deploy:cms-rules": "npx firebase-tools deploy --config firebase.cms.json --only firestore:rules --project nextlevelgaming-events",
     "test": "craco test"
   },
   "browserslist": {

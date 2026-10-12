@@ -70,6 +70,7 @@ function CmsLogin({ user, onUser }) {
   const [password, setPassword] = useState("");
   const [creating, setCreating] = useState(false);
   const [pendingVerify, setPendingVerify] = useState(false);
+  const [authSetupNeeded, setAuthSetupNeeded] = useState(false);
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
 
@@ -79,6 +80,7 @@ function CmsLogin({ user, onUser }) {
     event.preventDefault();
     setError("");
     setPendingVerify(false);
+    setAuthSetupNeeded(false);
     if (email.trim().toLowerCase() !== CMS_ADMIN_EMAIL) {
       setError("This email address is not on the CMS access list.");
       return;
@@ -102,11 +104,14 @@ function CmsLogin({ user, onUser }) {
       }
     } catch (authError) {
       const messages = {
+        "auth/configuration-not-found": "Firebase Authentication has not been started for this project yet. A project owner needs to finish the one-time setup below.",
+        "auth/operation-not-allowed": "Email and password sign-in is not enabled for this project yet. A project owner needs to enable it below.",
         "auth/email-already-in-use": "This admin account already exists. Sign in with its password.",
         "auth/weak-password": "Use a password with at least 6 characters.",
         "auth/invalid-credential": "The email or password is incorrect.",
         "auth/too-many-requests": "Too many attempts. Wait a little and try again.",
       };
+      setAuthSetupNeeded(authError.code === "auth/configuration-not-found" || authError.code === "auth/operation-not-allowed");
       setError(authError.message?.startsWith("Verify") ? authError.message : messages[authError.code] || authError.message || "Could not sign in.");
     } finally {
       setBusy(false);
@@ -127,6 +132,7 @@ function CmsLogin({ user, onUser }) {
           <label>Admin email<input type="email" value={email} onChange={(event) => setEmail(event.target.value)} autoComplete="username" required /></label>
           <label>Password<input type="password" value={password} onChange={(event) => setPassword(event.target.value)} autoComplete={creating ? "new-password" : "current-password"} minLength={6} required /></label>
           {error && <p className="cms-error" role="alert"><CircleAlert size={15} />{error}</p>}
+          {authSetupNeeded && <a className="cms-setup-link" href="https://console.firebase.google.com/project/nextlevelgaming-events/authentication/providers" target="_blank" rel="noreferrer">Open Authentication setup <ArrowUpRight size={14} /></a>}
           {pendingVerify && <p className="cms-success" role="status"><Check size={15} /> Check {CMS_ADMIN_EMAIL} for the verification link before you sign in.</p>}
           <button className="cms-primary-button" disabled={busy}>{busy ? "PLEASE WAIT…" : creating ? "CREATE SECURE ACCOUNT" : "SIGN IN TO CMS"}</button>
         </form>
