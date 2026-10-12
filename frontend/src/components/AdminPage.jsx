@@ -1,47 +1,28 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import {
-  createUserWithEmailAndPassword,
-  onAuthStateChanged,
-  sendEmailVerification,
-  signInWithEmailAndPassword,
-  signOut,
-} from "firebase/auth";
-import {
-  addDoc,
-  collection,
-  deleteDoc,
-  doc,
-  getDocs,
-  onSnapshot,
-  query,
-  serverTimestamp,
-  setDoc,
-  updateDoc,
-  where,
-} from "firebase/firestore";
-import {
   Activity, ArrowLeft, ArrowUpRight, BarChart3, Camera, Check, ChevronDown,
   CircleAlert, CircleCheck, Clock3, Cloud, FileImage, ImagePlus, LayoutDashboard,
   LogOut, MonitorCog, PanelsTopLeft, Plus, Save, ShieldCheck, Trash2, Upload,
   Users, X,
 } from "lucide-react";
-import { auth, db } from "../lib/firebase";
+import { CMS_ADMIN_EMAIL, CMS_MEDIA_BUCKET, supabase } from "../lib/supabase";
 import { CMS_PAGES } from "../lib/cmsPages";
-import { useCmsHomeMedia } from "../lib/cmsContent";
+import { useCmsContent } from "../lib/cmsContent";
 import "./AdminPage.css";
 
-const CMS_ADMIN_EMAIL = "team@nextlevelgamingevents.com";
 const DEFAULTS = Object.fromEntries(CMS_PAGES.map((page) => [page.slug, page]));
 
 function makeDraft(page, stored) {
-  const gallery = stored?.gallery || page.gallery.map(({ id, title, subtitle, image }) => ({ id, title, subtitle, src: image }));
+  const gallery = stored?.gallery || page.gallery.map(({ id, title, subtitle, image }) => ({ id, title, subtitle, src: image, mediaPath: "" }));
   return {
     title: stored?.title || page.title,
-    heroTitle: stored?.heroTitle || page.heroTitle,
-    heroSubtitle: stored?.heroSubtitle || page.heroSubtitle,
-    heroMediaId: stored?.heroMediaId || "",
-    thumbnailMediaId: stored?.thumbnailMediaId || "",
+    heroTitle: stored?.hero_title || page.heroTitle,
+    heroSubtitle: stored?.hero_subtitle || page.heroSubtitle,
+    heroImageUrl: stored?.hero_image_url || page.heroImage,
+    heroImagePath: stored?.hero_image_path || "",
+    thumbnailImageUrl: stored?.thumbnail_image_url || page.heroImage,
+    thumbnailImagePath: stored?.thumbnail_image_path || "",
     gallery: gallery.map((item) => ({ ...item })),
   };
 }
@@ -57,12 +38,12 @@ async function compressImage(file) {
   bitmap.close();
   let quality = 0.78;
   let url = canvas.toDataURL("image/jpeg", quality);
-  while (url.length > 780_000 && quality > 0.42) {
+  while (url.length > 4_500_000 && quality > 0.42) {
     quality -= 0.08;
     url = canvas.toDataURL("image/jpeg", quality);
   }
-  if (url.length > 780_000) throw new Error("That image is too large for the free CMS. Please choose a smaller image.");
-  return url;
+  if (url.length > 4_500_000) throw new Error("That image is too large. Please choose a smaller image.");
+  return fetch(url).then((response) => response.blob());
 }
 
 function CmsLogin({ user, onUser }) {
@@ -70,17 +51,18 @@ function CmsLogin({ user, onUser }) {
   const [password, setPassword] = useState("");
   const [creating, setCreating] = useState(false);
   const [pendingVerify, setPendingVerify] = useState(false);
-  const [authSetupNeeded, setAuthSetupNeeded] = useState(false);
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
 
-  useEffect(() => onAuthStateChanged(auth, onUser), [onUser]);
+  useEffect(() => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => onUser(session?.user || null));
+    return () => subscription.unsubscribe();
+  }, [onUser]);
 
   const authenticate = async (event) => {
     event.preventDefault();
     setError("");
     setPendingVerify(false);
-    setAuthSetupNeeded(false);
     if (email.trim().toLowerCase() !== CMS_ADMIN_EMAIL) {
       setError("This email address is not on the CMS access list.");
       return;
@@ -88,31 +70,32 @@ function CmsLogin({ user, onUser }) {
     setBusy(true);
     try {
       if (creating) {
-        const credential = await createUserWithEmailAndPassword(auth, CMS_ADMIN_EMAIL, password);
-        await sendEmailVerification(credential.user);
-        await signOut(auth);
+        const { data, error: signUpError } = await supabase.auth.signUp({
+          email: CMS_ADMIN_EMAIL,
+          password,
+          options: { emailRedirectTo: `${window.location.origin}/cms` },
+        });
+        if (signUpError) throw signUpError;
+        if (data.session) await supabase.auth.signOut();
         setPendingVerify(true);
         setCreating(false);
       } else {
-        const credential = await signInWithEmailAndPassword(auth, CMS_ADMIN_EMAIL, password);
-        if (!credential.user.emailVerified) {
-          await sendEmailVerification(credential.user);
-          await signOut(auth);
+        const { data, error: signInError } = await supabase.auth.signInWithPassword({ email: CMS_ADMIN_EMAIL, password });
+        if (signInError) throw signInError;
+        if (!data.user?.email_confirmed_at) {
+          await supabase.auth.signOut();
           setPendingVerify(true);
-          throw new Error("Verify the link we sent to the admin inbox, then sign in again.");
+          throw new Error("Verify the confirmation link sent to the admin inbox, then sign in again.");
         }
       }
     } catch (authError) {
       const messages = {
-        "auth/configuration-not-found": "Firebase Authentication has not been started for this project yet. A project owner needs to finish the one-time setup below.",
-        "auth/operation-not-allowed": "Email and password sign-in is not enabled for this project yet. A project owner needs to enable it below.",
-        "auth/email-already-in-use": "This admin account already exists. Sign in with its password.",
-        "auth/weak-password": "Use a password with at least 6 characters.",
-        "auth/invalid-credential": "The email or password is incorrect.",
-        "auth/too-many-requests": "Too many attempts. Wait a little and try again.",
+        "User already registered": "This admin account already exists. Sign in with its password.",
+        "Password should be at least 6 characters": "Use a password with at least 6 characters.",
+        "Invalid login credentials": "The email or password is incorrect.",
+        "Email not confirmed": "Verify the confirmation link sent to the admin inbox, then sign in again.",
       };
-      setAuthSetupNeeded(authError.code === "auth/configuration-not-found" || authError.code === "auth/operation-not-allowed");
-      setError(authError.message?.startsWith("Verify") ? authError.message : messages[authError.code] || authError.message || "Could not sign in.");
+      setError(authError.message?.startsWith("Verify") ? authError.message : messages[authError.message] || authError.message || "Could not sign in.");
     } finally {
       setBusy(false);
     }
@@ -132,7 +115,6 @@ function CmsLogin({ user, onUser }) {
           <label>Admin email<input type="email" value={email} onChange={(event) => setEmail(event.target.value)} autoComplete="username" required /></label>
           <label>Password<input type="password" value={password} onChange={(event) => setPassword(event.target.value)} autoComplete={creating ? "new-password" : "current-password"} minLength={6} required /></label>
           {error && <p className="cms-error" role="alert"><CircleAlert size={15} />{error}</p>}
-          {authSetupNeeded && <a className="cms-setup-link" href="https://console.firebase.google.com/project/nextlevelgaming-events/authentication/providers" target="_blank" rel="noreferrer">Open Authentication setup <ArrowUpRight size={14} /></a>}
           {pendingVerify && <p className="cms-success" role="status"><Check size={15} /> Check {CMS_ADMIN_EMAIL} for the verification link before you sign in.</p>}
           <button className="cms-primary-button" disabled={busy}>{busy ? "PLEASE WAIT…" : creating ? "CREATE SECURE ACCOUNT" : "SIGN IN TO CMS"}</button>
         </form>
@@ -146,27 +128,21 @@ function CmsLogin({ user, onUser }) {
 }
 
 function CmsEditor({ activeSlug, activePage, onSave }) {
-  const homeMedia = useCmsHomeMedia();
+  const { homeMedia, refresh } = useCmsContent();
   const defaults = DEFAULTS[activeSlug];
   const [draft, setDraft] = useState(() => makeDraft(defaults, activePage.data));
-  const [media, setMedia] = useState(activePage.media);
   const [saving, setSaving] = useState(false);
   const [notice, setNotice] = useState("");
   const [error, setError] = useState("");
-  const [removedMediaIds, setRemovedMediaIds] = useState([]);
-  const [thumbnailPreview, setThumbnailPreview] = useState("");
+  const [removedMediaPaths, setRemovedMediaPaths] = useState([]);
 
   useEffect(() => {
     setDraft(makeDraft(defaults, activePage.data));
     setNotice("");
     setError("");
-    setRemovedMediaIds([]);
-    setThumbnailPreview("");
+    setRemovedMediaPaths([]);
   }, [activeSlug, activePage.data, defaults]);
 
-  useEffect(() => setMedia(activePage.media), [activePage.media]);
-
-  const mediaUrl = (id, fallback) => media.find((item) => item.id === id)?.url || fallback;
   const patchDraft = (field, value) => setDraft((current) => ({ ...current, [field]: value }));
 
   const save = async () => {
@@ -174,82 +150,95 @@ function CmsEditor({ activeSlug, activePage, onSave }) {
     setError("");
     setNotice("");
     try {
-      await setDoc(doc(db, "cmsPages", activeSlug), {
+      const { error: saveError } = await supabase.from("cms_pages").upsert({
+        slug: activeSlug,
         title: draft.title.trim(),
-        heroTitle: draft.heroTitle.trim(),
-        heroSubtitle: draft.heroSubtitle.trim(),
-        heroMediaId: draft.heroMediaId,
-        thumbnailMediaId: draft.thumbnailMediaId,
+        hero_title: draft.heroTitle.trim(),
+        hero_subtitle: draft.heroSubtitle.trim(),
+        hero_image_url: draft.heroImageUrl,
+        hero_image_path: draft.heroImagePath || null,
+        thumbnail_image_url: draft.thumbnailImageUrl,
+        thumbnail_image_path: draft.thumbnailImagePath || null,
         gallery: draft.gallery,
-        updatedAt: serverTimestamp(),
-        updatedBy: auth.currentUser.email,
+        updated_at: new Date().toISOString(),
+        updated_by: CMS_ADMIN_EMAIL,
       });
-      await Promise.all(removedMediaIds.map((mediaId) => deleteDoc(doc(db, "cmsMedia", mediaId))));
-      const pageMediaUpdates = [draft.heroMediaId, ...draft.gallery.map((item) => item.mediaId)].filter(Boolean).map((mediaId) => updateDoc(doc(db, "cmsMedia", mediaId), { published: true }));
-      await Promise.all(pageMediaUpdates);
-      const homeImages = await getDocs(query(collection(db, "cmsMedia"), where("pageSlug", "==", "home")));
-      const thumbnailChanges = homeImages.docs.filter((item) => item.data().itemId === activeSlug).map((item) => updateDoc(item.ref, { published: item.id === draft.thumbnailMediaId }));
-      await Promise.all(thumbnailChanges);
+      if (saveError) throw saveError;
+      if (removedMediaPaths.length) {
+        const { error: cleanupError } = await supabase.storage.from(CMS_MEDIA_BUCKET).remove(removedMediaPaths);
+        if (cleanupError) throw cleanupError;
+      }
       setNotice("Changes published to the live website.");
+      await refresh();
       onSave();
     } catch (saveError) {
-      setError(saveError.code === "permission-denied"
-        ? "CMS database access is not ready yet. Ask the Firebase project owner to finish the setup steps."
-        : saveError.message || "Could not save these changes.");
+      setError(saveError.message || "Could not save these changes.");
     } finally {
       setSaving(false);
     }
   };
 
-  const uploadMedia = async (file, pageSlug, itemId) => {
-    if (!file) return "";
+  const uploadMedia = async (file, pathPrefix) => {
+    if (!file) return null;
     setError("");
     try {
-      const url = await compressImage(file);
-      const saved = await addDoc(collection(db, "cmsMedia"), {
-        pageSlug,
-        itemId,
-        url,
-        filename: file.name,
-        updatedAt: serverTimestamp(),
-        updatedBy: auth.currentUser.email,
-        published: false,
+      const blob = await compressImage(file);
+      const path = `${pathPrefix}/${crypto.randomUUID()}.jpg`;
+      const { error: uploadError } = await supabase.storage.from(CMS_MEDIA_BUCKET).upload(path, blob, {
+        contentType: "image/jpeg",
+        cacheControl: "3600",
+        upsert: false,
       });
-      return { id: saved.id, url };
+      if (uploadError) throw uploadError;
+      const { data } = supabase.storage.from(CMS_MEDIA_BUCKET).getPublicUrl(path);
+      return { path, url: data.publicUrl };
     } catch (uploadError) {
       setError(uploadError.message || "Image upload failed.");
-      return "";
+      return null;
     }
   };
 
   const chooseHero = async (file) => {
-    const saved = await uploadMedia(file, activeSlug, "hero");
-    if (saved?.id) patchDraft("heroMediaId", saved.id);
+    const saved = await uploadMedia(file, `${activeSlug}/hero`);
+    if (saved) {
+      if (draft.heroImagePath) setRemovedMediaPaths((current) => [...current, draft.heroImagePath]);
+      setDraft((current) => ({ ...current, heroImageUrl: saved.url, heroImagePath: saved.path }));
+    }
   };
 
   const chooseThumbnail = async (file) => {
-    const saved = await uploadMedia(file, "home", activeSlug);
-    if (saved?.id) { patchDraft("thumbnailMediaId", saved.id); setThumbnailPreview(saved.url); }
+    const saved = await uploadMedia(file, `${activeSlug}/thumbnail`);
+    if (saved) {
+      if (draft.thumbnailImagePath) setRemovedMediaPaths((current) => [...current, draft.thumbnailImagePath]);
+      setDraft((current) => ({ ...current, thumbnailImageUrl: saved.url, thumbnailImagePath: saved.path }));
+    }
   };
 
   const chooseGalleryImage = async (index, file) => {
-    const saved = await uploadMedia(file, activeSlug, `gallery-${index}`);
-    if (saved?.id) setDraft((current) => ({ ...current, gallery: current.gallery.map((item, itemIndex) => itemIndex === index ? { ...item, mediaId: saved.id } : item) }));
+    const saved = await uploadMedia(file, `${activeSlug}/gallery`);
+    if (saved) setDraft((current) => ({
+      ...current,
+      gallery: current.gallery.map((item, itemIndex) => {
+        if (itemIndex !== index) return item;
+        if (item.mediaPath) setRemovedMediaPaths((paths) => [...paths, item.mediaPath]);
+        return { ...item, src: saved.url, mediaPath: saved.path };
+      }),
+    }));
   };
 
   const addGalleryCard = () => setDraft((current) => ({
     ...current,
-    gallery: [...current.gallery, { id: crypto.randomUUID(), title: "New photo", subtitle: "Add a short description.", src: "", mediaId: "" }],
+    gallery: [...current.gallery, { id: crypto.randomUUID(), title: "New photo", subtitle: "Add a short description.", src: "", mediaPath: "" }],
   }));
 
   const removeGalleryCard = async (index) => {
     const item = draft.gallery[index];
-    if (item.mediaId) setRemovedMediaIds((current) => [...current, item.mediaId]);
+    if (item.mediaPath) setRemovedMediaPaths((current) => [...current, item.mediaPath]);
     setDraft((current) => ({ ...current, gallery: current.gallery.filter((_, itemIndex) => itemIndex !== index) }));
   };
 
-  const pageImage = mediaUrl(draft.heroMediaId, defaults.heroImage);
-  const thumbnailImage = thumbnailPreview || homeMedia[activeSlug] || pageImage;
+  const pageImage = draft.heroImageUrl || defaults.heroImage;
+  const thumbnailImage = draft.thumbnailImageUrl || homeMedia[activeSlug] || pageImage;
 
   return (
     <div className="cms-editor">
@@ -289,7 +278,7 @@ function CmsEditor({ activeSlug, activePage, onSave }) {
             const fallback = defaults.gallery.find((item) => item.id === image.id)?.image || defaults.gallery.find((item) => item.id === image.id)?.src || "";
             return (
               <article className="cms-gallery-row" key={image.id}>
-                <div className="cms-gallery-image"><img src={mediaUrl(image.mediaId, fallback)} alt={image.title || "Gallery"} /></div>
+                <div className="cms-gallery-image"><img src={image.src || fallback} alt={image.title || "Gallery"} /></div>
                 <div className="cms-gallery-fields">
                   <label>Image title<input value={image.title} onChange={(event) => setDraft((current) => ({ ...current, gallery: current.gallery.map((item, itemIndex) => itemIndex === index ? { ...item, title: event.target.value } : item) }))} /></label>
                   <label>Description<input value={image.subtitle} onChange={(event) => setDraft((current) => ({ ...current, gallery: current.gallery.map((item, itemIndex) => itemIndex === index ? { ...item, subtitle: event.target.value } : item) }))} /></label>
@@ -301,7 +290,7 @@ function CmsEditor({ activeSlug, activePage, onSave }) {
           })}
           {draft.gallery.length === 0 && <div className="cms-empty-gallery"><ImagePlus size={22} /><p>No gallery photos yet. Add a photo to build the experience gallery.</p></div>}
         </div>
-        <p className="cms-image-note">Images are resized in your browser and stored in Firebase’s free Firestore database. Use images up to about 2 MB for best results.</p>
+        <p className="cms-image-note">Images are resized in your browser and stored in your Supabase media library.</p>
       </section>
     </div>
   );
@@ -312,40 +301,29 @@ function AdminPage() {
   const [authReady, setAuthReady] = useState(false);
   const [tab, setTab] = useState("overview");
   const [activeSlug, setActiveSlug] = useState(CMS_PAGES[0].slug);
-  const [activePage, setActivePage] = useState({ data: null, media: [] });
-  const [contentCount, setContentCount] = useState({ pages: 0, images: 0, lastUpdate: null });
-  const [connection, setConnection] = useState("checking");
+  const { pages, connection, refresh } = useCmsContent();
+  const activePage = { data: pages[activeSlug] || null, media: [] };
+  const contentCount = useMemo(() => {
+    const savedPages = Object.values(pages);
+    const timestamps = savedPages.map((page) => page.updated_at ? new Date(page.updated_at) : null).filter(Boolean).sort((a, b) => b - a);
+    return {
+      pages: CMS_PAGES.length,
+      images: CMS_PAGES.reduce((total, page) => total + (pages[page.slug]?.gallery?.length || page.gallery.length), 0),
+      lastUpdate: timestamps[0] || null,
+    };
+  }, [pages]);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user || null);
       setAuthReady(true);
     });
-    return unsubscribe;
+    supabase.auth.getSession().then(({ data }) => {
+      setUser(data.session?.user || null);
+      setAuthReady(true);
+    });
+    return () => subscription.unsubscribe();
   }, []);
-
-  useEffect(() => {
-    if (!user?.emailVerified || user.email?.toLowerCase() !== CMS_ADMIN_EMAIL) return undefined;
-    const activeRef = doc(db, "cmsPages", activeSlug);
-    const mediaQuery = query(collection(db, "cmsMedia"), where("pageSlug", "==", activeSlug));
-    const unsubscribePage = onSnapshot(activeRef, (snapshot) => {
-      setActivePage((current) => ({ ...current, data: snapshot.exists() ? snapshot.data() : null }));
-      setConnection("ready");
-    }, () => setConnection("needs-setup"));
-    const unsubscribeMedia = onSnapshot(mediaQuery, (snapshot) => {
-      setActivePage((current) => ({ ...current, media: snapshot.docs.map((item) => ({ id: item.id, ...item.data() })) }));
-    }, () => setConnection("needs-setup"));
-    getDocs(collection(db, "cmsPages")).then((snapshot) => {
-      const pages = snapshot.docs.map((page) => page.data());
-      setContentCount({
-        pages: CMS_PAGES.length,
-        images: snapshot.docs.reduce((total, page) => total + (page.data().gallery?.length || DEFAULTS[page.id]?.gallery?.length || 0), 0),
-        lastUpdate: pages.map((page) => page.updatedAt?.toDate?.()).filter(Boolean).sort((a, b) => b - a)[0] || null,
-      });
-      setConnection("ready");
-    }).catch(() => setConnection("needs-setup"));
-    return () => { unsubscribePage(); unsubscribeMedia(); };
-  }, [activeSlug, user]);
 
   const mediaCount = contentCount.images;
   const tabOptions = useMemo(() => [
@@ -360,7 +338,7 @@ function AdminPage() {
     return <CmsLogin user={user} onUser={setUser} />;
   }
 
-  const signOutAdmin = async () => { await signOut(auth); };
+  const signOutAdmin = async () => { await supabase.auth.signOut(); };
 
   return (
     <main className="cms-shell">
@@ -382,7 +360,7 @@ function AdminPage() {
         <div className="cms-content-area">
           {tab === "overview" && <>
             <div className="cms-page-intro"><div><p className="cms-eyebrow">MONDAY MORNING, MADE SIMPLE</p><h1>Website overview</h1><p>Manage the public site and keep every experience up to date.</p></div><button className="cms-primary-button" onClick={() => setTab("content")}><PanelsTopLeft size={16} /> EDIT WEBSITE CONTENT</button></div>
-            {connection === "needs-setup" && <div className="cms-setup-banner"><CircleAlert size={19} /><div><strong>One-time Firebase setup is required</strong><p>A Firebase project owner needs to create the Firestore database and enable email/password sign-in. Content will sync to the live site once complete.</p></div></div>}
+            {connection === "needs-setup" && <div className="cms-setup-banner"><CircleAlert size={19} /><div><strong>Supabase content tables need setup</strong><p>Run the one-time SQL in <code>supabase/cms_setup.sql</code> from your Supabase project’s SQL Editor. The site and login are already connected to that project.</p></div></div>}
             <div className="cms-stat-grid">
               <article className="cms-stat-card"><span className="cms-stat-icon blue"><PanelsTopLeft size={18} /></span><small>MANAGED PAGES</small><strong>{CMS_PAGES.length}</strong><span>Events and experiences</span></article>
               <article className="cms-stat-card"><span className="cms-stat-icon purple"><Camera size={18} /></span><small>EXPERIENCE PHOTOS</small><strong>{mediaCount || CMS_PAGES.reduce((sum, page) => sum + page.gallery.length, 0)}</strong><span>Across the experience pages</span></article>
@@ -391,10 +369,10 @@ function AdminPage() {
             </div>
             <div className="cms-overview-grid">
               <section className="cms-panel cms-overview-content"><div className="cms-panel-heading"><div><p className="cms-eyebrow">CONTENT SNAPSHOT</p><h2>Your event pages</h2></div><button className="cms-text-button" onClick={() => setTab("content")}>Manage pages <ArrowUpRight size={14} /></button></div><div className="cms-page-list">{CMS_PAGES.map((page) => <button key={page.slug} onClick={() => { setActiveSlug(page.slug); setTab("content"); }}><img src={page.heroImage} alt="" /><span><strong>{page.title}</strong><small>{page.kind} · {page.gallery.length} gallery photos</small></span><ArrowUpRight size={15} /></button>)}</div></section>
-              <section className="cms-panel cms-system-panel"><div className="cms-panel-heading"><div><p className="cms-eyebrow">SYSTEM STATUS</p><h2>Site maintenance</h2></div><MonitorCog size={20} /></div><div className="cms-health-row"><span><Cloud size={17} /> Firebase connection</span><strong className={connection === "ready" ? "good" : "needs-attention"}>{connection === "ready" ? "Ready" : "Needs setup"}</strong></div><div className="cms-health-row"><span><ShieldCheck size={17} /> Admin protection</span><strong className="good">Email restricted</strong></div><div className="cms-health-row"><span><Clock3 size={17} /> Last content edit</span><strong>{contentCount.lastUpdate ? contentCount.lastUpdate.toLocaleDateString() : "No edits yet"}</strong></div><button className="cms-secondary-button cms-maintenance-link" onClick={() => setTab("maintenance")}>Open maintenance <ArrowUpRight size={15} /></button></section>
+              <section className="cms-panel cms-system-panel"><div className="cms-panel-heading"><div><p className="cms-eyebrow">SYSTEM STATUS</p><h2>Site maintenance</h2></div><MonitorCog size={20} /></div><div className="cms-health-row"><span><Cloud size={17} /> Supabase connection</span><strong className={connection === "ready" ? "good" : "needs-attention"}>{connection === "ready" ? "Ready" : "Needs setup"}</strong></div><div className="cms-health-row"><span><ShieldCheck size={17} /> Admin protection</span><strong className="good">Email restricted</strong></div><div className="cms-health-row"><span><Clock3 size={17} /> Last content edit</span><strong>{contentCount.lastUpdate ? contentCount.lastUpdate.toLocaleDateString() : "No edits yet"}</strong></div><button className="cms-secondary-button cms-maintenance-link" onClick={() => setTab("maintenance")}>Open maintenance <ArrowUpRight size={15} /></button></section>
             </div>
           </>}
-          {tab === "content" && <CmsEditor activeSlug={activeSlug} activePage={activePage} onSave={() => getDocs(collection(db, "cmsPages")).then((snapshot) => setContentCount((current) => ({ ...current, pages: CMS_PAGES.length, images: snapshot.docs.reduce((total, page) => total + (page.data().gallery?.length || 0), 0) })))} />}
+          {tab === "content" && <CmsEditor activeSlug={activeSlug} activePage={activePage} onSave={refresh} />}
           {tab === "analytics" && <section className="cms-analytics-page"><p className="cms-eyebrow">PERFORMANCE & ENGAGEMENT</p><h1>Analytics</h1><p className="cms-analytics-intro">Connect Google Analytics to measure visits, popular pages, and how people find your experiences.</p><div className="cms-analytics-empty"><div><BarChart3 size={24} /></div><h2>Visitor tracking isn’t connected yet</h2><p>This Firebase project has no Google Analytics property linked, so the CMS has no real visitor metrics to display. Link a Google Analytics property in Firebase to enable traffic reports. This won’t change the quote or contact forms.</p><a className="cms-primary-button" href="https://console.firebase.google.com/project/nextlevelgaming-events/analytics" target="_blank" rel="noreferrer">OPEN FIREBASE ANALYTICS <ArrowUpRight size={15} /></a></div><div className="cms-stat-grid cms-analytics-foot-cards"><article className="cms-stat-card"><small>EDITABLE OFFERINGS</small><strong>{CMS_PAGES.length}</strong><span>Page content managed here</span></article><article className="cms-stat-card"><small>CMS ADMINS</small><strong>1</strong><span>Verified team inbox</span></article><article className="cms-stat-card"><small>LAST CONTENT CHANGE</small><strong className="cms-date-stat">{contentCount.lastUpdate ? contentCount.lastUpdate.toLocaleDateString() : "—"}</strong><span>Saved from this dashboard</span></article></div></section>}
           {tab === "maintenance" && <section className="cms-maintenance-page"><p className="cms-eyebrow">HEALTH & SITE CONTROLS</p><h1>Maintenance</h1><p>Check the CMS connection and keep event content in good shape.</p><div className="cms-maintenance-grid"><article className="cms-panel"><span className="cms-stat-icon green"><Cloud size={18} /></span><h2>Content database</h2><p>Shared live content syncs through Cloud Firestore. It stays on Firebase’s free tier within its daily limits.</p><span className={`cms-maintenance-state ${connection === "ready" ? "good" : "needs-attention"}`}>{connection === "ready" ? <><CircleCheck size={15} /> Connected</> : <><CircleAlert size={15} /> Requires setup</>}</span></article><article className="cms-panel"><span className="cms-stat-icon blue"><ShieldCheck size={18} /></span><h2>Admin security</h2><p>Editing access requires a verified sign-in from the approved team inbox. Public visitors can read published content.</p><span className="cms-maintenance-state good"><CircleCheck size={15} /> Restricted</span></article><article className="cms-panel"><span className="cms-stat-icon purple"><ImagePlus size={18} /></span><h2>Image storage</h2><p>Images are resized in the browser before upload. The CMS keeps uploaded media in individual records to fit the free database document size limit.</p><span className="cms-maintenance-state good"><CircleCheck size={15} /> Ready</span></article><article className="cms-panel"><span className="cms-stat-icon orange"><BarChart3 size={18} /></span><h2>Visitor reporting</h2><p>Link Google Analytics in Firebase to see traffic totals and popular site pages.</p><button className="cms-text-button" onClick={() => setTab("analytics")}>Open analytics setup <ArrowUpRight size={14} /></button></article></div></section>}
         </div>
