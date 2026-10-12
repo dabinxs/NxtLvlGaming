@@ -20,7 +20,6 @@ import JustDance from "./components/JustDance";
 import SilentDisco from "./components/SilentDisco";
 import SimRacing from "./components/SimRacing";
 import Novelties from "./components/Novelties";
-import BuildNovelty from "./components/BuildNovelty";
 import NoveltyAccess from "./components/NoveltyAccess";
 import QuotePage from "./components/QuotePage";
 import ContactPage from "./components/ContactPage";
