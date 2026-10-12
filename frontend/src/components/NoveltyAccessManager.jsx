@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { CircleAlert, CircleCheck, KeyRound, LoaderCircle, Trash2, UserPlus } from "lucide-react";
 import { supabase } from "../lib/supabase";
+import "./NoveltyAccessManager.css";
 
 const NoveltyAccessManager = ({ adminEmail }) => {
   const [accounts, setAccounts] = useState([]);

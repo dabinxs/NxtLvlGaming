@@ -98,7 +98,7 @@ const NoveltyAccess = () => {
         const { data, error: signUpError } = await supabase.auth.signUp({
           email: normalizedEmail,
           password,
-          options: { emailRedirectTo: `${window.location.origin}/build-novelty` },
+          options: { emailRedirectTo: window.location.origin },
         });
         if (signUpError) throw signUpError;
         if (data.session) await supabase.auth.signOut();

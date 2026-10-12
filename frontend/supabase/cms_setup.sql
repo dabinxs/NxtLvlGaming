@@ -39,6 +39,61 @@ $$;
 revoke all on function public.is_cms_admin() from public, anon;
 grant execute on function public.is_cms_admin() to authenticated;
 
+-- Email allow-list for the private novelty design tool. Passwords remain in
+-- Supabase Auth and are never stored in this table or managed by the CMS.
+create table if not exists public.novelty_access (
+  id uuid primary key default gen_random_uuid(),
+  email text not null unique check (email = lower(email)),
+  created_at timestamptz not null default now(),
+  created_by text
+);
+
+alter table public.novelty_access enable row level security;
+grant select, insert, delete on public.novelty_access to authenticated;
+
+drop policy if exists "CMS admins can view novelty access" on public.novelty_access;
+create policy "CMS admins can view novelty access"
+on public.novelty_access for select
+to authenticated
+using ((select public.is_cms_admin()));
+
+drop policy if exists "CMS admins can grant novelty access" on public.novelty_access;
+create policy "CMS admins can grant novelty access"
+on public.novelty_access for insert
+to authenticated
+with check ((select public.is_cms_admin()));
+
+drop policy if exists "CMS admins can revoke novelty access" on public.novelty_access;
+create policy "CMS admins can revoke novelty access"
+on public.novelty_access for delete
+to authenticated
+using ((select public.is_cms_admin()));
+
+create or replace function public.has_novelty_access()
+returns boolean
+language sql
+stable
+security definer
+set search_path = ''
+as $$
+  select exists (
+    select 1
+    from auth.users as u
+    where u.id = (select auth.uid())
+      and u.email_confirmed_at is not null
+      and (
+        lower(u.email) in ('team@nextlevelgamingevents.com', 'kcbianzon@gmail.com')
+        or exists (
+          select 1 from public.novelty_access as allowed
+          where allowed.email = lower(u.email)
+        )
+      )
+  );
+$$;
+
+revoke all on function public.has_novelty_access() from public, anon;
+grant execute on function public.has_novelty_access() to authenticated;
+
 drop policy if exists "CMS pages are public to read" on public.cms_pages;
 create policy "CMS pages are public to read"
 on public.cms_pages for select

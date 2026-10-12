@@ -21,6 +21,7 @@ import SilentDisco from "./components/SilentDisco";
 import SimRacing from "./components/SimRacing";
 import Novelties from "./components/Novelties";
 import BuildNovelty from "./components/BuildNovelty";
+import NoveltyAccess from "./components/NoveltyAccess";
 import QuotePage from "./components/QuotePage";
 import ContactPage from "./components/ContactPage";
 import AboutPage from "./components/AboutPage";
@@ -77,8 +78,8 @@ function App() {
         <Route path="/silent-disco" element={<SilentDisco />} />
         <Route path="/sim-racing" element={<SimRacing />} />
         <Route path="/novelties" element={<Novelties />} />
-        <Route path="/build-novelty" element={<BuildNovelty />} />
-        <Route path="/build" element={<BuildNovelty />} />
+        <Route path="/build-novelty" element={<NoveltyAccess />} />
+        <Route path="/build" element={<NoveltyAccess />} />
         <Route path="/cms" element={<AdminPage />} />
       </Routes>
       <Link to="/cms" aria-label="Open website CMS" title="Website admin dashboard" className="cms-access-button">
