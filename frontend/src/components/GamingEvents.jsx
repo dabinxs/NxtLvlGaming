@@ -9,6 +9,8 @@ import {
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import ReadyCTA from "./ReadyCTA";
+import { useCmsPage } from "../lib/cmsContent";
+import { CMS_PAGES } from "../lib/cmsPages";
 
 const OVERVIEW_POINTS = [
   "Years of event production experience",
@@ -59,6 +61,7 @@ const GALLERY_IMAGES = [
 ];
 
 const GamingEvents = () => {
+  const cmsPage = useCmsPage("gaming-events", CMS_PAGES.find((page) => page.slug === "gaming-events"));
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -72,7 +75,7 @@ const GamingEvents = () => {
         <section className="relative overflow-hidden pt-36 pb-20 md:pt-44 md:pb-28">
           {/* Background image from gaming events carousel */}
           <img
-            src="/experience-gaming-events.avif"
+            src={cmsPage.heroImage}
             alt="Gaming event background"
             className="absolute inset-0 h-full w-full object-cover object-center"
           />
@@ -83,13 +86,10 @@ const GamingEvents = () => {
           <div className="pointer-events-none absolute left-1/3 top-1/2 h-[400px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#0066FD]/15 blur-[150px]" />
 
           <div className="relative z-10 mx-auto max-w-[1280px] px-5 md:px-8">
-            <h1 className="max-w-4xl font-display text-[clamp(2.5rem,6.5vw,5rem)] font-extrabold uppercase italic leading-[1.04] tracking-tight text-white drop-shadow-[0_6px_24px_rgba(0,0,0,0.9)]">
-              VIDEO GAMING <br />
-              <span className="blue-gradient-text not-italic">EVENTS</span>
-            </h1>
+            <h1 className="max-w-4xl font-display text-[clamp(2.5rem,6.5vw,5rem)] font-extrabold uppercase italic leading-[1.04] tracking-tight text-white drop-shadow-[0_6px_24px_rgba(0,0,0,0.9)]">{cmsPage.heroTitle}</h1>
 
             <p className="mt-6 max-w-2xl text-[17px] leading-relaxed text-white/90 drop-shadow-[0_3px_10px_rgba(0,0,0,0.85)] sm:text-[19px]">
-              Turn your next gathering into an unforgettable multiplayer experience.
+              {cmsPage.heroSubtitle}
             </p>
           </div>
         </section>
@@ -190,7 +190,7 @@ const GamingEvents = () => {
 
             {/* 3 Showcase Image Cards */}
             <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-              {GALLERY_IMAGES.map((img, i) => (
+              {cmsPage.gallery.map((img, i) => (
                 <div
                   key={i}
                   className="group relative overflow-hidden rounded-2xl border border-white/10 bg-[#0c1830] transition-all duration-500 hover:border-[#0066FD]/60 hover:shadow-[0_16px_40px_rgba(0,102,253,0.22)]"

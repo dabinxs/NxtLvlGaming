@@ -24,14 +24,27 @@ import BuildNovelty from "./components/BuildNovelty";
 import QuotePage from "./components/QuotePage";
 import ContactPage from "./components/ContactPage";
 import AboutPage from "./components/AboutPage";
+import AdminPage from "./components/AdminPage";
+import { CmsContentProvider, useCmsHomeMedia } from "./lib/cmsContent";
+import { Settings2 } from "lucide-react";
+import { Link } from "react-router-dom";
+import { experiences } from "./mock";
 
-const Landing = () => (
+const EXPERIENCE_SLUGS = ["gaming-events", "movie-nights", "trivia-nights", "virtual-reality", "just-dance", "silent-disco", "sim-racing", "photo-booth"];
+
+const LandingContent = () => {
+  const homeMedia = useCmsHomeMedia();
+  const homeExperiences = experiences.map((experience, index) => ({
+    ...experience,
+    image: homeMedia[EXPERIENCE_SLUGS[index]] || experience.image,
+  }));
+  return (
   <div className="App text-foreground">
     <Navbar />
     <main>
       <Hero />
       <TrustedCollaborations />
-      <ChooseExperience />
+      <ChooseExperience experiences={homeExperiences} />
       <LevelUp />
       <Testimonials />
       <WhoWeAre />
@@ -39,11 +52,15 @@ const Landing = () => (
     </main>
     <Footer />
   </div>
-);
+  );
+};
+
+const Landing = () => <LandingContent />;
 
 function App() {
   return (
     <BrowserRouter>
+      <CmsContentProvider>
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/quote" element={<QuotePage />} />
@@ -62,9 +79,16 @@ function App() {
         <Route path="/novelties" element={<Novelties />} />
         <Route path="/build-novelty" element={<BuildNovelty />} />
         <Route path="/build" element={<BuildNovelty />} />
+        <Route path="/cms" element={<AdminPage />} />
       </Routes>
+      <Link to="/cms" aria-label="Open website CMS" title="Website admin dashboard" className="cms-access-button">
+        <Settings2 size={19} />
+        <span>Admin</span>
+      </Link>
+      </CmsContentProvider>
     </BrowserRouter>
   );
 }
+
 
 export default App;

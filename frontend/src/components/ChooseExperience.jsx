@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { experiences } from "../mock";
 
-const ChooseExperience = () => {
+const ChooseExperience = ({ experiences }) => {
   const [active, setActive] = useState(2);
   const total = experiences.length;
   const timer = useRef(null);

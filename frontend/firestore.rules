@@ -1,0 +1,20 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isCmsAdmin() {
+      return request.auth != null
+        && request.auth.token.email == 'team@nextlevelgamingevents.com'
+        && request.auth.token.email_verified == true;
+    }
+
+    match /cmsPages/{pageId} {
+      allow read: if true;
+      allow write: if isCmsAdmin();
+    }
+
+    match /cmsMedia/{mediaId} {
+      allow read: if true;
+      allow write: if isCmsAdmin();
+    }
+  }
+}

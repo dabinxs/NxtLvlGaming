@@ -9,6 +9,8 @@ import {
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import ReadyCTA from "./ReadyCTA";
+import { useCmsPage } from "../lib/cmsContent";
+import { CMS_PAGES } from "../lib/cmsPages";
 
 const OVERVIEW_POINTS = [
   "Immersive, motion-tracked gameplay",
@@ -60,6 +62,7 @@ const VR_GAMES = [
 ];
 
 const VirtualReality = () => {
+  const cmsPage = useCmsPage("virtual-reality", CMS_PAGES.find((page) => page.slug === "virtual-reality"));
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -73,7 +76,7 @@ const VirtualReality = () => {
         <section className="relative overflow-hidden pt-36 pb-24 md:pt-48 md:pb-36">
           {/* Visible VR Hero Background Image */}
           <img
-            src="/experience-virtual-reality.png"
+            src={cmsPage.heroImage}
             alt="Virtual Reality background"
             className="absolute inset-0 h-full w-full object-cover object-center scale-105"
           />
@@ -84,13 +87,10 @@ const VirtualReality = () => {
           <div className="pointer-events-none absolute left-1/4 top-1/2 h-[450px] w-[650px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#0066FD]/20 blur-[140px]" />
 
           <div className="relative z-10 mx-auto max-w-[1280px] px-5 md:px-8">
-            <h1 className="max-w-4xl font-display text-[clamp(2.8rem,7vw,5.5rem)] font-extrabold uppercase italic leading-[1.02] tracking-tight text-white drop-shadow-[0_8px_32px_rgba(0,0,0,0.9)]">
-              VIRTUAL <br />
-              <span className="blue-gradient-text not-italic">REALITY</span>
-            </h1>
+            <h1 className="max-w-4xl font-display text-[clamp(2.8rem,7vw,5.5rem)] font-extrabold uppercase italic leading-[1.02] tracking-tight text-white drop-shadow-[0_8px_32px_rgba(0,0,0,0.9)]">{cmsPage.heroTitle}</h1>
 
             <p className="mt-6 max-w-2xl text-[18px] leading-relaxed text-white/90 drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)] sm:text-[20px]">
-              Immersive VR stations that pull crowds and drop jaws.
+              {cmsPage.heroSubtitle}
             </p>
           </div>
         </section>
@@ -191,7 +191,7 @@ const VirtualReality = () => {
 
             {/* Four VR game logo cards */}
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-              {VR_GAMES.map((game) => (
+              {cmsPage.gallery.map((game) => (
                 <div
                   key={game.title}
                   className="group relative overflow-hidden rounded-2xl border border-white/10 bg-[#0c1830] transition-all duration-500 hover:border-[#0066FD]/60 hover:shadow-[0_16px_40px_rgba(0,102,253,0.22)]"

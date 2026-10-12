@@ -7,6 +7,8 @@ import {
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import ReadyCTA from "./ReadyCTA";
+import { useCmsPage } from "../lib/cmsContent";
+import { CMS_PAGES } from "../lib/cmsPages";
 
 const OVERVIEW_POINTS = [
   "Choose a 360 video booth or mirror booth",
@@ -47,6 +49,7 @@ const GALLERY_IMAGES = [
 ];
 
 const VideoBooth360 = () => {
+  const cmsPage = useCmsPage("photo-booth", CMS_PAGES.find((page) => page.slug === "photo-booth"));
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -60,7 +63,7 @@ const VideoBooth360 = () => {
         <section className="relative overflow-hidden pt-36 pb-20 md:pt-44 md:pb-28">
           {/* Background image from the Photo Booth homepage card */}
           <img
-            src="/experience-360-video-booth.png"
+            src={cmsPage.heroImage}
             alt="Photo booth experience at an event"
             className="absolute inset-0 h-full w-full object-cover object-center"
           />
@@ -71,15 +74,13 @@ const VideoBooth360 = () => {
           <div className="pointer-events-none absolute left-1/3 top-1/2 h-[400px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#0066FD]/15 blur-[150px]" />
 
           <div className="relative z-10 mx-auto max-w-[1280px] px-5 md:px-8">
-            <h1 className="max-w-4xl font-display text-[clamp(2.5rem,6.5vw,5rem)] font-extrabold uppercase italic leading-[1.04] tracking-tight text-white drop-shadow-[0_6px_24px_rgba(0,0,0,0.9)]">
-              PHOTO<span className="blue-gradient-text not-italic">BOOTH</span>
-            </h1>
+            <h1 className="max-w-4xl font-display text-[clamp(2.5rem,6.5vw,5rem)] font-extrabold uppercase italic leading-[1.04] tracking-tight text-white drop-shadow-[0_6px_24px_rgba(0,0,0,0.9)]">{cmsPage.heroTitle}</h1>
 
             <p className="mt-5 font-display text-[15px] font-bold uppercase tracking-[0.16em] text-white/90 sm:text-[18px]">
               360 Video Booth <span className="px-2 text-[#7DDDFF]">/</span> Mirror Booth
             </p>
             <p className="mt-5 max-w-3xl text-[16px] leading-relaxed text-white/90 drop-shadow-[0_3px_10px_rgba(0,0,0,0.85)] sm:text-[18px]">
-              Make your events more fun and memorable with our photobooth experiences. Capture, create, and share amazing moments instantly.
+              {cmsPage.heroSubtitle}
             </p>
           </div>
         </section>
@@ -179,7 +180,7 @@ const VideoBooth360 = () => {
 
             {/* 3 Showcase Image Cards */}
             <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-              {GALLERY_IMAGES.map((img, i) => (
+              {cmsPage.gallery.map((img, i) => (
                 <div
                   key={i}
                   className="group relative overflow-hidden rounded-2xl border border-white/10 bg-[#0c1830] transition-all duration-500 hover:border-[#0066FD]/60 hover:shadow-[0_16px_40px_rgba(0,102,253,0.22)]"

@@ -101,6 +101,7 @@ export const collaborations = collaborationLogos.map((c) => c.name);
 export const experiences = [
   {
     id: 1,
+    slug: "gaming-events",
     title: "Gaming",
     highlight: "Events",
     desc: "Full-scale multiplayer setups, consoles and giant screens for any crowd.",
@@ -108,6 +109,7 @@ export const experiences = [
   },
   {
     id: 2,
+    slug: "movie-nights",
     title: "Movie",
     highlight: "Nights",
     desc: "32-foot inflatable screens under the stars for movie nights that draw a crowd.",
@@ -115,6 +117,7 @@ export const experiences = [
   },
   {
     id: 3,
+    slug: "trivia-nights",
     title: "Trivia",
     highlight: "Nights",
     desc: "Interactive trivia for groups and crowds with live hosts and scoring.",
@@ -122,6 +125,7 @@ export const experiences = [
   },
   {
     id: 4,
+    slug: "virtual-reality",
     title: "Virtual",
     highlight: "Reality",
     desc: "Room-scale VR stations and immersive experiences that wow every guest.",
@@ -129,6 +133,7 @@ export const experiences = [
   },
   {
     id: 5,
+    slug: "just-dance",
     title: "Just",
     highlight: "Dance",
     desc: "High-energy dance parties on giant screens that get everyone moving.",
@@ -136,6 +141,7 @@ export const experiences = [
   },
   {
     id: 6,
+    slug: "silent-disco",
     title: "Silent",
     highlight: "Disco",
     desc: "LED headphones with multiple music channels for an unforgettable dance experience.",
@@ -143,6 +149,7 @@ export const experiences = [
   },
   {
     id: 7,
+    slug: "sim-racing",
     title: "Sim",
     highlight: "Racing",
     desc: "Pro simulators with competitive racing that brings the track to your event.",
@@ -150,6 +157,7 @@ export const experiences = [
   },
   {
     id: 8,
+    slug: "photo-booth",
     title: "Photo",
     highlight: "Booth",
     desc: "Make your events more fun and memorable with our photobooth experiences. Capture, create, and share amazing moments instantly.",
