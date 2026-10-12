@@ -17,6 +17,7 @@ import {
   query,
   serverTimestamp,
   setDoc,
+  updateDoc,
   where,
 } from "firebase/firestore";
 import {
@@ -147,14 +148,17 @@ function CmsEditor({ activeSlug, activePage, onSave }) {
   const [notice, setNotice] = useState("");
   const [error, setError] = useState("");
   const [removedMediaIds, setRemovedMediaIds] = useState([]);
+  const [thumbnailPreview, setThumbnailPreview] = useState("");
 
   useEffect(() => {
     setDraft(makeDraft(defaults, activePage.data));
-    setMedia(activePage.media);
     setNotice("");
     setError("");
     setRemovedMediaIds([]);
-  }, [activeSlug, activePage.data, activePage.media, defaults]);
+    setThumbnailPreview("");
+  }, [activeSlug, activePage.data, defaults]);
+
+  useEffect(() => setMedia(activePage.media), [activePage.media]);
 
   const mediaUrl = (id, fallback) => media.find((item) => item.id === id)?.url || fallback;
   const patchDraft = (field, value) => setDraft((current) => ({ ...current, [field]: value }));
@@ -175,6 +179,11 @@ function CmsEditor({ activeSlug, activePage, onSave }) {
         updatedBy: auth.currentUser.email,
       });
       await Promise.all(removedMediaIds.map((mediaId) => deleteDoc(doc(db, "cmsMedia", mediaId))));
+      const pageMediaUpdates = [draft.heroMediaId, ...draft.gallery.map((item) => item.mediaId)].filter(Boolean).map((mediaId) => updateDoc(doc(db, "cmsMedia", mediaId), { published: true }));
+      await Promise.all(pageMediaUpdates);
+      const homeImages = await getDocs(query(collection(db, "cmsMedia"), where("pageSlug", "==", "home")));
+      const thumbnailChanges = homeImages.docs.filter((item) => item.data().itemId === activeSlug).map((item) => updateDoc(item.ref, { published: item.id === draft.thumbnailMediaId }));
+      await Promise.all(thumbnailChanges);
       setNotice("Changes published to the live website.");
       onSave();
     } catch (saveError) {
@@ -198,8 +207,9 @@ function CmsEditor({ activeSlug, activePage, onSave }) {
         filename: file.name,
         updatedAt: serverTimestamp(),
         updatedBy: auth.currentUser.email,
+        published: false,
       });
-      return saved.id;
+      return { id: saved.id, url };
     } catch (uploadError) {
       setError(uploadError.message || "Image upload failed.");
       return "";
@@ -207,18 +217,18 @@ function CmsEditor({ activeSlug, activePage, onSave }) {
   };
 
   const chooseHero = async (file) => {
-    const id = await uploadMedia(file, activeSlug, "hero");
-    if (id) patchDraft("heroMediaId", id);
+    const saved = await uploadMedia(file, activeSlug, "hero");
+    if (saved?.id) patchDraft("heroMediaId", saved.id);
   };
 
   const chooseThumbnail = async (file) => {
-    const id = await uploadMedia(file, "home", activeSlug);
-    if (id) patchDraft("thumbnailMediaId", id);
+    const saved = await uploadMedia(file, "home", activeSlug);
+    if (saved?.id) { patchDraft("thumbnailMediaId", saved.id); setThumbnailPreview(saved.url); }
   };
 
   const chooseGalleryImage = async (index, file) => {
-    const id = await uploadMedia(file, activeSlug, `gallery-${index}`);
-    if (id) setDraft((current) => ({ ...current, gallery: current.gallery.map((item, itemIndex) => itemIndex === index ? { ...item, mediaId: id } : item) }));
+    const saved = await uploadMedia(file, activeSlug, `gallery-${index}`);
+    if (saved?.id) setDraft((current) => ({ ...current, gallery: current.gallery.map((item, itemIndex) => itemIndex === index ? { ...item, mediaId: saved.id } : item) }));
   };
 
   const addGalleryCard = () => setDraft((current) => ({
@@ -233,7 +243,7 @@ function CmsEditor({ activeSlug, activePage, onSave }) {
   };
 
   const pageImage = mediaUrl(draft.heroMediaId, defaults.heroImage);
-  const thumbnailImage = homeMedia[activeSlug] || pageImage;
+  const thumbnailImage = thumbnailPreview || homeMedia[activeSlug] || pageImage;
 
   return (
     <div className="cms-editor">

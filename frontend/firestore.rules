@@ -13,7 +13,7 @@ service cloud.firestore {
     }
 
     match /cmsMedia/{mediaId} {
-      allow read: if true;
+      allow read: if isCmsAdmin() || resource.data.published == true;
       allow write: if isCmsAdmin();
     }
   }

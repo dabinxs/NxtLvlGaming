@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useEffect, useMemo, useState } from "react";
 import { collection, doc, onSnapshot, query, where } from "firebase/firestore";
 import { db } from "./firebase";
+import { auth } from "./firebase";
 
 const CmsContentContext = createContext({ pages: {}, homeMedia: {} });
 
@@ -9,7 +10,7 @@ export function CmsContentProvider({ children }) {
   const [homeMedia, setHomeMedia] = useState({});
 
   useEffect(() => {
-    const homeQuery = query(collection(db, "cmsMedia"), where("pageSlug", "==", "home"));
+    const homeQuery = query(collection(db, "cmsMedia"), where("pageSlug", "==", "home"), where("published", "==", true));
     const unsubscribe = onSnapshot(homeQuery, (snapshot) => {
       setHomeMedia(Object.fromEntries(snapshot.docs.map((item) => [item.data().itemId, item.data().url])));
     }, () => {});
@@ -26,7 +27,9 @@ export function useCmsPage(slug, defaults) {
     const unsubscribePage = onSnapshot(doc(db, "cmsPages", slug), (snapshot) => {
       setOverride((current) => ({ ...current, ...(snapshot.exists() ? snapshot.data() : {}) }));
     }, () => {});
-    const mediaQuery = query(collection(db, "cmsMedia"), where("pageSlug", "==", slug));
+    const mediaFilters = [where("pageSlug", "==", slug)];
+    if (!auth.currentUser?.emailVerified || auth.currentUser.email?.toLowerCase() !== "team@nextlevelgamingevents.com") mediaFilters.push(where("published", "==", true));
+    const mediaQuery = query(collection(db, "cmsMedia"), ...mediaFilters);
     const unsubscribeMedia = onSnapshot(mediaQuery, (snapshot) => {
       setOverride((current) => ({ ...current, media: snapshot.docs.map((item) => ({ id: item.id, ...item.data() })) }));
     }, () => {});
