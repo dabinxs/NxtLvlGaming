@@ -6,7 +6,7 @@ import {
   LogOut, MonitorCog, PanelsTopLeft, Plus, Save, ShieldCheck, Trash2, Upload,
   Users, X,
 } from "lucide-react";
-import { CMS_ADMIN_EMAIL, CMS_MEDIA_BUCKET, supabase } from "../lib/supabase";
+import { CMS_ADMIN_EMAIL, CMS_ADMIN_EMAILS, CMS_MEDIA_BUCKET, supabase } from "../lib/supabase";
 import { CMS_PAGES } from "../lib/cmsPages";
 import { useCmsContent } from "../lib/cmsContent";
 import "./AdminPage.css";
@@ -63,24 +63,25 @@ function CmsLogin({ user, onUser }) {
     event.preventDefault();
     setError("");
     setPendingVerify(false);
-    if (email.trim().toLowerCase() !== CMS_ADMIN_EMAIL) {
-      setError("This email address is not on the CMS access list.");
+    const adminEmail = email.trim().toLowerCase();
+    if (!CMS_ADMIN_EMAILS.includes(adminEmail)) {
+      setError(`Only these admin addresses can access the CMS: ${CMS_ADMIN_EMAILS.join(" and ")}.`);
       return;
     }
     setBusy(true);
     try {
       if (creating) {
         const { data, error: signUpError } = await supabase.auth.signUp({
-          email: CMS_ADMIN_EMAIL,
+          email: adminEmail,
           password,
           options: { emailRedirectTo: `${window.location.origin}/cms` },
         });
         if (signUpError) throw signUpError;
         if (data.session) await supabase.auth.signOut();
-        setPendingVerify(true);
+        setPendingVerify(!data.user?.email_confirmed_at);
         setCreating(false);
       } else {
-        const { data, error: signInError } = await supabase.auth.signInWithPassword({ email: CMS_ADMIN_EMAIL, password });
+        const { data, error: signInError } = await supabase.auth.signInWithPassword({ email: adminEmail, password });
         if (signInError) throw signInError;
         if (!data.user?.email_confirmed_at) {
           await supabase.auth.signOut();
@@ -101,7 +102,7 @@ function CmsLogin({ user, onUser }) {
     }
   };
 
-  if (user?.emailVerified && user.email?.toLowerCase() === CMS_ADMIN_EMAIL) return null;
+  if (user?.email_confirmed_at && CMS_ADMIN_EMAILS.includes(user.email?.toLowerCase())) return null;
 
   return (
     <main className="cms-login-page">
@@ -115,7 +116,7 @@ function CmsLogin({ user, onUser }) {
           <label>Admin email<input type="email" value={email} onChange={(event) => setEmail(event.target.value)} autoComplete="username" required /></label>
           <label>Password<input type="password" value={password} onChange={(event) => setPassword(event.target.value)} autoComplete={creating ? "new-password" : "current-password"} minLength={6} required /></label>
           {error && <p className="cms-error" role="alert"><CircleAlert size={15} />{error}</p>}
-          {pendingVerify && <p className="cms-success" role="status"><Check size={15} /> Check {CMS_ADMIN_EMAIL} for the verification link before you sign in.</p>}
+          {pendingVerify && <p className="cms-success" role="status"><Check size={15} /> Check {adminEmail} for the verification link before you sign in.</p>}
           <button className="cms-primary-button" disabled={busy}>{busy ? "PLEASE WAIT…" : creating ? "CREATE SECURE ACCOUNT" : "SIGN IN TO CMS"}</button>
         </form>
         <button className="cms-link-button" onClick={() => { setCreating((value) => !value); setError(""); }}>
@@ -216,13 +217,12 @@ function CmsEditor({ activeSlug, activePage, onSave }) {
 
   const chooseGalleryImage = async (index, file) => {
     const saved = await uploadMedia(file, `${activeSlug}/gallery`);
-    if (saved) setDraft((current) => ({
+    if (!saved) return;
+    const oldPath = draft.gallery[index]?.mediaPath;
+    if (oldPath) setRemovedMediaPaths((paths) => [...paths, oldPath]);
+    setDraft((current) => ({
       ...current,
-      gallery: current.gallery.map((item, itemIndex) => {
-        if (itemIndex !== index) return item;
-        if (item.mediaPath) setRemovedMediaPaths((paths) => [...paths, item.mediaPath]);
-        return { ...item, src: saved.url, mediaPath: saved.path };
-      }),
+      gallery: current.gallery.map((item, itemIndex) => itemIndex === index ? { ...item, src: saved.url, mediaPath: saved.path } : item),
     }));
   };
 
@@ -334,7 +334,7 @@ function AdminPage() {
   ], []);
 
   if (!authReady) return <div className="cms-loading">Loading secure dashboard…</div>;
-  if (!user?.emailVerified || user.email?.toLowerCase() !== CMS_ADMIN_EMAIL) {
+  if (!user?.email_confirmed_at || !CMS_ADMIN_EMAILS.includes(user.email?.toLowerCase())) {
     return <CmsLogin user={user} onUser={setUser} />;
   }
 
@@ -373,8 +373,8 @@ function AdminPage() {
             </div>
           </>}
           {tab === "content" && <CmsEditor activeSlug={activeSlug} activePage={activePage} onSave={refresh} />}
-          {tab === "analytics" && <section className="cms-analytics-page"><p className="cms-eyebrow">PERFORMANCE & ENGAGEMENT</p><h1>Analytics</h1><p className="cms-analytics-intro">Connect Google Analytics to measure visits, popular pages, and how people find your experiences.</p><div className="cms-analytics-empty"><div><BarChart3 size={24} /></div><h2>Visitor tracking isn’t connected yet</h2><p>This Firebase project has no Google Analytics property linked, so the CMS has no real visitor metrics to display. Link a Google Analytics property in Firebase to enable traffic reports. This won’t change the quote or contact forms.</p><a className="cms-primary-button" href="https://console.firebase.google.com/project/nextlevelgaming-events/analytics" target="_blank" rel="noreferrer">OPEN FIREBASE ANALYTICS <ArrowUpRight size={15} /></a></div><div className="cms-stat-grid cms-analytics-foot-cards"><article className="cms-stat-card"><small>EDITABLE OFFERINGS</small><strong>{CMS_PAGES.length}</strong><span>Page content managed here</span></article><article className="cms-stat-card"><small>CMS ADMINS</small><strong>1</strong><span>Verified team inbox</span></article><article className="cms-stat-card"><small>LAST CONTENT CHANGE</small><strong className="cms-date-stat">{contentCount.lastUpdate ? contentCount.lastUpdate.toLocaleDateString() : "—"}</strong><span>Saved from this dashboard</span></article></div></section>}
-          {tab === "maintenance" && <section className="cms-maintenance-page"><p className="cms-eyebrow">HEALTH & SITE CONTROLS</p><h1>Maintenance</h1><p>Check the CMS connection and keep event content in good shape.</p><div className="cms-maintenance-grid"><article className="cms-panel"><span className="cms-stat-icon green"><Cloud size={18} /></span><h2>Content database</h2><p>Shared live content syncs through Cloud Firestore. It stays on Firebase’s free tier within its daily limits.</p><span className={`cms-maintenance-state ${connection === "ready" ? "good" : "needs-attention"}`}>{connection === "ready" ? <><CircleCheck size={15} /> Connected</> : <><CircleAlert size={15} /> Requires setup</>}</span></article><article className="cms-panel"><span className="cms-stat-icon blue"><ShieldCheck size={18} /></span><h2>Admin security</h2><p>Editing access requires a verified sign-in from the approved team inbox. Public visitors can read published content.</p><span className="cms-maintenance-state good"><CircleCheck size={15} /> Restricted</span></article><article className="cms-panel"><span className="cms-stat-icon purple"><ImagePlus size={18} /></span><h2>Image storage</h2><p>Images are resized in the browser before upload. The CMS keeps uploaded media in individual records to fit the free database document size limit.</p><span className="cms-maintenance-state good"><CircleCheck size={15} /> Ready</span></article><article className="cms-panel"><span className="cms-stat-icon orange"><BarChart3 size={18} /></span><h2>Visitor reporting</h2><p>Link Google Analytics in Firebase to see traffic totals and popular site pages.</p><button className="cms-text-button" onClick={() => setTab("analytics")}>Open analytics setup <ArrowUpRight size={14} /></button></article></div></section>}
+          {tab === "analytics" && <section className="cms-analytics-page"><p className="cms-eyebrow">PERFORMANCE & ENGAGEMENT</p><h1>Analytics</h1><p className="cms-analytics-intro">Connect Google Analytics to measure visits, popular pages, and how people find your experiences.</p><div className="cms-analytics-empty"><div><BarChart3 size={24} /></div><h2>Visitor tracking isn’t connected yet</h2><p>No Google Analytics property is linked, so the CMS has no real visitor metrics to display. Link an Analytics property to enable traffic reports. This does not affect the quote or contact forms.</p><a className="cms-primary-button" href="https://analytics.google.com/" target="_blank" rel="noreferrer">OPEN GOOGLE ANALYTICS <ArrowUpRight size={15} /></a></div><div className="cms-stat-grid cms-analytics-foot-cards"><article className="cms-stat-card"><small>EDITABLE OFFERINGS</small><strong>{CMS_PAGES.length}</strong><span>Page content managed here</span></article><article className="cms-stat-card"><small>CMS ADMINS</small><strong>1</strong><span>Verified team inbox</span></article><article className="cms-stat-card"><small>LAST CONTENT CHANGE</small><strong className="cms-date-stat">{contentCount.lastUpdate ? contentCount.lastUpdate.toLocaleDateString() : "—"}</strong><span>Saved from this dashboard</span></article></div></section>}
+          {tab === "maintenance" && <section className="cms-maintenance-page"><p className="cms-eyebrow">HEALTH & SITE CONTROLS</p><h1>Maintenance</h1><p>Check the CMS connection and keep event content in good shape.</p><div className="cms-maintenance-grid"><article className="cms-panel"><span className="cms-stat-icon green"><Cloud size={18} /></span><h2>Content database</h2><p>Shared live content syncs through Supabase Postgres. Its free plan has usage and storage limits.</p><span className={`cms-maintenance-state ${connection === "ready" ? "good" : "needs-attention"}`}>{connection === "ready" ? <><CircleCheck size={15} /> Connected</> : <><CircleAlert size={15} /> Requires setup</>}</span></article><article className="cms-panel"><span className="cms-stat-icon blue"><ShieldCheck size={18} /></span><h2>Admin security</h2><p>Editing access requires a verified sign-in from the approved team inbox. Public visitors can read published content.</p><span className="cms-maintenance-state good"><CircleCheck size={15} /> Restricted</span></article><article className="cms-panel"><span className="cms-stat-icon purple"><ImagePlus size={18} /></span><h2>Image storage</h2><p>Images are resized in your browser before upload. The CMS stores them in its public image bucket with admin-only upload and deletion.</p><span className="cms-maintenance-state good"><CircleCheck size={15} /> Ready</span></article><article className="cms-panel"><span className="cms-stat-icon orange"><BarChart3 size={18} /></span><h2>Visitor reporting</h2><p>Connect Google Analytics to see traffic totals and popular site pages.</p><button className="cms-text-button" onClick={() => setTab("analytics")}>Open analytics setup <ArrowUpRight size={14} /></button></article></div></section>}
         </div>
       </section>
     </main>

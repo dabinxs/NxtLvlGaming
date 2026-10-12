@@ -1,6 +1,7 @@
 import { createClient } from "@supabase/supabase-js";
 
-export const CMS_ADMIN_EMAIL = "team@nextlevelgamingevents.com";
+export const CMS_ADMIN_EMAILS = ["team@nextlevelgamingevents.com", "kcbianzon@gmail.com"];
+export const CMS_ADMIN_EMAIL = "kcbianzon@gmail.com";
 export const CMS_MEDIA_BUCKET = "cms-media";
 
 const SUPABASE_URL = "https://plyjyqyozzeoickaywkd.supabase.co";
