@@ -3,7 +3,7 @@ import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCeBub7WEOJFvJ37xEm-0qFwudyb4JKJro",
+  apiKey: "AIzaSyCeBub7WEOjFJv37xEm-0qFwudyb4JKJro",
   authDomain: "nextlevelgaming-events.firebaseapp.com",
   projectId: "nextlevelgaming-events",
   storageBucket: "nextlevelgaming-events.firebasestorage.app",
