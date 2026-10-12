@@ -3,12 +3,13 @@ import { Link } from "react-router-dom";
 import {
   Activity, ArrowLeft, ArrowUpRight, BarChart3, Camera, Check, ChevronDown,
   CircleAlert, CircleCheck, Clock3, Cloud, FileImage, ImagePlus, LayoutDashboard,
-  LogOut, MonitorCog, PanelsTopLeft, Plus, Save, ShieldCheck, Trash2, Upload,
+  KeyRound, LogOut, MonitorCog, PanelsTopLeft, Plus, Save, ShieldCheck, Trash2, Upload,
   Users, X,
 } from "lucide-react";
 import { CMS_ADMIN_EMAIL, CMS_ADMIN_EMAILS, CMS_MEDIA_BUCKET, supabase } from "../lib/supabase";
 import { CMS_PAGES } from "../lib/cmsPages";
 import { useCmsContent } from "../lib/cmsContent";
+import NoveltyAccessManager from "./NoveltyAccessManager";
 import "./AdminPage.css";
 
 const DEFAULTS = Object.fromEntries(CMS_PAGES.map((page) => [page.slug, page]));
@@ -330,6 +331,7 @@ function AdminPage() {
     { id: "overview", label: "Overview", icon: LayoutDashboard },
     { id: "analytics", label: "Analytics", icon: BarChart3 },
     { id: "content", label: "Events & experiences", icon: PanelsTopLeft },
+    { id: "novelty-access", label: "Novelty access", icon: KeyRound },
     { id: "maintenance", label: "Maintenance", icon: MonitorCog },
   ], []);
 
@@ -373,6 +375,7 @@ function AdminPage() {
             </div>
           </>}
           {tab === "content" && <CmsEditor activeSlug={activeSlug} activePage={activePage} onSave={refresh} />}
+          {tab === "novelty-access" && <NoveltyAccessManager adminEmail={user.email} />}
           {tab === "analytics" && <section className="cms-analytics-page"><p className="cms-eyebrow">PERFORMANCE & ENGAGEMENT</p><h1>Analytics</h1><p className="cms-analytics-intro">Connect Google Analytics to measure visits, popular pages, and how people find your experiences.</p><div className="cms-analytics-empty"><div><BarChart3 size={24} /></div><h2>Visitor tracking isn’t connected yet</h2><p>No Google Analytics property is linked, so the CMS has no real visitor metrics to display. Link an Analytics property to enable traffic reports. This does not affect the quote or contact forms.</p><a className="cms-primary-button" href="https://analytics.google.com/" target="_blank" rel="noreferrer">OPEN GOOGLE ANALYTICS <ArrowUpRight size={15} /></a></div><div className="cms-stat-grid cms-analytics-foot-cards"><article className="cms-stat-card"><small>EDITABLE OFFERINGS</small><strong>{CMS_PAGES.length}</strong><span>Page content managed here</span></article><article className="cms-stat-card"><small>CMS ADMINS</small><strong>1</strong><span>Verified team inbox</span></article><article className="cms-stat-card"><small>LAST CONTENT CHANGE</small><strong className="cms-date-stat">{contentCount.lastUpdate ? contentCount.lastUpdate.toLocaleDateString() : "—"}</strong><span>Saved from this dashboard</span></article></div></section>}
           {tab === "maintenance" && <section className="cms-maintenance-page"><p className="cms-eyebrow">HEALTH & SITE CONTROLS</p><h1>Maintenance</h1><p>Check the CMS connection and keep event content in good shape.</p><div className="cms-maintenance-grid"><article className="cms-panel"><span className="cms-stat-icon green"><Cloud size={18} /></span><h2>Content database</h2><p>Shared live content syncs through Supabase Postgres. Its free plan has usage and storage limits.</p><span className={`cms-maintenance-state ${connection === "ready" ? "good" : "needs-attention"}`}>{connection === "ready" ? <><CircleCheck size={15} /> Connected</> : <><CircleAlert size={15} /> Requires setup</>}</span></article><article className="cms-panel"><span className="cms-stat-icon blue"><ShieldCheck size={18} /></span><h2>Admin security</h2><p>Editing access requires a verified sign-in from the approved team inbox. Public visitors can read published content.</p><span className="cms-maintenance-state good"><CircleCheck size={15} /> Restricted</span></article><article className="cms-panel"><span className="cms-stat-icon purple"><ImagePlus size={18} /></span><h2>Image storage</h2><p>Images are resized in your browser before upload. The CMS stores them in its public image bucket with admin-only upload and deletion.</p><span className="cms-maintenance-state good"><CircleCheck size={15} /> Ready</span></article><article className="cms-panel"><span className="cms-stat-icon orange"><BarChart3 size={18} /></span><h2>Visitor reporting</h2><p>Connect Google Analytics to see traffic totals and popular site pages.</p><button className="cms-text-button" onClick={() => setTab("analytics")}>Open analytics setup <ArrowUpRight size={14} /></button></article></div></section>}
         </div>
