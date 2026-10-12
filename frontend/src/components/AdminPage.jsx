@@ -86,7 +86,7 @@ function CmsLogin({ user, onUser }) {
         if (!data.user?.email_confirmed_at) {
           await supabase.auth.signOut();
           setPendingVerify(true);
-          throw new Error("Verify the confirmation link sent to the admin inbox, then sign in again.");
+          throw new Error(`Verify the confirmation link sent to ${adminEmail}, then sign in again.`);
         }
       }
     } catch (authError) {
@@ -364,7 +364,7 @@ function AdminPage() {
             <div className="cms-stat-grid">
               <article className="cms-stat-card"><span className="cms-stat-icon blue"><PanelsTopLeft size={18} /></span><small>MANAGED PAGES</small><strong>{CMS_PAGES.length}</strong><span>Events and experiences</span></article>
               <article className="cms-stat-card"><span className="cms-stat-icon purple"><Camera size={18} /></span><small>EXPERIENCE PHOTOS</small><strong>{mediaCount || CMS_PAGES.reduce((sum, page) => sum + page.gallery.length, 0)}</strong><span>Across the experience pages</span></article>
-              <article className="cms-stat-card"><span className="cms-stat-icon green"><ShieldCheck size={18} /></span><small>ADMIN ACCESS</small><strong>1</strong><span>Verified owner account</span></article>
+              <article className="cms-stat-card"><span className="cms-stat-icon green"><ShieldCheck size={18} /></span><small>ADMIN ACCESS</small><strong>{CMS_ADMIN_EMAILS.length}</strong><span>Approved admin accounts</span></article>
               <article className="cms-stat-card"><span className="cms-stat-icon orange"><Activity size={18} /></span><small>VISITOR ANALYTICS</small><strong>—</strong><span>Google Analytics setup needed</span></article>
             </div>
             <div className="cms-overview-grid">
