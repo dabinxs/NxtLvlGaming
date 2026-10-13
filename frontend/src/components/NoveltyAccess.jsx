@@ -129,8 +129,8 @@ const NoveltyAccess = () => {
     <div className="novelty-access-page">
       <Navbar />
       <main className="novelty-access-main">
-        <Link to="/novelties" className="novelty-access-back"><ArrowLeft size={16} /> Back to novelties</Link>
         <section className="novelty-access-card">
+          <Link to="/novelties" className="novelty-access-back"><ArrowLeft size={16} /> Back to novelties</Link>
           <div className="novelty-access-icon"><KeyRound size={25} /></div>
           <p className="novelty-access-kicker">LIMITED ACCESS · NOVELTIES</p>
           <h1>Customization Studio</h1>

@@ -2,109 +2,13 @@ import React, { useEffect } from "react";
 import { ArrowUpRight } from "lucide-react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
-
-const WORKSHOPS = [
-  {
-    id: "01",
-    tag: "HATS & BEANIES",
-    title: "(PATCHED CITY) Trucker Hats & Beanies",
-    desc: "Customize your own trucker hat or beanie with unique patches and designs.",
-    image: "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=600&q=80",
-    rotation: "sm:-rotate-1",
-  },
-  {
-    id: "02",
-    tag: "HAT CUSTOMIZATION",
-    title: "Custom Trucker Hats",
-    desc: "Design and personalize your own trucker hat to match your style.",
-    image: "https://images.unsplash.com/photo-1576871337622-98d48d1cf531?auto=format&fit=crop&w=600&q=80",
-    rotation: "sm:rotate-2",
-  },
-  {
-    id: "03",
-    tag: "SOCKS",
-    title: "Custom Socks",
-    desc: "Create your own custom socks with patterns, logos or text.",
-    image: "https://images.unsplash.com/photo-1586350977771-b3b0abd50c82?auto=format&fit=crop&w=600&q=80",
-    rotation: "sm:-rotate-2",
-  },
-  {
-    id: "04",
-    tag: "BRACELETS",
-    title: "Bead-tastics Custom Bracelets",
-    desc: "Fun, hand-crafted bracelets designed by you, for you.",
-    image: "https://images.unsplash.com/photo-1611591475879-c5ec2b810d7a?auto=format&fit=crop&w=600&q=80",
-    rotation: "sm:rotate-1",
-  },
-  {
-    id: "05",
-    tag: "PILLOW DOLLS",
-    title: "Custom Pillow Dolls",
-    desc: "Turn your favorite photos, characters or ideas into custom pillow dolls.",
-    image: "https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&w=600&q=80",
-    rotation: "sm:-rotate-1",
-  },
-  {
-    id: "06",
-    tag: "SEQUENCE PILLOWS",
-    title: "Custom Sequence Pillows",
-    desc: "Create your own sequin pillow with colors, text or images that change.",
-    image: "https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&w=600&q=80",
-    rotation: "sm:rotate-2",
-  },
-  {
-    id: "07",
-    tag: "BRACELETS",
-    title: "Intention Bracelet",
-    desc: "Design a meaningful bracelet with intention, style and purpose.",
-    image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=600&q=80",
-    rotation: "sm:-rotate-1",
-  },
-  {
-    id: "08",
-    tag: "KEYCHAINS",
-    title: "Laser-Engraved Wood & Metal Keychains",
-    desc: "Personalize high-quality wooden or metal keychains with your own design.",
-    image: "https://images.unsplash.com/photo-1622434641406-a158123450f9?auto=format&fit=crop&w=600&q=80",
-    rotation: "sm:rotate-1",
-  },
-  {
-    id: "09",
-    tag: "CUSTOM RINGS",
-    title: "Stamped Custom Rings / Hammerless Ring Press",
-    desc: "Create your own custom stamped ring with our easy hammerless ring press.",
-    image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=600&q=80",
-    rotation: "sm:-rotate-2",
-  },
-  {
-    id: "10",
-    tag: "PLUSH BAGS",
-    title: "Silly Sacks (Custom Character Plush Bags)",
-    desc: "Bring your imagination to life with custom character plush bags.",
-    image: "https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?auto=format&fit=crop&w=600&q=80",
-    rotation: "sm:rotate-1",
-  },
-];
-
-const STEPS = [
-  {
-    id: "01",
-    title: "THINK",
-    desc: "Start with an idea. Tell us what you want to create, the occasion, your style, and the kind of novelty that would make your event memorable.",
-  },
-  {
-    id: "02",
-    title: "DESIGN",
-    desc: "Make it personal. Choose your colors, designs, materials, and details. Customize your novelty to match your event, theme, or personality.",
-  },
-  {
-    id: "03",
-    title: "CREATE",
-    desc: "Bring it to life. From custom hats and bracelets to pillows, keychains, rings, and plush bags, turn your idea into something unique your guests can enjoy and take home.",
-  },
-];
+import { useCmsContent } from "../lib/cmsContent";
+import { noveltyContentFromRow } from "../lib/noveltyContent";
 
 const Novelties = () => {
+  const { pages } = useCmsContent();
+  const content = noveltyContentFromRow(pages.novelties);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -118,7 +22,7 @@ const Novelties = () => {
         <section className="relative overflow-hidden pt-32 pb-20 md:pt-40 md:pb-28 flex items-center bg-[#041222]">
           {/* Background image uploaded by user (unzoomed positioning) */}
           <img
-            src="/novelties-bg.png"
+            src={content.heroImage}
             alt="Novelties background"
             className="absolute inset-0 h-full w-full object-cover object-right pointer-events-none select-none z-0"
           />
@@ -139,18 +43,15 @@ const Novelties = () => {
 
             {/* Main Headline */}
             <h1 className="mt-6 font-serif text-[clamp(3.2rem,7.5vw,6.5rem)] font-normal leading-[1.04] tracking-tight text-white">
-              Make Room <br />
-              For{" "}
+              {content.heroTitle} <br />
               <span className="italic font-serif text-[#0099FF] drop-shadow-[0_0_30px_rgba(0,153,255,0.45)]">
-                Wonder.
+                {content.heroHighlight}
               </span>
             </h1>
 
             {/* Description */}
             <p className="mt-7 max-w-xl text-[16px] leading-relaxed text-white/70 md:text-[18px]">
-              Not every great event needs a screen. Discover tactile, social and surprising
-              experiences designed to give your guests something to talk about long after the night
-              is over.
+              {content.heroSubtitle}
             </p>
 
             {/* Buttons */}
@@ -177,18 +78,14 @@ const Novelties = () => {
                   <span>02 / THE ART OF THE UNEXPECTED</span>
                 </div>
                 <h2 className="mt-4 font-serif text-[clamp(2.4rem,5vw,4.5rem)] font-extrabold uppercase leading-[1.05] tracking-tight text-white">
-                  THE ART OF <br />
-                  THE <br />
-                  <span className="italic font-serif text-[#0099FF]">UNEXPECTED.</span>
+                  {content.introHeading}
                 </h2>
               </div>
 
               {/* Right Column */}
               <div className="lg:col-span-6 flex flex-col gap-8">
                 <p className="font-serif text-[18px] leading-relaxed text-white/80 md:text-[20px]">
-                  Our Novelties collection brings hands-on creativity to your event. These unique,
-                  interactive experiences give guests the chance to make, personalize, and take
-                  home something special — turning moments into lasting memories.
+                  {content.introBody}
                 </p>
 
                 <div className="pt-4 border-t border-white/10">
@@ -219,22 +116,20 @@ const Novelties = () => {
                   <span className="h-[1px] flex-1 bg-[#0099FF]/40" />
                 </div>
                 <h2 className="mt-4 font-serif text-[clamp(2.6rem,5.5vw,4.8rem)] font-extrabold uppercase leading-[1.05] tracking-tight text-white">
-                  START WITH A <br />
-                  <span className="italic font-serif text-[#0099FF]">FEELING.</span>
+                  {content.stepsHeading}
                 </h2>
               </div>
               <div className="lg:col-span-5 flex flex-col justify-end pb-2">
                 <span className="h-[2px] w-6 bg-[#0099FF] mb-4 inline-block" />
                 <p className="text-[14px] md:text-[15.5px] leading-relaxed text-white/75">
-                  Choose a mood, a memory or simply something your guests have never tried.
-                  We will shape the details around it.
+                  {content.stepsIntro}
                 </p>
               </div>
             </div>
 
             {/* 3 Step Cards with Native Glowing Corner Arcs */}
             <div className="grid grid-cols-1 gap-6 md:grid-cols-3 pt-2">
-              {STEPS.map((step) => (
+              {content.steps.map((step) => (
                 <div
                   key={step.id}
                   className="group relative overflow-hidden rounded-[20px] border border-[#0099FF]/40 bg-gradient-to-b from-[#061833] via-[#041226] to-[#020b1a] p-7 md:p-9 shadow-[0_10px_30px_rgba(0,102,255,0.12)] transition-all duration-300 hover:border-[#0099FF] hover:shadow-[0_14px_45px_rgba(0,153,255,0.25)] hover:-translate-y-1"
@@ -293,7 +188,7 @@ const Novelties = () => {
             {/* Header bar */}
             <div className="flex flex-wrap items-center justify-between gap-4 mb-16 pb-6 border-b border-white/10">
               <div className="text-[12px] font-bold uppercase tracking-[0.22em] text-[#0099FF]">
-                04 / CREATIVE WORKSHOPS
+                04 / {content.workshopsHeading}
               </div>
               <a
                 href="/build-novelty"
@@ -306,10 +201,10 @@ const Novelties = () => {
 
             {/* 10 Card Editorial Photo Grid (5 per row on desktop) */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-6">
-              {WORKSHOPS.map((item) => (
+              {content.workshops.map((item, index) => (
                 <a
                   key={item.id}
-                  href={`/build-novelty?product=${item.id === '01' ? 'trucker-hats' : item.id === '03' ? 'custom-socks' : item.id === '04' ? 'custom-bracelets' : item.id === '05' ? 'pillow-dolls' : item.id === '06' ? 'sequence-pillows' : item.id === '07' ? 'intention-bracelets' : item.id === '08' ? 'laser-keychains' : item.id === '09' ? 'stamped-rings' : item.id === '10' ? 'plush-bags' : 'trucker-hats'}`}
+                  href={`/build-novelty?product=${item.productId || "trucker-hats"}`}
                   className={`group relative flex flex-col transition-all duration-500 hover:z-30 hover:scale-[1.03] ${item.rotation}`}
                 >
                   {/* Physical Printed Photo Frame */}
@@ -332,7 +227,7 @@ const Novelties = () => {
                       <div className="absolute top-3 inset-x-3 flex items-center justify-between z-10">
                         {/* Number */}
                         <span className="font-serif text-white font-medium text-sm drop-shadow">
-                          {item.id}
+                          {item.number || String(index + 1).padStart(2, "0")}
                         </span>
                         {/* Outlined Category Pill */}
                         <span className="border border-white/50 bg-black/30 rounded-full px-3 py-0.5 text-[9px] font-bold uppercase tracking-wider text-white backdrop-blur-sm">
