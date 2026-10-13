@@ -84,7 +84,7 @@ export default function NoveltyPageEditor({ adminEmail }) {
     workshops: [...current.workshops, {
       id: crypto.randomUUID(), number: String(current.workshops.length + 1).padStart(2, "0"),
       productId: NOVELTY_BUILDER_OPTIONS[0].id, tag: "NEW NOVELTY", title: "New novelty", desc: "Add a short description.",
-      image: "", mediaPath: "", rotation: "",
+      image: DEFAULT_NOVELTY_CONTENT.workshops[0].image, mediaPath: "", rotation: "",
     }],
   }));
 
@@ -116,8 +116,6 @@ export default function NoveltyPageEditor({ adminEmail }) {
         hero_subtitle: draft.heroSubtitle.trim(),
         hero_image_url: draft.heroImage,
         hero_image_path: draft.heroImagePath || null,
-        thumbnail_image_url: draft.heroImage,
-        thumbnail_image_path: draft.heroImagePath || null,
         gallery,
         updated_at: new Date().toISOString(),
         updated_by: adminEmail,
