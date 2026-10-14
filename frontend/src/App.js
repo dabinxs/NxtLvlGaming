@@ -22,6 +22,7 @@ import SimRacing from "./components/SimRacing";
 import Novelties from "./components/Novelties";
 import NoveltyAccess from "./components/NoveltyAccess";
 import QuotePage from "./components/QuotePage";
+import NoveltyOrder from "./components/NoveltyOrder";
 import ContactPage from "./components/ContactPage";
 import AboutPage from "./components/AboutPage";
 import AdminPage from "./components/AdminPage";
@@ -64,6 +65,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/quote" element={<QuotePage />} />
+        <Route path="/novelty-order" element={<NoveltyOrder />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/gaming-events" element={<GamingEvents />} />

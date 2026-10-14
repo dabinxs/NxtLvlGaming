@@ -40,6 +40,7 @@ import {
 } from "lucide-react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import { supabase, CMS_MEDIA_BUCKET } from "../lib/supabase";
 
 // Interactive 2D Full RGB Spectrum Color Picker (Matching user reference)
 const RGBSpectrumPicker = ({ activeColor, onChangeColor, onClose }) => {
@@ -497,6 +498,9 @@ const BuildNovelty = () => {
   const [showModal, setShowModal] = useState(false);
   const [previewDataUrl, setPreviewDataUrl] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSavingDesign, setIsSavingDesign] = useState(false);
+  const [designError, setDesignError] = useState("");
+  const [savedDesign, setSavedDesign] = useState(null);
 
   // File Upload Refs
   const fileInputRef = useRef(null);
@@ -1018,13 +1022,47 @@ const BuildNovelty = () => {
     setIsSubmitted(false);
   };
 
-  const handleConfirmSubmit = () => {
-    setIsSubmitted(true);
-    setTimeout(() => {
-      setShowModal(false);
-      setIsSubmitted(false);
-      navigate("/novelties");
-    }, 2200);
+  const handleConfirmSubmit = async () => {
+    setIsSavingDesign(true);
+    setDesignError("");
+    try {
+      const submissionId = crypto.randomUUID();
+      const imageBlob = await (await fetch(previewDataUrl)).blob();
+      const storagePath = `novelty-designs/${submissionId}.png`;
+      const { error: uploadError } = await supabase.storage.from(CMS_MEDIA_BUCKET).upload(storagePath, imageBlob, {
+        contentType: "image/png", cacheControl: "3600", upsert: false,
+      });
+      if (uploadError) throw uploadError;
+      const { data: imageData } = supabase.storage.from(CMS_MEDIA_BUCKET).getPublicUrl(storagePath);
+      const design = {
+        id: submissionId,
+        productId: selectedProduct.id,
+        productTitle: selectedProduct.title,
+        imageUrl: imageData.publicUrl,
+        imagePath: storagePath,
+        styles: activePills,
+        description,
+        createdAt: new Date().toISOString(),
+      };
+      const { error: insertError } = await supabase.from("novelty_design_submissions").insert({
+        id: submissionId,
+        product_id: selectedProduct.id,
+        product_title: selectedProduct.title,
+        image_url: imageData.publicUrl,
+        image_path: storagePath,
+        styles: activePills,
+        description,
+        status: "new",
+      });
+      if (insertError) throw insertError;
+      sessionStorage.setItem("nxtlvl-selected-novelty-design", JSON.stringify(design));
+      setSavedDesign(design);
+      setIsSubmitted(true);
+    } catch (error) {
+      setDesignError(error.message || "Could not save your design. Please try again.");
+    } finally {
+      setIsSavingDesign(false);
+    }
   };
 
   return (
@@ -1915,23 +1953,28 @@ const BuildNovelty = () => {
                   </button>
                   <button
                     onClick={handleConfirmSubmit}
+                    disabled={isSavingDesign}
                     className="inline-flex items-center gap-2 rounded-full bg-[#0099FF] px-7 py-3 text-xs font-bold uppercase tracking-wider text-white shadow-[0_0_20px_rgba(0,153,255,0.5)] hover:bg-[#0088EE]"
                   >
-                    SUBMIT DESIGN <ArrowRight className="h-4 w-4" />
+                    {isSavingDesign ? "SAVING DESIGN…" : "GET DESIGN"} <ArrowRight className="h-4 w-4" />
                   </button>
                 </div>
+                {designError && <p role="alert" className="mt-3 text-right text-xs text-red-300">{designError}</p>}
               </>
             ) : (
-              <div className="py-8 text-center flex flex-col items-center">
-                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#0099FF]/20 text-[#0099FF] shadow-[0_0_30px_rgba(0,153,255,0.5)]">
-                  <Check className="h-8 w-8" />
+              <div className="py-3">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#0099FF]/20 text-[#0099FF]"><Check className="h-6 w-6" /></div>
+                <h3 className="mt-4 text-2xl font-bold font-serif text-white">Your design is ready</h3>
+                <p className="mt-2 text-sm text-white/65">Choose how you’d like to get your {savedDesign?.productTitle || "novelty"}.</p>
+                <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                  <button onClick={() => navigate(`/quote?novelty=${encodeURIComponent(savedDesign?.id || "")}`)} className="rounded-2xl border border-[#168fff]/50 bg-[#0785ef]/15 p-4 text-left hover:bg-[#0785ef]/25">
+                    <strong className="block text-sm text-white">ONSITE</strong><span className="mt-1 block text-xs text-white/60">Add quantities, then build your event quote.</span>
+                  </button>
+                  <button onClick={() => navigate(`/novelty-order?design=${encodeURIComponent(savedDesign?.id || "")}`)} className="rounded-2xl border border-white/15 bg-white/5 p-4 text-left hover:bg-white/10">
+                    <strong className="block text-sm text-white">DROPSHIPPING</strong><span className="mt-1 block text-xs text-white/60">Shop designs, quantities, and delivery address.</span>
+                  </button>
                 </div>
-                <h3 className="mt-4 text-2xl font-bold font-serif text-white">
-                  Design Submitted!
-                </h3>
-                <p className="mt-2 text-xs text-white/70 max-w-xs">
-                  Your custom novelty design has been generated and queued for event production.
-                </p>
+                <button onClick={() => { setShowModal(false); setIsSubmitted(false); navigate("/novelties"); }} className="mt-4 w-full py-2 text-xs font-bold uppercase tracking-wider text-white/50 hover:text-white">Maybe later</button>
               </div>
             )}
           </div>

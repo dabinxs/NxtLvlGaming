@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import {
   ArrowLeft,
   ArrowRight,
@@ -32,6 +32,7 @@ import {
   subMonths,
 } from "date-fns";
 import Navbar from "./Navbar";
+import { NOVELTY_PRODUCTS } from "./BuildNovelty";
 import "./QuotePage.css";
 
 const STEPS = ["Event type", "Guests", "Date", "Location", "Experience", "Contact"];
@@ -96,7 +97,15 @@ function mapLink(point, query) {
 }
 
 function QuotePage() {
-  const [step, setStep] = useState(0);
+  const [searchParams] = useSearchParams();
+  const hasNovelty = Boolean(searchParams.get("novelty"));
+  const selectedDesign = useMemo(() => {
+    try { return JSON.parse(sessionStorage.getItem("nxtlvl-selected-novelty-design") || "null"); } catch { return null; }
+  }, []);
+  const [step, setStep] = useState(() => (searchParams.get("novelty") ? 0 : 0));
+  const quoteStep = hasNovelty ? step - 1 : step;
+  const steps = hasNovelty ? ["Novelties", ...STEPS] : STEPS;
+  const [noveltyQuantities, setNoveltyQuantities] = useState(() => selectedDesign ? { [selectedDesign.id]: 1 } : {});
   const [draft, setDraft] = useState(readDraft);
   const [lookup, setLookup] = useState({ state: "idle", message: "" });
   const [submitted, setSubmitted] = useState(false);
@@ -160,18 +169,19 @@ function QuotePage() {
   };
 
   const canContinue = () => {
-    if (step === 0) return Boolean(draft.eventType);
-    if (step === 1) return Boolean(draft.guests);
-    if (step === 2) return Boolean(draft.date || draft.dateFlexible);
-    if (step === 3) return Boolean(draft.location.trim() || draft.locationFlexible);
-    if (step === 4) return Boolean(draft.package);
+    if (hasNovelty && step === 0) return Object.values(noveltyQuantities).some((quantity) => Number(quantity) > 0);
+    if (quoteStep === 0) return Boolean(draft.eventType);
+    if (quoteStep === 1) return Boolean(draft.guests);
+    if (quoteStep === 2) return Boolean(draft.date || draft.dateFlexible);
+    if (quoteStep === 3) return Boolean(draft.location.trim() || draft.locationFlexible);
+    if (quoteStep === 4) return Boolean(draft.package);
     return Boolean(draft.name.trim() && draft.email.trim());
   };
 
   const continueFlow = (event) => {
     event?.preventDefault();
     if (!canContinue()) return;
-    if (step < STEPS.length - 1) setStep((current) => current + 1);
+    if (step < steps.length - 1) setStep((current) => current + 1);
   };
 
   const selectDate = (date) => {
@@ -198,6 +208,11 @@ function QuotePage() {
           date: draft.date ? format(dateValue, "MMMM d, yyyy") : "Flexible / to be confirmed",
           location: draft.locationFlexible ? "Still deciding" : draft.mapPoint?.label || draft.location || "Still deciding",
           experience: draft.package || "Please recommend something",
+          "Novelty fulfillment": hasNovelty ? "ONSITE" : "Event quote",
+          "Novelty items": hasNovelty ? Object.entries(noveltyQuantities).filter(([, quantity]) => Number(quantity) > 0).map(([productId, quantity]) => {
+            const product = NOVELTY_PRODUCTS.find((item) => item.id === productId);
+            return `${product?.title || productId}: ${quantity}${productId === selectedDesign?.productId ? ` (design ${selectedDesign.id}, ${selectedDesign.imageUrl})` : ""}`;
+          }).join("\n") : "None",
           name: draft.name,
           email: draft.email,
           _replyto: draft.email,
@@ -217,7 +232,7 @@ function QuotePage() {
     }
   };
 
-  const progressWidth = `${((step + 1) / STEPS.length) * 100}%`;
+  const progressWidth = `${((step + 1) / steps.length) * 100}%`;
   const displayDate = draft.date ? format(dateValue, "EEE, MMM d, yyyy") : draft.dateFlexible ? "Date is flexible" : "Choose a date";
 
   return (
@@ -233,12 +248,13 @@ function QuotePage() {
           <p className="quote-eyebrow"><span /> YOUR EVENT, YOUR WAY <span className="quote-eyebrow-line" /></p>
           <h1>Build your <span>event</span></h1>
           <p className="quote-lede">A few quick details help us shape the right experience. You can change anything as you go.</p>
+          {!hasNovelty && <Link className="quote-novelty-cta" to="/novelties">GET YOUR CUSTOMIZED NOVELTIES <Sparkles size={15} /></Link>}
         </div>
 
         <nav className="quote-progress" aria-label="Quote steps">
           <div className="quote-progress-track"><span style={{ width: progressWidth }} /></div>
-          {STEPS.map((label, index) => {
-            const Icon = STEP_ICONS[index];
+          {steps.map((label, index) => {
+            const Icon = hasNovelty && index === 0 ? Sparkles : STEP_ICONS[hasNovelty ? index - 1 : index];
             const isDone = index < step;
             const isCurrent = index === step;
             return (
@@ -280,8 +296,8 @@ function QuotePage() {
         <div className="quote-main-grid">
           <section className="quote-card" aria-live="polite">
             <div className="quote-card-heading">
-              <p className="quote-step-count">STEP {String(step + 1).padStart(2, "0")} <span>/</span> 06</p>
-              <h2>{["Select your event type", "How many guests?", "When is the event?", "Where should we bring it?", "Choose your experience", "Your contact details"][step]}</h2>
+              <p className="quote-step-count">STEP {String(step + 1).padStart(2, "0")} <span>/</span> {String(steps.length).padStart(2, "0")}</p>
+              <h2>{hasNovelty && step === 0 ? "Choose your novelties" : ["Select your event type", "How many guests?", "When is the event?", "Where should we bring it?", "Choose your experience", "Your contact details"][quoteStep]}</h2>
               <p className="quote-step-helper">{[
                 "Pick the kind of event you're planning. We can tailor the details later.",
                 "An estimate is perfect. We can scale the setup as your guest list changes.",
@@ -289,10 +305,22 @@ function QuotePage() {
                 "Add a venue or city and we’ll pin it to a map for travel planning.",
                 "Choose a package or ask our team to recommend the right mix.",
                 "We’ll use these details to follow up with your tailored quote.",
-              ][step]}</p>
+              ][quoteStep]}</p>
             </div>
 
-            {step === 0 && (
+            {hasNovelty && step === 0 && <div className="grid gap-3">
+              <p className="quote-step-helper">Choose quantities for one or more custom designs before planning the event.</p>
+              {NOVELTY_PRODUCTS.map((product) => {
+                const isSelected = product.id === selectedDesign?.productId;
+                return <article key={product.id} className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/[.02] p-3">
+                  <img src={isSelected ? selectedDesign.imageUrl : product.image} alt="" className="h-16 w-20 rounded-lg object-cover" />
+                  <div className="min-w-0 flex-1"><strong className="text-sm text-white">{product.title}</strong><p className="text-xs text-white/50">{isSelected ? "Your submitted custom design" : "Start a custom design to order this item"}</p></div>
+                  <input aria-label={`${product.title} quantity`} type="number" min="0" max="10000" value={noveltyQuantities[product.id] || 0} disabled={!isSelected} onChange={(event) => setNoveltyQuantities((current) => ({ ...current, [product.id]: Number(event.target.value) }))} className="w-20 rounded-lg border border-white/15 bg-[#07101f] px-2 py-2 text-white disabled:opacity-40" />
+                </article>;
+              })}
+            </div>}
+
+            {quoteStep === 0 && (!hasNovelty || step > 0) && (
               <div className="quote-choice-grid quote-event-grid">
                 {EVENT_TYPES.map(({ title, icon: Icon }) => (
                   <button type="button" key={title} onClick={() => update("eventType", title)} className={`quote-choice ${draft.eventType === title ? "is-selected" : ""}`} aria-pressed={draft.eventType === title}>
@@ -302,7 +330,7 @@ function QuotePage() {
               </div>
             )}
 
-            {step === 1 && (
+            {quoteStep === 1 && (
               <div className="quote-choice-grid quote-guest-grid">
                 {GUEST_COUNTS.map((count) => (
                   <button type="button" key={count} onClick={() => update("guests", count)} className={`quote-choice quote-guest-choice ${draft.guests === count ? "is-selected" : ""}`} aria-pressed={draft.guests === count}>
@@ -312,7 +340,7 @@ function QuotePage() {
               </div>
             )}
 
-            {step === 2 && (
+            {quoteStep === 2 && (
               <div className="quote-date-layout">
                 <div className="quote-calendar-wrap">
                   <div className="quote-field-label">PICK YOUR DATE</div>
@@ -374,7 +402,7 @@ function QuotePage() {
               </div>
             )}
 
-            {step === 3 && (
+            {quoteStep === 3 && (
               <div className="quote-location-layout">
                 <div className="quote-location-controls">
                   <form className="quote-location-search" onSubmit={findLocation}>
@@ -414,7 +442,7 @@ function QuotePage() {
               </div>
             )}
 
-            {step === 4 && (
+            {quoteStep === 4 && (
               <div className="quote-choice-grid quote-package-grid">
                 {PACKAGES.map((name) => (
                   <button type="button" key={name} onClick={() => update("package", name)} className={`quote-choice ${draft.package === name ? "is-selected" : ""}`} aria-pressed={draft.package === name}>
@@ -427,7 +455,7 @@ function QuotePage() {
               </div>
             )}
 
-            {step === 5 && (
+            {quoteStep === 5 && (
               <form id="quote-contact-form" className="quote-contact-form" onSubmit={requestQuote}>
                 <label className="quote-honeypot" aria-hidden="true">Leave this field empty<input name="_honey" tabIndex={-1} autoComplete="off" /></label>
                 <label className="quote-form-field"><span>YOUR NAME <b>*</b></span><input required autoComplete="name" value={draft.name} onChange={(event) => update("name", event.target.value)} placeholder="Full name" /></label>
@@ -444,14 +472,14 @@ function QuotePage() {
             )}
 
             <div className="quote-card-footer">
-              <button type="button" className="quote-back-button" onClick={() => setStep((current) => Math.max(0, current - 1))} disabled={step === 0}><ArrowLeft size={16} /> BACK</button>
-              {step < STEPS.length - 1 ? (
+          <button type="button" className="quote-back-button" onClick={() => setStep((current) => Math.max(0, current - 1))} disabled={step === 0}><ArrowLeft size={16} /> BACK</button>
+              {step < steps.length - 1 ? (
                 <button type="button" className="quote-continue-button" onClick={continueFlow} disabled={!canContinue()}>CONTINUE <ArrowRight size={16} /></button>
               ) : (
                 <button type="submit" form="quote-contact-form" className="quote-continue-button quote-submit-button" disabled={!canContinue() || isSubmitting}>{isSubmitting ? "SENDING…" : "REQUEST MY QUOTE"} <Send size={16} /></button>
               )}
             </div>
-            {step === 5 && !canContinue() && <p className="quote-required-note">Name and a valid email address are required.</p>}
+            {quoteStep === 5 && !canContinue() && <p className="quote-required-note">Name and a valid email address are required.</p>}
           </section>
 
           <aside className="quote-summary" aria-label="Your event summary">
