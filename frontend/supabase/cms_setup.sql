@@ -119,6 +119,31 @@ on public.cms_pages for delete
 to authenticated
 using ((select public.is_cms_admin()));
 
+-- Customer novelty designs are publicly submittable and readable only by CMS admins.
+create table if not exists public.novelty_design_submissions (
+  id uuid primary key default gen_random_uuid(),
+  product_id text not null,
+  product_title text not null,
+  image_url text not null,
+  image_path text not null,
+  styles text[] not null default '{}',
+  description text not null default '',
+  status text not null default 'new' check (status in ('new', 'reviewing', 'quoted', 'complete')),
+  created_at timestamptz not null default now()
+);
+alter table public.novelty_design_submissions enable row level security;
+grant insert on public.novelty_design_submissions to anon, authenticated;
+grant select, update on public.novelty_design_submissions to authenticated;
+drop policy if exists "Visitors can submit novelty designs" on public.novelty_design_submissions;
+create policy "Visitors can submit novelty designs" on public.novelty_design_submissions
+for insert to anon, authenticated with check (status = 'new');
+drop policy if exists "CMS admins can view novelty designs" on public.novelty_design_submissions;
+create policy "CMS admins can view novelty designs" on public.novelty_design_submissions
+for select to authenticated using ((select public.is_cms_admin()));
+drop policy if exists "CMS admins can update novelty designs" on public.novelty_design_submissions;
+create policy "CMS admins can update novelty designs" on public.novelty_design_submissions
+for update to authenticated using ((select public.is_cms_admin())) with check ((select public.is_cms_admin()));
+
 -- Public URLs are needed to display images on the public website. Writes are
 -- still protected by verified-admin checks in the storage object policies.
 insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
@@ -139,6 +164,11 @@ create policy "CMS admin can upload media"
 on storage.objects for insert
 to authenticated
 with check (bucket_id = 'cms-media' and (select public.is_cms_admin()));
+
+drop policy if exists "Visitors can upload novelty designs" on storage.objects;
+create policy "Visitors can upload novelty designs" on storage.objects
+for insert to anon, authenticated
+with check (bucket_id = 'cms-media' and name like 'novelty-designs/%');
 
 drop policy if exists "CMS admin can update media" on storage.objects;
 create policy "CMS admin can update media"

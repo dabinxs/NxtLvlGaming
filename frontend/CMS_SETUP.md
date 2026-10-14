@@ -5,12 +5,12 @@ The CMS uses Supabase Authentication, Postgres, and Storage. Firebase remains co
 ## One-time Supabase setup
 
 1. Open the Supabase project `plyjyqyozzeoickaywkd` and go to **SQL Editor**.
-2. Run the complete script in `supabase/cms_setup.sql`. It creates the CMS tables, the public media bucket, and row-level security policies. Only confirmed `team@nextlevelgamingevents.com` and `kcbianzon@gmail.com` accounts can edit CMS content or manage novelty access.
+2. Run the complete script in `supabase/cms_setup.sql`. It creates the CMS tables, the public media bucket, novelty design inbox, and row-level security policies. Only confirmed `team@nextlevelgamingevents.com` and `kcbianzon@gmail.com` accounts can read customer design submissions or edit CMS content. Visitors can submit designs to the inbox.
 3. In **Authentication → URL Configuration**, set the Site URL to `https://nextlevelgaming-events.web.app` and add these Redirect URLs:
    - `https://nextlevelgaming-events.web.app/cms`
    - `http://localhost:3000/cms`
 4. Open `/cms` on the website. Choose **First time? Create the owner account**, register either approved address, and confirm the link sent to that address if Supabase requests confirmation. Then sign in. Accounts marked confirmed in Supabase can sign in directly.
-5. In the CMS, edit a page and choose **Save & Publish**. Supabase stores the page changes and image uploads, and the public site reads those updates.
+5. In the CMS, edit a page and choose **Save & Publish**. Supabase stores the page changes and image uploads, and the public site reads those updates. Open **Design submissions** to review customer novelty artwork and download the original PNG by its unique submission ID.
 
 ## Novelty customization access
 

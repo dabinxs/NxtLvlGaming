@@ -102,10 +102,10 @@ function QuotePage() {
   const selectedDesign = useMemo(() => {
     try { return JSON.parse(sessionStorage.getItem("nxtlvl-selected-novelty-design") || "null"); } catch { return null; }
   }, []);
-  const [step, setStep] = useState(() => (searchParams.get("novelty") ? 0 : 0));
+  const [step, setStep] = useState(0);
   const quoteStep = hasNovelty ? step - 1 : step;
   const steps = hasNovelty ? ["Novelties", ...STEPS] : STEPS;
-  const [noveltyQuantities, setNoveltyQuantities] = useState(() => selectedDesign ? { [selectedDesign.id]: 1 } : {});
+  const [noveltyQuantities, setNoveltyQuantities] = useState(() => selectedDesign ? { [selectedDesign.productId]: 1 } : {});
   const [draft, setDraft] = useState(readDraft);
   const [lookup, setLookup] = useState({ state: "idle", message: "" });
   const [submitted, setSubmitted] = useState(false);
@@ -492,6 +492,7 @@ function QuotePage() {
               <div><span className="quote-summary-icon"><CalendarDays size={15} /></span><span><small>DATE</small><strong>{draft.date ? format(dateValue, "MMM d, yyyy") : draft.dateFlexible ? "Flexible" : "Choose a date"}</strong></span></div>
               <div><span className="quote-summary-icon"><MapPin size={15} /></span><span><small>LOCATION</small><strong>{draft.locationFlexible ? "Still deciding" : draft.mapPoint?.label?.split(",")[0] || draft.location || "Add a venue or city"}</strong></span></div>
               <div><span className="quote-summary-icon"><Package size={15} /></span><span><small>EXPERIENCE</small><strong>{draft.package || "Choose a package"}</strong></span></div>
+              {hasNovelty && <div><span className="quote-summary-icon"><Sparkles size={15} /></span><span><small>NOVELTIES</small><strong>{Object.entries(noveltyQuantities).filter(([, quantity]) => quantity > 0).map(([id, quantity]) => `${NOVELTY_PRODUCTS.find((item) => item.id === id)?.title || id} × ${quantity}`).join(", ") || "Choose quantities"}</strong></span></div>}
             </div>
             <div className="quote-summary-footer"><span className="quote-sparkle"><Sparkles size={15} /></span><span>No pressure. Your request is a starting point, and our team will help shape the right fit.</span></div>
           </aside>

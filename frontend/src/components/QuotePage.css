@@ -193,6 +193,8 @@
 .quote-sparkle { color: #4c91ff; }
 .quote-privacy { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 15px 0 0; color: #4e5d73; font-size: 8px; font-weight: 700; letter-spacing: .16em; }
 .quote-privacy > span:nth-child(even) { color: #2564bb; }
+.quote-novelty-cta { display: inline-flex; align-items: center; gap: 8px; margin-top: 15px; border: 1px solid rgba(53,145,255,.35); border-radius: 999px; padding: 9px 14px; background: rgba(0,102,253,.08); color: #8ec5ff; font-size: 9px; font-weight: 800; letter-spacing: .12em; text-decoration: none; transition: background .2s ease, border-color .2s ease; }
+.quote-novelty-cta:hover { border-color: #3480ff; background: rgba(0,102,253,.16); }
 
 /* Quote planner refinements: use the shared site navigation and keep controls readable. */
 .quote-topbar {
