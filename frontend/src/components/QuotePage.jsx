@@ -315,7 +315,7 @@ function QuotePage() {
                 return <article key={product.id} className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/[.02] p-3">
                   <img src={isSelected ? selectedDesign.imageUrl : product.image} alt="" className="h-16 w-20 rounded-lg object-cover" />
                   <div className="min-w-0 flex-1"><strong className="text-sm text-white">{product.title}</strong><p className="text-xs text-white/50">{isSelected ? "Your submitted custom design" : "Start a custom design to order this item"}</p></div>
-                  <input aria-label={`${product.title} quantity`} type="number" min="0" max="10000" value={noveltyQuantities[product.id] || 0} disabled={!isSelected} onChange={(event) => setNoveltyQuantities((current) => ({ ...current, [product.id]: Number(event.target.value) }))} className="w-20 rounded-lg border border-white/15 bg-[#07101f] px-2 py-2 text-white disabled:opacity-40" />
+                  <input aria-label={`${product.title} quantity`} type="number" min="0" max="10000" value={noveltyQuantities[product.id] || 0} onChange={(event) => setNoveltyQuantities((current) => ({ ...current, [product.id]: Number(event.target.value) }))} className="w-20 rounded-lg border border-white/15 bg-[#07101f] px-2 py-2 text-white" />
                 </article>;
               })}
             </div>}

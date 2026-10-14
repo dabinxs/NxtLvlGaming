@@ -13,6 +13,9 @@ function loadDesign() {
 export default function NoveltyOrder() {
   const [params] = useSearchParams();
   const design = useMemo(loadDesign, []);
+  const savedDesigns = useMemo(() => {
+    try { return JSON.parse(sessionStorage.getItem("nxtlvl-novelty-designs") || "[]"); } catch { return design ? [design] : []; }
+  }, [design]);
   const [items, setItems] = useState(() => {
     let saved = {};
     try { saved = JSON.parse(sessionStorage.getItem("nxtlvl-novelty-cart") || "{}"); } catch { saved = {}; }
@@ -50,7 +53,10 @@ export default function NoveltyOrder() {
   const changeQuantity = (product, amount) => setItems((current) => {
     const next = { ...current };
     const quantity = Math.max(0, Math.min(10000, (next[product.id]?.quantity || 0) + amount));
-    if (quantity) next[product.id] = { ...next[product.id], quantity };
+    if (quantity) {
+      const productDesign = savedDesigns.find((item) => item.productId === product.id);
+      next[product.id] = { ...next[product.id], quantity, designId: next[product.id]?.designId || productDesign?.id || "" };
+    }
     else delete next[product.id];
     sessionStorage.setItem("nxtlvl-novelty-cart", JSON.stringify(next));
     return next;
@@ -66,7 +72,7 @@ export default function NoveltyOrder() {
     setBusy(true); setStatus("");
     const itemText = Object.entries(items).map(([id, item]) => {
       const product = NOVELTY_PRODUCTS.find((entry) => entry.id === id);
-      const submittedDesign = item.designId === design?.id ? design : null;
+      const submittedDesign = savedDesigns.find((entry) => entry.id === item.designId);
       return `${product?.title || id} — quantity ${item.quantity}${submittedDesign ? ` — design ${design.id}: ${design.imageUrl}` : " — custom design to be confirmed"}`;
     }).join("\n");
     try {
@@ -78,7 +84,7 @@ export default function NoveltyOrder() {
         "Cart items": itemText, "Total quantity": total,
       }) });
       const result = await response.json();
-      if (!response.ok || result.success === false || result.error) throw new Error("Quote delivery failed");
+      if (!response.ok || result.success === false || result.success === "false" || result.error) throw new Error("Quote delivery failed");
       sessionStorage.removeItem("nxtlvl-novelty-cart");
       setSent(true);
     } catch { setStatus("We couldn’t send the request. Please try again."); }
@@ -90,10 +96,10 @@ export default function NoveltyOrder() {
     <div className="mx-auto max-w-6xl px-5 pb-20 pt-32">
       <Link to="/novelties" className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-white/60"><ArrowLeft size={15}/> Novelties</Link>
       {sent ? <section className="mx-auto mt-12 max-w-xl rounded-3xl border border-white/10 bg-[#091426] p-8 text-center"><CheckCircle2 className="mx-auto text-emerald-400" size={42}/><h1 className="mt-4 text-3xl font-bold">Quote request sent</h1><p className="mt-3 text-sm text-white/60">Our team has your novelty designs, quantities, and delivery details and will follow up by email.</p></section> : <>
-        <header className="my-8"><p className="text-[10px] font-bold tracking-[.25em] text-sky-400">CUSTOM NOVELTIES / DROPSHIPPING</p><h1 className="mt-2 text-4xl font-extrabold">Your novelty cart</h1><p className="mt-3 max-w-2xl text-sm text-white/60">Select multiple products and quantities. We’ll confirm pricing and delivery with your quote.</p></header>
+        <header className="my-8"><p className="text-[10px] font-bold tracking-[.25em] text-sky-400">CUSTOM NOVELTIES / DROPSHIPPING</p><h1 className="mt-2 text-4xl font-extrabold">Your novelty cart</h1><p className="mt-3 max-w-2xl text-sm text-white/60">Select multiple products and quantities. We’ll confirm pricing and delivery with your quote.</p><Link to="/build-novelty" className="mt-4 inline-flex rounded-full border border-sky-400/40 px-4 py-2 text-[10px] font-bold tracking-widest text-sky-200">DESIGN ANOTHER NOVELTY</Link></header>
         <div className="grid gap-6 lg:grid-cols-[1.2fr_.8fr]">
-          <section className="grid gap-3">{NOVELTY_PRODUCTS.map((product) => { const quantity = items[product.id]?.quantity || 0; const ownDesign = items[product.id]?.designId === design?.id; return <article key={product.id} className={`flex items-center gap-4 rounded-2xl border p-4 ${quantity ? "border-sky-500/50 bg-sky-500/[.06]" : "border-white/10 bg-white/[.02]"}`}>
-            <img src={ownDesign ? design.imageUrl : product.image} alt="" className="h-20 w-24 rounded-xl object-cover"/><div className="min-w-0 flex-1"><span className="text-[9px] font-bold tracking-widest text-sky-400">{product.tag}</span><h2 className="font-semibold">{product.title}</h2><p className="text-xs text-white/45">{ownDesign ? "Your saved custom design" : "Design will be confirmed with our team"}</p></div>
+          <section className="grid gap-3">{NOVELTY_PRODUCTS.map((product) => { const quantity = items[product.id]?.quantity || 0; const productDesigns = savedDesigns.filter((item) => item.productId === product.id); const activeDesign = productDesigns.find((item) => item.id === items[product.id]?.designId); return <article key={product.id} className={`flex items-center gap-4 rounded-2xl border p-4 ${quantity ? "border-sky-500/50 bg-sky-500/[.06]" : "border-white/10 bg-white/[.02]"}`}>
+            <img src={activeDesign?.imageUrl || product.image} alt="" className="h-20 w-24 rounded-xl object-cover"/><div className="min-w-0 flex-1"><span className="text-[9px] font-bold tracking-widest text-sky-400">{product.tag}</span><h2 className="font-semibold">{product.title}</h2>{productDesigns.length ? <select aria-label={`${product.title} design`} value={activeDesign?.id || ""} onChange={(event) => setItems((current) => { const next = { ...current, [product.id]: { ...current[product.id], quantity: current[product.id]?.quantity || 1, designId: event.target.value } }; sessionStorage.setItem("nxtlvl-novelty-cart", JSON.stringify(next)); return next; })} className="mt-1 max-w-full rounded-md border border-white/15 bg-[#050c18] px-2 py-1 text-xs text-white">{productDesigns.map((entry) => <option value={entry.id} key={entry.id}>Design {entry.id.slice(0, 8)}</option>)}</select> : <p className="text-xs text-white/45">Design will be confirmed with our team</p>}</div>
             <div className="flex items-center gap-2"><button type="button" aria-label={`Remove one ${product.title}`} onClick={() => changeQuantity(product, -1)} className="grid h-8 w-8 place-items-center rounded-lg border border-white/15"><Minus size={14}/></button><span className="w-7 text-center font-bold">{quantity}</span><button type="button" aria-label={`Add one ${product.title}`} onClick={() => changeQuantity(product, 1)} className="grid h-8 w-8 place-items-center rounded-lg border border-white/15"><Plus size={14}/></button></div>
           </article>; })}</section>
           <form onSubmit={submit} className="h-fit rounded-2xl border border-white/10 bg-[#091426] p-5">

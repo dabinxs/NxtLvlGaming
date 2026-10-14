@@ -302,6 +302,7 @@ function NoveltyDesignInbox() {
   const [designs, setDesigns] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [search, setSearch] = useState("");
   const refreshDesigns = async () => {
     setLoading(true); setError("");
     const { data, error: queryError } = await supabase.from("novelty_design_submissions").select("*").order("created_at", { ascending: false });
@@ -313,11 +314,12 @@ function NoveltyDesignInbox() {
   return <>
     <section className="cms-editor-heading"><div><p className="cms-eyebrow">CUSTOMER WORK / NOVELTIES</p><h2>Design submissions</h2><p>Every saved design is grouped by submission ID and date, with a direct artwork download.</p></div><button onClick={refreshDesigns} className="cms-secondary-button">REFRESH INBOX</button></section>
     {error && <p className="cms-error">{error}</p>}
-    {loading ? <p className="cms-login-lede">Loading design submissions…</p> : designs.length ? <div className="cms-novelty-design-grid">{designs.map((design) => <article className="cms-panel cms-novelty-design-card" key={design.id}>
+    <label className="cms-design-search">Search submissions<input value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Product name or submission ID" /></label>
+    {loading ? <p className="cms-login-lede">Loading design submissions…</p> : designs.length ? <div className="cms-novelty-design-grid">{designs.filter((design) => `${design.product_title} ${design.id} ${design.description}`.toLowerCase().includes(search.toLowerCase())).map((design) => <article className="cms-panel cms-novelty-design-card" key={design.id}>
       <img src={design.image_url} alt={`${design.product_title} submitted design`} />
       <div className="cms-novelty-design-meta"><span className="cms-eyebrow">{design.status || "NEW"} · {new Date(design.created_at).toLocaleString()}</span><h3>{design.product_title}</h3><small>Submission {design.id}</small>
         {design.styles?.length > 0 && <p>Styles: {design.styles.join(", ")}</p>}{design.description && <p>{design.description}</p>}
-        <a className="cms-primary-button" href={design.image_url} download={`novelty-${design.id}.png`} target="_blank" rel="noreferrer"><FileImage size={15}/> DOWNLOAD ARTWORK</a>
+        <a className="cms-primary-button" href={`${design.image_url}?download=novelty-${design.id}.jpg`} download={`novelty-${design.id}.jpg`}><FileImage size={15}/> DOWNLOAD ARTWORK</a>
       </div>
     </article>)}</div> : <section className="cms-panel"><p className="cms-login-lede">No custom novelty designs have been submitted yet.</p></section>}
   </>;

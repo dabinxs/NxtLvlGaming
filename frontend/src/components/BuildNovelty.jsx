@@ -1027,10 +1027,18 @@ const BuildNovelty = () => {
     setDesignError("");
     try {
       const submissionId = crypto.randomUUID();
-      const imageBlob = await (await fetch(previewDataUrl)).blob();
-      const storagePath = `novelty-designs/${submissionId}.png`;
+      const sourceImage = new Image();
+      sourceImage.src = previewDataUrl;
+      await sourceImage.decode();
+      const scale = Math.min(1, 1600 / Math.max(sourceImage.naturalWidth, sourceImage.naturalHeight));
+      const exportCanvas = document.createElement("canvas");
+      exportCanvas.width = Math.max(1, Math.round(sourceImage.naturalWidth * scale));
+      exportCanvas.height = Math.max(1, Math.round(sourceImage.naturalHeight * scale));
+      exportCanvas.getContext("2d").drawImage(sourceImage, 0, 0, exportCanvas.width, exportCanvas.height);
+      const imageBlob = await new Promise((resolve, reject) => exportCanvas.toBlob((blob) => blob ? resolve(blob) : reject(new Error("Could not export the design image.")), "image/jpeg", 0.88));
+      const storagePath = `novelty-designs/${submissionId}.jpg`;
       const { error: uploadError } = await supabase.storage.from(CMS_MEDIA_BUCKET).upload(storagePath, imageBlob, {
-        contentType: "image/png", cacheControl: "3600", upsert: false,
+        contentType: "image/jpeg", cacheControl: "3600", upsert: false,
       });
       if (uploadError) throw uploadError;
       const { data: imageData } = supabase.storage.from(CMS_MEDIA_BUCKET).getPublicUrl(storagePath);
@@ -1056,6 +1064,8 @@ const BuildNovelty = () => {
       });
       if (insertError) throw insertError;
       sessionStorage.setItem("nxtlvl-selected-novelty-design", JSON.stringify(design));
+      const savedDesigns = JSON.parse(sessionStorage.getItem("nxtlvl-novelty-designs") || "[]");
+      sessionStorage.setItem("nxtlvl-novelty-designs", JSON.stringify([...savedDesigns.filter((item) => item.id !== design.id), design]));
       setSavedDesign(design);
       setIsSubmitted(true);
     } catch (error) {
