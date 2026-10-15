@@ -40,12 +40,6 @@ const offerings = [
     alt: "A large outdoor movie screen set up for an event",
   },
   {
-    title: "Custom novelties",
-    copy: "Tactile, screen-free experiences where guests create and personalize unique take-home keepsakes — turning event moments into lasting memories.",
-    image: "/novelties-bg.png",
-    alt: "Custom novelty merchandise and accessories",
-  },
-  {
     title: "Novelty workshops",
     copy: "Interactive craft and maker stations including Patched City trucker hats & beanies, custom socks, bead bracelets, pillow dolls, and laser-engraved crafts.",
     image: "/novelty-cards/patch-city.jpg",
@@ -247,7 +241,7 @@ function AboutPage() {
               <div className="about-work__track" tabIndex={0} role="group" aria-label="What we do cards. Use the arrow keys to browse.">
               <div className="about-work__intro">
                 <h2 id="about-work-title">WHAT WE<br />DO</h2>
-                <p className="about-work__hint">Five ways to bring people into the moment.</p>
+                <p className="about-work__hint">Four ways to bring people into the moment.</p>
               </div>
               {offerings.map((offering, index) => (
                 <article className="about-work__card" key={offering.title}>
