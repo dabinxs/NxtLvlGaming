@@ -13,7 +13,7 @@ import { useCmsPage } from "../lib/cmsContent";
 import { CMS_PAGES } from "../lib/cmsPages";
 
 const OVERVIEW_POINTS = [
-  "Screens from 12 ft to 32 ft",
+  "Ultra-bright LED & Inflatable screens",
   "Audio built for crowds and open spaces",
   "All-weather indoor & outdoor capability",
   "Video and licensing assistance always",
@@ -22,8 +22,8 @@ const OVERVIEW_POINTS = [
 const INCLUDED_FEATURES = [
   {
     icon: Monitor,
-    title: "Screens Up To 32 FT",
-    desc: "Massive inflatable and frame screens sized to your crowd and venue.",
+    title: "LED & Inflatable Screens",
+    desc: "Choose between ultra-bright daylight LED screens and giant inflatable screens sized for your crowd and venue.",
   },
   {
     icon: Projector,
@@ -44,19 +44,37 @@ const INCLUDED_FEATURES = [
 
 const GALLERY_IMAGES = [
   {
-    title: "Outdoor Movie Night",
-    subtitle: "A big-screen gathering beneath a sunset sky.",
+    title: "LED",
+    subtitle: "Ultra-bright mobile LED screen delivering vibrant clarity day or night.",
+    src: "/movie-nights-led.jpg",
+  },
+  {
+    title: "INFLATABLE",
+    subtitle: "Massive outdoor inflatable cinema screens bringing true big-screen cinema under the stars.",
     src: "/movie-nights-experience-1.png",
   },
+];
+
+const AVAILABLE_SCREENS = [
   {
-    title: "Indoor Event Screening",
-    subtitle: "A large indoor audience gathered around the screen.",
-    src: "/movie-nights-experience-2.png",
+    size: "16 FT SCREEN",
+    desc: "Great for backyards and family-wide events.",
+    price: "$499",
   },
   {
-    title: "Private Outdoor Screening",
-    subtitle: "A relaxed cinema setup in a garden setting.",
-    src: "/movie-nights-experience-3.png",
+    size: "21 FT SCREEN",
+    desc: "Great for parking lot gatherings.",
+    price: "$649",
+  },
+  {
+    size: "26 FT SCREEN",
+    desc: "Great for events out in the park or community spaces.",
+    price: "$849",
+  },
+  {
+    size: "40 FT SCREEN",
+    desc: "Perfect for Drive-Ins, City-wide events, and large festivals.",
+    price: "$1,749",
   },
 ];
 
@@ -112,8 +130,7 @@ const MovieNights = () => {
               {/* Right Column */}
               <div className="flex flex-col gap-8 lg:col-span-7">
                 <p className="text-[17px] leading-relaxed text-white/70 sm:text-[18px]">
-                  We transform your venue into full cinemas with giant screens up to 32 feet,
-                  DJ-quality audio and complete event production.
+                  We transform your venue into a full cinema experience with both high-definition LED screens and giant inflatable screens, DJ-quality audio, and complete event production.
                 </p>
 
                 {/* 2x2 Grid of Points */}
@@ -188,14 +205,14 @@ const MovieNights = () => {
               </h2>
             </div>
 
-            {/* 3 Showcase Image Cards */}
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-              {cmsPage.gallery.map((img, i) => (
+            {/* 2 Showcase Image Cards: LED & INFLATABLE */}
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 max-w-5xl mx-auto">
+              {cmsPage.gallery.slice(0, 2).map((img, i) => (
                 <div
-                  key={i}
-                  className="group relative overflow-hidden rounded-2xl border border-white/10 bg-[#0c1830] transition-all duration-500 hover:border-[#0066FD]/60 hover:shadow-[0_16px_40px_rgba(0,102,253,0.22)]"
+                  key={img.id || i}
+                  className="group relative flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#0c1830] transition-all duration-500 hover:border-[#0066FD]/60 hover:shadow-[0_16px_40px_rgba(0,102,253,0.22)]"
                 >
-                  <div className="relative aspect-[4/3] w-full overflow-hidden">
+                  <div className="relative aspect-[16/10] w-full overflow-hidden">
                     <img
                       src={img.src}
                       alt={img.title}
@@ -205,13 +222,65 @@ const MovieNights = () => {
                     <div className="absolute inset-0 bg-gradient-to-t from-[#05070f] via-transparent to-transparent opacity-80" />
                   </div>
 
-                  <div className="p-6">
-                    <h3 className="font-display text-[18px] font-extrabold uppercase tracking-wide text-white group-hover:text-[#7DDDFF] transition-colors">
+                  <div className="p-7">
+                    <h3 className="font-display text-[22px] font-extrabold uppercase tracking-wide text-white group-hover:text-[#7DDDFF] transition-colors">
                       {img.title}
                     </h3>
-                    <p className="mt-2 text-[13.5px] leading-relaxed text-white/60">
+                    <p className="mt-2 text-[14px] leading-relaxed text-white/70">
                       {img.subtitle}
                     </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ================= AVAILABLE SCREEN SECTION ================= */}
+        <section id="available-screens" className="relative border-t border-white/5 bg-[#05070f] py-20 md:py-28">
+          <div className="mx-auto max-w-[1280px] px-5 md:px-8">
+            <div className="mb-12">
+              <div className="flex items-center gap-3 font-display text-[12px] font-bold uppercase tracking-[0.22em] text-[#7DDDFF]">
+                <span className="h-0.5 w-7 bg-[#0066FD]" />
+                <span>SCREEN OPTIONS & PRICING</span>
+              </div>
+              <h2 className="mt-4 font-display text-[clamp(2rem,4.2vw,3.2rem)] font-extrabold uppercase italic leading-none tracking-tight text-white">
+                AVAILABLE <span className="blue-gradient-text not-italic">SCREENS</span>
+              </h2>
+              <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-white/70">
+                Choose the screen size that fits your crowd and venue. From private backyard screenings to massive community drive-ins.
+              </p>
+            </div>
+
+            {/* 4 Small Cards - No CTA */}
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              {AVAILABLE_SCREENS.map((screen) => (
+                <div
+                  key={screen.size}
+                  className="group relative flex flex-col justify-between rounded-2xl border border-white/10 bg-gradient-to-b from-[#0c1830] to-[#070e1e] p-6 transition-all duration-300 hover:border-[#0066FD]/50 hover:shadow-[0_12px_32px_rgba(0,102,253,0.18)]"
+                >
+                  <div>
+                    <div className="flex items-center gap-2 text-[#7DDDFF]">
+                      <Monitor className="h-5 w-5" />
+                      <span className="text-[11px] font-bold uppercase tracking-wider text-white/60">Cinema Screen</span>
+                    </div>
+
+                    <h3 className="mt-4 font-display text-[20px] font-extrabold uppercase tracking-wide text-white group-hover:text-[#7DDDFF] transition-colors">
+                      {screen.size}
+                    </h3>
+
+                    <p className="mt-2 text-[13.5px] leading-relaxed text-white/70">
+                      {screen.desc}
+                    </p>
+                  </div>
+
+                  <div className="mt-6 border-t border-white/10 pt-4">
+                    <span className="block text-[11px] font-bold uppercase tracking-wider text-[#7DDDFF]">
+                      STARTING AT
+                    </span>
+                    <span className="mt-1 block font-display text-[26px] font-extrabold tracking-tight text-white">
+                      {screen.price}
+                    </span>
                   </div>
                 </div>
               ))}

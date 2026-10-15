@@ -29,9 +29,8 @@ export const CMS_PAGES = [
     heroTitle: "MOVIE NIGHTS",
     heroSubtitle: "Bring the big-screen experience to your school, venue, or community.",
     gallery: [
-      { id: "movie-1", title: "Outdoor Movie Night", subtitle: "A big-screen gathering beneath a sunset sky.", image: "/movie-nights-experience-1.png" },
-      { id: "movie-2", title: "Indoor Event Screening", subtitle: "A large indoor audience gathered around the screen.", image: "/movie-nights-experience-2.png" },
-      { id: "movie-3", title: "Private Outdoor Screening", subtitle: "A relaxed cinema setup in a garden setting.", image: "/movie-nights-experience-3.png" },
+      { id: "movie-led", title: "LED", subtitle: "Ultra-bright mobile LED screen delivering vibrant clarity day or night.", image: "/movie-nights-led.jpg" },
+      { id: "movie-inflatable", title: "INFLATABLE", subtitle: "Massive outdoor inflatable cinema screens bringing true big-screen cinema under the stars.", image: "/movie-nights-experience-1.png" },
     ],
   },
   {
