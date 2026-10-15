@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Camera, CircleAlert, CircleCheck, FileImage, ImagePlus, Plus, Save, Trash2, Upload } from "lucide-react";
 import { useCmsContent } from "../lib/cmsContent";
 import { CMS_MEDIA_BUCKET, supabase } from "../lib/supabase";
@@ -23,6 +23,104 @@ function createDraft(row) {
   return noveltyContentFromRow(row);
 }
 
+function ThumbnailCropDialog({ file, onCancel, onConfirm }) {
+  const frameRef = useRef(null);
+  const dragRef = useRef(null);
+  const [frameSize, setFrameSize] = useState(320);
+  const [imageSize, setImageSize] = useState(null);
+  const [zoom, setZoom] = useState(1);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [processing, setProcessing] = useState(false);
+  const [cropError, setCropError] = useState("");
+  const [previewUrl, setPreviewUrl] = useState("");
+
+  useEffect(() => {
+    const url = URL.createObjectURL(file);
+    setPreviewUrl(url);
+    return () => URL.revokeObjectURL(url);
+  }, [file]);
+
+  useEffect(() => {
+    if (!frameRef.current) return undefined;
+    const observer = new ResizeObserver(([entry]) => setFrameSize(entry.contentRect.width));
+    observer.observe(frameRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  const baseScale = imageSize ? Math.max(frameSize / imageSize.width, frameSize / imageSize.height) : 1;
+  const scale = baseScale * zoom;
+  const renderedWidth = imageSize ? imageSize.width * scale : 0;
+  const renderedHeight = imageSize ? imageSize.height * scale : 0;
+  const left = (frameSize - renderedWidth) / 2 + position.x;
+  const top = (frameSize - renderedHeight) / 2 + position.y;
+
+  const clampPosition = (next, nextZoom = zoom) => {
+    if (!imageSize) return next;
+    const nextScale = baseScale * nextZoom;
+    const maxX = Math.max(0, (imageSize.width * nextScale - frameSize) / 2);
+    const maxY = Math.max(0, (imageSize.height * nextScale - frameSize) / 2);
+    return { x: Math.max(-maxX, Math.min(maxX, next.x)), y: Math.max(-maxY, Math.min(maxY, next.y)) };
+  };
+
+  const changeZoom = (value) => {
+    const nextZoom = Number(value);
+    setZoom(nextZoom);
+    setPosition((current) => clampPosition(current, nextZoom));
+  };
+
+  const confirmCrop = async () => {
+    if (!imageSize) return;
+    setProcessing(true);
+    setCropError("");
+    try {
+      const bitmap = await createImageBitmap(file);
+      const sourceSize = frameSize / scale;
+      const sourceX = Math.max(0, Math.min(imageSize.width - sourceSize, -left / scale));
+      const sourceY = Math.max(0, Math.min(imageSize.height - sourceSize, -top / scale));
+      const canvas = document.createElement("canvas");
+      canvas.width = 1200;
+      canvas.height = 1200;
+      const context = canvas.getContext("2d");
+      context.drawImage(bitmap, sourceX, sourceY, sourceSize, sourceSize, 0, 0, canvas.width, canvas.height);
+      bitmap.close();
+      const blob = await new Promise((resolve) => canvas.toBlob(resolve, "image/jpeg", 0.88));
+      if (!blob) throw new Error("The crop could not be processed.");
+      await onConfirm(blob);
+    } catch (error) {
+      setCropError(error.message || "The crop could not be processed.");
+      setProcessing(false);
+    }
+  };
+
+  const startDrag = (event) => {
+    if (processing) return;
+    event.currentTarget.setPointerCapture(event.pointerId);
+    dragRef.current = { x: event.clientX, y: event.clientY, position };
+  };
+  const drag = (event) => {
+    if (!dragRef.current) return;
+    setPosition(clampPosition({
+      x: dragRef.current.position.x + event.clientX - dragRef.current.x,
+      y: dragRef.current.position.y + event.clientY - dragRef.current.y,
+    }));
+  };
+
+  return (
+    <div className="cms-crop-backdrop" role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget && !processing) onCancel(); }}>
+      <section className="cms-crop-dialog" role="dialog" aria-modal="true" aria-labelledby="cms-crop-title">
+        <div className="cms-crop-heading"><div><p className="cms-eyebrow">NOVELTY THUMBNAIL</p><h3 id="cms-crop-title">Adjust your image</h3><p>Drag to reposition and zoom until the square shows what you want.</p></div><button type="button" className="cms-crop-close" onClick={onCancel} disabled={processing} aria-label="Cancel crop">×</button></div>
+        <div ref={frameRef} className="cms-crop-frame" onPointerDown={startDrag} onPointerMove={drag} onPointerUp={() => { dragRef.current = null; }} onPointerCancel={() => { dragRef.current = null; }}>
+          {previewUrl && <img src={previewUrl} alt="Image being cropped" onLoad={(event) => setImageSize({ width: event.currentTarget.naturalWidth, height: event.currentTarget.naturalHeight })} style={{ width: renderedWidth, height: renderedHeight, left, top }} draggable="false" />}
+          <span className="cms-crop-frame-outline" aria-hidden="true" />
+        </div>
+        <label className="cms-crop-zoom">Zoom<input type="range" min="1" max="3" step="0.01" value={zoom} onChange={(event) => changeZoom(event.target.value)} disabled={!imageSize || processing} /><span>{zoom.toFixed(1)}×</span></label>
+        {cropError && <p className="cms-error" role="alert"><CircleAlert size={15} />{cropError}</p>}
+        <div className="cms-crop-actions"><button type="button" className="cms-secondary-button" onClick={onCancel} disabled={processing}>Cancel</button><button type="button" className="cms-primary-button" onClick={confirmCrop} disabled={!imageSize || processing}><ImagePlus size={15} />{processing ? "Uploading…" : "Use this crop"}</button></div>
+      </section>
+    </div>
+  );
+}
+
 export default function NoveltyPageEditor({ adminEmail }) {
   const { pages, refresh } = useCmsContent();
   const stored = pages.novelties || null;
@@ -32,6 +130,7 @@ export default function NoveltyPageEditor({ adminEmail }) {
   const [notice, setNotice] = useState("");
   const [error, setError] = useState("");
   const [removedPaths, setRemovedPaths] = useState([]);
+  const [cropRequest, setCropRequest] = useState(null);
 
   useEffect(() => {
     setDraft(createDraft(stored));
@@ -52,10 +151,23 @@ export default function NoveltyPageEditor({ adminEmail }) {
 
   const upload = async (file, key, pathPrefix) => {
     if (!file) return;
+    setError("");
+    if (key !== "hero") {
+      setCropRequest({ file, key, pathPrefix });
+      return;
+    }
+    try {
+      const blob = await compressNoveltyImage(file);
+      await persistUpload(blob, key, pathPrefix);
+    } catch (uploadError) {
+      setError(uploadError.message || "Image upload failed.");
+    }
+  };
+
+  const persistUpload = async (blob, key, pathPrefix) => {
     setUploading(key);
     setError("");
     try {
-      const blob = await compressNoveltyImage(file);
       const path = `novelties/${pathPrefix}/${crypto.randomUUID()}.jpg`;
       const { error: uploadError } = await supabase.storage.from(CMS_MEDIA_BUCKET).upload(path, blob, {
         contentType: "image/jpeg", cacheControl: "3600", upsert: false,

@@ -217,7 +217,7 @@ const Novelties = () => {
                       <img
                         src={item.image}
                         alt={item.title}
-                        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-108"
+                        className="h-full w-full object-contain"
                         loading="lazy"
                       />
                       {/* Dark gradient overlay over photo */}
