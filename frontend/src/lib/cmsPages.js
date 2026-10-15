@@ -79,11 +79,13 @@ export const CMS_PAGES = [
     slug: "just-dance",
     title: "Just Dance",
     kind: "Experience",
-    heroImage: "/just-dance-gameplay.png",
+    heroImage: "/experience-just-dance.png",
     heroTitle: "JUST DANCE",
     heroSubtitle: "Choose a Just Dance song, follow the on-screen choreography, and earn points. Play solo, take turns, or challenge friends head-to-head.",
     gallery: [
-      { id: "dance-1", title: "Multiplayer Dance Battles", subtitle: "Head-to-head choreography on giant displays.", image: "/just-dance-gameplay.png" },
+      { id: "dance-1", title: "Multiplayer Dance Battles", subtitle: "Head-to-head choreography on giant displays.", image: "/experience-just-dance.png" },
+      { id: "dance-2", title: "Follow the On-Screen Coach", subtitle: "Watch the dancer, match each move as it appears, and build your score through the song.", image: "/just-dance-gameplay.png" },
+      { id: "dance-3", title: "Choose a Song, Beat Your Best", subtitle: "Pick a track, try its routine, and come back for another round to top your score.", image: "/just-dance-gameplay.png" },
     ],
   },
   {

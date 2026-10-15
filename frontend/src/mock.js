@@ -137,7 +137,7 @@ export const experiences = [
     title: "Just",
     highlight: "Dance",
     desc: "Follow the on-screen choreography, earn points, and challenge friends.",
-    image: "/just-dance-gameplay.png",
+    image: "/experience-just-dance.png",
   },
   {
     id: 6,

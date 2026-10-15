@@ -47,8 +47,30 @@ const JustDance = () => {
   const heroSubtitle = cmsPage.heroSubtitle === "High-energy dance parties on giant screens that get everyone moving."
     ? "Choose a Just Dance song, follow the on-screen choreography, and earn points. Play solo, take turns, or challenge friends head-to-head."
     : cmsPage.heroSubtitle;
-  const heroImage = cmsPage.heroImage === "/experience-just-dance.png" ? "/just-dance-gameplay.png" : cmsPage.heroImage;
+  const heroImage = ["/experience-just-dance.png", "/just-dance-gameplay.png"].includes(cmsPage.heroImage)
+    ? "/experience-just-dance.png"
+    : cmsPage.heroImage;
   const multiplayerBattle = cmsPage.gallery.find((item) => item.title === "Multiplayer Dance Battles") || cmsPage.gallery[0];
+  const experienceCards = [
+    {
+      id: "dance-battles",
+      title: "Multiplayer Dance Battles",
+      subtitle: multiplayerBattle?.subtitle || "Head-to-head choreography on giant displays.",
+      src: "/experience-just-dance.png",
+    },
+    {
+      id: "follow-the-coach",
+      title: "Follow the On-Screen Coach",
+      subtitle: "Watch the dancer, match each move as it appears, and build your score through the song.",
+      src: "/just-dance-gameplay.png",
+    },
+    {
+      id: "beat-your-best",
+      title: "Choose a Song, Beat Your Best",
+      subtitle: "Pick a track, try its routine, and come back for another round to top your score.",
+      src: "/just-dance-gameplay.png",
+    },
+  ];
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -63,7 +85,7 @@ const JustDance = () => {
           {/* Background image from Just Dance carousel */}
           <img
             src={heroImage}
-            alt="Just Dance game coaches performing an on-screen routine"
+            alt="Guests playing Just Dance together on a large screen"
             className="absolute inset-0 h-full w-full object-cover object-center"
           />
           {/* Directional gradient overlay for visibility & text contrast */}
@@ -177,9 +199,9 @@ const JustDance = () => {
 
             {/* 3 Showcase Image Cards */}
             <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-              {[{ ...multiplayerBattle, title: "Multiplayer Dance Battles", src: "/just-dance-gameplay.png" }].filter(Boolean).map((img, i) => (
+              {experienceCards.map((img) => (
                 <div
-                  key={i}
+                  key={img.id}
                   className="group relative overflow-hidden rounded-2xl border border-white/10 bg-[#0c1830] transition-all duration-500 hover:border-[#0066FD]/60 hover:shadow-[0_16px_40px_rgba(0,102,253,0.22)]"
                 >
                   <div className="relative aspect-[4/3] w-full overflow-hidden">
