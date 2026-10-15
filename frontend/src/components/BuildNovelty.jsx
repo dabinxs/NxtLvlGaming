@@ -499,7 +499,11 @@ const drawTexturedTriangle = (ctx, image, sourcePoints, targetPoints) => {
   ctx.moveTo(t0.x, t0.y); ctx.lineTo(t1.x, t1.y); ctx.lineTo(t2.x, t2.y);
   ctx.closePath(); ctx.clip();
   ctx.transform(a, b, c, d, e, f);
-  ctx.drawImage(image, 0, 0);
+  const sourceX = Math.min(s0.x, s1.x, s2.x);
+  const sourceY = Math.min(s0.y, s1.y, s2.y);
+  const sourceRight = Math.max(s0.x, s1.x, s2.x);
+  const sourceBottom = Math.max(s0.y, s1.y, s2.y);
+  ctx.drawImage(image, sourceX, sourceY, sourceRight - sourceX, sourceBottom - sourceY, sourceX, sourceY, sourceRight - sourceX, sourceBottom - sourceY);
   ctx.restore();
 };
 
@@ -782,6 +786,7 @@ const BuildNovelty = () => {
         layers,
         uploadedImages,
         bgImage,
+        surfaceTransform,
         drawing: getDrawingLayerCanvas().toDataURL("image/png"),
       };
       const currentIndex = historyIndexRef.current;
@@ -791,7 +796,8 @@ const BuildNovelty = () => {
         previous?.image === snapshot.image &&
         previous?.layers === snapshot.layers &&
         previous?.uploadedImages === snapshot.uploadedImages &&
-        previous?.bgImage === snapshot.bgImage
+        previous?.bgImage === snapshot.bgImage &&
+        JSON.stringify(previous?.surfaceTransform) === JSON.stringify(snapshot.surfaceTransform)
       ) return;
       nextHistory.push(snapshot);
       historyRef.current = nextHistory;
@@ -801,7 +807,7 @@ const BuildNovelty = () => {
     } catch (error) {
       console.error("Unable to save novelty design history", error);
     }
-  }, [bgImage, getActiveCanvas, getDrawingLayerCanvas, layers, uploadedImages]);
+  }, [bgImage, getActiveCanvas, getDrawingLayerCanvas, layers, uploadedImages, surfaceTransform]);
 
   useEffect(() => {
     saveCanvasStateRef.current = saveCanvasState;
@@ -811,7 +817,7 @@ const BuildNovelty = () => {
   const redrawCanvasOnTarget = useCallback(
     (canvas, includeSelection = true) => {
       if (!canvas) return;
-      const ctx = canvas.getContext("2d");
+      let ctx = canvas.getContext("2d");
       const w = canvas.width;
       const h = canvas.height;
 
@@ -861,41 +867,32 @@ const BuildNovelty = () => {
         ctx.restore();
       }
 
-      // Product preview maps the customer's full design into a print area on
-      // the chosen item. The studio canvas remains available for free placement.
+      // Advanced mode first composes the artwork separately, then projects that
+      // texture over the selected product's printable surface.
+      const outputContext = ctx;
+      let artworkCanvas = null;
+      let surfaceArea = null;
       if (advancedProductPreview && productBounds) {
         const { x, y, width, height } = productBounds;
         const printAreas = {
-          "trucker-hats": [0.27, 0.19, 0.46, 0.36],
-          "hats-beanies": [0.25, 0.2, 0.5, 0.4],
-          "custom-socks": [0.28, 0.15, 0.44, 0.68],
-          "custom-bracelets": [0.27, 0.38, 0.46, 0.24],
-          "pillow-dolls": [0.25, 0.25, 0.5, 0.5],
-          "sequence-pillows": [0.2, 0.25, 0.6, 0.48],
-          "intention-bracelets": [0.3, 0.38, 0.4, 0.24],
-          "laser-keychains": [0.28, 0.22, 0.44, 0.52],
-          "stamped-rings": [0.28, 0.35, 0.44, 0.3],
-          "plush-bags": [0.22, 0.23, 0.56, 0.54],
+          "trucker-hats": [0.2, 0.16, 0.6, 0.45],
+          "hats-beanies": [0.16, 0.15, 0.68, 0.55],
+          "custom-socks": [0.23, 0.1, 0.54, 0.76],
+          "custom-bracelets": [0.16, 0.37, 0.68, 0.26],
+          "pillow-dolls": [0.18, 0.17, 0.64, 0.66],
+          "sequence-pillows": [0.1, 0.12, 0.8, 0.72],
+          "intention-bracelets": [0.13, 0.34, 0.74, 0.31],
+          "laser-keychains": [0.18, 0.12, 0.64, 0.76],
+          "stamped-rings": [0.16, 0.25, 0.68, 0.5],
+          "plush-bags": [0.12, 0.12, 0.76, 0.74],
         };
-        const [left, top, areaWidth, areaHeight] = printAreas[selectedProductId] || [0.22, 0.22, 0.56, 0.56];
-        const printX = x + width * left;
-        const printY = y + height * top;
-        const printW = width * areaWidth;
-        const printH = height * areaHeight;
-        ctx.save();
-        ctx.beginPath();
-        if (selectedProductId === "trucker-hats" || selectedProductId === "hats-beanies") {
-          ctx.moveTo(printX + printW * 0.08, printY);
-          ctx.quadraticCurveTo(printX + printW * 0.5, printY - printH * 0.08, printX + printW * 0.92, printY);
-          ctx.lineTo(printX + printW, printY + printH * 0.9);
-          ctx.quadraticCurveTo(printX + printW * 0.5, printY + printH, printX, printY + printH * 0.9);
-        } else {
-          ctx.roundRect(printX, printY, printW, printH, Math.min(printW, printH) * 0.12);
-        }
-        ctx.closePath();
-        ctx.clip();
-        ctx.translate(printX, printY);
-        ctx.scale(printW / w, printH / h);
+        const [left, top, areaWidth, areaHeight] = printAreas[selectedProductId] || [0.16, 0.16, 0.68, 0.68];
+        surfaceArea = { x: x + width * left, y: y + height * top, width: width * areaWidth, height: height * areaHeight };
+        artworkCanvas = document.createElement("canvas");
+        artworkCanvas.width = w;
+        artworkCanvas.height = h;
+        ctx = artworkCanvas.getContext("2d");
+        ctx.clearRect(0, 0, w, h);
       }
 
       // 3. Draw Fused Background Image if present
@@ -963,7 +960,36 @@ const BuildNovelty = () => {
       const drawingLayer = getDrawingLayerCanvas();
       ctx.drawImage(drawingLayer, 0, 0, w, h);
 
-      if (advancedProductPreview && productBounds) ctx.restore();
+      if (advancedProductPreview && productBounds && artworkCanvas && surfaceArea) {
+        const artworkTexture = ctx.canvas;
+        ctx = outputContext;
+        const { x, y, width: surfaceWidth, height: surfaceHeight } = surfaceArea;
+        const centerX = x + surfaceWidth / 2 + surfaceTransform.x;
+        const centerY = y + surfaceHeight / 2 + surfaceTransform.y;
+        const mappedWidth = surfaceWidth * surfaceTransform.zoom;
+        const mappedHeight = surfaceHeight * surfaceTransform.zoom;
+        ctx.save();
+        ctx.beginPath();
+        if (["trucker-hats", "hats-beanies"].includes(selectedProductId)) {
+          ctx.moveTo(x + surfaceWidth * 0.06, y);
+          ctx.quadraticCurveTo(x + surfaceWidth * 0.5, y - surfaceHeight * 0.08, x + surfaceWidth * 0.94, y);
+          ctx.lineTo(x + surfaceWidth, y + surfaceHeight * 0.9);
+          ctx.quadraticCurveTo(x + surfaceWidth * 0.5, y + surfaceHeight, x, y + surfaceHeight * 0.9);
+        } else if (selectedProductId === "custom-socks") {
+          ctx.moveTo(x + surfaceWidth * 0.28, y); ctx.lineTo(x + surfaceWidth * 0.72, y);
+          ctx.lineTo(x + surfaceWidth * 0.7, y + surfaceHeight * 0.7);
+          ctx.quadraticCurveTo(x + surfaceWidth * 0.69, y + surfaceHeight, x + surfaceWidth * 0.38, y + surfaceHeight * 0.92);
+          ctx.lineTo(x, y + surfaceHeight * 0.83); ctx.lineTo(x + surfaceWidth * 0.12, y + surfaceHeight * 0.66);
+        } else {
+          ctx.roundRect(x, y, surfaceWidth, surfaceHeight, Math.min(surfaceWidth, surfaceHeight) * (selectedProductId.includes("bracelet") || selectedProductId === "stamped-rings" ? 0.3 : 0.1));
+        }
+        ctx.closePath();
+        ctx.clip();
+        ctx.translate(centerX, centerY);
+        ctx.rotate((surfaceTransform.rotation * Math.PI) / 180);
+        drawWrappedArtwork(ctx, artworkTexture, -mappedWidth / 2, -mappedHeight / 2, mappedWidth, mappedHeight, surfaceTransform.warp);
+        ctx.restore();
+      }
 
       if (!advancedProductPreview && includeSelection && tool === "select" && selectedDesignObject && selectedDesignObject.visible !== false) {
         const bounds = getDesignObjectBounds(selectedDesignObject, ctx);
@@ -998,7 +1024,7 @@ const BuildNovelty = () => {
 
 
     },
-    [getDrawingLayerCanvas, productTemplateImg, bgImage, uploadedImages, layers, selectedDesignObject, tool, advancedProductPreview, selectedProductId]
+    [getDrawingLayerCanvas, productTemplateImg, bgImage, uploadedImages, layers, selectedDesignObject, tool, advancedProductPreview, selectedProductId, surfaceTransform]
   );
 
   const redrawCanvas = useCallback(() => {
@@ -1010,7 +1036,7 @@ const BuildNovelty = () => {
 
   useEffect(() => {
     redrawCanvas();
-    if (dragRef.current) return () => clearTimeout(historyCaptureTimerRef.current);
+    if (dragRef.current || surfaceDragRef.current) return () => clearTimeout(historyCaptureTimerRef.current);
     historyCaptureTimerRef.current = setTimeout(() => {
       if (skipNextHistoryCaptureRef.current) {
         skipNextHistoryCaptureRef.current = false;
@@ -1240,6 +1266,35 @@ const BuildNovelty = () => {
     }
   };
 
+  const startSurfaceDrag = (event) => {
+    const canvas = compactCanvasRef.current;
+    if (!canvas) return;
+    const point = getCanvasPoint(event, canvas);
+    surfaceDragRef.current = { startX: point.x, startY: point.y, originX: surfaceTransform.x, originY: surfaceTransform.y };
+    canvas.setPointerCapture?.(event.pointerId);
+    event.preventDefault();
+  };
+
+  const moveSurfaceArtwork = (event) => {
+    const drag = surfaceDragRef.current;
+    const canvas = compactCanvasRef.current;
+    if (!drag || !canvas) return;
+    const point = getCanvasPoint(event, canvas);
+    setSurfaceTransform((current) => ({
+      ...current,
+      x: Math.max(-320, Math.min(320, drag.originX + point.x - drag.startX)),
+      y: Math.max(-220, Math.min(220, drag.originY + point.y - drag.startY)),
+    }));
+    event.preventDefault();
+  };
+
+  const stopSurfaceDrag = () => {
+    if (!surfaceDragRef.current) return;
+    surfaceDragRef.current = null;
+    setSurfaceTransform((current) => ({ ...current }));
+    setTimeout(() => saveCanvasStateRef.current?.(), 100);
+  };
+
   // Image Upload Handlers
   const handlePhotoUpload = (e, isFuse = false) => {
     const file = e.target.files && e.target.files[0];
@@ -1369,6 +1424,7 @@ const BuildNovelty = () => {
     setLayers(snapshot.layers);
     setUploadedImages(snapshot.uploadedImages);
     setBgImage(snapshot.bgImage);
+    if (snapshot.surfaceTransform) setSurfaceTransform(snapshot.surfaceTransform);
     const drawingLayer = getDrawingLayerCanvas();
     const drawingCtx = drawingLayer.getContext("2d");
     drawingCtx.clearRect(0, 0, drawingLayer.width, drawingLayer.height);
@@ -1764,10 +1820,10 @@ const BuildNovelty = () => {
                   <button
                     onClick={() => setAdvancedProductPreview((current) => !current)}
                     aria-pressed={advancedProductPreview}
-                    title="Preview your design mapped onto the selected novelty"
+                    title="Edit the complete artwork placement and wrap on the selected novelty"
                     className={`rounded-full border px-3 py-1.5 text-[10px] font-bold uppercase tracking-wide transition-colors ${advancedProductPreview ? "border-[#0099FF] bg-[#0099FF]/20 text-white" : "border-white/10 text-white/60 hover:bg-white/10 hover:text-white"}`}
                   >
-                    {advancedProductPreview ? "PRODUCT PREVIEW ON" : "ADVANCED PRODUCT PREVIEW"}
+                    {advancedProductPreview ? "ADVANCED MODE ON" : "ADVANCED CUSTOMIZATION"}
                   </button>
                   <button
                     onClick={handleUndo}
@@ -1806,9 +1862,21 @@ const BuildNovelty = () => {
                 </div>
               </div>
 
+              {advancedProductPreview && <div className="mb-4 grid gap-3 rounded-2xl border border-[#168cff]/25 bg-[#061426]/90 p-4 sm:grid-cols-2">
+                <div className="sm:col-span-2 flex flex-wrap items-center justify-between gap-2">
+                  <div><p className="m-0 text-[10px] font-bold uppercase tracking-[.18em] text-[#63baff]">ADVANCED SURFACE DESIGN</p><p className="mt-1 text-xs text-white/55">Drag the artwork on the item. These controls adjust the complete design as it wraps across the printable surface.</p></div>
+                  <button type="button" onClick={() => setSurfaceTransform(getDefaultSurfaceTransform(selectedProductId))} className="rounded-full border border-white/15 px-3 py-2 text-[9px] font-bold uppercase tracking-wider text-white/70 hover:border-[#168cff] hover:text-white">Reset placement</button>
+                </div>
+                <label className="grid gap-1.5 text-[10px] font-semibold text-white/65">Artwork size <span className="text-[#62baff]">{surfaceTransform.zoom.toFixed(2)}×</span><input type="range" min="0.45" max="3.2" step="0.05" value={surfaceTransform.zoom} onChange={(event) => setSurfaceTransform((current) => ({ ...current, zoom: Number(event.target.value) }))} className="w-full accent-[#0099FF]" /></label>
+                <label className="grid gap-1.5 text-[10px] font-semibold text-white/65">Rotate on item <span className="text-[#62baff]">{Math.round(surfaceTransform.rotation)}°</span><input type="range" min="-180" max="180" step="1" value={surfaceTransform.rotation} onChange={(event) => setSurfaceTransform((current) => ({ ...current, rotation: Number(event.target.value) }))} className="w-full accent-[#0099FF]" /></label>
+                <label className="grid gap-1.5 text-[10px] font-semibold text-white/65">Wrap / surface curve <span className="text-[#62baff]">{surfaceTransform.warp.toFixed(2)}</span><input type="range" min="-0.32" max="0.32" step="0.01" value={surfaceTransform.warp} onChange={(event) => setSurfaceTransform((current) => ({ ...current, warp: Number(event.target.value) }))} className="w-full accent-[#0099FF]" /></label>
+                <label className="grid gap-1.5 text-[10px] font-semibold text-white/65">Horizontal placement <span className="text-[#62baff]">{Math.round(surfaceTransform.x)} px</span><input type="range" min="-220" max="220" step="1" value={surfaceTransform.x} onChange={(event) => setSurfaceTransform((current) => ({ ...current, x: Number(event.target.value) }))} className="w-full accent-[#0099FF]" /></label>
+                <label className="grid gap-1.5 text-[10px] font-semibold text-white/65">Vertical placement <span className="text-[#62baff]">{Math.round(surfaceTransform.y)} px</span><input type="range" min="-160" max="160" step="1" value={surfaceTransform.y} onChange={(event) => setSurfaceTransform((current) => ({ ...current, y: Number(event.target.value) }))} className="w-full accent-[#0099FF]" /></label>
+              </div>}
+
               {/* Main HTML5 Interactive Canvas Container */}
               <div className="relative flex items-center justify-center rounded-[18px] bg-[#040b15] border border-white/10 overflow-hidden min-h-[380px] sm:min-h-[440px]">
-                {advancedProductPreview && <div className="absolute left-1/2 top-3 z-20 -translate-x-1/2 rounded-full border border-[#43b5ff]/35 bg-[#061426]/90 px-3 py-1.5 text-[9px] font-bold uppercase tracking-wider text-[#9ed6ff]">Artwork mapped to {selectedProduct.title} · switch off to edit</div>}
+                {advancedProductPreview && <div className="absolute left-1/2 top-3 z-20 -translate-x-1/2 rounded-full border border-[#43b5ff]/35 bg-[#061426]/90 px-3 py-1.5 text-[9px] font-bold uppercase tracking-wider text-[#9ed6ff]">Wrapped on {selectedProduct.title} · drag to position</div>}
                 
                 {/* Vertical Brush Size Slider on Left */}
                 <div className="absolute left-4 top-1/2 -translate-y-1/2 z-20 flex flex-col items-center gap-2 rounded-full bg-[#050f1c]/90 p-2.5 border border-white/10 backdrop-blur-md">
@@ -1830,11 +1898,11 @@ const BuildNovelty = () => {
                   ref={compactCanvasRef}
                   width={640}
                   height={440}
-                  onPointerDown={advancedProductPreview ? undefined : (e) => startDrawing(e, compactCanvasRef)}
-                  onPointerMove={advancedProductPreview ? undefined : (e) => draw(e, compactCanvasRef)}
-                  onPointerUp={advancedProductPreview ? undefined : stopDrawing}
-                  onPointerCancel={advancedProductPreview ? undefined : stopDrawing}
-                  className={`w-full max-w-[640px] h-[380px] sm:h-[440px] touch-none object-contain ${advancedProductPreview ? "cursor-default" : tool === "select" ? "cursor-move" : "cursor-crosshair"}`}
+                  onPointerDown={advancedProductPreview ? startSurfaceDrag : (e) => startDrawing(e, compactCanvasRef)}
+                  onPointerMove={advancedProductPreview ? moveSurfaceArtwork : (e) => draw(e, compactCanvasRef)}
+                  onPointerUp={advancedProductPreview ? stopSurfaceDrag : stopDrawing}
+                  onPointerCancel={advancedProductPreview ? stopSurfaceDrag : stopDrawing}
+                  className={`w-full max-w-[640px] h-[380px] sm:h-[440px] touch-none object-contain ${advancedProductPreview ? "cursor-grab active:cursor-grabbing" : tool === "select" ? "cursor-move" : "cursor-crosshair"}`}
                 />
 
                 {/* Bottom Color Palette Bar with Edit RGB Spectrum Button */}
