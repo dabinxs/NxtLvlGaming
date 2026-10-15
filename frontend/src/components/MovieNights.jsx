@@ -58,23 +58,43 @@ const GALLERY_IMAGES = [
 const AVAILABLE_SCREENS = [
   {
     size: "16 FT SCREEN",
-    desc: "Great for backyards and family-wide events.",
-    price: "$499",
+    capacity: "Up to 100 Guests",
+    desc: "Great for backyards, private birthday parties, and intimate family gatherings.",
+    highlights: [
+      "Optimal viewing distance up to 75 ft",
+      "Compact footprint & quick setup",
+      "HD projection & crystal clear sound",
+    ],
   },
   {
     size: "21 FT SCREEN",
-    desc: "Great for parking lot gatherings.",
-    price: "$649",
+    capacity: "100–300 Guests",
+    desc: "Great for school fields, HOA community nights, and parking lot screenings.",
+    highlights: [
+      "Optimal viewing distance up to 125 ft",
+      "High-impact outdoor sound system",
+      "Perfect for neighborhood cinema nights",
+    ],
   },
   {
     size: "26 FT SCREEN",
-    desc: "Great for events out in the park or community spaces.",
-    price: "$849",
+    capacity: "300–750 Guests",
+    desc: "Great for events out in the park, college campus quads, and public festivals.",
+    highlights: [
+      "Optimal viewing distance up to 200 ft",
+      "Concert-grade dual audio towers",
+      "Built for large open-air audiences",
+    ],
   },
   {
     size: "40 FT SCREEN",
-    desc: "Perfect for Drive-Ins, City-wide events, and large festivals.",
-    price: "$1,749",
+    capacity: "750+ Guests / 100+ Cars",
+    desc: "Perfect for Drive-Ins, City-wide events, and massive festival crowds.",
+    highlights: [
+      "FM radio broadcast for drive-in movies",
+      "Colossal stadium-scale visual display",
+      "Multi-crew turnkey event production",
+    ],
   },
 ];
 
@@ -242,7 +262,7 @@ const MovieNights = () => {
             <div className="mb-12">
               <div className="flex items-center gap-3 font-display text-[12px] font-bold uppercase tracking-[0.22em] text-[#7DDDFF]">
                 <span className="h-0.5 w-7 bg-[#0066FD]" />
-                <span>SCREEN OPTIONS & PRICING</span>
+                <span>SCREEN SIZES & SPECIFICATIONS</span>
               </div>
               <h2 className="mt-4 font-display text-[clamp(2rem,4.2vw,3.2rem)] font-extrabold uppercase italic leading-none tracking-tight text-white">
                 AVAILABLE <span className="blue-gradient-text not-italic">SCREENS</span>
@@ -252,7 +272,7 @@ const MovieNights = () => {
               </p>
             </div>
 
-            {/* 4 Small Cards - No CTA */}
+            {/* 4 Small Cards - Info Only, No Pricing, No CTA */}
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {AVAILABLE_SCREENS.map((screen) => (
                 <div
@@ -260,9 +280,14 @@ const MovieNights = () => {
                   className="group relative flex flex-col justify-between rounded-2xl border border-white/10 bg-gradient-to-b from-[#0c1830] to-[#070e1e] p-6 transition-all duration-300 hover:border-[#0066FD]/50 hover:shadow-[0_12px_32px_rgba(0,102,253,0.18)]"
                 >
                   <div>
-                    <div className="flex items-center gap-2 text-[#7DDDFF]">
-                      <Monitor className="h-5 w-5" />
-                      <span className="text-[11px] font-bold uppercase tracking-wider text-white/60">Cinema Screen</span>
+                    <div className="flex items-center justify-between gap-2">
+                      <div className="flex items-center gap-2 text-[#7DDDFF]">
+                        <Monitor className="h-4 w-4" />
+                        <span className="text-[11px] font-bold uppercase tracking-wider text-white/60">Cinema Screen</span>
+                      </div>
+                      <span className="rounded-full border border-[#0066FD]/40 bg-[#0066FD]/15 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-[#7DDDFF]">
+                        {screen.capacity}
+                      </span>
                     </div>
 
                     <h3 className="mt-4 font-display text-[20px] font-extrabold uppercase tracking-wide text-white group-hover:text-[#7DDDFF] transition-colors">
@@ -272,15 +297,15 @@ const MovieNights = () => {
                     <p className="mt-2 text-[13.5px] leading-relaxed text-white/70">
                       {screen.desc}
                     </p>
-                  </div>
 
-                  <div className="mt-6 border-t border-white/10 pt-4">
-                    <span className="block text-[11px] font-bold uppercase tracking-wider text-[#7DDDFF]">
-                      STARTING AT
-                    </span>
-                    <span className="mt-1 block font-display text-[26px] font-extrabold tracking-tight text-white">
-                      {screen.price}
-                    </span>
+                    <ul className="mt-5 space-y-2 border-t border-white/10 pt-4">
+                      {screen.highlights.map((item, idx) => (
+                        <li key={idx} className="flex items-start gap-2 text-[12.5px] text-white/80">
+                          <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#7DDDFF]" strokeWidth={2.6} />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
               ))}
