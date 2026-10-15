@@ -16,14 +16,41 @@ import "./AdminPage.css";
 const DEFAULTS = Object.fromEntries(CMS_PAGES.map((page) => [page.slug, page]));
 
 function makeDraft(page, stored) {
-  const gallery = stored?.gallery || page.gallery.map(({ id, title, subtitle, image }) => ({ id, title, subtitle, src: image, mediaPath: "" }));
+  const defaultGallery = (page?.gallery || []).map(({ id, title, subtitle, image, tag }) => ({
+    id,
+    title,
+    subtitle,
+    src: image,
+    mediaPath: "",
+    tag: tag || "",
+  }));
+
+  let gallery = defaultGallery;
+  if (stored?.gallery && Array.isArray(stored.gallery) && stored.gallery.length > 0) {
+    const storedMap = new Map(
+      stored.gallery.map((item) => [(item.id || item.title || "").toLowerCase(), item])
+    );
+    const defaultsMatched = defaultGallery.map((def) => {
+      const key = (def.id || def.title || "").toLowerCase();
+      const match = storedMap.get(key);
+      return match ? { ...def, ...match } : def;
+    });
+    const defaultKeys = new Set(
+      defaultGallery.map((def) => (def.id || def.title || "").toLowerCase())
+    );
+    const customItems = stored.gallery.filter(
+      (item) => !defaultKeys.has((item.id || item.title || "").toLowerCase())
+    );
+    gallery = [...defaultsMatched, ...customItems];
+  }
+
   return {
-    title: stored?.title || page.title,
-    heroTitle: stored?.hero_title || page.heroTitle,
-    heroSubtitle: stored?.hero_subtitle || page.heroSubtitle,
-    heroImageUrl: stored?.hero_image_url || page.heroImage,
+    title: stored?.title || page?.title,
+    heroTitle: stored?.hero_title || page?.heroTitle,
+    heroSubtitle: stored?.hero_subtitle || page?.heroSubtitle,
+    heroImageUrl: stored?.hero_image_url || page?.heroImage,
     heroImagePath: stored?.hero_image_path || "",
-    thumbnailImageUrl: stored?.thumbnail_image_url || page.heroImage,
+    thumbnailImageUrl: stored?.thumbnail_image_url || page?.heroImage,
     thumbnailImagePath: stored?.thumbnail_image_path || "",
     gallery: gallery.map((item) => ({ ...item })),
   };

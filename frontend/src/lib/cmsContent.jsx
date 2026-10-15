@@ -63,14 +63,34 @@ export function CmsContentProvider({ children }) {
 export function useCmsPage(slug, defaults) {
   const { pages } = useContext(CmsContentContext);
   const stored = pages[slug];
-  const gallery = (stored?.gallery || defaults.gallery).map((item) => ({ ...item, src: item.src || item.image || "" }));
+
+  let rawGallery = defaults?.gallery || [];
+  if (stored?.gallery && Array.isArray(stored.gallery) && stored.gallery.length > 0) {
+    const storedMap = new Map(
+      stored.gallery.map((item) => [(item.id || item.title || "").toLowerCase(), item])
+    );
+    const defaultsMatched = (defaults?.gallery || []).map((def) => {
+      const key = (def.id || def.title || "").toLowerCase();
+      const match = storedMap.get(key);
+      return match ? { ...def, ...match } : def;
+    });
+    const defaultKeys = new Set(
+      (defaults?.gallery || []).map((def) => (def.id || def.title || "").toLowerCase())
+    );
+    const customItems = stored.gallery.filter(
+      (item) => !defaultKeys.has((item.id || item.title || "").toLowerCase())
+    );
+    rawGallery = [...defaultsMatched, ...customItems];
+  }
+
+  const gallery = rawGallery.map((item) => ({ ...item, src: item.src || item.image || "" }));
   return {
     ...defaults,
     ...(stored || {}),
-    heroTitle: stored?.hero_title || stored?.heroTitle || defaults.heroTitle,
-    heroSubtitle: stored?.hero_subtitle || stored?.heroSubtitle || defaults.heroSubtitle,
-    heroImage: stored?.hero_image_url || stored?.heroImage || defaults.heroImage,
-    thumbnailImage: stored?.thumbnail_image_url || stored?.thumbnailImage || defaults.heroImage,
+    heroTitle: stored?.hero_title || stored?.heroTitle || defaults?.heroTitle,
+    heroSubtitle: stored?.hero_subtitle || stored?.heroSubtitle || defaults?.heroSubtitle,
+    heroImage: stored?.hero_image_url || stored?.heroImage || defaults?.heroImage,
+    thumbnailImage: stored?.thumbnail_image_url || stored?.thumbnailImage || defaults?.heroImage,
     gallery,
   };
 }

@@ -14,11 +14,11 @@ export const DEFAULT_NOVELTY_CONTENT = {
   ],
   workshopsHeading: "CREATIVE WORKSHOPS",
   workshops: [
-    { id: "01", productId: "trucker-hats", tag: "HATS & BEANIES", title: "(PATCHED CITY) Trucker Hats & Beanies", desc: "Customize your own trucker hat or beanie with unique patches and designs.", image: "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=600&q=80", rotation: "sm:-rotate-1" },
-    { id: "02", productId: "trucker-hats", tag: "HAT CUSTOMIZATION", title: "Custom Trucker Hats", desc: "Design and personalize your own trucker hat to match your style.", image: "https://images.unsplash.com/photo-1576871337622-98d48d1cf531?auto=format&fit=crop&w=600&q=80", rotation: "sm:rotate-2" },
-    { id: "03", productId: "custom-socks", tag: "SOCKS", title: "Custom Socks", desc: "Create your own custom socks with patterns, logos or text.", image: "https://images.unsplash.com/photo-1586350977771-b3b0abd50c82?auto=format&fit=crop&w=600&q=80", rotation: "sm:-rotate-2" },
-    { id: "04", productId: "custom-bracelets", tag: "BRACELETS", title: "Bead-tastics Custom Bracelets", desc: "Fun, hand-crafted bracelets designed by you, for you.", image: "https://images.unsplash.com/photo-1611591475879-c5ec2b810d7a?auto=format&fit=crop&w=600&q=80", rotation: "sm:rotate-1" },
-    { id: "05", productId: "pillow-dolls", tag: "PILLOW DOLLS", title: "Custom Pillow Dolls", desc: "Turn your favorite photos, characters or ideas into custom pillow dolls.", image: "https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&w=600&q=80", rotation: "sm:-rotate-1" },
+    { id: "01", productId: "trucker-hats", tag: "HATS & BEANIES", title: "(PATCHED CITY) Trucker Hats & Beanies", desc: "Customize your own trucker hat or beanie with unique patches and designs.", image: "/novelty-cards/patch-city.jpg", rotation: "sm:-rotate-1" },
+    { id: "02", productId: "trucker-hats", tag: "HAT CUSTOMIZATION", title: "Custom Trucker Hats", desc: "Design and personalize your own trucker hat to match your style.", image: "/novelty-cards/trucker-hats.jpg", rotation: "sm:rotate-2" },
+    { id: "03", productId: "custom-socks", tag: "SOCKS", title: "Custom Socks", desc: "Create your own custom socks with patterns, logos or text.", image: "/novelty-cards/custom-socks.jpg", rotation: "sm:-rotate-2" },
+    { id: "04", productId: "custom-bracelets", tag: "BRACELETS", title: "Bead-tastics Custom Bracelets", desc: "Fun, hand-crafted bracelets designed by you, for you.", image: "/novelty-templates/bead-bracelet.jpg", rotation: "sm:rotate-1" },
+    { id: "05", productId: "pillow-dolls", tag: "PILLOW DOLLS", title: "Custom Pillow Dolls", desc: "Turn your favorite photos, characters or ideas into custom pillow dolls.", image: "/novelty-cards/pillow-dolls.jpg", rotation: "sm:-rotate-1" },
     { id: "06", productId: "sequence-pillows", tag: "SEQUENCE PILLOWS", title: "Custom Sequence Pillows", desc: "Create your own sequin pillow with colors, text or images that change.", image: "https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&w=600&q=80", rotation: "sm:rotate-2" },
     { id: "07", productId: "intention-bracelets", tag: "BRACELETS", title: "Intention Bracelet", desc: "Design a meaningful bracelet with intention, style and purpose.", image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=600&q=80", rotation: "sm:-rotate-1" },
     { id: "08", productId: "laser-keychains", tag: "KEYCHAINS", title: "Laser-Engraved Wood & Metal Keychains", desc: "Personalize high-quality wooden or metal keychains with your own design.", image: "https://images.unsplash.com/photo-1622434641406-a158123450f9?auto=format&fit=crop&w=600&q=80", rotation: "sm:rotate-1" },
@@ -42,6 +42,29 @@ export const NOVELTY_BUILDER_OPTIONS = [
 
 export function noveltyContentFromRow(row) {
   const data = row?.gallery && !Array.isArray(row.gallery) ? row.gallery : {};
+  const rawWorkshops = Array.isArray(data.workshops) ? data.workshops : DEFAULT_NOVELTY_CONTENT.workshops;
+
+  const workshops = DEFAULT_NOVELTY_CONTENT.workshops.map((defaultItem, index) => {
+    const storedItem = rawWorkshops.find((w) => w.id === defaultItem.id) || rawWorkshops[index];
+    if (!storedItem) return defaultItem;
+
+    // Detect old defaults from the initial database seed that should be replaced with the updated assets
+    const isOldAsset =
+      !storedItem.image ||
+      storedItem.image.includes("photo-1588850561407") ||
+      storedItem.image.includes("photo-1576871337622") ||
+      storedItem.image.includes("photo-1586350977771") ||
+      storedItem.image.includes("photo-1611591475879") ||
+      storedItem.image.includes("photo-1584100936595") ||
+      storedItem.image.includes("7d0e3b44-277a-4730-8535-383a8ab6e361");
+
+    return {
+      ...defaultItem,
+      ...storedItem,
+      image: isOldAsset ? defaultItem.image : (storedItem.image || defaultItem.image),
+    };
+  });
+
   return {
     ...DEFAULT_NOVELTY_CONTENT,
     heroTitle: row?.hero_title || DEFAULT_NOVELTY_CONTENT.heroTitle,
@@ -54,7 +77,7 @@ export function noveltyContentFromRow(row) {
     stepsIntro: data.stepsIntro || DEFAULT_NOVELTY_CONTENT.stepsIntro,
     steps: Array.isArray(data.steps) ? data.steps : DEFAULT_NOVELTY_CONTENT.steps,
     workshopsHeading: data.workshopsHeading || DEFAULT_NOVELTY_CONTENT.workshopsHeading,
-    workshops: Array.isArray(data.workshops) ? data.workshops : DEFAULT_NOVELTY_CONTENT.workshops,
+    workshops,
     heroImagePath: row?.hero_image_path || "",
   };
 }

@@ -58,6 +58,24 @@ const GALLERY_IMAGES = [
     subtitle: "A full gym transformed into a gaming event space.",
     src: "/gaming-events-experience-3.png",
   },
+  {
+    title: "Deluxe Package",
+    subtitle: "Complete multi-station console setup with HD displays, popular multiplayer titles, and full on-site technical staffing.",
+    src: "/experience-gaming-events.avif",
+    tag: "Package",
+  },
+  {
+    title: "Ultimate Package",
+    subtitle: "Giant screen arena with premium consoles, immersive audio, high-energy lighting, and dedicated event coordinators.",
+    src: "/about-gaming-event.jpg",
+    tag: "Package",
+  },
+  {
+    title: "Tournament Package",
+    subtitle: "Bracketed esports competition with shoutcaster setup, live spectator feeds, leaderboards, and grand final stage.",
+    src: "/gaming-tournament-package.jpg",
+    tag: "Package",
+  },
 ];
 
 const GamingEvents = () => {
@@ -188,12 +206,12 @@ const GamingEvents = () => {
               </h2>
             </div>
 
-            {/* 3 Showcase Image Cards */}
+            {/* Showcase Cards Grid */}
             <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
               {cmsPage.gallery.map((img, i) => (
                 <div
-                  key={i}
-                  className="group relative overflow-hidden rounded-2xl border border-white/10 bg-[#0c1830] transition-all duration-500 hover:border-[#0066FD]/60 hover:shadow-[0_16px_40px_rgba(0,102,253,0.22)]"
+                  key={img.id || i}
+                  className="group relative flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#0c1830] transition-all duration-500 hover:border-[#0066FD]/60 hover:shadow-[0_16px_40px_rgba(0,102,253,0.22)]"
                 >
                   <div className="relative aspect-[4/3] w-full overflow-hidden">
                     <img
@@ -203,15 +221,24 @@ const GamingEvents = () => {
                       loading="lazy"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#05070f] via-transparent to-transparent opacity-80" />
+                    {img.tag && (
+                      <div className="absolute top-3.5 left-3.5 z-10">
+                        <span className="inline-flex items-center rounded-full border border-[#0066FD]/60 bg-[#05070f]/85 px-3 py-1 font-display text-[11px] font-bold uppercase tracking-wider text-[#7DDDFF] backdrop-blur-md shadow-lg">
+                          {img.tag}
+                        </span>
+                      </div>
+                    )}
                   </div>
 
-                  <div className="p-6">
-                    <h3 className="font-display text-[18px] font-extrabold uppercase tracking-wide text-white group-hover:text-[#7DDDFF] transition-colors">
-                      {img.title}
-                    </h3>
-                    <p className="mt-2 text-[13.5px] leading-relaxed text-white/60">
-                      {img.subtitle}
-                    </p>
+                  <div className="flex flex-1 flex-col justify-between p-6">
+                    <div>
+                      <h3 className="font-display text-[18px] font-extrabold uppercase tracking-wide text-white group-hover:text-[#7DDDFF] transition-colors">
+                        {img.title}
+                      </h3>
+                      <p className="mt-2 text-[13.5px] leading-relaxed text-white/60">
+                        {img.subtitle}
+                      </p>
+                    </div>
                   </div>
                 </div>
               ))}
