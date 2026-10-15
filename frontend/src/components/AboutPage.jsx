@@ -35,9 +35,21 @@ const offerings = [
   },
   {
     title: "Big-screen entertainment",
-    copy: "Movie nights and shared-screen entertainment, supported by event-ready projection, DJ-quality sound and lighting.",
+    copy: "Movie nights and shared-screen entertainment featuring high-definition mobile LED screens and giant inflatable screens, supported by event-ready projection, DJ-quality sound and lighting.",
     image: "/about-movie-screen.jpeg",
     alt: "A large outdoor movie screen set up for an event",
+  },
+  {
+    title: "Custom novelties",
+    copy: "Tactile, screen-free experiences where guests create and personalize unique take-home keepsakes — turning event moments into lasting memories.",
+    image: "/novelties-bg.png",
+    alt: "Custom novelty merchandise and accessories",
+  },
+  {
+    title: "Novelty workshops",
+    copy: "Interactive craft and maker stations including Patched City trucker hats & beanies, custom socks, bead bracelets, pillow dolls, and laser-engraved crafts.",
+    image: "/novelty-cards/patch-city.jpg",
+    alt: "Guests customizing patches and novelties at a workshop",
   },
 ];
 
@@ -235,19 +247,19 @@ function AboutPage() {
               <div className="about-work__track" tabIndex={0} role="group" aria-label="What we do cards. Use the arrow keys to browse.">
               <div className="about-work__intro">
                 <h2 id="about-work-title">WHAT WE<br />DO</h2>
-                <p className="about-work__hint">Three ways to bring people into the moment.</p>
+                <p className="about-work__hint">Five ways to bring people into the moment.</p>
               </div>
               {offerings.map((offering, index) => (
                 <article className="about-work__card" key={offering.title}>
                   <div className="about-work__image" role="img" aria-label={offering.alt}><img src={offering.image} alt="" loading="lazy" decoding="async" /></div>
                   <div className="about-work__text">
-                    <span className="about-work__number">0{index + 1} <i>/ 03</i></span>
+                    <span className="about-work__number">0{index + 1} <i>/ 0{offerings.length}</i></span>
                     <div><h3>{offering.title}</h3><p>{offering.copy}</p></div>
                   </div>
                 </article>
               ))}
             </div>
-            <div className="about-work__hud" aria-hidden="true"><span className="about-work__counter">01 / 03</span><span className="about-work__progress"><i /></span><span>Keep scrolling</span></div>
+            <div className="about-work__hud" aria-hidden="true"><span className="about-work__counter">01 / 0{offerings.length}</span><span className="about-work__progress"><i /></span><span>Keep scrolling</span></div>
           </div>
         </section>
 
