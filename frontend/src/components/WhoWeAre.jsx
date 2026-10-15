@@ -1,5 +1,6 @@
 import React from "react";
 import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const WhoWeAre = () => {
   return (
@@ -26,13 +27,13 @@ const WhoWeAre = () => {
             by our own crew.
           </p>
 
-          <a
-            href="#footer"
+          <Link
+            to="/about"
             className="cta-fill cta-fill--blue group mt-8 inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 text-[13px] font-semibold uppercase tracking-wide text-white"
           >
             Learn More
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-          </a>
+          </Link>
         </div>
 
         <div className="relative">
