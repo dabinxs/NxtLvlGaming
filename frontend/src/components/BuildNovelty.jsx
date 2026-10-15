@@ -488,6 +488,7 @@ const BuildNovelty = () => {
   const [selectedProductId, setSelectedProductId] = useState(
     selectedIdFromUrl || "trucker-hats"
   );
+  const [advancedProductPreview, setAdvancedProductPreview] = useState(false);
 
   const selectedProduct =
     NOVELTY_PRODUCTS.find((p) => p.id === selectedProductId) ||
@@ -560,9 +561,26 @@ const BuildNovelty = () => {
     setHistoryIndex(-1);
   }, []);
 
-  const handleSelectProduct = (id) => {
+  const resetProductDesign = useCallback(() => {
     resetCanvasHistory();
+    setLayers([]);
+    setUploadedImages([]);
+    setBgImage(null);
     setSelectedLayerId(null);
+    setDescription("");
+    setPreviewDataUrl("");
+    setSavedDesign(null);
+    setIsSubmitted(false);
+    setAdvancedProductPreview(false);
+    if (drawingLayerCanvasRef.current) {
+      const ctx = drawingLayerCanvasRef.current.getContext("2d");
+      ctx?.clearRect(0, 0, drawingLayerCanvasRef.current.width, drawingLayerCanvasRef.current.height);
+    }
+  }, [resetCanvasHistory]);
+
+  const handleSelectProduct = (id) => {
+    if (id === selectedProductId) return;
+    resetProductDesign();
     setSelectedProductId(id);
     setActiveView("front");
     setSearchParams({ product: id });
@@ -592,12 +610,11 @@ const BuildNovelty = () => {
       ? productParam
       : NOVELTY_PRODUCTS[0].id;
     if (nextProductId !== selectedProductId) {
-      resetCanvasHistory();
-      setSelectedLayerId(null);
+      resetProductDesign();
       setSelectedProductId(nextProductId);
       setActiveView("front");
     }
-  }, [resetCanvasHistory, searchParams, selectedProductId]);
+  }, [resetProductDesign, searchParams, selectedProductId]);
 
   // Set default style selections when product changes
   useEffect(() => {
@@ -763,6 +780,7 @@ const BuildNovelty = () => {
       }
 
       // 2. Draw Plain Realistic Product Template Photo
+      let productBounds = null;
       if (productTemplateImg) {
         ctx.save();
         // Fit template image neatly in center
@@ -779,9 +797,47 @@ const BuildNovelty = () => {
         }
         drawX = (w - drawW) / 2;
         drawY = (h - drawH) / 2;
+        productBounds = { x: drawX, y: drawY, width: drawW, height: drawH };
 
         ctx.drawImage(productTemplateImg, drawX, drawY, drawW, drawH);
         ctx.restore();
+      }
+
+      // Product preview maps the customer's full design into a print area on
+      // the chosen item. The studio canvas remains available for free placement.
+      if (advancedProductPreview && productBounds) {
+        const { x, y, width, height } = productBounds;
+        const printAreas = {
+          "trucker-hats": [0.27, 0.19, 0.46, 0.36],
+          "hats-beanies": [0.25, 0.2, 0.5, 0.4],
+          "custom-socks": [0.28, 0.15, 0.44, 0.68],
+          "custom-bracelets": [0.27, 0.38, 0.46, 0.24],
+          "pillow-dolls": [0.25, 0.25, 0.5, 0.5],
+          "sequence-pillows": [0.2, 0.25, 0.6, 0.48],
+          "intention-bracelets": [0.3, 0.38, 0.4, 0.24],
+          "laser-keychains": [0.28, 0.22, 0.44, 0.52],
+          "stamped-rings": [0.28, 0.35, 0.44, 0.3],
+          "plush-bags": [0.22, 0.23, 0.56, 0.54],
+        };
+        const [left, top, areaWidth, areaHeight] = printAreas[selectedProductId] || [0.22, 0.22, 0.56, 0.56];
+        const printX = x + width * left;
+        const printY = y + height * top;
+        const printW = width * areaWidth;
+        const printH = height * areaHeight;
+        ctx.save();
+        ctx.beginPath();
+        if (selectedProductId === "trucker-hats" || selectedProductId === "hats-beanies") {
+          ctx.moveTo(printX + printW * 0.08, printY);
+          ctx.quadraticCurveTo(printX + printW * 0.5, printY - printH * 0.08, printX + printW * 0.92, printY);
+          ctx.lineTo(printX + printW, printY + printH * 0.9);
+          ctx.quadraticCurveTo(printX + printW * 0.5, printY + printH, printX, printY + printH * 0.9);
+        } else {
+          ctx.roundRect(printX, printY, printW, printH, Math.min(printW, printH) * 0.12);
+        }
+        ctx.closePath();
+        ctx.clip();
+        ctx.translate(printX, printY);
+        ctx.scale(printW / w, printH / h);
       }
 
       // 3. Draw Fused Background Image if present
@@ -849,7 +905,9 @@ const BuildNovelty = () => {
       const drawingLayer = getDrawingLayerCanvas();
       ctx.drawImage(drawingLayer, 0, 0, w, h);
 
-      if (includeSelection && tool === "select" && selectedDesignObject && selectedDesignObject.visible !== false) {
+      if (advancedProductPreview && productBounds) ctx.restore();
+
+      if (!advancedProductPreview && includeSelection && tool === "select" && selectedDesignObject && selectedDesignObject.visible !== false) {
         const bounds = getDesignObjectBounds(selectedDesignObject, ctx);
         const centerX = bounds.x + bounds.width / 2;
         const centerY = bounds.y + bounds.height / 2;
@@ -882,7 +940,7 @@ const BuildNovelty = () => {
 
 
     },
-    [getDrawingLayerCanvas, productTemplateImg, bgImage, uploadedImages, layers, selectedDesignObject, tool]
+    [getDrawingLayerCanvas, productTemplateImg, bgImage, uploadedImages, layers, selectedDesignObject, tool, advancedProductPreview, selectedProductId]
   );
 
   const redrawCanvas = useCallback(() => {
@@ -1400,6 +1458,7 @@ const BuildNovelty = () => {
       });
       if (uploadError) throw uploadError;
       const { data: imageData } = supabase.storage.from(CMS_MEDIA_BUCKET).getPublicUrl(storagePath);
+      const { data: authData } = await supabase.auth.getUser();
       const design = {
         id: submissionId,
         productId: selectedProduct.id,
@@ -1408,6 +1467,7 @@ const BuildNovelty = () => {
         imagePath: storagePath,
         styles: activePills,
         description,
+        submittedByEmail: authData.user?.email || "",
         createdAt: new Date().toISOString(),
       };
       const { error: insertError } = await supabase.from("novelty_design_submissions").insert({
@@ -1418,6 +1478,7 @@ const BuildNovelty = () => {
         image_path: storagePath,
         styles: activePills,
         description,
+        submitted_by_email: authData.user?.email || null,
         status: "new",
       });
       if (insertError) throw insertError;
@@ -1643,6 +1704,14 @@ const BuildNovelty = () => {
                 {/* Canvas Actions & VIEW FULL SKETCH ↗ */}
                 <div className="flex items-center gap-2 border-l border-white/10 pl-3">
                   <button
+                    onClick={() => setAdvancedProductPreview((current) => !current)}
+                    aria-pressed={advancedProductPreview}
+                    title="Preview your design mapped onto the selected novelty"
+                    className={`rounded-full border px-3 py-1.5 text-[10px] font-bold uppercase tracking-wide transition-colors ${advancedProductPreview ? "border-[#0099FF] bg-[#0099FF]/20 text-white" : "border-white/10 text-white/60 hover:bg-white/10 hover:text-white"}`}
+                  >
+                    {advancedProductPreview ? "PRODUCT PREVIEW ON" : "ADVANCED PRODUCT PREVIEW"}
+                  </button>
+                  <button
                     onClick={handleUndo}
                     disabled={historyIndex <= 0}
                     title="Undo"
@@ -1670,7 +1739,7 @@ const BuildNovelty = () => {
 
                   {/* PROMINENT VIEW FULL SKETCH BUTTON */}
                   <button
-                    onClick={() => setIsFullSketchMode(true)}
+                  onClick={() => { if (advancedProductPreview) setAdvancedProductPreview(false); setIsFullSketchMode(true); }}
                     className="ml-2 inline-flex items-center gap-1.5 rounded-full bg-[#0099FF] px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-white shadow-[0_0_15px_rgba(0,153,255,0.4)] hover:bg-[#0088EE] hover:scale-105 transition-all"
                   >
                     <Maximize2 className="h-3.5 w-3.5" />
@@ -1681,6 +1750,7 @@ const BuildNovelty = () => {
 
               {/* Main HTML5 Interactive Canvas Container */}
               <div className="relative flex items-center justify-center rounded-[18px] bg-[#040b15] border border-white/10 overflow-hidden min-h-[380px] sm:min-h-[440px]">
+                {advancedProductPreview && <div className="absolute left-1/2 top-3 z-20 -translate-x-1/2 rounded-full border border-[#43b5ff]/35 bg-[#061426]/90 px-3 py-1.5 text-[9px] font-bold uppercase tracking-wider text-[#9ed6ff]">Artwork mapped to {selectedProduct.title} · switch off to edit</div>}
                 
                 {/* Vertical Brush Size Slider on Left */}
                 <div className="absolute left-4 top-1/2 -translate-y-1/2 z-20 flex flex-col items-center gap-2 rounded-full bg-[#050f1c]/90 p-2.5 border border-white/10 backdrop-blur-md">
@@ -1702,11 +1772,11 @@ const BuildNovelty = () => {
                   ref={compactCanvasRef}
                   width={640}
                   height={440}
-                  onPointerDown={(e) => startDrawing(e, compactCanvasRef)}
-                  onPointerMove={(e) => draw(e, compactCanvasRef)}
-                  onPointerUp={stopDrawing}
-                  onPointerCancel={stopDrawing}
-                  className={`w-full max-w-[640px] h-[380px] sm:h-[440px] touch-none object-contain ${tool === "select" ? "cursor-move" : "cursor-crosshair"}`}
+                  onPointerDown={advancedProductPreview ? undefined : (e) => startDrawing(e, compactCanvasRef)}
+                  onPointerMove={advancedProductPreview ? undefined : (e) => draw(e, compactCanvasRef)}
+                  onPointerUp={advancedProductPreview ? undefined : stopDrawing}
+                  onPointerCancel={advancedProductPreview ? undefined : stopDrawing}
+                  className={`w-full max-w-[640px] h-[380px] sm:h-[440px] touch-none object-contain ${advancedProductPreview ? "cursor-default" : tool === "select" ? "cursor-move" : "cursor-crosshair"}`}
                 />
 
                 {/* Bottom Color Palette Bar with Edit RGB Spectrum Button */}
@@ -2027,11 +2097,11 @@ const BuildNovelty = () => {
                   ref={fullCanvasRef}
                   width={640}
                   height={440}
-                  onPointerDown={(e) => startDrawing(e, fullCanvasRef)}
-                  onPointerMove={(e) => draw(e, fullCanvasRef)}
-                  onPointerUp={stopDrawing}
-                  onPointerCancel={stopDrawing}
-                  className={`w-[800px] h-[540px] touch-none object-contain max-w-full max-h-[70vh] ${tool === "select" ? "cursor-move" : "cursor-crosshair"}`}
+                  onPointerDown={advancedProductPreview ? undefined : (e) => startDrawing(e, fullCanvasRef)}
+                  onPointerMove={advancedProductPreview ? undefined : (e) => draw(e, fullCanvasRef)}
+                  onPointerUp={advancedProductPreview ? undefined : stopDrawing}
+                  onPointerCancel={advancedProductPreview ? undefined : stopDrawing}
+                  className={`w-[800px] h-[540px] touch-none object-contain max-w-full max-h-[70vh] ${advancedProductPreview ? "cursor-default" : tool === "select" ? "cursor-move" : "cursor-crosshair"}`}
                 />
               </div>
 

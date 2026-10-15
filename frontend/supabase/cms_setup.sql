@@ -128,12 +128,15 @@ create table if not exists public.novelty_design_submissions (
   image_path text not null,
   styles text[] not null default '{}',
   description text not null default '',
+  submitted_by_email text,
   status text not null default 'new' check (status in ('new', 'reviewing', 'quoted', 'complete')),
   created_at timestamptz not null default now()
 );
+alter table public.novelty_design_submissions
+  add column if not exists submitted_by_email text;
 alter table public.novelty_design_submissions enable row level security;
 grant insert on public.novelty_design_submissions to anon, authenticated;
-grant select, update on public.novelty_design_submissions to authenticated;
+grant select, update, delete on public.novelty_design_submissions to authenticated;
 drop policy if exists "Visitors can submit novelty designs" on public.novelty_design_submissions;
 create policy "Visitors can submit novelty designs" on public.novelty_design_submissions
 for insert to anon, authenticated with check (status = 'new');
@@ -143,6 +146,9 @@ for select to authenticated using ((select public.is_cms_admin()));
 drop policy if exists "CMS admins can update novelty designs" on public.novelty_design_submissions;
 create policy "CMS admins can update novelty designs" on public.novelty_design_submissions
 for update to authenticated using ((select public.is_cms_admin())) with check ((select public.is_cms_admin()));
+drop policy if exists "CMS admins can delete novelty designs" on public.novelty_design_submissions;
+create policy "CMS admins can delete novelty designs" on public.novelty_design_submissions
+for delete to authenticated using ((select public.is_cms_admin()));
 
 -- Public URLs are needed to display images on the public website. Writes are
 -- still protected by verified-admin checks in the storage object policies.

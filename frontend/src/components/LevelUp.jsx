@@ -1,15 +1,25 @@
 import React from "react";
 import { ArrowRight, Sparkles } from "lucide-react";
+import { useCmsContent } from "../lib/cmsContent";
+import { noveltyContentFromRow } from "../lib/noveltyContent";
 
-const noveltyPatches = [
-  { name: "CUSTOM HATS", image: "/novelty-templates/hat-front.jpg", className: "left-[7%] top-[9%] w-[39%] -rotate-[8deg]" },
-  { name: "YOUR COLORS", image: "/novelty-templates/bead-bracelet.jpg", className: "right-[6%] top-[4%] w-[34%] rotate-[7deg]" },
-  { name: "MADE TO KEEP", image: "/novelty-templates/plush-bag.jpg", className: "left-[2%] bottom-[5%] w-[35%] rotate-[6deg]" },
-  { name: "EVENT MERCH", image: "/novelty-templates/socks.jpg", className: "right-[9%] bottom-[6%] w-[40%] -rotate-[6deg]" },
+const noveltyPatchLayouts = [
+  { productId: "trucker-hats", label: "CUSTOM HATS", className: "left-[7%] top-[9%] w-[39%] -rotate-[8deg]" },
+  { productId: "custom-bracelets", label: "YOUR COLORS", className: "right-[6%] top-[4%] w-[34%] rotate-[7deg]" },
+  { productId: "plush-bags", label: "MADE TO KEEP", className: "left-[2%] bottom-[5%] w-[35%] rotate-[6deg]" },
+  { productId: "custom-socks", label: "EVENT MERCH", className: "right-[9%] bottom-[6%] w-[40%] -rotate-[6deg]" },
 ];
 
-const LevelUp = () => (
-  <section id="gaming-division" className="relative overflow-hidden bg-[#05070f] py-24">
+const LevelUp = () => {
+  const { pages } = useCmsContent();
+  const noveltyContent = noveltyContentFromRow(pages.novelties);
+  const noveltyPatches = noveltyPatchLayouts.map((layout) => {
+    const thumbnail = noveltyContent.workshops.find((item) => item.productId === layout.productId);
+    return thumbnail ? { ...layout, thumbnail } : null;
+  }).filter(Boolean);
+
+  return (
+    <section id="gaming-division" className="relative overflow-hidden bg-[#05070f] py-24">
     <div className="mx-auto grid max-w-[1280px] grid-cols-1 items-center gap-14 px-5 md:px-8 lg:grid-cols-2">
       <div className="relative mx-auto aspect-[1.16/1] w-full max-w-[560px]">
         <div className="absolute inset-[9%] rounded-full bg-[#0066FD]/20 blur-3xl" />
@@ -21,13 +31,13 @@ const LevelUp = () => (
             style={{ zIndex: index + 1 }}
           >
             <div className="relative aspect-[1.05/1] overflow-hidden bg-white">
-              <img src={patch.image} alt={patch.name.toLowerCase().replaceAll(" ", " ")} className="h-full w-full object-cover" />
+              <img src={patch.thumbnail.image} alt={patch.thumbnail.title} className="h-full w-full object-cover" loading="lazy" />
               <span className="absolute left-1.5 top-1.5 rounded-sm border border-[#07101f]/20 bg-white/90 px-1.5 py-1 font-display text-[7px] font-bold tracking-[.14em] text-[#101d32] sm:text-[8px]">
                 NLG / CUSTOM
               </span>
             </div>
             <div className="flex items-center justify-between gap-1 px-0.5 pt-2">
-              <span className="font-display text-[8px] font-bold tracking-[.16em] text-white sm:text-[9px]">{patch.name}</span>
+              <span className="font-display text-[8px] font-bold tracking-[.16em] text-white sm:text-[9px]">{patch.label}</span>
               <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#39a9ff]" />
             </div>
           </article>
@@ -71,6 +81,7 @@ const LevelUp = () => (
       </div>
     </div>
   </section>
-);
+  );
+};
 
 export default LevelUp;

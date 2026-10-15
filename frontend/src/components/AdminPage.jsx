@@ -303,25 +303,74 @@ function NoveltyDesignInbox() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [search, setSearch] = useState("");
+  const [selectedIds, setSelectedIds] = useState([]);
+  const [expandedEmails, setExpandedEmails] = useState([]);
+  const [deleting, setDeleting] = useState(false);
   const refreshDesigns = async () => {
     setLoading(true); setError("");
     const { data, error: queryError } = await supabase.from("novelty_design_submissions").select("*").order("created_at", { ascending: false });
-    if (queryError) setError("Could not load the novelty inbox. Run the latest supabase/cms_setup.sql setup script.");
-    else setDesigns(data || []);
+    if (queryError) setError(`Could not load the novelty inbox: ${queryError.message}. Run the latest supabase/cms_setup.sql setup script if the table is missing.`);
+    else { setDesigns(data || []); setSelectedIds([]); }
     setLoading(false);
   };
   useEffect(() => { refreshDesigns(); }, []);
+  const filteredDesigns = designs.filter((design) => `${design.product_title} ${design.id} ${design.description} ${design.submitted_by_email || ""}`.toLowerCase().includes(search.toLowerCase()));
+  const groupedDesigns = filteredDesigns.reduce((groups, design) => {
+    const email = design.submitted_by_email?.trim().toLowerCase() || "email unavailable";
+    groups[email] ||= [];
+    groups[email].push(design);
+    return groups;
+  }, {});
+  const toggleSelected = (id) => setSelectedIds((ids) => ids.includes(id) ? ids.filter((item) => item !== id) : [...ids, id]);
+  const toggleGroupSelected = (ids) => {
+    const allSelected = ids.every((id) => selectedIds.includes(id));
+    setSelectedIds((current) => allSelected ? current.filter((id) => !ids.includes(id)) : [...new Set([...current, ...ids])]);
+  };
+  const deleteDesigns = async (items) => {
+    if (!items.length || deleting) return;
+    const label = items.length === 1 ? `“${items[0].product_title}”` : `${items.length} selected designs`;
+    if (!window.confirm(`Permanently delete ${label}? This also removes the uploaded artwork.`)) return;
+    setDeleting(true); setError("");
+    const { error: deleteError } = await supabase.from("novelty_design_submissions").delete().in("id", items.map((item) => item.id));
+    if (deleteError) {
+      setError(`Could not delete the selected designs: ${deleteError.message}. Confirm the latest supabase/cms_setup.sql delete policy has been applied.`);
+      setDeleting(false);
+      return;
+    }
+    setDesigns((current) => current.filter((design) => !items.some((item) => item.id === design.id)));
+    setSelectedIds((current) => current.filter((id) => !items.some((item) => item.id === id)));
+    const paths = items.map((item) => item.image_path).filter(Boolean);
+    if (paths.length) {
+      const { error: storageError } = await supabase.storage.from(CMS_MEDIA_BUCKET).remove(paths);
+      if (storageError) setError(`Design records were deleted, but some artwork files could not be removed: ${storageError.message}`);
+    }
+    setDeleting(false);
+  };
   return <>
-    <section className="cms-editor-heading"><div><p className="cms-eyebrow">CUSTOMER WORK / NOVELTIES</p><h2>Design submissions</h2><p>Every saved design is grouped by submission ID and date, with a direct artwork download.</p></div><button onClick={refreshDesigns} className="cms-secondary-button">REFRESH INBOX</button></section>
+    <section className="cms-editor-heading"><div><p className="cms-eyebrow">CUSTOMER WORK / NOVELTIES</p><h2>Design submissions</h2><p>Submissions are grouped by the email address used to submit them.</p></div><button onClick={refreshDesigns} className="cms-secondary-button" disabled={loading}>REFRESH INBOX</button></section>
     {error && <p className="cms-error">{error}</p>}
-    <label className="cms-design-search">Search submissions<input value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Product name or submission ID" /></label>
-    {loading ? <p className="cms-login-lede">Loading design submissions…</p> : designs.length ? <div className="cms-novelty-design-grid">{designs.filter((design) => `${design.product_title} ${design.id} ${design.description}`.toLowerCase().includes(search.toLowerCase())).map((design) => <article className="cms-panel cms-novelty-design-card" key={design.id}>
-      <img src={design.image_url} alt={`${design.product_title} submitted design`} />
-      <div className="cms-novelty-design-meta"><span className="cms-eyebrow">{design.status || "NEW"} · {new Date(design.created_at).toLocaleString()}</span><h3>{design.product_title}</h3><small>Submission {design.id}</small>
-        {design.styles?.length > 0 && <p>Styles: {design.styles.join(", ")}</p>}{design.description && <p>{design.description}</p>}
-        <a className="cms-primary-button" href={`${design.image_url}?download=novelty-${design.id}.jpg`} download={`novelty-${design.id}.jpg`}><FileImage size={15}/> DOWNLOAD ARTWORK</a>
-      </div>
-    </article>)}</div> : <section className="cms-panel"><p className="cms-login-lede">No custom novelty designs have been submitted yet.</p></section>}
+    <label className="cms-design-search">Search submissions<input value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Submitter email, product, or ID" /></label>
+    {selectedIds.length > 0 && <div className="cms-batch-actions"><span>{selectedIds.length} design{selectedIds.length === 1 ? "" : "s"} selected</span><button className="cms-danger-button" onClick={() => deleteDesigns(designs.filter((design) => selectedIds.includes(design.id)))} disabled={deleting}><Trash2 size={15}/>{deleting ? "DELETING…" : "DELETE SELECTED"}</button><button className="cms-text-button" onClick={() => setSelectedIds([])}>Clear selection</button></div>}
+    {loading ? <p className="cms-login-lede">Loading design submissions…</p> : filteredDesigns.length ? <div className="cms-submitter-groups">{Object.entries(groupedDesigns).map(([email, grouped]) => {
+      const isExpanded = expandedEmails.includes(email);
+      const groupIds = grouped.map((design) => design.id);
+      const allSelected = groupIds.every((id) => selectedIds.includes(id));
+      return <section className="cms-submitter-group" key={email}>
+        <div className="cms-submitter-heading">
+          <label className="cms-select-group"><input type="checkbox" checked={allSelected} onChange={() => toggleGroupSelected(groupIds)} aria-label={`Select all designs from ${email}`} /></label>
+          <button className="cms-submitter-toggle" aria-expanded={isExpanded} onClick={() => setExpandedEmails((current) => isExpanded ? current.filter((item) => item !== email) : [...current, email])}><ChevronDown className={isExpanded ? "expanded" : ""} size={17}/><span><strong>{email === "email unavailable" ? "Email not recorded" : email}</strong><small>{grouped.length} design{grouped.length === 1 ? "" : "s"}</small></span></button>
+          <button className="cms-text-button" onClick={() => toggleGroupSelected(groupIds)}>{allSelected ? "Deselect group" : "Select group"}</button>
+        </div>
+        {isExpanded && <div className="cms-novelty-design-grid">{grouped.map((design) => <article className="cms-panel cms-novelty-design-card" key={design.id}>
+          <label className="cms-design-select"><input type="checkbox" checked={selectedIds.includes(design.id)} onChange={() => toggleSelected(design.id)} aria-label={`Select ${design.product_title} design`} /></label>
+          <img src={design.image_url} alt={`${design.product_title} submitted design`} />
+          <div className="cms-novelty-design-meta"><span className="cms-eyebrow">{design.status || "NEW"} · {new Date(design.created_at).toLocaleString()}</span><h3>{design.product_title}</h3><small>Submission {design.id}</small>
+            {design.styles?.length > 0 && <p>Styles: {design.styles.join(", ")}</p>}{design.description && <p>{design.description}</p>}
+            <div className="cms-design-card-actions"><a className="cms-primary-button" href={`${design.image_url}?download=novelty-${design.id}.jpg`} download={`novelty-${design.id}.jpg`}><FileImage size={15}/> DOWNLOAD ARTWORK</a><button className="cms-danger-button" onClick={() => deleteDesigns([design])} disabled={deleting}><Trash2 size={15}/> DELETE</button></div>
+          </div>
+        </article>)}</div>}
+      </section>;
+    })}</div> : <section className="cms-panel"><p className="cms-login-lede">{designs.length ? "No submissions match your search." : "No custom novelty designs have been submitted yet."}</p></section>}
   </>;
 }
 
