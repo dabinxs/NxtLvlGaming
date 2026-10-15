@@ -58,7 +58,6 @@ const GALLERY_IMAGES = [
 const AVAILABLE_SCREENS = [
   {
     size: "16 FT SCREEN",
-    capacity: "Up to 100 Guests",
     desc: "Great for backyards, private birthday parties, and intimate family gatherings.",
     highlights: [
       "Optimal viewing distance up to 75 ft",
@@ -68,7 +67,6 @@ const AVAILABLE_SCREENS = [
   },
   {
     size: "21 FT SCREEN",
-    capacity: "100–300 Guests",
     desc: "Great for school fields, HOA community nights, and parking lot screenings.",
     highlights: [
       "Optimal viewing distance up to 125 ft",
@@ -78,7 +76,6 @@ const AVAILABLE_SCREENS = [
   },
   {
     size: "26 FT SCREEN",
-    capacity: "300–750 Guests",
     desc: "Great for events out in the park, college campus quads, and public festivals.",
     highlights: [
       "Optimal viewing distance up to 200 ft",
@@ -88,7 +85,6 @@ const AVAILABLE_SCREENS = [
   },
   {
     size: "40 FT SCREEN",
-    capacity: "750+ Guests / 100+ Cars",
     desc: "Perfect for Drive-Ins, City-wide events, and massive festival crowds.",
     highlights: [
       "FM radio broadcast for drive-in movies",
@@ -280,14 +276,9 @@ const MovieNights = () => {
                   className="group relative flex flex-col justify-between rounded-2xl border border-white/10 bg-gradient-to-b from-[#0c1830] to-[#070e1e] p-6 transition-all duration-300 hover:border-[#0066FD]/50 hover:shadow-[0_12px_32px_rgba(0,102,253,0.18)]"
                 >
                   <div>
-                    <div className="flex items-center justify-between gap-2">
-                      <div className="flex items-center gap-2 text-[#7DDDFF]">
-                        <Monitor className="h-4 w-4" />
-                        <span className="text-[11px] font-bold uppercase tracking-wider text-white/60">Cinema Screen</span>
-                      </div>
-                      <span className="rounded-full border border-[#0066FD]/40 bg-[#0066FD]/15 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-[#7DDDFF]">
-                        {screen.capacity}
-                      </span>
+                    <div className="flex items-center gap-2 text-[#7DDDFF]">
+                      <Monitor className="h-4 w-4" />
+                      <span className="text-[11px] font-bold uppercase tracking-wider text-white/60">Cinema Screen</span>
                     </div>
 
                     <h3 className="mt-4 font-display text-[20px] font-extrabold uppercase tracking-wide text-white group-hover:text-[#7DDDFF] transition-colors">
