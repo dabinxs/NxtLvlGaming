@@ -66,44 +66,58 @@ const GAMING_PACKAGES = [
   {
     id: "deluxe-package",
     name: "Deluxe Package",
-    tagline: "Popular Pick",
-    description: "Complete multi-station console setup with HD displays, crowd-favorite multiplayer titles, and full on-site technical staffing.",
+    tagline: "(Yes, the screens are really that thin!)",
+    badge: "Deluxe Setup",
     image: "/experience-gaming-events.avif",
     quoteParam: "Deluxe gaming",
+    paragraphs: [
+      "Includes four 12' screens and our giant 21' to 32' high definition screen.",
+      "Popular games on consoles like the XBOX One, PlayStation 4, Nintendo Switch, and retro games!",
+    ],
     features: [
-      "Multi-station console setup",
-      "Curated library of top multiplayer games",
-      "Full high-definition displays & sound",
-      "On-site gaming coordinators & tech support",
+      "Four 12' screens & giant 21' to 32' HD screen",
+      "XBOX One, PlayStation 4 & Nintendo Switch",
+      "Library of popular games & classic retro titles",
+      "Full turnkey delivery, setup & on-site staff",
     ],
   },
   {
     id: "ultimate-package",
     name: "Ultimate Package",
-    tagline: "Most Popular",
+    tagline: "(Yeah...we know, it's awesome!)",
+    badge: "Most Popular",
     popular: true,
-    description: "Massive giant screens, premium audio, multiple next-gen console stations, and dedicated event coordinators for large crowds.",
     image: "/about-gaming-event.jpg",
     quoteParam: "Ultimate gaming",
+    paragraphs: [
+      "Includes eight of our 12 ft high definition screens, as well as the giant 26ft HD screen.",
+      "Consoles like the XBOX One, PlayStation 4, Nintendo Switch, and even retro games like the NES!",
+      "On our Premiere Jumbo Screen: Our virtual dance party, which includes YOU as the DJ via smartphone during the event.",
+      "In tournament settings, the finals will be played in front of the entire crowd!",
+    ],
     features: [
-      "Massive 12 ft to 32 ft giant screens",
-      "Next-gen consoles (PS5, Xbox Series X, Switch)",
-      "Pro audio & atmospheric lighting",
-      "Full turnkey staffing & crowd facilitation",
+      "Eight 12 ft HD screens + giant 26 ft HD screen",
+      "XBOX One, PS4, Nintendo Switch & NES retro games",
+      "Virtual dance party with smartphone crowd DJ",
+      "Grand tournament finals in front of the entire crowd",
     ],
   },
   {
     id: "tournament-package",
     name: "Tournament Package",
-    tagline: "Esports Edition",
-    description: "Full competitive esports setup with bracket management, live scoring, caster audio setup, and grand final main stage.",
+    tagline: "Champions are made from this package!",
+    badge: "Esports Edition",
     image: "/gaming-tournament-package.jpg",
     quoteParam: "Tournament production",
+    paragraphs: [
+      "Compete with colleagues or across an entire campus with our tournament package. Choose from any console game and battle in amazement through our high definition 12 ft screen.",
+      "Streaming is included on our HD jumbo 32ft screen for spectators' entertainment.",
+    ],
     features: [
-      "Structured bracket coordination & rulesets",
-      "Shoutcaster audio & commentator station",
-      "Live spectator displays & leaderboards",
-      "Grand final championship presentation",
+      "High definition 12 ft player battle screen",
+      "HD jumbo 32 ft screen for spectator streaming",
+      "Colleague & campus-wide tournament competition",
+      "Choose from any modern console game",
     ],
   },
 ];
@@ -318,7 +332,7 @@ const GamingEvents = () => {
                             : "border border-[#0066FD]/50 bg-[#05070f]/85 text-[#7DDDFF]"
                         }`}
                       >
-                        {pkg.tagline}
+                        {pkg.badge}
                       </span>
                     </div>
                   </div>
@@ -326,12 +340,21 @@ const GamingEvents = () => {
                   {/* Package Details */}
                   <div className="flex flex-1 flex-col justify-between p-7">
                     <div>
-                      <h3 className="font-display text-[22px] font-extrabold uppercase tracking-wide text-white transition-colors group-hover:text-[#7DDDFF]">
-                        {pkg.name}
-                      </h3>
-                      <p className="mt-3 text-[14px] leading-relaxed text-white/70">
-                        {pkg.description}
-                      </p>
+                      <div className="flex flex-col gap-1">
+                        <h3 className="font-display text-[23px] font-extrabold uppercase tracking-wide text-white transition-colors group-hover:text-[#7DDDFF]">
+                          {pkg.name}
+                        </h3>
+                        <p className="text-[14px] italic font-medium text-[#7DDDFF]/90">
+                          {pkg.tagline}
+                        </p>
+                      </div>
+
+                      {/* Info Paragraphs from reference */}
+                      <div className="mt-4 space-y-2.5 text-[14px] leading-relaxed text-white/75">
+                        {pkg.paragraphs.map((para, pIdx) => (
+                          <p key={pIdx}>{para}</p>
+                        ))}
+                      </div>
 
                       {/* Highlights */}
                       <ul className="mt-6 space-y-2.5 border-t border-white/10 pt-5">
