@@ -435,6 +435,50 @@ const TEMPLATES_ASSETS = [
   { id: "crown", name: "Crown", symbol: "👑" },
 ];
 
+const getDesignObjectBounds = (object, ctx) => {
+  if (!object) return null;
+  if (object.imgObj) {
+    return { x: object.x, y: object.y, width: object.width, height: object.height };
+  }
+  if (object.type === "text") {
+    ctx.save();
+    ctx.font = `bold ${object.fontSize || 28}px sans-serif`;
+    const width = Math.max(40, ctx.measureText(object.text || "").width + 12);
+    ctx.restore();
+    return { x: object.x - width / 2, y: object.y - (object.fontSize || 28) / 2 - 6, width, height: (object.fontSize || 28) + 12 };
+  }
+  return { x: object.x - 30, y: object.y - 30, width: 60, height: 60 };
+};
+
+const pointInsideDesignObject = (point, object, bounds) => {
+  const centerX = bounds.x + bounds.width / 2;
+  const centerY = bounds.y + bounds.height / 2;
+  const radians = -((object.rotation || 0) * Math.PI) / 180;
+  const dx = point.x - centerX;
+  const dy = point.y - centerY;
+  const localX = dx * Math.cos(radians) - dy * Math.sin(radians) + centerX;
+  const localY = dx * Math.sin(radians) + dy * Math.cos(radians) + centerY;
+  return localX >= bounds.x && localX <= bounds.x + bounds.width && localY >= bounds.y && localY <= bounds.y + bounds.height;
+};
+
+const getCanvasPoint = (event, canvas) => {
+  const rect = canvas.getBoundingClientRect();
+  const scale = Math.min(rect.width / canvas.width, rect.height / canvas.height);
+  const offsetX = (rect.width - canvas.width * scale) / 2;
+  const offsetY = (rect.height - canvas.height * scale) / 2;
+  return {
+    x: (event.clientX - rect.left - offsetX) / scale,
+    y: (event.clientY - rect.top - offsetY) / scale,
+  };
+};
+
+const getOrderedDesignObjects = (images, layers) => [
+  ...images.map((object, index) => ({ object, kind: "image", fallbackOrder: index })),
+  ...layers.map((object, index) => ({ object, kind: "layer", fallbackOrder: images.length + index })),
+]
+  .sort((a, b) => (a.object.zIndex ?? a.fallbackOrder) - (b.object.zIndex ?? b.fallbackOrder))
+  .map(({ object, kind }) => ({ ...object, objectKind: kind }));
+
 const BuildNovelty = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
@@ -471,6 +515,7 @@ const BuildNovelty = () => {
   // Active Canvas Layers
   const [layers, setLayers] = useState([]);
   const [selectedLayerId, setSelectedLayerId] = useState(null);
+  const dragRef = useRef(null);
 
   // Image Upload Layers
   const [uploadedImages, setUploadedImages] = useState([]);
@@ -521,6 +566,23 @@ const BuildNovelty = () => {
     setSelectedProductId(id);
     setActiveView("front");
     setSearchParams({ product: id });
+  };
+
+  const selectedImage = uploadedImages.find((image) => image.id === selectedLayerId) || null;
+  const selectedBackgroundImage = bgImage?.imgObj && bgImage.id === selectedLayerId ? bgImage : null;
+  const selectedDesignLayer = layers.find((layer) => layer.id === selectedLayerId) || null;
+  const selectedDesignObject = selectedImage || selectedBackgroundImage || selectedDesignLayer;
+  const selectedDesignName = selectedImage?.name || selectedBackgroundImage?.name || selectedDesignLayer?.name || selectedDesignLayer?.text || selectedDesignLayer?.symbol || "No object selected";
+
+  const updateSelectedObject = (updates) => {
+    if (!selectedLayerId) return;
+    if (selectedImage) {
+      setUploadedImages((current) => current.map((image) => image.id === selectedLayerId ? { ...image, ...updates } : image));
+    } else if (selectedBackgroundImage) {
+      setBgImage((current) => current?.id === selectedLayerId ? { ...current, ...updates } : current);
+    } else {
+      setLayers((current) => current.map((layer) => layer.id === selectedLayerId ? { ...layer, ...updates } : layer));
+    }
   };
 
   useEffect(() => {
@@ -578,30 +640,39 @@ const BuildNovelty = () => {
   };
 
   const duplicateSelectedLayer = () => {
-    const source = layers.find((layer) => layer.id === selectedLayerId) || layers[layers.length - 1];
+    const source = selectedDesignObject || layers[layers.length - 1];
     if (!source) return;
     const copy = {
       ...source,
-      id: `layer-${Date.now()}-${Math.random().toString(16).slice(2)}`,
+      id: `${source.imgObj ? "image" : "layer"}-${Date.now()}-${Math.random().toString(16).slice(2)}`,
       name: `${source.name || source.text || source.symbol || "Design"} copy`,
       x: source.x + 24,
       y: source.y + 24,
     };
-    setLayers((current) => [...current, copy]);
+    if (source.imgObj) setUploadedImages((current) => [...current, copy]);
+    else setLayers((current) => [...current, copy]);
     setSelectedLayerId(copy.id);
   };
 
   const flipSelectedLayer = (axis) => {
     if (!selectedLayerId) return;
-    setLayers((current) => current.map((layer) =>
-      layer.id === selectedLayerId
-        ? { ...layer, [axis]: !layer[axis] }
-        : layer
-    ));
+    updateSelectedObject({ [axis]: !selectedDesignObject?.[axis] });
   };
 
   const moveSelectedLayer = (direction) => {
     if (!selectedLayerId) return;
+    if (selectedBackgroundImage) return;
+    if (selectedImage) {
+      setUploadedImages((current) => {
+        const index = current.findIndex((image) => image.id === selectedLayerId);
+        const nextIndex = index + direction;
+        if (index < 0 || nextIndex < 0 || nextIndex >= current.length) return current;
+        const reordered = [...current];
+        [reordered[index], reordered[nextIndex]] = [reordered[nextIndex], reordered[index]];
+        return reordered;
+      });
+      return;
+    }
     setLayers((current) => {
       const index = current.findIndex((layer) => layer.id === selectedLayerId);
       const nextIndex = index + direction;
@@ -614,7 +685,9 @@ const BuildNovelty = () => {
 
   const deleteSelectedLayer = () => {
     if (!selectedLayerId) return;
-    setLayers((current) => current.filter((layer) => layer.id !== selectedLayerId));
+    if (selectedBackgroundImage) setBgImage(null);
+    else if (selectedImage) setUploadedImages((current) => current.filter((image) => image.id !== selectedLayerId));
+    else setLayers((current) => current.filter((layer) => layer.id !== selectedLayerId));
     setSelectedLayerId(null);
   };
 
@@ -670,7 +743,7 @@ const BuildNovelty = () => {
 
   // Redraw Canvas (called whenever layers, tool, or view changes)
   const redrawCanvasOnTarget = useCallback(
-    (canvas) => {
+    (canvas, includeSelection = true) => {
       if (!canvas) return;
       const ctx = canvas.getContext("2d");
       const w = canvas.width;
@@ -722,13 +795,45 @@ const BuildNovelty = () => {
 
       // 3. Draw Fused Background Image if present
       if (bgImage) {
-        ctx.drawImage(bgImage, 0, 0, w, h);
+        if (bgImage.imgObj) {
+          const centerX = bgImage.x + bgImage.width / 2;
+          const centerY = bgImage.y + bgImage.height / 2;
+          const cropZoom = Math.max(1, bgImage.cropZoom || 1);
+          const sourceWidth = bgImage.imgObj.naturalWidth / cropZoom;
+          const sourceHeight = bgImage.imgObj.naturalHeight / cropZoom;
+          const sourceX = (bgImage.imgObj.naturalWidth - sourceWidth) * (bgImage.cropOffsetX ?? 0.5);
+          const sourceY = (bgImage.imgObj.naturalHeight - sourceHeight) * (bgImage.cropOffsetY ?? 0.5);
+          ctx.save();
+          ctx.globalAlpha = bgImage.opacity ?? 1;
+          ctx.translate(centerX, centerY);
+          ctx.rotate(((bgImage.rotation || 0) * Math.PI) / 180);
+          ctx.scale(bgImage.flipX ? -1 : 1, bgImage.flipY ? -1 : 1);
+          ctx.translate(-centerX, -centerY);
+          if (bgImage.visible !== false) ctx.drawImage(bgImage.imgObj, sourceX, sourceY, sourceWidth, sourceHeight, bgImage.x, bgImage.y, bgImage.width, bgImage.height);
+          ctx.restore();
+        } else {
+          ctx.drawImage(bgImage, 0, 0, w, h);
+        }
       }
 
       // 4. Draw Uploaded Overlay Images
       uploadedImages.forEach((item) => {
-        if (item.imgObj) {
-          ctx.drawImage(item.imgObj, item.x, item.y, item.width, item.height);
+        if (item.imgObj && item.visible !== false) {
+          const centerX = item.x + item.width / 2;
+          const centerY = item.y + item.height / 2;
+          ctx.save();
+          ctx.globalAlpha = item.opacity ?? 1;
+          ctx.translate(centerX, centerY);
+          ctx.rotate(((item.rotation || 0) * Math.PI) / 180);
+          ctx.scale(item.flipX ? -1 : 1, item.flipY ? -1 : 1);
+          ctx.translate(-centerX, -centerY);
+          const cropZoom = Math.max(1, item.cropZoom || 1);
+          const sourceWidth = item.imgObj.naturalWidth / cropZoom;
+          const sourceHeight = item.imgObj.naturalHeight / cropZoom;
+          const sourceX = (item.imgObj.naturalWidth - sourceWidth) * (item.cropOffsetX ?? 0.5);
+          const sourceY = (item.imgObj.naturalHeight - sourceHeight) * (item.cropOffsetY ?? 0.5);
+          ctx.drawImage(item.imgObj, sourceX, sourceY, sourceWidth, sourceHeight, item.x, item.y, item.width, item.height);
+          ctx.restore();
         }
       });
 
@@ -747,7 +852,9 @@ const BuildNovelty = () => {
           ctx.textBaseline = "middle";
         }
         ctx.translate(layer.x, layer.y);
+        ctx.rotate(((layer.rotation || 0) * Math.PI) / 180);
         ctx.scale(layer.flipX ? -1 : 1, layer.flipY ? -1 : 1);
+        ctx.globalAlpha = layer.opacity ?? 1;
         ctx.fillText(layer.type === "text" ? layer.text : layer.symbol || "⭐", 0, 0);
         ctx.restore();
       });
@@ -755,18 +862,52 @@ const BuildNovelty = () => {
       const drawingLayer = getDrawingLayerCanvas();
       ctx.drawImage(drawingLayer, 0, 0, w, h);
 
+      if (includeSelection && tool === "select" && selectedDesignObject && selectedDesignObject.visible !== false) {
+        const bounds = getDesignObjectBounds(selectedDesignObject, ctx);
+        const centerX = bounds.x + bounds.width / 2;
+        const centerY = bounds.y + bounds.height / 2;
+        ctx.save();
+        ctx.translate(centerX, centerY);
+        ctx.rotate(((selectedDesignObject.rotation || 0) * Math.PI) / 180);
+        ctx.strokeStyle = "#43b5ff";
+        ctx.lineWidth = 2;
+        ctx.setLineDash([7, 4]);
+        ctx.strokeRect(-bounds.width / 2, -bounds.height / 2, bounds.width, bounds.height);
+        ctx.setLineDash([]);
+        ctx.beginPath();
+        ctx.moveTo(0, -bounds.height / 2);
+        ctx.lineTo(0, -bounds.height / 2 - 26);
+        ctx.stroke();
+        [[-bounds.width / 2, -bounds.height / 2], [bounds.width / 2, -bounds.height / 2], [-bounds.width / 2, bounds.height / 2], [bounds.width / 2, bounds.height / 2]].forEach(([x, y]) => {
+          ctx.beginPath();
+          ctx.arc(x, y, 5, 0, Math.PI * 2);
+          ctx.fillStyle = "#ffffff";
+          ctx.fill();
+          ctx.strokeStyle = "#168fff";
+          ctx.stroke();
+        });
+        ctx.beginPath();
+        ctx.arc(0, -bounds.height / 2 - 26, 6, 0, Math.PI * 2);
+        ctx.fillStyle = "#168fff";
+        ctx.fill();
+        ctx.restore();
+      }
+
 
     },
-    [getDrawingLayerCanvas, productTemplateImg, bgImage, uploadedImages, layers]
+    [getDrawingLayerCanvas, productTemplateImg, bgImage, uploadedImages, layers, selectedDesignObject, tool]
   );
 
   const redrawCanvas = useCallback(() => {
     if (compactCanvasRef.current) redrawCanvasOnTarget(compactCanvasRef.current);
     if (fullCanvasRef.current) redrawCanvasOnTarget(fullCanvasRef.current);
   }, [redrawCanvasOnTarget]);
+  const redrawCanvasLatestRef = useRef(redrawCanvas);
+  redrawCanvasLatestRef.current = redrawCanvas;
 
   useEffect(() => {
     redrawCanvas();
+    if (dragRef.current) return () => clearTimeout(historyCaptureTimerRef.current);
     historyCaptureTimerRef.current = setTimeout(() => {
       if (skipNextHistoryCaptureRef.current) {
         skipNextHistoryCaptureRef.current = false;
@@ -802,23 +943,72 @@ const BuildNovelty = () => {
   const startDrawing = (e, canvasRefTarget) => {
     const canvas = canvasRefTarget.current;
     if (!canvas) return;
-    const rect = canvas.getBoundingClientRect();
-    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-    const x = ((clientX - rect.left) / rect.width) * canvas.width;
-    const y = ((clientY - rect.top) / rect.height) * canvas.height;
+    if (e.cancelable) e.preventDefault();
+    canvas.setPointerCapture?.(e.pointerId);
+    const { x, y } = getCanvasPoint(e, canvas);
 
     if (tool === "select") {
       const ctx = canvas.getContext("2d");
-      const hit = [...layers].reverse().find((layer) => {
-        if (layer.type === "text") {
-          ctx.font = `bold ${layer.fontSize || 28}px sans-serif`;
-          const halfWidth = Math.max(22, ctx.measureText(layer.text).width / 2);
-          return Math.abs(x - layer.x) <= halfWidth && Math.abs(y - layer.y) <= (layer.fontSize || 28);
+      const point = { x, y };
+      let selectedHandleMode = null;
+      let selectedResizeHandle = null;
+      if (selectedDesignObject && selectedDesignObject.visible !== false) {
+        const selectedBounds = getDesignObjectBounds(selectedDesignObject, ctx);
+        const selectedCenterX = selectedBounds.x + selectedBounds.width / 2;
+        const selectedCenterY = selectedBounds.y + selectedBounds.height / 2;
+        const selectedRadians = -((selectedDesignObject.rotation || 0) * Math.PI) / 180;
+        const selectedDx = x - selectedCenterX;
+        const selectedDy = y - selectedCenterY;
+        const selectedLocal = {
+          x: selectedDx * Math.cos(selectedRadians) - selectedDy * Math.sin(selectedRadians) + selectedCenterX,
+          y: selectedDx * Math.sin(selectedRadians) + selectedDy * Math.cos(selectedRadians) + selectedCenterY,
+        };
+        if (Math.hypot(selectedLocal.x - selectedCenterX, selectedLocal.y - (selectedBounds.y - 26)) <= 13) {
+          selectedHandleMode = "rotate";
+        } else {
+          selectedResizeHandle = [
+            { name: "nw", x: selectedBounds.x, y: selectedBounds.y },
+            { name: "ne", x: selectedBounds.x + selectedBounds.width, y: selectedBounds.y },
+            { name: "sw", x: selectedBounds.x, y: selectedBounds.y + selectedBounds.height },
+            { name: "se", x: selectedBounds.x + selectedBounds.width, y: selectedBounds.y + selectedBounds.height },
+          ].find((handle) => Math.hypot(selectedLocal.x - handle.x, selectedLocal.y - handle.y) <= 14)?.name;
+          if (selectedResizeHandle) selectedHandleMode = "resize";
         }
-        return Math.abs(x - layer.x) <= 30 && Math.abs(y - layer.y) <= 30;
-      });
+      }
+      const hitLayer = [...layers].reverse().find((layer) => layer.visible !== false && pointInsideDesignObject(point, layer, getDesignObjectBounds(layer, ctx)));
+      const hitImage = [...uploadedImages].reverse().find((image) => image.visible !== false && pointInsideDesignObject(point, image, getDesignObjectBounds(image, ctx)));
+      const hitBackground = bgImage?.imgObj && bgImage.visible !== false && pointInsideDesignObject(point, bgImage, getDesignObjectBounds(bgImage, ctx)) ? bgImage : null;
+      const hit = selectedHandleMode ? selectedDesignObject : hitLayer || hitImage || hitBackground || null;
       setSelectedLayerId(hit?.id || null);
+      if (!hit) { dragRef.current = null; return; }
+
+      const bounds = getDesignObjectBounds(hit, ctx);
+      const centerX = bounds.x + bounds.width / 2;
+      const centerY = bounds.y + bounds.height / 2;
+      const radians = -((hit.rotation || 0) * Math.PI) / 180;
+      const dx = x - centerX;
+      const dy = y - centerY;
+      const localPoint = {
+        x: dx * Math.cos(radians) - dy * Math.sin(radians) + centerX,
+        y: dx * Math.sin(radians) + dy * Math.cos(radians) + centerY,
+      };
+      const rotateHandle = Math.hypot(localPoint.x - centerX, localPoint.y - (bounds.y - 26)) <= 13;
+      const resizeHandle = [
+        { name: "nw", x: bounds.x, y: bounds.y },
+        { name: "ne", x: bounds.x + bounds.width, y: bounds.y },
+        { name: "sw", x: bounds.x, y: bounds.y + bounds.height },
+        { name: "se", x: bounds.x + bounds.width, y: bounds.y + bounds.height },
+      ].find((handle) => Math.hypot(localPoint.x - handle.x, localPoint.y - handle.y) <= 14)?.name;
+      const mode = hit.id === selectedLayerId ? (selectedHandleMode || (rotateHandle ? "rotate" : resizeHandle ? "resize" : "move")) : "move";
+      dragRef.current = {
+        id: hit.id,
+        mode,
+        resizeHandle: selectedResizeHandle || resizeHandle,
+        startX: x,
+        startY: y,
+        origin: { ...hit },
+        startAngle: Math.atan2(y - centerY, x - centerX),
+      };
       return;
     }
 
@@ -835,9 +1025,15 @@ const BuildNovelty = () => {
             x,
             y,
             fontSize: 28,
+            rotation: 0,
+            opacity: 1,
+            flipX: false,
+            flipY: false,
+            visible: true,
           };
         setLayers((prev) => [...prev, layer]);
         setSelectedLayerId(layer.id);
+        setTool("select");
       }
       return;
     }
@@ -859,14 +1055,58 @@ const BuildNovelty = () => {
   };
 
   const draw = (e, canvasRefTarget) => {
-    if (!isDrawing) return;
     const canvas = canvasRefTarget.current;
     if (!canvas) return;
-    const rect = canvas.getBoundingClientRect();
-    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-    const x = ((clientX - rect.left) / rect.width) * canvas.width;
-    const y = ((clientY - rect.top) / rect.height) * canvas.height;
+    if (e.cancelable && (isDrawing || dragRef.current)) e.preventDefault();
+    const { x, y } = getCanvasPoint(e, canvas);
+
+    if (dragRef.current) {
+      const drag = dragRef.current;
+      const original = drag.origin;
+      if (drag.mode === "move") {
+        const values = { x: original.x + (x - drag.startX), y: original.y + (y - drag.startY) };
+        if (original.imgObj) {
+          values.x = Math.min(canvas.width - 12, Math.max(12 - original.width, values.x));
+          values.y = Math.min(canvas.height - 12, Math.max(12 - original.height, values.y));
+        } else {
+          values.x = Math.min(canvas.width - 12, Math.max(12, values.x));
+          values.y = Math.min(canvas.height - 12, Math.max(12, values.y));
+        }
+        if (bgImage?.id === drag.id) setBgImage((current) => current?.id === drag.id ? { ...current, ...values } : current);
+        else if (uploadedImages.some((image) => image.id === drag.id)) setUploadedImages((current) => current.map((image) => image.id === drag.id ? { ...image, ...values } : image));
+        else setLayers((current) => current.map((layer) => layer.id === drag.id ? { ...layer, ...values } : layer));
+      } else if (drag.mode === "rotate") {
+        const bounds = getDesignObjectBounds(original, canvas.getContext("2d"));
+        const angle = Math.atan2(y - (bounds.y + bounds.height / 2), x - (bounds.x + bounds.width / 2));
+        const rawRotation = (original.rotation || 0) + ((angle - drag.startAngle) * 180) / Math.PI;
+        const rotation = ((rawRotation + 180) % 360 + 360) % 360 - 180;
+        if (bgImage?.id === drag.id) setBgImage((current) => current?.id === drag.id ? { ...current, rotation } : current);
+        else if (uploadedImages.some((image) => image.id === drag.id)) setUploadedImages((current) => current.map((image) => image.id === drag.id ? { ...image, rotation } : image));
+        else setLayers((current) => current.map((layer) => layer.id === drag.id ? { ...layer, rotation } : layer));
+      } else if (drag.mode === "resize") {
+        const bounds = getDesignObjectBounds(original, canvas.getContext("2d"));
+        const resizeFromLeft = drag.resizeHandle === "nw" || drag.resizeHandle === "sw";
+        const resizeFromTop = drag.resizeHandle === "nw" || drag.resizeHandle === "ne";
+        const width = Math.max(24, bounds.width + (resizeFromLeft ? drag.startX - x : x - drag.startX));
+        const height = Math.max(24, bounds.height + (resizeFromTop ? drag.startY - y : y - drag.startY));
+        const widthChange = Math.abs(x - drag.startX) / bounds.width;
+        const heightChange = Math.abs(y - drag.startY) / bounds.height;
+        const factor = Math.max(0.1, widthChange >= heightChange ? width / bounds.width : height / bounds.height);
+        const values = original.imgObj
+          ? {
+              width: Math.max(24, original.width * factor),
+              height: Math.max(24, original.height * factor),
+              x: resizeFromLeft ? original.x + original.width - Math.max(24, original.width * factor) : original.x,
+              y: resizeFromTop ? original.y + original.height - Math.max(24, original.height * factor) : original.y,
+            }
+          : { fontSize: Math.max(12, (original.fontSize || 28) * factor) };
+        if (bgImage?.id === drag.id) setBgImage((current) => current?.id === drag.id ? { ...current, ...values } : current);
+        else if (uploadedImages.some((image) => image.id === drag.id)) setUploadedImages((current) => current.map((image) => image.id === drag.id ? { ...image, ...values } : image));
+        else setLayers((current) => current.map((layer) => layer.id === drag.id ? { ...layer, ...values } : layer));
+      }
+      return;
+    }
+    if (!isDrawing) return;
 
     const drawingLayer = getDrawingLayerCanvas();
     const ctx = drawingLayer.getContext("2d");
@@ -883,11 +1123,16 @@ const BuildNovelty = () => {
   };
 
   const stopDrawing = () => {
+    if (dragRef.current) {
+      dragRef.current = null;
+      setTimeout(() => saveCanvasStateRef.current?.(), 60);
+      return;
+    }
     if (isDrawing) {
       setIsDrawing(false);
       const drawingCtx = getDrawingLayerCanvas().getContext("2d");
       drawingCtx.globalCompositeOperation = "source-over";
-      redrawCanvas();
+      redrawCanvasLatestRef.current?.();
       saveCanvasState();
     }
   };
@@ -906,23 +1151,55 @@ const BuildNovelty = () => {
         if (!canvas) return;
 
         if (isFuse) {
-          setBgImage(img);
+          const aspect = img.width / img.height;
+          const targetW = Math.min(canvas.width * 0.82, canvas.height * 0.82 * aspect);
+          const targetH = targetW / aspect;
+          const id = `background-${Date.now()}-${Math.random().toString(16).slice(2)}`;
+          setBgImage({
+            id,
+            name: `${file.name.replace(/\.[^.]+$/, "") || "Uploaded background"} background`,
+            imgObj: img,
+            x: canvas.width / 2 - targetW / 2,
+            y: canvas.height / 2 - targetH / 2,
+            width: targetW,
+            height: targetH,
+            rotation: 0,
+            opacity: 1,
+            flipX: false,
+            flipY: false,
+            cropZoom: 1,
+            cropOffsetX: 0.5,
+            cropOffsetY: 0.5,
+            visible: true,
+          });
+          setSelectedLayerId(id);
         } else {
           const aspect = img.width / img.height;
           const targetW = 160;
           const targetH = targetW / aspect;
+          const id = `image-${Date.now()}-${Math.random().toString(16).slice(2)}`;
           setUploadedImages((prev) => [
             ...prev,
             {
-              id: Date.now(),
+              id,
+              name: file.name.replace(/\.[^.]+$/, "") || "Uploaded image",
               imgObj: img,
               x: canvas.width / 2 - targetW / 2,
               y: canvas.height / 2 - targetH / 2,
               width: targetW,
               height: targetH,
+              rotation: 0,
+              opacity: 1,
+              flipX: false,
+              flipY: false,
+              cropZoom: 1,
+              cropOffsetX: 0.5,
+              cropOffsetY: 0.5,
             },
           ]);
+          setSelectedLayerId(id);
         }
+        setTool("select");
       };
       img.src = event.target.result;
     };
@@ -964,9 +1241,15 @@ const BuildNovelty = () => {
           x: cx,
           y: cy,
           fontSize: 28,
+          rotation: 0,
+          opacity: 1,
+          flipX: false,
+          flipY: false,
+          visible: true,
         };
       setLayers((prev) => [...prev, layer]);
       setSelectedLayerId(layer.id);
+      setTool("select");
     }
   };
 
@@ -987,20 +1270,12 @@ const BuildNovelty = () => {
     drawingImage.onload = () => {
       drawingCtx.clearRect(0, 0, drawingLayer.width, drawingLayer.height);
       drawingCtx.drawImage(drawingImage, 0, 0, drawingLayer.width, drawingLayer.height);
+      redrawCanvas();
     };
     drawingImage.src = snapshot.drawing;
     setTimeout(() => {
       skipNextHistoryCaptureRef.current = false;
     }, 200);
-    const img = new Image();
-    img.onload = () => {
-      const canvas = getActiveCanvas();
-      if (!canvas) return;
-      const ctx = canvas.getContext("2d");
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-    };
-    img.src = snapshot.image;
   };
 
   const handleUndo = () => {
@@ -1017,9 +1292,102 @@ const BuildNovelty = () => {
   const handleGenerate = () => {
     const canvas = getActiveCanvas() || compactCanvasRef.current;
     if (!canvas) return;
-    setPreviewDataUrl(canvas.toDataURL("image/png"));
+    const exportCanvas = document.createElement("canvas");
+    exportCanvas.width = canvas.width;
+    exportCanvas.height = canvas.height;
+    redrawCanvasOnTarget(exportCanvas, false);
+    setPreviewDataUrl(exportCanvas.toDataURL("image/png"));
     setShowModal(true);
     setIsSubmitted(false);
+  };
+
+  const renderObjectControls = (variant = "compact") => {
+    if (!selectedDesignObject) return null;
+    const selectedPhoto = selectedImage || selectedBackgroundImage;
+    const isImage = Boolean(selectedPhoto);
+    const imageAspect = isImage ? selectedPhoto.imgObj.naturalWidth / selectedPhoto.imgObj.naturalHeight : 1;
+    const maxWidth = 800;
+    const controlClass = variant === "compact"
+      ? "rounded-xl border border-white/10 bg-[#050f1c] p-4"
+      : "rounded-xl border border-white/10 bg-[#040c18] p-3.5";
+    return (
+      <section className={controlClass} aria-label="Selected object controls">
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          <div>
+            <p className="text-[10px] font-bold uppercase tracking-widest text-[#38adff]">Selected {isImage ? "image" : selectedDesignObject.type}</p>
+            <p className="mt-1 max-w-56 truncate text-xs font-semibold text-white" title={selectedDesignName}>{selectedDesignName}</p>
+          </div>
+          <span className="text-[10px] text-white/45">Drag to move · corners to resize · top handle to rotate</span>
+        </div>
+        <div className="mt-4 grid gap-4 sm:grid-cols-2">
+          <label className="grid gap-1.5 text-[10px] font-bold uppercase tracking-wider text-white/55">
+            Rotation <span className="text-[#38adff]">{Math.round(selectedDesignObject.rotation || 0)}°</span>
+            <input type="range" min="-180" max="180" step="1" value={Math.max(-180, Math.min(180, selectedDesignObject.rotation || 0))} onChange={(e) => updateSelectedObject({ rotation: Number(e.target.value) })} className="w-full accent-[#0099FF]" />
+          </label>
+          <label className="grid gap-1.5 text-[10px] font-bold uppercase tracking-wider text-white/55">
+            Opacity <span className="text-[#38adff]">{Math.round((selectedDesignObject.opacity ?? 1) * 100)}%</span>
+            <input type="range" min="0.1" max="1" step="0.01" value={selectedDesignObject.opacity ?? 1} onChange={(e) => updateSelectedObject({ opacity: Number(e.target.value) })} className="w-full accent-[#0099FF]" />
+          </label>
+          {isImage ? (
+            <>
+              <label className="grid gap-1.5 text-[10px] font-bold uppercase tracking-wider text-white/55 sm:col-span-2">
+                Image size <span className="text-[#38adff]">{Math.round(selectedPhoto.width)} px</span>
+                <input type="range" min="24" max={maxWidth} step="1" value={Math.max(24, Math.min(maxWidth, selectedPhoto.width))} onChange={(e) => { const width = Number(e.target.value); updateSelectedObject({ width, height: width / imageAspect }); }} className="w-full accent-[#0099FF]" />
+              </label>
+              <label className="grid gap-1.5 text-[10px] font-bold uppercase tracking-wider text-white/55 sm:col-span-2">
+                Crop zoom <span className="text-[#38adff]">{(selectedPhoto.cropZoom || 1).toFixed(1)}×</span>
+                <input type="range" min="1" max="3" step="0.05" value={selectedPhoto.cropZoom || 1} onChange={(e) => updateSelectedObject({ cropZoom: Number(e.target.value) })} className="w-full accent-[#0099FF]" />
+              </label>
+              <label className="grid gap-1.5 text-[10px] font-bold uppercase tracking-wider text-white/55">
+                Crop left / right
+                <input type="range" min="0" max="1" step="0.01" disabled={(selectedPhoto.cropZoom || 1) <= 1} value={selectedPhoto.cropOffsetX ?? 0.5} onChange={(e) => updateSelectedObject({ cropOffsetX: Number(e.target.value) })} className="w-full accent-[#0099FF] disabled:opacity-30" />
+              </label>
+              <label className="grid gap-1.5 text-[10px] font-bold uppercase tracking-wider text-white/55">
+                Crop up / down
+                <input type="range" min="0" max="1" step="0.01" disabled={(selectedPhoto.cropZoom || 1) <= 1} value={selectedPhoto.cropOffsetY ?? 0.5} onChange={(e) => updateSelectedObject({ cropOffsetY: Number(e.target.value) })} className="w-full accent-[#0099FF] disabled:opacity-30" />
+              </label>
+            </>
+          ) : selectedDesignObject.type === "text" ? (
+            <label className="grid gap-1.5 text-[10px] font-bold uppercase tracking-wider text-white/55 sm:col-span-2">
+              Text size <span className="text-[#38adff]">{Math.round(selectedDesignObject.fontSize || 28)} px</span>
+              <input type="range" min="12" max="128" step="1" value={Math.max(12, Math.min(128, selectedDesignObject.fontSize || 28))} onChange={(e) => updateSelectedObject({ fontSize: Number(e.target.value) })} className="w-full accent-[#0099FF]" />
+            </label>
+          ) : null}
+          <label className="grid grid-cols-[auto_1fr] items-center gap-2 text-[10px] font-bold uppercase tracking-wider text-white/55">
+            Position X
+            <input type="number" value={Math.round(selectedDesignObject.x)} onChange={(e) => updateSelectedObject({ x: Number(e.target.value) || 0 })} className="min-w-0 rounded-md border border-white/10 bg-black/20 px-2 py-1.5 text-white" />
+          </label>
+          <label className="grid grid-cols-[auto_1fr] items-center gap-2 text-[10px] font-bold uppercase tracking-wider text-white/55">
+            Position Y
+            <input type="number" value={Math.round(selectedDesignObject.y)} onChange={(e) => updateSelectedObject({ y: Number(e.target.value) || 0 })} className="min-w-0 rounded-md border border-white/10 bg-black/20 px-2 py-1.5 text-white" />
+          </label>
+        </div>
+      </section>
+    );
+  };
+
+  const renderLayersPanel = () => {
+    const allObjects = [...(bgImage?.imgObj ? [bgImage] : []), ...uploadedImages, ...layers].slice().reverse();
+    return (
+      <section className="rounded-2xl border border-white/10 bg-[#040c18] p-3.5">
+        <div className="mb-2 flex items-center justify-between">
+          <span className="text-[10px] font-bold uppercase tracking-widest text-white/50">Layers</span>
+          <span className="text-[10px] text-white/35">{allObjects.length}</span>
+        </div>
+        <div className="max-h-48 space-y-1 overflow-y-auto custom-scrollbar">
+          {allObjects.length ? allObjects.map((object) => (
+            <div key={object.id} className={`flex items-center gap-1 rounded-lg border px-1.5 ${object.id === selectedLayerId ? "border-[#168fff]/50 bg-[#168fff]/10" : "border-white/5 bg-white/[0.02]"}`}>
+              <button onClick={() => { setSelectedLayerId(object.id); setTool("select"); }} className="min-w-0 flex-1 truncate px-1.5 py-2 text-left text-[10px] text-white/80">{object.name || object.text || object.symbol || "Uploaded image"}</button>
+              <button aria-label={`${object.visible === false ? "Show" : "Hide"} ${object.name || object.text || "layer"}`} onClick={() => {
+                if (bgImage?.id === object.id) setBgImage((current) => current?.id === object.id ? { ...current, visible: current.visible === false } : current);
+                else if (uploadedImages.some((image) => image.id === object.id)) setUploadedImages((current) => current.map((image) => image.id === object.id ? { ...image, visible: image.visible === false } : image));
+                else setLayers((current) => current.map((layer) => layer.id === object.id ? { ...layer, visible: layer.visible === false } : layer));
+              }} className="rounded p-1 text-white/45 hover:bg-white/10 hover:text-white">{object.visible === false ? <EyeOff className="h-3.5 w-3.5" /> : <Eye className="h-3.5 w-3.5" />}</button>
+            </div>
+          )) : <p className="py-3 text-center text-[10px] text-white/35">Add text, stickers, or graphics to build layers.</p>}
+        </div>
+      </section>
+    );
   };
 
   const handleConfirmSubmit = async () => {
@@ -1344,14 +1712,11 @@ const BuildNovelty = () => {
                   ref={compactCanvasRef}
                   width={640}
                   height={440}
-                  onMouseDown={(e) => startDrawing(e, compactCanvasRef)}
-                  onMouseMove={(e) => draw(e, compactCanvasRef)}
-                  onMouseUp={stopDrawing}
-                  onMouseLeave={stopDrawing}
-                  onTouchStart={(e) => startDrawing(e, compactCanvasRef)}
-                  onTouchMove={(e) => draw(e, compactCanvasRef)}
-                  onTouchEnd={stopDrawing}
-                  className="w-full max-w-[640px] h-[380px] sm:h-[440px] touch-none cursor-crosshair object-contain"
+                  onPointerDown={(e) => startDrawing(e, compactCanvasRef)}
+                  onPointerMove={(e) => draw(e, compactCanvasRef)}
+                  onPointerUp={stopDrawing}
+                  onPointerCancel={stopDrawing}
+                  className={`w-full max-w-[640px] h-[380px] sm:h-[440px] touch-none object-contain ${tool === "select" ? "cursor-move" : "cursor-crosshair"}`}
                 />
 
                 {/* Bottom Color Palette Bar with Edit RGB Spectrum Button */}
@@ -1397,6 +1762,8 @@ const BuildNovelty = () => {
                   </div>
                 </div>
               </div>
+
+              {renderObjectControls("compact")}
 
               {/* Bottom Preset Assets / Templates Strip */}
               <div className="mt-4 flex items-center gap-2 overflow-x-auto pb-1 custom-scrollbar">
@@ -1451,10 +1818,10 @@ const BuildNovelty = () => {
                   </div>
                   <div>
                     <span className="block text-sm font-bold text-white uppercase tracking-wider group-hover:text-[#0099FF]">
-                      FUSE PHOTO AND DRAWING
+                      ADD BACKGROUND PHOTO
                     </span>
                     <span className="mt-1 block text-xs text-white/50">
-                      Set photo as canvas background layer
+                      Place behind artwork, then move, crop, or resize it
                     </span>
                   </div>
                 </button>
@@ -1670,14 +2037,11 @@ const BuildNovelty = () => {
                   ref={fullCanvasRef}
                   width={800}
                   height={540}
-                  onMouseDown={(e) => startDrawing(e, fullCanvasRef)}
-                  onMouseMove={(e) => draw(e, fullCanvasRef)}
-                  onMouseUp={stopDrawing}
-                  onMouseLeave={stopDrawing}
-                  onTouchStart={(e) => startDrawing(e, fullCanvasRef)}
-                  onTouchMove={(e) => draw(e, fullCanvasRef)}
-                  onTouchEnd={stopDrawing}
-                  className="w-[800px] h-[540px] touch-none cursor-crosshair object-contain max-w-full max-h-[70vh]"
+                  onPointerDown={(e) => startDrawing(e, fullCanvasRef)}
+                  onPointerMove={(e) => draw(e, fullCanvasRef)}
+                  onPointerUp={stopDrawing}
+                  onPointerCancel={stopDrawing}
+                  className={`w-[800px] h-[540px] touch-none object-contain max-w-full max-h-[70vh] ${tool === "select" ? "cursor-move" : "cursor-crosshair"}`}
                 />
               </div>
 
@@ -1838,12 +2202,15 @@ const BuildNovelty = () => {
                 </div>
               </div>
 
+              {renderLayersPanel()}
+              {renderObjectControls("full")}
+
               {/* 3. BOTTOM CARD: Quick Actions (Matching user reference photo 5) */}
               <div className="rounded-2xl border border-white/10 bg-[#040c18] p-3.5 shadow-lg flex flex-col gap-2">
                 <div className="mb-1 flex items-center justify-between gap-2">
                   <span className="text-[10px] font-bold uppercase tracking-widest text-white/50">Quick Actions</span>
-                  <span className="max-w-32 truncate text-[10px] text-white/50" title={layers.find((layer) => layer.id === selectedLayerId)?.name || "No layer selected"}>
-                    {layers.find((layer) => layer.id === selectedLayerId)?.name || "Select a layer"}
+                  <span className="max-w-32 truncate text-[10px] text-white/50" title={selectedDesignName}>
+                    {selectedDesignName}
                   </span>
                 </div>
                 <div className="grid grid-cols-3 gap-2">
