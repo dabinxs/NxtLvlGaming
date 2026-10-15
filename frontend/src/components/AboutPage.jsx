@@ -42,11 +42,11 @@ const offerings = [
 ];
 
 const values = [
-  { name: "Quality", copy: "Large-format screens, professional equipment and DJ-quality sound and lighting, brought together for a polished event." },
-  { name: "Reliability", copy: "Our team handles setup and breakdown and stays on hand, so hosts can focus on the people in the room." },
-  { name: "Innovation", copy: "From multiplayer gaming and VR to new interactive formats, we keep finding fresh ways to bring guests in." },
-  { name: "Experience", copy: "More than ten years in event production has taught us how to plan thoughtfully and adapt to the room." },
-  { name: "Connection", copy: "Games give people a reason to talk, compete and laugh together. That shared moment is what we build for." },
+  { name: "Quality", copy: "At Next Level Gaming, we bring together event-ready gaming systems, large-format screens, virtual reality, and clear, powerful sound. We check each station before guests arrive and tailor the setup to your space, audience, and event plan." },
+  { name: "Reliability", copy: "From the first planning conversation through setup, live support, and breakdown, the Next Level Gaming team keeps communication clear and takes care of the details. Hosts can stay present with their guests while we manage the experience." },
+  { name: "Innovation", copy: "Next Level Gaming combines multiplayer gaming with virtual reality, sim racing, Just Dance, movie nights, and more. We help you choose a mix that fits your event, giving guests several ways to join in instead of relying on a one-size-fits-all setup." },
+  { name: "Experience", copy: "Our team brings more than ten years of event production experience to every plan. We think through the room, schedule, guest flow, and equipment needs early, then adjust the setup as event-day conditions require." },
+  { name: "Connection", copy: "Next Level Gaming uses play to make it easier for people to join in. Guests can cheer, compete, explore, and laugh together, while hosts get an experience that gives friends, families, students, and coworkers a natural way to connect." },
 ];
 
 function AboutPage() {
@@ -253,7 +253,7 @@ function AboutPage() {
 
         <section className="about-values" aria-labelledby="about-values-title">
           <div className="about-values__sticky">
-            <h2 className="about-values__eyebrow" id="about-values-title">Why us</h2>
+            <h2 className="about-values__eyebrow" id="about-values-title">Why Next Level Gaming</h2>
             <div className="about-values__ticks about-values__ticks--left" aria-hidden="true">{Array.from({ length: 48 }, (_, index) => <i key={index} />)}</div>
             <div className="about-values__ticks about-values__ticks--right" aria-hidden="true">{Array.from({ length: 48 }, (_, index) => <i key={index} />)}</div>
             <div className="about-values__layout">
