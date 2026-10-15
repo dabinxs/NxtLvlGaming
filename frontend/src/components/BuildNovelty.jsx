@@ -584,6 +584,7 @@ const BuildNovelty = () => {
       setLayers((current) => current.map((layer) => layer.id === selectedLayerId ? { ...layer, ...updates } : layer));
     }
   };
+  const getNextDesignZIndex = () => getOrderedDesignObjects(uploadedImages, layers).length;
 
   useEffect(() => {
     const productParam = searchParams.get("product");
@@ -648,6 +649,7 @@ const BuildNovelty = () => {
       name: `${source.name || source.text || source.symbol || "Design"} copy`,
       x: source.x + 24,
       y: source.y + 24,
+      zIndex: getNextDesignZIndex(),
     };
     if (source.imgObj) setUploadedImages((current) => [...current, copy]);
     else setLayers((current) => [...current, copy]);
@@ -662,25 +664,14 @@ const BuildNovelty = () => {
   const moveSelectedLayer = (direction) => {
     if (!selectedLayerId) return;
     if (selectedBackgroundImage) return;
-    if (selectedImage) {
-      setUploadedImages((current) => {
-        const index = current.findIndex((image) => image.id === selectedLayerId);
-        const nextIndex = index + direction;
-        if (index < 0 || nextIndex < 0 || nextIndex >= current.length) return current;
-        const reordered = [...current];
-        [reordered[index], reordered[nextIndex]] = [reordered[nextIndex], reordered[index]];
-        return reordered;
-      });
-      return;
-    }
-    setLayers((current) => {
-      const index = current.findIndex((layer) => layer.id === selectedLayerId);
-      const nextIndex = index + direction;
-      if (index < 0 || nextIndex < 0 || nextIndex >= current.length) return current;
-      const reordered = [...current];
-      [reordered[index], reordered[nextIndex]] = [reordered[nextIndex], reordered[index]];
-      return reordered;
-    });
+    const stack = getOrderedDesignObjects(uploadedImages, layers);
+    const index = stack.findIndex((object) => object.id === selectedLayerId);
+    const nextIndex = index + direction;
+    if (index < 0 || nextIndex < 0 || nextIndex >= stack.length) return;
+    [stack[index], stack[nextIndex]] = [stack[nextIndex], stack[index]];
+    const ordered = stack.map((object, zIndex) => ({ ...object, zIndex }));
+    setUploadedImages(ordered.filter((object) => object.objectKind === "image").map(({ objectKind, ...object }) => object));
+    setLayers(ordered.filter((object) => object.objectKind === "layer").map(({ objectKind, ...object }) => object));
   };
 
   const deleteSelectedLayer = () => {
@@ -816,9 +807,9 @@ const BuildNovelty = () => {
         }
       }
 
-      // 4. Draw Uploaded Overlay Images
-      uploadedImages.forEach((item) => {
-        if (item.imgObj && item.visible !== false) {
+      // 4. Draw uploaded images, text, and stickers in their layer-stack order.
+      getOrderedDesignObjects(uploadedImages, layers).forEach((item) => {
+        if (item.objectKind === "image" && item.imgObj && item.visible !== false) {
           const centerX = item.x + item.width / 2;
           const centerY = item.y + item.height / 2;
           ctx.save();
@@ -834,29 +825,25 @@ const BuildNovelty = () => {
           const sourceY = (item.imgObj.naturalHeight - sourceHeight) * (item.cropOffsetY ?? 0.5);
           ctx.drawImage(item.imgObj, sourceX, sourceY, sourceWidth, sourceHeight, item.x, item.y, item.width, item.height);
           ctx.restore();
+        } else if (item.objectKind === "layer" && item.visible !== false) {
+          ctx.save();
+          if (item.type === "text") {
+            ctx.font = `bold ${item.fontSize || 28}px sans-serif`;
+            ctx.fillStyle = item.color || "#ffffff";
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+          } else if (item.type === "sticker") {
+            ctx.font = "46px sans-serif";
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+          }
+          ctx.translate(item.x, item.y);
+          ctx.rotate(((item.rotation || 0) * Math.PI) / 180);
+          ctx.scale(item.flipX ? -1 : 1, item.flipY ? -1 : 1);
+          ctx.globalAlpha = item.opacity ?? 1;
+          ctx.fillText(item.type === "text" ? item.text : item.symbol || "⭐", 0, 0);
+          ctx.restore();
         }
-      });
-
-      // 5. Draw Canvas Layers (Text, Symbols)
-      layers.forEach((layer) => {
-        if (!layer.visible) return;
-        ctx.save();
-        if (layer.type === "text") {
-          ctx.font = `bold ${layer.fontSize || 28}px sans-serif`;
-          ctx.fillStyle = layer.color || "#ffffff";
-          ctx.textAlign = "center";
-          ctx.textBaseline = "middle";
-        } else if (layer.type === "sticker") {
-          ctx.font = "46px sans-serif";
-          ctx.textAlign = "center";
-          ctx.textBaseline = "middle";
-        }
-        ctx.translate(layer.x, layer.y);
-        ctx.rotate(((layer.rotation || 0) * Math.PI) / 180);
-        ctx.scale(layer.flipX ? -1 : 1, layer.flipY ? -1 : 1);
-        ctx.globalAlpha = layer.opacity ?? 1;
-        ctx.fillText(layer.type === "text" ? layer.text : layer.symbol || "⭐", 0, 0);
-        ctx.restore();
       });
 
       const drawingLayer = getDrawingLayerCanvas();
@@ -975,10 +962,9 @@ const BuildNovelty = () => {
           if (selectedResizeHandle) selectedHandleMode = "resize";
         }
       }
-      const hitLayer = [...layers].reverse().find((layer) => layer.visible !== false && pointInsideDesignObject(point, layer, getDesignObjectBounds(layer, ctx)));
-      const hitImage = [...uploadedImages].reverse().find((image) => image.visible !== false && pointInsideDesignObject(point, image, getDesignObjectBounds(image, ctx)));
+      const hitDesignObject = getOrderedDesignObjects(uploadedImages, layers).reverse().find((object) => object.visible !== false && pointInsideDesignObject(point, object, getDesignObjectBounds(object, ctx)));
       const hitBackground = bgImage?.imgObj && bgImage.visible !== false && pointInsideDesignObject(point, bgImage, getDesignObjectBounds(bgImage, ctx)) ? bgImage : null;
-      const hit = selectedHandleMode ? selectedDesignObject : hitLayer || hitImage || hitBackground || null;
+      const hit = selectedHandleMode ? selectedDesignObject : hitDesignObject || hitBackground || null;
       setSelectedLayerId(hit?.id || null);
       if (!hit) { dragRef.current = null; return; }
 
@@ -1030,6 +1016,7 @@ const BuildNovelty = () => {
             flipX: false,
             flipY: false,
             visible: true,
+            zIndex: getNextDesignZIndex(),
           };
         setLayers((prev) => [...prev, layer]);
         setSelectedLayerId(layer.id);
@@ -1171,6 +1158,7 @@ const BuildNovelty = () => {
             cropOffsetX: 0.5,
             cropOffsetY: 0.5,
             visible: true,
+            zIndex: -1,
           });
           setSelectedLayerId(id);
         } else {
@@ -1195,6 +1183,7 @@ const BuildNovelty = () => {
               cropZoom: 1,
               cropOffsetX: 0.5,
               cropOffsetY: 0.5,
+              zIndex: getNextDesignZIndex(),
             },
           ]);
           setSelectedLayerId(id);
@@ -1246,6 +1235,7 @@ const BuildNovelty = () => {
           flipX: false,
           flipY: false,
           visible: true,
+          zIndex: getNextDesignZIndex(),
         };
       setLayers((prev) => [...prev, layer]);
       setSelectedLayerId(layer.id);
@@ -1306,7 +1296,7 @@ const BuildNovelty = () => {
     const selectedPhoto = selectedImage || selectedBackgroundImage;
     const isImage = Boolean(selectedPhoto);
     const imageAspect = isImage ? selectedPhoto.imgObj.naturalWidth / selectedPhoto.imgObj.naturalHeight : 1;
-    const maxWidth = 800;
+    const maxWidth = 640;
     const controlClass = variant === "compact"
       ? "rounded-xl border border-white/10 bg-[#050f1c] p-4"
       : "rounded-xl border border-white/10 bg-[#040c18] p-3.5";
@@ -1367,7 +1357,7 @@ const BuildNovelty = () => {
   };
 
   const renderLayersPanel = () => {
-    const allObjects = [...(bgImage?.imgObj ? [bgImage] : []), ...uploadedImages, ...layers].slice().reverse();
+    const allObjects = [...(bgImage?.imgObj ? [bgImage] : []), ...getOrderedDesignObjects(uploadedImages, layers).reverse()];
     return (
       <section className="rounded-2xl border border-white/10 bg-[#040c18] p-3.5">
         <div className="mb-2 flex items-center justify-between">
@@ -2035,8 +2025,8 @@ const BuildNovelty = () => {
               <div className="relative rounded-2xl border border-white/15 bg-[#070e1b] p-4 shadow-2xl">
                 <canvas
                   ref={fullCanvasRef}
-                  width={800}
-                  height={540}
+                  width={640}
+                  height={440}
                   onPointerDown={(e) => startDrawing(e, fullCanvasRef)}
                   onPointerMove={(e) => draw(e, fullCanvasRef)}
                   onPointerUp={stopDrawing}
