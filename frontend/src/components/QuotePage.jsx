@@ -73,6 +73,7 @@ const emptyDraft = {
   phone: "",
   message: "",
   mapPoint: null,
+  wantsNovelties: false,
 };
 
 function readDraft() {
@@ -127,6 +128,7 @@ function QuotePage() {
   useEffect(() => () => locationRequest.current?.abort(), []);
 
   const update = (key, value) => setDraft((current) => ({ ...current, [key]: value }));
+  const wantsNovelties = hasNovelty || draft.wantsNovelties;
   const chooseLocationFlexibility = (value) => {
     setDraft((current) => ({ ...current, locationFlexible: value }));
   };
@@ -208,11 +210,12 @@ function QuotePage() {
           date: draft.date ? format(dateValue, "MMMM d, yyyy") : "Flexible / to be confirmed",
           location: draft.locationFlexible ? "Still deciding" : draft.mapPoint?.label || draft.location || "Still deciding",
           experience: draft.package || "Please recommend something",
-          "Novelty fulfillment": hasNovelty ? "ONSITE" : "Event quote",
+          "Novelty fulfillment": wantsNovelties ? (hasNovelty ? "ONSITE" : "DISCUSS OPTIONS") : "Event quote",
+          "Interested in novelties": wantsNovelties ? "Yes — please discuss customized novelty options as part of this quote." : "No",
           "Novelty items": hasNovelty ? Object.entries(noveltyQuantities).filter(([, quantity]) => Number(quantity) > 0).map(([productId, quantity]) => {
             const product = NOVELTY_PRODUCTS.find((item) => item.id === productId);
             return `${product?.title || productId}: ${quantity}${productId === selectedDesign?.productId ? ` (design ${selectedDesign.id}, ${selectedDesign.imageUrl})` : ""}`;
-          }).join("\n") : "None",
+          }).join("\n") : wantsNovelties ? "Interested in customized novelties; please discuss options as part of the event quote." : "None",
           name: draft.name,
           email: draft.email,
           _replyto: draft.email,
@@ -249,6 +252,12 @@ function QuotePage() {
           <h1>Build your <span>event</span></h1>
           <p className="quote-lede">A few quick details help us shape the right experience. You can change anything as you go.</p>
           {!hasNovelty && <Link className="quote-novelty-cta" to="/novelties">GET YOUR CUSTOMIZED NOVELTIES <Sparkles size={15} /></Link>}
+          {!hasNovelty && <div className="quote-novelty-request">
+            <button type="button" className={`quote-novelty-request-button ${wantsNovelties ? "is-selected" : ""}`} onClick={() => update("wantsNovelties", !draft.wantsNovelties)} aria-pressed={wantsNovelties}>
+              {wantsNovelties ? <CheckCircle2 size={16} /> : <Sparkles size={16} />}{wantsNovelties ? "NOVELTIES ADDED TO MY QUOTE" : "ADD NOVELTIES TO MY QUOTE"}
+            </button>
+            <span>CUSTOMIZE YOUR EXPERIENCE</span>
+          </div>}
         </div>
 
         <nav className="quote-progress" aria-label="Quote steps">
@@ -464,7 +473,7 @@ function QuotePage() {
                 <label className="quote-form-field"><span>ANYTHING ELSE? <small>OPTIONAL</small></span><input value={draft.message} onChange={(event) => update("message", event.target.value)} placeholder="Tell us what would make it special" /></label>
                 <div className="quote-review-strip">
                   <span className="quote-review-icon"><CheckCircle2 size={17} /></span>
-                  <span><strong>Looking good, {draft.name || "event planner"}.</strong><small>{[draft.eventType, draft.guests && `${draft.guests} guests`, draft.date ? format(dateValue, "MMM d, yyyy") : draft.dateFlexible ? "flexible date" : null, draft.locationFlexible ? "location TBD" : draft.mapPoint?.label?.split(",")[0] || draft.location, draft.package].filter(Boolean).join(" · ")}</small></span>
+                  <span><strong>Looking good, {draft.name || "event planner"}.</strong><small>{[draft.eventType, draft.guests && `${draft.guests} guests`, draft.date ? format(dateValue, "MMM d, yyyy") : draft.dateFlexible ? "flexible date" : null, draft.locationFlexible ? "location TBD" : draft.mapPoint?.label?.split(",")[0] || draft.location, draft.package, wantsNovelties && "custom novelties"].filter(Boolean).join(" · ")}</small></span>
                 </div>
                 <p className="quote-email-note">Your request will be emailed after the one-time recipient activation.</p>
                 {submitError && <p className="quote-submit-error" role="alert">{submitError}</p>}
@@ -492,7 +501,7 @@ function QuotePage() {
               <div><span className="quote-summary-icon"><CalendarDays size={15} /></span><span><small>DATE</small><strong>{draft.date ? format(dateValue, "MMM d, yyyy") : draft.dateFlexible ? "Flexible" : "Choose a date"}</strong></span></div>
               <div><span className="quote-summary-icon"><MapPin size={15} /></span><span><small>LOCATION</small><strong>{draft.locationFlexible ? "Still deciding" : draft.mapPoint?.label?.split(",")[0] || draft.location || "Add a venue or city"}</strong></span></div>
               <div><span className="quote-summary-icon"><Package size={15} /></span><span><small>EXPERIENCE</small><strong>{draft.package || "Choose a package"}</strong></span></div>
-              {hasNovelty && <div><span className="quote-summary-icon"><Sparkles size={15} /></span><span><small>NOVELTIES</small><strong>{Object.entries(noveltyQuantities).filter(([, quantity]) => quantity > 0).map(([id, quantity]) => `${NOVELTY_PRODUCTS.find((item) => item.id === id)?.title || id} × ${quantity}`).join(", ") || "Choose quantities"}</strong></span></div>}
+              {wantsNovelties && <div><span className="quote-summary-icon"><Sparkles size={15} /></span><span><small>NOVELTIES</small><strong>{hasNovelty ? Object.entries(noveltyQuantities).filter(([, quantity]) => quantity > 0).map(([id, quantity]) => `${NOVELTY_PRODUCTS.find((item) => item.id === id)?.title || id} × ${quantity}`).join(", ") || "Choose quantities" : "Interested — discuss options"}</strong></span></div>}
             </div>
             <div className="quote-summary-footer"><span className="quote-sparkle"><Sparkles size={15} /></span><span>No pressure. Your request is a starting point, and our team will help shape the right fit.</span></div>
           </aside>

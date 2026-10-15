@@ -300,15 +300,16 @@ export default function NoveltyPageEditor({ adminEmail }) {
                 <label className="cms-novelty-wide">Description<textarea rows="2" value={item.desc || ""} onChange={(event) => patchWorkshop(index, "desc", event.target.value)} /></label>
               </div>
               <div className="cms-novelty-card-actions">
-                <label className="cms-upload-button"><Upload size={14} />{uploading === String(index) ? "Uploading…" : "Change thumbnail"}<input type="file" accept="image/*" disabled={Boolean(uploading)} aria-label={`Change thumbnail for ${item.title || `novelty ${index + 1}`}`} onChange={(event) => upload(event.target.files?.[0], String(index), "cards")} /></label>
+                <label className="cms-upload-button"><Upload size={14} />{uploading === String(index) ? "Uploading…" : "Change thumbnail"}<input type="file" accept="image/*" disabled={Boolean(uploading) || Boolean(cropRequest)} aria-label={`Change thumbnail for ${item.title || `novelty ${index + 1}`}`} onChange={(event) => { upload(event.target.files?.[0], String(index), "cards"); event.target.value = ""; }} /></label>
                 <button className="cms-icon-button cms-delete-button" aria-label={`Remove ${item.title || `novelty ${index + 1}`}`} title="Remove novelty" onClick={() => removeWorkshop(index)}><Trash2 size={17} /></button>
               </div>
             </div>
           </article>)}
           {draft.workshops.length === 0 && <div className="cms-empty-gallery"><ImagePlus size={22} /><p>No novelties are listed. Add a novelty card to show one on the page.</p></div>}
         </div>
-        <p className="cms-image-note">Uploaded images are compressed in your browser and saved in Supabase Storage.</p>
+        <p className="cms-image-note">Thumbnail uploads can be repositioned and zoomed into a square crop before they are saved.</p>
       </section>
+      {cropRequest && <ThumbnailCropDialog file={cropRequest.file} onCancel={() => setCropRequest(null)} onConfirm={(blob) => persistUpload(blob, cropRequest.key, cropRequest.pathPrefix).then(() => setCropRequest(null))} />}
     </div>
   );
 }

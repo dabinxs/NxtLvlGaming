@@ -195,6 +195,11 @@
 .quote-privacy > span:nth-child(even) { color: #2564bb; }
 .quote-novelty-cta { display: inline-flex; align-items: center; gap: 8px; margin-top: 15px; border: 1px solid rgba(53,145,255,.35); border-radius: 999px; padding: 9px 14px; background: rgba(0,102,253,.08); color: #8ec5ff; font-size: 9px; font-weight: 800; letter-spacing: .12em; text-decoration: none; transition: background .2s ease, border-color .2s ease; }
 .quote-novelty-cta:hover { border-color: #3480ff; background: rgba(0,102,253,.16); }
+.quote-novelty-request { display: flex; align-items: center; justify-content: center; gap: 11px; margin: 12px auto 0; }
+.quote-novelty-request-button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 38px; border: 1px solid rgba(53,145,255,.48); border-radius: 999px; padding: 9px 14px; background: linear-gradient(110deg,rgba(0,119,249,.2),rgba(30,88,233,.12)); color: #d8ecff; font-size: 9px; font-weight: 850; letter-spacing: .1em; cursor: pointer; transition: background .2s ease,border-color .2s ease,transform .2s ease; }
+.quote-novelty-request-button:hover { transform: translateY(-1px); border-color: #55a7ff; background: rgba(0,102,253,.24); }
+.quote-novelty-request-button.is-selected { border-color: rgba(74,222,178,.55); background: rgba(6,95,70,.22); color: #a9f4d9; }
+.quote-novelty-request>span { color: #8da9cc; font-size: 9px; font-weight: 800; letter-spacing: .15em; }
 
 /* Quote planner refinements: use the shared site navigation and keep controls readable. */
 .quote-topbar {
@@ -355,6 +360,8 @@
   .quote-intro { padding: 13px 0 23px; }
   .quote-intro h1 { font-size: clamp(34px, 10vw, 48px); }
   .quote-lede { max-width: 360px; margin-top: 11px; font-size: 14px; }
+  .quote-novelty-request { flex-wrap: wrap; gap: 7px; }
+  .quote-novelty-request>span { width: 100%; text-align: center; }
   .quote-progress { margin-bottom: 16px; }
   .quote-progress-track { top: 18px; left: 8%; width: 84%; height: 2px; }
   .quote-step-icon { width: 33px; height: 33px; }
