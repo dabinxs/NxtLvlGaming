@@ -10,11 +10,11 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import ReadyCTA from "./ReadyCTA";
 import { useCmsPage } from "../lib/cmsContent";
-import { CMS_PAGES } from "../lib/cmsPages";
+import { CMS_PAGES, POPULAR_VR_GAMES } from "../lib/cmsPages";
 
 const OVERVIEW_POINTS = [
   "Immersive, motion-tracked gameplay",
-  "A curated lineup of VR games",
+  "Ten game worlds to explore",
   "Spectator screens share the action",
   "Friendly staff guide every player",
 ];
@@ -42,27 +42,10 @@ const INCLUDED_FEATURES = [
   },
 ];
 
-const VR_GAMES = [
-  {
-    title: "Dragon Tower",
-    src: "/vr-games/dragon-tower.png",
-  },
-  {
-    title: "Time Travel Paradox",
-    src: "/vr-games/time-travel-paradox.png",
-  },
-  {
-    title: "Depths of Osiris",
-    src: "/vr-games/depths-of-osiris.png",
-  },
-  {
-    title: "Manor Escape",
-    src: "/vr-games/manor-escape.png",
-  },
-];
-
 const VirtualReality = () => {
   const cmsPage = useCmsPage("virtual-reality", CMS_PAGES.find((page) => page.slug === "virtual-reality"));
+  const existingGames = new Map(cmsPage.gallery.map((game) => [game.title.trim().toLowerCase(), game]));
+  const gameLibrary = [...cmsPage.gallery, ...POPULAR_VR_GAMES.filter((game) => !existingGames.has(game.title.toLowerCase()))].slice(0, 10);
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -113,7 +96,7 @@ const VirtualReality = () => {
               {/* Right Column */}
               <div className="flex flex-col gap-8 lg:col-span-7">
                 <p className="text-[17px] leading-relaxed text-white/70 sm:text-[18px]">
-                  Gear up, choose your adventure, and explore four distinct VR games. Our team
+                  Gear up, choose your adventure, and explore ten distinct VR games. Our team
                   helps every player get started while spectators follow the action on screen.
                 </p>
 
@@ -185,22 +168,22 @@ const VirtualReality = () => {
                 <span>VR GAME LIBRARY</span>
               </div>
               <h2 className="mt-4 font-display text-[clamp(2rem,4.2vw,3.2rem)] font-extrabold uppercase italic leading-none tracking-tight text-white">
-                FOUR WORLDS. <span className="blue-gradient-text not-italic">ONE HEADSET.</span>
+                TEN GAMES. <span className="blue-gradient-text not-italic">ONE HEADSET.</span>
               </h2>
             </div>
 
             {/* Four VR game logo cards */}
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-              {cmsPage.gallery.map((game) => (
+              {gameLibrary.map((game) => (
                 <div
                   key={game.title}
                   className="group relative overflow-hidden rounded-2xl border border-white/10 bg-[#0c1830] transition-all duration-500 hover:border-[#0066FD]/60 hover:shadow-[0_16px_40px_rgba(0,102,253,0.22)]"
                 >
-                  <div className="relative flex aspect-[4/3] w-full items-center justify-center overflow-hidden bg-[#e9f0f4] p-4">
+                  <div className={`relative flex aspect-[4/3] w-full items-center justify-center overflow-hidden ${game.cover ? "bg-[#0c1830]" : "bg-[#e9f0f4] p-4"}`}>
                     <img
                       src={game.src}
-                      alt={`${game.title} game logo`}
-                      className="max-h-full max-w-full object-contain transition-transform duration-700 group-hover:scale-105"
+                      alt={`${game.title} VR game artwork`}
+                      className={`h-full w-full transition-transform duration-700 group-hover:scale-105 ${game.cover ? "object-cover" : "max-h-full max-w-full object-contain"}`}
                       loading="lazy"
                     />
                   </div>
@@ -209,6 +192,7 @@ const VirtualReality = () => {
                     <h3 className="font-display text-[18px] font-extrabold uppercase tracking-wide text-white group-hover:text-[#7DDDFF] transition-colors">
                       {game.title}
                     </h3>
+                    {game.subtitle && <p className="mt-2 text-[13px] leading-relaxed text-white/60">{game.subtitle}</p>}
                   </div>
                 </div>
               ))}

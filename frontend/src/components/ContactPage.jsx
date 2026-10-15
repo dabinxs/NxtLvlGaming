@@ -8,6 +8,7 @@ import "./ContactPage.css";
 
 const CONTACT_EMAIL = "sales@nextlevelgamingevents.com";
 const CONTACT_PHONE = "978-601-5473";
+const COMPANY_ADDRESS = "12 Rebel Rd #B, Hudson, NH 03051";
 const FORM_ENDPOINT = "https://formsubmit.co/ajax/team@nextlevelgamingevents.com";
 const topics = ["Plan an event", "Custom novelties", "Partnership", "Something else"];
 
@@ -96,11 +97,11 @@ const ContactPage = () => {
             <span className="contact-detail-copy"><small>GIVE US A CALL</small><strong>{CONTACT_PHONE}</strong></span>
             <ArrowUpRight className="contact-detail-arrow" size={17} />
           </motion.a>
-          <motion.div className="contact-detail contact-detail-location" {...reveal(0.14)}>
+          <motion.a className="contact-detail contact-detail-location" href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(COMPANY_ADDRESS)}`} target="_blank" rel="noreferrer" {...reveal(0.14)}>
             <span className="contact-detail-icon"><MapPin size={19} /></span>
-            <span className="contact-detail-copy"><small>OUR HOME BASE</small><strong>East Coast. Your venue.</strong></span>
+            <span className="contact-detail-copy"><small>OUR HOME BASE</small><strong>{COMPANY_ADDRESS}</strong></span>
             <span className="contact-location-pulse" aria-hidden="true" />
-          </motion.div>
+          </motion.a>
         </section>
 
         <section className="contact-form-section" id="contact-form">

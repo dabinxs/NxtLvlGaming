@@ -45,7 +45,7 @@ export const megaMenus = {
       {
         title: "Just Dance",
         icon: "Music",
-        desc: "High-energy dance parties on giant screens.",
+        desc: "Follow the on-screen choreography, earn points, and challenge friends.",
         href: "/just-dance",
       },
       {
@@ -136,8 +136,8 @@ export const experiences = [
     slug: "just-dance",
     title: "Just",
     highlight: "Dance",
-    desc: "High-energy dance parties on giant screens that get everyone moving.",
-    image: "/experience-just-dance.png",
+    desc: "Follow the on-screen choreography, earn points, and challenge friends.",
+    image: "/just-dance-gameplay.png",
   },
   {
     id: 6,

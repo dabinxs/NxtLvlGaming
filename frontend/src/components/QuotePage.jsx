@@ -251,13 +251,6 @@ function QuotePage() {
           <p className="quote-eyebrow"><span /> YOUR EVENT, YOUR WAY <span className="quote-eyebrow-line" /></p>
           <h1>Build your <span>event</span></h1>
           <p className="quote-lede">A few quick details help us shape the right experience. You can change anything as you go.</p>
-          {!hasNovelty && <Link className="quote-novelty-cta" to="/novelties">GET YOUR CUSTOMIZED NOVELTIES <Sparkles size={15} /></Link>}
-          {!hasNovelty && <div className="quote-novelty-request">
-            <button type="button" className={`quote-novelty-request-button ${wantsNovelties ? "is-selected" : ""}`} onClick={() => update("wantsNovelties", !draft.wantsNovelties)} aria-pressed={wantsNovelties}>
-              {wantsNovelties ? <CheckCircle2 size={16} /> : <Sparkles size={16} />}{wantsNovelties ? "NOVELTIES ADDED TO MY QUOTE" : "ADD NOVELTIES TO MY QUOTE"}
-            </button>
-            <span>CUSTOMIZE YOUR EXPERIENCE</span>
-          </div>}
         </div>
 
         <nav className="quote-progress" aria-label="Quote steps">
@@ -330,12 +323,19 @@ function QuotePage() {
             </div>}
 
             {quoteStep === 0 && (!hasNovelty || step > 0) && (
-              <div className="quote-choice-grid quote-event-grid">
-                {EVENT_TYPES.map(({ title, icon: Icon }) => (
-                  <button type="button" key={title} onClick={() => update("eventType", title)} className={`quote-choice ${draft.eventType === title ? "is-selected" : ""}`} aria-pressed={draft.eventType === title}>
-                    <Icon size={21} /><span>{title}</span><CheckCircle2 className="quote-choice-check" size={17} />
-                  </button>
-                ))}
+              <div className="quote-event-selection">
+                <div className="quote-choice-grid quote-event-grid">
+                  {EVENT_TYPES.map(({ title, icon: Icon }) => (
+                    <button type="button" key={title} onClick={() => update("eventType", title)} className={`quote-choice ${draft.eventType === title ? "is-selected" : ""}`} aria-pressed={draft.eventType === title}>
+                      <Icon size={21} /><span>{title}</span><CheckCircle2 className="quote-choice-check" size={17} />
+                    </button>
+                  ))}
+                </div>
+                {!hasNovelty && <button type="button" className={`quote-extra-choice ${wantsNovelties ? "is-selected" : ""}`} onClick={() => update("wantsNovelties", !draft.wantsNovelties)} aria-pressed={wantsNovelties}>
+                  <span className="quote-extra-choice-icon"><Sparkles size={19} /></span>
+                  <span className="quote-extra-choice-copy"><strong>{wantsNovelties ? "NOVELTIES ADDED TO YOUR QUOTE" : "ADD CUSTOM NOVELTIES"}</strong><small>CUSTOMIZE YOUR EXPERIENCE</small></span>
+                  <CheckCircle2 className="quote-extra-choice-check" size={19} />
+                </button>}
               </div>
             )}
 

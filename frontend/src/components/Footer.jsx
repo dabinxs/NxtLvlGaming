@@ -1,5 +1,5 @@
 import React from "react";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
 import { footerColumns } from "../mock";
 import InteractiveWordmark from "./InteractiveWordmark";
@@ -38,6 +38,9 @@ const Footer = () => {
               className="mt-3 inline-flex items-center gap-2 font-display text-[17px] md:text-[19px] font-bold tracking-wide text-white/90 transition-colors hover:text-[#7DDDFF]"
             >
               <span>978-601-5473</span>
+            </a>
+            <a href="https://www.google.com/maps/search/?api=1&query=12+Rebel+Rd+%23B%2C+Hudson%2C+NH+03051" target="_blank" rel="noreferrer" className="mt-2 flex items-center gap-2 text-sm text-white/65 transition-colors hover:text-[#7DDDFF]">
+              <MapPin className="h-4 w-4 text-[#7DDDFF]" /><span>12 Rebel Rd #B, Hudson, NH 03051</span>
             </a>
 
             <div className="mt-8 flex flex-wrap items-center gap-4">

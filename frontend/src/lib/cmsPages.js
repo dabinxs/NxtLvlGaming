@@ -1,3 +1,12 @@
+export const POPULAR_VR_GAMES = [
+  { id: "vr-beat-saber", title: "Beat Saber", subtitle: "Slash through the beat, dodge obstacles, and move to the music.", image: "https://cdn.akamai.steamstatic.com/steam/apps/620980/header.jpg", cover: true },
+  { id: "vr-job-simulator", title: "Job Simulator", subtitle: "Try delightfully absurd jobs in a playful robot-run world.", image: "https://cdn.akamai.steamstatic.com/steam/apps/448280/header.jpg", cover: true },
+  { id: "vr-superhot", title: "SUPERHOT VR", subtitle: "Time moves when you move in this tactical action game.", image: "https://cdn.akamai.steamstatic.com/steam/apps/617830/header.jpg", cover: true },
+  { id: "vr-walkabout-mini-golf", title: "Walkabout Mini Golf", subtitle: "Play relaxed mini-golf across imaginative courses.", image: "https://cdn.akamai.steamstatic.com/steam/apps/1408230/header.jpg", cover: true },
+  { id: "vr-pistol-whip", title: "Pistol Whip", subtitle: "Dodge, aim, and shoot through rhythm-driven action scenes.", image: "https://cdn.akamai.steamstatic.com/steam/apps/1079800/header.jpg", cover: true },
+  { id: "vr-i-expect-you-to-die", title: "I Expect You To Die", subtitle: "Solve escape-room puzzles as a secret agent under pressure.", image: "https://cdn.akamai.steamstatic.com/steam/apps/587430/header.jpg", cover: true },
+].map((game) => ({ ...game, src: game.image }));
+
 export const CMS_PAGES = [
   {
     slug: "gaming-events",
@@ -50,6 +59,7 @@ export const CMS_PAGES = [
       { id: "vr-2", title: "Time Travel Paradox", subtitle: "Journey across time in virtual reality.", image: "/vr-games/time-travel-paradox.png" },
       { id: "vr-3", title: "Depths of Osiris", subtitle: "Explore an immersive underwater world.", image: "/vr-games/depths-of-osiris.png" },
       { id: "vr-4", title: "Manor Escape", subtitle: "Solve puzzles and escape the manor.", image: "/vr-games/manor-escape.png" },
+      ...POPULAR_VR_GAMES,
     ],
   },
   {
@@ -69,13 +79,11 @@ export const CMS_PAGES = [
     slug: "just-dance",
     title: "Just Dance",
     kind: "Experience",
-    heroImage: "/experience-just-dance.png",
+    heroImage: "/just-dance-gameplay.png",
     heroTitle: "JUST DANCE",
-    heroSubtitle: "High-energy dance parties on giant screens that get everyone moving.",
+    heroSubtitle: "Choose a Just Dance song, follow the on-screen choreography, and earn points. Play solo, take turns, or challenge friends head-to-head.",
     gallery: [
-      { id: "dance-1", title: "Multiplayer Dance Battles", subtitle: "Head-to-head choreography on giant displays.", image: "https://images.unsplash.com/photo-1545128485-c400e7702796?auto=format&fit=crop&w=1200&q=80" },
-      { id: "dance-2", title: "Club-Grade Party Lights", subtitle: "Dynamic lights transform the venue.", image: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1200&q=80" },
-      { id: "dance-3", title: "Crowd Celebrations", subtitle: "Everyone dancing together to chart-topping hits.", image: "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=1200&q=80" },
+      { id: "dance-1", title: "Multiplayer Dance Battles", subtitle: "Head-to-head choreography on giant displays.", image: "/just-dance-gameplay.png" },
     ],
   },
   {

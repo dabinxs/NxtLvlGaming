@@ -14,54 +14,41 @@ import { CMS_PAGES } from "../lib/cmsPages";
 
 const OVERVIEW_POINTS = [
   "Head-to-head multiplayer battles",
-  "Massive catalog of hits",
-  "Scale to any crowd size",
-  "Perfect for high energy dance floors",
+  "A huge song and routine catalog",
+  "Easy to learn, hard to put down",
+  "Play solo or go head-to-head",
 ];
 
 const INCLUDED_FEATURES = [
   {
     icon: Monitor,
-    title: "Giant-Screen Dancing",
-    desc: "Choreography projected at cinema scale with full concert audio.",
+    title: "Follow the Coach",
+    desc: "Watch the on-screen dancer and match each Just Dance move.",
   },
   {
     icon: Volume2,
-    title: "Premium Sound",
-    desc: "Premium audio delivered with rich clarity, balanced tones, and powerful bass.",
+    title: "Pick a Song",
+    desc: "Choose a favorite track and jump straight into its routine.",
   },
   {
     icon: Smartphone,
-    title: "Song Selection",
-    desc: "Choose your favorite songs and routines directly from your smartphone.",
+    title: "Track Your Score",
+    desc: "Earn points for matching the choreography and challenge a friend.",
   },
   {
     icon: Sparkles,
-    title: "Party Lighting",
-    desc: "Dance-floor lighting that turns any room into a club.",
-  },
-];
-
-const GALLERY_IMAGES = [
-  {
-    title: "Multiplayer Dance Battles",
-    subtitle: "Head-to-head choreography on giant displays",
-    src: "https://images.unsplash.com/photo-1545128485-c400e7702796?auto=format&fit=crop&w=1200&q=80",
-  },
-  {
-    title: "Club-Grade Party Lights",
-    subtitle: "Dynamic strobes and moving beams transforming the venue",
-    src: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1200&q=80",
-  },
-  {
-    title: "Crowd Celebrations",
-    subtitle: "Hundreds dancing together to chart-topping hits",
-    src: "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=1200&q=80",
+    title: "Multiplayer Battles",
+    desc: "Take turns or compete head-to-head while the crowd follows the score.",
   },
 ];
 
 const JustDance = () => {
   const cmsPage = useCmsPage("just-dance", CMS_PAGES.find((page) => page.slug === "just-dance"));
+  const heroSubtitle = cmsPage.heroSubtitle === "High-energy dance parties on giant screens that get everyone moving."
+    ? "Choose a Just Dance song, follow the on-screen choreography, and earn points. Play solo, take turns, or challenge friends head-to-head."
+    : cmsPage.heroSubtitle;
+  const heroImage = cmsPage.heroImage === "/experience-just-dance.png" ? "/just-dance-gameplay.png" : cmsPage.heroImage;
+  const multiplayerBattle = cmsPage.gallery.find((item) => item.title === "Multiplayer Dance Battles") || cmsPage.gallery[0];
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -75,8 +62,8 @@ const JustDance = () => {
         <section className="relative overflow-hidden pt-36 pb-20 md:pt-44 md:pb-28">
           {/* Background image from Just Dance carousel */}
           <img
-            src={cmsPage.heroImage}
-            alt="High energy dance party"
+            src={heroImage}
+            alt="Just Dance game coaches performing an on-screen routine"
             className="absolute inset-0 h-full w-full object-cover object-center"
           />
           {/* Directional gradient overlay for visibility & text contrast */}
@@ -89,7 +76,7 @@ const JustDance = () => {
             <h1 className="max-w-4xl font-display text-[clamp(2.5rem,6.5vw,5rem)] font-extrabold uppercase italic leading-[1.04] tracking-tight text-white drop-shadow-[0_6px_24px_rgba(0,0,0,0.9)]">{cmsPage.heroTitle}</h1>
 
             <p className="mt-6 max-w-2xl text-[17px] leading-relaxed text-white/90 drop-shadow-[0_3px_10px_rgba(0,0,0,0.85)] sm:text-[19px]">
-              {cmsPage.heroSubtitle}
+              {heroSubtitle}
             </p>
           </div>
         </section>
@@ -105,15 +92,15 @@ const JustDance = () => {
                   <span>OVERVIEW</span>
                 </div>
                 <h2 className="mt-4 font-display text-[clamp(1.9rem,3.8vw,2.9rem)] font-extrabold uppercase leading-[1.12] tracking-tight text-white">
-                  THE PARTY STARTER THAT NEVER FAILS
+                  A DANCE GAME FOR EVERYONE
                 </h2>
               </div>
 
               {/* Right Column */}
               <div className="flex flex-col gap-8 lg:col-span-7">
                 <p className="text-[17px] leading-relaxed text-white/70 sm:text-[18px]">
-                  Giant screens, concert sound and the world's biggest dance game. Guests battle
-                  head-to-head while the crowd cheers.
+                  Pick a routine and follow the on-screen choreography. Players earn points for
+                  matching the moves, compete head-to-head, and cheer each other on.
                 </p>
 
                 {/* 2x2 Grid of Points */}
@@ -144,7 +131,7 @@ const JustDance = () => {
                 <span>WHAT IS INCLUDED</span>
               </div>
               <h2 className="mt-4 font-display text-[clamp(1.9rem,3.8vw,2.9rem)] font-extrabold uppercase leading-[1.12] tracking-tight text-white">
-                Everything Needed For The Ultimate Dance Party
+                Just Dance, Ready To Play
               </h2>
             </div>
 
@@ -190,7 +177,7 @@ const JustDance = () => {
 
             {/* 3 Showcase Image Cards */}
             <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-              {cmsPage.gallery.map((img, i) => (
+              {[{ ...multiplayerBattle, title: "Multiplayer Dance Battles", src: "/just-dance-gameplay.png" }].filter(Boolean).map((img, i) => (
                 <div
                   key={i}
                   className="group relative overflow-hidden rounded-2xl border border-white/10 bg-[#0c1830] transition-all duration-500 hover:border-[#0066FD]/60 hover:shadow-[0_16px_40px_rgba(0,102,253,0.22)]"
