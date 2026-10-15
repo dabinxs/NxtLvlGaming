@@ -371,10 +371,10 @@ const GamingEvents = () => {
                     <div className="mt-8 pt-4">
                       <Link
                         to={`/quote?package=${encodeURIComponent(pkg.quoteParam)}`}
-                        className={`group/btn flex w-full items-center justify-center gap-2 rounded-full py-3.5 px-6 text-[13px] font-bold uppercase tracking-wider transition-all duration-300 ${
+                        className={`cta-fill group/btn flex w-full items-center justify-center gap-2 rounded-full py-3.5 px-6 text-[13px] font-bold uppercase tracking-wider ${
                           pkg.popular
-                            ? "blue-gradient-bg text-white shadow-[0_8px_25px_rgba(0,102,253,0.4)] hover:shadow-[0_12px_32px_rgba(0,102,253,0.6)] hover:scale-[1.02]"
-                            : "border border-[#0066FD]/60 bg-[#0066FD]/15 text-[#7DDDFF] hover:bg-[#0066FD] hover:text-white hover:border-[#0066FD]"
+                            ? "blue-gradient-bg text-white shadow-[0_8px_25px_rgba(0,102,253,0.4)] hover:shadow-[0_12px_32px_rgba(0,102,253,0.6)]"
+                            : "cta-fill--blue border border-[#0066FD]/60 bg-[#0066FD]/15 text-[#7DDDFF]"
                         }`}
                       >
                         <span>Get A Quote</span>

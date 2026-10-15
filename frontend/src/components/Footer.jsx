@@ -46,7 +46,7 @@ const Footer = () => {
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <Link
                 to="/quote"
-                className="inline-flex items-center gap-2 rounded-full blue-gradient-bg px-6 py-3 text-[12px] font-semibold uppercase tracking-wide text-white shadow-[0_8px_24px_rgba(0,102,253,0.35)] transition-transform hover:scale-[1.04]"
+                className="cta-fill inline-flex items-center gap-2 rounded-full blue-gradient-bg px-6 py-3 text-[12px] font-semibold uppercase tracking-wide text-white shadow-[0_8px_24px_rgba(0,102,253,0.35)]"
               >
                 Get A Quote
               </Link>

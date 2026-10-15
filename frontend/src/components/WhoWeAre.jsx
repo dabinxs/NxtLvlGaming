@@ -28,7 +28,7 @@ const WhoWeAre = () => {
 
           <a
             href="#footer"
-            className="group mt-8 inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 text-[13px] font-semibold uppercase tracking-wide text-white transition-colors hover:border-[#0066FD] hover:bg-[#0066FD]/10"
+            className="cta-fill cta-fill--blue group mt-8 inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 text-[13px] font-semibold uppercase tracking-wide text-white"
           >
             Learn More
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />

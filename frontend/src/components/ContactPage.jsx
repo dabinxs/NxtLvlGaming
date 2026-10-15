@@ -142,7 +142,7 @@ const ContactPage = () => {
         <motion.section className="contact-quote-bridge" {...reveal(0)}>
           <div className="contact-bridge-orb" aria-hidden="true" />
           <div className="contact-bridge-copy"><span>ALREADY HAVE THE PLAN?</span><h2>Let’s put a number<br /><em>on the good stuff.</em></h2></div>
-          <Link to="/quote">BUILD YOUR EVENT <ArrowUpRight size={17} /></Link>
+          <Link to="/quote" className="cta-fill cta-fill--blue">BUILD YOUR EVENT <ArrowUpRight size={17} /></Link>
           <span className="contact-bridge-index" aria-hidden="true">02 — QUOTE PLANNER</span>
         </motion.section>
       </main>

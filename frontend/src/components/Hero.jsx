@@ -46,7 +46,7 @@ const Hero = () => {
           <Link
             to="/quote"
             data-testid="hero-plan-cta"
-            className="group inline-flex h-[54px] items-center justify-center gap-3 rounded-xl border-2 border-transparent bg-[#0066CC] px-8 text-[13px] font-bold uppercase tracking-[0.06em] text-white shadow-[0_10px_34px_rgba(0,102,204,0.35)] transition-all duration-300 hover:bg-[#0077DD] hover:shadow-[0_14px_40px_rgba(0,102,204,0.5)]"
+            className="cta-fill group inline-flex h-[54px] items-center justify-center gap-3 rounded-xl border-2 border-transparent bg-[#0066CC] px-8 text-[13px] font-bold uppercase tracking-[0.06em] text-white shadow-[0_10px_34px_rgba(0,102,204,0.35)] hover:shadow-[0_14px_40px_rgba(0,102,204,0.5)]"
           >
             Plan Your Event
             <ChevronRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
@@ -54,7 +54,7 @@ const Hero = () => {
           <a
             href="#experience"
             data-testid="hero-explore-cta"
-            className="group inline-flex h-[54px] items-center justify-center rounded-xl border-2 border-white/80 bg-black/20 backdrop-blur-sm px-8 text-[13px] font-bold uppercase tracking-[0.06em] text-white transition-all duration-300 hover:bg-white hover:text-[#05070f]"
+            className="cta-fill group inline-flex h-[54px] items-center justify-center rounded-xl border-2 border-white/80 bg-black/20 backdrop-blur-sm px-8 text-[13px] font-bold uppercase tracking-[0.06em] text-white"
           >
             Explore Explanation
           </a>

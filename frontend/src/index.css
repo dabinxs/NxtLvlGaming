@@ -298,3 +298,46 @@ code {
 
 .hide-scrollbar::-webkit-scrollbar { display: none; }
 .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ================= CTA CENTER-FILL HOVER ANIMATION =================
+   A circle of the fill color grows from the middle of the CTA until it
+   covers the whole button, then shrinks back on un-hover. */
+.cta-fill {
+  --cta-fill: #ffffff;
+  --cta-fill-text: #05070f;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transition: color 0.45s ease, border-color 0.45s ease, box-shadow 0.45s ease;
+}
+.cta-fill::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: -1;
+  width: 160%;
+  aspect-ratio: 1 / 1;
+  border-radius: 9999px;
+  background: var(--cta-fill);
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+}
+.cta-fill:hover::before,
+.cta-fill:focus-visible::before {
+  transform: translate(-50%, -50%) scale(1);
+}
+.cta-fill:hover,
+.cta-fill:focus-visible {
+  color: var(--cta-fill-text);
+  border-color: var(--cta-fill);
+}
+/* Variant for outlined / dark CTAs: fills with brand blue + white text */
+.cta-fill--blue {
+  --cta-fill: #0066fd;
+  --cta-fill-text: #ffffff;
+}
+@media (prefers-reduced-motion: reduce) {
+  .cta-fill::before { transition-duration: 0.01ms; }
+}
