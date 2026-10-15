@@ -19,9 +19,6 @@ export const CMS_PAGES = [
       { id: "gaming-1", title: "Multiplayer Gaming Stations", subtitle: "A range of games set up for guests to play together.", image: "/gaming-events-experience-1.png" },
       { id: "gaming-2", title: "Giant Screen Gaming", subtitle: "Bright, large-scale displays bring every match to life.", image: "/gaming-events-experience-2.png" },
       { id: "gaming-3", title: "Campus Gaming Events", subtitle: "A full gym transformed into a gaming event space.", image: "/gaming-events-experience-3.png" },
-      { id: "gaming-deluxe", title: "Deluxe Package", subtitle: "Complete multi-station console setup with HD displays, popular multiplayer titles, and full on-site technical staffing.", image: "/experience-gaming-events.avif", tag: "Package" },
-      { id: "gaming-ultimate", title: "Ultimate Package", subtitle: "Giant screen arena with premium consoles, immersive audio, high-energy lighting, and dedicated event coordinators.", image: "/about-gaming-event.jpg", tag: "Package" },
-      { id: "gaming-tournament", title: "Tournament Package", subtitle: "Bracketed esports competition with shoutcaster setup, live spectator feeds, leaderboards, and grand final stage.", image: "/gaming-tournament-package.jpg", tag: "Package" },
     ],
   },
   {

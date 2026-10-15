@@ -127,6 +127,25 @@ function QuotePage() {
 
   useEffect(() => () => locationRequest.current?.abort(), []);
 
+  useEffect(() => {
+    const pkgParam = searchParams.get("package");
+    if (pkgParam) {
+      const normalizedParam = pkgParam.toLowerCase().trim();
+      const matched =
+        PACKAGES.find(
+          (p) =>
+            p.toLowerCase() === normalizedParam ||
+            normalizedParam.includes(p.toLowerCase().replace(" gaming", "").replace(" production", ""))
+        ) || pkgParam;
+
+      setDraft((current) => ({
+        ...current,
+        package: matched,
+        eventType: current.eventType || "Gaming party",
+      }));
+    }
+  }, [searchParams]);
+
   const update = (key, value) => setDraft((current) => ({ ...current, [key]: value }));
   const wantsNovelties = hasNovelty || draft.wantsNovelties;
   const chooseLocationFlexibility = (value) => {

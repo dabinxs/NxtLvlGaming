@@ -1,10 +1,12 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import {
   Monitor,
   Trophy,
   Gamepad2,
   Users,
   Check,
+  ArrowRight,
 } from "lucide-react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
@@ -58,23 +60,51 @@ const GALLERY_IMAGES = [
     subtitle: "A full gym transformed into a gaming event space.",
     src: "/gaming-events-experience-3.png",
   },
+];
+
+const GAMING_PACKAGES = [
   {
-    title: "Deluxe Package",
-    subtitle: "Complete multi-station console setup with HD displays, popular multiplayer titles, and full on-site technical staffing.",
-    src: "/experience-gaming-events.avif",
-    tag: "Package",
+    id: "deluxe-package",
+    name: "Deluxe Package",
+    tagline: "Popular Pick",
+    description: "Complete multi-station console setup with HD displays, crowd-favorite multiplayer titles, and full on-site technical staffing.",
+    image: "/experience-gaming-events.avif",
+    quoteParam: "Deluxe gaming",
+    features: [
+      "Multi-station console setup",
+      "Curated library of top multiplayer games",
+      "Full high-definition displays & sound",
+      "On-site gaming coordinators & tech support",
+    ],
   },
   {
-    title: "Ultimate Package",
-    subtitle: "Giant screen arena with premium consoles, immersive audio, high-energy lighting, and dedicated event coordinators.",
-    src: "/about-gaming-event.jpg",
-    tag: "Package",
+    id: "ultimate-package",
+    name: "Ultimate Package",
+    tagline: "Most Popular",
+    popular: true,
+    description: "Massive giant screens, premium audio, multiple next-gen console stations, and dedicated event coordinators for large crowds.",
+    image: "/about-gaming-event.jpg",
+    quoteParam: "Ultimate gaming",
+    features: [
+      "Massive 12 ft to 32 ft giant screens",
+      "Next-gen consoles (PS5, Xbox Series X, Switch)",
+      "Pro audio & atmospheric lighting",
+      "Full turnkey staffing & crowd facilitation",
+    ],
   },
   {
-    title: "Tournament Package",
-    subtitle: "Bracketed esports competition with shoutcaster setup, live spectator feeds, leaderboards, and grand final stage.",
-    src: "/gaming-tournament-package.jpg",
-    tag: "Package",
+    id: "tournament-package",
+    name: "Tournament Package",
+    tagline: "Esports Edition",
+    description: "Full competitive esports setup with bracket management, live scoring, caster audio setup, and grand final main stage.",
+    image: "/gaming-tournament-package.jpg",
+    quoteParam: "Tournament production",
+    features: [
+      "Structured bracket coordination & rulesets",
+      "Shoutcaster audio & commentator station",
+      "Live spectator displays & leaderboards",
+      "Grand final championship presentation",
+    ],
   },
 ];
 
@@ -206,12 +236,12 @@ const GamingEvents = () => {
               </h2>
             </div>
 
-            {/* Showcase Cards Grid */}
+            {/* 3 Showcase Image Cards */}
             <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-              {cmsPage.gallery.map((img, i) => (
+              {cmsPage.gallery.slice(0, 3).map((img, i) => (
                 <div
                   key={img.id || i}
-                  className="group relative flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#0c1830] transition-all duration-500 hover:border-[#0066FD]/60 hover:shadow-[0_16px_40px_rgba(0,102,253,0.22)]"
+                  className="group relative overflow-hidden rounded-2xl border border-white/10 bg-[#0c1830] transition-all duration-500 hover:border-[#0066FD]/60 hover:shadow-[0_16px_40px_rgba(0,102,253,0.22)]"
                 >
                   <div className="relative aspect-[4/3] w-full overflow-hidden">
                     <img
@@ -221,23 +251,112 @@ const GamingEvents = () => {
                       loading="lazy"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#05070f] via-transparent to-transparent opacity-80" />
-                    {img.tag && (
-                      <div className="absolute top-3.5 left-3.5 z-10">
-                        <span className="inline-flex items-center rounded-full border border-[#0066FD]/60 bg-[#05070f]/85 px-3 py-1 font-display text-[11px] font-bold uppercase tracking-wider text-[#7DDDFF] backdrop-blur-md shadow-lg">
-                          {img.tag}
-                        </span>
-                      </div>
-                    )}
                   </div>
 
-                  <div className="flex flex-1 flex-col justify-between p-6">
+                  <div className="p-6">
+                    <h3 className="font-display text-[18px] font-extrabold uppercase tracking-wide text-white group-hover:text-[#7DDDFF] transition-colors">
+                      {img.title}
+                    </h3>
+                    <p className="mt-2 text-[13.5px] leading-relaxed text-white/60">
+                      {img.subtitle}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ================= PACKAGES SECTION ================= */}
+        <section id="packages" className="relative border-t border-white/5 bg-[#05070f] py-24 md:py-32">
+          {/* Subtle directional glow */}
+          <div className="pointer-events-none absolute right-1/4 top-1/2 h-[400px] w-[600px] -translate-y-1/2 rounded-full bg-[#0066FD]/10 blur-[160px]" />
+
+          <div className="relative z-10 mx-auto max-w-[1280px] px-5 md:px-8">
+            <div className="mb-14 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+              <div>
+                <div className="flex items-center gap-3 font-display text-[12px] font-bold uppercase tracking-[0.22em] text-[#7DDDFF]">
+                  <span className="h-0.5 w-7 bg-[#0066FD]" />
+                  <span>CHOOSE YOUR SETUP</span>
+                </div>
+                <h2 className="mt-4 font-display text-[clamp(2rem,4.2vw,3.2rem)] font-extrabold uppercase italic leading-none tracking-tight text-white">
+                  EVENT <span className="blue-gradient-text not-italic">PACKAGES</span>
+                </h2>
+              </div>
+              <p className="max-w-md text-[15px] leading-relaxed text-white/70">
+                Turnkey packages designed to fit your crowd size, space, and venue. Fully staffed, insured, and built to impress.
+              </p>
+            </div>
+
+            {/* 3 Package Cards */}
+            <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
+              {GAMING_PACKAGES.map((pkg) => (
+                <div
+                  key={pkg.id}
+                  className={`group relative flex flex-col overflow-hidden rounded-3xl border transition-all duration-500 hover:-translate-y-1 ${
+                    pkg.popular
+                      ? "border-[#0066FD]/70 bg-gradient-to-b from-[#0e1d3b] to-[#070e1e] shadow-[0_16px_50px_rgba(0,102,253,0.25)] hover:border-[#7DDDFF]"
+                      : "border-white/10 bg-gradient-to-b from-[#0c1830] to-[#070b16] hover:border-[#0066FD]/50 hover:shadow-[0_16px_40px_rgba(0,102,253,0.18)]"
+                  }`}
+                >
+                  {/* Package Image */}
+                  <div className="relative aspect-[16/10] w-full overflow-hidden">
+                    <img
+                      src={pkg.image}
+                      alt={pkg.name}
+                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#070b16] via-[#070b16]/40 to-transparent" />
+
+                    {/* Badge */}
+                    <div className="absolute top-4 left-4 z-10">
+                      <span
+                        className={`inline-flex items-center rounded-full px-3 py-1 font-display text-[11px] font-bold uppercase tracking-wider backdrop-blur-md shadow-lg ${
+                          pkg.popular
+                            ? "border border-[#7DDDFF]/60 bg-[#0066FD]/85 text-white"
+                            : "border border-[#0066FD]/50 bg-[#05070f]/85 text-[#7DDDFF]"
+                        }`}
+                      >
+                        {pkg.tagline}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Package Details */}
+                  <div className="flex flex-1 flex-col justify-between p-7">
                     <div>
-                      <h3 className="font-display text-[18px] font-extrabold uppercase tracking-wide text-white group-hover:text-[#7DDDFF] transition-colors">
-                        {img.title}
+                      <h3 className="font-display text-[22px] font-extrabold uppercase tracking-wide text-white transition-colors group-hover:text-[#7DDDFF]">
+                        {pkg.name}
                       </h3>
-                      <p className="mt-2 text-[13.5px] leading-relaxed text-white/60">
-                        {img.subtitle}
+                      <p className="mt-3 text-[14px] leading-relaxed text-white/70">
+                        {pkg.description}
                       </p>
+
+                      {/* Highlights */}
+                      <ul className="mt-6 space-y-2.5 border-t border-white/10 pt-5">
+                        {pkg.features.map((feature, idx) => (
+                          <li key={idx} className="flex items-start gap-2.5 text-[13px] text-white/80">
+                            <Check className="mt-0.5 h-4 w-4 shrink-0 text-[#7DDDFF]" strokeWidth={2.6} />
+                            <span>{feature}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* CTA Button linking to quote section */}
+                    <div className="mt-8 pt-4">
+                      <Link
+                        to={`/quote?package=${encodeURIComponent(pkg.quoteParam)}`}
+                        className={`group/btn flex w-full items-center justify-center gap-2 rounded-full py-3.5 px-6 text-[13px] font-bold uppercase tracking-wider transition-all duration-300 ${
+                          pkg.popular
+                            ? "blue-gradient-bg text-white shadow-[0_8px_25px_rgba(0,102,253,0.4)] hover:shadow-[0_12px_32px_rgba(0,102,253,0.6)] hover:scale-[1.02]"
+                            : "border border-[#0066FD]/60 bg-[#0066FD]/15 text-[#7DDDFF] hover:bg-[#0066FD] hover:text-white hover:border-[#0066FD]"
+                        }`}
+                      >
+                        <span>Get A Quote</span>
+                        <ArrowRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
+                      </Link>
                     </div>
                   </div>
                 </div>
