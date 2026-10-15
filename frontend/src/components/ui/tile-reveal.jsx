@@ -111,7 +111,7 @@ export function TileReveal({
     <div
       ref={sectionRef}
       className={cn(
-        "relative w-full h-screen min-h-[640px] max-h-[1080px] overflow-hidden bg-[#05070f] flex items-center justify-center select-none",
+        "relative w-full h-screen min-h-[720px] md:min-h-[760px] max-h-[1080px] overflow-hidden bg-[#05070f] flex items-center justify-center select-none",
         className
       )}
     >
@@ -128,7 +128,7 @@ export function TileReveal({
         {/* Center Content (Revealed Headline & Text) */}
         <div
           ref={centerRef}
-          className="relative z-20 mx-auto max-w-2xl px-6 text-center will-change-transform"
+          className="relative z-20 mx-auto max-w-xl px-4 text-center will-change-transform"
         >
           {children}
         </div>
@@ -149,7 +149,7 @@ export function TileReveal({
             >
               <a
                 href={tile.href || "/novelties"}
-                className="group relative block overflow-hidden rounded-2xl border border-white/20 bg-[#091322]/80 p-2 shadow-[0_20px_50px_rgba(0,0,0,0.7)] backdrop-blur-md transition-all duration-300 hover:border-[#7DDDFF]/80 hover:shadow-[0_0_30px_rgba(0,102,253,0.35)]"
+                className="group relative block overflow-hidden rounded-2xl border border-white/20 bg-[#091322]/85 p-1.5 sm:p-2 shadow-[0_16px_40px_rgba(0,0,0,0.65)] backdrop-blur-md transition-all duration-300 hover:border-[#7DDDFF]/80 hover:shadow-[0_0_25px_rgba(0,102,253,0.35)]"
               >
                 {/* Image */}
                 <div className="relative aspect-[1.12/1] w-full overflow-hidden rounded-xl border border-white/10 bg-[#060c18]">
