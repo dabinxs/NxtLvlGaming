@@ -479,6 +479,60 @@ const getOrderedDesignObjects = (images, layers) => [
   .sort((a, b) => (a.object.zIndex ?? a.fallbackOrder) - (b.object.zIndex ?? b.fallbackOrder))
   .map(({ object, kind }) => ({ ...object, objectKind: kind }));
 
+const drawTexturedTriangle = (ctx, image, sourcePoints, targetPoints) => {
+  const [s0, s1, s2] = sourcePoints;
+  const [t0, t1, t2] = targetPoints;
+  const sx1 = s1.x - s0.x; const sy1 = s1.y - s0.y;
+  const sx2 = s2.x - s0.x; const sy2 = s2.y - s0.y;
+  const determinant = sx1 * sy2 - sx2 * sy1;
+  if (!determinant) return;
+  const tx1 = t1.x - t0.x; const ty1 = t1.y - t0.y;
+  const tx2 = t2.x - t0.x; const ty2 = t2.y - t0.y;
+  const a = (tx1 * sy2 - tx2 * sy1) / determinant;
+  const c = (tx2 * sx1 - tx1 * sx2) / determinant;
+  const b = (ty1 * sy2 - ty2 * sy1) / determinant;
+  const d = (ty2 * sx1 - ty1 * sx2) / determinant;
+  const e = t0.x - a * s0.x - c * s0.y;
+  const f = t0.y - b * s0.x - d * s0.y;
+  ctx.save();
+  ctx.beginPath();
+  ctx.moveTo(t0.x, t0.y); ctx.lineTo(t1.x, t1.y); ctx.lineTo(t2.x, t2.y);
+  ctx.closePath(); ctx.clip();
+  ctx.transform(a, b, c, d, e, f);
+  ctx.drawImage(image, 0, 0);
+  ctx.restore();
+};
+
+const drawWrappedArtwork = (ctx, image, x, y, width, height, warp) => {
+  const columns = 10; const rows = 7;
+  const map = (u, v) => ({
+    x: x + u * width + warp * (v - 0.5) * width * 0.22,
+    y: y + v * height + warp * Math.sin(Math.PI * u) * (0.5 - v) * height * 1.15,
+  });
+  for (let row = 0; row < rows; row += 1) {
+    for (let column = 0; column < columns; column += 1) {
+      const u0 = column / columns; const u1 = (column + 1) / columns;
+      const v0 = row / rows; const v1 = (row + 1) / rows;
+      const s00 = { x: u0 * image.width, y: v0 * image.height };
+      const s10 = { x: u1 * image.width, y: v0 * image.height };
+      const s01 = { x: u0 * image.width, y: v1 * image.height };
+      const s11 = { x: u1 * image.width, y: v1 * image.height };
+      const p00 = map(u0, v0); const p10 = map(u1, v0);
+      const p01 = map(u0, v1); const p11 = map(u1, v1);
+      drawTexturedTriangle(ctx, image, [s00, s10, s11], [p00, p10, p11]);
+      drawTexturedTriangle(ctx, image, [s00, s11, s01], [p00, p11, p01]);
+    }
+  }
+};
+
+const getDefaultSurfaceTransform = (productId) => ({
+  x: 0,
+  y: 0,
+  zoom: 1.8,
+  rotation: 0,
+  warp: ["trucker-hats", "hats-beanies"].includes(productId) ? 0.2 : ["custom-bracelets", "intention-bracelets", "stamped-rings"].includes(productId) ? 0.28 : 0.1,
+});
+
 const BuildNovelty = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
@@ -489,6 +543,8 @@ const BuildNovelty = () => {
     selectedIdFromUrl || "trucker-hats"
   );
   const [advancedProductPreview, setAdvancedProductPreview] = useState(false);
+  const [surfaceTransform, setSurfaceTransform] = useState(() => getDefaultSurfaceTransform(selectedIdFromUrl || "trucker-hats"));
+  const surfaceDragRef = useRef(null);
 
   const selectedProduct =
     NOVELTY_PRODUCTS.find((p) => p.id === selectedProductId) ||
@@ -581,6 +637,7 @@ const BuildNovelty = () => {
   const handleSelectProduct = (id) => {
     if (id === selectedProductId) return;
     resetProductDesign();
+    setSurfaceTransform(getDefaultSurfaceTransform(id));
     setSelectedProductId(id);
     setActiveView("front");
     setSearchParams({ product: id });
@@ -611,6 +668,7 @@ const BuildNovelty = () => {
       : NOVELTY_PRODUCTS[0].id;
     if (nextProductId !== selectedProductId) {
       resetProductDesign();
+      setSurfaceTransform(getDefaultSurfaceTransform(nextProductId));
       setSelectedProductId(nextProductId);
       setActiveView("front");
     }
