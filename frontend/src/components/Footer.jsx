@@ -39,8 +39,8 @@ const Footer = () => {
             >
               <span>978-601-5473</span>
             </a>
-            <a href="https://www.google.com/maps/search/?api=1&query=12+Rebel+Rd+%23B%2C+Hudson%2C+NH+03051" target="_blank" rel="noreferrer" className="mt-2 flex items-center gap-2 text-sm text-white/65 transition-colors hover:text-[#7DDDFF]">
-              <MapPin className="h-4 w-4 text-[#7DDDFF]" /><span>12 Rebel Rd #B, Hudson, NH 03051</span>
+            <a href="https://www.google.com/maps/search/?api=1&query=Hudson+NH" target="_blank" rel="noreferrer" className="mt-2 flex items-center gap-2 text-sm text-white/65 transition-colors hover:text-[#7DDDFF]">
+              <MapPin className="h-4 w-4 text-[#7DDDFF]" /><span>HUDSON NH</span>
             </a>
 
             <div className="mt-8 flex flex-wrap items-center gap-4">

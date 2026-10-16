@@ -25,7 +25,7 @@ const Hero = () => {
 
       <div className="relative z-10 flex w-full max-w-5xl flex-col items-center px-5 text-center">
         <h1
-          className="font-display text-[clamp(2.1rem,5vw,4.2rem)] font-extrabold uppercase leading-[1.06] tracking-tight text-white animate-rise drop-shadow-[0_8px_32px_rgba(0,0,0,0.8)]"
+          className="w-full font-display text-[clamp(1.75rem,5vw,4.2rem)] font-extrabold uppercase leading-[1.06] tracking-tight text-white animate-rise drop-shadow-[0_8px_32px_rgba(0,0,0,0.8)]"
           style={{ fontWeight: 800 }}
         >
           <TextScatter text={"Transform Your Event\nInto Reality"} />

@@ -207,7 +207,7 @@ export const testimonials = [
   {
     id: "springfield-college",
     name: "Springfield College",
-    quote: "We've had a lot of fun tonight doing just Dance in a large scale, it's even better with that! Thank Next Level Gaming!",
+    quote: "We've had a lot of fun doing Just Dance on a large scale. It's even better with Next Level Gaming. Thank you!",
     video: "/springfield-college.mp4",
   },
   {

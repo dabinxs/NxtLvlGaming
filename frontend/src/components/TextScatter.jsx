@@ -71,20 +71,27 @@ const TextScatter = ({
     <span ref={wrapRef} className={className} data-testid="text-scatter">
       {text.split("\n").map((line, li) => (
         <span key={li} className="block">
-          {line.split("").map((ch, ci) => {
-            index += 1;
-            const i = index;
-            return (
-              <span
-                key={`${li}-${ci}`}
-                ref={(el) => (letters.current[i] = el)}
-                className="inline-block will-change-transform"
-                style={{ transformOrigin: "50% 60%" }}
-              >
-                {ch === " " ? "\u00A0" : ch}
+          {line.split(" ").map((word, wi) => (
+            <React.Fragment key={`${li}-${wi}`}>
+              {wi > 0 && " "}
+              <span className="inline-flex whitespace-nowrap">
+                {word.split("").map((ch, ci) => {
+                  index += 1;
+                  const i = index;
+                  return (
+                    <span
+                      key={`${li}-${wi}-${ci}`}
+                      ref={(el) => (letters.current[i] = el)}
+                      className="inline-block will-change-transform"
+                      style={{ transformOrigin: "50% 60%" }}
+                    >
+                      {ch}
+                    </span>
+                  );
+                })}
               </span>
-            );
-          })}
+            </React.Fragment>
+          ))}
         </span>
       ))}
     </span>

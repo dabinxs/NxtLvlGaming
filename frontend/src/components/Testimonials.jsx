@@ -4,8 +4,8 @@ import { testimonials } from "../mock";
 
 const Card = ({ testimonial, onPlay, wide }) => (
   <div
-    className={`group relative mx-3 flex h-[236px] shrink-0 flex-col overflow-hidden rounded-2xl border border-white/8 bg-gradient-to-br from-[#0c1526] to-[#080d18] p-6 transition-all duration-300 hover:border-[#0066FD]/40 ${
-      wide ? "w-[400px]" : "w-[330px]"
+    className={`group relative mx-3 flex h-[236px] w-[calc(100vw-48px)] shrink-0 flex-col overflow-hidden rounded-2xl border border-white/8 bg-gradient-to-br from-[#0c1526] to-[#080d18] p-6 transition-all duration-300 hover:border-[#0066FD]/40 ${
+      wide ? "min-[640px]:w-[400px]" : "min-[640px]:w-[330px]"
     }`}
   >
     <p
