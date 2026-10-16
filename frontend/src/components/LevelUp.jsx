@@ -86,12 +86,12 @@ const NOVELTY_TILES = [
     from: { x: -120, y: 360, rotation: 18, scale: 0.4, opacity: 0 },
     toRotation: -5,
   },
-  // 9. Bottom Center-Right - Engraved Rings
+  // 9. Bottom Center-Right - Intention Bracelet
   {
-    id: "engraved-rings",
-    label: "ENGRAVED RINGS",
-    title: "Engraved Rings",
-    image: "/novelty-cards/engraved-rings.jpg",
+    id: "intention-bracelet",
+    label: "INTENTION BRACELET",
+    title: "Intention Bracelet",
+    image: "/novelty-cards/intention-bracelet.jpg",
     className: "right-[24%] md:right-[27%] bottom-[1.5%] sm:bottom-[2%] w-[95px] sm:w-[125px] md:w-[145px] lg:w-[160px]",
     hideOnMobile: true,
     from: { x: 120, y: 360, rotation: -18, scale: 0.4, opacity: 0 },
