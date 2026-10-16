@@ -341,3 +341,27 @@ code {
 @media (prefers-reduced-motion: reduce) {
   .cta-fill::before { transition-duration: 0.01ms; }
 }
+
+/* Shared responsive and keyboard-accessibility refinements. */
+.App { min-height: 100svh; }
+:where(a, button, input, select, textarea, [tabindex]):focus-visible { outline: 2px solid #7dddff; outline-offset: 3px; }
+@media (max-width: 360px) {
+  .cms-topbar { padding-inline: 9px; }
+  .cms-content-area { padding-inline: 10px; }
+  .cms-login-page { padding: 14px; }
+  .cms-login-card { padding: 24px 18px; }
+  .quote-shell { width: calc(100% - 20px); }
+  .quote-card { padding-inline: 13px; }
+  .novelty-access-card { padding-inline: 18px; }
+  .contact-details { width: calc(100% - 24px); }
+}
+@media (min-width: 1600px) {
+  .cms-content-area { max-width: 1680px; }
+}
+@media (pointer: coarse) {
+  .cms-icon-button { min-width: 40px; min-height: 40px; }
+  .quote-calendar-day, .quote-calendar-nav { min-height: 42px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
