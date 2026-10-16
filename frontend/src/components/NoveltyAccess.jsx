@@ -2,10 +2,11 @@ import React, { useCallback, useEffect, useState } from "react";
 import { ArrowLeft, CircleAlert, Eye, EyeOff, KeyRound, LogOut, ShieldCheck } from "lucide-react";
 import { Link } from "react-router-dom";
 import { supabase } from "../lib/supabase";
-import BuildNovelty from "./BuildNovelty";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
 import "./NoveltyAccess.css";
+
+const NOVELTY_CUSTOMIZATION_SITE = "https://nextleveltattoos.org";
 
 const NoveltyAccess = () => {
   const [email, setEmail] = useState("");
@@ -115,6 +116,10 @@ const NoveltyAccess = () => {
     return () => window.clearInterval(timer);
   }, [status, checkAccess, quickSessionToken]);
 
+  useEffect(() => {
+    if (status === "allowed") window.location.replace(NOVELTY_CUSTOMIZATION_SITE);
+  }, [status]);
+
   const authenticate = async (event) => {
     event.preventDefault();
     setBusy(true);
@@ -172,17 +177,8 @@ const NoveltyAccess = () => {
     }
   };
 
-  const endQuickSession = async () => {
-    if (quickSessionToken) await supabase.rpc("end_novelty_quick_access_session", { p_session_token: quickSessionToken });
-    sessionStorage.removeItem("nxtlvl-novelty-quick-session");
-    sessionStorage.removeItem("nxtlvl-novelty-quick-username");
-    setQuickSessionToken(null);
-    setStatus("login");
-    setMessage("Quick access session ended.");
-  };
-
   if (status === "checking") return <div className="novelty-access-loading">Checking studio access…</div>;
-  if (status === "allowed") return <><BuildNovelty />{quickSessionToken && <button className="novelty-quick-session-logout" type="button" onClick={endQuickSession}><LogOut size={14} /> End quick access session</button>}</>;
+  if (status === "allowed") return <div className="novelty-access-loading">Access confirmed. Redirecting to the customization site…</div>;
 
   return (
     <div className="novelty-access-page">
