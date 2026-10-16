@@ -19,6 +19,7 @@ import VideoBooth360 from "./components/VideoBooth360";
 import JustDance from "./components/JustDance";
 import SilentDisco from "./components/SilentDisco";
 import SimRacing from "./components/SimRacing";
+import GlowPark from "./components/GlowPark";
 import Novelties from "./components/Novelties";
 import NoveltyAccess from "./components/NoveltyAccess";
 import QuotePage from "./components/QuotePage";
@@ -31,7 +32,7 @@ import { Settings2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { experiences } from "./mock";
 
-const EXPERIENCE_SLUGS = ["gaming-events", "movie-nights", "trivia-nights", "virtual-reality", "just-dance", "silent-disco", "sim-racing", "photo-booth"];
+const EXPERIENCE_SLUGS = ["gaming-events", "movie-nights", "trivia-nights", "virtual-reality", "just-dance", "silent-disco", "sim-racing", "photo-booth", "glow-park"];
 
 const LandingContent = () => {
   const homeMedia = useCmsHomeMedia();
@@ -78,6 +79,7 @@ function App() {
         <Route path="/just-dance" element={<JustDance />} />
         <Route path="/silent-disco" element={<SilentDisco />} />
         <Route path="/sim-racing" element={<SimRacing />} />
+        <Route path="/glow-park" element={<GlowPark />} />
         <Route path="/novelties" element={<Novelties />} />
         <Route path="/build-novelty" element={<NoveltyAccess />} />
         <Route path="/build" element={<NoveltyAccess />} />

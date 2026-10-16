@@ -29,8 +29,8 @@ export const CMS_PAGES = [
     heroTitle: "MOVIE NIGHTS",
     heroSubtitle: "Bring the big-screen experience to your school, venue, or community.",
     gallery: [
-      { id: "movie-led", title: "LED", subtitle: "Ultra-bright mobile LED screen delivering vibrant clarity day or night.", image: "/movie-nights-led.jpg" },
-      { id: "movie-inflatable", title: "INFLATABLE", subtitle: "Massive outdoor inflatable cinema screens bringing true big-screen cinema under the stars.", image: "/movie-nights-experience-1.png" },
+      { id: "movie-led", title: "LED TRAILER / VIDEO WALL SCREEN SET UP", subtitle: "A mobile LED trailer and video wall setup for vibrant, high-visibility movie nights.", image: "/movie-nights-led.jpg" },
+      { id: "movie-inflatable", title: "INFLATABLE SCREEN SET UP", subtitle: "A large-format inflatable cinema screen for memorable outdoor movie nights.", image: "/movie-nights-experience-1.png" },
     ],
   },
   {
@@ -111,6 +111,19 @@ export const CMS_PAGES = [
       { id: "racing-1", title: "Cockpit Sim Rigs", subtitle: "Force-feedback wheels and responsive pedals.", image: "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=1200&q=80" },
       { id: "racing-2", title: "Giant Screen Telemetry", subtitle: "Track positions and fastest-lap leaderboards.", image: "https://images.unsplash.com/photo-1511994298241-608e28f14fde?auto=format&fit=crop&w=1200&q=80" },
       { id: "racing-3", title: "Tournament Grid Battles", subtitle: "Heats, qualifiers, and championship finishes.", image: "https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=1200&q=80" },
+    ],
+  },
+  {
+    slug: "glow-park",
+    title: "Glow Park Experience",
+    kind: "Experience",
+    heroImage: "/experience-silent-disco.png",
+    heroTitle: "GLOW PARK EXPERIENCE",
+    heroSubtitle: "Light up your event with glowing games, colorful uplighting, and a full-package experience guests can jump right into.",
+    gallery: [
+      { id: "glow-swings", title: "Glow Swings", subtitle: "Eight illuminated swings bring a bright, playful centerpiece to your event.", image: "" },
+      { id: "glow-seesaws", title: "Glow Seesaws", subtitle: "Four glowing seesaws add an easy-to-share group activity.", image: "" },
+      { id: "glow-mini-golf", title: "Glowing Mini Golf", subtitle: "A glowing mini-golf setup adds a colorful challenge for guests.", image: "" },
     ],
   },
 ];

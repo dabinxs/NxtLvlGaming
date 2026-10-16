@@ -83,7 +83,18 @@ export function useCmsPage(slug, defaults) {
     rawGallery = [...defaultsMatched, ...customItems];
   }
 
-  const gallery = rawGallery.map((item) => ({ ...item, src: item.src || item.image || "" }));
+  const gallery = rawGallery.map((item) => {
+    const normalized = { ...item, src: item.src || item.image || "" };
+    if (slug === "movie-nights" && item.id === "movie-led" && item.title === "LED") {
+      normalized.title = "LED TRAILER / VIDEO WALL SCREEN SET UP";
+      normalized.subtitle = "A mobile LED trailer and video wall setup for vibrant, high-visibility movie nights.";
+    }
+    if (slug === "movie-nights" && item.id === "movie-inflatable" && item.title === "INFLATABLE") {
+      normalized.title = "INFLATABLE SCREEN SET UP";
+      normalized.subtitle = "A large-format inflatable cinema screen for memorable outdoor movie nights.";
+    }
+    return normalized;
+  });
   return {
     ...defaults,
     ...(stored || {}),
@@ -103,4 +114,4 @@ export function useCmsContent() {
   return useContext(CmsContentContext);
 }
 
-export const CMS_CONTENT_SLUGS = ["gaming-events", "movie-nights", "trivia-nights", "virtual-reality", "photo-booth", "just-dance", "silent-disco", "sim-racing"];
+export const CMS_CONTENT_SLUGS = ["gaming-events", "movie-nights", "trivia-nights", "virtual-reality", "photo-booth", "just-dance", "silent-disco", "sim-racing", "glow-park"];

@@ -1573,6 +1573,8 @@ const BuildNovelty = () => {
       if (uploadError) throw uploadError;
       const { data: imageData } = supabase.storage.from(CMS_MEDIA_BUCKET).getPublicUrl(storagePath);
       const { data: authData } = await supabase.auth.getUser();
+      const quickUsername = sessionStorage.getItem("nxtlvl-novelty-quick-username");
+      const submitterIdentity = authData.user?.email || (quickUsername ? `Quick access: ${quickUsername}` : null);
       const design = {
         id: submissionId,
         productId: selectedProduct.id,
@@ -1581,7 +1583,7 @@ const BuildNovelty = () => {
         imagePath: storagePath,
         styles: activePills,
         description,
-        submittedByEmail: authData.user?.email || "",
+        submittedByEmail: submitterIdentity || "",
         createdAt: new Date().toISOString(),
       };
       const { error: insertError } = await supabase.from("novelty_design_submissions").insert({
@@ -1592,7 +1594,7 @@ const BuildNovelty = () => {
         image_path: storagePath,
         styles: activePills,
         description,
-        submitted_by_email: authData.user?.email || null,
+        submitted_by_email: submitterIdentity,
         status: "new",
       });
       if (insertError) throw insertError;

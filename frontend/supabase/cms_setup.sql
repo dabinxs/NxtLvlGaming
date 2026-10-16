@@ -94,6 +94,129 @@ $$;
 revoke all on function public.has_novelty_access() from public, anon;
 grant execute on function public.has_novelty_access() to authenticated;
 
+-- Admin-created novelty accounts provide a quick alternative to verified
+-- Supabase email accounts. Passwords and bearer sessions are stored only as
+-- one-way pgcrypto hashes.
+create extension if not exists pgcrypto with schema extensions;
+
+create table if not exists public.novelty_quick_access (
+  id uuid primary key default gen_random_uuid(),
+  username text not null unique check (username = lower(username)),
+  password_hash text not null,
+  created_at timestamptz not null default now(),
+  created_by text
+);
+
+create table if not exists public.novelty_quick_access_sessions (
+  id uuid primary key default gen_random_uuid(),
+  account_id uuid not null references public.novelty_quick_access(id) on delete cascade,
+  token_hash text not null,
+  expires_at timestamptz not null,
+  created_at timestamptz not null default now()
+);
+create index if not exists novelty_quick_access_sessions_expiry_idx
+  on public.novelty_quick_access_sessions (expires_at);
+
+alter table public.novelty_quick_access enable row level security;
+alter table public.novelty_quick_access_sessions enable row level security;
+grant select, delete on public.novelty_quick_access to authenticated;
+
+drop policy if exists "CMS admins can view quick novelty access" on public.novelty_quick_access;
+create policy "CMS admins can view quick novelty access" on public.novelty_quick_access
+for select to authenticated using ((select public.is_cms_admin()));
+drop policy if exists "CMS admins can revoke quick novelty access" on public.novelty_quick_access;
+create policy "CMS admins can revoke quick novelty access" on public.novelty_quick_access
+for delete to authenticated using ((select public.is_cms_admin()));
+
+create or replace function public.create_novelty_quick_access(p_username text, p_password text)
+returns void
+language plpgsql
+security definer
+set search_path = ''
+as $$
+declare normalized_username text := lower(btrim(p_username));
+begin
+  if not (select public.is_cms_admin()) then
+    raise exception 'CMS admin access required';
+  end if;
+  if normalized_username is null or normalized_username !~ '^[a-z0-9][a-z0-9._-]{2,31}$' then
+    raise exception 'Username must be 3–32 characters using letters, numbers, dots, dashes, or underscores';
+  end if;
+  if p_password is null or length(p_password) < 10 or octet_length(p_password) > 72 then
+    raise exception 'Password must be at least 10 characters and no more than 72 bytes';
+  end if;
+
+  insert into public.novelty_quick_access (username, password_hash, created_by)
+  values (normalized_username, extensions.crypt(p_password, extensions.gen_salt('bf', 12)), auth.jwt() ->> 'email')
+  on conflict (username) do update
+    set password_hash = excluded.password_hash,
+        created_at = now(),
+        created_by = excluded.created_by;
+  delete from public.novelty_quick_access_sessions
+  where account_id = (select id from public.novelty_quick_access where username = normalized_username);
+end;
+$$;
+
+create or replace function public.authenticate_novelty_quick_access(p_username text, p_password text)
+returns text
+language plpgsql
+security definer
+set search_path = ''
+as $$
+declare
+  matched_account uuid;
+  session_token text;
+begin
+  if p_username is null or p_password is null then return null; end if;
+  select id into matched_account
+  from public.novelty_quick_access
+  where username = lower(btrim(p_username))
+    and password_hash = extensions.crypt(p_password, password_hash)
+  limit 1;
+  if matched_account is null then return null; end if;
+
+  delete from public.novelty_quick_access_sessions where expires_at <= now();
+  session_token := encode(extensions.gen_random_bytes(32), 'hex');
+  insert into public.novelty_quick_access_sessions (account_id, token_hash, expires_at)
+  values (matched_account, extensions.crypt(session_token, extensions.gen_salt('bf', 12)), now() + interval '8 hours');
+  return session_token;
+end;
+$$;
+
+create or replace function public.validate_novelty_quick_access_session(p_session_token text)
+returns boolean
+language sql
+security definer
+set search_path = ''
+as $$
+  select coalesce(exists (
+    select 1 from public.novelty_quick_access_sessions as session
+    where p_session_token is not null
+      and session.expires_at > now()
+      and session.token_hash = extensions.crypt(p_session_token, session.token_hash)
+  ), false);
+$$;
+
+create or replace function public.end_novelty_quick_access_session(p_session_token text)
+returns void
+language sql
+security definer
+set search_path = ''
+as $$
+  delete from public.novelty_quick_access_sessions as session
+  where p_session_token is not null
+    and session.token_hash = extensions.crypt(p_session_token, session.token_hash);
+$$;
+
+revoke all on function public.create_novelty_quick_access(text, text) from public, anon;
+revoke all on function public.authenticate_novelty_quick_access(text, text) from public;
+revoke all on function public.validate_novelty_quick_access_session(text) from public;
+revoke all on function public.end_novelty_quick_access_session(text) from public;
+grant execute on function public.create_novelty_quick_access(text, text) to authenticated;
+grant execute on function public.authenticate_novelty_quick_access(text, text) to anon, authenticated;
+grant execute on function public.validate_novelty_quick_access_session(text) to anon, authenticated;
+grant execute on function public.end_novelty_quick_access_session(text) to anon, authenticated;
+
 drop policy if exists "CMS pages are public to read" on public.cms_pages;
 create policy "CMS pages are public to read"
 on public.cms_pages for select

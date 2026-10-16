@@ -246,7 +246,7 @@ const GamingEvents = () => {
                 <span>SEE IT IN ACTION</span>
               </div>
               <h2 className="mt-4 font-display text-[clamp(2rem,4.2vw,3.2rem)] font-extrabold uppercase italic leading-none tracking-tight text-white">
-                THE <span className="blue-gradient-text not-italic">EXPERIENCE</span>
+                THE <span className="blue-gradient-text not-italic">GAMING EVENT EXPERIENCE</span>
               </h2>
             </div>
 

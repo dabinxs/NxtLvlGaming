@@ -55,6 +55,7 @@ const PACKAGES = [
   "Photo booth + branding",
   "Trivia game show",
   "VR lounge",
+  "Glow Park full package",
   "Custom mix",
 ];
 const STORAGE_KEY = "nxtlvl-quote-draft-v1";

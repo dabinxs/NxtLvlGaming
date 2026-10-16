@@ -19,6 +19,7 @@ import {
   Headphones,
   Car,
   Camera,
+  Sparkles,
 } from "lucide-react";
 import { navLinks, megaMenus } from "../mock";
 
@@ -37,6 +38,7 @@ const ICONS = {
   Headphones,
   Car,
   Camera,
+  Sparkles,
 };
 
 const Icon = ({ name, className }) => {

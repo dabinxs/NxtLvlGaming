@@ -42,22 +42,28 @@ const INCLUDED_FEATURES = [
   },
 ];
 
-const GALLERY_IMAGES = [
-  {
-    title: "LED",
-    subtitle: "Ultra-bright mobile LED screen delivering vibrant clarity day or night.",
-    src: "/movie-nights-led.jpg",
-  },
-  {
-    title: "INFLATABLE",
-    subtitle: "Massive outdoor inflatable cinema screens bringing true big-screen cinema under the stars.",
-    src: "/movie-nights-experience-1.png",
-  },
-];
-
 const AVAILABLE_SCREENS = [
   {
-    size: "16 FT SCREEN",
+    category: "LED Video Wall Screens",
+    size: "14 FT LED SCREEN",
+    desc: "A flexible LED video wall size for smaller venues and more intimate movie nights.",
+    highlights: ["Mobile LED trailer setup", "Bright digital picture", "Movie and video playback"],
+  },
+  {
+    category: "LED Video Wall Screens",
+    size: "16 FT LED SCREEN",
+    desc: "A larger LED video wall option for gatherings that need a more prominent display.",
+    highlights: ["Mobile LED trailer setup", "Bright digital picture", "Movie and video playback"],
+  },
+  {
+    category: "LED Video Wall Screens",
+    size: "20 FT LED SCREEN",
+    desc: "A large-format LED video wall for bigger crowds and high-impact viewing.",
+    highlights: ["Mobile LED trailer setup", "Bright digital picture", "Movie and video playback"],
+  },
+  {
+    category: "Inflatable Screens",
+    size: "16 FT INFLATABLE SCREEN",
     desc: "Great for backyards, private birthday parties, and intimate family gatherings.",
     highlights: [
       "Optimal viewing distance up to 75 ft",
@@ -66,7 +72,8 @@ const AVAILABLE_SCREENS = [
     ],
   },
   {
-    size: "21 FT SCREEN",
+    category: "Inflatable Screens",
+    size: "21 FT INFLATABLE SCREEN",
     desc: "Great for school fields, HOA community nights, and parking lot screenings.",
     highlights: [
       "Optimal viewing distance up to 125 ft",
@@ -75,7 +82,8 @@ const AVAILABLE_SCREENS = [
     ],
   },
   {
-    size: "26 FT SCREEN",
+    category: "Inflatable Screens",
+    size: "26 FT INFLATABLE SCREEN",
     desc: "Great for events out in the park, college campus quads, and public festivals.",
     highlights: [
       "Optimal viewing distance up to 200 ft",
@@ -84,7 +92,8 @@ const AVAILABLE_SCREENS = [
     ],
   },
   {
-    size: "40 FT SCREEN",
+    category: "Inflatable Screens",
+    size: "40 FT INFLATABLE SCREEN",
     desc: "Perfect for Drive-Ins, City-wide events, and massive festival crowds.",
     highlights: [
       "FM radio broadcast for drive-in movies",
@@ -268,38 +277,22 @@ const MovieNights = () => {
               </p>
             </div>
 
-            {/* 4 Small Cards - Info Only, No Pricing, No CTA */}
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-              {AVAILABLE_SCREENS.map((screen) => (
-                <div
-                  key={screen.size}
-                  className="group relative flex flex-col justify-between rounded-2xl border border-white/10 bg-gradient-to-b from-[#0c1830] to-[#070e1e] p-6 transition-all duration-300 hover:border-[#0066FD]/50 hover:shadow-[0_12px_32px_rgba(0,102,253,0.18)]"
-                >
-                  <div>
-                    <div className="flex items-center gap-2 text-[#7DDDFF]">
-                      <Monitor className="h-4 w-4" />
-                      <span className="text-[11px] font-bold uppercase tracking-wider text-white/60">Cinema Screen</span>
+            <div className="space-y-12">
+              {[...new Set(AVAILABLE_SCREENS.map((screen) => screen.category))].map((category) => <div key={category}>
+                <h3 className="mb-5 flex items-center gap-3 font-display text-[17px] font-extrabold uppercase tracking-[0.14em] text-white"><span className="h-0.5 w-6 bg-[#0066FD]" />{category}</h3>
+                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                  {AVAILABLE_SCREENS.filter((screen) => screen.category === category).map((screen) => (
+                    <div key={screen.size} className="group relative flex flex-col justify-between rounded-2xl border border-white/10 bg-gradient-to-b from-[#0c1830] to-[#070e1e] p-6 transition-all duration-300 hover:border-[#0066FD]/50 hover:shadow-[0_12px_32px_rgba(0,102,253,0.18)]">
+                      <div>
+                        <div className="flex items-center gap-2 text-[#7DDDFF]"><Monitor className="h-4 w-4" /><span className="text-[11px] font-bold uppercase tracking-wider text-white/60">{category}</span></div>
+                        <h4 className="mt-4 font-display text-[20px] font-extrabold uppercase tracking-wide text-white transition-colors group-hover:text-[#7DDDFF]">{screen.size}</h4>
+                        <p className="mt-2 text-[13.5px] leading-relaxed text-white/70">{screen.desc}</p>
+                        <ul className="mt-5 space-y-2 border-t border-white/10 pt-4">{screen.highlights.map((item, idx) => <li key={idx} className="flex items-start gap-2 text-[12.5px] text-white/80"><Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#7DDDFF]" strokeWidth={2.6} /><span>{item}</span></li>)}</ul>
+                      </div>
                     </div>
-
-                    <h3 className="mt-4 font-display text-[20px] font-extrabold uppercase tracking-wide text-white group-hover:text-[#7DDDFF] transition-colors">
-                      {screen.size}
-                    </h3>
-
-                    <p className="mt-2 text-[13.5px] leading-relaxed text-white/70">
-                      {screen.desc}
-                    </p>
-
-                    <ul className="mt-5 space-y-2 border-t border-white/10 pt-4">
-                      {screen.highlights.map((item, idx) => (
-                        <li key={idx} className="flex items-start gap-2 text-[12.5px] text-white/80">
-                          <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#7DDDFF]" strokeWidth={2.6} />
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                  ))}
                 </div>
-              ))}
+              </div>)}
             </div>
           </div>
         </section>

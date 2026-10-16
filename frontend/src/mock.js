@@ -66,6 +66,12 @@ export const megaMenus = {
         desc: "360 video and mirror booth experiences guests can enjoy and share.",
         href: "/photo-booth",
       },
+      {
+        title: "Glow Park Experience",
+        icon: "Sparkles",
+        desc: "Glow swings, seesaws, uplighting, and glowing mini golf.",
+        href: "/glow-park",
+      },
     ],
   },
 };
@@ -162,6 +168,14 @@ export const experiences = [
     highlight: "Booth",
     desc: "Make your events more fun and memorable with our photobooth experiences. Capture, create, and share amazing moments instantly.",
     image: "/experience-360-video-booth.png",
+  },
+  {
+    id: 9,
+    slug: "glow-park",
+    title: "Glow Park",
+    highlight: "Experience",
+    desc: "Eight glow swings, four glow seesaws, colorful uplighting, and glowing mini golf.",
+    image: "/experience-silent-disco.png",
   },
 ];
 

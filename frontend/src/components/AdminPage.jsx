@@ -15,7 +15,7 @@ import "./AdminPage.css";
 
 const DEFAULTS = Object.fromEntries(CMS_PAGES.map((page) => [page.slug, page]));
 
-function makeDraft(page, stored) {
+function makeDraft(page, stored, slug) {
   const defaultGallery = (page?.gallery || []).map(({ id, title, subtitle, image, tag }) => ({
     id,
     title,
@@ -33,7 +33,10 @@ function makeDraft(page, stored) {
     const defaultsMatched = defaultGallery.map((def) => {
       const key = (def.id || def.title || "").toLowerCase();
       const match = storedMap.get(key);
-      return match ? { ...def, ...match } : def;
+      if (!match) return def;
+      if (slug === "movie-nights" && match.id === "movie-led" && match.title === "LED") return { ...def, ...match, title: def.title, subtitle: def.subtitle };
+      if (slug === "movie-nights" && match.id === "movie-inflatable" && match.title === "INFLATABLE") return { ...def, ...match, title: def.title, subtitle: def.subtitle };
+      return { ...def, ...match };
     });
     const defaultKeys = new Set(
       defaultGallery.map((def) => (def.id || def.title || "").toLowerCase())
@@ -160,14 +163,14 @@ function CmsLogin({ user, onUser }) {
 function CmsEditor({ activeSlug, activePage, onSave }) {
   const { homeMedia, refresh } = useCmsContent();
   const defaults = DEFAULTS[activeSlug];
-  const [draft, setDraft] = useState(() => makeDraft(defaults, activePage.data));
+  const [draft, setDraft] = useState(() => makeDraft(defaults, activePage.data, activeSlug));
   const [saving, setSaving] = useState(false);
   const [notice, setNotice] = useState("");
   const [error, setError] = useState("");
   const [removedMediaPaths, setRemovedMediaPaths] = useState([]);
 
   useEffect(() => {
-    setDraft(makeDraft(defaults, activePage.data));
+    setDraft(makeDraft(defaults, activePage.data, activeSlug));
     setNotice("");
     setError("");
     setRemovedMediaPaths([]);
@@ -374,9 +377,9 @@ function NoveltyDesignInbox() {
     setDeleting(false);
   };
   return <>
-    <section className="cms-editor-heading"><div><p className="cms-eyebrow">CUSTOMER WORK / NOVELTIES</p><h2>Design submissions</h2><p>Submissions are grouped by the email address used to submit them.</p></div><button onClick={refreshDesigns} className="cms-secondary-button" disabled={loading}>REFRESH INBOX</button></section>
+    <section className="cms-editor-heading"><div><p className="cms-eyebrow">CUSTOMER WORK / NOVELTIES</p><h2>Design submissions</h2><p>Submissions are grouped by the signed-in email or quick-access username.</p></div><button onClick={refreshDesigns} className="cms-secondary-button" disabled={loading}>REFRESH INBOX</button></section>
     {error && <p className="cms-error">{error}</p>}
-    <label className="cms-design-search">Search submissions<input value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Submitter email, product, or ID" /></label>
+    <label className="cms-design-search">Search submissions<input value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Submitter, product, or ID" /></label>
     {selectedIds.length > 0 && <div className="cms-batch-actions"><span>{selectedIds.length} design{selectedIds.length === 1 ? "" : "s"} selected</span><button className="cms-danger-button" onClick={() => deleteDesigns(designs.filter((design) => selectedIds.includes(design.id)))} disabled={deleting}><Trash2 size={15}/>{deleting ? "DELETING…" : "DELETE SELECTED"}</button><button className="cms-text-button" onClick={() => setSelectedIds([])}>Clear selection</button></div>}
     {loading ? <p className="cms-login-lede">Loading design submissions…</p> : filteredDesigns.length ? <div className="cms-submitter-groups">{Object.entries(groupedDesigns).map(([email, grouped]) => {
       const isExpanded = expandedEmails.includes(email);
