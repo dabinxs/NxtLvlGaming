@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { ArrowLeft, CircleAlert, KeyRound, LogOut, ShieldCheck } from "lucide-react";
+import { ArrowLeft, CircleAlert, Eye, EyeOff, KeyRound, LogOut, ShieldCheck } from "lucide-react";
 import { Link } from "react-router-dom";
 import { supabase } from "../lib/supabase";
 import BuildNovelty from "./BuildNovelty";
@@ -11,6 +11,7 @@ const NoveltyAccess = () => {
   const [email, setEmail] = useState("");
   const [quickUsername, setQuickUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [loginMode, setLoginMode] = useState("email");
   const [quickSessionToken, setQuickSessionToken] = useState(null);
   const [user, setUser] = useState(null);
@@ -199,7 +200,7 @@ const NoveltyAccess = () => {
           </div>
           <form className="novelty-access-form" onSubmit={authenticate}>
             {loginMode === "email" ? <label>Email address<input type="email" value={email} onChange={(event) => setEmail(event.target.value)} autoComplete="username" required /></label> : <label>Quick access username<input type="text" value={quickUsername} onChange={(event) => setQuickUsername(event.target.value)} autoComplete="username" required /></label>}
-            <label>Password<input type="password" value={password} onChange={(event) => setPassword(event.target.value)} autoComplete={creating ? "new-password" : "current-password"} minLength={loginMode === "quick" ? 10 : 6} required /></label>
+            <label>Password<div className="novelty-access-password-field"><input type={showPassword ? "text" : "password"} value={password} onChange={(event) => setPassword(event.target.value)} autoComplete={creating ? "new-password" : "current-password"} minLength={loginMode === "quick" ? 10 : 6} required /><button type="button" className="password-visibility-toggle" aria-label={showPassword ? "Hide password" : "Show password"} aria-pressed={showPassword} onClick={() => setShowPassword((visible) => !visible)}>{showPassword ? <EyeOff size={15} /> : <Eye size={15} />}<span>{showPassword ? "HIDE" : "SHOW PASSWORD"}</span></button></div></label>
             {error && <p className="novelty-access-error" role="alert"><CircleAlert size={16} />{error}</p>}
             {message && <p className="novelty-access-success" role="status">{message}</p>}
             <button className="novelty-access-submit" disabled={busy}>{busy ? "PLEASE WAIT…" : creating ? "CREATE ACCESS ACCOUNT" : loginMode === "quick" ? "ENTER WITH QUICK ACCESS" : "SIGN IN TO CUSTOMIZE"}</button>

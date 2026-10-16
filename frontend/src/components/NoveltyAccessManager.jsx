@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { CircleAlert, CircleCheck, KeyRound, LoaderCircle, Trash2, UserPlus } from "lucide-react";
+import { CircleAlert, CircleCheck, Copy, Eye, EyeOff, KeyRound, LoaderCircle, Trash2, UserPlus } from "lucide-react";
 import { supabase } from "../lib/supabase";
 import "./NoveltyAccessManager.css";
 
@@ -9,6 +9,9 @@ const NoveltyAccessManager = ({ adminEmail }) => {
   const [email, setEmail] = useState("");
   const [quickUsername, setQuickUsername] = useState("");
   const [quickPassword, setQuickPassword] = useState("");
+  const [showQuickPassword, setShowQuickPassword] = useState(false);
+  const [recentQuickCredential, setRecentQuickCredential] = useState(null);
+  const [showRecentPassword, setShowRecentPassword] = useState(true);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [removing, setRemoving] = useState("");
@@ -81,9 +84,11 @@ const NoveltyAccessManager = ({ adminEmail }) => {
     if (createError) {
       setError(createError.message || "Could not create quick access credentials.");
     } else {
+      setRecentQuickCredential({ username: normalizedUsername, password: quickPassword });
+      setShowRecentPassword(true);
       setQuickUsername("");
       setQuickPassword("");
-      setNotice(`Quick access is ready for “${normalizedUsername}”. Share the password you just entered with the customer; it cannot be viewed again in the CMS.`);
+      setNotice(`Quick access is ready for “${normalizedUsername}”. The password is displayed below so you can share it with the customer.`);
       await loadAccounts();
     }
     setSaving(false);
@@ -96,6 +101,7 @@ const NoveltyAccessManager = ({ adminEmail }) => {
     if (deleteError) setError(deleteError.message || "Could not remove quick access.");
     else {
       setQuickAccounts((current) => current.filter((entry) => entry.id !== account.id));
+      setRecentQuickCredential((current) => current?.username === account.username ? null : current);
       setNotice(`Quick access removed for “${account.username}”.`);
     }
     setRemoving("");
@@ -121,9 +127,10 @@ const NoveltyAccessManager = ({ adminEmail }) => {
         <div className="cms-panel-title"><span className="cms-panel-icon"><KeyRound size={17} /></span><div><h3>Create quick username and password access</h3><p>For customers who need to enter the studio right away without creating an account or verifying email.</p></div></div>
         <form className="cms-novelty-access-form cms-quick-access-form" onSubmit={addQuickAccount}>
           <label htmlFor="novelty-quick-username">Username and password</label>
-          <div className="cms-quick-access-fields"><input id="novelty-quick-username" type="text" autoComplete="off" minLength={3} maxLength={32} pattern="[A-Za-z0-9][A-Za-z0-9._-]{2,31}" title="3–32 letters, numbers, dots, dashes, or underscores" required placeholder="Choose a username" value={quickUsername} onChange={(event) => setQuickUsername(event.target.value)} /><input aria-label="Quick access password" type="password" autoComplete="new-password" minLength={10} maxLength={72} required placeholder="Set a password (10+ characters)" value={quickPassword} onChange={(event) => setQuickPassword(event.target.value)} /><button className="cms-primary-button" disabled={saving}><KeyRound size={15} />{saving ? "SAVING…" : "CREATE / RESET LOGIN"}</button></div>
+          <div className="cms-quick-access-fields"><input id="novelty-quick-username" type="text" autoComplete="off" minLength={3} maxLength={32} pattern="[A-Za-z0-9][A-Za-z0-9._-]{2,31}" title="3–32 letters, numbers, dots, dashes, or underscores" required placeholder="Choose a username" value={quickUsername} onChange={(event) => setQuickUsername(event.target.value)} /><div className="cms-password-field"><input aria-label="Quick access password" type={showQuickPassword ? "text" : "password"} autoComplete="new-password" minLength={10} maxLength={72} required placeholder="Set a password (10+ characters)" value={quickPassword} onChange={(event) => setQuickPassword(event.target.value)} /><button type="button" className="cms-password-toggle" aria-label={showQuickPassword ? "Hide password" : "Show password"} aria-pressed={showQuickPassword} onClick={() => setShowQuickPassword((visible) => !visible)}>{showQuickPassword ? <EyeOff size={15} /> : <Eye size={15} />}<span>{showQuickPassword ? "HIDE" : "SHOW PASSWORD"}</span></button></div><button className="cms-primary-button" disabled={saving}><KeyRound size={15} />{saving ? "SAVING…" : "CREATE / RESET LOGIN"}</button></div>
         </form>
-        <p className="cms-novelty-access-note">The password is saved as a secure hash and is shown only while you type it. Creating a username that already exists replaces its password and invalidates its existing sessions.</p>
+        {recentQuickCredential && <div className="cms-quick-credential" role="status"><div><strong>Share this quick login</strong><small>Password shown for the credential you just created or reset. If you leave or refresh this page, reset it again to view it.</small></div><span className="cms-quick-credential-username">{recentQuickCredential.username}</span><div className="cms-quick-credential-password"><input readOnly aria-label="Recently created quick access password" type={showRecentPassword ? "text" : "password"} value={recentQuickCredential.password} /><button type="button" className="cms-password-toggle" aria-label={showRecentPassword ? "Hide password" : "Show password"} aria-pressed={showRecentPassword} onClick={() => setShowRecentPassword((visible) => !visible)}>{showRecentPassword ? <EyeOff size={15} /> : <Eye size={15} />}<span>{showRecentPassword ? "HIDE" : "SHOW"}</span></button><button type="button" className="cms-password-copy" onClick={async () => { try { await navigator.clipboard.writeText(recentQuickCredential.password); setNotice("Quick access password copied to clipboard."); } catch { setError("Clipboard access was blocked. Select and copy the password instead."); } }}><Copy size={15} /><span>COPY PASSWORD</span></button></div></div>}
+        <p className="cms-novelty-access-note">Passwords stay stored as secure hashes; they are displayed after creation or reset and can’t be recovered later. Creating an existing username replaces its password and invalidates its sessions.</p>
       </section>
 
       <section className="cms-panel cms-novelty-account-list">
