@@ -36,14 +36,14 @@ const offerings = [
   {
     title: "Big-screen entertainment",
     copy: "Movie nights and shared-screen entertainment featuring high-definition mobile LED screens and giant inflatable screens, supported by event-ready projection, DJ-quality sound and lighting.",
-    image: "/about-movie-screen.jpeg",
-    alt: "A large outdoor movie screen set up for an event",
+    image: "/about-big-screen.jpg",
+    alt: "Large outdoor inflatable movie screen and live LED stage setup",
   },
   {
     title: "Novelty workshops",
     copy: "Interactive craft and maker stations including Patched City trucker hats & beanies, custom socks, bead bracelets, pillow dolls, and laser-engraved crafts.",
-    image: "/novelty-cards/patch-city.jpg",
-    alt: "Guests customizing patches and novelties at a workshop",
+    image: "/about-novelties.jpg",
+    alt: "Guests customizing hats, patches, socks, keychains, and novelties at a workshop",
   },
 ];
 
