@@ -98,6 +98,22 @@ function mapLink(point, query) {
   return `https://www.openstreetmap.org/search?query=${encodeURIComponent(query || "Boston, MA")}`;
 }
 
+function quoteAddressFields(draft) {
+  const address = draft.mapPoint?.addressDetails || {};
+  const street = [address.house_number, address.road || address.pedestrian || address.residential].filter(Boolean).join(" ");
+  const venue = draft.mapPoint?.name || address.amenity || address.building || address.commercial || address.leisure || "";
+  const addressLine = [venue && venue !== street ? venue : "", street].filter(Boolean).join(", ") || draft.location || "";
+  const address2 = address.unit || address.apartment || address.flat || address.suite || address.floor || address.room || "";
+  const city = address.city || address.town || address.village || address.municipality || address.hamlet || address.suburb || "";
+  return {
+    Address: draft.locationFlexible ? "" : addressLine,
+    "Address 2 (Apt/Building #)": draft.locationFlexible ? "" : address2,
+    City: draft.locationFlexible ? "" : city,
+    State: draft.locationFlexible ? "" : address.state || "",
+    "ZIP Code": draft.locationFlexible ? "" : address.postcode || "",
+  };
+}
+
 function QuotePage() {
   const [searchParams] = useSearchParams();
   const hasNovelty = Boolean(searchParams.get("novelty"));
@@ -181,7 +197,7 @@ function QuotePage() {
       setDraft((current) => ({
         ...current,
         location: result.display_name || current.location,
-        mapPoint: { lat, lon, label: result.display_name || query },
+        mapPoint: { lat, lon, label: result.display_name || query, name: result.name || "", addressDetails: result.address || {} },
         locationFlexible: false,
       }));
       setLookup({ state: "success", message: "Location pinned on the map." });
@@ -228,7 +244,7 @@ function QuotePage() {
           "Event type": draft.eventType,
           guests: draft.guests,
           date: draft.date ? format(dateValue, "MMMM d, yyyy") : "Flexible / to be confirmed",
-          location: draft.locationFlexible ? "Still deciding" : draft.mapPoint?.label || draft.location || "Still deciding",
+          ...quoteAddressFields(draft),
           experience: draft.package || "Please recommend something",
           "Novelty fulfillment": wantsNovelties ? (hasNovelty ? "ONSITE" : "DISCUSS OPTIONS") : "Event quote",
           "Interested in novelties": wantsNovelties ? "Yes — please discuss customized novelty options as part of this quote." : "No",

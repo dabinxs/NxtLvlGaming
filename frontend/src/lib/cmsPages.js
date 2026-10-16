@@ -4,7 +4,8 @@ export const POPULAR_VR_GAMES = [
   { id: "vr-superhot", title: "SUPERHOT VR", subtitle: "Time moves when you move in this tactical action game.", image: "https://cdn.akamai.steamstatic.com/steam/apps/617830/header.jpg", cover: true },
   { id: "vr-walkabout-mini-golf", title: "Walkabout Mini Golf", subtitle: "Play relaxed mini-golf across imaginative courses.", image: "https://cdn.akamai.steamstatic.com/steam/apps/1408230/header.jpg", cover: true },
   { id: "vr-pistol-whip", title: "Pistol Whip", subtitle: "Dodge, aim, and shoot through rhythm-driven action scenes.", image: "https://cdn.akamai.steamstatic.com/steam/apps/1079800/header.jpg", cover: true },
-  { id: "vr-i-expect-you-to-die", title: "I Expect You To Die", subtitle: "Solve escape-room puzzles as a secret agent under pressure.", image: "https://cdn.akamai.steamstatic.com/steam/apps/587430/header.jpg", cover: true },
+  { id: "vr-overcooked", title: "Overcooked!", subtitle: "Work together in a fast-paced kitchen where teamwork keeps every order moving.", image: "https://cdn.akamai.steamstatic.com/steam/apps/448510/header.jpg", cover: true },
+  { id: "vr-overcooked-2", title: "Overcooked! 2", subtitle: "Team up for even more chaotic co-op cooking challenges.", image: "https://cdn.akamai.steamstatic.com/steam/apps/728880/header.jpg", cover: true },
 ].map((game) => ({ ...game, src: game.image }));
 
 export const CMS_PAGES = [

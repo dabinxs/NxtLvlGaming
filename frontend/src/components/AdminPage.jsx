@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import {
   Activity, ArrowLeft, ArrowUpRight, BarChart3, Camera, Check, ChevronDown,
   CircleAlert, CircleCheck, Clock3, Cloud, FileImage, ImagePlus, LayoutDashboard, Sparkles,
-  KeyRound, LogOut, MonitorCog, PanelsTopLeft, Plus, Save, ShieldCheck, Trash2, Upload,
+  Eye, EyeOff, KeyRound, LogOut, MonitorCog, PanelsTopLeft, Plus, Save, ShieldCheck, Trash2, Upload,
   Users, X,
 } from "lucide-react";
 import { CMS_ADMIN_EMAIL, CMS_ADMIN_EMAILS, CMS_MEDIA_BUCKET, supabase } from "../lib/supabase";
@@ -81,6 +81,7 @@ async function compressImage(file) {
 function CmsLogin({ user, onUser }) {
   const [email, setEmail] = useState(CMS_ADMIN_EMAIL);
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [creating, setCreating] = useState(false);
   const [pendingVerify, setPendingVerify] = useState(false);
   const [error, setError] = useState("");
@@ -146,7 +147,7 @@ function CmsLogin({ user, onUser }) {
         <p className="cms-login-lede">Sign in to manage event and experience pages, images, and website content.</p>
         <form onSubmit={authenticate} className="cms-login-form">
           <label>Admin email<input type="email" value={email} onChange={(event) => setEmail(event.target.value)} autoComplete="username" required /></label>
-          <label>Password<input type="password" value={password} onChange={(event) => setPassword(event.target.value)} autoComplete={creating ? "new-password" : "current-password"} minLength={6} required /></label>
+          <label>Password<div className="cms-password-field"><input type={showPassword ? "text" : "password"} value={password} onChange={(event) => setPassword(event.target.value)} autoComplete={creating ? "new-password" : "current-password"} minLength={6} required /><button type="button" className="cms-password-toggle" aria-label={showPassword ? "Hide password" : "Show password"} aria-pressed={showPassword} onClick={() => setShowPassword((visible) => !visible)}>{showPassword ? <EyeOff size={16} /> : <Eye size={16} />}<span>{showPassword ? "HIDE" : "SHOW"}</span></button></div></label>
           {error && <p className="cms-error" role="alert"><CircleAlert size={15} />{error}</p>}
           {pendingVerify && <p className="cms-success" role="status"><Check size={15} /> Check {adminEmail} for the verification link before you sign in.</p>}
           <button className="cms-primary-button" disabled={busy}>{busy ? "PLEASE WAIT…" : creating ? "CREATE SECURE ACCOUNT" : "SIGN IN TO CMS"}</button>

@@ -14,7 +14,7 @@ import { CMS_PAGES, POPULAR_VR_GAMES } from "../lib/cmsPages";
 
 const OVERVIEW_POINTS = [
   "Immersive, motion-tracked gameplay",
-  "Ten game worlds to explore",
+  "A growing library of games to explore",
   "Spectator screens share the action",
   "Friendly staff guide every player",
 ];
@@ -44,8 +44,9 @@ const INCLUDED_FEATURES = [
 
 const VirtualReality = () => {
   const cmsPage = useCmsPage("virtual-reality", CMS_PAGES.find((page) => page.slug === "virtual-reality"));
-  const existingGames = new Map(cmsPage.gallery.map((game) => [game.title.trim().toLowerCase(), game]));
-  const gameLibrary = [...cmsPage.gallery, ...POPULAR_VR_GAMES.filter((game) => !existingGames.has(game.title.toLowerCase()))].slice(0, 10);
+  const visibleCmsGames = cmsPage.gallery.filter((game) => game.id !== "vr-i-expect-you-to-die" && game.title.trim().toLowerCase() !== "i expect you to die");
+  const existingGames = new Set(visibleCmsGames.map((game) => game.title.trim().toLowerCase()));
+  const gameLibrary = [...visibleCmsGames, ...POPULAR_VR_GAMES.filter((game) => !existingGames.has(game.title.toLowerCase()))];
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -96,7 +97,7 @@ const VirtualReality = () => {
               {/* Right Column */}
               <div className="flex flex-col gap-8 lg:col-span-7">
                 <p className="text-[17px] leading-relaxed text-white/70 sm:text-[18px]">
-                  Gear up, choose your adventure, and explore ten distinct VR games. Our team
+                  Gear up, choose your adventure, and explore a growing library of VR games. Our team
                   helps every player get started while spectators follow the action on screen.
                 </p>
 
@@ -168,7 +169,7 @@ const VirtualReality = () => {
                 <span>VR GAME LIBRARY</span>
               </div>
               <h2 className="mt-4 font-display text-[clamp(2rem,4.2vw,3.2rem)] font-extrabold uppercase italic leading-none tracking-tight text-white">
-                TEN GAMES. <span className="blue-gradient-text not-italic">ONE HEADSET.</span>
+                A GROWING LIBRARY. <span className="blue-gradient-text not-italic">ONE HEADSET.</span>
               </h2>
             </div>
 
