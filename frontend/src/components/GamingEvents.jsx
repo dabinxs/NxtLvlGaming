@@ -24,7 +24,7 @@ const OVERVIEW_POINTS = [
 const INCLUDED_FEATURES = [
   {
     icon: Monitor,
-    title: "Screens Up To 32 FT",
+    title: "Screens Up To 40 FT",
     desc: "Massive inflatable and frame screens sized to your crowd and venue.",
   },
   {
@@ -294,7 +294,7 @@ const GamingEvents = () => {
                   <span>CHOOSE YOUR SETUP</span>
                 </div>
                 <h2 className="mt-4 font-display text-[clamp(2rem,4.2vw,3.2rem)] font-extrabold uppercase italic leading-none tracking-tight text-white">
-                  EVENT <span className="blue-gradient-text not-italic">PACKAGES</span>
+                  GAMING EVENT PACKAGES
                 </h2>
               </div>
               <p className="max-w-md text-[15px] leading-relaxed text-white/70">

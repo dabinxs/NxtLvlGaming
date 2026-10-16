@@ -114,6 +114,14 @@ function quoteAddressFields(draft) {
   };
 }
 
+function formatShortAddress(result) {
+  const address = result.address || {};
+  const street = [address.house_number, address.road || address.pedestrian || address.residential].filter(Boolean).join(" ");
+  const venue = result.name || address.amenity || address.building || address.commercial || address.leisure || "";
+  const city = address.city || address.town || address.village || address.municipality || address.hamlet || address.suburb || "";
+  return [venue && venue !== street ? venue : "", street, city, address.state, address.postcode].filter(Boolean).join(", ") || result.display_name || "";
+}
+
 function QuotePage() {
   const [searchParams] = useSearchParams();
   const hasNovelty = Boolean(searchParams.get("novelty"));
@@ -194,10 +202,11 @@ function QuotePage() {
       const result = results[0];
       const lat = Number(result.lat);
       const lon = Number(result.lon);
+      const shortAddress = formatShortAddress(result);
       setDraft((current) => ({
         ...current,
-        location: result.display_name || current.location,
-        mapPoint: { lat, lon, label: result.display_name || query, name: result.name || "", addressDetails: result.address || {} },
+        location: shortAddress || current.location,
+        mapPoint: { lat, lon, label: shortAddress || result.display_name || query, name: result.name || "", addressDetails: result.address || {} },
         locationFlexible: false,
       }));
       setLookup({ state: "success", message: "Location pinned on the map." });

@@ -11,7 +11,7 @@ import { useCmsPage } from "../lib/cmsContent";
 import { CMS_PAGES } from "../lib/cmsPages";
 
 const OVERVIEW_POINTS = [
-  "Choose a 360 video booth or mirror booth",
+  "Choose a 360 video photobooth or mirror photobooth",
   "Photo and video moments to share",
   "Props and custom event overlays",
   "A staffed setup that keeps guests moving",
@@ -20,33 +20,35 @@ const OVERVIEW_POINTS = [
 const INCLUDED_FEATURES = [
   {
     icon: Camera,
-    title: "360 Video Booth",
+    title: "360 Video Photobooth",
     desc: "Guests step onto a platform as a camera circles them for shareable slow-motion video.",
   },
   {
     icon: ScanFace,
-    title: "Mirror Booth",
+    title: "Mirror Photobooth",
     desc: "An interactive full-length mirror lets guests pose for fun photo keepsakes.",
   },
 ];
 
 const GALLERY_IMAGES = [
   {
-    title: "Photo Booth Moments",
+    title: "Photobooth Moments",
     subtitle: "Fun, shareable memories from your event.",
     src: "/photo-booth-experience-1.png",
   },
   {
-    title: "360 Video & Mirror Booth",
+    title: "360 Video & Mirror Photobooth",
     subtitle: "Choose a cinematic video or an interactive mirror photo.",
     src: "/photo-booth-experience-2.png",
   },
   {
     title: "Party Props & Poses",
-    subtitle: "Guests strike a pose and make photo booth memories together.",
+    subtitle: "Guests strike a pose and make photobooth memories together.",
     src: "/photo-booth-experience-3.png",
   },
 ];
+
+const photoboothCopy = (value = "") => value.replace(/photo\s*booth/gi, "photobooth").replace(/\bbooth\b/gi, "photobooth");
 
 const VideoBooth360 = () => {
   const cmsPage = useCmsPage("photo-booth", CMS_PAGES.find((page) => page.slug === "photo-booth"));
@@ -64,7 +66,7 @@ const VideoBooth360 = () => {
           {/* Background image from the Photo Booth homepage card */}
           <img
             src={cmsPage.heroImage}
-            alt="Photo booth experience at an event"
+            alt="Photobooth experience at an event"
             className="absolute inset-0 h-full w-full object-cover object-center"
           />
           {/* Directional gradient overlay for visibility & text contrast */}
@@ -74,13 +76,13 @@ const VideoBooth360 = () => {
           <div className="pointer-events-none absolute left-1/3 top-1/2 h-[400px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#0066FD]/15 blur-[150px]" />
 
           <div className="relative z-10 mx-auto max-w-[1280px] px-5 md:px-8">
-            <h1 className="max-w-4xl font-display text-[clamp(2.5rem,6.5vw,5rem)] font-extrabold uppercase italic leading-[1.04] tracking-tight text-white drop-shadow-[0_6px_24px_rgba(0,0,0,0.9)]">{cmsPage.heroTitle}</h1>
+            <h1 className="max-w-4xl font-display text-[clamp(2.5rem,6.5vw,5rem)] font-extrabold uppercase italic leading-[1.04] tracking-tight text-white drop-shadow-[0_6px_24px_rgba(0,0,0,0.9)]">{photoboothCopy(cmsPage.heroTitle)}</h1>
 
             <p className="mt-5 font-display text-[15px] font-bold uppercase tracking-[0.16em] text-white/90 sm:text-[18px]">
-              360 Video Booth <span className="px-2 text-[#7DDDFF]">/</span> Mirror Booth
+              360 Video Photobooth <span className="px-2 text-[#7DDDFF]">/</span> Mirror Photobooth
             </p>
             <p className="mt-5 max-w-3xl text-[16px] leading-relaxed text-white/90 drop-shadow-[0_3px_10px_rgba(0,0,0,0.85)] sm:text-[18px]">
-              {cmsPage.heroSubtitle}
+              {photoboothCopy(cmsPage.heroSubtitle)}
             </p>
           </div>
         </section>
@@ -103,7 +105,7 @@ const VideoBooth360 = () => {
               {/* Right Column */}
               <div className="flex flex-col gap-8 lg:col-span-7">
                 <p className="text-[17px] leading-relaxed text-white/70 sm:text-[18px]">
-                  Choose the 360 video booth for cinematic slow-motion clips or the mirror booth for interactive photo keepsakes. Both bring an easy, shareable photo booth experience to your event.
+                  Choose the 360 video photobooth for cinematic slow-motion clips or the mirror photobooth for interactive photo keepsakes. Both bring an easy, shareable photobooth experience to your event.
                 </p>
 
                 {/* 2x2 Grid of Points */}
@@ -134,7 +136,7 @@ const VideoBooth360 = () => {
                 <span>WHAT IS INCLUDED</span>
               </div>
               <h2 className="mt-4 font-display text-[clamp(1.9rem,3.8vw,2.9rem)] font-extrabold uppercase leading-[1.12] tracking-tight text-white">
-                  Choose Your Photo Booth Experience
+                  Choose Your Photobooth Experience
               </h2>
             </div>
 
@@ -197,10 +199,10 @@ const VideoBooth360 = () => {
 
                   <div className="p-6">
                     <h3 className="font-display text-[18px] font-extrabold uppercase tracking-wide text-white group-hover:text-[#7DDDFF] transition-colors">
-                      {img.title}
+                      {photoboothCopy(img.title)}
                     </h3>
                     <p className="mt-2 text-[13.5px] leading-relaxed text-white/60">
-                      {img.subtitle}
+                      {photoboothCopy(img.subtitle)}
                     </p>
                   </div>
                 </div>

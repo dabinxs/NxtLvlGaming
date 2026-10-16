@@ -64,15 +64,15 @@ export const CMS_PAGES = [
   },
   {
     slug: "photo-booth",
-    title: "Photo Booth",
+    title: "Photobooth",
     kind: "Experience",
     heroImage: "/experience-360-video-booth.png",
-    heroTitle: "PHOTO BOOTH",
+    heroTitle: "PHOTOBOOTH",
     heroSubtitle: "Capture, create, and share amazing moments instantly.",
     gallery: [
-      { id: "booth-1", title: "Photo Booth Moments", subtitle: "Fun, shareable memories from your event.", image: "/photo-booth-experience-1.png" },
-      { id: "booth-2", title: "360 Video & Mirror Booth", subtitle: "Choose a cinematic video or an interactive mirror photo.", image: "/photo-booth-experience-2.png" },
-      { id: "booth-3", title: "Party Props & Poses", subtitle: "Guests strike a pose and make photo booth memories together.", image: "/photo-booth-experience-3.png" },
+      { id: "booth-1", title: "Photobooth Moments", subtitle: "Fun, shareable memories from your event.", image: "/photo-booth-experience-1.png" },
+      { id: "booth-2", title: "360 Video & Mirror Photobooth", subtitle: "Choose a cinematic video or an interactive mirror photo.", image: "/photo-booth-experience-2.png" },
+      { id: "booth-3", title: "Party Props & Poses", subtitle: "Guests strike a pose and make photobooth memories together.", image: "/photo-booth-experience-3.png" },
     ],
   },
   {
