@@ -68,6 +68,8 @@ const emptyDraft = {
   dateFlexible: false,
   location: "",
   locationFlexible: false,
+  manualAddressMode: false,
+  manualAddress: { address: "", city: "", state: "", zip: "" },
   package: "",
   name: "",
   email: "",
@@ -79,7 +81,12 @@ const emptyDraft = {
 
 function readDraft() {
   try {
-    return { ...emptyDraft, ...JSON.parse(sessionStorage.getItem(STORAGE_KEY) || "{}") };
+    const savedDraft = JSON.parse(sessionStorage.getItem(STORAGE_KEY) || "{}");
+    return {
+      ...emptyDraft,
+      ...savedDraft,
+      manualAddress: { ...emptyDraft.manualAddress, ...(savedDraft.manualAddress || {}) },
+    };
   } catch {
     return emptyDraft;
   }
@@ -99,6 +106,15 @@ function mapLink(point, query) {
 }
 
 function quoteAddressFields(draft) {
+  if (draft.manualAddressMode) {
+    return {
+      Address: draft.manualAddress.address,
+      "Address 2 (Apt/Building #)": "",
+      City: draft.manualAddress.city,
+      State: draft.manualAddress.state,
+      "ZIP Code": draft.manualAddress.zip,
+    };
+  }
   const address = draft.mapPoint?.addressDetails || {};
   const street = [address.house_number, address.road || address.pedestrian || address.residential].filter(Boolean).join(" ");
   const venue = draft.mapPoint?.name || address.amenity || address.building || address.commercial || address.leisure || "";
@@ -174,7 +190,14 @@ function QuotePage() {
   const update = (key, value) => setDraft((current) => ({ ...current, [key]: value }));
   const wantsNovelties = hasNovelty || draft.wantsNovelties;
   const chooseLocationFlexibility = (value) => {
-    setDraft((current) => ({ ...current, locationFlexible: value }));
+    setDraft((current) => ({ ...current, locationFlexible: value, manualAddressMode: false }));
+  };
+
+  const updateManualAddress = (key, value) => {
+    setDraft((current) => ({
+      ...current,
+      manualAddress: { ...current.manualAddress, [key]: value },
+    }));
   };
 
   const findLocation = async (event) => {
@@ -220,7 +243,9 @@ function QuotePage() {
     if (quoteStep === 0) return Boolean(draft.eventType);
     if (quoteStep === 1) return Boolean(draft.guests);
     if (quoteStep === 2) return Boolean(draft.date || draft.dateFlexible);
-    if (quoteStep === 3) return Boolean(draft.location.trim() || draft.locationFlexible);
+    if (quoteStep === 3) return draft.manualAddressMode
+      ? Boolean(draft.manualAddress.address.trim() && draft.manualAddress.city.trim() && draft.manualAddress.state.trim() && draft.manualAddress.zip.trim())
+      : Boolean(draft.location.trim() || draft.locationFlexible);
     if (quoteStep === 4) return Boolean(draft.package);
     return Boolean(draft.name.trim() && draft.email.trim());
   };
@@ -457,9 +482,9 @@ function QuotePage() {
             )}
 
             {quoteStep === 3 && (
-              <div className="quote-location-layout">
+              <div className={`quote-location-layout ${draft.manualAddressMode ? "is-manual-address" : ""}`}>
                 <div className="quote-location-controls">
-                  <form className="quote-location-search" onSubmit={findLocation}>
+                  {!draft.manualAddressMode && <form className="quote-location-search" onSubmit={findLocation}>
                     <label className="quote-field-label" htmlFor="quote-location">VENUE, CITY, OR ZIP CODE</label>
                     <div className="quote-input-with-action">
                       <MapPin size={18} />
@@ -473,18 +498,31 @@ function QuotePage() {
                       </button>
                     </div>
                     <p className={`quote-lookup-message is-${lookup.state}`} role="status">{lookup.message || "Search to place your venue on the map. A city or ZIP works too."}</p>
-                  </form>
-                  <label className={`quote-flex-option quote-location-flex ${draft.locationFlexible ? "is-checked" : ""}`}>
-                    <input type="checkbox" checked={draft.locationFlexible} onChange={(event) => {
-                      chooseLocationFlexibility(event.target.checked);
-                      if (event.target.checked) update("location", "");
-                    }} />
-                    <span className="quote-checkbox-mark">{draft.locationFlexible && <Check size={12} />}</span>
-                    I’m still choosing a location
-                  </label>
-                  <div className="quote-travel-note"><Compass size={16} /><span>Based in New England, our crew travels to your event. Sharing a location helps us plan the right setup and travel.</span></div>
+                  </form>}
+                  <div className="quote-location-options">
+                    <label className={`quote-flex-option quote-location-flex ${draft.manualAddressMode ? "is-checked" : ""}`}>
+                      <input type="checkbox" checked={draft.manualAddressMode} onChange={(event) => setDraft((current) => ({ ...current, manualAddressMode: event.target.checked, locationFlexible: false, ...(event.target.checked ? { mapPoint: null } : {}) }))} />
+                      <span className="quote-checkbox-mark">{draft.manualAddressMode && <Check size={12} />}</span>
+                      Enter address manually
+                    </label>
+                    <label className={`quote-flex-option quote-location-flex ${draft.locationFlexible ? "is-checked" : ""}`}>
+                      <input type="checkbox" checked={draft.locationFlexible} onChange={(event) => {
+                        chooseLocationFlexibility(event.target.checked);
+                        if (event.target.checked) update("location", "");
+                      }} />
+                      <span className="quote-checkbox-mark">{draft.locationFlexible && <Check size={12} />}</span>
+                      I’m still choosing a location
+                    </label>
+                  </div>
+                  {draft.manualAddressMode && <div className="quote-manual-address-fields">
+                    <label className="quote-form-field quote-address-street"><span>ADDRESS <b>*</b></span><input required autoComplete="street-address" value={draft.manualAddress.address} onChange={(event) => updateManualAddress("address", event.target.value)} placeholder="Street address" /></label>
+                    <label className="quote-form-field"><span>CITY <b>*</b></span><input required autoComplete="address-level2" value={draft.manualAddress.city} onChange={(event) => updateManualAddress("city", event.target.value)} placeholder="City" /></label>
+                    <label className="quote-form-field"><span>STATE <b>*</b></span><input required autoComplete="address-level1" value={draft.manualAddress.state} onChange={(event) => updateManualAddress("state", event.target.value)} placeholder="State" /></label>
+                    <label className="quote-form-field"><span>ZIP CODE <b>*</b></span><input required autoComplete="postal-code" value={draft.manualAddress.zip} onChange={(event) => updateManualAddress("zip", event.target.value)} placeholder="ZIP code" /></label>
+                  </div>}
+                  {!draft.manualAddressMode && <div className="quote-travel-note"><Compass size={16} /><span>Based in New England, our crew travels to your event. Sharing a location helps us plan the right setup and travel.</span></div>}
                 </div>
-                <div className="quote-map-card">
+                {!draft.manualAddressMode && <div className="quote-map-card">
                   <div className="quote-map-heading"><span><MapPin size={14} /> EVENT MAP</span><span className="quote-map-live"><i /> LIVE</span></div>
                   <iframe key={mapSrc} src={mapSrc} title={draft.mapPoint ? `Map showing ${draft.mapPoint.label}` : "Map centered on the New England service area"} loading="lazy" referrerPolicy="no-referrer" />
                   <div className="quote-map-caption">
@@ -492,7 +530,7 @@ function QuotePage() {
                     <span><strong>{draft.mapPoint ? "Venue pinned" : draft.locationFlexible ? "Location to be confirmed" : "New England service area"}</strong><small>{draft.mapPoint?.label || (draft.locationFlexible ? "Your crew can help you plan" : "Search above to locate your venue")}</small></span>
                     <a href={mapLink(draft.mapPoint, draft.location)} target="_blank" rel="noreferrer" aria-label="Open map in OpenStreetMap"><ArrowRight size={16} /></a>
                   </div>
-                </div>
+                </div>}
               </div>
             )}
 
@@ -518,7 +556,7 @@ function QuotePage() {
                 <label className="quote-form-field"><span>ANYTHING ELSE? <small>OPTIONAL</small></span><input value={draft.message} onChange={(event) => update("message", event.target.value)} placeholder="Tell us what would make it special" /></label>
                 <div className="quote-review-strip">
                   <span className="quote-review-icon"><CheckCircle2 size={17} /></span>
-                  <span><strong>Looking good, {draft.name || "event planner"}.</strong><small>{[draft.eventType, draft.guests && `${draft.guests} guests`, draft.date ? format(dateValue, "MMM d, yyyy") : draft.dateFlexible ? "flexible date" : null, draft.locationFlexible ? "location TBD" : draft.mapPoint?.label?.split(",")[0] || draft.location, draft.package, wantsNovelties && "custom novelties"].filter(Boolean).join(" · ")}</small></span>
+                  <span><strong>Looking good, {draft.name || "event planner"}.</strong><small>{[draft.eventType, draft.guests && `${draft.guests} guests`, draft.date ? format(dateValue, "MMM d, yyyy") : draft.dateFlexible ? "flexible date" : null, draft.locationFlexible ? "location TBD" : draft.manualAddressMode ? [draft.manualAddress.address, draft.manualAddress.city].filter(Boolean).join(", ") : draft.mapPoint?.label?.split(",")[0] || draft.location, draft.package, wantsNovelties && "custom novelties"].filter(Boolean).join(" · ")}</small></span>
                 </div>
                 <p className="quote-email-note">Your request will be emailed after the one-time recipient activation.</p>
                 {submitError && <p className="quote-submit-error" role="alert">{submitError}</p>}
@@ -544,7 +582,7 @@ function QuotePage() {
               <div><span className="quote-summary-icon"><Gamepad2 size={15} /></span><span><small>EVENT</small><strong>{draft.eventType || "Choose your event"}</strong></span></div>
               <div><span className="quote-summary-icon"><Users size={15} /></span><span><small>GUESTS</small><strong>{draft.guests ? `${draft.guests} guests` : "Add a guest estimate"}</strong></span></div>
               <div><span className="quote-summary-icon"><CalendarDays size={15} /></span><span><small>DATE</small><strong>{draft.date ? format(dateValue, "MMM d, yyyy") : draft.dateFlexible ? "Flexible" : "Choose a date"}</strong></span></div>
-              <div><span className="quote-summary-icon"><MapPin size={15} /></span><span><small>LOCATION</small><strong>{draft.locationFlexible ? "Still deciding" : draft.mapPoint?.label?.split(",")[0] || draft.location || "Add a venue or city"}</strong></span></div>
+              <div><span className="quote-summary-icon"><MapPin size={15} /></span><span><small>LOCATION</small><strong>{draft.locationFlexible ? "Still deciding" : draft.manualAddressMode ? [draft.manualAddress.address, draft.manualAddress.city].filter(Boolean).join(", ") || "Enter address details" : draft.mapPoint?.label?.split(",")[0] || draft.location || "Add a venue or city"}</strong></span></div>
               <div><span className="quote-summary-icon"><Package size={15} /></span><span><small>EXPERIENCE</small><strong>{draft.package || "Choose a package"}</strong></span></div>
               {wantsNovelties && <div><span className="quote-summary-icon"><Sparkles size={15} /></span><span><small>NOVELTIES</small><strong>{hasNovelty ? Object.entries(noveltyQuantities).filter(([, quantity]) => quantity > 0).map(([id, quantity]) => `${NOVELTY_PRODUCTS.find((item) => item.id === id)?.title || id} × ${quantity}`).join(", ") || "Choose quantities" : "Interested — discuss options"}</strong></span></div>}
             </div>

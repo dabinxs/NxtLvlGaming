@@ -118,6 +118,9 @@
 .quote-flex-option input:focus-visible + .quote-checkbox-mark { outline: 2px solid #7dddff; outline-offset: 2px; }
 
 .quote-location-layout { display: grid; grid-template-columns: minmax(0, .95fr) minmax(270px, 1.05fr); gap: 20px; align-items: stretch; }
+.quote-location-layout.is-manual-address { grid-template-columns: minmax(0, 1fr); }
+.quote-manual-address-fields { display: grid; grid-template-columns: minmax(0, 1fr); gap: 13px; margin-top: 16px; }
+.quote-manual-address-fields .quote-address-street { grid-column: auto; }
 .quote-location-search { margin: 0; }
 .quote-input-with-action { display: flex; height: 48px; align-items: center; gap: 10px; border: 1px solid rgba(144, 166, 205, .2); border-radius: 10px; padding: 0 7px 0 13px; background: rgba(3, 8, 18, .48); color: #6f84a2; transition: border-color .18s ease, box-shadow .18s ease; }
 .quote-input-with-action:focus-within { border-color: rgba(41, 119, 255, .7); box-shadow: 0 0 0 3px rgba(0, 102, 253, .09); }
@@ -130,7 +133,8 @@
 .quote-lookup-message.is-error { color: #ff9b9b; }
 .quote-lookup-message.is-success { color: #85d8bc; }
 .quote-lookup-message.is-loading { color: #7baeff; }
-.quote-location-flex { margin-top: 2px; }
+.quote-location-options { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 22px; margin-top: 2px; }
+.quote-location-flex { margin-top: 0; }
 .quote-travel-note { display: flex; gap: 9px; margin-top: 20px; border-top: 1px solid rgba(145, 171, 218, .1); padding-top: 14px; color: #8090a8; font-size: 10px; line-height: 1.55; }
 .quote-travel-note svg { flex: 0 0 auto; color: #4f91ff; }
 .quote-map-card { min-width: 0; overflow: hidden; border: 1px solid rgba(145, 171, 218, .16); border-radius: 13px; background: #0a1322; }
@@ -385,6 +389,8 @@
   .quote-calendar-day { height: 38px; font-size: 13px; }
   .quote-calendar-weekdays span { font-size: 9px; }
   .quote-location-layout { gap: 13px; }
+  .quote-manual-address-fields { grid-template-columns: minmax(0, 1fr); }
+  .quote-manual-address-fields .quote-address-street { grid-column: auto; }
   .quote-map-card iframe { height: 165px; }
   .quote-package-grid { grid-template-columns: 1fr; gap: 8px; }
   .quote-choice-recommend { grid-column: auto; }
