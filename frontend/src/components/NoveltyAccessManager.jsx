@@ -6,6 +6,8 @@ import "./NoveltyAccessManager.css";
 const NoveltyAccessManager = ({ adminEmail }) => {
   const [accounts, setAccounts] = useState([]);
   const [quickAccounts, setQuickAccounts] = useState([]);
+  const [revealedQuickPasswords, setRevealedQuickPasswords] = useState({});
+  const [loadingQuickPassword, setLoadingQuickPassword] = useState("");
   const [email, setEmail] = useState("");
   const [quickUsername, setQuickUsername] = useState("");
   const [quickPassword, setQuickPassword] = useState("");
@@ -102,9 +104,38 @@ const NoveltyAccessManager = ({ adminEmail }) => {
     else {
       setQuickAccounts((current) => current.filter((entry) => entry.id !== account.id));
       setRecentQuickCredential((current) => current?.username === account.username ? null : current);
+      setRevealedQuickPasswords((current) => {
+        const next = { ...current };
+        delete next[account.id];
+        return next;
+      });
       setNotice(`Quick access removed for “${account.username}”.`);
     }
     setRemoving("");
+  };
+
+  const toggleQuickPassword = async (account) => {
+    if (Object.prototype.hasOwnProperty.call(revealedQuickPasswords, account.id)) {
+      setRevealedQuickPasswords((current) => {
+        const next = { ...current };
+        delete next[account.id];
+        return next;
+      });
+      return;
+    }
+    setLoadingQuickPassword(account.id);
+    setError("");
+    const { data: revealedPassword, error: revealError } = await supabase.rpc("get_novelty_quick_access_password", {
+      p_username: account.username,
+    });
+    if (revealError) {
+      setError(`${revealError.message || "Could not reveal this password."} Run the latest supabase/cms_setup.sql setup script.`);
+    } else if (!revealedPassword) {
+      setError(`No recoverable password is stored for “${account.username}”. Reset this username’s password to enable viewing it.`);
+    } else {
+      setRevealedQuickPasswords((current) => ({ ...current, [account.id]: revealedPassword }));
+    }
+    setLoadingQuickPassword("");
   };
 
   return (
@@ -134,8 +165,11 @@ const NoveltyAccessManager = ({ adminEmail }) => {
       </section>
 
       <section className="cms-panel cms-novelty-account-list">
-        <div className="cms-panel-title"><span className="cms-panel-icon"><KeyRound size={17} /></span><div><h3>Quick access usernames</h3><p>Each quick-access session expires after eight hours. Removing an account signs out its active sessions.</p></div></div>
-        {loading ? <p className="cms-novelty-empty"><LoaderCircle size={16} className="cms-spin" /> Loading quick access list…</p> : quickAccounts.length ? <div className="cms-novelty-rows">{quickAccounts.map((account) => <article key={account.id} className="cms-novelty-row"><span className="cms-novelty-avatar">{account.username[0].toUpperCase()}</span><div><strong>{account.username}</strong><small>Created {new Date(account.created_at).toLocaleDateString()} · password is not retrievable</small></div><button type="button" className="cms-icon-button cms-delete-button" aria-label={`Remove quick novelty access for ${account.username}`} title="Remove quick access" disabled={removing === account.id} onClick={() => removeQuickAccount(account)}>{removing === account.id ? <LoaderCircle size={16} className="cms-spin" /> : <Trash2 size={16} />}</button></article>)}</div> : <p className="cms-novelty-empty">No quick-access usernames created yet.</p>}
+        <div className="cms-panel-title"><span className="cms-panel-icon"><KeyRound size={17} /></span><div><h3>Quick access usernames</h3><p>Use Show password to retrieve a saved password. Older accounts need a one-time reset before their password can be viewed.</p></div></div>
+        {loading ? <p className="cms-novelty-empty"><LoaderCircle size={16} className="cms-spin" /> Loading quick access list…</p> : quickAccounts.length ? <div className="cms-novelty-rows">{quickAccounts.map((account) => {
+          const hasPassword = Object.prototype.hasOwnProperty.call(revealedQuickPasswords, account.id);
+          return <article key={account.id} className="cms-novelty-row"><span className="cms-novelty-avatar">{account.username[0].toUpperCase()}</span><div className="cms-quick-account-details"><strong>{account.username}</strong><small>Created {new Date(account.created_at).toLocaleDateString()}</small>{hasPassword && <code className="cms-revealed-password">{revealedQuickPasswords[account.id]}</code>}</div><button type="button" className="cms-password-toggle cms-quick-reveal-button" aria-label={`${hasPassword ? "Hide" : "Show"} password for ${account.username}`} aria-pressed={hasPassword} disabled={loadingQuickPassword === account.id} onClick={() => toggleQuickPassword(account)}>{loadingQuickPassword === account.id ? <LoaderCircle size={15} className="cms-spin" /> : hasPassword ? <EyeOff size={15} /> : <Eye size={15} />}<span>{loadingQuickPassword === account.id ? "LOADING" : hasPassword ? "HIDE PASSWORD" : "SHOW PASSWORD"}</span></button><button type="button" className="cms-icon-button cms-delete-button" aria-label={`Remove quick novelty access for ${account.username}`} title="Remove quick access" disabled={removing === account.id} onClick={() => removeQuickAccount(account)}>{removing === account.id ? <LoaderCircle size={16} className="cms-spin" /> : <Trash2 size={16} />}</button></article>;
+        })}</div> : <p className="cms-novelty-empty">No quick-access usernames created yet.</p>}
       </section>
 
       <section className="cms-panel cms-novelty-account-list">

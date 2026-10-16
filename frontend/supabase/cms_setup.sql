@@ -95,17 +95,30 @@ revoke all on function public.has_novelty_access() from public, anon;
 grant execute on function public.has_novelty_access() to authenticated;
 
 -- Admin-created novelty accounts provide a quick alternative to verified
--- Supabase email accounts. Passwords and bearer sessions are stored only as
--- one-way pgcrypto hashes.
+-- Supabase email accounts. Passwords are hashed for login and separately
+-- encrypted with a key held in Supabase Vault for admin-only recovery.
 create extension if not exists pgcrypto with schema extensions;
+create extension if not exists supabase_vault with schema vault;
+
+select vault.create_secret(
+  encode(extensions.gen_random_bytes(32), 'hex'),
+  'novelty_quick_access_password_encryption_key',
+  'Encryption key used by the admin-only novelty password recovery function'
+)
+where not exists (
+  select 1 from vault.secrets where name = 'novelty_quick_access_password_encryption_key'
+);
 
 create table if not exists public.novelty_quick_access (
   id uuid primary key default gen_random_uuid(),
   username text not null unique check (username = lower(username)),
   password_hash text not null,
+  encrypted_password text,
   created_at timestamptz not null default now(),
   created_by text
 );
+alter table public.novelty_quick_access
+  add column if not exists encrypted_password text;
 
 create table if not exists public.novelty_quick_access_sessions (
   id uuid primary key default gen_random_uuid(),
@@ -135,6 +148,7 @@ security definer
 set search_path = ''
 as $$
 declare normalized_username text := lower(btrim(p_username));
+  encryption_key text;
 begin
   if not (select public.is_cms_admin()) then
     raise exception 'CMS admin access required';
@@ -146,14 +160,56 @@ begin
     raise exception 'Password must be at least 10 characters and no more than 72 bytes';
   end if;
 
-  insert into public.novelty_quick_access (username, password_hash, created_by)
-  values (normalized_username, extensions.crypt(p_password, extensions.gen_salt('bf', 12)), auth.jwt() ->> 'email')
+  select decrypted_secret into encryption_key
+  from vault.decrypted_secrets
+  where name = 'novelty_quick_access_password_encryption_key';
+  if encryption_key is null then
+    raise exception 'Quick access password encryption is not configured';
+  end if;
+
+  insert into public.novelty_quick_access (username, password_hash, encrypted_password, created_by)
+  values (
+    normalized_username,
+    extensions.crypt(p_password, extensions.gen_salt('bf', 12)),
+    encode(extensions.pgp_sym_encrypt(p_password, encryption_key), 'base64'),
+    auth.jwt() ->> 'email'
+  )
   on conflict (username) do update
     set password_hash = excluded.password_hash,
+        encrypted_password = excluded.encrypted_password,
         created_at = now(),
         created_by = excluded.created_by;
   delete from public.novelty_quick_access_sessions
   where account_id = (select id from public.novelty_quick_access where username = normalized_username);
+end;
+$$;
+
+create or replace function public.get_novelty_quick_access_password(p_username text)
+returns text
+language plpgsql
+security definer
+set search_path = ''
+as $$
+declare
+  encryption_key text;
+  stored_password text;
+begin
+  if not (select public.is_cms_admin()) then
+    raise exception 'CMS admin access required';
+  end if;
+
+  select decrypted_secret into encryption_key
+  from vault.decrypted_secrets
+  where name = 'novelty_quick_access_password_encryption_key';
+  if encryption_key is null then
+    raise exception 'Quick access password encryption is not configured';
+  end if;
+
+  select encrypted_password into stored_password
+  from public.novelty_quick_access
+  where username = lower(btrim(p_username));
+  if stored_password is null then return null; end if;
+  return extensions.pgp_sym_decrypt(decode(stored_password, 'base64'), encryption_key);
 end;
 $$;
 
@@ -209,10 +265,12 @@ as $$
 $$;
 
 revoke all on function public.create_novelty_quick_access(text, text) from public, anon;
+revoke all on function public.get_novelty_quick_access_password(text) from public, anon;
 revoke all on function public.authenticate_novelty_quick_access(text, text) from public;
 revoke all on function public.validate_novelty_quick_access_session(text) from public;
 revoke all on function public.end_novelty_quick_access_session(text) from public;
 grant execute on function public.create_novelty_quick_access(text, text) to authenticated;
+grant execute on function public.get_novelty_quick_access_password(text) to authenticated;
 grant execute on function public.authenticate_novelty_quick_access(text, text) to anon, authenticated;
 grant execute on function public.validate_novelty_quick_access_session(text) to anon, authenticated;
 grant execute on function public.end_novelty_quick_access_session(text) to anon, authenticated;
