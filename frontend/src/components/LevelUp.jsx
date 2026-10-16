@@ -55,12 +55,12 @@ const NOVELTY_TILES = [
     from: { x: -420, y: 20, rotation: -22, scale: 0.4, opacity: 0 },
     toRotation: 6,
   },
-  // 6. Mid Far-Right - Engraved Bracelets
+  // 6. Mid Far-Right - Wood & Metal Keychains
   {
-    id: "engraved-bracelets",
-    label: "ENGRAVED BRACELETS",
-    title: "Engraved Bracelets",
-    image: "/novelty-cards/engraved-bracelets.jpg",
+    id: "wood-metal-keychains",
+    label: "KEYCHAINS",
+    title: "Wood & Metal Keychains",
+    image: "/novelty-cards/wood-metal-keychains.jpg",
     className: "right-[1.5%] sm:right-[2.5%] top-[41%] w-[95px] sm:w-[125px] md:w-[150px] lg:w-[165px]",
     from: { x: 420, y: 20, rotation: 22, scale: 0.4, opacity: 0 },
     toRotation: -6,
