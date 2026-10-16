@@ -4,13 +4,19 @@ import { supabase } from "./supabase";
 const CmsContentContext = createContext({ pages: {}, homeMedia: {}, connection: "checking", refresh: async () => {} });
 
 function rowToPage(row) {
+  const isGlowParkLegacyHero = row.slug === "glow-park" && row.hero_image_url === "/experience-silent-disco.png";
+  const isGlowParkLegacyThumb = row.slug === "glow-park" && row.thumbnail_image_url === "/experience-silent-disco.png";
+  const heroImageUrl = isGlowParkLegacyHero ? "/experience-glow-park.jpg" : row.hero_image_url;
+  const thumbnailImageUrl = isGlowParkLegacyThumb ? "/experience-glow-park.jpg" : row.thumbnail_image_url;
   return {
     ...row,
+    hero_image_url: heroImageUrl,
+    thumbnail_image_url: thumbnailImageUrl,
     heroTitle: row.hero_title,
     heroSubtitle: row.hero_subtitle,
-    heroImage: row.hero_image_url,
+    heroImage: heroImageUrl,
     heroImagePath: row.hero_image_path,
-    thumbnailImage: row.thumbnail_image_url,
+    thumbnailImage: thumbnailImageUrl,
     thumbnailImagePath: row.thumbnail_image_path,
   };
 }

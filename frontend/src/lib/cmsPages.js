@@ -118,7 +118,7 @@ export const CMS_PAGES = [
     slug: "glow-park",
     title: "Glow Park Experience",
     kind: "Experience",
-    heroImage: "/experience-silent-disco.png",
+    heroImage: "/experience-glow-park.jpg",
     heroTitle: "GLOW PARK EXPERIENCE",
     heroSubtitle: "Light up your event with glowing games, colorful uplighting, and a full-package experience guests can jump right into.",
     gallery: [

@@ -175,7 +175,7 @@ export const experiences = [
     title: "Glow Park",
     highlight: "Experience",
     desc: "Eight glow swings, four glow seesaws, colorful uplighting, and glowing mini golf.",
-    image: "/experience-silent-disco.png",
+    image: "/experience-glow-park.jpg",
   },
 ];
 
