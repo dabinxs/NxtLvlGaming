@@ -42,7 +42,8 @@ const offerings = [
   {
     title: "Novelty workshops",
     copy: "Interactive craft and maker stations including Patched City trucker hats & beanies, custom socks, bead bracelets, pillow dolls, and laser-engraved crafts.",
-    image: "/about-novelties.png",
+    image: "/about-novelties-v2.jpg",
+    objectPosition: "right center",
     alt: "Guests customizing hats, patches, socks, keychains, and novelties at a workshop",
   },
 ];
@@ -245,7 +246,7 @@ function AboutPage() {
               </div>
               {offerings.map((offering, index) => (
                 <article className="about-work__card" key={offering.title}>
-                  <div className="about-work__image" role="img" aria-label={offering.alt}><img src={offering.image} alt="" loading="lazy" decoding="async" /></div>
+                  <div className="about-work__image" role="img" aria-label={offering.alt}><img src={offering.image} alt="" loading="lazy" decoding="async" style={offering.objectPosition ? { objectPosition: offering.objectPosition } : undefined} /></div>
                   <div className="about-work__text">
                     <span className="about-work__number">0{index + 1} <i>/ 0{offerings.length}</i></span>
                     <div><h3>{offering.title}</h3><p>{offering.copy}</p></div>

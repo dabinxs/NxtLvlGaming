@@ -24,6 +24,7 @@ export const DEFAULT_NOVELTY_CONTENT = {
     { id: "08", productId: "laser-keychains", tag: "KEYCHAINS", title: "Laser-Engraved Wood & Metal Keychains", desc: "Personalize high-quality wooden or metal keychains with your own design.", image: "/novelty-cards/wood-metal-keychains.jpg", rotation: "sm:rotate-1" },
     { id: "09", productId: "stamped-rings", tag: "CUSTOM RINGS", title: "Stamped Custom Rings / Hammerless Ring Press", desc: "Create your own custom stamped ring with our easy hammerless ring press.", image: "/novelty-cards/stamped-rings.jpg", rotation: "sm:-rotate-2" },
     { id: "10", productId: "plush-bags", tag: "PLUSH BAGS", title: "Silly Sacks (Custom Character Plush Bags)", desc: "Bring your imagination to life with custom character plush bags.", image: "/novelty-cards/silly-sacks.jpg", rotation: "sm:rotate-1" },
+    { id: "11", productId: "license-plate", tag: "LICENSE PLATES", title: "License Plate", desc: "Design and personalize your own custom novelty license plate with names, graphics, and vibrant backgrounds.", image: "/novelty-cards/license-plates.jpg", rotation: "sm:-rotate-1" },
   ],
 };
 
@@ -38,6 +39,7 @@ export const NOVELTY_BUILDER_OPTIONS = [
   { id: "laser-keychains", label: "Laser Keychains" },
   { id: "stamped-rings", label: "Stamped Rings" },
   { id: "plush-bags", label: "Plush Bags" },
+  { id: "license-plate", label: "License" },
 ];
 
 export function noveltyContentFromRow(row) {

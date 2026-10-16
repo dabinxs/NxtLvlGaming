@@ -403,6 +403,23 @@ export const NOVELTY_PRODUCTS = [
       "Others",
     ],
   },
+  {
+    id: "license-plate",
+    title: "License",
+    tag: "LICENSE PLATE",
+    desc: "Design and personalize your own custom novelty license plate with names, graphics, colors, and custom artwork.",
+    image: "/novelty-templates/license-plate.png",
+    mockupType: "plate",
+    printableLabel: "LICENSE PLATE PRINTABLE AREA",
+    styles: [
+      "Plate Color",
+      "Custom Text",
+      "Background",
+      "Graphics",
+      "Border Style",
+      "Others",
+    ],
+  },
 ];
 
 const PRESET_COLORS = [
@@ -885,6 +902,7 @@ const BuildNovelty = () => {
           "laser-keychains": [0.18, 0.12, 0.64, 0.76],
           "stamped-rings": [0.16, 0.25, 0.68, 0.5],
           "plush-bags": [0.12, 0.12, 0.76, 0.74],
+          "license-plate": [0.06, 0.14, 0.88, 0.72],
         };
         const [left, top, areaWidth, areaHeight] = printAreas[selectedProductId] || [0.16, 0.16, 0.68, 0.68];
         surfaceArea = { x: x + width * left, y: y + height * top, width: width * areaWidth, height: height * areaHeight };
