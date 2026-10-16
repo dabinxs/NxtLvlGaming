@@ -32,9 +32,9 @@ export function TileReveal({
       validTiles.forEach((tileEl, i) => {
         const config = tiles[i] || {};
         const from = config.from || {
-          x: (i % 2 === 0 ? -1 : 1) * (200 + (i * 35)),
-          y: (i < 5 ? -1 : 1) * (180 + ((i % 5) * 30)),
-          rotation: (i % 2 === 0 ? -1 : 1) * (15 + (i * 2)),
+          x: (i % 2 === 0 ? -1 : 1) * (200 + i * 35),
+          y: (i < 5 ? -1 : 1) * (180 + (i % 5) * 30),
+          rotation: (i % 2 === 0 ? -1 : 1) * (20 + i * 2),
           scale: 0.6,
           opacity: 0,
         };
@@ -86,14 +86,22 @@ export function TileReveal({
         );
       }
 
-      // Animate tiles flying into their final framing positions
+      // Animate tiles flying into their final slanted framing positions
       validTiles.forEach((tileEl, i) => {
+        const config = tiles[i] || {};
+        const targetRotation =
+          config.toRotation !== undefined
+            ? config.toRotation
+            : i % 2 === 0
+            ? -6
+            : 6;
+
         tl.to(
           tileEl,
           {
             x: 0,
             y: 0,
-            rotation: 0,
+            rotation: targetRotation,
             scale: 1,
             opacity: 1,
             duration: 1,
@@ -133,7 +141,7 @@ export function TileReveal({
           {children}
         </div>
 
-        {/* Flying Image Tiles */}
+        {/* Flying Image Tiles (No Borders, Slanted) */}
         {tiles.map((tile, index) => {
           const isMobileHidden = tile.hideOnMobile;
           return (
@@ -149,28 +157,14 @@ export function TileReveal({
             >
               <a
                 href={tile.href || "/novelties"}
-                className="group relative block overflow-hidden rounded-2xl border border-white/20 bg-[#091322]/85 p-1.5 sm:p-2 shadow-[0_16px_40px_rgba(0,0,0,0.65)] backdrop-blur-md transition-all duration-300 hover:border-[#7DDDFF]/80 hover:shadow-[0_0_25px_rgba(0,102,253,0.35)]"
+                className="group relative block overflow-hidden rounded-2xl shadow-[0_18px_45px_rgba(0,0,0,0.75)] transition-transform duration-300 hover:scale-105"
               >
-                {/* Image */}
-                <div className="relative aspect-[1.12/1] w-full overflow-hidden rounded-xl border border-white/10 bg-[#060c18]">
-                  <img
-                    src={tile.image}
-                    alt={tile.title || tile.label || "Novelty"}
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-108"
-                    loading="lazy"
-                  />
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-white/10" />
-                </div>
-
-                {/* Bottom Label Tag */}
-                {tile.label && (
-                  <div className="mt-1.5 flex items-center justify-between px-1">
-                    <span className="truncate font-display text-[8px] font-bold tracking-[.14em] text-white/90 sm:text-[9px]">
-                      {tile.label}
-                    </span>
-                    <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#0099FF] shadow-[0_0_6px_#0099FF]" />
-                  </div>
-                )}
+                <img
+                  src={tile.image}
+                  alt={tile.title || tile.label || "Novelty"}
+                  className="block h-auto w-full rounded-2xl object-cover"
+                  loading="lazy"
+                />
               </a>
             </div>
           );

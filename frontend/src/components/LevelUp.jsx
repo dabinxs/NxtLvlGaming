@@ -9,8 +9,9 @@ const NOVELTY_TILES = [
     label: "PATCH CITY",
     title: "Patched City Trucker Hats & Beanies",
     image: "/novelty-cards/patch-city.jpg",
-    className: "left-[2%] sm:left-[3%] top-[2.5%] sm:top-[3.5%] w-[100px] sm:w-[135px] md:w-[160px] lg:w-[175px]",
-    from: { x: -380, y: -280, rotation: -22, scale: 0.4, opacity: 0 },
+    className: "left-[2%] sm:left-[3%] top-[3%] sm:top-[4%] w-[105px] sm:w-[140px] md:w-[165px] lg:w-[180px]",
+    from: { x: -380, y: -280, rotation: -26, scale: 0.4, opacity: 0 },
+    toRotation: -7,
   },
   // 2. Top Center-Left - Custom Trucker Hats
   {
@@ -18,9 +19,10 @@ const NOVELTY_TILES = [
     label: "CUSTOM HATS",
     title: "Custom Trucker Hats",
     image: "/novelty-cards/trucker-hats.jpg",
-    className: "left-[24%] md:left-[27%] top-[1%] sm:top-[1.5%] w-[90px] sm:w-[120px] md:w-[140px] lg:w-[155px]",
+    className: "left-[24%] md:left-[27%] top-[1.5%] sm:top-[2%] w-[95px] sm:w-[125px] md:w-[145px] lg:w-[160px]",
     hideOnMobile: true,
-    from: { x: -120, y: -360, rotation: -12, scale: 0.4, opacity: 0 },
+    from: { x: -120, y: -360, rotation: -18, scale: 0.4, opacity: 0 },
+    toRotation: 5,
   },
   // 3. Top Center-Right - Stamped Rings
   {
@@ -28,9 +30,10 @@ const NOVELTY_TILES = [
     label: "STAMPED RINGS",
     title: "Stamped Custom Rings",
     image: "/novelty-cards/stamped-rings.jpg",
-    className: "right-[24%] md:right-[27%] top-[1%] sm:top-[1.5%] w-[90px] sm:w-[120px] md:w-[140px] lg:w-[155px]",
+    className: "right-[24%] md:right-[27%] top-[1.5%] sm:top-[2%] w-[95px] sm:w-[125px] md:w-[145px] lg:w-[160px]",
     hideOnMobile: true,
-    from: { x: 120, y: -360, rotation: 15, scale: 0.4, opacity: 0 },
+    from: { x: 120, y: -360, rotation: 18, scale: 0.4, opacity: 0 },
+    toRotation: -5,
   },
   // 4. Top Right - Custom Sequin Pillows
   {
@@ -38,8 +41,9 @@ const NOVELTY_TILES = [
     label: "SEQUIN PILLOWS",
     title: "Custom Sequin Pillows",
     image: "/novelty-cards/sequin-pillows.jpg",
-    className: "right-[2%] sm:right-[3%] top-[2.5%] sm:top-[3.5%] w-[100px] sm:w-[135px] md:w-[160px] lg:w-[175px]",
-    from: { x: 380, y: -280, rotation: 22, scale: 0.4, opacity: 0 },
+    className: "right-[2%] sm:right-[3%] top-[3%] sm:top-[4%] w-[105px] sm:w-[140px] md:w-[165px] lg:w-[180px]",
+    from: { x: 380, y: -280, rotation: 26, scale: 0.4, opacity: 0 },
+    toRotation: 7,
   },
   // 5. Mid Far-Left - Custom Socks
   {
@@ -47,8 +51,9 @@ const NOVELTY_TILES = [
     label: "CUSTOM SOCKS",
     title: "Custom Socks",
     image: "/novelty-cards/custom-socks.jpg",
-    className: "left-[1%] sm:left-[2%] top-[42%] w-[95px] sm:w-[125px] md:w-[150px] lg:w-[165px]",
-    from: { x: -420, y: 20, rotation: -16, scale: 0.4, opacity: 0 },
+    className: "left-[1.5%] sm:left-[2.5%] top-[41%] w-[95px] sm:w-[125px] md:w-[150px] lg:w-[165px]",
+    from: { x: -420, y: 20, rotation: -22, scale: 0.4, opacity: 0 },
+    toRotation: 6,
   },
   // 6. Mid Far-Right - Engraved Bracelets
   {
@@ -56,8 +61,9 @@ const NOVELTY_TILES = [
     label: "ENGRAVED BRACELETS",
     title: "Engraved Bracelets",
     image: "/novelty-cards/engraved-bracelets.jpg",
-    className: "right-[1%] sm:right-[2%] top-[42%] w-[95px] sm:w-[125px] md:w-[150px] lg:w-[165px]",
-    from: { x: 420, y: 20, rotation: 16, scale: 0.4, opacity: 0 },
+    className: "right-[1.5%] sm:right-[2.5%] top-[41%] w-[95px] sm:w-[125px] md:w-[150px] lg:w-[165px]",
+    from: { x: 420, y: 20, rotation: 22, scale: 0.4, opacity: 0 },
+    toRotation: -6,
   },
   // 7. Bottom Left - Custom Pillow Dolls
   {
@@ -65,8 +71,9 @@ const NOVELTY_TILES = [
     label: "PILLOW DOLLS",
     title: "Custom Pillow Dolls",
     image: "/novelty-cards/pillow-dolls.jpg",
-    className: "left-[2%] sm:left-[3%] bottom-[2.5%] sm:bottom-[3.5%] w-[100px] sm:w-[135px] md:w-[160px] lg:w-[175px]",
-    from: { x: -380, y: 320, rotation: -20, scale: 0.4, opacity: 0 },
+    className: "left-[2%] sm:left-[3%] bottom-[3%] sm:bottom-[4%] w-[105px] sm:w-[140px] md:w-[165px] lg:w-[180px]",
+    from: { x: -380, y: 320, rotation: -24, scale: 0.4, opacity: 0 },
+    toRotation: 6,
   },
   // 8. Bottom Center-Left - Bead Bracelets
   {
@@ -74,9 +81,10 @@ const NOVELTY_TILES = [
     label: "BEAD-TASTICS",
     title: "Bead-tastics Custom Bracelets",
     image: "/novelty-cards/bead-tastics.jpg",
-    className: "left-[24%] md:left-[27%] bottom-[1%] sm:bottom-[1.5%] w-[90px] sm:w-[120px] md:w-[140px] lg:w-[155px]",
+    className: "left-[24%] md:left-[27%] bottom-[1.5%] sm:bottom-[2%] w-[95px] sm:w-[125px] md:w-[145px] lg:w-[160px]",
     hideOnMobile: true,
-    from: { x: -120, y: 360, rotation: 14, scale: 0.4, opacity: 0 },
+    from: { x: -120, y: 360, rotation: 18, scale: 0.4, opacity: 0 },
+    toRotation: -5,
   },
   // 9. Bottom Center-Right - Engraved Rings
   {
@@ -84,9 +92,10 @@ const NOVELTY_TILES = [
     label: "ENGRAVED RINGS",
     title: "Engraved Rings",
     image: "/novelty-cards/engraved-rings.jpg",
-    className: "right-[24%] md:right-[27%] bottom-[1%] sm:bottom-[1.5%] w-[90px] sm:w-[120px] md:w-[140px] lg:w-[155px]",
+    className: "right-[24%] md:right-[27%] bottom-[1.5%] sm:bottom-[2%] w-[95px] sm:w-[125px] md:w-[145px] lg:w-[160px]",
     hideOnMobile: true,
-    from: { x: 120, y: 360, rotation: -14, scale: 0.4, opacity: 0 },
+    from: { x: 120, y: 360, rotation: -18, scale: 0.4, opacity: 0 },
+    toRotation: 5,
   },
   // 10. Bottom Right - Silly Sacks Plush Bags
   {
@@ -94,8 +103,9 @@ const NOVELTY_TILES = [
     label: "SILLY SACKS",
     title: "Silly Sacks Plush Bags",
     image: "/novelty-cards/silly-sacks.jpg",
-    className: "right-[2%] sm:right-[3%] bottom-[2.5%] sm:bottom-[3.5%] w-[100px] sm:w-[135px] md:w-[160px] lg:w-[175px]",
-    from: { x: 380, y: 320, rotation: 22, scale: 0.4, opacity: 0 },
+    className: "right-[2%] sm:right-[3%] bottom-[3%] sm:bottom-[4%] w-[105px] sm:w-[140px] md:w-[165px] lg:w-[180px]",
+    from: { x: 380, y: 320, rotation: 24, scale: 0.4, opacity: 0 },
+    toRotation: -7,
   },
 ];
 
