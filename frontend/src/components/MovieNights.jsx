@@ -231,7 +231,7 @@ const MovieNights = () => {
             </div>
 
             {/* 2 Showcase Image Cards: LED & INFLATABLE */}
-            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
               {cmsPage.gallery.slice(0, 2).map((img, i) => (
                 <div
                   key={img.id || i}
@@ -278,21 +278,29 @@ const MovieNights = () => {
             </div>
 
             <div className="space-y-12">
-              {[...new Set(AVAILABLE_SCREENS.map((screen) => screen.category))].map((category) => <div key={category}>
-                <h3 className="mb-5 flex items-center gap-3 font-display text-[17px] font-extrabold uppercase tracking-[0.14em] text-white"><span className="h-0.5 w-6 bg-[#0066FD]" />{category}</h3>
-                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-                  {AVAILABLE_SCREENS.filter((screen) => screen.category === category).map((screen) => (
-                    <div key={screen.size} className="group relative flex flex-col justify-between rounded-2xl border border-white/10 bg-gradient-to-b from-[#0c1830] to-[#070e1e] p-6 transition-all duration-300 hover:border-[#0066FD]/50 hover:shadow-[0_12px_32px_rgba(0,102,253,0.18)]">
-                      <div>
-                        <div className="flex items-center gap-2 text-[#7DDDFF]"><Monitor className="h-4 w-4" /><span className="text-[11px] font-bold uppercase tracking-wider text-white/60">{category}</span></div>
-                        <h4 className="mt-4 font-display text-[20px] font-extrabold uppercase tracking-wide text-white transition-colors group-hover:text-[#7DDDFF]">{screen.size}</h4>
-                        <p className="mt-2 text-[13.5px] leading-relaxed text-white/70">{screen.desc}</p>
-                        <ul className="mt-5 space-y-2 border-t border-white/10 pt-4">{screen.highlights.map((item, idx) => <li key={idx} className="flex items-start gap-2 text-[12.5px] text-white/80"><Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#7DDDFF]" strokeWidth={2.6} /><span>{item}</span></li>)}</ul>
-                      </div>
+              {[...new Set(AVAILABLE_SCREENS.map((screen) => screen.category))].map((category) => {
+                const categoryScreens = AVAILABLE_SCREENS.filter((screen) => screen.category === category);
+                const gridColsClass = categoryScreens.length === 3
+                  ? "grid grid-cols-1 gap-6 md:grid-cols-3"
+                  : "grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4";
+                return (
+                  <div key={category}>
+                    <h3 className="mb-5 flex items-center gap-3 font-display text-[17px] font-extrabold uppercase tracking-[0.14em] text-white"><span className="h-0.5 w-6 bg-[#0066FD]" />{category}</h3>
+                    <div className={gridColsClass}>
+                      {categoryScreens.map((screen) => (
+                        <div key={screen.size} className="group relative flex flex-col justify-between rounded-2xl border border-white/10 bg-gradient-to-b from-[#0c1830] to-[#070e1e] p-6 transition-all duration-300 hover:border-[#0066FD]/50 hover:shadow-[0_12px_32px_rgba(0,102,253,0.18)]">
+                          <div>
+                            <div className="flex items-center gap-2 text-[#7DDDFF]"><Monitor className="h-4 w-4" /><span className="text-[11px] font-bold uppercase tracking-wider text-white/60">{category}</span></div>
+                            <h4 className="mt-4 font-display text-[20px] font-extrabold uppercase tracking-wide text-white transition-colors group-hover:text-[#7DDDFF]">{screen.size}</h4>
+                            <p className="mt-2 text-[13.5px] leading-relaxed text-white/70">{screen.desc}</p>
+                            <ul className="mt-5 space-y-2 border-t border-white/10 pt-4">{screen.highlights.map((item, idx) => <li key={idx} className="flex items-start gap-2 text-[12.5px] text-white/80"><Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#7DDDFF]" strokeWidth={2.6} /><span>{item}</span></li>)}</ul>
+                          </div>
+                        </div>
+                      ))}
                     </div>
-                  ))}
-                </div>
-              </div>)}
+                  </div>
+                );
+              })}
             </div>
           </div>
         </section>
