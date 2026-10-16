@@ -122,9 +122,9 @@ export const CMS_PAGES = [
     heroTitle: "GLOW PARK EXPERIENCE",
     heroSubtitle: "Light up your event with glowing games, colorful uplighting, and a full-package experience guests can jump right into.",
     gallery: [
-      { id: "glow-swings", title: "Glow Swings", subtitle: "Eight illuminated swings bring a bright, playful centerpiece to your event.", image: "" },
-      { id: "glow-seesaws", title: "Glow Seesaws", subtitle: "Four glowing seesaws add an easy-to-share group activity.", image: "" },
-      { id: "glow-mini-golf", title: "Glowing Mini Golf", subtitle: "A glowing mini-golf setup adds a colorful challenge for guests.", image: "" },
+      { id: "glow-swings", title: "Glow Swings", subtitle: "Eight illuminated swings bring a bright, playful centerpiece to your event.", image: "/glow-park-experience-1.jpg" },
+      { id: "glow-seesaws", title: "Glow Seesaws", subtitle: "Four glowing seesaws add an easy-to-share group activity.", image: "/glow-park-experience-2.jpg" },
+      { id: "glow-mini-golf", title: "Colorful Uplighting & Glow", subtitle: "Vibrant uplighting and glowing attractions transform any indoor or outdoor space.", image: "/glow-park-experience-3.jpg" },
     ],
   },
 ];

@@ -78,7 +78,13 @@ export function useCmsPage(slug, defaults) {
     const defaultsMatched = (defaults?.gallery || []).map((def) => {
       const key = (def.id || def.title || "").toLowerCase();
       const match = storedMap.get(key);
-      return match ? { ...def, ...match } : def;
+      if (!match) return def;
+      return {
+        ...def,
+        ...match,
+        image: match.image || match.src || def.image,
+        src: match.src || match.image || def.src || def.image,
+      };
     });
     const defaultKeys = new Set(
       (defaults?.gallery || []).map((def) => (def.id || def.title || "").toLowerCase())
