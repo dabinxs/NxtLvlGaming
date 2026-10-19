@@ -1,64 +1,232 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:video="http://www.google.com/schemas/sitemap-video/1.1"
+  xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+>
   <url>
     <loc>https://nextlevelgamingevents.com/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://nextlevelgamingevents.com/hero-bg.png</image:loc>
+      <image:title>Next Level Gaming &amp; Novelties — Interactive Gaming &amp; Event Rentals</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://nextlevelgamingevents.com/logo.png</image:loc>
+      <image:title>Next Level Gaming &amp; Novelties Logo</image:title>
+    </image:image>
+    <video:video>
+      <video:thumbnail_loc>https://nextlevelgamingevents.com/experience-just-dance.png</video:thumbnail_loc>
+      <video:title>Dean College Gaming &amp; Just Dance Event — Next Level Gaming &amp; Novelties</video:title>
+      <video:description>Students at Dean College enjoying an interactive Next Level Gaming &amp; Novelties event featuring giant-screen Just Dance, music, and multiplayer gaming.</video:description>
+      <video:content_loc>https://nextlevelgamingevents.com/dean-college.mp4</video:content_loc>
+      <video:publication_date>2025-09-15T12:00:00-04:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://nextlevelgamingevents.com/just-dance-gameplay.png</video:thumbnail_loc>
+      <video:title>New England College Giant-Screen Just Dance Party — Next Level Gaming</video:title>
+      <video:description>New England College campus event produced by Next Level Gaming &amp; Novelties with large-screen Just Dance battles and crowd entertainment.</video:description>
+      <video:content_loc>https://nextlevelgamingevents.com/new-england-college.mp4</video:content_loc>
+      <video:publication_date>2025-09-20T12:00:00-04:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://nextlevelgamingevents.com/gaming-events-experience-1.png</video:thumbnail_loc>
+      <video:title>Bridgewater State University Campus Gaming Event — Next Level Gaming</video:title>
+      <video:description>Turnkey multiplayer campus gaming event setup at Bridgewater State University by Next Level Gaming &amp; Novelties.</video:description>
+      <video:content_loc>https://nextlevelgamingevents.com/bridgewater-state-university.mp4</video:content_loc>
+      <video:publication_date>2025-10-01T12:00:00-04:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://nextlevelgamingevents.com/gaming-events-experience-2.png</video:thumbnail_loc>
+      <video:title>Fisher College Interactive Gaming Event — Next Level Gaming &amp; Novelties</video:title>
+      <video:description>Indoor student gaming and interactive entertainment event at Fisher College hosted by Next Level Gaming &amp; Novelties.</video:description>
+      <video:content_loc>https://nextlevelgamingevents.com/fisher-college.mp4</video:content_loc>
+      <video:publication_date>2025-10-10T12:00:00-04:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://nextlevelgamingevents.com/gaming-events-experience-3.png</video:thumbnail_loc>
+      <video:title>Springfield College Large-Scale Just Dance &amp; Gaming Event — Next Level Gaming</video:title>
+      <video:description>Large-scale campus Just Dance and interactive gaming production at Springfield College by Next Level Gaming &amp; Novelties.</video:description>
+      <video:content_loc>https://nextlevelgamingevents.com/springfield-college.mp4</video:content_loc>
+      <video:publication_date>2025-10-18T12:00:00-04:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://nextlevelgamingevents.com/about-gaming-event.jpg</video:thumbnail_loc>
+      <video:title>Emmanuel College Interactive Music, Dance &amp; Gaming Event — Next Level Gaming</video:title>
+      <video:description>Interactive student event filled with music, dancing, and multiplayer gaming at Emmanuel College in Boston by Next Level Gaming &amp; Novelties.</video:description>
+      <video:content_loc>https://nextlevelgamingevents.com/emmanuel-college.mp4</video:content_loc>
+      <video:publication_date>2025-10-25T12:00:00-04:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
   </url>
   <url>
     <loc>https://nextlevelgamingevents.com/gaming-events</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://nextlevelgamingevents.com/gaming-events-experience-1.png</image:loc>
+      <image:title>Multiplayer Video Gaming Stations Rental</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://nextlevelgamingevents.com/gaming-events-experience-2.png</image:loc>
+      <image:title>Giant Screen Gaming &amp; Esports Tournament Rental</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://nextlevelgamingevents.com/gaming-events-experience-3.png</image:loc>
+      <image:title>College Campus Gaming Event Production</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://nextlevelgamingevents.com/gaming-tournament-package.jpg</image:loc>
+      <image:title>Esports Tournament Package Setup</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://nextlevelgamingevents.com/movie-nights</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://nextlevelgamingevents.com/experience-movie-nights.png</image:loc>
+      <image:title>Outdoor Inflatable Movie Screen Rental</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://nextlevelgamingevents.com/movie-nights-led.jpg</image:loc>
+      <image:title>Mobile LED Video Wall Trailer Screen Rental</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://nextlevelgamingevents.com/movie-nights-experience-1.png</image:loc>
+      <image:title>Giant Inflatable Cinema Screen Setup</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://nextlevelgamingevents.com/trivia-nights</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://nextlevelgamingevents.com/experience-trivia-nights.png</image:loc>
+      <image:title>Interactive Live Trivia Night Host &amp; Game Show Rental</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://nextlevelgamingevents.com/virtual-reality</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://nextlevelgamingevents.com/experience-virtual-reality.png</image:loc>
+      <image:title>Virtual Reality (VR) Event Stations &amp; Mobile Escape Room Rental</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://nextlevelgamingevents.com/vr-games/dragon-tower.png</image:loc>
+      <image:title>Dragon Tower Cooperative VR Escape Adventure</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://nextlevelgamingevents.com/vr-games/depths-of-osiris.png</image:loc>
+      <image:title>Depths of Osiris Multiplayer VR Game</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://nextlevelgamingevents.com/photo-booth</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://nextlevelgamingevents.com/experience-360-video-booth.png</image:loc>
+      <image:title>360 Video Booth &amp; Mirror Photobooth Rental</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://nextlevelgamingevents.com/photo-booth-experience-1.png</image:loc>
+      <image:title>Event Photobooth Rental with Props</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://nextlevelgamingevents.com/photo-booth-experience-2.png</image:loc>
+      <image:title>360 Slow-Motion Video &amp; Mirror Photobooth</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://nextlevelgamingevents.com/just-dance</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://nextlevelgamingevents.com/experience-just-dance.png</image:loc>
+      <image:title>Just Dance Giant-Screen Event Party Rental</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://nextlevelgamingevents.com/just-dance-gameplay.png</image:loc>
+      <image:title>Multiplayer Just Dance Event Gameplay</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://nextlevelgamingevents.com/silent-disco</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://nextlevelgamingevents.com/experience-silent-disco.png</image:loc>
+      <image:title>Silent Disco LED Wireless Headphone Party Rental</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://nextlevelgamingevents.com/sim-racing</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://nextlevelgamingevents.com/experience-sim-racing.png</image:loc>
+      <image:title>Sim Racing Force-Feedback Cockpit Simulator Rental</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://nextlevelgamingevents.com/glow-park</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://nextlevelgamingevents.com/experience-glow-park.jpg</image:loc>
+      <image:title>Glow Park Experience Rental — LED Glow Swings &amp; Seesaws</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://nextlevelgamingevents.com/glow-park-experience-1.jpg</image:loc>
+      <image:title>Illuminated LED Glow Swings Event Rental</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://nextlevelgamingevents.com/glow-park-experience-2.jpg</image:loc>
+      <image:title>Illuminated Glow Seesaws Event Rental</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://nextlevelgamingevents.com/novelties</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://nextlevelgamingevents.com/novelties-bg.png</image:loc>
+      <image:title>Custom Event Novelties &amp; Interactive Maker Workshops</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://nextlevelgamingevents.com/novelty-cards/patch-city.jpg</image:loc>
+      <image:title>Patched City Custom Trucker Hats &amp; Beanies Workshop</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://nextlevelgamingevents.com/novelty-cards/custom-socks.jpg</image:loc>
+      <image:title>Custom Event Socks Novelty Station</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://nextlevelgamingevents.com/novelty-cards/wood-metal-keychains.jpg</image:loc>
+      <image:title>Laser-Engraved Wood &amp; Metal Keychains Novelty Station</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://nextlevelgamingevents.com/novelty-cards/license-plates.jpg</image:loc>
+      <image:title>Custom Novelty License Plates Event Station</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://nextlevelgamingevents.com/about</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://nextlevelgamingevents.com/about-gaming-event.jpg</image:loc>
+      <image:title>About Next Level Gaming &amp; Novelties Event Team</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://nextlevelgamingevents.com/contact</loc>
