@@ -124,6 +124,7 @@ const InteractiveWordmark = ({ segments, className = "", config = {} }) => {
       window.removeEventListener("mousemove", onMove);
       window.removeEventListener("resize", measure);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [radius, maxY, maxX, maxRot, maxScale, maxSkew, stiffness, damping, segments]);
 
   // Each gradient letter clips its own slice of the word-wide gradient so the
@@ -155,13 +156,16 @@ const InteractiveWordmark = ({ segments, className = "", config = {} }) => {
   }, [segments]);
 
   let index = -1;
+  const fullText = segments.map((s) => s.text).join(" ");
   return (
-    <span ref={wrapRef} className={className} data-testid="interactive-wordmark">
+    <span ref={wrapRef} className={className} data-testid="interactive-wordmark" aria-label={fullText}>
+      <span className="sr-only">{fullText}</span>
       {segments.map((seg, si) => (
         <span
           key={si}
           ref={(el) => (segRefs.current[si] = el)}
           className={seg.gradient ? undefined : seg.className}
+          aria-hidden="true"
         >
           {seg.text.split("").map((ch, ci) => {
             index += 1;

@@ -67,10 +67,12 @@ const TextScatter = ({
   }, [radius, strength, stiffness, text]);
 
   let index = -1;
+  const plainText = typeof text === "string" ? text.replace(/\s*\n\s*/g, " ").trim() : "";
   return (
-    <span ref={wrapRef} className={className} data-testid="text-scatter">
+    <span ref={wrapRef} className={className} data-testid="text-scatter" aria-label={plainText}>
+      <span className="sr-only">{plainText}</span>
       {text.split("\n").map((line, li) => (
-        <span key={li} className="block">
+        <span key={li} className="block" aria-hidden="true">
           {line.split(" ").map((word, wi) => (
             <React.Fragment key={`${li}-${wi}`}>
               {wi > 0 && " "}
