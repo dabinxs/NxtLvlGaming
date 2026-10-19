@@ -1,6 +1,8 @@
 {
   "hosting": {
     "public": "build",
+    "cleanUrls": true,
+    "trailingSlash": false,
     "ignore": [
       "firebase.json",
       "**/.*",
@@ -33,12 +35,27 @@
         "type": 301
       },
       {
+        "source": "/outdoor-movie",
+        "destination": "/movie-nights",
+        "type": 301
+      },
+      {
         "source": "/art",
         "destination": "/novelties",
         "type": 301
       },
       {
         "source": "/360videobooth",
+        "destination": "/photo-booth",
+        "type": 301
+      },
+      {
+        "source": "/360-video-booth",
+        "destination": "/photo-booth",
+        "type": 301
+      },
+      {
+        "source": "/360-booth",
         "destination": "/photo-booth",
         "type": 301
       },

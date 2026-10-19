@@ -70,32 +70,6 @@ const ROUTES = {
     summary:
       "Capture and share unforgettable memories with 360 slow-motion video booth and interactive full-length mirror photobooth rentals from Next Level Gaming & Novelties in Hudson NH, Massachusetts, and New England. Every rental includes VIP stanchions, studio LED lighting, party props, custom event overlays, instant SMS and QR digital sharing, and a dedicated on-site attendant.",
   },
-  "/360-video-booth": {
-    title: "360 Video Booth & Mirror Photobooth Rentals | Next Level",
-    description:
-      "Rent a 360 slow-motion video booth or interactive full-length mirror photobooth with props, custom overlays, and staff in Hudson NH, MA & New England.",
-    keywords:
-      "360 video booth rental NH, 360 photo booth rental New Hampshire, mirror photobooth rental MA",
-    image: `${SITE_URL}/experience-360-video-booth.png`,
-    canonicalPath: "/photo-booth",
-    serviceName: "360 Video Booth & Interactive Mirror Photobooth Rentals",
-    heading: "360 Video Booth & Mirror Photobooth Rentals",
-    summary:
-      "Capture shareable event memories with our 360 slow-motion video booth and interactive full-length mirror photobooth rentals across New Hampshire, Massachusetts, and New England.",
-  },
-  "/360-booth": {
-    title: "360 Video Booth & Mirror Photobooth Rentals | Next Level",
-    description:
-      "Rent a 360 slow-motion video booth or interactive full-length mirror photobooth with props, custom overlays, and staff in Hudson NH, MA & New England.",
-    keywords:
-      "360 booth rental NH, 360 video booth rental New England, mirror photobooth rental",
-    image: `${SITE_URL}/experience-360-video-booth.png`,
-    canonicalPath: "/photo-booth",
-    serviceName: "360 Video Booth & Interactive Mirror Photobooth Rentals",
-    heading: "360 Video Booth & Mirror Photobooth Rentals",
-    summary:
-      "Capture shareable event memories with our 360 slow-motion video booth and interactive full-length mirror photobooth rentals across New Hampshire, Massachusetts, and New England.",
-  },
   "/just-dance": {
     title: "Just Dance Giant Screen Event Party Rentals | Next Level",
     description:
@@ -365,10 +339,8 @@ function run() {
 
   for (const [routeKey, seo] of Object.entries(ROUTES)) {
     const cleanRoute = routeKey.replace(/^\/+/, "");
-    const routeDir = path.join(buildDir, cleanRoute);
-    fs.mkdirSync(routeDir, { recursive: true });
     const outHtml = buildRouteHtml(baseHtml, routeKey, seo);
-    fs.writeFileSync(path.join(routeDir, "index.html"), outHtml, "utf8");
+    fs.writeFileSync(path.join(buildDir, `${cleanRoute}.html`), outHtml, "utf8");
     count++;
   }
 
