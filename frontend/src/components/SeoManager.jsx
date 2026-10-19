@@ -6,167 +6,167 @@ const DEFAULT_IMAGE = `${SITE_URL}/hero-bg.png`;
 
 export const ROUTE_SEO = {
   "/": {
-    title: "Next Level Gaming & Novelties | Gaming Events, VR, Movie Nights & Event Entertainment",
+    title: "Next Level Gaming & Novelties | Gaming Event Rentals, Movie Screens, VR & Party Entertainment in Hudson NH & New England",
     description:
-      "Next Level Gaming & Novelties delivers turnkey video gaming events, outdoor & LED movie screen rentals, virtual reality, 360 photo booths, silent disco, sim racing, glow parks, trivia nights, and custom novelties for colleges, schools, and events.",
+      "Turnkey gaming event rentals, esports tournaments, 14–40 ft outdoor movie screen & mobile LED video wall rentals, VR stations, 360 photo booths, silent disco, sim racing, glow parks, trivia nights, and custom event novelties in Hudson, Nashua & Manchester NH, Massachusetts, and across New England.",
     keywords:
-      "Next Level Gaming, Next Level Gaming Events, gaming event rental, college event entertainment, outdoor movie screen rental, virtual reality event rental, 360 photo booth, silent disco, sim racing rental, glow park, custom event novelties",
+      "gaming events Hudson NH, gaming event rental New Hampshire, video game party rental NH, event entertainment rentals Manchester NH, Nashua NH event rentals, college event entertainment New England, outdoor movie screen rental NH MA, LED video wall trailer rental, virtual reality event rental, 360 photo booth rental NH, silent disco rental, sim racing simulator rental, glow park rental, interactive trivia night host, custom event novelties, Next Level Gaming, Next Level Gaming Events",
     image: `${SITE_URL}/hero-bg.png`,
     canonicalPath: "/",
   },
   "/gaming-events": {
-    title: "Video Gaming Events & Esports Tournaments | Next Level Gaming & Novelties",
+    title: "Video Gaming Event Rentals & Esports Tournaments in NH, MA & New England | Next Level Gaming",
     description:
-      "Turnkey multiplayer video gaming events and esports tournament production with 12 ft to 40 ft HD screens, PlayStation, Xbox, Nintendo Switch, retro consoles, and full on-site event staff.",
+      "Rent full-scale multiplayer video gaming events and esports tournament setups in Hudson, Manchester & Nashua NH, Massachusetts, and New England. Includes 12 ft to 40 ft HD screens, PlayStation, Xbox, Nintendo Switch, retro consoles, and on-site staff.",
     keywords:
-      "video gaming events, esports tournament rental, college gaming event, mobile gaming party, giant screen gaming rental, Next Level Gaming",
+      "gaming events Hudson NH, video gaming event rental New Hampshire, esports tournament production NH MA, mobile video game party rental Manchester NH, Nashua NH gaming party, college gaming event rental New England, giant screen gaming rental, Next Level Gaming",
     image: `${SITE_URL}/gaming-events-experience-1.png`,
     canonicalPath: "/gaming-events",
-    serviceName: "Video Gaming Events & Esports Tournaments",
+    serviceName: "Video Gaming Event Rentals & Esports Tournament Production",
   },
   "/movie-nights": {
-    title: "Outdoor Movie Screen & Mobile LED Video Wall Rentals | Next Level Gaming",
+    title: "Outdoor Movie Screen Rentals & Mobile LED Video Wall Trailers in NH & MA | Next Level Gaming",
     description:
-      "Rent giant inflatable outdoor movie screens (16 ft to 40 ft) and daylight mobile LED video wall trailers (14 ft to 28 ft) with concert-grade cinema audio and full setup crew.",
+      "Rent giant inflatable outdoor movie screens (16 ft to 40 ft) and daylight mobile LED video wall trailers (14 ft to 20 ft) with concert-grade audio in Hudson NH, Manchester NH, Massachusetts, and across New England.",
     keywords:
-      "outdoor movie screen rental, inflatable movie screen rental, mobile LED video wall trailer, campus movie night rental, outdoor cinema setup, Next Level Gaming",
+      "outdoor movie screen rental NH, inflatable movie screen rental New Hampshire, mobile LED video wall trailer rental MA NH, backyard movie night rental Hudson NH, drive-in movie screen rental New England, campus outdoor cinema rental, Next Level Gaming",
     image: `${SITE_URL}/experience-movie-nights.png`,
     canonicalPath: "/movie-nights",
-    serviceName: "Outdoor & Mobile LED Movie Nights",
+    serviceName: "Outdoor Inflatable Movie Screen & Mobile LED Video Wall Rentals",
   },
   "/trivia-nights": {
-    title: "Interactive Trivia Nights & Live Game Show Events | Next Level Gaming",
+    title: "Interactive Trivia Night Host & Live Game Show Event Rentals in NH & New England | Next Level Gaming",
     description:
-      "High-energy interactive trivia nights for colleges, corporate events, and groups featuring live hosts, digital buzzers, real-time leaderboards, and giant display screens.",
+      "Book high-energy interactive trivia nights and live game show entertainment for colleges, schools, corporate events, and parties in Hudson NH, Massachusetts, and New England with live hosts, wireless buzzers, and giant screen leaderboards.",
     keywords:
-      "interactive trivia night, live trivia event host, college trivia night, corporate game show entertainment, Next Level Gaming",
+      "interactive trivia night rental NH, live trivia host New Hampshire Massachusetts, college trivia night entertainment, corporate game show rental New England, wireless buzzer trivia event, Next Level Gaming",
     image: `${SITE_URL}/experience-trivia-nights.png`,
     canonicalPath: "/trivia-nights",
-    serviceName: "Interactive Trivia Nights",
+    serviceName: "Interactive Trivia Night & Game Show Event Rentals",
   },
   "/virtual-reality": {
-    title: "Virtual Reality (VR) Event Rentals & Multiplayer VR Escape Rooms | Next Level Gaming",
+    title: "Virtual Reality (VR) Event Rentals & Mobile VR Escape Rooms in NH & MA | Next Level Gaming",
     description:
-      "Immersive room-scale VR stations and 4-player multiplayer VR escape rooms for campus events, parties, and corporate gatherings—fully staffed with popular VR games.",
+      "Rent immersive room-scale Virtual Reality (VR) stations and 4-player cooperative VR escape rooms for events, parties, colleges, and corporate gatherings in Hudson NH, Manchester NH, Boston MA, and across New England.",
     keywords:
-      "virtual reality event rental, VR party rental, VR escape room rental, Beat Saber event rental, college VR event, Next Level Gaming",
+      "virtual reality event rental NH, VR party rental New Hampshire Massachusetts, mobile VR escape room rental, Beat Saber event rental, college VR entertainment New England, Next Level Gaming",
     image: `${SITE_URL}/experience-virtual-reality.png`,
     canonicalPath: "/virtual-reality",
-    serviceName: "Virtual Reality (VR) Event Experiences",
+    serviceName: "Virtual Reality (VR) Event Stations & Mobile VR Escape Rooms",
   },
   "/photo-booth": {
-    title: "360 Video Booth & Interactive Mirror Photobooth Rentals | Next Level Gaming",
+    title: "360 Video Booth & Mirror Photobooth Rentals in Hudson NH, MA & New England | Next Level Gaming",
     description:
-      "Capture shareable event memories with our 360 slow-motion video booth and interactive full-length mirror photobooth, complete with props, custom overlays, and on-site staff.",
+      "Rent a 360 slow-motion video booth or interactive full-length mirror photobooth with props, custom overlays, and on-site staff for weddings, parties, colleges, and corporate events in New Hampshire, Massachusetts, and New England.",
     keywords:
-      "360 video booth rental, mirror photobooth rental, event photo booth, slow motion 360 camera booth, college photo booth, Next Level Gaming",
+      "360 photo booth rental NH, 360 video booth rental New Hampshire Massachusetts, mirror photobooth rental Hudson NH, Manchester NH photo booth rental, event photobooth rental New England, Next Level Gaming",
     image: `${SITE_URL}/experience-360-video-booth.png`,
     canonicalPath: "/photo-booth",
-    serviceName: "360 Video Booth & Mirror Photobooth",
+    serviceName: "360 Video Booth & Interactive Mirror Photobooth Rentals",
   },
   "/360-video-booth": {
-    title: "360 Video Booth & Interactive Mirror Photobooth Rentals | Next Level Gaming",
+    title: "360 Video Booth & Mirror Photobooth Rentals in Hudson NH, MA & New England | Next Level Gaming",
     description:
-      "Capture shareable event memories with our 360 slow-motion video booth and interactive full-length mirror photobooth, complete with props, custom overlays, and on-site staff.",
+      "Rent a 360 slow-motion video booth or interactive full-length mirror photobooth with props, custom overlays, and on-site staff for events in New Hampshire, Massachusetts, and New England.",
     keywords:
-      "360 video booth rental, mirror photobooth rental, event photo booth, slow motion 360 camera booth, Next Level Gaming",
+      "360 video booth rental NH, 360 photo booth rental New Hampshire, mirror photobooth rental MA, Next Level Gaming",
     image: `${SITE_URL}/experience-360-video-booth.png`,
     canonicalPath: "/photo-booth",
-    serviceName: "360 Video Booth & Mirror Photobooth",
+    serviceName: "360 Video Booth & Interactive Mirror Photobooth Rentals",
   },
   "/360-booth": {
-    title: "360 Video Booth & Interactive Mirror Photobooth Rentals | Next Level Gaming",
+    title: "360 Video Booth & Mirror Photobooth Rentals in Hudson NH, MA & New England | Next Level Gaming",
     description:
-      "Capture shareable event memories with our 360 slow-motion video booth and interactive full-length mirror photobooth, complete with props, custom overlays, and on-site staff.",
+      "Rent a 360 slow-motion video booth or interactive full-length mirror photobooth with props, custom overlays, and on-site staff for events in New Hampshire, Massachusetts, and New England.",
     keywords:
-      "360 video booth rental, mirror photobooth rental, event photo booth, Next Level Gaming",
+      "360 booth rental NH, 360 video booth rental New England, mirror photobooth rental, Next Level Gaming",
     image: `${SITE_URL}/experience-360-video-booth.png`,
     canonicalPath: "/photo-booth",
-    serviceName: "360 Video Booth & Mirror Photobooth",
+    serviceName: "360 Video Booth & Interactive Mirror Photobooth Rentals",
   },
   "/just-dance": {
-    title: "Just Dance Event Party & Giant Screen Dance Battles | Next Level Gaming",
+    title: "Just Dance Party Rentals & Giant Screen Dance Events in NH & New England | Next Level Gaming",
     description:
-      "Bring high-energy multiplayer Just Dance battles to your campus or venue with giant screens, concert sound, and interactive choreography for crowds of any size.",
+      "Bring multiplayer Just Dance battles on giant HD screens with concert sound and lighting to your college campus, school, or event in Hudson NH, Massachusetts, and across New England.",
     keywords:
-      "Just Dance event rental, giant screen dance party, college Just Dance event, interactive dance battle rental, Next Level Gaming",
+      "Just Dance event rental, giant screen dance party rental NH MA, college Just Dance party New England, interactive dance game rental, Next Level Gaming",
     image: `${SITE_URL}/experience-just-dance.png`,
     canonicalPath: "/just-dance",
-    serviceName: "Just Dance Event Experience",
+    serviceName: "Just Dance Giant-Screen Event Rentals",
   },
   "/silent-disco": {
-    title: "Silent Disco Headphone Rentals & Multi-Channel Dance Parties | Next Level Gaming",
+    title: "Silent Disco Headphone Rentals & LED Dance Parties in NH, MA & New England | Next Level Gaming",
     description:
-      "Host an unforgettable indoor or outdoor Silent Disco with tri-color LED wireless headphones, multiple live DJ or music channels, and zero noise complaints.",
+      "Rent tri-color LED wireless Silent Disco headphones with up to 3 simultaneous DJ/music channels for 50 to 5,000+ guests in Hudson NH, Manchester NH, Boston MA, and across New England.",
     keywords:
-      "silent disco rental, LED silent disco headphones, college silent disco party, multi-channel headphone party, Next Level Gaming",
+      "silent disco rental NH, silent disco headphone rental New Hampshire Massachusetts, LED headphone party rental New England, college silent disco event, Next Level Gaming",
     image: `${SITE_URL}/experience-silent-disco.png`,
     canonicalPath: "/silent-disco",
-    serviceName: "Silent Disco Party Rentals",
+    serviceName: "Silent Disco Wireless Headphone Party Rentals",
   },
   "/sim-racing": {
-    title: "Sim Racing Simulator Rentals & Motorsport Event Experiences | Next Level Gaming",
+    title: "Sim Racing Simulator Rentals & Motorsport Event Cockpits in NH & New England | Next Level Gaming",
     description:
-      "Pro racing simulator cockpits with force-feedback wheels, pedals, giant screen telemetry, and fastest-lap tournament leaderboards brought directly to your event.",
+      "Rent pro force-feedback Sim Racing simulator cockpits with bucket racing seats, giant-screen telemetry, and fastest-lap leaderboards for corporate events, colleges, and parties in NH, MA, and New England.",
     keywords:
-      "sim racing rental, racing simulator event rental, motorsport simulator cockpit, esports racing tournament, Next Level Gaming",
+      "sim racing rental NH MA, racing simulator event rental New England, force feedback racing cockpit rental, corporate motorsport simulator event, Next Level Gaming",
     image: `${SITE_URL}/experience-sim-racing.png`,
     canonicalPath: "/sim-racing",
-    serviceName: "Sim Racing Event Simulators",
+    serviceName: "Sim Racing Cockpit Simulator Event Rentals",
   },
   "/glow-park": {
-    title: "Glow Park Experience — Glow Swings, Seesaws & Mini Golf | Next Level Gaming",
+    title: "Glow Park Experience Rentals — LED Glow Swings, Seesaws & Mini Golf in NH & New England | Next Level Gaming",
     description:
-      "Transform your venue with the Glow Park Experience featuring eight illuminated glow swings, four glowing seesaws, colorful venue uplighting, and interactive glowing mini golf.",
+      "Rent the full Glow Park Experience featuring 8 illuminated LED glow swings, 4 glowing seesaws, colorful venue uplighting, and glowing mini golf for colleges, festivals, and events in NH, MA, and New England.",
     keywords:
-      "glow park rental, illuminated glow swings, glow seesaws, LED mini golf rental, college glow party, Next Level Gaming",
+      "glow park rental, LED glow swings rental NH MA, illuminated seesaws event rental, glow mini golf rental New England, college glow night party rental, Next Level Gaming",
     image: `${SITE_URL}/experience-glow-park.jpg`,
     canonicalPath: "/glow-park",
-    serviceName: "Glow Park Experience",
+    serviceName: "Glow Park Experience — Illuminated Swings, Seesaws & Mini Golf Rentals",
   },
   "/novelties": {
-    title: "Custom Event Novelties & Interactive Maker Stations | Next Level Gaming & Novelties",
+    title: "Custom Event Novelties & Interactive Maker Workshops in NH & New England | Next Level Gaming & Novelties",
     description:
-      "Interactive custom novelty stations for events: Patched City trucker hats & beanies, custom socks, sequin pillows, pillow dolls, bead & intention bracelets, custom rings, license plates, and laser-engraved wood & metal keychains.",
+      "Book hands-on custom novelty stations for colleges, schools, and events: Patched City custom trucker hats & beanies, custom socks, sequin pillows, pillow dolls, bead & intention bracelets, stamped rings, custom license plates, and laser-engraved wood & metal keychains.",
     keywords:
-      "custom event novelties, college novelty event, custom trucker hat bar, Patched City hats, laser engraved keychains, custom sequin pillows, custom event souvenirs, Next Level Gaming and Novelties",
+      "custom event novelties rental, college novelty event ideas, custom trucker hat bar rental, Patched City hats, laser engraved keychains event, custom pillow dolls college event, sequin pillows novelty, Next Level Gaming and Novelties",
     image: `${SITE_URL}/novelties-bg.png`,
     canonicalPath: "/novelties",
-    serviceName: "Custom Event Novelties & Maker Workshops",
+    serviceName: "Custom Event Novelties & On-Site Maker Workshops",
   },
   "/about": {
-    title: "About Us | Next Level Gaming & Novelties — Event Production Team",
+    title: "About Next Level Gaming & Novelties | Event Entertainment & Rental Company in Hudson, NH",
     description:
-      "Founded by Calvin Reid and Yaw Boateng, Next Level Gaming & Novelties brings over 10 years of turnkey gaming, big-screen entertainment, VR, and custom novelty production to colleges and events.",
+      "Founded by Calvin Reid and Yaw Boateng in New Hampshire, Next Level Gaming & Novelties brings 10+ years of turnkey gaming events, giant movie screens, VR, photo booths, and custom novelty production to New England and the East Coast.",
     keywords:
-      "About Next Level Gaming, Calvin Reid, Yaw Boateng, Next Level Gaming Events story, event entertainment company Hudson NH",
+      "About Next Level Gaming, Calvin Reid, Yaw Boateng, Hudson NH event rental company, Manchester NH gaming events, New England college entertainment company",
     image: `${SITE_URL}/about-gaming-event.jpg`,
     canonicalPath: "/about",
   },
   "/contact": {
-    title: "Contact Us | Next Level Gaming & Novelties — Hudson, NH (978-601-5473)",
+    title: "Contact Next Level Gaming & Novelties | Event Rentals in Hudson, NH (978-601-5473)",
     description:
-      "Get in touch with Next Level Gaming & Novelties to plan your next campus, school, corporate, or private event. Email sales@nextlevelgamingevents.com or call 978-601-5473.",
+      "Contact Next Level Gaming & Novelties in Hudson, NH to book gaming events, outdoor movie screens, VR, 360 photo booths, silent disco, glow parks, or custom novelties. Email sales@nextlevelgamingevents.com or call 978-601-5473.",
     keywords:
-      "contact Next Level Gaming, Next Level Gaming phone number, sales@nextlevelgamingevents.com, book gaming event",
+      "contact Next Level Gaming, Hudson NH event rentals phone number, 978-601-5473, sales@nextlevelgamingevents.com, book gaming event NH MA",
     image: DEFAULT_IMAGE,
     canonicalPath: "/contact",
   },
   "/quote": {
-    title: "Request an Event Quote | Next Level Gaming & Novelties",
+    title: "Get an Event Rental Quote | Next Level Gaming & Novelties (Hudson, NH & New England)",
     description:
-      "Build your custom event package and request a fast quote for gaming events, outdoor movie nights, VR, 360 photo booths, silent disco, sim racing, glow parks, or custom novelties.",
+      "Request a custom quote for video gaming events, outdoor & LED movie screen rentals, VR, 360 photo booths, silent disco, sim racing, glow parks, trivia nights, or custom novelties across NH, MA, and New England.",
     keywords:
-      "Next Level Gaming quote, book college gaming event, outdoor movie screen quote, event entertainment pricing",
+      "gaming event rental quote, outdoor movie screen rental pricing NH MA, book college event entertainment, Next Level Gaming quote",
     image: DEFAULT_IMAGE,
     canonicalPath: "/quote",
   },
   "/novelty-order": {
-    title: "Order Custom Event Novelties | Next Level Gaming & Novelties",
+    title: "Order Custom Event Novelties & Maker Stations | Next Level Gaming & Novelties",
     description:
-      "Request pricing and place an inquiry for custom event novelties, personalized keepsakes, and on-site maker stations from Next Level Gaming & Novelties.",
+      "Request pricing and book custom event novelty stations—trucker hats, beanies, custom socks, bracelets, pillow dolls, sequin pillows, keychains, rings, and license plates—for your campus or corporate event.",
     keywords:
-      "order custom novelties, college novelty bulk order, Next Level Gaming novelties",
+      "order custom event novelties, college novelty workshop booking, bulk custom event souvenirs, Next Level Gaming novelties",
     image: `${SITE_URL}/novelties-bg.png`,
     canonicalPath: "/novelty-order",
   },
@@ -246,13 +246,28 @@ function upsertRouteJsonLd(seo, canonicalUrl) {
     graph.push({
       "@type": "Service",
       name: seo.serviceName,
+      serviceType: seo.serviceName,
       description: seo.description,
       url: canonicalUrl,
       image: seo.image || DEFAULT_IMAGE,
       provider: {
         "@id": `${SITE_URL}/#organization`,
       },
-      areaServed: "United States",
+      areaServed: [
+        { "@type": "City", name: "Hudson, NH" },
+        { "@type": "City", name: "Nashua, NH" },
+        { "@type": "City", name: "Manchester, NH" },
+        { "@type": "City", name: "Concord, NH" },
+        { "@type": "City", name: "Boston, MA" },
+        { "@type": "City", name: "Lowell, MA" },
+        { "@type": "City", name: "Worcester, MA" },
+        { "@type": "State", name: "New Hampshire" },
+        { "@type": "State", name: "Massachusetts" },
+        { "@type": "State", name: "Connecticut" },
+        { "@type": "State", name: "Rhode Island" },
+        { "@type": "State", name: "Maine" },
+        { "@type": "State", name: "Vermont" },
+      ],
     });
   }
 
