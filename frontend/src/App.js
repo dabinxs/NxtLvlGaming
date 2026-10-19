@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import TrustedCollaborations from "./components/TrustedCollaborations";
@@ -27,6 +27,7 @@ import NoveltyOrder from "./components/NoveltyOrder";
 import ContactPage from "./components/ContactPage";
 import AboutPage from "./components/AboutPage";
 import AdminPage from "./components/AdminPage";
+import SeoManager from "./components/SeoManager";
 import { CmsContentProvider, useCmsHomeMedia } from "./lib/cmsContent";
 import { Settings2 } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -62,6 +63,7 @@ const Landing = () => <LandingContent />;
 function App() {
   return (
     <BrowserRouter>
+      <SeoManager />
       <CmsContentProvider>
       <Routes>
         <Route path="/" element={<Landing />} />
@@ -84,8 +86,20 @@ function App() {
         <Route path="/build-novelty" element={<NoveltyAccess />} />
         <Route path="/build" element={<NoveltyAccess />} />
         <Route path="/cms" element={<AdminPage />} />
+        {/* Legacy Wix URL redirects */}
+        <Route path="/video-gaming-events" element={<Navigate to="/gaming-events" replace />} />
+        <Route path="/art" element={<Navigate to="/novelties" replace />} />
+        <Route path="/360videobooth" element={<Navigate to="/photo-booth" replace />} />
+        <Route path="/just-dance-party" element={<Navigate to="/just-dance" replace />} />
+        <Route path="/copy-of-glow-park" element={<Navigate to="/glow-park" replace />} />
+        <Route path="/copy-of-exiciting-new-offer" element={<Navigate to="/glow-park" replace />} />
+        <Route path="/sim-racing-experience" element={<Navigate to="/sim-racing" replace />} />
+        <Route path="/trivia-night" element={<Navigate to="/trivia-nights" replace />} />
+        <Route path="/movie-night" element={<Navigate to="/movie-nights" replace />} />
+        <Route path="/covid-19-information" element={<Navigate to="/" replace />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
-      <Link to="/cms" aria-label="Open website CMS" title="Website admin dashboard" className="cms-access-button">
+      <Link to="/cms" rel="nofollow" aria-label="Open website CMS" title="Website admin dashboard" className="cms-access-button">
         <Settings2 size={19} />
         <span>Admin</span>
       </Link>

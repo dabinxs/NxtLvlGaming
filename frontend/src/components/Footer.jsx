@@ -4,6 +4,21 @@ import { Link } from "react-router-dom";
 import { footerColumns } from "../mock";
 import InteractiveWordmark from "./InteractiveWordmark";
 
+const FOOTER_LINK_PATHS = {
+  "Gaming events": "/gaming-events",
+  "Movie Nights": "/movie-nights",
+  "Trivia Nights": "/trivia-nights",
+  "Photo Booth": "/photo-booth",
+  "Virtual Reality": "/virtual-reality",
+  "Just Dance": "/just-dance",
+  "Silent Disco": "/silent-disco",
+  "Sim Racing": "/sim-racing",
+  "Glow Park": "/glow-park",
+  About: "/about",
+  Novelties: "/novelties",
+  Contact: "/contact",
+};
+
 const Footer = () => {
 
   return (
@@ -68,23 +83,22 @@ const Footer = () => {
                   {col.title}
                 </h4>
                 <ul className="space-y-2.5">
-                  {col.links.map((link) => (
-                    <li key={link}>
-                      {link === "Contact" ? (
-                        <Link to="/contact" className="whitespace-nowrap text-[12.5px] text-white/65 transition-colors hover:text-[#7DDDFF]">
-                          {link}
-                        </Link>
-                      ) : link === "About" ? (
-                        <Link to="/about" className="whitespace-nowrap text-[12.5px] text-white/65 transition-colors hover:text-[#7DDDFF]">
-                          {link}
-                        </Link>
-                      ) : (
-                        <a href="#top" className="whitespace-nowrap text-[12.5px] text-white/65 transition-colors hover:text-[#7DDDFF]">
-                          {link}
-                        </a>
-                      )}
-                    </li>
-                  ))}
+                  {col.links.map((link) => {
+                    const targetPath = FOOTER_LINK_PATHS[link];
+                    return (
+                      <li key={link}>
+                        {targetPath ? (
+                          <Link to={targetPath} className="whitespace-nowrap text-[12.5px] text-white/65 transition-colors hover:text-[#7DDDFF]">
+                            {link}
+                          </Link>
+                        ) : (
+                          <a href="#top" className="whitespace-nowrap text-[12.5px] text-white/65 transition-colors hover:text-[#7DDDFF]">
+                            {link}
+                          </a>
+                        )}
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
             ))}

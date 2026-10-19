@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /cms
+Disallow: /build-novelty
+Disallow: /build
+
+Sitemap: https://nextlevelgamingevents.com/sitemap.xml

@@ -6,6 +6,58 @@
       "**/.*",
       "**/node_modules/**"
     ],
+    "redirects": [
+      {
+        "source": "/video-gaming-events",
+        "destination": "/gaming-events",
+        "type": 301
+      },
+      {
+        "source": "/art",
+        "destination": "/novelties",
+        "type": 301
+      },
+      {
+        "source": "/360videobooth",
+        "destination": "/photo-booth",
+        "type": 301
+      },
+      {
+        "source": "/just-dance-party",
+        "destination": "/just-dance",
+        "type": 301
+      },
+      {
+        "source": "/copy-of-glow-park",
+        "destination": "/glow-park",
+        "type": 301
+      },
+      {
+        "source": "/copy-of-exiciting-new-offer",
+        "destination": "/glow-park",
+        "type": 301
+      },
+      {
+        "source": "/sim-racing-experience",
+        "destination": "/sim-racing",
+        "type": 301
+      },
+      {
+        "source": "/trivia-night",
+        "destination": "/trivia-nights",
+        "type": 301
+      },
+      {
+        "source": "/movie-night",
+        "destination": "/movie-nights",
+        "type": 301
+      },
+      {
+        "source": "/covid-19-information",
+        "destination": "/",
+        "type": 301
+      }
+    ],
     "rewrites": [
       {
         "source": "**",
