@@ -58,6 +58,15 @@ const PACKAGES = [
   "Glow Park full package",
   "Custom mix",
 ];
+const PAYMENT_METHODS = [
+  { name: "ACH", mark: "ACH", style: "ach" },
+  { name: "PayPal", mark: "P", style: "paypal" },
+  { name: "Venmo", mark: "V", style: "venmo" },
+  { name: "Zelle", mark: "Z", style: "zelle" },
+  { name: "Check", mark: "✓", style: "check" },
+  { name: "Cash", mark: "$", style: "cash" },
+  { name: "Credit card", mark: "▰", style: "card" },
+];
 const STORAGE_KEY = "nxtlvl-quote-draft-v1";
 const DEFAULT_LOCATION = { lat: 42.3601, lon: -71.0589 };
 
@@ -75,6 +84,7 @@ const emptyDraft = {
   email: "",
   phone: "",
   message: "",
+  paymentMethod: "",
   mapPoint: null,
   wantsNovelties: false,
 };
@@ -280,6 +290,7 @@ function QuotePage() {
           date: draft.date ? format(dateValue, "MMMM d, yyyy") : "Flexible / to be confirmed",
           ...quoteAddressFields(draft),
           experience: draft.package || "Please recommend something",
+          "Preferred payment method": draft.paymentMethod || "No preference",
           "Novelty fulfillment": wantsNovelties ? (hasNovelty ? "ONSITE" : "DISCUSS OPTIONS") : "Event quote",
           "Interested in novelties": wantsNovelties ? "Yes — please discuss customized novelty options as part of this quote." : "No",
           "Novelty items": hasNovelty ? Object.entries(noveltyQuantities).filter(([, quantity]) => Number(quantity) > 0).map(([productId, quantity]) => {
@@ -358,6 +369,7 @@ function QuotePage() {
               <div><small>DATE</small><strong>{draft.date ? format(dateValue, "MMM d, yyyy") : "Flexible"}</strong></div>
               <div><small>LOCATION</small><strong>{draft.locationFlexible ? "Still deciding" : draft.mapPoint?.label?.split(",")[0] || draft.location}</strong></div>
               <div><small>EXPERIENCE</small><strong>{draft.package}</strong></div>
+              <div><small>PAYMENT PREFERENCE</small><strong>{draft.paymentMethod || "No preference"}</strong></div>
             </div>
             <div className="quote-complete-actions">
               <Link to="/" className="quote-back-button">BACK TO HOME <ArrowRight size={16} /></Link>
@@ -554,6 +566,20 @@ function QuotePage() {
                 <label className="quote-form-field"><span>EMAIL ADDRESS <b>*</b></span><input required type="email" autoComplete="email" value={draft.email} onChange={(event) => update("email", event.target.value)} placeholder="you@example.com" /></label>
                 <label className="quote-form-field"><span>PHONE <small>OPTIONAL</small></span><input type="tel" autoComplete="tel" value={draft.phone} onChange={(event) => update("phone", event.target.value)} placeholder="(555) 000-0000" /></label>
                 <label className="quote-form-field"><span>ANYTHING ELSE? <small>OPTIONAL</small></span><input value={draft.message} onChange={(event) => update("message", event.target.value)} placeholder="Tell us what would make it special" /></label>
+                <fieldset className="quote-payment-fieldset">
+                  <legend>PAYMENT PREFERENCE <small>OPTIONAL · FOR PLANNING ONLY</small></legend>
+                  <p>How would you prefer to pay if you book? This helps our team plan your quote.</p>
+                  <div className="quote-payment-grid" role="group" aria-label="Preferred payment method">
+                    {PAYMENT_METHODS.map(({ name, mark, style }) => (
+                      <button type="button" key={name} onClick={() => update("paymentMethod", name)} className={`quote-payment-choice ${draft.paymentMethod === name ? "is-selected" : ""}`} aria-pressed={draft.paymentMethod === name}>
+                        <span className={`quote-payment-mark is-${style}`} aria-hidden="true">{mark}</span><span>{name}</span><CheckCircle2 className="quote-payment-check" size={15} />
+                      </button>
+                    ))}
+                    <button type="button" onClick={() => update("paymentMethod", "No preference")} className={`quote-payment-choice quote-payment-none ${!draft.paymentMethod || draft.paymentMethod === "No preference" ? "is-selected" : ""}`} aria-pressed={!draft.paymentMethod || draft.paymentMethod === "No preference"}>
+                      <span>No preference</span><CheckCircle2 className="quote-payment-check" size={15} />
+                    </button>
+                  </div>
+                </fieldset>
                 <div className="quote-review-strip">
                   <span className="quote-review-icon"><CheckCircle2 size={17} /></span>
                   <span><strong>Looking good, {draft.name || "event planner"}.</strong><small>{[draft.eventType, draft.guests && `${draft.guests} guests`, draft.date ? format(dateValue, "MMM d, yyyy") : draft.dateFlexible ? "flexible date" : null, draft.locationFlexible ? "location TBD" : draft.manualAddressMode ? [draft.manualAddress.address, draft.manualAddress.city].filter(Boolean).join(", ") : draft.mapPoint?.label?.split(",")[0] || draft.location, draft.package, wantsNovelties && "custom novelties"].filter(Boolean).join(" · ")}</small></span>
