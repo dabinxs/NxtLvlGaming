@@ -225,6 +225,54 @@ const ROUTES = {
     details:
       "Select your novelty items, estimated guest counts, and event date in NH, MA, or NC, and our team will prepare a turnkey novelty workshop proposal complete with equipment, supplies, and on-site staff.",
   },
+  "/north-carolina-event-rentals": {
+    title: "North Carolina Event Rentals | Charlotte & Raleigh NC",
+    description:
+      "Turnkey gaming event rentals, outdoor & LED movie screens, VR, 360 photo booths, silent disco, glow parks & novelties in Charlotte, Raleigh & Durham NC.",
+    keywords:
+      "North Carolina event rentals, gaming event rentals Charlotte NC, outdoor movie screen rental Raleigh NC, Durham NC college event rentals, Greensboro NC party rentals, Winston-Salem event entertainment, 360 photo booth rental Charlotte NC, VR party rental Raleigh NC, silent disco rental North Carolina, sim racing simulator rental Charlotte NC",
+    image: DEFAULT_IMAGE,
+    canonicalPath: "/north-carolina-event-rentals",
+    serviceName: "North Carolina Interactive Event Rentals & Entertainment",
+    heading: "North Carolina Event Rentals — Charlotte, Raleigh & Durham NC",
+    summary:
+      "Next Level Gaming & Novelties delivers turnkey video gaming events, esports tournaments, giant inflatable outdoor movie screens, mobile LED video wall trailers, VR escape rooms, 360 video booths, mirror photobooths, Silent Disco wireless headphones, Sim Racing cockpits, Glow Park swings, live Trivia Nights, and custom novelty workshops across Charlotte, Raleigh, Durham, Chapel Hill, Greensboro, Winston-Salem, Cary, Concord, Wilmington, Fayetteville, Greenville, and Asheville, North Carolina.",
+    subhead: "Serving Colleges, Schools, Corporate Events & Festivals Across North Carolina",
+    details:
+      "Our North Carolina branch provides full delivery, setup, and on-site event staff for university campuses, high school proms and grad nights, corporate activations, and community festivals in the Charlotte Metro, Research Triangle (Raleigh-Durham-Chapel Hill), Piedmont Triad (Greensboro-Winston-Salem-High Point), Coastal NC, and Western NC.",
+  },
+  "/new-hampshire-massachusetts-event-rentals": {
+    title: "NH & MA Event Rentals | Hudson, Manchester & Boston",
+    description:
+      "Rent video gaming events, outdoor & LED movie screens, VR, 360 photo booths, silent disco, glow parks & novelties in Hudson NH, Manchester & Boston MA.",
+    keywords:
+      "NH event rentals, Massachusetts event rentals, gaming events Hudson NH, event entertainment Manchester NH, Nashua NH party rentals, Boston MA corporate event rentals, Lowell MA outdoor movie screen rental, Worcester MA college event entertainment",
+    image: DEFAULT_IMAGE,
+    canonicalPath: "/new-hampshire-massachusetts-event-rentals",
+    serviceName: "New Hampshire & Massachusetts Interactive Event Rentals",
+    heading: "NH & MA Event Rentals — Hudson, Manchester & Boston",
+    summary:
+      "Headquartered in Hudson, New Hampshire (03051), Next Level Gaming & Novelties delivers turnkey video gaming tournaments, giant inflatable and mobile LED movie screens, Virtual Reality stations, 360 video booths, Silent Disco headphones, Sim Racing simulators, Glow Park LED swings, Trivia Nights, and custom novelty workshops across Hudson, Nashua, Manchester, Salem, Derry, Londonderry, Concord, Portsmouth NH, and Boston, Cambridge, Lowell, Worcester, and Springfield MA.",
+    subhead: "Turnkey Event Entertainment Across New Hampshire, Massachusetts & New England",
+    details:
+      "For over ten years, our Hudson NH team has produced interactive campus, school, municipal, and corporate events across Southern and Central New Hampshire, Greater Boston, the Merrimack Valley, Central and Western Massachusetts, Rhode Island, Connecticut, Maine, and Vermont.",
+  },
+  "/college-school-corporate-events": {
+    title: "College, School & Corporate Event Rentals | Next Level",
+    description:
+      "Turnkey college welcome week, high school post-prom, grad night, and corporate event rentals in NH, MA, New England & North Carolina.",
+    keywords:
+      "college campus event rentals, university welcome week entertainment, spring weekend rentals, high school post prom entertainment NH MA NC, project graduation party rentals, corporate event entertainment Boston Charlotte Raleigh",
+    image: DEFAULT_IMAGE,
+    canonicalPath: "/college-school-corporate-events",
+    serviceName: "College Campus, High School Post-Prom & Corporate Event Rentals",
+    heading: "College, School & Corporate Event Rentals in NH, MA & NC",
+    summary:
+      "Next Level Gaming & Novelties specializes in turnkey large-crowd entertainment for college student activities boards (welcome week, orientation, homecoming, spring weekend), high school post-prom and project graduation lock-ins, corporate family fun days, trade shows, summer camps, and municipal festivals across New Hampshire, Massachusetts, New England, and North Carolina.",
+    subhead: "Insured, Fully Staffed Interactive Attractions for High-Attendance Events",
+    details:
+      "Whether you are entertaining 100 students in a campus center or 5,000 attendees at a spring weekend festival or company picnic, our crew delivers commercial-grade equipment, giant HD screens, concert sound, and hands-on novelty stations tailored to your schedule and venue.",
+  },
   "/build-novelty": {
     title: "Novelty Customization Studio | Next Level Gaming",
     description: "Design and customize novelty items with Next Level Gaming & Novelties.",

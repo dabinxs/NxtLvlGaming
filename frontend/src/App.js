@@ -83,6 +83,9 @@ function App() {
         <Route path="/sim-racing" element={<SimRacing />} />
         <Route path="/glow-park" element={<GlowPark />} />
         <Route path="/novelties" element={<Novelties />} />
+        <Route path="/north-carolina-event-rentals" element={<Landing />} />
+        <Route path="/new-hampshire-massachusetts-event-rentals" element={<Landing />} />
+        <Route path="/college-school-corporate-events" element={<Landing />} />
         <Route path="/build-novelty" element={<NoveltyAccess />} />
         <Route path="/build" element={<NoveltyAccess />} />
         <Route path="/cms" element={<AdminPage />} />
