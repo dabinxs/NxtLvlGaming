@@ -61,8 +61,6 @@ function AboutPage() {
 
   useLayoutEffect(() => {
     window.scrollTo(0, 0);
-    const previousTitle = document.title;
-    document.title = "About | Next Level Gaming Events";
     const page = pageRef.current;
     if (!page) return undefined;
 
@@ -201,7 +199,6 @@ function AboutPage() {
 
     return () => {
       mounted = false;
-      document.title = previousTitle;
       motionQuery.removeEventListener("change", setupAnimations);
       desktopQuery.removeEventListener("change", setupAnimations);
       window.removeEventListener("load", refresh);
