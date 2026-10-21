@@ -466,12 +466,15 @@ const SeoManager = () => {
         Merrimack NH, Bedford NH, Concord NH, Portsmouth NH, Dover NH, Durham NH, Keene NH, Hanover NH,
         Boston MA, Cambridge MA, Lowell MA, Chelmsford MA, Andover MA, Lawrence MA, Waltham MA,
         Worcester MA, Springfield MA, Amherst MA, Charlotte NC, Raleigh NC, Durham NC, Chapel Hill NC,
-        Greensboro NC, Winston-Salem NC, Cary NC, Concord NC, Wilmington NC, Fayetteville NC,
-        Greenville NC, Asheville NC, Providence RI, Hartford CT, New Haven CT, Portland ME, and
-        Burlington VT for college campus events, university orientations, welcome week, spring weekend,
-        high school post-prom and project graduation parties, corporate events, company picnics,
-        summer camps, municipal festivals, and private celebrations. Call 978-601-5473 or email
-        sales@nextlevelgamingevents.com.
+        Greensboro NC, Winston-Salem NC, High Point NC, Cary NC, Apex NC, Wake Forest NC, Huntersville NC,
+        Matthews NC, Gastonia NC, Kannapolis NC, Mooresville NC, Concord NC, Wilmington NC,
+        Fayetteville NC, Greenville NC, Boone NC, Asheville NC, Providence RI, Warwick RI, Hartford CT,
+        New Haven CT, Stamford CT, Albany NY, White Plains NY, Portland ME, and Burlington VT for
+        college campus events, university orientations, welcome week, spring weekend, high school
+        post-prom and project graduation parties, corporate events, company picnics, holiday parties,
+        Super Bowl and March Madness LED screen watch parties, tailgates, summer camps, municipal
+        festivals, bar and bat mitzvahs, sweet 16s, graduation parties, and large-screen video game
+        truck rental alternatives. Call 978-601-5473 or email sales@nextlevelgamingevents.com.
       </p>
     </aside>
   );
