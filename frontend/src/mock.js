@@ -221,14 +221,14 @@ export const testimonials = [
 export const footerColumns = [
   {
     title: "EVENTS",
-    links: ["Gaming events", "Movie Nights", "Trivia Nights"],
+    links: ["Gaming events", "Movie Nights", "Trivia Nights", "Glow Park"],
   },
   {
     title: "EXPERIENCE",
     links: ["Photo Booth", "Virtual Reality", "Just Dance", "Silent Disco", "Sim Racing"],
   },
   {
-    title: "COMPANY",
-    links: ["About", "Novelties", "FAQ", "Contact"],
+    title: "LOCATIONS & INFO",
+    links: ["About", "Novelties", "NH & MA Rentals", "North Carolina Branch", "Colleges & Schools", "Contact"],
   },
 ];

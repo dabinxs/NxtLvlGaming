@@ -17,6 +17,9 @@ const FOOTER_LINK_PATHS = {
   About: "/about",
   Novelties: "/novelties",
   Contact: "/contact",
+  "NH & MA Rentals": "/new-hampshire-massachusetts-event-rentals",
+  "North Carolina Branch": "/north-carolina-event-rentals",
+  "Colleges & Schools": "/college-school-corporate-events",
 };
 
 const Footer = () => {
@@ -132,7 +135,7 @@ const Footer = () => {
           </div>
           <span className="hidden h-px flex-1 bg-white/20 md:block" />
           <span className="shrink-0 text-[11px] uppercase tracking-[0.15em] text-white/40">
-            © 2023 Next Level Gaming. All rights reserved.
+            © {new Date().getFullYear()} Next Level Gaming. All rights reserved.
           </span>
         </div>
       </div>

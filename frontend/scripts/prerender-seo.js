@@ -20,6 +20,20 @@ const ROUTES = {
     subhead: "Deluxe, Ultimate & Esports Tournament Gaming Packages",
     details:
       "Choose from our Deluxe Package (four 12 ft HD gaming stations plus a giant 21 to 32 ft HD spectator screen), Ultimate Package (eight 12 ft HD screens plus a 26 ft jumbo screen and virtual smartphone DJ dance party), or full Esports Tournament Production with PlayStation 5, Xbox Series X, Nintendo Switch, and classic retro NES consoles. Popular games include Super Smash Bros. Ultimate, Mario Kart 8 Deluxe, EA Sports FC, Madden NFL, NBA 2K, Rocket League, Street Fighter, and Tekken.",
+    faqs: [
+      {
+        q: "How many players can participate at once in a Next Level gaming event?",
+        a: "Our setups accommodate from 16 to over 64 simultaneous players, with hundreds of spectators watching the live action on giant 21 ft to 40 ft jumbo projection or LED screens. We tailor station counts to your expected attendance.",
+      },
+      {
+        q: "What gaming consoles and game titles are provided?",
+        a: "We provide PlayStation 5, Xbox Series X, Nintendo Switch, and classic retro NES consoles. Hit titles include Super Smash Bros. Ultimate, Mario Kart 8 Deluxe, EA Sports FC, Madden NFL, NBA 2K, Rocket League, Street Fighter 6, and Tekken 8.",
+      },
+      {
+        q: "Can video gaming events be set up indoors or outdoors in NH, MA, and NC?",
+        a: "Yes! Our giant screen gaming stations can be deployed indoors inside college student unions, gymnasiums, and hotel ballrooms, or outdoors under event tents or during evening festivals.",
+      },
+    ],
   },
   "/movie-nights": {
     title: "Outdoor Movie Screen & LED Wall Rentals NH & NC | Next Level",
@@ -36,6 +50,20 @@ const ROUTES = {
     subhead: "16–40 ft Inflatable Cinema Screens & 14–20 ft Mobile LED Video Walls",
     details:
       "Select from 14 ft, 16 ft, and 20 ft daylight-visible mobile LED video wall trailers for daytime festivals, tailgates, and sports watch parties, or 16 ft, 21 ft, 26 ft, and 40 ft giant inflatable outdoor movie screens for campus quads, town parks, summer camps, and drive-in movie nights. Every rental includes HD projection or LED processing, concert-grade audio towers, FM radio broadcast transmitters, and on-site technicians.",
+    faqs: [
+      {
+        q: "What is the difference between an inflatable movie screen and a mobile LED video wall trailer?",
+        a: "Inflatable movie screens (16 ft to 40 ft) use high-lumen digital projectors and are engineered for evening screenings, twilight movies, or indoor gym auditoriums. Mobile LED video wall trailers (14 ft to 20 ft) feature ultra-bright daylight-visible LED panels that deliver vivid picture quality in direct midday sunlight.",
+      },
+      {
+        q: "Can we broadcast movie sound through FM car radios for drive-in movies?",
+        a: "Yes! Alongside our concert-grade audio towers, we provide commercial FM radio transmitters so attendees can listen comfortably through their own car sound systems.",
+      },
+      {
+        q: "Where do you deliver outdoor movie screens and LED video walls?",
+        a: "We deliver turnkey movie screen and LED trailer rentals across New Hampshire (Hudson, Manchester, Nashua, Concord), Massachusetts (Boston, Lowell, Worcester), and North Carolina (Charlotte, Raleigh, Durham, Greensboro, Winston-Salem).",
+      },
+    ],
   },
   "/trivia-nights": {
     title: "Interactive Trivia Night & Game Show Rentals | Next Level",
@@ -49,25 +77,45 @@ const ROUTES = {
     heading: "Interactive Trivia Night & Game Show Rentals in NH, MA & NC",
     summary:
       "Bring live-hosted interactive trivia night and game show rentals to your college campus, corporate team-building event, school, or venue with Next Level Gaming & Novelties across Hudson NH, Massachusetts, New England, and North Carolina (Charlotte, Raleigh, Durham, Chapel Hill, and Greensboro NC).",
-    subhead: "Live Game Show Hosts, Wireless Buzzers & Giant Leaderboards",
+    subhead: "Live Hosts, Digital Wireless Buzzers & Custom Big-Screen Question Categories",
     details:
-      "Every interactive trivia night package includes a charismatic live host, wireless digital team buzzers, customized trivia rounds (pop culture, music, sports, campus history, or corporate trivia), concert sound, and live scoring projected onto giant HD screens up to 32 feet wide.",
+      "Our turnkey trivia shows feature charismatic live hosts, professional sound systems, wireless handheld team buzzers or smartphone-based scoring, and giant projector or TV leaderboards with customized question sets tailored to your company, university, or theme.",
+    faqs: [
+      {
+        q: "How does the interactive trivia night setup work?",
+        a: "We provide an energetic live host, sound equipment, giant-screen leaderboards, and wireless buzzers or smartphone response systems. Teams compete in real time with automated scoring.",
+      },
+      {
+        q: "Can trivia questions be customized for our company or university?",
+        a: "Yes! We can build custom trivia rounds highlighting your company culture, campus history, industry topics, or pop culture themes.",
+      },
+    ],
   },
   "/virtual-reality": {
-    title: "Virtual Reality & VR Escape Room Rentals NH & NC | Next Level",
+    title: "Virtual Reality & VR Escape Room Rentals | Next Level",
     description:
-      "Rent room-scale Virtual Reality stations and 4-player cooperative VR escape rooms with spectator screens and staff in NH, MA & North Carolina.",
+      "Rent room-scale Virtual Reality stations and 4-player cooperative VR escape rooms in NH, Boston MA & North Carolina with headsets, attendants, and screens.",
     keywords:
-      "virtual reality event rental NH, VR party rental Charlotte NC, virtual reality rental Raleigh Durham NC, VR party rental New Hampshire Massachusetts, mobile VR escape room rental, college VR entertainment New England North Carolina, Beat Saber event rental",
+      "virtual reality rental NH, VR party rental Charlotte NC, mobile VR escape room Raleigh NC, virtual reality event rental New Hampshire Massachusetts, Beat Saber party rental Boston MA Charlotte NC, room scale VR event New England",
     image: `${SITE_URL}/experience-virtual-reality.png`,
     canonicalPath: "/virtual-reality",
     serviceName: "Virtual Reality (VR) Event Stations & Mobile VR Escape Rooms",
     heading: "Virtual Reality & VR Escape Room Rentals in NH, MA & NC",
     summary:
-      "Rent immersive room-scale Virtual Reality stations and 4-player cooperative VR escape room adventures from Next Level Gaming & Novelties in Hudson NH, Nashua, Manchester, Boston MA, New England, and across North Carolina including Charlotte, Raleigh, Durham, and Greensboro NC.",
-    subhead: "Room-Scale VR Gaming Stations & 4-Player Cooperative Escape Adventures",
+      "Immerse attendees in cutting-edge room-scale Virtual Reality stations and 4-player cooperative VR escape rooms with Next Level Gaming & Novelties across Hudson NH, Greater Boston, Massachusetts, New England, and North Carolina (Charlotte, Raleigh, Durham, Chapel Hill, Greensboro NC).",
+    subhead: "Room-Scale VR Headsets, Spectator Displays & Co-op VR Escape Adventures",
     details:
       "Our VR event rentals feature motion-tracked headsets, live HD spectator monitors so crowds can watch the action, sanitary disposable masks, dedicated attendants, and fan-favorite VR games including Beat Saber, SUPERHOT VR, Job Simulator, Walkabout Mini Golf, Pistol Whip, Dragon Tower, Depths of Osiris, Manor Escape, and Time Travel Paradox.",
+    faqs: [
+      {
+        q: "What games and experiences are available with the VR rental?",
+        a: "We feature top room-scale titles like Beat Saber, SUPERHOT VR, Job Simulator, Walkabout Mini Golf, Pistol Whip, and multi-player VR escape rooms including Dragon Tower, Manor Escape, and Depths of Osiris.",
+      },
+      {
+        q: "Can spectators watch what the player sees in VR?",
+        a: "Yes! Every station includes an external HD spectator monitor so attendees waiting in line or cheering from the crowd can see every move in real time.",
+      },
+    ],
   },
   "/photo-booth": {
     title: "Interactive Photo Booth, 360 Video Booth & Mirror Photobooths | Next Level",
@@ -84,6 +132,24 @@ const ROUTES = {
     subhead: "Interactive Mirror Photo Booths & Slow-Motion 360 Video Platforms",
     details:
       "Every interactive photo booth, 360 video booth, and mirror photobooth package includes red carpet and VIP stanchions, professional LED studio ring lighting, custom event logos and overlays, party props, instant QR and SMS digital sharing, and a friendly on-site attendant for college formals, proms, corporate galas, and private celebrations.",
+    faqs: [
+      {
+        q: "How does the 360 photo booth and slow-motion video booth work?",
+        a: "Guests step onto an elevated platform while a motorized camera arm rotates 360 degrees around them, capturing high-resolution slow-motion video. Videos are rendered with custom event graphics and music, and guests download them immediately to their phones via QR code or SMS.",
+      },
+      {
+        q: "What is an interactive mirror photo booth?",
+        a: "The mirror photo booth is a full-length touch-screen mirror that displays vibrant animations, countdowns, and voice prompts. Guests pose, sign the interactive glass, and take home glossy printed photo keepsakes.",
+      },
+      {
+        q: "How much space and power is needed for the photo booth rental?",
+        a: "The 360 video booth requires a 10x10 ft open area for safe rotation and guest queueing. The mirror photobooth requires an 8x8 ft space. Both operate on a standard 120V household outlet.",
+      },
+      {
+        q: "Is an attendant included with the rental?",
+        a: "Yes. Every rental includes a dedicated on-site attendant to guide guests, manage lines, and ensure flawless operation throughout your event.",
+      },
+    ],
   },
   "/just-dance": {
     title: "Just Dance Giant Screen Event Party Rentals | Next Level",
@@ -100,6 +166,16 @@ const ROUTES = {
     subhead: "Massive HD Projection Screens, Concert Audio & Multiplayer Dance Battles",
     details:
       "Guests step onto the dance floor, follow the choreography on 12 ft to 32 ft HD screens, and compete or dance together to chart-topping hits backed by concert-grade speakers, subwoofers, and dynamic party lighting.",
+    faqs: [
+      {
+        q: "How many guests can participate in a Just Dance stage party?",
+        a: "Dozens of guests can dance together simultaneously on the dance floor while hundreds watch, sing along, and cheer on the massive HD screen.",
+      },
+      {
+        q: "What equipment is included with the Just Dance party rental?",
+        a: "We provide 12 ft to 32 ft HD screens, high-output sound systems and subwoofers, dynamic dance lighting, modern game consoles, and staff to run dance-offs.",
+      },
+    ],
   },
   "/silent-disco": {
     title: "Silent Disco LED Headphone Party Rentals NH & NC | Next Level",
@@ -116,6 +192,16 @@ const ROUTES = {
     subhead: "Three-Channel Tri-Color LED Wireless Headphones for 50 to 5,000+ Guests",
     details:
       "Guests switch between up to three live DJ or playlist channels right on their earcup, lighting up the room in red, green, or blue LED glow so everyone can see which song channel their friends are dancing to—all with zero noise complaints for late-night campus unions, outdoor quads, and high school post-proms.",
+    faqs: [
+      {
+        q: "How does a Silent Disco work?",
+        a: "Guests wear wireless LED headphones that pick up audio from up to three separate transmitters. Each listener can toggle between music genres or DJs, with LED lights indicating their channel.",
+      },
+      {
+        q: "Can Silent Disco be hosted in venues with noise curfews?",
+        a: "Yes! Silent Discos produce zero amplified loudspeaker noise, making them ideal for outdoor quads, residential halls, and public spaces after hours.",
+      },
+    ],
   },
   "/sim-racing": {
     title: "Sim Racing Cockpit Simulator Event Rentals | Next Level",
@@ -132,6 +218,16 @@ const ROUTES = {
     subhead: "Force-Feedback Racing Cockpits, Bucket Seats & Fastest-Lap Tournaments",
     details:
       "Our Sim Racing simulator cockpits pair force-feedback racing wheels and pedal sets with authentic racing bucket seats, high-definition displays, surround sound, and live fastest-lap leaderboards managed by our event crew.",
+    faqs: [
+      {
+        q: "What equipment comes with the Sim Racing simulator cockpit?",
+        a: "Each cockpit features an authentic racing bucket seat, precision force-feedback steering wheel and pedals, high-definition displays, and live leaderboard tracking.",
+      },
+      {
+        q: "What types of cars and tracks can participants race?",
+        a: "Racers can drive Formula 1, GT3, rally, and supercars on laser-scanned international circuits with true-to-life physics.",
+      },
+    ],
   },
   "/glow-park": {
     title: "Glow Park Swings, Seesaws & Mini Golf Rental | Next Level",
@@ -148,6 +244,16 @@ const ROUTES = {
     subhead: "Eight Illuminated LED Swings, Four Glow Seesaws & Glowing Mini Golf",
     details:
       "Our signature Glow Park package includes 8 commercial LED illuminated swings on truss frames, 4 glowing multi-rider seesaws, full-color venue uplighting, and an interactive glowing mini-golf course that turns any day or night event into a viral photo destination.",
+    faqs: [
+      {
+        q: "What items are included in the Glow Park Experience?",
+        a: "The full Glow Park package features 8 illuminated LED glow swings on truss frames, 4 glowing seesaws, dynamic venue uplighting, and a glowing mini-golf course.",
+      },
+      {
+        q: "Can the Glow Park be installed indoors?",
+        a: "Yes! It creates a breathtaking glow lounge indoors in darkened gymnasiums, field houses, and ballrooms, as well as on outdoor lawns.",
+      },
+    ],
   },
   "/novelties": {
     title: "Custom Event Novelties & Maker Workshops NH & NC | Next Level",
@@ -164,6 +270,16 @@ const ROUTES = {
     subhead: "Patched City Hats, Custom Socks, Pillow Dolls, Keychains & Plush Bags",
     details:
       "Attendees customize and take home personalized souvenirs on the spot: Patched City custom trucker hats and beanies with heat-pressed patches, custom printed crew socks, Bead-tastics and intention bracelets, custom photo pillow dolls, reversible sequin pillows, laser-engraved wood and metal keychains, hammerless stamped custom rings, Silly Sacks plush character bags, and custom novelty license plates.",
+    faqs: [
+      {
+        q: "Do guests get to take home their novelty creations immediately?",
+        a: "Yes! All novelties—including heat-pressed Patched City hats, laser-engraved keychains, and custom printed socks—are created and completed on-site during your event.",
+      },
+      {
+        q: "How many items can your novelty workshop produce per hour?",
+        a: "Depending on the station and staffing, our crew can produce 50 to over 200 custom souvenir items per hour.",
+      },
+    ],
   },
   "/about": {
     title: "About Next Level Gaming & Novelties | NH, MA & NC Team",
@@ -179,6 +295,16 @@ const ROUTES = {
     subhead: "10+ Years of Turnkey Campus, School, Corporate & Community Events",
     details:
       "From a neighborhood game of Madden in 2007 to producing large-scale interactive events across New Hampshire, Massachusetts, Connecticut, Rhode Island, Maine, Vermont, North Carolina, New York, New Jersey, Pennsylvania, and Florida, our crew handles every detail of delivery, setup, live hosting, and teardown.",
+    faqs: [
+      {
+        q: "Who founded Next Level Gaming & Novelties?",
+        a: "Next Level Gaming & Novelties was founded by Calvin Reid and Yaw Boateng, who expanded the company from local New England gaming setups into a premier event rental production company serving both New England and North Carolina.",
+      },
+      {
+        q: "Is Next Level Gaming & Novelties insured for campus and municipal venues?",
+        a: "Yes. We maintain comprehensive commercial liability insurance satisfying requirements for major universities, colleges, public schools, and convention centers.",
+      },
+    ],
   },
   "/contact": {
     title: "Contact Next Level Gaming & Novelties | NH, MA & NC Office",
@@ -194,6 +320,16 @@ const ROUTES = {
     subhead: "Check Event Availability & Request Pricing for NH, MA & North Carolina",
     details:
       "Our event coordinators respond quickly with package recommendations, space requirements, power specifications, and turnkey pricing for venues in Hudson, Nashua, Manchester, Boston, Charlotte, Raleigh, Durham, Greensboro, and beyond.",
+    faqs: [
+      {
+        q: "What is the fastest way to check availability for an event date?",
+        a: "The fastest way is to submit our online quote request form at https://nextlevelgamingevents.com/quote or call our booking office at 978-601-5473.",
+      },
+      {
+        q: "What regions do you travel to?",
+        a: "We travel throughout New Hampshire, Massachusetts, Maine, Vermont, Rhode Island, Connecticut, and across North Carolina, South Carolina, and the East Coast.",
+      },
+    ],
   },
   "/quote": {
     title: "Request an Event Rental Quote | Next Level Gaming NH & NC",
@@ -240,6 +376,16 @@ const ROUTES = {
     subhead: "Serving Colleges, Schools, Corporate Events & Festivals Across North Carolina",
     details:
       "Our North Carolina branch provides full delivery, setup, and on-site event staff for university campuses, high school proms and grad nights, corporate activations, and community festivals in the Charlotte Metro, Research Triangle (Raleigh-Durham-Chapel Hill), Piedmont Triad (Greensboro-Winston-Salem-High Point), Coastal NC, and Western NC.",
+    faqs: [
+      {
+        q: "Which cities in North Carolina do you deliver event rentals to?",
+        a: "Our North Carolina crew serves Charlotte, Raleigh, Durham, Chapel Hill, Greensboro, Winston-Salem, Cary, Apex, Concord, High Point, Wilmington, Fayetteville, Greenville, and Asheville, NC.",
+      },
+      {
+        q: "What types of events do you produce in North Carolina?",
+        a: "We produce college campus events (orientation, homecoming, spring weekend), high school proms and post-proms, corporate family picnics, trade show attractions, and municipal festivals across NC.",
+      },
+    ],
   },
   "/new-hampshire-massachusetts-event-rentals": {
     title: "NH & MA Event Rentals | Hudson, Manchester & Boston",
@@ -256,6 +402,16 @@ const ROUTES = {
     subhead: "Turnkey Event Entertainment Across New Hampshire, Massachusetts & New England",
     details:
       "For over ten years, our Hudson NH team has produced interactive campus, school, municipal, and corporate events across Southern and Central New Hampshire, Greater Boston, the Merrimack Valley, Central and Western Massachusetts, Rhode Island, Connecticut, Maine, and Vermont.",
+    faqs: [
+      {
+        q: "Where is Next Level Gaming located in New Hampshire?",
+        a: "We are headquartered in Hudson, NH (03051) and deliver interactive entertainment across Southern and Central New Hampshire, Greater Boston, and throughout New England.",
+      },
+      {
+        q: "How far in advance should we reserve event rentals in NH or MA?",
+        a: "We recommend booking 4 to 12 weeks in advance to secure prime dates for college spring weekends, high school post-prom lock-ins, and summer festivals.",
+      },
+    ],
   },
   "/college-school-corporate-events": {
     title: "College, School & Corporate Event Rentals | Next Level",
@@ -272,6 +428,16 @@ const ROUTES = {
     subhead: "Insured, Fully Staffed Interactive Attractions for High-Attendance Events",
     details:
       "Whether you are entertaining 100 students in a campus center or 5,000 attendees at a spring weekend festival or company picnic, our crew delivers commercial-grade equipment, giant HD screens, concert sound, and hands-on novelty stations tailored to your schedule and venue.",
+    faqs: [
+      {
+        q: "Are Next Level Gaming & Novelties events fully insured?",
+        a: "Yes. We carry comprehensive commercial general liability insurance that satisfies university risk management and municipal requirements.",
+      },
+      {
+        q: "Can we bundle multiple attractions for a single campus or corporate date?",
+        a: "Yes! Many clients bundle attractions—such as a 26 ft outdoor movie screen, 360 photo booth, multiplayer gaming tournament, and custom hat workshop—for seamless, multi-hour entertainment.",
+      },
+    ],
   },
   "/build-novelty": {
     title: "Novelty Customization Studio | Next Level Gaming",
@@ -403,6 +569,25 @@ function buildRouteHtml(baseHtml, routeKey, seo) {
         ],
       });
     }
+
+    if (seo.faqs && seo.faqs.length > 0) {
+      // Remove homepage generic FAQ from baseHtml on subpages so the subpage has its own clean, relevant FAQ schema
+      html = html.replace(/\{\s*"@type"\s*:\s*"FAQPage"[\s\S]*?\}\s*,\s*(?=\{\s*"@type"\s*:\s*"WebSite")/i, "");
+
+      routeGraph.push({
+        "@type": "FAQPage",
+        "@id": `${canonicalUrl}#faq`,
+        mainEntity: seo.faqs.map((f) => ({
+          "@type": "Question",
+          name: f.q,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: f.a,
+          },
+        })),
+      });
+    }
+
     const routeSchemaTag = `<script id="seo-route-schema" type="application/ld+json">${JSON.stringify({
       "@context": "https://schema.org",
       "@graph": routeGraph,
@@ -415,12 +600,59 @@ function buildRouteHtml(baseHtml, routeKey, seo) {
       seo.subhead && seo.details
         ? `<h2>${escapeHtml(seo.subhead)}</h2><p>${escapeHtml(seo.details)}</p>`
         : "";
-    html = html.replace(/<h1>[\s\S]*?<\/h1>/i, `<h1>${escapeHtml(seo.heading)}</h1>`);
+
+    let faqHtml = "";
+    if (seo.faqs && seo.faqs.length > 0) {
+      faqHtml = `
+      <section>
+        <h2>Frequently Asked Questions</h2>
+        <dl>
+          ${seo.faqs
+            .map(
+              (f) =>
+                `<dt style="font-weight:bold;margin-top:12px;">${escapeHtml(f.q)}</dt><dd style="margin-left:0;margin-top:4px;"><p>${escapeHtml(f.a)}</p></dd>`
+            )
+            .join("\n          ")}
+        </dl>
+      </section>`;
+    }
+
+    const relatedLinksHtml = `
+      <section>
+        <h2>Explore Turnkey Event Rentals &amp; Regional Hubs</h2>
+        <p>Next Level Gaming &amp; Novelties provides insured, full-service interactive event entertainment across New England and North Carolina:</p>
+        <ul>
+          <li><a href="/gaming-events">Video Gaming Events &amp; Esports Tournaments</a></li>
+          <li><a href="/movie-nights">Outdoor Inflatable Movie Screens &amp; Mobile LED Video Walls</a></li>
+          <li><a href="/photo-booth">Interactive Photo Booths &amp; 360 Video Booths</a></li>
+          <li><a href="/virtual-reality">Virtual Reality Stations &amp; Mobile VR Escape Rooms</a></li>
+          <li><a href="/glow-park">Glow Park Illuminated Swings, Seesaws &amp; Mini Golf</a></li>
+          <li><a href="/sim-racing">Force-Feedback Sim Racing Cockpit Simulators</a></li>
+          <li><a href="/silent-disco">Three-Channel Silent Disco Wireless LED Headphones</a></li>
+          <li><a href="/just-dance">Just Dance Giant-Screen Stage Parties</a></li>
+          <li><a href="/trivia-nights">Interactive Live-Hosted Trivia Nights &amp; Game Shows</a></li>
+          <li><a href="/novelties">Custom Event Novelties, Patched City Hats &amp; DIY Workshops</a></li>
+        </ul>
+        <p>Regional branches: <a href="/new-hampshire-massachusetts-event-rentals">New Hampshire &amp; Massachusetts Event Rentals</a> (Hudson, Manchester, Nashua, Boston) and <a href="/north-carolina-event-rentals">North Carolina Event Rentals</a> (Charlotte, Raleigh, Durham, Greensboro) for <a href="/college-school-corporate-events">Colleges, Schools &amp; Corporate Events</a>.</p>
+        <p>Ready to plan your event? <a href="/quote">Request a free custom quote online</a>, submit a <a href="/novelty-order">custom novelty order</a>, or call our booking office at <a href="tel:9786015473">978-601-5473</a>.</p>
+      </section>`;
+
+    const customMainHtml = `<main style="background:#05070f;color:#ffffff;font-family:Inter,sans-serif;padding:24px;">
+      <header>
+        <img src="/logo.png" alt="Next Level Gaming and Novelties Event Rentals Logo" width="160" height="80" />
+      </header>
+      <section>
+        <h1>${escapeHtml(seo.heading)}</h1>
+        <p><strong>${escapeHtml(seo.heading)}</strong> — ${escapeHtml(seo.summary)}</p>
+        ${subheadBlock}
+      </section>
+      ${faqHtml}
+      ${relatedLinksHtml}
+    </main>`;
+
     html = html.replace(
-      /<section>\s*<h1>[\s\S]*?<\/h1>\s*<p>[\s\S]*?<\/p>/i,
-      `<section><h1>${escapeHtml(seo.heading)}</h1><p><strong>${escapeHtml(
-        seo.heading
-      )}</strong> — ${escapeHtml(seo.summary)}</p>${subheadBlock}`
+      /<main\b[^>]*>[\s\S]*?<\/main>/i,
+      customMainHtml
     );
   }
 
