@@ -70,20 +70,20 @@ const ROUTES = {
       "Our VR event rentals feature motion-tracked headsets, live HD spectator monitors so crowds can watch the action, sanitary disposable masks, dedicated attendants, and fan-favorite VR games including Beat Saber, SUPERHOT VR, Job Simulator, Walkabout Mini Golf, Pistol Whip, Dragon Tower, Depths of Osiris, Manor Escape, and Time Travel Paradox.",
   },
   "/photo-booth": {
-    title: "360 Video Booth & Mirror Photobooth Rentals | Next Level",
+    title: "Interactive Photo Booth, 360 Video Booth & Mirror Photobooths | Next Level",
     description:
-      "Rent a 360 slow-motion video booth or interactive full-length mirror photobooth with props, custom overlays, and staff in NH, MA & North Carolina.",
+      "Rent interactive mirror photo booths and 360 slow-motion video booths with custom overlays, props, and on-site attendant in NH, MA & North Carolina.",
     keywords:
-      "360 photo booth rental NH, 360 video booth rental Charlotte NC, mirror photobooth rental Raleigh Durham NC, 360 video booth rental New Hampshire Massachusetts, mirror photobooth rental Hudson NH, event photobooth rental New England North Carolina",
+      "interactive photo booth, interactive mirror photo booth, 360 photo booth rental NH, 360 video booth rental Charlotte NC, mirror photobooth rental Raleigh Durham NC, 360 video booth rental New Hampshire Massachusetts, mirror photobooth rental Hudson NH, event photobooth rental New England North Carolina",
     image: `${SITE_URL}/experience-360-video-booth.png`,
     canonicalPath: "/photo-booth",
-    serviceName: "360 Video Booth & Interactive Mirror Photobooth Rentals",
-    heading: "360 Video Booth & Mirror Photobooth Rentals in NH, MA & NC",
+    serviceName: "Interactive Photo Booth, 360 Video Booth & Mirror Photobooth Rentals",
+    heading: "Interactive Photo Booth, 360 Video Booth & Mirror Photobooths in NH, MA & NC",
     summary:
-      "Capture and share unforgettable memories with 360 slow-motion video booth and interactive full-length mirror photobooth rentals from Next Level Gaming & Novelties in Hudson NH, Massachusetts, New England, and North Carolina (Charlotte, Raleigh, Durham, Chapel Hill, and Greensboro NC).",
-    subhead: "Slow-Motion 360 Video Platforms & Full-Length Interactive Mirror Booths",
+      "Capture and share unforgettable memories with interactive photo booth, 360 slow-motion video booth, and interactive full-length mirror photobooth rentals from Next Level Gaming & Novelties in Hudson NH, Massachusetts, New England, and North Carolina (Charlotte, Raleigh, Durham, Chapel Hill, and Greensboro NC).",
+    subhead: "Interactive Mirror Photo Booths & Slow-Motion 360 Video Platforms",
     details:
-      "Every 360 video booth and mirror photobooth package includes red carpet and VIP stanchions, professional LED studio ring lighting, custom event logos and overlays, party props, instant QR and SMS digital sharing, and a friendly on-site attendant for college formals, proms, corporate galas, and private celebrations.",
+      "Every interactive photo booth, 360 video booth, and mirror photobooth package includes red carpet and VIP stanchions, professional LED studio ring lighting, custom event logos and overlays, party props, instant QR and SMS digital sharing, and a friendly on-site attendant for college formals, proms, corporate galas, and private celebrations.",
   },
   "/just-dance": {
     title: "Just Dance Giant Screen Event Party Rentals | Next Level",

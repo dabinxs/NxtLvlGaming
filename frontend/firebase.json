@@ -30,6 +30,16 @@
     ],
     "redirects": [
       {
+        "source": "/gaming-event-party",
+        "destination": "/gaming-events",
+        "type": 301
+      },
+      {
+        "source": "/product-page/:path*",
+        "destination": "/movie-nights",
+        "type": 301
+      },
+      {
         "source": "/video-gaming-events",
         "destination": "/gaming-events",
         "type": 301

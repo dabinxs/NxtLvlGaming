@@ -90,6 +90,8 @@ function App() {
         <Route path="/build" element={<NoveltyAccess />} />
         <Route path="/cms" element={<AdminPage />} />
         {/* Legacy Wix URL redirects */}
+        <Route path="/gaming-event-party" element={<Navigate to="/gaming-events" replace />} />
+        <Route path="/product-page/*" element={<Navigate to="/movie-nights" replace />} />
         <Route path="/video-gaming-events" element={<Navigate to="/gaming-events" replace />} />
         <Route path="/art" element={<Navigate to="/novelties" replace />} />
         <Route path="/360videobooth" element={<Navigate to="/photo-booth" replace />} />
