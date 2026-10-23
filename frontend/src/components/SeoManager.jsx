@@ -18,24 +18,24 @@ export const ROUTE_SEO = {
       "Next Level Gaming & Novelties provides turnkey interactive event rentals, multiplayer video gaming events, esports tournaments, giant inflatable outdoor movie screens, daylight mobile LED video wall trailers, room-scale Virtual Reality stations, 4-player VR escape rooms, 360 video booths, mirror photobooths, Silent Disco wireless headphone parties, Sim Racing simulator cockpits, Just Dance giant-screen parties, Glow Park LED swings and mini golf, live-hosted Trivia Nights, and hands-on custom novelty workshops across Hudson, Nashua, Manchester, and Concord NH, Greater Boston, Lowell, and Worcester MA, New England, and our North Carolina branch serving Charlotte, Raleigh, Durham, Chapel Hill, Greensboro, Winston-Salem, Cary, Wilmington, and Asheville NC.",
   },
   "/gaming-events": {
-    title: "Video Gaming Event Rentals & Esports NH, MA, NC | Next Level",
+    title: "Gaming Events Boston MA, NH & NC | Video Game & Esports Rentals",
     description:
-      "Rent multiplayer video gaming events and esports tournaments in Hudson NH, MA & North Carolina with 12–40 ft HD screens, consoles, and event staff.",
+      "Rent multiplayer video gaming events and esports tournaments in Boston MA, Hudson NH & North Carolina with 12–40 ft HD screens, consoles, and event staff.",
     keywords:
-      "gaming events Hudson NH, video gaming event rental New Hampshire, gaming event rentals Charlotte NC, mobile video game party Raleigh NC, esports tournament production NH MA NC, mobile video game party rental Manchester NH, Nashua NH gaming party, college gaming event rental New England North Carolina, high school post prom video game party, Super Smash Bros tournament rental, Mario Kart event rental Boston MA Charlotte NC",
+      "boston gaming events, gaming events Boston MA, college gaming events Boston, video game party rental Manchester NH, gaming events Hudson NH, video gaming event rental New Hampshire, gaming event rentals Charlotte NC, mobile video game party Raleigh NC, esports tournament production NH MA NC, Super Smash Bros tournament rental, Mario Kart event rental Boston MA Charlotte NC",
     image: `${SITE_URL}/gaming-events-experience-1.png`,
     canonicalPath: "/gaming-events",
     serviceName: "Video Gaming Event Rentals & Esports Tournament Production",
-    heading: "Video Gaming Event Rentals & Esports in NH, MA & North Carolina",
+    heading: "Gaming Events & Esports Tournament Rentals in Boston MA, NH & NC",
     summary:
-      "Next Level Gaming & Novelties delivers full-scale multiplayer video gaming event rentals and bracketed esports tournament productions across Hudson, Nashua, and Manchester NH, Greater Boston and Massachusetts, New England, and across North Carolina including Charlotte, Raleigh, Durham, Chapel Hill, and Greensboro NC. Choose from our Deluxe Package (four 12 ft HD screens plus a giant 21 to 32 ft HD screen), Ultimate Package (eight 12 ft HD screens plus a 26 ft jumbo screen and virtual smartphone DJ dance party), or Esports Tournament Package with PlayStation 5, Xbox Series X, Nintendo Switch, and classic retro NES consoles.",
+      "Next Level Gaming & Novelties delivers full-scale multiplayer video gaming event rentals and bracketed esports tournament productions across Greater Boston and Massachusetts, Hudson, Nashua, and Manchester NH, New England, and our North Carolina branch in Charlotte, Raleigh, Durham, Chapel Hill, and Greensboro NC. Choose from our Deluxe Package (four 12 ft HD screens plus a giant 21 to 32 ft HD screen), Ultimate Package (eight 12 ft HD screens plus a 26 ft jumbo screen and virtual smartphone DJ dance party), or Esports Tournament Package with PlayStation 5, Xbox Series X, Nintendo Switch, and classic retro NES consoles.",
   },
   "/movie-nights": {
     title: "Outdoor Movie Screen & LED Wall Rentals NH & NC | Next Level",
     description:
       "Rent giant inflatable outdoor movie screens (16–40 ft) and daylight mobile LED video wall trailers (14–20 ft) with concert audio in NH, MA & NC.",
     keywords:
-      "outdoor movie screen rental NH, outdoor movie screen rental Charlotte NC, inflatable movie screen rental Raleigh Durham NC, inflatable movie screen rental New Hampshire Massachusetts, mobile LED video wall trailer rental NH MA NC, backyard movie night rental Hudson NH Charlotte NC, drive-in movie screen rental",
+      "inflatable screen room, inflatable screen rental, outdoor movie screen rental NH, outdoor movie screen rental Charlotte NC, inflatable movie screen rental Raleigh Durham NC, inflatable movie screen rental New Hampshire Massachusetts, mobile LED video wall trailer rental NH MA NC, backyard movie night rental Hudson NH Charlotte NC, drive-in movie screen rental",
     image: `${SITE_URL}/experience-movie-nights.png`,
     canonicalPath: "/movie-nights",
     serviceName: "Outdoor Inflatable Movie Screen & Mobile LED Video Wall Rentals",
@@ -103,11 +103,11 @@ export const ROUTE_SEO = {
     serviceName: "Interactive Photo Booth, 360 Video Booth & Mirror Photobooth Rentals",
   },
   "/just-dance": {
-    title: "Just Dance Giant Screen Event Party Rentals | Next Level",
+    title: "Just Dance Party Rentals & Giant Screen Events | Next Level",
     description:
       "Bring multiplayer Just Dance battles on giant HD screens with concert sound and lighting to your college, school, or event in NH, MA & North Carolina.",
     keywords:
-      "Just Dance event rental, giant screen dance party rental NH MA NC, college Just Dance party New England North Carolina, interactive dance game rental Boston MA Charlotte NC",
+      "just dance, just dance party rental, Just Dance event rental NH MA NC, giant screen dance party rental, college Just Dance party New England North Carolina, interactive dance game rental Boston MA Charlotte NC",
     image: `${SITE_URL}/experience-just-dance.png`,
     canonicalPath: "/just-dance",
     serviceName: "Just Dance Giant-Screen Event Rentals",
@@ -142,11 +142,11 @@ export const ROUTE_SEO = {
       "Bring high-speed motorsport competition to your corporate activation, trade show, college campus, or private party with Sim Racing cockpit simulator rentals in Hudson NH, Boston MA, New England, and across North Carolina including Charlotte, Concord, Raleigh, Durham, and Greensboro NC. Features force-feedback steering wheels, responsive pedal sets, racing bucket seats, giant HD displays, and live fastest-lap tournament leaderboards.",
   },
   "/glow-park": {
-    title: "Glow Park Swings, Seesaws & Mini Golf Rental | Next Level",
+    title: "Glow Park Rentals — Illuminated Swings, Seesaws & Mini Golf | Next Level",
     description:
       "Rent the Glow Park Experience with 8 LED glow swings, 4 glowing seesaws, colorful venue uplighting, and glowing mini golf in NH, MA & North Carolina.",
     keywords:
-      "glow park rental, LED glow swings rental NH MA NC, glow swings rental Charlotte Raleigh NC, illuminated seesaws event rental, glow mini golf rental New England North Carolina, college glow night attraction",
+      "glow park, glow park rental, LED glow swings rental NH MA NC, glow swings rental Charlotte Raleigh NC, illuminated seesaws event rental, glow mini golf rental New England North Carolina, college glow night attraction",
     image: `${SITE_URL}/experience-glow-park.jpg`,
     canonicalPath: "/glow-park",
     serviceName: "Glow Park Experience — Illuminated Swings, Seesaws & Mini Golf Rentals",
