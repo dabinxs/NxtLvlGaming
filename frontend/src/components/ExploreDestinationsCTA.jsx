@@ -33,12 +33,12 @@ const ExploreDestinationsCTA = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [expandedGroup, setExpandedGroup] = useState(null);
-  const [experienceAnchorTop, setExperienceAnchorTop] = useState(null);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const triggerRef = useRef(null);
   const closeRef = useRef(null);
   const dialogRef = useRef(null);
   const useCompactGroups = compactOnMobile && isSmallScreen;
+  const compactExperienceOpen = useCompactGroups && expandedGroup === "Experiences";
 
   useEffect(() => {
     if (!compactOnMobile) return undefined;
@@ -62,7 +62,6 @@ const ExploreDestinationsCTA = ({
       if (event.key === "Escape") {
         setIsOpen(false);
         setExpandedGroup(null);
-        setExperienceAnchorTop(null);
         return;
       }
       if (event.key !== "Tab" || !dialogRef.current) return;
@@ -103,7 +102,6 @@ const ExploreDestinationsCTA = ({
         className={className}
         onClick={() => {
           setExpandedGroup(null);
-          setExperienceAnchorTop(null);
           setIsOpen(true);
         }}
       >
@@ -113,12 +111,11 @@ const ExploreDestinationsCTA = ({
 
       {isOpen && createPortal(
         <div
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-[#02050c]/85 p-3 backdrop-blur-sm sm:p-6"
+          className="fixed inset-0 z-[200] flex items-center justify-center bg-[#02050c]/85 p-3 backdrop-blur-sm sm:p-6"
           onMouseDown={(event) => {
             if (event.target === event.currentTarget) {
               setIsOpen(false);
               setExpandedGroup(null);
-              setExperienceAnchorTop(null);
             }
           }}
         >
@@ -128,40 +125,22 @@ const ExploreDestinationsCTA = ({
             role="dialog"
             aria-modal="true"
             aria-labelledby="explore-destinations-title"
-            className="box-border w-full min-w-0 max-w-2xl overflow-x-hidden overflow-y-auto overscroll-contain rounded-t-3xl border border-white/15 bg-[#0b1221] p-4 pb-[calc(env(safe-area-inset-bottom)+16px)] shadow-2xl sm:max-h-[min(85dvh,720px)] sm:rounded-3xl sm:p-7"
+            className={`box-border w-full min-w-0 max-w-2xl rounded-3xl border border-white/15 bg-[#0b1221] p-4 pb-[calc(env(safe-area-inset-bottom)+16px)] shadow-2xl sm:max-h-[min(85dvh,720px)] sm:p-7 ${
+              compactExperienceOpen
+                ? "flex flex-col overflow-hidden"
+                : "overflow-x-hidden overflow-y-auto overscroll-contain"
+            }`}
             style={{
-              position:
-                useCompactGroups && expandedGroup === "Experiences" && experienceAnchorTop !== null
-                  ? "absolute"
-                  : undefined,
-              top:
-                useCompactGroups && expandedGroup === "Experiences" && experienceAnchorTop !== null
-                  ? `${experienceAnchorTop}px`
-                  : undefined,
-              left:
-                useCompactGroups && expandedGroup === "Experiences" && experienceAnchorTop !== null
-                  ? "50%"
-                  : undefined,
-              transform:
-                useCompactGroups && expandedGroup === "Experiences" && experienceAnchorTop !== null
-                  ? "translateX(-50%)"
-                  : undefined,
-              width:
-                useCompactGroups && expandedGroup === "Experiences" && experienceAnchorTop !== null
-                  ? "min(calc(100vw - 24px), 42rem)"
+              height:
+                compactExperienceOpen
+                  ? "min(85dvh, 620px)"
                   : undefined,
               maxHeight:
-                useCompactGroups && expandedGroup === "Experiences" && experienceAnchorTop !== null
-                  ? `calc(100dvh - ${experienceAnchorTop}px - env(safe-area-inset-bottom) - 12px)`
-                  : "calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 24px)",
+                "calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 24px)",
             }}
           >
             <div
-              className={`${
-                useCompactGroups
-                  ? "sticky top-0 z-10 -mx-4 -mt-4 bg-[#0b1221] px-4 pt-4 pb-2"
-                  : ""
-              } mb-5 flex min-w-0 items-start justify-between gap-3 sm:mb-7 sm:gap-4`}
+              className="mb-5 flex min-w-0 shrink-0 items-start justify-between gap-3 sm:mb-7 sm:gap-4"
             >
               <div className="min-w-0 flex-1">
                 <p className="break-words text-[10px] font-bold uppercase tracking-[0.2em] text-sky-300 sm:text-xs">
@@ -180,7 +159,6 @@ const ExploreDestinationsCTA = ({
                 onClick={() => {
                   setIsOpen(false);
                   setExpandedGroup(null);
-                  setExperienceAnchorTop(null);
                 }}
                 aria-label="Close event and experience choices"
                 className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/15 bg-white/[0.06] text-white transition-colors hover:bg-white/[0.12]"
@@ -189,6 +167,7 @@ const ExploreDestinationsCTA = ({
               </button>
             </div>
 
+            <div className={compactExperienceOpen ? "min-h-0 flex-1 overflow-y-auto overscroll-contain" : ""}>
             {useCompactGroups ? (
               <div className="grid grid-cols-1 gap-3">
                 {DESTINATION_GROUPS.map((group) => (
@@ -200,14 +179,7 @@ const ExploreDestinationsCTA = ({
                       onClick={() => {
                         if (expandedGroup === group.title) {
                           setExpandedGroup(null);
-                          setExperienceAnchorTop(null);
                           return;
-                        }
-
-                        if (group.title === "Experiences" && dialogRef.current) {
-                          setExperienceAnchorTop(dialogRef.current.getBoundingClientRect().top);
-                        } else {
-                          setExperienceAnchorTop(null);
                         }
                         setExpandedGroup(group.title);
                       }}
@@ -231,7 +203,6 @@ const ExploreDestinationsCTA = ({
                           onClick={() => {
                             setIsOpen(false);
                             setExpandedGroup(null);
-                            setExperienceAnchorTop(null);
                           }}
                           className="flex min-h-12 min-w-0 items-center justify-between gap-3 rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm font-semibold text-white transition-colors hover:border-sky-300/40 hover:bg-sky-300/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-sky-300"
                         >
@@ -267,6 +238,7 @@ const ExploreDestinationsCTA = ({
                 ))}
               </div>
             )}
+            </div>
           </section>
         </div>,
         document.body
