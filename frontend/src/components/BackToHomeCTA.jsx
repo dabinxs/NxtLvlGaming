@@ -9,8 +9,9 @@ const BackToHomeCTA = ({ mobileOnly = false }) => (
     className={`back-home-cta${mobileOnly ? " back-home-cta--mobile-only" : ""}`}
     aria-label="Back to the homepage"
   >
-    <ArrowLeft size={18} aria-hidden="true" />
-    <span>Back to homepage</span>
+    <ArrowLeft size={16} aria-hidden="true" />
+    <span className="back-home-cta__label-full">Back to homepage</span>
+    <span className="back-home-cta__label-short">Back</span>
   </Link>
 );
 

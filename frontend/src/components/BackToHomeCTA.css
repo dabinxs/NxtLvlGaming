@@ -30,12 +30,28 @@
   outline-offset: 3px;
 }
 
+.back-home-cta__label-short {
+  display: none;
+}
+
 .back-home-cta--mobile-only { display: none; }
 
 @media (max-width: 620px) {
   .back-home-cta {
-    left: max(14px, env(safe-area-inset-left));
-    bottom: max(14px, env(safe-area-inset-bottom));
+    left: max(12px, env(safe-area-inset-left));
+    bottom: max(12px, env(safe-area-inset-bottom));
+    min-height: 40px;
+    padding: 0 13px;
+    font-size: 11px;
+    gap: 6px;
+  }
+
+  .back-home-cta__label-full {
+    display: none;
+  }
+
+  .back-home-cta__label-short {
+    display: inline;
   }
 
   .back-home-cta--mobile-only { display: inline-flex; }
