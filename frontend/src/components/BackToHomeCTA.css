@@ -1,0 +1,42 @@
+.back-home-cta {
+  position: fixed;
+  z-index: 130;
+  left: max(16px, env(safe-area-inset-left));
+  bottom: max(16px, env(safe-area-inset-bottom));
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  border: 1px solid rgba(125, 221, 255, .5);
+  border-radius: 999px;
+  padding: 0 16px;
+  background: linear-gradient(135deg, #123c79, #0a2148);
+  color: #f2f8ff;
+  font-size: 12px;
+  font-weight: 800;
+  text-decoration: none;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, .48), 0 0 22px rgba(0, 102, 253, .2);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.back-home-cta:hover {
+  border-color: rgba(125, 221, 255, .8);
+  background: linear-gradient(135deg, #174a91, #0d2b5b);
+}
+
+.back-home-cta:focus-visible {
+  outline: 3px solid #7dddff;
+  outline-offset: 3px;
+}
+
+.back-home-cta--mobile-only { display: none; }
+
+@media (max-width: 620px) {
+  .back-home-cta {
+    left: max(14px, env(safe-area-inset-left));
+    bottom: max(14px, env(safe-area-inset-bottom));
+  }
+
+  .back-home-cta--mobile-only { display: inline-flex; }
+}

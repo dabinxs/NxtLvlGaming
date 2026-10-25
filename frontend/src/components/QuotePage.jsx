@@ -31,6 +31,7 @@ import {
   subMonths,
 } from "date-fns";
 import Navbar from "./Navbar";
+import BackToHomeCTA from "./BackToHomeCTA";
 import { NOVELTY_PRODUCTS } from "./BuildNovelty";
 import "./QuotePage.css";
 
@@ -617,7 +618,7 @@ function QuotePage() {
         )}
         <p className="quote-privacy"><span>YOUR DETAILS STAY PRIVATE</span><span>·</span><span>NO OBLIGATION</span><span>·</span><span>BUILT AROUND YOUR EVENT</span></p>
       </section>
-      <Link to="/" className="quote-mobile-exit"><ArrowLeft size={18} /> Back to homepage</Link>
+      <BackToHomeCTA mobileOnly />
     </main>
   );
 }

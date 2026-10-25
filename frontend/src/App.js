@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import TrustedCollaborations from "./components/TrustedCollaborations";
@@ -10,6 +10,7 @@ import Testimonials from "./components/Testimonials";
 import WhoWeAre from "./components/WhoWeAre";
 import ReadyCTA from "./components/ReadyCTA";
 import Footer from "./components/Footer";
+import BackToHomeCTA from "./components/BackToHomeCTA";
 
 import GamingEvents from "./components/GamingEvents";
 import MovieNights from "./components/MovieNights";
@@ -60,6 +61,20 @@ const LandingContent = () => {
 
 const Landing = () => <LandingContent />;
 
+const LANDING_ALIASES = new Set([
+  "/north-carolina-event-rentals",
+  "/new-hampshire-massachusetts-event-rentals",
+  "/college-school-corporate-events",
+]);
+
+const PublicBackToHomeCTA = () => {
+  const { pathname } = useLocation();
+  if (pathname === "/" || pathname === "/quote" || pathname === "/cms" || LANDING_ALIASES.has(pathname)) {
+    return null;
+  }
+  return <BackToHomeCTA />;
+};
+
 function App() {
   return (
     <BrowserRouter>
@@ -104,6 +119,7 @@ function App() {
         <Route path="/covid-19-information" element={<Navigate to="/" replace />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
+      <PublicBackToHomeCTA />
       <Link to="/cms" rel="nofollow" aria-label="Open website CMS" title="Website admin dashboard" className="cms-access-button">
         <Settings2 size={19} />
         <span>Admin</span>
