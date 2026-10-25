@@ -54,6 +54,7 @@ const Hero = () => {
           <ExploreDestinationsCTA
             label="Browse Events & Experiences"
             testId="homepage-explore-destinations-cta"
+            compactOnMobile
             className="cta-fill inline-flex min-h-[54px] w-full max-w-[320px] items-center justify-center gap-2 rounded-xl border border-white/60 bg-black/20 px-5 text-center text-[12px] font-bold uppercase tracking-[0.04em] text-white backdrop-blur-sm transition-colors hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-sky-300 sm:w-auto sm:px-6 sm:text-[13px]"
           />
         </div>

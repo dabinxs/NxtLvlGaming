@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
   Menu,
   X,
@@ -79,13 +79,6 @@ const NavDropdown = ({ menuKey }) => {
 };
 
 const Navbar = ({ topOnly = false }) => {
-  const { pathname } = useLocation();
-  const isLandingPage = [
-    "/",
-    "/north-carolina-event-rentals",
-    "/new-hampshire-massachusetts-event-rentals",
-    "/college-school-corporate-events",
-  ].includes(pathname);
   const [open, setOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState(null);
   const [mobileAccordion, setMobileAccordion] = useState(null);
@@ -210,14 +203,14 @@ const Navbar = ({ topOnly = false }) => {
         >
           {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
-        {!isLandingPage && <Link
+        <Link
           to="/quote"
           data-testid="nav-get-quote"
           className="cta-fill group hidden items-center gap-2 rounded-full bg-[#0066CC] px-6 py-3 text-[13px] font-bold uppercase tracking-[0.04em] text-white shadow-[0_6px_20px_rgba(0,102,204,0.3)] hover:shadow-[0_8px_28px_rgba(0,102,204,0.45)] lg:inline-flex"
         >
           Get A Quote
           <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:rotate-45" />
-        </Link>}
+        </Link>
       </div>
 
       {/* Mobile accordion menu */}
@@ -291,6 +284,15 @@ const Navbar = ({ topOnly = false }) => {
                 </Link>
               )
             )}
+            <Link
+              to="/quote"
+              onClick={() => setOpen(false)}
+              data-testid="mobile-nav-get-quote"
+              className="cta-fill mt-4 inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#0066CC] px-6 py-3 text-sm font-bold uppercase tracking-[0.04em] text-white shadow-[0_6px_20px_rgba(0,102,204,0.3)]"
+            >
+              Get A Quote
+              <ArrowUpRight className="h-4 w-4" />
+            </Link>
           </div>
         </div>
       )}

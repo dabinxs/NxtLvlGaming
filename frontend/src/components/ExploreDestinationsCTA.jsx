@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { ArrowUpRight, X } from "lucide-react";
+import { ArrowUpRight, ChevronDown, X } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const DESTINATION_GROUPS = [
@@ -28,11 +28,25 @@ const ExploreDestinationsCTA = ({
   label = "Check Out Other Events",
   className = "",
   testId = "explore-destinations-cta",
+  compactOnMobile = false,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [expandedGroup, setExpandedGroup] = useState(null);
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
   const triggerRef = useRef(null);
   const closeRef = useRef(null);
   const dialogRef = useRef(null);
+  const useCompactGroups = compactOnMobile && isSmallScreen;
+
+  useEffect(() => {
+    if (!compactOnMobile) return undefined;
+
+    const mediaQuery = window.matchMedia("(max-width: 639px)");
+    const updateScreenSize = () => setIsSmallScreen(mediaQuery.matches);
+    updateScreenSize();
+    window.addEventListener("resize", updateScreenSize);
+    return () => window.removeEventListener("resize", updateScreenSize);
+  }, [compactOnMobile]);
 
   useEffect(() => {
     if (!isOpen) return undefined;
@@ -45,6 +59,7 @@ const ExploreDestinationsCTA = ({
     const handleKeyDown = (event) => {
       if (event.key === "Escape") {
         setIsOpen(false);
+        setExpandedGroup(null);
         return;
       }
       if (event.key !== "Tab" || !dialogRef.current) return;
@@ -83,7 +98,10 @@ const ExploreDestinationsCTA = ({
         aria-controls="explore-destinations-dialog"
         data-testid={testId}
         className={className}
-        onClick={() => setIsOpen(true)}
+        onClick={() => {
+          setExpandedGroup(null);
+          setIsOpen(true);
+        }}
       >
         {label}
         <ArrowUpRight className="h-4 w-4 shrink-0" aria-hidden="true" />
@@ -93,7 +111,10 @@ const ExploreDestinationsCTA = ({
         <div
           className="fixed inset-0 z-[100] flex items-end justify-center bg-[#02050c]/85 p-3 backdrop-blur-sm sm:items-center sm:p-6"
           onMouseDown={(event) => {
-            if (event.target === event.currentTarget) setIsOpen(false);
+            if (event.target === event.currentTarget) {
+              setIsOpen(false);
+              setExpandedGroup(null);
+            }
           }}
         >
           <section
@@ -102,25 +123,31 @@ const ExploreDestinationsCTA = ({
             role="dialog"
             aria-modal="true"
             aria-labelledby="explore-destinations-title"
-            className="w-full max-w-2xl overflow-y-auto overscroll-contain rounded-t-3xl border border-white/15 bg-[#0b1221] p-4 pb-[calc(env(safe-area-inset-bottom)+16px)] shadow-2xl sm:max-h-[min(85dvh,720px)] sm:rounded-3xl sm:p-7"
-            style={{ maxHeight: "calc(100dvh - env(safe-area-inset-top) - 12px)" }}
+            className="box-border w-full min-w-0 max-w-2xl overflow-x-hidden overflow-y-auto overscroll-contain rounded-t-3xl border border-white/15 bg-[#0b1221] p-4 pb-[calc(env(safe-area-inset-bottom)+16px)] shadow-2xl sm:max-h-[min(85dvh,720px)] sm:rounded-3xl sm:p-7"
+            style={{
+              maxHeight:
+                "calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 24px)",
+            }}
           >
-            <div className="mb-5 flex items-start justify-between gap-4 sm:mb-7">
-              <div>
-                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-sky-300 sm:text-xs">
+            <div className="mb-5 flex min-w-0 items-start justify-between gap-3 sm:mb-7 sm:gap-4">
+              <div className="min-w-0 flex-1">
+                <p className="break-words text-[10px] font-bold uppercase tracking-[0.2em] text-sky-300 sm:text-xs">
                   Find your next experience
                 </p>
                 <h2
                   id="explore-destinations-title"
-                  className="mt-1 font-display text-2xl font-extrabold uppercase text-white sm:text-3xl"
+                  className="mt-1 break-words font-display text-xl font-extrabold uppercase leading-tight text-white sm:text-3xl"
                 >
-                  Explore Events
+                  Explore Events & Experiences
                 </h2>
               </div>
               <button
                 ref={closeRef}
                 type="button"
-                onClick={() => setIsOpen(false)}
+                onClick={() => {
+                  setIsOpen(false);
+                  setExpandedGroup(null);
+                }}
                 aria-label="Close event and experience choices"
                 className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/15 bg-white/[0.06] text-white transition-colors hover:bg-white/[0.12]"
               >
@@ -128,28 +155,70 @@ const ExploreDestinationsCTA = ({
               </button>
             </div>
 
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8">
-              {DESTINATION_GROUPS.map((group) => (
-                <div key={group.title}>
-                  <h3 className="mb-2 border-b border-white/10 pb-2 text-xs font-bold uppercase tracking-[0.16em] text-sky-200 sm:mb-3">
-                    {group.title}
-                  </h3>
-                  <div className="grid grid-cols-1 gap-2">
-                    {group.items.map((item) => (
-                      <Link
-                        key={item.to}
-                        to={item.to}
-                        onClick={() => setIsOpen(false)}
-                        className="flex min-h-12 items-center justify-between gap-3 rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm font-semibold text-white transition-colors hover:border-sky-300/40 hover:bg-sky-300/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-sky-300"
-                      >
-                        <span>{item.label}</span>
-                        <ArrowUpRight className="h-4 w-4 shrink-0 text-sky-200" aria-hidden="true" />
-                      </Link>
-                    ))}
+            {useCompactGroups ? (
+              <div className="grid grid-cols-1 gap-3">
+                {DESTINATION_GROUPS.map((group) => (
+                  <div key={group.title} className="min-w-0 overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03]">
+                    <button
+                      type="button"
+                      aria-expanded={expandedGroup === group.title}
+                      aria-controls={`destinations-${group.title.toLowerCase()}`}
+                      onClick={() => setExpandedGroup((current) => current === group.title ? null : group.title)}
+                      className="flex min-h-14 w-full items-center justify-between gap-3 px-4 py-3 text-left text-sm font-bold uppercase tracking-[0.12em] text-sky-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-sky-300"
+                    >
+                      <span>{group.title}</span>
+                      <ChevronDown className={`h-4 w-4 shrink-0 transition-transform ${expandedGroup === group.title ? "rotate-180" : ""}`} aria-hidden="true" />
+                    </button>
+                    <div
+                      id={`destinations-${group.title.toLowerCase()}`}
+                      aria-hidden={expandedGroup !== group.title}
+                      className="grid-cols-1 gap-2 border-t border-white/10 p-2"
+                      style={{
+                        display: expandedGroup === group.title ? "grid" : "none",
+                      }}
+                    >
+                      {group.items.map((item) => (
+                        <Link
+                          key={item.to}
+                          to={item.to}
+                          onClick={() => {
+                            setIsOpen(false);
+                            setExpandedGroup(null);
+                          }}
+                          className="flex min-h-12 min-w-0 items-center justify-between gap-3 rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm font-semibold text-white transition-colors hover:border-sky-300/40 hover:bg-sky-300/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-sky-300"
+                        >
+                          <span className="min-w-0 break-words">{item.label}</span>
+                          <ArrowUpRight className="h-4 w-4 shrink-0 text-sky-200" aria-hidden="true" />
+                        </Link>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8">
+                {DESTINATION_GROUPS.map((group) => (
+                  <div key={group.title} className="min-w-0">
+                    <h3 className="mb-2 border-b border-white/10 pb-2 text-xs font-bold uppercase tracking-[0.16em] text-sky-200 sm:mb-3">
+                      {group.title}
+                    </h3>
+                    <div className="grid grid-cols-1 gap-2">
+                      {group.items.map((item) => (
+                        <Link
+                          key={item.to}
+                          to={item.to}
+                          onClick={() => setIsOpen(false)}
+                          className="flex min-h-12 min-w-0 items-center justify-between gap-3 rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm font-semibold text-white transition-colors hover:border-sky-300/40 hover:bg-sky-300/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-sky-300"
+                        >
+                          <span className="min-w-0 break-words">{item.label}</span>
+                          <ArrowUpRight className="h-4 w-4 shrink-0 text-sky-200" aria-hidden="true" />
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
           </section>
         </div>
       )}
