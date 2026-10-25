@@ -451,6 +451,18 @@ const ROUTES = {
     canonicalPath: "/build-novelty",
     noindex: true,
   },
+  "/explore-experiences": {
+    title: "Explore Experiences & Events | Next Level Gaming NH & NC",
+    description:
+      "Explore all interactive event experiences from Next Level Gaming: video gaming events, outdoor movie screens, trivia nights, VR, silent disco, sim racing, and glow parks in NH, MA & NC.",
+    keywords:
+      "explore events, event rentals, interactive experiences, video gaming events, outdoor movies, silent disco, virtual reality, photo booth, sim racing, glow park",
+    image: DEFAULT_IMAGE,
+    canonicalPath: "/explore-experiences",
+    heading: "Explore What's Next — Interactive Experiences & Events in NH, MA & NC",
+    summary:
+      "Explore our complete lineup of interactive event experiences and party rentals across New Hampshire, Massachusetts, and North Carolina. From multiplayer video gaming tournaments and outdoor movie screens to immersive VR, silent discos, sim racing cockpits, and glow park attractions.",
+  },
   "/cms": {
     title: "Website CMS | Next Level Gaming & Novelties",
     description: "Admin content management dashboard for Next Level Gaming & Novelties.",
