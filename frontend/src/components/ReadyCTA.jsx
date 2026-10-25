@@ -23,13 +23,13 @@ const ReadyCTA = ({ productsFirst = false }) => {
           </h2>
 
           {productsFirst ? (
-            <a
-              href="#experience"
+            <Link
+              to="/explore-experiences"
               className="cta-fill group mt-9 inline-flex min-h-[52px] w-full max-w-[320px] items-center justify-center gap-2.5 rounded-full blue-gradient-bg px-6 py-4 text-center text-[13px] font-semibold uppercase tracking-wide text-white shadow-[0_12px_40px_rgba(0,102,253,0.45)] sm:w-auto sm:px-8"
             >
               Browse Experiences
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-            </a>
+            </Link>
           ) : (
             <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <Link

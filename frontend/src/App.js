@@ -28,6 +28,7 @@ import NoveltyOrder from "./components/NoveltyOrder";
 import ContactPage from "./components/ContactPage";
 import AboutPage from "./components/AboutPage";
 import AdminPage from "./components/AdminPage";
+import ExploreExperiences from "./components/ExploreExperiences";
 import SeoManager from "./components/SeoManager";
 import { CmsContentProvider, useCmsHomeMedia } from "./lib/cmsContent";
 import { Settings2 } from "lucide-react";
@@ -86,6 +87,9 @@ function App() {
         <Route path="/novelty-order" element={<NoveltyOrder />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/about" element={<AboutPage />} />
+        <Route path="/explore-experiences" element={<ExploreExperiences />} />
+        <Route path="/explore" element={<ExploreExperiences />} />
+        <Route path="/experiences" element={<ExploreExperiences />} />
         <Route path="/gaming-events" element={<GamingEvents />} />
         <Route path="/movie-nights" element={<MovieNights />} />
         <Route path="/trivia-nights" element={<TriviaNights />} />

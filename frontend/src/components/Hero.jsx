@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
 import TextScatter from "./TextScatter";
 import ExploreDestinationsCTA from "./ExploreDestinationsCTA";
@@ -43,14 +44,14 @@ const Hero = () => {
           className="mt-10 flex flex-col items-center gap-3 animate-rise sm:flex-row"
           style={{ animationDelay: "0.2s" }}
         >
-          <a
-            href="#experience"
+          <Link
+            to="/explore-experiences"
             data-testid="hero-explore-cta"
             className="cta-fill group inline-flex h-[54px] w-full max-w-[320px] items-center justify-center gap-3 rounded-xl border-2 border-transparent bg-[#0066CC] px-5 text-[13px] font-bold uppercase tracking-[0.06em] text-white shadow-[0_10px_34px_rgba(0,102,204,0.35)] hover:shadow-[0_14px_40px_rgba(0,102,204,0.5)] sm:w-auto sm:px-8"
           >
             Explore Experiences
             <ChevronRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-          </a>
+          </Link>
           <ExploreDestinationsCTA
             label="Browse Events & Experiences"
             testId="homepage-explore-destinations-cta"
