@@ -32,15 +32,9 @@
 
 .back-home-cta--mobile-only { display: none; }
 
-@media (max-width: 620px) {
+/* On mobile/tablet, the floating bottom dock has the Home icon */
+@media (max-width: 1024px) {
   .back-home-cta {
-    left: max(12px, env(safe-area-inset-left));
-    bottom: max(12px, env(safe-area-inset-bottom));
-    min-height: 40px;
-    padding: 0 14px;
-    font-size: 11px;
-    gap: 6px;
+    display: none !important;
   }
-
-  .back-home-cta--mobile-only { display: inline-flex; }
 }

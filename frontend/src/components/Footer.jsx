@@ -121,7 +121,7 @@ const Footer = ({ showQuoteCTA = true }) => {
       </div>
 
       {/* copyright bar */}
-      <div className="mt-8 py-6">
+      <div className="mt-8 pb-24 pt-6 lg:py-6">
         <div className="mx-auto flex max-w-[1280px] flex-col items-center gap-4 px-5 md:flex-row md:gap-6 md:px-8">
           <div className="flex shrink-0 items-center gap-3">
             <span className="flex gap-1.5" aria-hidden="true">
