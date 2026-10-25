@@ -17,7 +17,6 @@ import {
   Sparkles,
   Users,
   Camera,
-  X,
 } from "lucide-react";
 import {
   addDays,
@@ -324,7 +323,7 @@ function QuotePage() {
       <Navbar topOnly />
       <div className="quote-grid" aria-hidden="true" />
       <header className="quote-topbar">
-        <Link to="/" className="quote-exit-button"><X size={16} /> Exit planner</Link>
+        <Link to="/" className="quote-exit-button quote-exit-button--desktop"><ArrowLeft size={16} /> Back to homepage</Link>
       </header>
 
       <section className="quote-shell">
@@ -618,6 +617,7 @@ function QuotePage() {
         )}
         <p className="quote-privacy"><span>YOUR DETAILS STAY PRIVATE</span><span>·</span><span>NO OBLIGATION</span><span>·</span><span>BUILT AROUND YOUR EVENT</span></p>
       </section>
+      <Link to="/" className="quote-mobile-exit"><ArrowLeft size={18} /> Back to homepage</Link>
     </main>
   );
 }
