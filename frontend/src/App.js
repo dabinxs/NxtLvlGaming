@@ -51,9 +51,9 @@ const LandingContent = () => {
       <LevelUp />
       <Testimonials />
       <WhoWeAre />
-      <ReadyCTA />
+      <ReadyCTA productsFirst />
     </main>
-    <Footer />
+    <Footer showQuoteCTA={false} />
   </div>
   );
 };

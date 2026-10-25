@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import {
   Menu,
   X,
@@ -52,9 +52,9 @@ const NavDropdown = ({ menuKey }) => {
   return (
     <div className="flex flex-col gap-3">
       {menu.items.map((it) => (
-        <a
+        <Link
           key={it.title}
-          href={it.href || "#footer"}
+          to={it.href || "#footer"}
           data-testid={`menu-item-${it.title.toLowerCase().replace(/\s+/g, "-")}`}
           className="group flex items-center gap-3.5 rounded-[16px] p-2.5 transition-colors hover:bg-white/[0.08]"
         >
@@ -72,13 +72,20 @@ const NavDropdown = ({ menuKey }) => {
               {it.desc}
             </span>
           </span>
-        </a>
+        </Link>
       ))}
     </div>
   );
 };
 
 const Navbar = ({ topOnly = false }) => {
+  const { pathname } = useLocation();
+  const isLandingPage = [
+    "/",
+    "/north-carolina-event-rentals",
+    "/new-hampshire-massachusetts-event-rentals",
+    "/college-school-corporate-events",
+  ].includes(pathname);
   const [open, setOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState(null);
   const [mobileAccordion, setMobileAccordion] = useState(null);
@@ -182,14 +189,14 @@ const Navbar = ({ topOnly = false }) => {
                 )}
               </div>
             ) : (
-              <a
+              <Link
                 key={l.label}
-                href={l.href.startsWith("#") ? `/${l.href}` : l.href}
+                to={l.href.startsWith("#") ? `/${l.href}` : l.href}
                 onMouseEnter={scheduleClose}
                 className="rounded-xl px-4 py-2 font-display text-[15px] font-bold capitalize text-white transition-colors hover:bg-white/[0.06]"
               >
                 {l.label.toLowerCase()}
-              </a>
+              </Link>
             )
           )}
         </nav>
@@ -203,14 +210,14 @@ const Navbar = ({ topOnly = false }) => {
         >
           {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
-        <Link
+        {!isLandingPage && <Link
           to="/quote"
           data-testid="nav-get-quote"
           className="cta-fill group hidden items-center gap-2 rounded-full bg-[#0066CC] px-6 py-3 text-[13px] font-bold uppercase tracking-[0.04em] text-white shadow-[0_6px_20px_rgba(0,102,204,0.3)] hover:shadow-[0_8px_28px_rgba(0,102,204,0.45)] lg:inline-flex"
         >
           Get A Quote
           <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:rotate-45" />
-        </Link>
+        </Link>}
       </div>
 
       {/* Mobile accordion menu */}
@@ -248,9 +255,9 @@ const Navbar = ({ topOnly = false }) => {
                   >
                     <div className="flex flex-col gap-4 pb-2">
                       {megaMenus[l.menu].items.map((it) => (
-                        <a
+                        <Link
                           key={it.title}
-                          href={it.href || "#footer"}
+                          to={it.href || "#footer"}
                           onClick={() => setOpen(false)}
                           className="flex gap-3"
                           data-testid={`mobile-mega-item-${it.title
@@ -268,20 +275,20 @@ const Navbar = ({ topOnly = false }) => {
                               {it.desc}
                             </span>
                           </span>
-                        </a>
+                        </Link>
                       ))}
                     </div>
                   </div>
                 </div>
               ) : (
-                <a
+                <Link
                   key={l.label}
-                  href={l.href.startsWith("#") ? `/${l.href}` : l.href}
+                  to={l.href.startsWith("#") ? `/${l.href}` : l.href}
                   onClick={() => setOpen(false)}
                   className="py-3.5 font-display text-sm font-bold tracking-[0.1em] text-white/80"
                 >
                   {l.label}
-                </a>
+                </Link>
               )
             )}
           </div>

@@ -1,8 +1,9 @@
 import React from "react";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import ExploreDestinationsCTA from "./ExploreDestinationsCTA";
 
-const ReadyCTA = () => {
+const ReadyCTA = ({ productsFirst = false }) => {
   return (
     <section className="relative overflow-hidden">
       <div className="relative flex min-h-[520px] items-center justify-center">
@@ -21,13 +22,30 @@ const ReadyCTA = () => {
             Your Event?
           </h2>
 
-          <Link
-            to="/quote"
-            className="cta-fill group mt-9 inline-flex items-center gap-2.5 rounded-full blue-gradient-bg px-8 py-4 text-[13px] font-semibold uppercase tracking-wide text-white shadow-[0_12px_40px_rgba(0,102,253,0.45)]"
-          >
-            Build Your Event
-            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-          </Link>
+          {productsFirst ? (
+            <a
+              href="#experience"
+              className="cta-fill group mt-9 inline-flex min-h-[52px] w-full max-w-[320px] items-center justify-center gap-2.5 rounded-full blue-gradient-bg px-6 py-4 text-center text-[13px] font-semibold uppercase tracking-wide text-white shadow-[0_12px_40px_rgba(0,102,253,0.45)] sm:w-auto sm:px-8"
+            >
+              Browse Experiences
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+            </a>
+          ) : (
+            <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
+              <Link
+                to="/quote"
+                className="cta-fill group inline-flex min-h-[52px] w-full max-w-[320px] items-center justify-center gap-2.5 rounded-full blue-gradient-bg px-6 py-4 text-center text-[13px] font-semibold uppercase tracking-wide text-white shadow-[0_12px_40px_rgba(0,102,253,0.45)] sm:w-auto sm:px-8"
+              >
+                Build Your Event
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+              </Link>
+              <ExploreDestinationsCTA
+                label="Check Out Other Events"
+                testId="check-out-other-events-cta"
+                className="cta-fill inline-flex min-h-[52px] w-full max-w-[320px] items-center justify-center gap-2 rounded-full border border-white/60 bg-black/20 px-6 py-4 text-center text-[12px] font-semibold uppercase tracking-wide text-white backdrop-blur-sm transition-colors hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-sky-300 sm:w-auto sm:px-8 sm:text-[13px]"
+              />
+            </div>
+          )}
         </div>
       </div>
     </section>

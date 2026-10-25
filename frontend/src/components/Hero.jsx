@@ -1,7 +1,7 @@
 import React from "react";
 import { ChevronRight } from "lucide-react";
-import { Link } from "react-router-dom";
 import TextScatter from "./TextScatter";
+import ExploreDestinationsCTA from "./ExploreDestinationsCTA";
 
 const Hero = () => {
   return (
@@ -43,21 +43,19 @@ const Hero = () => {
           className="mt-10 flex flex-col items-center gap-3 animate-rise sm:flex-row"
           style={{ animationDelay: "0.2s" }}
         >
-          <Link
-            to="/quote"
-            data-testid="hero-plan-cta"
-            className="cta-fill group inline-flex h-[54px] items-center justify-center gap-3 rounded-xl border-2 border-transparent bg-[#0066CC] px-8 text-[13px] font-bold uppercase tracking-[0.06em] text-white shadow-[0_10px_34px_rgba(0,102,204,0.35)] hover:shadow-[0_14px_40px_rgba(0,102,204,0.5)]"
-          >
-            Plan Your Event
-            <ChevronRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-          </Link>
           <a
             href="#experience"
             data-testid="hero-explore-cta"
-            className="cta-fill group inline-flex h-[54px] items-center justify-center rounded-xl border-2 border-white/80 bg-black/20 backdrop-blur-sm px-8 text-[13px] font-bold uppercase tracking-[0.06em] text-white"
+            className="cta-fill group inline-flex h-[54px] w-full max-w-[320px] items-center justify-center gap-3 rounded-xl border-2 border-transparent bg-[#0066CC] px-5 text-[13px] font-bold uppercase tracking-[0.06em] text-white shadow-[0_10px_34px_rgba(0,102,204,0.35)] hover:shadow-[0_14px_40px_rgba(0,102,204,0.5)] sm:w-auto sm:px-8"
           >
-            Explore Explanation
+            Explore Experiences
+            <ChevronRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
           </a>
+          <ExploreDestinationsCTA
+            label="Browse Events & Experiences"
+            testId="homepage-explore-destinations-cta"
+            className="cta-fill inline-flex min-h-[54px] w-full max-w-[320px] items-center justify-center gap-2 rounded-xl border border-white/60 bg-black/20 px-5 text-center text-[12px] font-bold uppercase tracking-[0.04em] text-white backdrop-blur-sm transition-colors hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-sky-300 sm:w-auto sm:px-6 sm:text-[13px]"
+          />
         </div>
       </div>
     </section>

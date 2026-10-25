@@ -3,6 +3,18 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <script>
+            (function () {
+                function returnToHomeForDirectPageOpen() {
+                    var path = window.location.pathname.replace(/\/+$/, "") || "/";
+                    if (path !== "/" && path !== "/cms") {
+                        window.location.replace("/");
+                    }
+                }
+                returnToHomeForDirectPageOpen();
+                window.addEventListener("pageshow", returnToHomeForDirectPageOpen);
+            })();
+        </script>
         <meta name="theme-color" content="#05070f" />
         <title>Next Level Gaming &amp; Novelties | Event Rentals NH, MA &amp; NC</title>
         <meta
