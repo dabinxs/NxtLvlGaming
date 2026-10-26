@@ -6,17 +6,17 @@ const DEFAULT_IMAGE = `${SITE_URL}/hero-bg.png`;
 
 const ROUTES = {
   "/gaming-events": {
-    title: "Gaming Events Boston MA, NH & NC | Video Game & Esports Rentals",
+    title: "Live Gaming Events & Tournaments | Video Game Event Planner NH, MA & NC",
     description:
-      "Rent multiplayer video gaming events and esports tournaments in Boston MA, Hudson NH & North Carolina with 12–40 ft HD screens, consoles, and event staff.",
+      "Turnkey live gaming events, video game tournaments & esports with giant 12–40ft screens, PS5, Xbox, Switch & staff in NH, Boston MA & NC. Book your event today!",
     keywords:
-      "boston gaming events, gaming events Boston MA, college gaming events Boston, video game party rental Manchester NH, gaming events Hudson NH, video gaming event rental New Hampshire, gaming event rentals Charlotte NC, mobile video game party Raleigh NC, esports tournament production NH MA NC, Super Smash Bros tournament rental, Mario Kart event rental Boston MA Charlotte NC",
+      "live gaming events, video game event planner, video game events near me, video game tournaments, gaming event rental, gaming event planning, boston gaming events, gaming events Boston MA, college gaming events Boston, video game party rental Manchester NH, gaming events Hudson NH, video gaming event rental New Hampshire, gaming event rentals Charlotte NC, mobile video game party Raleigh NC, esports tournament production NH MA NC, Super Smash Bros tournament rental, Mario Kart event rental Boston MA Charlotte NC",
     image: `${SITE_URL}/gaming-events-experience-1.png`,
     canonicalPath: "/gaming-events",
-    serviceName: "Video Gaming Event Rentals & Esports Tournament Production",
-    heading: "Gaming Events & Esports Tournament Rentals in Boston MA, NH & NC",
+    serviceName: "Live Video Gaming Event Rentals & Esports Tournament Planning",
+    heading: "Live Gaming Events & Video Game Tournament Rentals in NH, MA & NC",
     summary:
-      "Next Level Gaming & Novelties delivers full-scale multiplayer video gaming event rentals and bracketed esports tournament productions across Greater Boston and Massachusetts, Hudson, Nashua, Manchester, Salem, Derry, and Concord NH, New England, and our North Carolina branch in Charlotte, Raleigh, Durham, Chapel Hill, Greensboro, and Winston-Salem NC.",
+      "Next Level Gaming & Novelties is the premier video game event planner delivering turnkey live gaming events and bracketed esports tournament productions across Greater Boston and Massachusetts, Hudson, Nashua, Manchester, Salem, Derry, and Concord NH, New England, and our North Carolina branch in Charlotte, Raleigh, Durham, Chapel Hill, Greensboro, and Winston-Salem NC.",
     subhead: "Deluxe, Ultimate & Esports Tournament Gaming Packages",
     details:
       "Choose from our Deluxe Package (four 12 ft HD gaming stations plus a giant 21 to 32 ft HD spectator screen), Ultimate Package (eight 12 ft HD screens plus a 26 ft jumbo screen and virtual smartphone DJ dance party), or full Esports Tournament Production with PlayStation 5, Xbox Series X, Nintendo Switch, and classic retro NES consoles. Popular games include Super Smash Bros. Ultimate, Mario Kart 8 Deluxe, EA Sports FC, Madden NFL, NBA 2K, Rocket League, Street Fighter, and Tekken.",
@@ -649,7 +649,7 @@ function buildRouteHtml(baseHtml, routeKey, seo) {
         <p>Ready to plan your event? <a href="/quote">Request a free custom quote online</a>, submit a <a href="/novelty-order">custom novelty order</a>, or call our booking office at <a href="tel:9786015473">978-601-5473</a>.</p>
       </section>`;
 
-    const customMainHtml = `<main style="background:#05070f;color:#ffffff;font-family:Inter,sans-serif;padding:24px;">
+    const customMainHtml = `<main style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">
       <header>
         <img src="/logo.png" alt="Next Level Gaming and Novelties Event Rentals Logo" width="160" height="80" />
       </header>

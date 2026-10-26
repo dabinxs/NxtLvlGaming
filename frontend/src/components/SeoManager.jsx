@@ -18,17 +18,17 @@ export const ROUTE_SEO = {
       "Next Level Gaming & Novelties provides turnkey interactive event rentals, multiplayer video gaming events, esports tournaments, giant inflatable outdoor movie screens, daylight mobile LED video wall trailers, room-scale Virtual Reality stations, 4-player VR escape rooms, 360 video booths, mirror photobooths, Silent Disco wireless headphone parties, Sim Racing simulator cockpits, Just Dance giant-screen parties, Glow Park LED swings and mini golf, live-hosted Trivia Nights, and hands-on custom novelty workshops across Hudson, Nashua, Manchester, and Concord NH, Greater Boston, Lowell, and Worcester MA, New England, and our North Carolina branch serving Charlotte, Raleigh, Durham, Chapel Hill, Greensboro, Winston-Salem, Cary, Wilmington, and Asheville NC.",
   },
   "/gaming-events": {
-    title: "Gaming Events Boston MA, NH & NC | Video Game & Esports Rentals",
+    title: "Live Gaming Events & Tournaments | Video Game Event Planner NH, MA & NC",
     description:
-      "Rent multiplayer video gaming events and esports tournaments in Boston MA, Hudson NH & North Carolina with 12–40 ft HD screens, consoles, and event staff.",
+      "Turnkey live gaming events, video game tournaments & esports with giant 12–40ft screens, PS5, Xbox, Switch & staff in NH, Boston MA & NC. Book your event today!",
     keywords:
-      "boston gaming events, gaming events Boston MA, college gaming events Boston, video game party rental Manchester NH, gaming events Hudson NH, video gaming event rental New Hampshire, gaming event rentals Charlotte NC, mobile video game party Raleigh NC, esports tournament production NH MA NC, Super Smash Bros tournament rental, Mario Kart event rental Boston MA Charlotte NC",
+      "live gaming events, video game event planner, video game events near me, video game tournaments, gaming event rental, gaming event planning, boston gaming events, gaming events Boston MA, college gaming events Boston, video game party rental Manchester NH, gaming events Hudson NH, video gaming event rental New Hampshire, gaming event rentals Charlotte NC, mobile video game party Raleigh NC, esports tournament production NH MA NC, Super Smash Bros tournament rental, Mario Kart event rental Boston MA Charlotte NC",
     image: `${SITE_URL}/gaming-events-experience-1.png`,
     canonicalPath: "/gaming-events",
-    serviceName: "Video Gaming Event Rentals & Esports Tournament Production",
-    heading: "Gaming Events & Esports Tournament Rentals in Boston MA, NH & NC",
+    serviceName: "Live Video Gaming Event Rentals & Esports Tournament Planning",
+    heading: "Live Gaming Events & Video Game Tournament Rentals in NH, MA & NC",
     summary:
-      "Next Level Gaming & Novelties delivers full-scale multiplayer video gaming event rentals and bracketed esports tournament productions across Greater Boston and Massachusetts, Hudson, Nashua, and Manchester NH, New England, and our North Carolina branch in Charlotte, Raleigh, Durham, Chapel Hill, and Greensboro NC. Choose from our Deluxe Package (four 12 ft HD screens plus a giant 21 to 32 ft HD screen), Ultimate Package (eight 12 ft HD screens plus a 26 ft jumbo screen and virtual smartphone DJ dance party), or Esports Tournament Package with PlayStation 5, Xbox Series X, Nintendo Switch, and classic retro NES consoles.",
+      "Next Level Gaming & Novelties is the premier video game event planner delivering turnkey live gaming events and bracketed esports tournament productions across Greater Boston and Massachusetts, Hudson, Nashua, and Manchester NH, New England, and our North Carolina branch in Charlotte, Raleigh, Durham, Chapel Hill, and Greensboro NC. Choose from our Deluxe Package (four 12 ft HD screens plus a giant 21 to 32 ft HD screen), Ultimate Package (eight 12 ft HD screens plus a 26 ft jumbo screen and virtual smartphone DJ dance party), or Esports Tournament Package with PlayStation 5, Xbox Series X, Nintendo Switch, and classic retro NES consoles.",
   },
   "/movie-nights": {
     title: "Outdoor Movie Screen & LED Wall Rentals NH & NC | Next Level",
