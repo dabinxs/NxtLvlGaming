@@ -362,28 +362,28 @@ const ROUTES = {
       "Select your novelty items, estimated guest counts, and event date in NH, MA, or NC, and our team will prepare a turnkey novelty workshop proposal complete with equipment, supplies, and on-site staff.",
   },
   "/north-carolina-event-rentals": {
-    title: "North Carolina Event Rentals | Charlotte & Raleigh NC",
+    title: "North Carolina Event Rentals | Charlotte, Raleigh & Greensboro NC",
     description:
-      "Turnkey gaming event rentals, outdoor & LED movie screens, VR, 360 photo booths, silent disco, glow parks & novelties in Charlotte, Raleigh & Durham NC.",
+      "Turnkey gaming event rentals, gamer birthday parties, outdoor movie screens, VR, 360 photo booths & novelties in Charlotte, Raleigh, Durham & Eastern NC.",
     keywords:
-      "North Carolina event rentals, gaming event rentals Charlotte NC, outdoor movie screen rental Raleigh NC, Durham NC college event rentals, Greensboro NC party rentals, Winston-Salem event entertainment, 360 photo booth rental Charlotte NC, VR party rental Raleigh NC, silent disco rental North Carolina, sim racing simulator rental Charlotte NC",
+      "North Carolina event rentals, gamer birthday party NC, gaming party rentals North Carolina, game rentals northeast NC, gaming event rentals Charlotte NC, outdoor movie screen rental Raleigh NC, Durham NC college event rentals, Greensboro NC party rentals, Winston-Salem event entertainment, New Bern NC party rentals, 360 photo booth rental Charlotte NC, VR party rental Raleigh NC, silent disco rental North Carolina, sim racing simulator rental Charlotte NC, video game truck alternative NC",
     image: DEFAULT_IMAGE,
     canonicalPath: "/north-carolina-event-rentals",
     serviceName: "North Carolina Interactive Event Rentals & Entertainment",
-    heading: "North Carolina Event Rentals — Charlotte, Raleigh & Durham NC",
+    heading: "North Carolina Event Rentals — Charlotte, Raleigh, Durham & Greensboro NC",
     summary:
-      "Next Level Gaming & Novelties delivers turnkey video gaming events, esports tournaments, giant inflatable outdoor movie screens, mobile LED video wall trailers, VR escape rooms, 360 video booths, mirror photobooths, Silent Disco wireless headphones, Sim Racing cockpits, Glow Park swings, live Trivia Nights, and custom novelty workshops across Charlotte, Raleigh, Durham, Chapel Hill, Greensboro, Winston-Salem, Cary, Concord, Wilmington, Fayetteville, Greenville, and Asheville, North Carolina.",
-    subhead: "Serving Colleges, Schools, Corporate Events & Festivals Across North Carolina",
+      "Next Level Gaming & Novelties delivers turnkey video gaming events, gamer birthday parties, esports tournaments, giant inflatable outdoor movie screens, mobile LED video wall trailers, VR escape rooms, 360 video booths, mirror photobooths, Silent Disco wireless headphones, Sim Racing cockpits, Glow Park swings, live Trivia Nights, and custom novelty workshops across Charlotte, Raleigh, Durham, Chapel Hill, Greensboro, Winston-Salem, Cary, Concord, Wilmington, Fayetteville, Greenville, New Bern, Northeast NC, and Asheville, North Carolina.",
+    subhead: "Serving Colleges, Schools, Corporate Events, Birthday Parties & Festivals Across North Carolina",
     details:
-      "Our North Carolina branch provides full delivery, setup, and on-site event staff for university campuses, high school proms and grad nights, corporate activations, and community festivals in the Charlotte Metro, Research Triangle (Raleigh-Durham-Chapel Hill), Piedmont Triad (Greensboro-Winston-Salem-High Point), Coastal NC, and Western NC.",
+      "Our North Carolina branch provides full delivery, setup, and on-site event staff for university campuses, high school proms and grad nights, gamer birthday parties, corporate activations, and community festivals in the Charlotte Metro, Research Triangle (Raleigh-Durham-Chapel Hill), Piedmont Triad (Greensboro-Winston-Salem-High Point), Coastal NC, New Bern, and Western NC.",
     faqs: [
       {
         q: "Which cities in North Carolina do you deliver event rentals to?",
-        a: "Our North Carolina crew serves Charlotte, Raleigh, Durham, Chapel Hill, Greensboro, Winston-Salem, Cary, Apex, Concord, High Point, Wilmington, Fayetteville, Greenville, and Asheville, NC.",
+        a: "Our North Carolina crew serves Charlotte, Raleigh, Durham, Chapel Hill, Greensboro, Winston-Salem, Cary, Apex, Concord, High Point, Wilmington, New Bern, Greenville, and Asheville, NC.",
       },
       {
         q: "What types of events do you produce in North Carolina?",
-        a: "We produce college campus events (orientation, homecoming, spring weekend), high school proms and post-proms, corporate family picnics, trade show attractions, and municipal festivals across NC.",
+        a: "We produce college campus events (orientation, homecoming, spring weekend), gamer birthday parties, high school proms and post-proms, corporate family picnics, trade show attractions, and municipal festivals across NC.",
       },
     ],
   },
@@ -571,6 +571,8 @@ function buildRouteHtml(baseHtml, routeKey, seo) {
           { "@type": "City", name: "Chapel Hill, NC" },
           { "@type": "City", name: "Greensboro, NC" },
           { "@type": "City", name: "Winston-Salem, NC" },
+          { "@type": "City", name: "New Bern, NC" },
+          { "@type": "City", name: "Greenville, NC" },
           { "@type": "State", name: "New Hampshire" },
           { "@type": "State", name: "Massachusetts" },
           { "@type": "State", name: "North Carolina" },

@@ -216,17 +216,17 @@ export const ROUTE_SEO = {
       "Order custom event novelty packages and interactive maker stations for your campus, school, or corporate event across NH, MA, New England, and North Carolina, including Patched City custom trucker hats and beanies, custom socks, Bead-tastics and intention bracelets, pillow dolls, sequin pillows, laser-engraved keychains, stamped rings, Silly Sacks plush bags, and custom license plates.",
   },
   "/north-carolina-event-rentals": {
-    title: "North Carolina Event Rentals | Charlotte & Raleigh NC",
+    title: "North Carolina Event Rentals | Charlotte, Raleigh & Greensboro NC",
     description:
-      "Turnkey gaming event rentals, outdoor & LED movie screens, VR, 360 photo booths, silent disco, glow parks & novelties in Charlotte, Raleigh & Durham NC.",
+      "Turnkey gaming event rentals, gamer birthday parties, outdoor movie screens, VR, 360 photo booths & novelties in Charlotte, Raleigh, Durham & Eastern NC.",
     keywords:
-      "North Carolina event rentals, gaming event rentals Charlotte NC, outdoor movie screen rental Raleigh NC, Durham NC college event rentals, Greensboro NC party rentals, Winston-Salem event entertainment, 360 photo booth rental Charlotte NC, VR party rental Raleigh NC, silent disco rental North Carolina, sim racing simulator rental Charlotte NC",
+      "North Carolina event rentals, gamer birthday party NC, gaming party rentals North Carolina, game rentals northeast NC, gaming event rentals Charlotte NC, outdoor movie screen rental Raleigh NC, Durham NC college event rentals, Greensboro NC party rentals, Winston-Salem event entertainment, New Bern NC party rentals, 360 photo booth rental Charlotte NC, VR party rental Raleigh NC, silent disco rental North Carolina, sim racing simulator rental Charlotte NC, video game truck alternative NC",
     image: DEFAULT_IMAGE,
     canonicalPath: "/north-carolina-event-rentals",
     serviceName: "North Carolina Interactive Event Rentals & Entertainment",
     heading: "North Carolina Event Rentals — Charlotte, Raleigh, Durham & Greensboro NC",
     summary:
-      "Next Level Gaming & Novelties delivers turnkey video gaming events, esports tournaments, giant inflatable outdoor movie screens, mobile LED video wall trailers, VR escape rooms, 360 video booths, mirror photobooths, Silent Disco wireless headphones, Sim Racing cockpits, Glow Park swings, live Trivia Nights, and custom novelty workshops across Charlotte, Raleigh, Durham, Chapel Hill, Greensboro, Winston-Salem, Cary, Concord, Wilmington, Fayetteville, Greenville, and Asheville, North Carolina.",
+      "Next Level Gaming & Novelties delivers turnkey video gaming events, gamer birthday parties, esports tournaments, giant inflatable outdoor movie screens, mobile LED video wall trailers, VR escape rooms, 360 video booths, mirror photobooths, Silent Disco wireless headphones, Sim Racing cockpits, Glow Park swings, live Trivia Nights, and custom novelty workshops across Charlotte, Raleigh, Durham, Chapel Hill, Greensboro, Winston-Salem, Cary, Concord, Wilmington, Fayetteville, Greenville, New Bern, Northeast NC, and Asheville, North Carolina.",
   },
   "/new-hampshire-massachusetts-event-rentals": {
     title: "NH & MA Event Rentals | Hudson, Manchester & Boston",
