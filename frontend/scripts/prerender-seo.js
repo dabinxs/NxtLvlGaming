@@ -636,7 +636,7 @@ function buildRouteHtml(baseHtml, routeKey, seo) {
         <h2>Explore Turnkey Event Rentals &amp; Regional Hubs</h2>
         <p>Next Level Gaming &amp; Novelties provides insured, full-service interactive event entertainment across New England and North Carolina:</p>
         <ul>
-          <li><a href="/gaming-events">Video Gaming Events &amp; Esports Tournaments</a></li>
+          <li><a href="/gaming-events">Live Gaming Events, Esports Tournaments &amp; Video Game Event Planning</a></li>
           <li><a href="/movie-nights">Outdoor Inflatable Movie Screens &amp; Mobile LED Video Walls</a></li>
           <li><a href="/photo-booth">Interactive Photo Booths &amp; 360 Video Booths</a></li>
           <li><a href="/virtual-reality">Virtual Reality Stations &amp; Mobile VR Escape Rooms</a></li>
@@ -647,7 +647,7 @@ function buildRouteHtml(baseHtml, routeKey, seo) {
           <li><a href="/trivia-nights">Interactive Live-Hosted Trivia Nights &amp; Game Shows</a></li>
           <li><a href="/novelties">Custom Event Novelties, Patched City Hats &amp; DIY Workshops</a></li>
         </ul>
-        <p>Regional branches: <a href="/new-hampshire-massachusetts-event-rentals">New Hampshire &amp; Massachusetts Event Rentals</a> (Hudson, Manchester, Nashua, Boston) and <a href="/north-carolina-event-rentals">North Carolina Event Rentals</a> (Charlotte, Raleigh, Durham, Greensboro) for <a href="/college-school-corporate-events">Colleges, Schools &amp; Corporate Events</a>.</p>
+        <p>Regional branches: <a href="/new-hampshire-massachusetts-event-rentals">New Hampshire &amp; Massachusetts Event Rentals</a> (Hudson, Manchester, Nashua, Boston) and <a href="/north-carolina-event-rentals">North Carolina Event Rentals &amp; Birthday Parties</a> (Charlotte, Raleigh, Durham, Greensboro, New Bern) for <a href="/college-school-corporate-events">Colleges, Schools &amp; Corporate Events</a>.</p>
         <p>Ready to plan your event? <a href="/quote">Request a free custom quote online</a>, submit a <a href="/novelty-order">custom novelty order</a>, or call our booking office at <a href="tel:9786015473">978-601-5473</a>.</p>
       </section>`;
 
