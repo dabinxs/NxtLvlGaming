@@ -6,11 +6,11 @@ const DEFAULT_IMAGE = `${SITE_URL}/hero-bg.png`;
 
 const ROUTES = {
   "/gaming-events": {
-    title: "Live Gaming Events & Tournaments | Video Game Event Planner NH, MA & NC",
+    title: "Live Gaming Events, Esports Rental & Video Game Event Planner | NH, MA & NC",
     description:
-      "Turnkey live gaming events, video game tournaments & esports with giant 12–40ft screens, PS5, Xbox, Switch & staff in NH, Boston MA & NC. Book your event today!",
+      "Turnkey live gaming events, esports rentals, and video game event planner with giant 12–40ft screens, PS5, Xbox, Switch & staff in NH, Boston MA & NC.",
     keywords:
-      "live gaming events, video game event planner, video game events near me, video game tournaments, gaming event rental, gaming event planning, boston gaming events, gaming events Boston MA, college gaming events Boston, video game party rental Manchester NH, gaming events Hudson NH, video gaming event rental New Hampshire, gaming event rentals Charlotte NC, mobile video game party Raleigh NC, esports tournament production NH MA NC, Super Smash Bros tournament rental, Mario Kart event rental Boston MA Charlotte NC",
+      "gaming events, live gaming events, gaming event, video game event, video game events, video gaming events, video game events near me, video game event planner, esports rental, gaming events this weekend, next level gaming, next level fec attraction, video game tournaments, gaming event rental, gaming event planning, boston gaming events, gaming events Boston MA, college gaming events Boston, video game party rental Manchester NH, gaming events Hudson NH, video gaming event rental New Hampshire, gaming event rentals Charlotte NC, mobile video game party Raleigh NC, esports tournament production NH MA NC, Super Smash Bros tournament rental, Mario Kart event rental Boston MA Charlotte NC, eventos videojuegos, eventos gaming, eventos gamer",
     image: `${SITE_URL}/gaming-events-experience-1.png`,
     canonicalPath: "/gaming-events",
     serviceName: "Live Video Gaming Event Rentals & Esports Tournament Planning",

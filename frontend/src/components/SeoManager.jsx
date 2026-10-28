@@ -6,23 +6,23 @@ const DEFAULT_IMAGE = `${SITE_URL}/hero-bg.png`;
 
 export const ROUTE_SEO = {
   "/": {
-    title: "Next Level Gaming & Novelties | Event Rentals NH, MA & NC",
+    title: "Next Level Gaming & Novelties | Live Gaming Events & Event Rentals NH, MA & NC",
     description:
-      "Turnkey gaming event rentals, outdoor & LED movie screens, VR, 360 photo booths, silent disco, glow parks & novelties in NH, MA & North Carolina.",
+      "Turnkey live gaming events, esports rentals, video game event planner, outdoor & LED movie screens, VR, 360 photo booths & novelties in NH, MA & NC.",
     keywords:
-      "gaming events Hudson NH, gaming event rental New Hampshire, event rentals North Carolina, gaming event rentals Charlotte NC, Raleigh NC event rentals, Durham NC college event rentals, Greensboro NC party rentals, mobile video game party Manchester NH, Nashua NH event rentals, college event entertainment New England, corporate event entertainment Boston MA, high school post prom entertainment NH MA NC, outdoor movie screen rental NH MA NC, inflatable movie screen rental Charlotte Raleigh NC, mobile LED video wall trailer rental, virtual reality event rental, mobile VR escape room, 360 photo booth rental NH NC, interactive mirror photobooth, silent disco headphone rental, sim racing simulator rental Charlotte NC, glow park LED swings rental, interactive trivia night host, Just Dance party rental, custom event novelties, Patched City trucker hats, Next Level Gaming",
+      "gaming events, live gaming events, video game event, video game events, video gaming events, video game events near me, video game event planner, esports rental, next level gaming, next level fec attraction, gaming events Hudson NH, gaming event rental New Hampshire, event rentals North Carolina, gaming event rentals Charlotte NC, Raleigh NC event rentals, Durham NC college event rentals, Greensboro NC party rentals, mobile video game party Manchester NH, Nashua NH event rentals, college event entertainment New England, corporate event entertainment Boston MA, high school post prom entertainment NH MA NC, outdoor movie screen rental NH MA NC, inflatable movie screen rental Charlotte Raleigh NC, mobile LED video wall trailer rental, virtual reality event rental, mobile VR escape room, 360 photo booth rental NH NC, interactive mirror photobooth, silent disco headphone rental, sim racing simulator rental Charlotte NC, glow park LED swings rental, interactive trivia night host, Just Dance party rental, custom event novelties, Patched City trucker hats, Next Level Gaming, eventos videojuegos, eventos gaming, eventos gamer",
     image: `${SITE_URL}/hero-bg.png`,
     canonicalPath: "/",
-    heading: "Next Level Gaming & Novelties — Interactive Event Rentals in NH, MA & North Carolina",
+    heading: "Next Level Gaming & Novelties — Live Gaming Events & Interactive Event Rentals in NH, MA & NC",
     summary:
-      "Next Level Gaming & Novelties provides turnkey interactive event rentals, multiplayer video gaming events, esports tournaments, giant inflatable outdoor movie screens, daylight mobile LED video wall trailers, room-scale Virtual Reality stations, 4-player VR escape rooms, 360 video booths, mirror photobooths, Silent Disco wireless headphone parties, Sim Racing simulator cockpits, Just Dance giant-screen parties, Glow Park LED swings and mini golf, live-hosted Trivia Nights, and hands-on custom novelty workshops across Hudson, Nashua, Manchester, and Concord NH, Greater Boston, Lowell, and Worcester MA, New England, and our North Carolina branch serving Charlotte, Raleigh, Durham, Chapel Hill, Greensboro, Winston-Salem, Cary, Wilmington, and Asheville NC.",
+      "Next Level Gaming & Novelties is your full-service video game event planner providing turnkey live gaming events, esports rentals, multiplayer video gaming tournaments, giant inflatable outdoor movie screens, daylight mobile LED video wall trailers, room-scale Virtual Reality stations, 4-player VR escape rooms, 360 video booths, mirror photobooths, Silent Disco wireless headphone parties, Sim Racing simulator cockpits, Just Dance giant-screen parties, Glow Park LED swings and mini golf, live-hosted Trivia Nights, FEC-grade interactive attractions, and hands-on custom novelty workshops across Hudson, Nashua, Manchester, and Concord NH, Greater Boston, Lowell, and Worcester MA, New England, and our North Carolina branch serving Charlotte, Raleigh, Durham, Chapel Hill, Greensboro, Winston-Salem, Cary, Wilmington, and Asheville NC.",
   },
   "/gaming-events": {
-    title: "Live Gaming Events & Tournaments | Video Game Event Planner NH, MA & NC",
+    title: "Live Gaming Events, Esports Rental & Video Game Event Planner | NH, MA & NC",
     description:
-      "Turnkey live gaming events, video game tournaments & esports with giant 12–40ft screens, PS5, Xbox, Switch & staff in NH, Boston MA & NC. Book your event today!",
+      "Turnkey live gaming events, esports rentals, and video game event planner with giant 12–40ft screens, PS5, Xbox, Switch & staff in NH, Boston MA & NC.",
     keywords:
-      "live gaming events, video game event planner, video game events near me, video game tournaments, gaming event rental, gaming event planning, boston gaming events, gaming events Boston MA, college gaming events Boston, video game party rental Manchester NH, gaming events Hudson NH, video gaming event rental New Hampshire, gaming event rentals Charlotte NC, mobile video game party Raleigh NC, esports tournament production NH MA NC, Super Smash Bros tournament rental, Mario Kart event rental Boston MA Charlotte NC",
+      "gaming events, live gaming events, gaming event, video game event, video game events, video gaming events, video game events near me, video game event planner, esports rental, gaming events this weekend, next level gaming, next level fec attraction, video game tournaments, gaming event rental, gaming event planning, boston gaming events, gaming events Boston MA, college gaming events Boston, video game party rental Manchester NH, gaming events Hudson NH, video gaming event rental New Hampshire, gaming event rentals Charlotte NC, mobile video game party Raleigh NC, esports tournament production NH MA NC, Super Smash Bros tournament rental, Mario Kart event rental Boston MA Charlotte NC, eventos videojuegos, eventos gaming, eventos gamer",
     image: `${SITE_URL}/gaming-events-experience-1.png`,
     canonicalPath: "/gaming-events",
     serviceName: "Live Video Gaming Event Rentals & Esports Tournament Planning",
@@ -485,21 +485,43 @@ const SeoManager = () => {
       <h2>{seo.heading || seo.title}</h2>
       <p>{seo.summary || seo.description}</p>
       <p>
-        Serving New Hampshire, Massachusetts, New England, and our North Carolina (NC) branch:
+        Next Level Gaming &amp; Novelties is a full-service video game event planner and interactive entertainment provider offering live gaming events, esports rentals, video gaming events near you, FEC-grade interactive attractions, and turnkey event production across New Hampshire, Massachusetts, New England, and our North Carolina (NC) branch:
         Hudson NH (03051), Nashua NH, Manchester NH, Salem NH, Derry NH, Londonderry NH,
         Merrimack NH, Bedford NH, Concord NH, Portsmouth NH, Dover NH, Durham NH, Keene NH, Hanover NH,
         Boston MA, Cambridge MA, Lowell MA, Chelmsford MA, Andover MA, Lawrence MA, Waltham MA,
         Worcester MA, Springfield MA, Amherst MA, Charlotte NC, Raleigh NC, Durham NC, Chapel Hill NC,
         Greensboro NC, Winston-Salem NC, High Point NC, Cary NC, Apex NC, Wake Forest NC, Huntersville NC,
         Matthews NC, Gastonia NC, Kannapolis NC, Mooresville NC, Concord NC, Wilmington NC,
-        Fayetteville NC, Greenville NC, Boone NC, Asheville NC, Providence RI, Warwick RI, Hartford CT,
+        Fayetteville NC, Greenville NC, New Bern NC, Boone NC, Asheville NC, Providence RI, Warwick RI, Hartford CT,
         New Haven CT, Stamford CT, Albany NY, White Plains NY, Portland ME, and Burlington VT for
         college campus events, university orientations, welcome week, spring weekend, high school
         post-prom and project graduation parties, corporate events, company picnics, holiday parties,
         Super Bowl and March Madness LED screen watch parties, tailgates, summer camps, municipal
         festivals, bar and bat mitzvahs, sweet 16s, graduation parties, and large-screen video game
-        truck rental alternatives. Call 978-601-5473 or email sales@nextlevelgamingevents.com.
+        truck rental alternatives (eventos videojuegos y eventos gamer). Call 978-601-5473 or email sales@nextlevelgamingevents.com.
       </p>
+      <nav aria-label="All Event Rental Services and Locations">
+        <ul>
+          <li><a href="/gaming-events">Live Gaming Events, Esports Rentals &amp; Video Game Event Planner</a></li>
+          <li><a href="/movie-nights">Outdoor Inflatable Movie Screens &amp; Mobile LED Video Wall Rentals</a></li>
+          <li><a href="/photo-booth">Interactive Photo Booth, 360 Video Booth &amp; Mirror Photobooth Rentals</a></li>
+          <li><a href="/virtual-reality">Virtual Reality Stations &amp; Mobile VR Escape Room Rentals</a></li>
+          <li><a href="/glow-park">Glow Park Illuminated LED Swings, Seesaws &amp; Mini Golf Rentals</a></li>
+          <li><a href="/sim-racing">Force-Feedback Sim Racing Cockpit Simulator Rentals</a></li>
+          <li><a href="/silent-disco">Three-Channel Silent Disco Wireless LED Headphone Rentals</a></li>
+          <li><a href="/just-dance">Just Dance Giant-Screen Event Party Rentals</a></li>
+          <li><a href="/trivia-nights">Interactive Live-Hosted Trivia Night &amp; Game Show Rentals</a></li>
+          <li><a href="/novelties">Custom Event Novelties, Patched City Hats &amp; DIY Maker Workshops</a></li>
+          <li><a href="/explore-experiences">Explore All Interactive Event Experiences</a></li>
+          <li><a href="/new-hampshire-massachusetts-event-rentals">New Hampshire &amp; Massachusetts Event Rentals (Hudson, Manchester, Boston)</a></li>
+          <li><a href="/north-carolina-event-rentals">North Carolina Event Rentals (Charlotte, Raleigh, Durham, Greensboro)</a></li>
+          <li><a href="/college-school-corporate-events">College Campus, High School Post-Prom &amp; Corporate Event Rentals</a></li>
+          <li><a href="/quote">Request a Custom Event Rental Quote</a></li>
+          <li><a href="/novelty-order">Order Custom Event Novelties</a></li>
+          <li><a href="/about">About Next Level Gaming &amp; Novelties</a></li>
+          <li><a href="/contact">Contact Next Level Gaming (978-601-5473)</a></li>
+        </ul>
+      </nav>
     </aside>
   );
 };
