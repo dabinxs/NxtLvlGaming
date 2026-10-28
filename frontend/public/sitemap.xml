@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <urlset
   xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:video="http://www.google.com/schemas/sitemap-video/1.1"
@@ -11,60 +11,12 @@
     <priority>1.0</priority>
     <image:image>
       <image:loc>https://nextlevelgamingevents.com/hero-bg.png</image:loc>
-      <image:title>Next Level Gaming &amp; Novelties — Interactive Gaming &amp; Event Rentals</image:title>
+      <image:title>Next Level Gaming &amp; Novelties â€” Interactive Gaming &amp; Event Rentals</image:title>
     </image:image>
     <image:image>
       <image:loc>https://nextlevelgamingevents.com/logo.png</image:loc>
       <image:title>Next Level Gaming &amp; Novelties Logo</image:title>
     </image:image>
-    <video:video>
-      <video:thumbnail_loc>https://nextlevelgamingevents.com/experience-just-dance.png</video:thumbnail_loc>
-      <video:title>Dean College Gaming &amp; Just Dance Event — Next Level Gaming &amp; Novelties</video:title>
-      <video:description>Students at Dean College enjoying an interactive Next Level Gaming &amp; Novelties event featuring giant-screen Just Dance, music, and multiplayer gaming.</video:description>
-      <video:content_loc>https://nextlevelgamingevents.com/dean-college.mp4</video:content_loc>
-      <video:publication_date>2025-09-15T12:00:00-04:00</video:publication_date>
-      <video:family_friendly>yes</video:family_friendly>
-    </video:video>
-    <video:video>
-      <video:thumbnail_loc>https://nextlevelgamingevents.com/just-dance-gameplay.png</video:thumbnail_loc>
-      <video:title>New England College Giant-Screen Just Dance Party — Next Level Gaming</video:title>
-      <video:description>New England College campus event produced by Next Level Gaming &amp; Novelties with large-screen Just Dance battles and crowd entertainment.</video:description>
-      <video:content_loc>https://nextlevelgamingevents.com/new-england-college.mp4</video:content_loc>
-      <video:publication_date>2025-09-20T12:00:00-04:00</video:publication_date>
-      <video:family_friendly>yes</video:family_friendly>
-    </video:video>
-    <video:video>
-      <video:thumbnail_loc>https://nextlevelgamingevents.com/gaming-events-experience-1.png</video:thumbnail_loc>
-      <video:title>Bridgewater State University Campus Gaming Event — Next Level Gaming</video:title>
-      <video:description>Turnkey multiplayer campus gaming event setup at Bridgewater State University by Next Level Gaming &amp; Novelties.</video:description>
-      <video:content_loc>https://nextlevelgamingevents.com/bridgewater-state-university.mp4</video:content_loc>
-      <video:publication_date>2025-10-01T12:00:00-04:00</video:publication_date>
-      <video:family_friendly>yes</video:family_friendly>
-    </video:video>
-    <video:video>
-      <video:thumbnail_loc>https://nextlevelgamingevents.com/gaming-events-experience-2.png</video:thumbnail_loc>
-      <video:title>Fisher College Interactive Gaming Event — Next Level Gaming &amp; Novelties</video:title>
-      <video:description>Indoor student gaming and interactive entertainment event at Fisher College hosted by Next Level Gaming &amp; Novelties.</video:description>
-      <video:content_loc>https://nextlevelgamingevents.com/fisher-college.mp4</video:content_loc>
-      <video:publication_date>2025-10-10T12:00:00-04:00</video:publication_date>
-      <video:family_friendly>yes</video:family_friendly>
-    </video:video>
-    <video:video>
-      <video:thumbnail_loc>https://nextlevelgamingevents.com/gaming-events-experience-3.png</video:thumbnail_loc>
-      <video:title>Springfield College Large-Scale Just Dance &amp; Gaming Event — Next Level Gaming</video:title>
-      <video:description>Large-scale campus Just Dance and interactive gaming production at Springfield College by Next Level Gaming &amp; Novelties.</video:description>
-      <video:content_loc>https://nextlevelgamingevents.com/springfield-college.mp4</video:content_loc>
-      <video:publication_date>2025-10-18T12:00:00-04:00</video:publication_date>
-      <video:family_friendly>yes</video:family_friendly>
-    </video:video>
-    <video:video>
-      <video:thumbnail_loc>https://nextlevelgamingevents.com/about-gaming-event.jpg</video:thumbnail_loc>
-      <video:title>Emmanuel College Interactive Music, Dance &amp; Gaming Event — Next Level Gaming</video:title>
-      <video:description>Interactive student event filled with music, dancing, and multiplayer gaming at Emmanuel College in Boston by Next Level Gaming &amp; Novelties.</video:description>
-      <video:content_loc>https://nextlevelgamingevents.com/emmanuel-college.mp4</video:content_loc>
-      <video:publication_date>2025-10-25T12:00:00-04:00</video:publication_date>
-      <video:family_friendly>yes</video:family_friendly>
-    </video:video>
   </url>
   <url>
     <loc>https://nextlevelgamingevents.com/gaming-events</loc>
@@ -193,7 +145,7 @@
     <priority>0.8</priority>
     <image:image>
       <image:loc>https://nextlevelgamingevents.com/experience-glow-park.jpg</image:loc>
-      <image:title>Glow Park Experience Rental — LED Glow Swings &amp; Seesaws</image:title>
+      <image:title>Glow Park Experience Rental â€” LED Glow Swings &amp; Seesaws</image:title>
     </image:image>
     <image:image>
       <image:loc>https://nextlevelgamingevents.com/glow-park-experience-1.jpg</image:loc>

@@ -88,6 +88,23 @@ code {
 .animate-marquee-slow { animation: marquee-left 40s linear infinite; }
 .marquee-pause:hover .marquee-track { animation-play-state: paused; }
 
+@media (max-width: 639px) {
+  .testimonials-row {
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 8px 0 14px;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .testimonials-row::-webkit-scrollbar { display: none; }
+  .testimonials-row .testimonials-track {
+    width: max-content;
+    animation: none;
+    transform: none;
+  }
+}
+
 /* ---- Hero wave animation ---- */
 @keyframes wave-flow {
   0% { transform: translateX(0) translateY(0); }

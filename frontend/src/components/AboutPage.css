@@ -170,11 +170,13 @@
   .about-photo--seven { width: 22vw; }
   .about-photo--eight { width: 22vw; }
   .about-photo--nine { width: 29vw; }
-  .about-work__track { gap: 14px; padding-right: 5vw; padding-left: 5vw; }
-  .about-work__intro { flex-basis: 92vw; }
-  .about-work__card { flex-basis: 88vw; min-height: 535px; padding: 20px; border-radius: 20px; }
-  .about-work__image { min-height: 225px; }
-  .about-work__text { min-height: 205px; }
+  .about-work__pin { padding: 64px 0; }
+  .about-work__track { width: 100%; flex-direction: column; gap: 16px; overflow: visible; padding: 0 16px; scroll-snap-type: none; }
+  .about-work__intro { width: 100%; flex: 0 0 auto; padding: 0 0 8px; }
+  .about-work__intro h2 { margin-bottom: 16px; font-size: clamp(2.5rem, 12vw, 3.25rem); }
+  .about-work__card { width: 100%; flex: 0 0 auto; min-height: 0; padding: 16px; border-radius: 18px; }
+  .about-work__image { min-height: clamp(175px, 62vw, 220px); }
+  .about-work__text { min-height: 0; gap: 22px; }
   .about-values { height: 420vh; }
   .about-values__layout { width: 86vw; gap: 3vh; }
   .about-values__name { font-size: clamp(2.6rem, 10vw, 3.7rem); }

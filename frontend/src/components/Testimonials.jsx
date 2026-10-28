@@ -4,7 +4,7 @@ import { testimonials } from "../mock";
 
 const Card = ({ testimonial, onPlay, wide }) => (
   <div
-    className={`group relative mx-3 flex h-[236px] w-[calc(100vw-48px)] shrink-0 flex-col overflow-hidden rounded-2xl border border-white/8 bg-gradient-to-br from-[#0c1526] to-[#080d18] p-6 transition-all duration-300 hover:border-[#0066FD]/40 ${
+    className={`testimonials-card group relative mx-3 flex h-[236px] w-[calc(100vw-24px)] shrink-0 snap-center flex-col overflow-hidden rounded-2xl border border-white/8 bg-gradient-to-br from-[#0c1526] to-[#080d18] p-5 transition-all duration-300 hover:border-[#0066FD]/40 sm:p-6 ${
       wide ? "min-[640px]:w-[400px]" : "min-[640px]:w-[330px]"
     }`}
   >
@@ -40,9 +40,9 @@ const Card = ({ testimonial, onPlay, wide }) => (
 const Row = ({ items, direction, onPlay, wide }) => {
   const doubled = [...items, ...items];
   return (
-    <div className="marquee-pause relative overflow-hidden py-2">
+    <div className="testimonials-row marquee-pause relative overflow-hidden py-2">
       <div
-        className={`marquee-track ${
+        className={`testimonials-track marquee-track ${
           direction === "left" ? "animate-marquee-left" : "animate-marquee-right"
         }`}
       >
@@ -71,18 +71,19 @@ const Testimonials = () => {
   const rowB = makeRowItems(1);
 
   return (
-    <section className="relative overflow-hidden bg-[#070b16] py-24">
+    <section className="testimonials-section relative overflow-hidden bg-[#070b16] py-14 sm:py-24">
       <h2
-        className="mb-14 text-center font-display text-[clamp(1.8rem,4.5vw,3rem)] font-extrabold uppercase tracking-tight text-white"
+        className="mb-7 px-4 text-center font-display text-[clamp(1.5rem,8vw,3rem)] font-extrabold uppercase tracking-tight text-white sm:mb-14 sm:px-0 sm:text-[clamp(1.8rem,4.5vw,3rem)]"
         style={{ fontWeight: 800 }}
       >
         What Our Clients Say
       </h2>
+      <p className="mb-3 text-center text-[11px] font-semibold tracking-wide text-sky-200/70 sm:hidden">Swipe to read more client reviews</p>
 
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-1 sm:gap-2">
         <div className="relative">
-          <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-28 bg-gradient-to-r from-[#070b16] to-transparent" />
-          <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-28 bg-gradient-to-l from-[#070b16] to-transparent" />
+          <div className="pointer-events-none absolute inset-y-0 left-0 z-10 hidden w-12 bg-gradient-to-r from-[#070b16] to-transparent sm:block md:w-28" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 z-10 hidden w-12 bg-gradient-to-l from-[#070b16] to-transparent sm:block md:w-28" />
           <Row items={rowA} direction="left" onPlay={setModal} wide />
           <Row items={rowB} direction="right" onPlay={setModal} />
         </div>

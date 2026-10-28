@@ -184,37 +184,37 @@ export const testimonials = [
     id: "dean-college",
     name: "Dean College",
     quote: "We had an incredibly fun time at the Next Level Gaming event filled with dancing and music, and we enthusiastically plan to participate again.",
-    video: "/dean-college.mp4",
+    video: "https://raw.githubusercontent.com/dabinxs/NxtLvlGaming/main/frontend/public/dean-college.mp4",
   },
   {
     id: "new-england-college",
     name: "New England College",
     quote: "We praise Next Level Gaming for hosting an awesome Just Dance event that brought students together and encouraged more people to participate.",
-    video: "/new-england-college.mp4",
+    video: "https://raw.githubusercontent.com/dabinxs/NxtLvlGaming/main/frontend/public/new-england-college.mp4",
   },
   {
     id: "bridgewater-state-university",
     name: "Bridgewater State University",
     quote: "I loved working with Next Level Gaming, whose engaging setup made our Bridgewater State event a success, and I look forward to collaborating again.",
-    video: "/bridgewater-state-university.mp4",
+    video: "https://raw.githubusercontent.com/dabinxs/NxtLvlGaming/main/frontend/public/bridgewater-state-university.mp4",
   },
   {
     id: "fisher-college",
     name: "Fisher College",
     quote: "I loved hosting Next Level Gaming because the students had a blast, and it was an affordable, fun way for them to interact indoors.",
-    video: "/fisher-college.mp4",
+    video: "https://raw.githubusercontent.com/dabinxs/NxtLvlGaming/main/frontend/public/fisher-college.mp4",
   },
   {
     id: "springfield-college",
     name: "Springfield College",
     quote: "We've had a lot of fun doing Just Dance on a large scale. It's even better with Next Level Gaming. Thank you!",
-    video: "/springfield-college.mp4",
+    video: "https://raw.githubusercontent.com/dabinxs/NxtLvlGaming/main/frontend/public/springfield-college.mp4",
   },
   {
     id: "emmanuel-college",
     name: "Emmanuel College",
     quote: "It was an incredible experience filled with fun, music, dancing, and unforgettable moments. Everyone had a great time, and we’re excited to come back and enjoy another Next Level Gaming event!",
-    video: "/emmanuel-college.mp4",
+    video: "https://raw.githubusercontent.com/dabinxs/NxtLvlGaming/main/frontend/public/emmanuel-college.mp4",
   },
 ];
 

@@ -3,5 +3,6 @@ Allow: /
 Disallow: /cms
 Disallow: /build-novelty
 Disallow: /build
+Disallow: /*.mp4$
 
 Sitemap: https://nextlevelgamingevents.com/sitemap.xml

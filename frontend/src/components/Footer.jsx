@@ -34,7 +34,7 @@ const Footer = ({ showQuoteCTA = true }) => {
       <div className="pointer-events-none absolute left-1/2 top-0 h-52 w-[70%] -translate-x-1/2 rounded-full bg-[#0066FD]/20 blur-[90px]" />
 
       <div className="mx-auto max-w-[1280px] px-5 md:px-8">
-        <div className="grid grid-cols-1 gap-x-12 gap-y-14 lg:grid-cols-[55%_1fr] lg:pr-12">
+        <div className="grid grid-cols-1 gap-x-12 gap-y-10 lg:grid-cols-[55%_1fr] lg:gap-y-14 lg:pr-12">
           {/* Left: CTA */}
           <div className="min-w-0">
             <p className="mt-0 font-display text-sm font-medium uppercase tracking-[0.2em] text-[#6ea8ff]">
@@ -43,11 +43,11 @@ const Footer = ({ showQuoteCTA = true }) => {
             <a
               href="mailto:sales@nextlevelgamingevents.com"
               data-testid="footer-email"
-              className="group mt-3 flex w-full items-center gap-3 font-display text-[clamp(1rem,1.8vw,1.65rem)] font-bold text-white transition-colors hover:text-[#7DDDFF]"
+              className="group mt-3 flex w-full min-w-0 items-center gap-3 font-display text-[clamp(.85rem,4vw,1.35rem)] font-bold text-white transition-colors hover:text-[#7DDDFF] sm:text-[clamp(1rem,1.8vw,1.65rem)]"
               style={{ fontWeight: 700 }}
             >
-              <span className="whitespace-nowrap">sales@nextlevelgamingevents.com</span>
-              <ArrowUpRight className="h-5 w-5 shrink-0 text-[#7DDDFF] transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+              <span className="min-w-0 flex-1 break-words">sales@nextlevelgamingevents.com</span>
+              <ArrowUpRight className="h-5 w-5 shrink-0 text-[#7DDDFF] transition-transform group-hover:translate-x-1 group-hover:-translate-y-1 max-[359px]:hidden" />
             </a>
 
             <a
@@ -79,10 +79,10 @@ const Footer = ({ showQuoteCTA = true }) => {
           </div>
 
           {/* Right: link columns */}
-          <div className="grid shrink-0 grid-cols-3 gap-x-16 gap-y-6 self-start pt-2">
+          <div className="footer-links-grid grid min-w-0 grid-cols-1 gap-x-5 gap-y-6 self-start pt-2 min-[360px]:grid-cols-2 lg:grid-cols-3 lg:gap-x-8">
             {footerColumns.map((col) => (
-              <div key={col.title}>
-                <h4 className="mb-4 font-display text-[11px] font-semibold uppercase tracking-[0.18em] text-[#4d9bff]">
+              <div key={col.title} className="min-w-0">
+                <h4 className="mb-4 break-words font-display text-[11px] font-semibold uppercase tracking-[0.18em] text-[#4d9bff]">
                   {col.title}
                 </h4>
                 <ul className="space-y-2.5">
@@ -91,11 +91,11 @@ const Footer = ({ showQuoteCTA = true }) => {
                     return (
                       <li key={link}>
                         {targetPath ? (
-                          <Link to={targetPath} className="whitespace-nowrap text-[12.5px] text-white/65 transition-colors hover:text-[#7DDDFF]">
+                          <Link to={targetPath} className="block break-words text-[12.5px] text-white/65 transition-colors hover:text-[#7DDDFF]">
                             {link}
                           </Link>
                         ) : (
-                          <a href="#top" className="whitespace-nowrap text-[12.5px] text-white/65 transition-colors hover:text-[#7DDDFF]">
+                          <a href="#top" className="block break-words text-[12.5px] text-white/65 transition-colors hover:text-[#7DDDFF]">
                             {link}
                           </a>
                         )}
@@ -111,7 +111,7 @@ const Footer = ({ showQuoteCTA = true }) => {
         {/* Giant wordmark */}
         <div className="relative mt-16 select-none">
           <InteractiveWordmark
-            className="flex items-baseline justify-center gap-[0.06em] whitespace-nowrap font-display text-[clamp(2.6rem,13.5vw,12rem)] font-black italic leading-[0.9] tracking-[-0.03em]"
+            className="flex max-w-full items-baseline justify-center gap-[0.06em] whitespace-nowrap font-display text-[clamp(1.85rem,10vw,12rem)] font-black italic leading-[0.9] tracking-[-0.03em] sm:text-[clamp(2.6rem,13.5vw,12rem)]"
             segments={[
               { text: "NEXT", className: "text-white" },
               { text: "LEVEL", gradient: true },

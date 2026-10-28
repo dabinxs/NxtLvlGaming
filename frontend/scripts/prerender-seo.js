@@ -653,7 +653,7 @@ function buildRouteHtml(baseHtml, routeKey, seo) {
 
     const customMainHtml = `<main style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">
       <header>
-        <img src="/logo.png" alt="Next Level Gaming and Novelties Event Rentals Logo" width="160" height="80" />
+        <img src="/logo.png" alt="Next Level Gaming and Novelties Event Rentals Logo" width="160" height="160" />
       </header>
       <section>
         <h1>${escapeHtml(seo.heading)}</h1>
