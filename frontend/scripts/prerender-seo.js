@@ -33,6 +33,10 @@ const ROUTES = {
         q: "Can video gaming events be set up indoors or outdoors in NH, MA, and NC?",
         a: "Yes! Our giant screen gaming stations can be deployed indoors inside college student unions, gymnasiums, and hotel ballrooms, or outdoors under event tents or during evening festivals.",
       },
+      {
+        q: "What is included in an esports rental or video game tournament package?",
+        a: "Our esports rental and tournament package includes four to eight 12 ft HD player stations, a 21 ft to 40 ft giant spectator championship screen, tournament bracket management, concert audio, all consoles and controllers, and full on-site crew staffing—providing a spacious, high-capacity alternative to a cramped video game truck rental.",
+      },
     ],
   },
   "/movie-nights": {
@@ -54,6 +58,10 @@ const ROUTES = {
       {
         q: "What is the difference between an inflatable movie screen and a mobile LED video wall trailer?",
         a: "Inflatable movie screens (16 ft to 40 ft) use high-lumen digital projectors and are engineered for evening screenings, twilight movies, or indoor gym auditoriums. Mobile LED video wall trailers (14 ft to 20 ft) feature ultra-bright daylight-visible LED panels that deliver vivid picture quality in direct midday sunlight.",
+      },
+      {
+        q: "Which outdoor movie screen size should I rent for my crowd and viewing distance?",
+        a: "Our 16 ft inflatable screen offers a 75 ft viewing distance for medium gatherings; the 21 ft screen supports a 100 ft viewing distance; the 26 ft screen reaches 125 ft for large campus quads and parks; and our colossal 40 ft cinema screen provides a 200 ft viewing distance for drive-ins and major festivals.",
       },
       {
         q: "Can we broadcast movie sound through FM car radios for drive-in movies?",
@@ -114,6 +122,10 @@ const ROUTES = {
       {
         q: "Can spectators watch what the player sees in VR?",
         a: "Yes! Every station includes an external HD spectator monitor so attendees waiting in line or cheering from the crowd can see every move in real time.",
+      },
+      {
+        q: "Are VR attendants and sanitary headset covers included with the rental?",
+        a: "Yes! Every Virtual Reality rental includes disposable sanitary face covers, alcohol-free lens cleaning between turns, and trained on-site VR attendants to guide players through each game or VR escape room.",
       },
     ],
   },
@@ -201,6 +213,10 @@ const ROUTES = {
         q: "Can Silent Disco be hosted in venues with noise curfews?",
         a: "Yes! Silent Discos produce zero amplified loudspeaker noise, making them ideal for outdoor quads, residential halls, and public spaces after hours.",
       },
+      {
+        q: "Can we connect our own playlists, laptops, or live DJs to the 3 Silent Disco channels?",
+        a: "Yes! Our 3-channel transmitters accept standard audio inputs from smartphones, laptops, Spotify playlists, or live DJ mixers so you can run three music genres simultaneously.",
+      },
     ],
   },
   "/sim-racing": {
@@ -227,6 +243,10 @@ const ROUTES = {
         q: "What types of cars and tracks can participants race?",
         a: "Racers can drive Formula 1, GT3, rally, and supercars on laser-scanned international circuits with true-to-life physics.",
       },
+      {
+        q: "Can multiple Sim Racing cockpits be rented for head-to-head competitions?",
+        a: "Yes! We can deploy multiple racing simulator cockpits side by side with a live fastest-lap tournament leaderboard for trade shows, college events, and corporate parties.",
+      },
     ],
   },
   "/glow-park": {
@@ -252,6 +272,10 @@ const ROUTES = {
       {
         q: "Can the Glow Park be installed indoors?",
         a: "Yes! It creates a breathtaking glow lounge indoors in darkened gymnasiums, field houses, and ballrooms, as well as on outdoor lawns.",
+      },
+      {
+        q: "Does the Glow Park rental include delivery, truss assembly, and on-site staff?",
+        a: "Yes! Our crew handles full delivery, commercial truss assembly, LED programming, on-site attendant supervision, and post-event teardown.",
       },
     ],
   },
@@ -427,11 +451,15 @@ const ROUTES = {
       "Next Level Gaming & Novelties specializes in turnkey large-crowd entertainment for college student activities boards (welcome week, orientation, homecoming, spring weekend), high school post-prom and project graduation lock-ins, corporate family fun days, trade shows, summer camps, and municipal festivals across New Hampshire, Massachusetts, New England, and North Carolina.",
     subhead: "Insured, Fully Staffed Interactive Attractions for High-Attendance Events",
     details:
-      "Whether you are entertaining 100 students in a campus center or 5,000 attendees at a spring weekend festival or company picnic, our crew delivers commercial-grade equipment, giant HD screens, concert sound, and hands-on novelty stations tailored to your schedule and venue.",
+      "Whether you are entertaining 100 students in a campus center or 5,000 attendees at a spring weekend festival or company picnic, our crew delivers commercial-grade equipment, giant HD screens, concert sound, and hands-on novelty stations tailored to your schedule and venue. Trusted by Harvard University, Boston University, Penn State, Babson College, Quinnipiac University, Holy Cross, Springfield College, Emmanuel College, Bridgewater State University, Fisher College, Dean College, New England College, Framingham State University, Connecticut College, Salve Regina University, Seton Hall University, Fairleigh Dickinson, SUNY Polytechnic, and more.",
     faqs: [
       {
         q: "Are Next Level Gaming & Novelties events fully insured?",
         a: "Yes. We carry comprehensive commercial general liability insurance that satisfies university risk management and municipal requirements.",
+      },
+      {
+        q: "Which colleges and universities has Next Level Gaming & Novelties partnered with?",
+        a: "Our crew has produced campus events for 23+ universities and colleges including Harvard, Boston University, Penn State, Babson College, Quinnipiac University, College of the Holy Cross, Springfield College, Emmanuel College, Bridgewater State University, Fisher College, Dean College, New England College, Framingham State, Connecticut College, Albertus Magnus, Western Connecticut State, Salve Regina, Seton Hall, Fairleigh Dickinson, SUNY Polytechnic, College of Staten Island, John Jay, Brookdale, Florida Tech, and Mercyhurst.",
       },
       {
         q: "Can we bundle multiple attractions for a single campus or corporate date?",
@@ -648,6 +676,7 @@ function buildRouteHtml(baseHtml, routeKey, seo) {
           <li><a href="/novelties">Custom Event Novelties, Patched City Hats &amp; DIY Workshops</a></li>
         </ul>
         <p>Regional branches: <a href="/new-hampshire-massachusetts-event-rentals">New Hampshire &amp; Massachusetts Event Rentals</a> (Hudson, Manchester, Nashua, Boston) and <a href="/north-carolina-event-rentals">North Carolina Event Rentals &amp; Birthday Parties</a> (Charlotte, Raleigh, Durham, Greensboro, New Bern) for <a href="/college-school-corporate-events">Colleges, Schools &amp; Corporate Events</a>.</p>
+        <p>Trusted by 23+ universities and colleges including Harvard, Boston University, Penn State, Babson College, Quinnipiac University, Holy Cross, Springfield College, Emmanuel College, Bridgewater State University, Fisher College, Dean College, New England College, Framingham State, Connecticut College, Salve Regina, and Seton Hall.</p>
         <p>Ready to plan your event? <a href="/quote">Request a free custom quote online</a>, submit a <a href="/novelty-order">custom novelty order</a>, or call our booking office at <a href="tel:9786015473">978-601-5473</a>.</p>
       </section>`;
 

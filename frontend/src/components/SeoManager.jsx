@@ -10,7 +10,7 @@ export const ROUTE_SEO = {
     description:
       "Turnkey event & party rentals in NH, Boston MA & NC: giant outdoor movie screens, 360 photo booths, live gaming events, VR, silent disco, glow park & novelties.",
     keywords:
-      "event rentals, party rentals, event rentals NH, party rentals Manchester NH, party rentals Nashua NH, party rentals Hudson NH, Boston event rentals, event rentals North Carolina, party rentals Charlotte NC, Raleigh event rentals, outdoor movie screen rental, inflatable movie screen rental, 360 photo booth rental, photo booth rental NH MA NC, silent disco rental, virtual reality event rental, live gaming events, video game event planner, video game tournaments, gaming competitions near me, mobile video game party, college event entertainment, corporate event entertainment, novelties, Next Level Gaming",
+      "event rentals, party rentals, party equipment rentals, event rentals NH, party rentals Manchester NH, party rentals Nashua NH, party rentals Hudson NH, Boston event rentals, event rentals North Carolina, party rentals Charlotte NC, Raleigh event rentals, esports rental, outdoor movie screen rental, inflatable movie screen rental, mobile LED video wall rental, 360 photo booth rental, mirror photo booth rental, photo booth rental NH MA NC, silent disco rental, virtual reality event rental, VR escape room rental, sim racing simulator rental, glow swings rental, glow park rental, live gaming events, video game event planner, video game tournaments, gaming competitions near me, mobile video game party, college event entertainment, corporate event entertainment, novelties, Next Level Gaming",
     image: `${SITE_URL}/hero-bg.png`,
     canonicalPath: "/",
     heading: "Event & Party Rentals, Interactive Entertainment & Gaming Events in NH, MA & NC",
@@ -498,7 +498,7 @@ const SeoManager = () => {
         post-prom and project graduation parties, corporate events, company picnics, holiday parties,
         Super Bowl and March Madness LED screen watch parties, tailgates, summer camps, municipal
         festivals, bar and bat mitzvahs, sweet 16s, graduation parties, and large-screen video game
-        truck rental alternatives (eventos videojuegos y eventos gamer). Call 978-601-5473 or email sales@nextlevelgamingevents.com.
+        truck rental alternatives (eventos videojuegos y eventos gamer). Trusted by 23+ universities and colleges including Harvard, Boston University, Penn State, Babson College, Quinnipiac University, Holy Cross, Springfield College, Emmanuel College, Bridgewater State University, Fisher College, Dean College, New England College, Framingham State, Connecticut College, Salve Regina, and Seton Hall. Call 978-601-5473 or email sales@nextlevelgamingevents.com.
       </p>
       <nav aria-label="All Event Rental Services and Locations">
         <ul>
