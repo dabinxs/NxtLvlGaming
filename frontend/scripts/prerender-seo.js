@@ -288,28 +288,36 @@ const ROUTES = {
     ],
   },
   "/novelties": {
-    title: "Custom Event Novelties & Maker Workshops NH & NC | Next Level",
+    title: "Custom Event Novelties & Maker Workshops NH, MA & NC | Next Level",
     description:
-      "Book interactive custom novelty workshops in NH, MA & NC: Patched City trucker hats, beanies, socks, sequin pillows, pillow dolls, bracelets & keychains.",
+      "Rent custom event novelty stations in Hudson NH, Boston MA & NC: Patched City trucker hats, beanies, socks, pillow dolls, sequin pillows, keychains, rings & plush bags.",
     keywords:
-      "custom event novelties rental, college novelty event ideas NH MA NC, custom trucker hat bar rental Charlotte Raleigh NC, Patched City hats, laser engraved keychains event, make your own stuffed animal college event, custom photo pillow dolls, reversible sequin pillows",
+      "custom event novelties rental, party novelty rentals Hudson NH, college novelty event ideas NH MA NC, custom trucker hat bar rental, Patched City trucker hats and beanies, custom event socks, Bead-tastics custom bracelets, custom photo pillow dolls, reversible sequin pillows, intention bracelets, laser engraved wood and metal keychains, stamped custom rings, hammerless ring press, Silly Sacks custom plush bags, custom novelty license plates",
     image: `${SITE_URL}/novelties-bg.png`,
     canonicalPath: "/novelties",
     serviceName: "Custom Event Novelties & On-Site Maker Workshops",
-    heading: "Custom Event Novelties & Maker Workshops in NH, MA & NC",
+    heading: "Custom Event Novelties & On-Site DIY Maker Workshops in Hudson NH, MA & NC",
     summary:
-      "Next Level Gaming & Novelties brings hands-on custom event novelties and interactive maker workshops to colleges, schools, summer camps, and corporate events across Hudson NH, New Hampshire, Massachusetts, New England, and North Carolina (Charlotte, Raleigh, Durham, Chapel Hill, and Greensboro NC).",
-    subhead: "Patched City Hats, Custom Socks, Pillow Dolls, Keychains & Plush Bags",
+      "Next Level Gaming Events & Novelties brings 11 hands-on custom event novelty products and interactive maker workshops to colleges, universities, high schools, summer camps, corporate events, and private parties across Hudson NH (03051), Nashua, Manchester, Portsmouth, Boston MA, Connecticut, New England, and North Carolina (Charlotte, Raleigh, Durham, Chapel Hill, and Greensboro NC).",
+    subhead: "11 Make-and-Take Custom Novelty Products: Patched City Hats, Socks, Pillow Dolls, Keychains, Rings & Plush Bags",
     details:
-      "Attendees customize and take home personalized souvenirs on the spot: Patched City custom trucker hats and beanies with heat-pressed patches, custom printed crew socks, Bead-tastics and intention bracelets, custom photo pillow dolls, reversible sequin pillows, laser-engraved wood and metal keychains, hammerless stamped custom rings, Silly Sacks plush character bags, and custom novelty license plates.",
+      "Attendees customize and take home 11 signature personalized novelty products right on the spot: (1) Patched City Custom Trucker Hats & Beanies with heat-pressed patches, (2) Custom Trucker Hat Bars, (3) Custom Printed Crew Socks, (4) Bead-tastics Custom Bracelets, (5) Custom Photo Pillow Dolls, (6) Custom Sequin / Sequence Pillows, (7) Intention Bracelets, (8) Laser-Engraved Wood & Metal Keychains, (9) Stamped Custom Rings using our Hammerless Ring Press, (10) Silly Sacks Custom Character Plush Bags, and (11) Custom Novelty License Plates.",
     faqs: [
       {
+        q: "What are all 11 custom event novelty products you offer?",
+        a: "We offer 11 turnkey make-and-take novelty stations: (1) Patched City Custom Trucker Hats & Beanies, (2) Custom Trucker Hats, (3) Custom Printed Socks, (4) Bead-tastics Custom Bracelets, (5) Custom Photo Pillow Dolls, (6) Custom Sequin (Sequence) Pillows, (7) Intention Bracelets, (8) Laser-Engraved Wood & Metal Keychains, (9) Stamped Custom Rings with our Hammerless Ring Press, (10) Silly Sacks Custom Character Plush Bags, and (11) Custom Novelty License Plates.",
+      },
+      {
         q: "Do guests get to take home their novelty creations immediately?",
-        a: "Yes! All novelties—including heat-pressed Patched City hats, laser-engraved keychains, and custom printed socks—are created and completed on-site during your event.",
+        a: "Yes! All novelties—including heat-pressed Patched City hats, laser-engraved keychains, custom pillow dolls, and custom printed socks—are created and completed on-site during your event.",
       },
       {
         q: "How many items can your novelty workshop produce per hour?",
-        a: "Depending on the station and staffing, our crew can produce 50 to over 200 custom souvenir items per hour.",
+        a: "Depending on the station and staffing, our crew can produce 50 to over 200 custom souvenir items per hour for college welcome weeks, orientations, post-proms, and corporate events.",
+      },
+      {
+        q: "Where can we rent custom novelty stations in New Hampshire, Massachusetts, and North Carolina?",
+        a: "From our Rebel Rd headquarters in Hudson, NH (03051) and our North Carolina branch, we deliver staffed novelty workshops across Hudson, Nashua, Manchester, Portsmouth, Boston, Worcester, Hartford, New Haven, Charlotte, Raleigh, Durham, and Greensboro.",
       },
     ],
   },
@@ -704,21 +712,21 @@ function buildRouteHtml(baseHtml, routeKey, seo) {
 
     const relatedLinksHtml = `
       <section>
-        <h2>Explore Turnkey Event Rentals &amp; Regional Hubs</h2>
-        <p>Next Level Gaming &amp; Novelties provides insured, full-service interactive event entertainment across New England and North Carolina:</p>
+        <h2>Explore Party Equipment Rentals, Custom Novelties &amp; Regional Hubs</h2>
+        <p>Next Level Gaming Events &amp; Novelties (Rebel Rd, Hudson, NH 03051 &amp; North Carolina) provides insured, full-service party equipment rentals and custom novelty workshops:</p>
         <ul>
+          <li><a href="/novelties">Custom Event Novelties: Patched City Hats, Beanies, Socks, Pillow Dolls, Keychains, Rings &amp; Plush Bags</a></li>
+          <li><a href="/movie-nights">Outdoor Inflatable Movie Screens (16–40 ft) &amp; Mobile LED Video Wall Rentals (14–20 ft)</a></li>
+          <li><a href="/photo-booth">Interactive Mirror Photo Booths &amp; 360 Slow-Motion Video Booth Rentals</a></li>
+          <li><a href="/glow-park">Glow Park Illuminated LED Swings, Seesaws &amp; Glowing Mini Golf Rentals</a></li>
+          <li><a href="/silent-disco">Three-Channel Silent Disco Wireless LED Headphone Rentals</a></li>
+          <li><a href="/virtual-reality">Virtual Reality Event Stations &amp; 4-Player Mobile VR Escape Room Rentals</a></li>
+          <li><a href="/sim-racing">Force-Feedback Sim Racing Cockpit Simulator Rentals</a></li>
+          <li><a href="/trivia-nights">Interactive Live-Hosted Trivia Nights &amp; Wireless Buzzer Game Show Rentals</a></li>
+          <li><a href="/just-dance">Just Dance Giant-Screen Stage Party Rentals</a></li>
           <li><a href="/gaming-events">Live Gaming Events, Esports Tournaments &amp; Video Game Event Planning</a></li>
-          <li><a href="/movie-nights">Outdoor Inflatable Movie Screens &amp; Mobile LED Video Walls</a></li>
-          <li><a href="/photo-booth">Interactive Photo Booths &amp; 360 Video Booths</a></li>
-          <li><a href="/virtual-reality">Virtual Reality Stations &amp; Mobile VR Escape Rooms</a></li>
-          <li><a href="/glow-park">Glow Park Illuminated Swings, Seesaws &amp; Mini Golf</a></li>
-          <li><a href="/sim-racing">Force-Feedback Sim Racing Cockpit Simulators</a></li>
-          <li><a href="/silent-disco">Three-Channel Silent Disco Wireless LED Headphones</a></li>
-          <li><a href="/just-dance">Just Dance Giant-Screen Stage Parties</a></li>
-          <li><a href="/trivia-nights">Interactive Live-Hosted Trivia Nights &amp; Game Shows</a></li>
-          <li><a href="/novelties">Custom Event Novelties, Patched City Hats &amp; DIY Workshops</a></li>
         </ul>
-        <p>Regional branches: <a href="/new-hampshire-massachusetts-event-rentals">New Hampshire &amp; Massachusetts Event Rentals</a> (Hudson, Manchester, Nashua, Boston) and <a href="/north-carolina-event-rentals">North Carolina Event Rentals &amp; Birthday Parties</a> (Charlotte, Raleigh, Durham, Greensboro, New Bern) for <a href="/college-school-corporate-events">Colleges, Schools &amp; Corporate Events</a>.</p>
+        <p>Regional branches: <a href="/new-hampshire-massachusetts-event-rentals">Hudson NH, New Hampshire, Massachusetts &amp; New England Event Rentals</a> (Hudson, Manchester, Nashua, Portsmouth, Boston, CT) and <a href="/north-carolina-event-rentals">North Carolina Event Rentals &amp; Birthday Parties</a> (Charlotte, Raleigh, Durham, Greensboro, New Bern) for <a href="/college-school-corporate-events">Colleges, Schools &amp; Corporate Events</a>.</p>
         <p>Trusted by 23+ universities and colleges including Harvard, Boston University, Penn State, Babson College, Quinnipiac University, Holy Cross, Springfield College, Emmanuel College, Bridgewater State University, Fisher College, Dean College, New England College, Framingham State, Connecticut College, Salve Regina, and Seton Hall.</p>
         <p>Ready to plan your event? <a href="/quote">Request a free custom quote online</a>, submit a <a href="/novelty-order">custom novelty order</a>, or call our booking office at <a href="tel:9786015473">978-601-5473</a>.</p>
       </section>`;

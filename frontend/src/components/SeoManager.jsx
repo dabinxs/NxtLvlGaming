@@ -155,17 +155,17 @@ export const ROUTE_SEO = {
       "Transform any indoor gym, ballroom, or outdoor campus quad into a radiant nighttime wonderland with the Glow Park Experience rental from Next Level Gaming & Novelties. Includes 8 illuminated LED glow swings, 4 glowing seesaws, full-color venue uplighting, and a glowing mini-golf course delivered and staffed across NH, MA, New England, and North Carolina (Charlotte, Raleigh, Durham, Chapel Hill, and Greensboro NC).",
   },
   "/novelties": {
-    title: "Custom Event Novelties & Maker Workshops NH & NC | Next Level",
+    title: "Custom Event Novelties & Maker Workshops NH, MA & NC | Next Level",
     description:
-      "Book interactive custom novelty workshops in NH, MA & NC: Patched City trucker hats, beanies, socks, sequin pillows, pillow dolls, bracelets & keychains.",
+      "Rent custom event novelty stations in Hudson NH, Boston MA & NC: Patched City trucker hats, beanies, socks, pillow dolls, sequin pillows, keychains, rings & plush bags.",
     keywords:
-      "custom event novelties rental, college novelty event ideas NH MA NC, custom trucker hat bar rental Charlotte Raleigh NC, Patched City hats, laser engraved keychains event, make your own stuffed animal college event, custom photo pillow dolls, reversible sequin pillows",
+      "custom event novelties rental, party novelty rentals Hudson NH, college novelty event ideas NH MA NC, custom trucker hat bar rental, Patched City trucker hats and beanies, custom event socks, Bead-tastics custom bracelets, custom photo pillow dolls, reversible sequin pillows, intention bracelets, laser engraved wood and metal keychains, stamped custom rings, hammerless ring press, Silly Sacks custom plush bags, custom novelty license plates",
     image: `${SITE_URL}/novelties-bg.png`,
     canonicalPath: "/novelties",
     serviceName: "Custom Event Novelties & On-Site Maker Workshops",
-    heading: "Custom Event Novelties & Maker Workshops in NH, MA & NC",
+    heading: "Custom Event Novelties & On-Site DIY Maker Workshops in Hudson NH, MA & NC",
     summary:
-      "Book hands-on custom event novelties and interactive maker workshops for college student activities, orientations, school events, and corporate parties across New Hampshire, Massachusetts, New England, and North Carolina (Charlotte, Raleigh, Durham, Chapel Hill, Greensboro, and Winston-Salem NC). Guests create and take home Patched City custom trucker hats and beanies, custom printed socks, Bead-tastics and intention bracelets, custom photo pillow dolls, reversible sequin pillows, laser-engraved wood and metal keychains, hammerless stamped custom rings, Silly Sacks plush character bags, and custom novelty license plates.",
+      "Book 11 hands-on custom event novelty products and interactive maker workshops for college student activities, orientations, school events, and corporate parties across Hudson NH (03051), New Hampshire, Massachusetts, New England, and North Carolina (Charlotte, Raleigh, Durham, Chapel Hill, Greensboro, and Winston-Salem NC). Guests create and take home Patched City custom trucker hats and beanies, custom trucker hats, custom printed socks, Bead-tastics bracelets, intention bracelets, custom photo pillow dolls, reversible sequin pillows, laser-engraved wood and metal keychains, hammerless stamped custom rings, Silly Sacks plush character bags, and custom novelty license plates.",
   },
   "/about": {
     title: "About Next Level Gaming & Novelties | NH, MA & NC Team",
@@ -502,18 +502,18 @@ const SeoManager = () => {
       </p>
       <nav aria-label="All Event Rental Services and Locations">
         <ul>
-          <li><a href="/gaming-events">Live Gaming Events, Esports Rentals &amp; Video Game Event Planner</a></li>
+          <li><a href="/novelties">Custom Event Novelties: Patched City Hats, Beanies, Socks, Pillow Dolls, Keychains, Rings &amp; Plush Bags</a></li>
           <li><a href="/movie-nights">Outdoor Inflatable Movie Screens &amp; Mobile LED Video Wall Rentals</a></li>
           <li><a href="/photo-booth">Interactive Photo Booth, 360 Video Booth &amp; Mirror Photobooth Rentals</a></li>
-          <li><a href="/virtual-reality">Virtual Reality Stations &amp; Mobile VR Escape Room Rentals</a></li>
           <li><a href="/glow-park">Glow Park Illuminated LED Swings, Seesaws &amp; Mini Golf Rentals</a></li>
-          <li><a href="/sim-racing">Force-Feedback Sim Racing Cockpit Simulator Rentals</a></li>
           <li><a href="/silent-disco">Three-Channel Silent Disco Wireless LED Headphone Rentals</a></li>
-          <li><a href="/just-dance">Just Dance Giant-Screen Event Party Rentals</a></li>
+          <li><a href="/virtual-reality">Virtual Reality Stations &amp; Mobile VR Escape Room Rentals</a></li>
+          <li><a href="/sim-racing">Force-Feedback Sim Racing Cockpit Simulator Rentals</a></li>
           <li><a href="/trivia-nights">Interactive Live-Hosted Trivia Night &amp; Game Show Rentals</a></li>
-          <li><a href="/novelties">Custom Event Novelties, Patched City Hats &amp; DIY Maker Workshops</a></li>
+          <li><a href="/just-dance">Just Dance Giant-Screen Event Party Rentals</a></li>
+          <li><a href="/gaming-events">Live Gaming Events, Esports Rentals &amp; Video Game Event Planner</a></li>
           <li><a href="/explore-experiences">Explore All Interactive Event Experiences</a></li>
-          <li><a href="/new-hampshire-massachusetts-event-rentals">New Hampshire &amp; Massachusetts Event Rentals (Hudson, Manchester, Boston)</a></li>
+          <li><a href="/new-hampshire-massachusetts-event-rentals">Hudson NH, New Hampshire &amp; Massachusetts Event Rentals (Hudson, Manchester, Boston)</a></li>
           <li><a href="/north-carolina-event-rentals">North Carolina Event Rentals (Charlotte, Raleigh, Durham, Greensboro)</a></li>
           <li><a href="/college-school-corporate-events">College Campus, High School Post-Prom &amp; Corporate Event Rentals</a></li>
           <li><a href="/quote">Request a Custom Event Rental Quote</a></li>
