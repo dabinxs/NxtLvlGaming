@@ -83,24 +83,144 @@ export const ROUTE_SEO = {
       "Capture viral slow-motion videos and instant keepsake photos with turnkey NH photo booth rentals, 360 video booths, and interactive full-length mirror photobooth rentals from Next Level Gaming & Novelties in Portsmouth NH, Dover, Exeter, Hampton, Hudson NH, Nashua, Manchester, Concord, Salem, Derry, Greater Boston MA, Connecticut, New England, and North Carolina (Charlotte, Raleigh, Durham, Chapel Hill, and Greensboro NC). Includes VIP stanchions, studio LED lighting, fun party props, custom event graphics, instant SMS/QR digital sharing, and a dedicated booth attendant.",
   },
   "/360-video-booth": {
-    title: "360 Photo Booth & Mirror Photobooth Rentals | NH, MA & NC",
+    title: "360 Photo Booth & 360 Video Booth Rental | Hudson NH, Portsmouth, Boston & NC",
     description:
-      "Rent interactive mirror photo booths & 360 video booths with custom overlays, props & attendant in NH, Boston MA & North Carolina. Get a free quote!",
+      "Rent a 360 slow-motion video booth platform with VIP red carpet, LED studio ring lighting, custom video overlays & instant QR sharing in NH, MA, CT & NC.",
     keywords:
-      "360 photo booth rental, photo booth rental, mirror photobooth rental, 360 video booth rental NH, photo booth rental Boston MA, 360 photo booth rental Charlotte NC, photo booth rental Raleigh NC, interactive photo booth",
-    image: `${SITE_URL}/experience-360-video-booth.png`,
-    canonicalPath: "/photo-booth",
-    serviceName: "Interactive Photo Booth, 360 Video Booth & Mirror Photobooth Rentals",
+      "360 photo booth rental, 360 video booth rental, 360 camera booth rental, slow motion 360 photo booth rental, 360 photo booth rental NH, portsmouth nh 360 photo booth rental, manchester nh 360 photo booth rental, hudson nh 360 photo booth rental, 360 photo booth rental Boston MA, 360 photo booth rental Charlotte NC, 360 video booth rental Raleigh NC",
+    image: `${SITE_URL}/photo-booth-experience-2.png`,
+    canonicalPath: "/360-video-booth",
+    serviceName: "360 Slow-Motion Video Booth & 360 Camera Platform Rentals",
+    heading: "360 Photo Booth & Slow-Motion 360 Video Booth Rentals in NH, MA, CT & NC",
+    summary:
+      "Rent a commercial 360 slow-motion video booth platform from Next Level Gaming Events & Novelties across Hudson NH (03051), Portsmouth, Manchester, Nashua, Concord, Greater Boston MA, Connecticut, and North Carolina (Charlotte, Raleigh, Durham, Greensboro NC).",
   },
   "/360-booth": {
-    title: "360 Photo Booth & Mirror Photobooth Rentals | NH, MA & NC",
+    title: "360 Photo Booth & 360 Video Booth Rental | Hudson NH, Portsmouth, Boston & NC",
     description:
-      "Rent interactive mirror photo booths & 360 video booths with custom overlays, props & attendant in NH, Boston MA & North Carolina. Get a free quote!",
+      "Rent a 360 slow-motion video booth platform with VIP red carpet, LED studio ring lighting, custom video overlays & instant QR sharing in NH, MA, CT & NC.",
     keywords:
-      "360 photo booth rental, photo booth rental, mirror photobooth rental, 360 video booth rental NH, photo booth rental Boston MA, 360 photo booth rental Charlotte NC, photo booth rental Raleigh NC, interactive photo booth",
-    image: `${SITE_URL}/experience-360-video-booth.png`,
-    canonicalPath: "/photo-booth",
-    serviceName: "Interactive Photo Booth, 360 Video Booth & Mirror Photobooth Rentals",
+      "360 photo booth rental, 360 video booth rental, 360 camera booth rental, slow motion 360 photo booth rental, 360 photo booth rental NH, 360 photo booth rental Boston MA, 360 photo booth rental Charlotte NC",
+    image: `${SITE_URL}/photo-booth-experience-2.png`,
+    canonicalPath: "/360-video-booth",
+    serviceName: "360 Slow-Motion Video Booth & 360 Camera Platform Rentals",
+  },
+  "/mirror-photo-booth-rental": {
+    title: "Interactive Mirror Photo Booth Rental | Hudson NH, Portsmouth, Boston & NC",
+    description:
+      "Rent a full-length interactive magic mirror photobooth with touch-screen animations, custom prints, red carpet & attendant in NH, Boston MA, CT & NC.",
+    keywords:
+      "mirror photo booth rental, magic mirror photobooth rental, interactive mirror photo booth rental, mirror photo booth rental NH, portsmouth nh mirror photo booth rental, manchester nh photo booth rental, mirror photo booth rental Boston MA, mirror photo booth rental Charlotte NC",
+    image: `${SITE_URL}/photo-booth-experience-1.png`,
+    canonicalPath: "/mirror-photo-booth-rental",
+    serviceName: "Interactive Full-Length Mirror Photobooth Rentals",
+    heading: "Interactive Full-Length Mirror Photo Booth Rentals in NH, MA, CT & NC",
+    summary:
+      "Book a full-length interactive mirror photo booth rental from Next Level Gaming Events & Novelties in Hudson NH, Portsmouth, Manchester, Nashua, Greater Boston MA, Connecticut, and North Carolina (Charlotte, Raleigh, Durham, Greensboro NC).",
+  },
+  "/led-video-wall-rental": {
+    title: "Mobile LED Video Wall & Daylight LED Screen Trailer Rental | NH, MA & NC",
+    description:
+      "Rent 14ft, 16ft & 20ft daylight-visible mobile LED video wall trailers with concert sound for daytime festivals, tailgates & watch parties in NH, MA & NC.",
+    keywords:
+      "mobile LED video wall rental, LED screen trailer rental, outdoor LED wall rental, daylight LED screen rental, mobile LED wall trailer NH, LED video wall rental Boston MA, mobile LED screen rental Charlotte NC, LED video wall rental Raleigh NC",
+    image: `${SITE_URL}/movie-nights-led.jpg`,
+    canonicalPath: "/led-video-wall-rental",
+    serviceName: "Mobile LED Video Wall Trailer & Daylight Jumbotron Screen Rentals",
+    heading: "Mobile LED Video Wall & Daylight LED Screen Trailer Rentals in NH, MA, CT & NC",
+    summary:
+      "Rent ultra-bright 14 ft, 16 ft, and 20 ft daylight-visible mobile LED video wall trailers from Next Level Gaming Events & Novelties across Hudson NH, Manchester, Nashua, Portsmouth, Boston MA, Connecticut, New England, and North Carolina (Charlotte, Raleigh, Durham, Greensboro NC).",
+  },
+  "/inflatable-movie-screen-rental": {
+    title: "Inflatable Movie Screen Rental (16ft–40ft Outdoor Cinema) | NH, MA & NC",
+    description:
+      "Rent giant 16ft, 21ft, 26ft & 40ft outdoor inflatable movie screens with HD projection, concert audio & FM drive-in transmitters in NH, Boston MA & NC.",
+    keywords:
+      "inflatable movie screen rental, outdoor movie screen rental, giant movie screen rental, drive-in movie screen rental, backyard movie screen rental, nh movie screen rental, inflatable movie screen rental NH, outdoor movie screen rental Boston MA, inflatable movie screen rental Charlotte NC",
+    image: `${SITE_URL}/movie-nights-experience-1.png`,
+    canonicalPath: "/inflatable-movie-screen-rental",
+    serviceName: "Giant Outdoor Inflatable Movie Screen & Drive-In Cinema Rentals",
+    heading: "Giant 16 ft to 40 ft Outdoor Inflatable Movie Screen Rentals in NH, MA, CT & NC",
+    summary:
+      "Turn any campus quad, town park, school field, or backyard into an open-air cinema with 16 ft, 21 ft, 26 ft, and 40 ft inflatable movie screen rentals from Next Level Gaming Events & Novelties across Hudson NH, Boston MA, Connecticut, and North Carolina.",
+  },
+  "/vr-escape-room-rental": {
+    title: "Mobile VR Escape Room & Beat Saber VR Station Rental | NH, MA & NC",
+    description:
+      "Rent 4-player cooperative mobile VR escape rooms & Beat Saber Virtual Reality gaming stations with HD spectator screens & attendants in NH, MA & NC.",
+    keywords:
+      "mobile VR escape room rental, VR escape room rental, Beat Saber party rental, virtual reality station rental, nh vr rental, VR party rental NH MA NC, college VR escape room event",
+    image: `${SITE_URL}/vr-games/dragon-tower.png`,
+    canonicalPath: "/vr-escape-room-rental",
+    serviceName: "Mobile VR Escape Room & Beat Saber Virtual Reality Event Rentals",
+    heading: "Mobile VR Escape Room & Beat Saber Virtual Reality Rentals in NH, MA, CT & NC",
+    summary:
+      "Challenge your guests with 4-player cooperative mobile VR escape rooms and room-scale Beat Saber VR gaming stations from Next Level Gaming Events & Novelties across Hudson NH, Boston MA, Connecticut, and North Carolina.",
+  },
+  "/led-glow-swings-rental": {
+    title: "LED Glow Swings, Glow Seesaws & Glow Mini Golf Rental | NH, MA & NC",
+    description:
+      "Rent 8 commercial LED illuminated glow swings on truss frames, 4 glowing seesaws & portable glow mini golf for events in Hudson NH, Boston MA & NC.",
+    keywords:
+      "LED glow swings rental, glow swings rental, illuminated seesaws rental, glow mini golf rental, LED furniture rental NH MA NC, glow party equipment rental",
+    image: `${SITE_URL}/glow-park-experience-1.jpg`,
+    canonicalPath: "/led-glow-swings-rental",
+    serviceName: "LED Illuminated Glow Swings, Glow Seesaws & Glowing Mini Golf Rentals",
+    heading: "LED Illuminated Glow Swings, Seesaws & Glow Mini Golf Rentals in NH, MA, CT & NC",
+    summary:
+      "Rent 8 commercial LED illuminated glow swings suspended on truss frames, 4 multi-rider glowing seesaws, full-color venue uplighting, and an interactive glowing mini-golf course from Next Level Gaming Events & Novelties across Hudson NH, Boston MA, Connecticut, and North Carolina.",
+  },
+  "/custom-trucker-hat-bar-rental": {
+    title: "Custom Trucker Hat Bar Rental & Patched City Beanies | NH, MA & NC",
+    description:
+      "Book an on-site Custom Trucker Hat Bar & Patched City heat-press patch hat and beanie workshop for colleges, parties & corporate events in NH, MA & NC.",
+    keywords:
+      "custom trucker hat bar rental, trucker hat bar party rental, Patched City trucker hats and beanies, custom patch hat bar event, DIY trucker hat station college event, custom hat press bar rental NH Boston Charlotte Raleigh",
+    image: `${SITE_URL}/novelty-cards/patch-city.jpg`,
+    canonicalPath: "/custom-trucker-hat-bar-rental",
+    serviceName: "Custom Trucker Hat Bar & Patched City Hat and Beanie Maker Workshops",
+    heading: "Custom Trucker Hat Bar & Patched City Hat & Beanie Workshop Rentals in NH, MA, CT & NC",
+    summary:
+      "Bring the viral Custom Trucker Hat Bar and Patched City custom patch hat & knit beanie maker workshop to your college campus, orientation, high school post-prom, corporate activation, or private party with Next Level Gaming Events & Novelties across Hudson NH, Boston MA, Connecticut, and North Carolina.",
+  },
+  "/custom-pillow-dolls-rental": {
+    title: "Custom Photo Pillow Dolls & Reversible Sequin Pillows | NH, MA & NC",
+    description:
+      "Rent on-site Custom Photo Pillow Doll & Magic Reversible Sequin Pillow maker stations for college events, orientations & parties in NH, Boston MA & NC.",
+    keywords:
+      "custom photo pillow dolls, custom pillow dolls college event, reversible sequin pillows novelty rental, custom sequence pillows event station, make your own photo pillow event NH MA NC",
+    image: `${SITE_URL}/novelty-cards/pillow-dolls.jpg`,
+    canonicalPath: "/custom-pillow-dolls-rental",
+    serviceName: "Custom Photo Pillow Dolls & Reversible Sequin Pillow Event Stations",
+    heading: "Custom Photo Pillow Dolls & Magic Reversible Sequin Pillow Stations in NH, MA, CT & NC",
+    summary:
+      "Delight students and event guests with on-site Custom Photo Pillow Dolls and Custom Reversible Sequin (Sequence) Pillow maker stations from Next Level Gaming Events & Novelties across Hudson NH, Boston MA, Connecticut, and North Carolina.",
+  },
+  "/custom-keychains-rings-novelty": {
+    title: "Laser-Engraved Keychains, Stamped Rings & License Plates | NH, MA & NC",
+    description:
+      "Book on-site Laser-Engraved Wood & Metal Keychains, Hammerless Stamped Custom Rings & Custom Novelty License Plate stations in NH, Boston MA & NC.",
+    keywords:
+      "laser engraved wood and metal keychains, stamped custom rings event novelty, hammerless ring press rental, custom novelty license plates event station, personalized keychain station college event",
+    image: `${SITE_URL}/novelty-cards/wood-metal-keychains.jpg`,
+    canonicalPath: "/custom-keychains-rings-novelty",
+    serviceName: "Laser-Engraved Keychains, Stamped Custom Rings & Custom License Plate Stations",
+    heading: "Laser-Engraved Keychains, Stamped Custom Rings & License Plate Novelties in NH, MA, CT & NC",
+    summary:
+      "Offer permanent personalized keepsakes with on-site Laser-Engraved Wood & Metal Keychains, Stamped Custom Rings using our quiet Hammerless Ring Press, and Custom Novelty License Plates from Next Level Gaming Events & Novelties across Hudson NH, Boston MA, Connecticut, and North Carolina.",
+  },
+  "/custom-event-socks-bracelets": {
+    title: "Custom Printed Event Socks, Bead-tastics & Silly Sacks | NH, MA & NC",
+    description:
+      "Rent on-site Custom Printed Event Socks, Bead-tastics Custom Bracelets, Intention Bracelets & Silly Sacks Plush Bag stations in NH, Boston MA & NC.",
+    keywords:
+      "custom printed event socks, custom socks novelty station, Bead-tastics custom bracelets, custom intention bracelets event, Silly Sacks custom plush bags, DIY plush backpack college event",
+    image: `${SITE_URL}/novelty-cards/custom-socks.jpg`,
+    canonicalPath: "/custom-event-socks-bracelets",
+    serviceName: "Custom Printed Socks, Bead-tastics Bracelets, Intention Bracelets & Silly Sacks Stations",
+    heading: "Custom Event Socks, Bead-tastics & Intention Bracelets & Silly Sacks Plush Bags in NH, MA & NC",
+    summary:
+      "Energize college welcome weeks, orientations, summer camps, and school events with on-site Custom Printed Crew Socks, Bead-tastics Custom Bracelets, Custom Intention Bracelets, and Silly Sacks Character Plush Bags from Next Level Gaming Events & Novelties across Hudson NH, Boston MA, Connecticut, and North Carolina.",
   },
   "/just-dance": {
     title: "Just Dance Party Rentals & Giant Screen Events | Next Level",
@@ -502,12 +622,22 @@ const SeoManager = () => {
       </p>
       <nav aria-label="All Event Rental Services and Locations">
         <ul>
-          <li><a href="/novelties">Custom Event Novelties: Patched City Hats, Beanies, Socks, Pillow Dolls, Keychains, Rings &amp; Plush Bags</a></li>
+          <li><a href="/novelties">Custom Event Novelties: All 11 DIY Maker Workshop Products</a></li>
+          <li><a href="/custom-trucker-hat-bar-rental">Custom Trucker Hat Bar &amp; Patched City Hat &amp; Beanie Workshop Rental</a></li>
+          <li><a href="/custom-pillow-dolls-rental">Custom Photo Pillow Dolls &amp; Reversible Sequin Pillows Station</a></li>
+          <li><a href="/custom-keychains-rings-novelty">Laser-Engraved Wood &amp; Metal Keychains, Stamped Custom Rings &amp; License Plates</a></li>
+          <li><a href="/custom-event-socks-bracelets">Custom Printed Event Socks, Bead-tastics, Intention Bracelets &amp; Silly Sacks</a></li>
           <li><a href="/movie-nights">Outdoor Inflatable Movie Screens &amp; Mobile LED Video Wall Rentals</a></li>
+          <li><a href="/inflatable-movie-screen-rental">16–40 ft Giant Outdoor Inflatable Movie Screen Rentals</a></li>
+          <li><a href="/led-video-wall-rental">14–20 ft Daylight Mobile LED Video Wall Trailer Rentals</a></li>
           <li><a href="/photo-booth">Interactive Photo Booth, 360 Video Booth &amp; Mirror Photobooth Rentals</a></li>
+          <li><a href="/360-video-booth">360 Slow-Motion Video Booth Platform Rentals</a></li>
+          <li><a href="/mirror-photo-booth-rental">Interactive Full-Length Mirror Photobooth Rentals</a></li>
           <li><a href="/glow-park">Glow Park Illuminated LED Swings, Seesaws &amp; Mini Golf Rentals</a></li>
+          <li><a href="/led-glow-swings-rental">LED Illuminated Glow Swings, Glow Seesaws &amp; Glowing Mini Golf Rentals</a></li>
           <li><a href="/silent-disco">Three-Channel Silent Disco Wireless LED Headphone Rentals</a></li>
           <li><a href="/virtual-reality">Virtual Reality Stations &amp; Mobile VR Escape Room Rentals</a></li>
+          <li><a href="/vr-escape-room-rental">4-Player Cooperative Mobile VR Escape Room &amp; Beat Saber Rentals</a></li>
           <li><a href="/sim-racing">Force-Feedback Sim Racing Cockpit Simulator Rentals</a></li>
           <li><a href="/trivia-nights">Interactive Live-Hosted Trivia Night &amp; Game Show Rentals</a></li>
           <li><a href="/just-dance">Just Dance Giant-Screen Event Party Rentals</a></li>

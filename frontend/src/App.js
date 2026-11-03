@@ -92,16 +92,25 @@ function App() {
         <Route path="/experiences" element={<ExploreExperiences />} />
         <Route path="/gaming-events" element={<GamingEvents />} />
         <Route path="/movie-nights" element={<MovieNights />} />
+        <Route path="/led-video-wall-rental" element={<MovieNights />} />
+        <Route path="/inflatable-movie-screen-rental" element={<MovieNights />} />
         <Route path="/trivia-nights" element={<TriviaNights />} />
         <Route path="/virtual-reality" element={<VirtualReality />} />
+        <Route path="/vr-escape-room-rental" element={<VirtualReality />} />
         <Route path="/photo-booth" element={<VideoBooth360 />} />
         <Route path="/360-video-booth" element={<VideoBooth360 />} />
         <Route path="/360-booth" element={<VideoBooth360 />} />
+        <Route path="/mirror-photo-booth-rental" element={<VideoBooth360 />} />
         <Route path="/just-dance" element={<JustDance />} />
         <Route path="/silent-disco" element={<SilentDisco />} />
         <Route path="/sim-racing" element={<SimRacing />} />
         <Route path="/glow-park" element={<GlowPark />} />
+        <Route path="/led-glow-swings-rental" element={<GlowPark />} />
         <Route path="/novelties" element={<Novelties />} />
+        <Route path="/custom-trucker-hat-bar-rental" element={<Novelties />} />
+        <Route path="/custom-pillow-dolls-rental" element={<Novelties />} />
+        <Route path="/custom-keychains-rings-novelty" element={<Novelties />} />
+        <Route path="/custom-event-socks-bracelets" element={<Novelties />} />
         <Route path="/north-carolina-event-rentals" element={<Landing />} />
         <Route path="/new-hampshire-massachusetts-event-rentals" element={<Landing />} />
         <Route path="/college-school-corporate-events" element={<Landing />} />
