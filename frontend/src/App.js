@@ -66,6 +66,11 @@ const LANDING_ALIASES = new Set([
   "/north-carolina-event-rentals",
   "/new-hampshire-massachusetts-event-rentals",
   "/college-school-corporate-events",
+  "/hudson-nh-party-rentals",
+  "/manchester-nh-event-rentals",
+  "/nashua-nh-event-rentals",
+  "/portsmouth-nh-photo-booth-party-rentals",
+  "/concord-salem-derry-nh-party-rentals",
 ]);
 
 const PublicBackToHomeCTA = () => {
@@ -114,6 +119,11 @@ function App() {
         <Route path="/north-carolina-event-rentals" element={<Landing />} />
         <Route path="/new-hampshire-massachusetts-event-rentals" element={<Landing />} />
         <Route path="/college-school-corporate-events" element={<Landing />} />
+        <Route path="/hudson-nh-party-rentals" element={<Landing />} />
+        <Route path="/manchester-nh-event-rentals" element={<Landing />} />
+        <Route path="/nashua-nh-event-rentals" element={<Landing />} />
+        <Route path="/portsmouth-nh-photo-booth-party-rentals" element={<Landing />} />
+        <Route path="/concord-salem-derry-nh-party-rentals" element={<Landing />} />
         <Route path="/build-novelty" element={<NoveltyAccess />} />
         <Route path="/build" element={<NoveltyAccess />} />
         <Route path="/cms" element={<AdminPage />} />

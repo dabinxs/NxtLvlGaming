@@ -967,6 +967,166 @@ const ROUTES = {
       },
     ],
   },
+  "/hudson-nh-party-rentals": {
+    title: "Hudson NH Party Rentals & Event Equipment | Next Level (Rebel Rd 03051)",
+    description:
+      "Local Hudson NH party & event equipment rentals on Rebel Rd (03051): 360 photo booths, inflatable movie screens, LED video walls, VR, glow swings & novelties.",
+    keywords:
+      "hudson nh party rentals, party rentals hudson nh, event rentals hudson nh, photo booth rental hudson nh, outdoor movie screen rental hudson nh, party equipment rentals hudson nh 03051, litchfield nh party rentals, pelham nh party rentals, windham nh party rentals, londonderry nh party rentals",
+    image: DEFAULT_IMAGE,
+    canonicalPath: "/hudson-nh-party-rentals",
+    serviceName: "Hudson, NH Party Equipment Rentals & Custom Event Novelties",
+    heading: "Hudson, NH Party Equipment Rentals & Event Entertainment (Rebel Rd, 03051)",
+    summary:
+      "Headquartered locally on Rebel Rd in Hudson, New Hampshire (03051), Next Level Gaming Events & Novelties is Hudson's home-grown party equipment rental service and custom event novelty provider serving Hudson, Litchfield, Pelham, Windham, Londonderry, Derry, Salem, Merrimack, and Nashua NH.",
+    subhead: "Local Hudson NH Delivery of Movie Screens, 360 Photo Booths, Glow Swings, VR & Custom Novelties",
+    details:
+      "Whether you are planning an Alvirne High School post-prom, a backyard movie night in Hudson NH, a Hillsborough County community festival, or a corporate celebration, our Rebel Rd crew delivers giant 16–40 ft inflatable movie screens, 14–20 ft mobile LED video wall trailers, 360 slow-motion video booths, mirror photobooths, Glow Park LED swings, Silent Disco headphones, Sim Racing cockpits, Virtual Reality stations, live gaming events, and all 11 custom novelty maker stations.",
+    offers: [
+      {
+        name: "Hudson NH Outdoor Movie Screen & Mobile LED Wall Rentals",
+        description: "16–40 ft inflatable cinema screens and 14–20 ft daylight LED video wall trailers delivered from our Hudson NH 03051 headquarters.",
+      },
+      {
+        name: "Hudson NH 360 Video Booth & Interactive Mirror Photobooth Rentals",
+        description: "Turnkey photo booth rentals with red carpet, studio lighting, custom overlays, and attendant in Hudson, Litchfield, Pelham, and Windham NH.",
+      },
+      {
+        name: "Hudson NH Custom Event Novelties & Gaming Party Rentals",
+        description: "Patched City trucker hats, pillow dolls, custom socks, VR escape rooms, glow swings, and multiplayer video gaming events.",
+      },
+    ],
+    faqs: [
+      {
+        q: "Where is Next Level Gaming Events & Novelties located in Hudson, NH?",
+        a: "Our main New England equipment warehouse and headquarters is located on Rebel Rd, Hudson, NH 03051, open 24 hours for quotes and event bookings at 978-601-5473.",
+      },
+      {
+        q: "Do you offer free local delivery in Hudson, Nashua, Litchfield, and Pelham NH?",
+        a: "Because our headquarters is right on Rebel Rd in Hudson, NH (03051), events in Hudson and neighboring Hillsborough and Rockingham County towns enjoy our fastest response times and local crew dispatch.",
+      },
+    ],
+  },
+  "/manchester-nh-event-rentals": {
+    title: "Manchester NH Event & Party Rentals | Photo Booths, Movie Screens & VR",
+    description:
+      "Turnkey Manchester NH party & event rentals: 360 photo booths, mirror photobooths, giant outdoor movie screens, LED video walls, VR, glow park & novelties.",
+    keywords:
+      "manchester nh party rentals, party rentals manchester nh, event rentals manchester nh, manchester nh photo booth rental, photo booth nh, outdoor movie screen rental manchester nh, bedford nh party rentals, goffstown nh party rentals, hooksett nh party rentals, SNHU campus event rentals, Saint Anselm college event rentals",
+    image: DEFAULT_IMAGE,
+    canonicalPath: "/manchester-nh-event-rentals",
+    serviceName: "Manchester, NH Party Equipment Rentals, Photo Booths & Event Production",
+    heading: "Manchester, NH Event & Party Equipment Rentals — Photo Booths, Movie Screens & Novelties",
+    summary:
+      "Next Level Gaming Events & Novelties delivers turnkey party equipment rentals, 360 photo booths, mirror photobooths, outdoor inflatable movie screens, daylight mobile LED video wall trailers, Glow Park LED swings, Virtual Reality escape rooms, Silent Disco headphones, Sim Racing simulators, live gaming tournaments, and 11 custom novelty workshops across Manchester, Bedford, Goffstown, Hooksett, Auburn, and Candia, New Hampshire.",
+    subhead: "Serving Manchester NH Colleges, Schools, Corporate Venues & Private Celebrations",
+    details:
+      "Located just minutes south on I-93/Route 3 in Hudson NH, our crew provides insured, fully staffed event rentals for Southern New Hampshire University (SNHU), Saint Anselm College, Manchester high schools, downtown Elm Street corporate venues, hotel ballrooms, and backyard parties across Greater Manchester.",
+    offers: [
+      {
+        name: "Manchester NH 360 Photo Booth & Mirror Photobooth Rentals",
+        description: "Full-service 360 slow-motion video booths and touch-screen mirror photo booths for Manchester weddings, proms, and corporate galas.",
+      },
+      {
+        name: "Manchester NH Giant Outdoor Movie Screen & LED Video Wall Rentals",
+        description: "16–40 ft inflatable movie screens and 14–20 ft daylight mobile LED trailers with concert sound for Manchester parks, campuses, and tailgates.",
+      },
+    ],
+    faqs: [
+      {
+        q: "How far is your warehouse from Manchester, NH?",
+        a: "Our Rebel Rd headquarters in Hudson, NH (03051) is just 20 minutes south of Manchester, NH, allowing us to deliver and staff events across Manchester, Bedford, Goffstown, and Hooksett every day of the week.",
+      },
+    ],
+  },
+  "/nashua-nh-event-rentals": {
+    title: "Nashua NH Party & Event Rentals | Photo Booths, Movie Screens & Novelties",
+    description:
+      "Book Nashua NH party & event equipment rentals: 360 photo booths, mirror photobooths, outdoor movie screens, mobile LED walls, VR, glow park & custom novelties.",
+    keywords:
+      "nashua nh party rentals, party rentals nashua nh, event rentals nashua nh, nashua nh photo booth rental, outdoor movie screen rental nashua nh, merrimack nh party rentals, hollis nh party rentals, amherst nh party rentals, milford nh party rentals, Rivier University event rentals",
+    image: DEFAULT_IMAGE,
+    canonicalPath: "/nashua-nh-event-rentals",
+    serviceName: "Nashua, NH Party Equipment Rentals, Photo Booths & Custom Novelties",
+    heading: "Nashua, NH Party & Event Equipment Rentals — Movie Screens, 360 Booths & Novelties",
+    summary:
+      "Just across the Taylor Falls Bridge from our Rebel Rd headquarters in Hudson, Next Level Gaming Events & Novelties provides turnkey Nashua NH party rentals, 360 photo booths, mirror photobooths, giant inflatable movie screens, mobile LED video wall trailers, VR escape rooms, Glow Park LED swings, Silent Disco headphones, Sim Racing cockpits, live gaming events, and custom novelty maker workshops across Nashua, Merrimack, Hollis, Brookline, Amherst, and Milford NH.",
+    subhead: "Immediate Local Dispatch Across Nashua (03060, 03062, 03063, 03064) & Hillsborough County",
+    details:
+      "From Rivier University campus events and Nashua High School North & South post-proms to Mine Falls Park festivals, Sky Meadow weddings, and corporate outings along the Route 3 corridor, our local crew handles delivery, setup, live hosting, and teardown.",
+    offers: [
+      {
+        name: "Nashua NH Photo Booth, Movie Screen & Glow Park Rentals",
+        description: "Turnkey 360 video booths, mirror photobooths, 16–40 ft inflatable movie screens, mobile LED walls, and LED glow swings in Nashua and Merrimack NH.",
+      },
+    ],
+    faqs: [
+      {
+        q: "Do you serve Nashua, Merrimack, Hollis, and Amherst NH?",
+        a: "Yes! Our Hudson NH headquarters borders Nashua directly across the Merrimack River, making Nashua, Merrimack, Hollis, Amherst, and Milford our closest service area.",
+      },
+    ],
+  },
+  "/portsmouth-nh-photo-booth-party-rentals": {
+    title: "Portsmouth NH Photo Booth Rental & Seacoast Party Rentals | Next Level",
+    description:
+      "Portsmouth NH photo booth rentals (360 video booths & mirror photobooths), outdoor movie screens, LED walls, glow swings & novelties across Seacoast NH.",
+    keywords:
+      "portsmouth nh photo booth rental, portsmouth photo booth rental, photo booth nh, nh photo booth rental, portsmouth nh party rentals, seacoast nh party rentals, dover nh party rentals, exeter nh party rentals, hampton nh party rentals, durham nh UNH event rentals, rochester nh party rentals, rye nh wedding photo booth rental",
+    image: `${SITE_URL}/experience-360-video-booth.png`,
+    canonicalPath: "/portsmouth-nh-photo-booth-party-rentals",
+    serviceName: "Portsmouth, NH & Seacoast Photo Booth Rentals & Party Equipment Services",
+    heading: "Portsmouth, NH Photo Booth Rentals & Seacoast NH Event Equipment Rentals",
+    summary:
+      "Next Level Gaming Events & Novelties is the Seacoast's premier provider of Portsmouth NH photo booth rentals (360 slow-motion video booths and full-length interactive mirror photobooths), giant outdoor inflatable movie screens, daylight mobile LED video wall trailers, Glow Park LED swings, Silent Disco wireless headphones, Virtual Reality escape rooms, Sim Racing cockpits, live gaming events, and custom novelty stations across Portsmouth, Rye, New Castle, Hampton, Exeter, Stratham, Durham (UNH), Dover, Somersworth, and Rochester, New Hampshire.",
+    subhead: "360 Video Booths, Mirror Photobooths, Outdoor Cinema & Interactive Rentals for Seacoast NH",
+    details:
+      "Whether you are hosting a waterfront wedding or corporate gala in downtown Portsmouth NH, a University of New Hampshire (UNH) campus event in Durham, a beach festival in Hampton, or a high school prom in Exeter or Dover, our crew delivers red-carpet 360 video booths, mirror photobooths, concert-audio movie screens, and hands-on novelty workshops.",
+    offers: [
+      {
+        name: "Portsmouth NH 360 Slow-Motion Video Booth & Mirror Photobooth Rental",
+        description: "Red-carpet 360 video platform and full-length interactive mirror photo booth with custom Seacoast event overlays, props, and on-site attendant.",
+      },
+      {
+        name: "Seacoast NH Outdoor Movie Screen, Glow Park & Silent Disco Rentals",
+        description: "16–40 ft inflatable movie screens, 14–20 ft daylight mobile LED walls, LED glow swings, and 3-channel silent disco headphones across Portsmouth, Dover, Exeter, and Durham NH.",
+      },
+    ],
+    faqs: [
+      {
+        q: "What is included in a Portsmouth NH photo booth rental?",
+        a: "Every Portsmouth NH 360 video booth or interactive mirror photobooth rental includes delivery to any Seacoast NH venue, red carpet and VIP stanchions, studio LED ring lighting, fun props, custom event overlay graphics, instant QR/SMS sharing, and a professional on-site booth attendant.",
+      },
+    ],
+  },
+  "/concord-salem-derry-nh-party-rentals": {
+    title: "Concord, Salem & Derry NH Party & Event Rentals | Next Level Gaming",
+    description:
+      "Turnkey party & event equipment rentals in Concord, Salem, Derry, Londonderry & Keene NH: 360 photo booths, movie screens, LED walls, VR, glow park & novelties.",
+    keywords:
+      "concord nh party rentals, salem nh party rentals, derry nh party rentals, londonderry nh party rentals, windham nh party rentals, keene nh event rentals, hanover nh event rentals, laconia nh party rentals, nh party rentals, nh event rentals",
+    image: DEFAULT_IMAGE,
+    canonicalPath: "/concord-salem-derry-nh-party-rentals",
+    serviceName: "Concord, Salem, Derry & Londonderry NH Party & Event Equipment Rentals",
+    heading: "Concord, Salem, Derry & Londonderry NH Party & Event Equipment Rentals",
+    summary:
+      "From Southern New Hampshire's I-93 corridor (Salem, Windham, Derry, and Londonderry NH) to the state capital in Concord, the Lakes Region (Laconia, Meredith), Keene, and Hanover/Lebanon NH, Next Level Gaming Events & Novelties delivers turnkey party rentals, 360 photo booths, mirror photobooths, giant outdoor movie screens, mobile LED video walls, VR escape rooms, Glow Park LED swings, Silent Disco headphones, Sim Racing cockpits, and custom novelty workshops.",
+    subhead: "Statewide New Hampshire Event Rentals for Colleges, Schools, Towns & Private Parties",
+    details:
+      "Backed by commercial liability insurance and 10+ years of New Hampshire event production experience, our Rebel Rd, Hudson NH crew travels statewide to colleges (including New England College in Henniker, Plymouth State, Keene State, Colby-Sawyer, Franklin Pierce, and Dartmouth), high schools, summer camps, and municipal parks.",
+    offers: [
+      {
+        name: "Salem, Derry, Londonderry & Concord NH Event Rental Packages",
+        description: "Full-service outdoor movie nights, 360 photo booths, mirror photobooths, glow swings, VR stations, esports tournaments, and custom novelty workshops across NH.",
+      },
+    ],
+    faqs: [
+      {
+        q: "Do you deliver party and event rentals throughout all of New Hampshire?",
+        a: "Yes! From our Hudson NH (03051) warehouse, we deliver, set up, and staff events in Salem, Derry, Londonderry, Windham, Concord, Henniker, Laconia, Keene, Hanover, Plymouth, and every town across New Hampshire.",
+      },
+    ],
+  },
   "/cms": {
     title: "Website CMS | Next Level Gaming & Novelties",
     description: "Admin content management dashboard for Next Level Gaming & Novelties.",
@@ -1234,6 +1394,7 @@ function buildRouteHtml(baseHtml, routeKey, seo) {
           <li><a href="/just-dance">Just Dance Giant-Screen Stage Party Rentals</a></li>
           <li><a href="/gaming-events">Live Gaming Events, Esports Tournaments &amp; Video Game Event Planning</a></li>
         </ul>
+        <p>New Hampshire Local Hubs: <a href="/hudson-nh-party-rentals">Hudson NH Party Rentals (03051 HQ)</a>, <a href="/manchester-nh-event-rentals">Manchester NH Event &amp; Party Rentals</a>, <a href="/nashua-nh-event-rentals">Nashua NH Party Rentals</a>, <a href="/portsmouth-nh-photo-booth-party-rentals">Portsmouth NH Photo Booth &amp; Seacoast Party Rentals</a>, and <a href="/concord-salem-derry-nh-party-rentals">Concord, Salem &amp; Derry NH Party Rentals</a>.</p>
         <p>Regional branches: <a href="/new-hampshire-massachusetts-event-rentals">Hudson NH, New Hampshire, Massachusetts &amp; New England Event Rentals</a> (Hudson, Manchester, Nashua, Portsmouth, Boston, CT) and <a href="/north-carolina-event-rentals">North Carolina Event Rentals &amp; Birthday Parties</a> (Charlotte, Raleigh, Durham, Greensboro, New Bern) for <a href="/college-school-corporate-events">Colleges, Schools &amp; Corporate Events</a>.</p>
         <p>Trusted by 23+ universities and colleges including Harvard, Boston University, Penn State, Babson College, Quinnipiac University, Holy Cross, Springfield College, Emmanuel College, Bridgewater State University, Fisher College, Dean College, New England College, Framingham State, Connecticut College, Salve Regina, and Seton Hall.</p>
         <p>Ready to plan your event? <a href="/quote">Request a free custom quote online</a>, submit a <a href="/novelty-order">custom novelty order</a>, or call our booking office at <a href="tel:9786015473">978-601-5473</a>.</p>
