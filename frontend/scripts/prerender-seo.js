@@ -10,7 +10,7 @@ const ROUTES = {
     description:
       "Turnkey live gaming events, esports rental company & video gaming competition production with 12–40ft screens, PS5, Xbox & Switch in NH, Boston MA, CT & NC.",
     keywords:
-      "gaming events, live gaming events, gaming event, video game event, video game events, video gaming events, video game events near me, esports tournaments near me, video game event planner, video game event management, video gaming tournament event management, video gaming competition production, video game tournament event production, esports rental company, bulk esports rental, event planning equipment for gamers, esports rental, next level gaming ct, new england gaming, gaming events this weekend, next level gaming, nxt level gaming, next level fec attraction, video game tournaments, gaming event rental, gaming event planning, boston gaming events, gaming events Boston MA, college gaming events Boston, video game party rental Manchester NH, gaming events Hudson NH, gaming events Portsmouth NH, video gaming event rental New Hampshire, Connecticut gaming events, gaming event rentals Charlotte NC, mobile video game party Raleigh NC, esports tournament production NH MA CT NC, Super Smash Bros tournament rental, Mario Kart event rental Boston MA Charlotte NC",
+      "gaming events, real life gaming experience, live gaming events, gaming event, video game event, video game events, video gaming events, video game events near me, esports tournaments near me, video game event planner, video game event management, video gaming tournament event management, video gaming competition production, video game tournament event production, esports rental company, bulk esports rental, event planning equipment for gamers, esports rental, next level gaming ct, new england gaming, gaming events this weekend, next level gaming, nxt level gaming, next level fec attraction, video game tournaments, gaming event rental, gaming event planning, boston gaming events, gaming events Boston MA, college gaming events Boston, video game party rental Manchester NH, gaming events Hudson NH, gaming events Portsmouth NH, video gaming event rental New Hampshire, Connecticut gaming events, gaming event rentals Charlotte NC, mobile video game party Raleigh NC, esports tournament production NH MA CT NC, Super Smash Bros tournament rental, Mario Kart event rental Boston MA Charlotte NC",
     image: `${SITE_URL}/gaming-events-experience-1.png`,
     canonicalPath: "/gaming-events",
     serviceName: "Live Video Gaming Event Rentals, Esports Rental Company & Video Gaming Competition Production",
@@ -184,15 +184,15 @@ const ROUTES = {
   "/photo-booth": {
     title: "Photo Booth NH | Portsmouth, Manchester & Hudson 360 & Mirror Rentals",
     description:
-      "Turnkey Photo Booth NH rentals, Portsmouth photo booth rentals, 360 video booths & mirror photobooths in Portsmouth, Manchester, Nashua, Hudson, Boston & NC.",
+      "Turnkey photo booth rental New Hampshire, Portsmouth photo booth rentals, 360 video booths & mirror photobooths in Portsmouth, Manchester, Nashua, Hudson & NC.",
     keywords:
-      "photo booth nh, nh photo booth rental, portsmouth photo booth rental, portsmouth nh photo booth rental, 360 photo booth rental, photo booth rental, mirror photobooth rental, photo booth rental NH, manchester nh photo booth rental, nashua nh photo booth rental, hudson nh photo booth rental, concord nh photo booth rental, dover nh photo booth rental, salem nh photo booth rental, 360 video booth rental NH, photo booth rental Boston MA, 360 photo booth rental Charlotte NC, photo booth rental Raleigh NC, interactive photo booth, wedding photo booth rental, corporate photo booth rental",
+      "photo booth rental new hampshire, photo booth nh, nh photo booth rental, portsmouth photo booth rental, portsmouth nh photo booth rental, 360 photo booth rental, photo booth rental, mirror photobooth rental, photo booth rental NH, manchester nh photo booth rental, nashua nh photo booth rental, hudson nh photo booth rental, concord nh photo booth rental, dover nh photo booth rental, salem nh photo booth rental, 360 video booth rental NH, photo booth rental Boston MA, 360 photo booth rental Charlotte NC, photo booth rental Raleigh NC, interactive photo booth, wedding photo booth rental, corporate photo booth rental",
     image: `${SITE_URL}/experience-360-video-booth.png`,
     canonicalPath: "/photo-booth",
     serviceName: "Interactive Photo Booth, 360 Video Booth & Mirror Photobooth Rentals",
     heading: "Photo Booth NH Rentals — Portsmouth, Manchester, Hudson, Boston & NC 360 & Mirror Booths",
     summary:
-      "Capture and share unforgettable memories with turnkey Photo Booth NH rentals, Portsmouth photo booth rentals, 360 slow-motion video booths, and interactive full-length mirror photobooth rentals from Next Level Gaming & Novelties across Portsmouth NH, Dover, Exeter, Hampton, Hudson NH, Nashua, Manchester, Concord, Salem, Derry, Greater Boston MA, Connecticut, New England, and North Carolina (Charlotte, Raleigh, Durham, Chapel Hill, and Greensboro NC).",
+      "Capture and share unforgettable memories with turnkey photo booth rental New Hampshire services, Portsmouth photo booth rentals, 360 slow-motion video booths, and interactive full-length mirror photobooth rentals from Next Level Gaming & Novelties across Portsmouth NH, Dover, Exeter, Hampton, Hudson NH, Nashua, Manchester, Concord, Salem, Derry, Greater Boston MA, Connecticut, New England, and North Carolina (Charlotte, Raleigh, Durham, Chapel Hill, and Greensboro NC).",
     subhead: "Interactive Mirror Photo Booths & Slow-Motion 360 Video Platforms",
     details:
       "Every interactive photo booth, 360 video booth, and mirror photobooth package includes red carpet and VIP stanchions, professional LED studio ring lighting, custom event logos and overlays, party props, instant QR and SMS digital sharing, and a friendly on-site attendant for college formals, proms, weddings, Seacoast NH & Portsmouth events, corporate galas, and private celebrations.",
@@ -304,15 +304,15 @@ const ROUTES = {
   "/sim-racing": {
     title: "Sim Racing Cockpit & Racing Simulator Rentals | NH, MA & NC",
     description:
-      "Rent force-feedback Sim Racing simulator cockpits with bucket seats, giant-screen telemetry & fastest-lap leaderboards in NH, Boston MA, CT & North Carolina.",
+      "Rent racing simulator near me: force-feedback Sim Racing simulator cockpits with bucket seats, giant-screen telemetry & leaderboards in NH, Boston MA & NC.",
     keywords:
-      "nh sim racing rental, sim racing rental, racing simulator rental, sim racing simulator rental, racing simulator event rental, sim racing rental NH MA, racing simulator rental Boston MA, sim racing simulator rental Charlotte NC, racing simulator event rental Raleigh NC, racing simulator rental Connecticut CT, force feedback racing cockpit rental, F1 racing simulator rental",
+      "rent racing simulator near me, racing simulator rental near me, nh sim racing rental, sim racing rental, racing simulator rental, sim racing simulator rental, racing simulator event rental, sim racing rental NH MA, racing simulator rental Boston MA, sim racing simulator rental Charlotte NC, racing simulator event rental Raleigh NC, racing simulator rental Connecticut CT, force feedback racing cockpit rental, F1 racing simulator rental",
     image: `${SITE_URL}/experience-sim-racing.png`,
     canonicalPath: "/sim-racing",
     serviceName: "Sim Racing Cockpit Simulator Event Rentals",
     heading: "Sim Racing Cockpit & Racing Simulator Rentals in NH, MA, CT & NC",
     summary:
-      "Bring motorsport excitement to your corporate activation, trade show, college event, or party with Sim Racing cockpit simulator rentals from Next Level Gaming & Novelties across Hudson NH, Manchester, Nashua, Portsmouth, Boston MA, Connecticut, New England, and our North Carolina branch in Charlotte, Concord, Raleigh, Durham, and Greensboro NC.",
+      "Looking to rent a racing simulator near you? Bring motorsport excitement to your corporate activation, trade show, college event, or party with Sim Racing cockpit simulator rentals from Next Level Gaming & Novelties across Hudson NH, Manchester, Nashua, Portsmouth, Boston MA, Connecticut, New England, and our North Carolina branch in Charlotte, Concord, Raleigh, Durham, and Greensboro NC.",
     subhead: "Force-Feedback Racing Cockpits, Bucket Seats & Fastest-Lap Tournaments",
     details:
       "Our Sim Racing simulator cockpits pair force-feedback racing wheels and pedal sets with authentic racing bucket seats, high-definition displays, surround sound, and live fastest-lap leaderboards managed by our event crew.",
