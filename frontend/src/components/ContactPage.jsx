@@ -4,12 +4,14 @@ import { Link } from "react-router-dom";
 import { motion, useReducedMotion } from "framer-motion";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import { submitLeadWithFailover, WEB3FORMS_CONTACT_KEY } from "../lib/leadSubmission";
 import "./ContactPage.css";
 
 const CONTACT_EMAIL = "sales@nextlevelgamingevents.com";
 const CONTACT_PHONE = "978-601-5473";
 const COMPANY_ADDRESS = "HUDSON NH";
-const FORM_ENDPOINT = "https://formsubmit.co/ajax/team@nextlevelgamingevents.com";
+
+
 const topics = ["Plan an event", "Custom novelties", "Partnership", "Something else"];
 
 const ContactPage = () => {
@@ -31,24 +33,19 @@ const ContactPage = () => {
     setIsSending(true);
     setNotice("");
     try {
-      const response = await fetch(FORM_ENDPOINT, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({
-          _subject: `Website contact: ${form.topic}`,
-          _template: "table",
-          _honey: event.currentTarget.elements._honey.value,
+      await submitLeadWithFailover({
+        formType: "Contact",
+        web3Key: WEB3FORMS_CONTACT_KEY,
+        subject: `Website contact: ${form.topic}`,
+        botcheck: event.currentTarget.elements._honey?.value,
+        data: {
           name: form.name,
           email: form.email,
           topic: form.topic,
           message: form.message,
-        }),
+        },
       });
-      const result = await response.json();
-      if (!response.ok || result.success === false || result.success === "false" || result.error) {
-        throw new Error("Message delivery failed");
-      }
-      setNotice("Message submitted. If this is the first submission, check the inbox for the one-time activation email.");
+      setNotice("Message submitted! Our team will get back to you shortly.");
       setForm({ name: "", email: "", topic: topics[0], message: "" });
     } catch {
       setNotice(`We couldn’t send your message. Please try again or email ${CONTACT_EMAIL}.`);
@@ -133,7 +130,7 @@ const ContactPage = () => {
             </div>
 
             <div className="contact-form-bottom">
-              <p aria-live="polite">{notice || "Your message will be emailed after the one-time recipient activation."}</p>
+              <p aria-live="polite">{notice || "Your message will be sent directly to our events team."}</p>
               <button className="contact-send-button" type="submit" disabled={isSending}><span>{isSending ? "SENDING…" : "SEND YOUR MESSAGE"}</span><ArrowRight size={17} /></button>
             </div>
           </motion.form>

@@ -33,10 +33,10 @@ import {
 import Navbar from "./Navbar";
 import BackToHomeCTA from "./BackToHomeCTA";
 import { NOVELTY_PRODUCTS } from "./BuildNovelty";
+import { submitLeadWithFailover, WEB3FORMS_QUOTE_KEY } from "../lib/leadSubmission";
 import "./QuotePage.css";
 
 const STEPS = ["Event type", "Guests", "Date", "Location", "Experience", "Contact"];
-const FORM_ENDPOINT = "https://formsubmit.co/ajax/team@nextlevelgamingevents.com";
 const STEP_ICONS = [Gamepad2, Users, CalendarDays, MapPin, Package, Send];
 const EVENT_TYPES = [
   { title: "Gaming event", icon: Gamepad2 },
@@ -278,36 +278,49 @@ function QuotePage() {
     setIsSubmitting(true);
     setSubmitError("");
     try {
-      const response = await fetch(FORM_ENDPOINT, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({
-          _subject: `Website quote request: ${draft.eventType}`,
-          _template: "table",
-          _honey: event.currentTarget.elements._honey.value,
+      const noveltyText = hasNovelty
+        ? Object.entries(noveltyQuantities)
+            .filter(([, quantity]) => Number(quantity) > 0)
+            .map(([productId, quantity]) => {
+              const product = NOVELTY_PRODUCTS.find((item) => item.id === productId);
+              return `${product?.title || productId}: ${quantity}${
+                productId === selectedDesign?.productId
+                  ? ` (design ${selectedDesign.id}, ${selectedDesign.imageUrl})`
+                  : ""
+              }`;
+            })
+            .join("\n")
+        : wantsNovelties
+        ? "Interested in customized novelties; please discuss options as part of the event quote."
+        : "None";
+
+      await submitLeadWithFailover({
+        formType: "Quote",
+        web3Key: WEB3FORMS_QUOTE_KEY,
+        subject: `Website quote request: ${draft.eventType}`,
+        botcheck: event.currentTarget.elements._honey?.value,
+        data: {
+          eventType: draft.eventType,
           "Event type": draft.eventType,
           guests: draft.guests,
           date: draft.date ? format(dateValue, "MMMM d, yyyy") : "Flexible / to be confirmed",
           ...quoteAddressFields(draft),
           experience: draft.package || "Please recommend something",
+          package: draft.package || "Please recommend something",
+          paymentMethod: draft.paymentMethod || "No preference",
           "Preferred payment method": draft.paymentMethod || "No preference",
           "Novelty fulfillment": wantsNovelties ? (hasNovelty ? "ONSITE" : "DISCUSS OPTIONS") : "Event quote",
-          "Interested in novelties": wantsNovelties ? "Yes — please discuss customized novelty options as part of this quote." : "No",
-          "Novelty items": hasNovelty ? Object.entries(noveltyQuantities).filter(([, quantity]) => Number(quantity) > 0).map(([productId, quantity]) => {
-            const product = NOVELTY_PRODUCTS.find((item) => item.id === productId);
-            return `${product?.title || productId}: ${quantity}${productId === selectedDesign?.productId ? ` (design ${selectedDesign.id}, ${selectedDesign.imageUrl})` : ""}`;
-          }).join("\n") : wantsNovelties ? "Interested in customized novelties; please discuss options as part of the event quote." : "None",
+          "Interested in novelties": wantsNovelties
+            ? "Yes — please discuss customized novelty options as part of this quote."
+            : "No",
+          noveltyItems: noveltyText,
+          "Novelty items": noveltyText,
           name: draft.name,
           email: draft.email,
-          _replyto: draft.email,
           phone: draft.phone,
           message: draft.message,
-        }),
+        },
       });
-      const result = await response.json();
-      if (!response.ok || result.success === false || result.success === "false" || result.error) {
-        throw new Error("Quote delivery failed");
-      }
       setSubmitted(true);
     } catch {
       setSubmitError("We couldn’t send your quote request. Please try again or contact our events team directly.");
@@ -362,7 +375,7 @@ function QuotePage() {
             <div className="quote-complete-icon"><CheckCircle2 size={35} /></div>
             <p className="quote-step-count">REQUEST SENT <span>·</span> NEXT LEVEL STARTS HERE</p>
             <h2>Thanks, {draft.name.split(" ")[0]}!<br /><span>Your event is going to be one to remember.</span></h2>
-            <p className="quote-complete-copy">Your quote request has been submitted. If this is your first submission, confirm the one-time activation email in the recipient inbox so delivery can begin.</p>
+            <p className="quote-complete-copy">Your quote request has been submitted. Our events team has your details and will follow up by email shortly.</p>
             <div className="quote-complete-summary">
               <div><small>EVENT</small><strong>{draft.eventType}</strong></div>
               <div><small>GUESTS</small><strong>{draft.guests}</strong></div>
@@ -374,7 +387,7 @@ function QuotePage() {
             <div className="quote-complete-actions">
               <Link to="/" className="quote-back-button">BACK TO HOME <ArrowRight size={16} /></Link>
             </div>
-            <p className="quote-complete-footnote">After activation, new requests will arrive automatically.</p>
+            <p className="quote-complete-footnote">We’ll review your event plan and send over a tailored quote soon.</p>
           </section>
         ) : (
         <div className="quote-main-grid">
@@ -584,7 +597,7 @@ function QuotePage() {
                   <span className="quote-review-icon"><CheckCircle2 size={17} /></span>
                   <span><strong>Looking good, {draft.name || "event planner"}.</strong><small>{[draft.eventType, draft.guests && `${draft.guests} guests`, draft.date ? format(dateValue, "MMM d, yyyy") : draft.dateFlexible ? "flexible date" : null, draft.locationFlexible ? "location TBD" : draft.manualAddressMode ? [draft.manualAddress.address, draft.manualAddress.city].filter(Boolean).join(", ") : draft.mapPoint?.label?.split(",")[0] || draft.location, draft.package, wantsNovelties && "custom novelties"].filter(Boolean).join(" · ")}</small></span>
                 </div>
-                <p className="quote-email-note">Your request will be emailed after the one-time recipient activation.</p>
+                <p className="quote-email-note">Your request will be sent directly to our events team.</p>
                 {submitError && <p className="quote-submit-error" role="alert">{submitError}</p>}
               </form>
             )}

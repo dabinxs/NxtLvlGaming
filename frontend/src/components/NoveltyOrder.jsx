@@ -3,8 +3,8 @@ import { Link, useSearchParams } from "react-router-dom";
 import { ArrowLeft, CheckCircle2, MapPin, Minus, Plus, Send, ShoppingCart } from "lucide-react";
 import Navbar from "./Navbar";
 import { NOVELTY_PRODUCTS } from "./BuildNovelty";
+import { submitLeadWithFailover, WEB3FORMS_QUOTE_KEY } from "../lib/leadSubmission";
 
-const ENDPOINT = "https://formsubmit.co/ajax/team@nextlevelgamingevents.com";
 
 function loadDesign() {
   try { return JSON.parse(sessionStorage.getItem("nxtlvl-selected-novelty-design") || "null"); } catch { return null; }
@@ -76,19 +76,33 @@ export default function NoveltyOrder() {
       return `${product?.title || id} — quantity ${item.quantity}${submittedDesign ? ` — design ${design.id}: ${design.imageUrl}` : " — custom design to be confirmed"}`;
     }).join("\n");
     try {
-      const response = await fetch(ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" }, body: JSON.stringify({
-        _subject: `Novelty dropshipping quote: ${details.name}`,
-        _template: "table", _replyto: details.email,
-        "Request type": "Novelty dropshipping quote", "Customer name": details.name, "Customer email": details.email,
-        "Phone": details.phone || "Not provided", "Shipping address": details.address, "Map": mapUrl,
-        "Cart items": itemText, "Total quantity": total,
-      }) });
-      const result = await response.json();
-      if (!response.ok || result.success === false || result.success === "false" || result.error) throw new Error("Quote delivery failed");
+      await submitLeadWithFailover({
+        formType: "NoveltyOrder",
+        web3Key: WEB3FORMS_QUOTE_KEY,
+        subject: `Novelty dropshipping quote: ${details.name}`,
+        data: {
+          "Request type": "Novelty dropshipping quote",
+          name: details.name,
+          "Customer name": details.name,
+          email: details.email,
+          "Customer email": details.email,
+          phone: details.phone || "Not provided",
+          "Phone": details.phone || "Not provided",
+          "Shipping address": details.address,
+          address: details.address,
+          Map: mapUrl,
+          "Cart items": itemText,
+          noveltyItems: itemText,
+          "Total quantity": total,
+        },
+      });
       sessionStorage.removeItem("nxtlvl-novelty-cart");
       setSent(true);
-    } catch { setStatus("We couldn’t send the request. Please try again."); }
-    finally { setBusy(false); }
+    } catch {
+      setStatus("We couldn’t send the request. Please try again.");
+    } finally {
+      setBusy(false);
+    }
   };
 
   return <main className="novelty-order-page min-h-screen bg-[#040c17] text-white">
