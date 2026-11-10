@@ -2,6 +2,7 @@ import React from "react";
 import { ArrowUpRight, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
 import { footerColumns } from "../mock";
+import { NH_CITY_LINKS, REGIONAL_LINKS, SPECIALTY_LINKS } from "../lib/routeSeoData";
 import InteractiveWordmark from "./InteractiveWordmark";
 
 const FOOTER_LINK_PATHS = {
@@ -22,8 +23,14 @@ const FOOTER_LINK_PATHS = {
   "Colleges & Schools": "/college-school-corporate-events",
 };
 
-const Footer = ({ showQuoteCTA = true }) => {
+const QUICK_BOOKING_LINKS = [
+  { label: "Home", href: "/" },
+  { label: "Explore All Experiences", href: "/explore-experiences" },
+  { label: "Request Event Quote", href: "/quote" },
+  { label: "Order Custom Novelties", href: "/novelty-order" },
+];
 
+const Footer = ({ showQuoteCTA = true }) => {
   return (
     <footer
       id="footer"
@@ -57,23 +64,31 @@ const Footer = ({ showQuoteCTA = true }) => {
             >
               <span>978-601-5473</span>
             </a>
-            <a href="https://www.google.com/maps/search/?api=1&query=Hudson+NH" target="_blank" rel="noreferrer" className="mt-2 flex items-center gap-2 text-sm text-white/65 transition-colors hover:text-[#7DDDFF]">
-              <MapPin className="h-4 w-4 text-[#7DDDFF]" /><span>HUDSON NH</span>
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=Rebel+Rd+Hudson+NH+03051"
+              target="_blank"
+              rel="noreferrer"
+              className="mt-2 flex items-center gap-2 text-sm text-white/70 transition-colors hover:text-[#7DDDFF]"
+            >
+              <MapPin className="h-4 w-4 shrink-0 text-[#7DDDFF]" />
+              <span>Rebel Rd, Hudson, NH 03051 · NH · MA · CT · NC</span>
             </a>
 
             <div className="mt-8 flex flex-wrap items-center gap-4">
-              {showQuoteCTA && <Link
-                to="/quote"
-                className="cta-fill inline-flex items-center gap-2 rounded-full blue-gradient-bg px-6 py-3 text-[12px] font-semibold uppercase tracking-wide text-white shadow-[0_8px_24px_rgba(0,102,253,0.35)]"
-              >
-                Get A Quote
-              </Link>}
+              {showQuoteCTA && (
+                <Link
+                  to="/quote"
+                  className="cta-fill inline-flex items-center gap-2 rounded-full blue-gradient-bg px-6 py-3 text-[12px] font-semibold uppercase tracking-wide text-white shadow-[0_8px_24px_rgba(0,102,253,0.35)]"
+                >
+                  Get A Quote
+                </Link>
+              )}
               <span
                 data-testid="footer-tagline"
                 className="flex items-center gap-2.5 text-[15px] font-medium text-white/85"
               >
                 <span className="h-2 w-2 rounded-full bg-[#7DDDFF] shadow-[0_0_10px_rgba(125,221,255,0.8)]" />
-                Let's create an unforgettable experience
+                Let&apos;s create an unforgettable experience
               </span>
             </div>
           </div>
@@ -91,11 +106,17 @@ const Footer = ({ showQuoteCTA = true }) => {
                     return (
                       <li key={link}>
                         {targetPath ? (
-                          <Link to={targetPath} className="block break-words text-[12.5px] text-white/65 transition-colors hover:text-[#7DDDFF]">
+                          <Link
+                            to={targetPath}
+                            className="block break-words text-[12.5px] text-white/65 transition-colors hover:text-[#7DDDFF]"
+                          >
                             {link}
                           </Link>
                         ) : (
-                          <a href="#top" className="block break-words text-[12.5px] text-white/65 transition-colors hover:text-[#7DDDFF]">
+                          <a
+                            href="#top"
+                            className="block break-words text-[12.5px] text-white/65 transition-colors hover:text-[#7DDDFF]"
+                          >
                             {link}
                           </a>
                         )}
@@ -108,8 +129,45 @@ const Footer = ({ showQuoteCTA = true }) => {
           </div>
         </div>
 
+        {/* NH Local City Hubs, Regional Branches & Specialty Services Strip */}
+        <div className="mt-12 grid grid-cols-1 gap-6 border-t border-white/10 pt-8 md:grid-cols-2">
+          <div className="min-w-0">
+            <h4 className="font-display text-[11px] font-semibold uppercase tracking-[0.18em] text-[#4d9bff]">
+              NH City Service Hubs &amp; Regional Branches
+            </h4>
+            <div className="mt-3 flex flex-wrap gap-2">
+              {[...NH_CITY_LINKS, ...REGIONAL_LINKS].map((item) => (
+                <Link
+                  key={item.href}
+                  to={item.href}
+                  className="inline-flex items-center rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-[11.5px] text-white/70 transition-colors hover:border-[#0066FD]/60 hover:bg-white/[0.08] hover:text-[#7DDDFF]"
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          <div className="min-w-0">
+            <h4 className="font-display text-[11px] font-semibold uppercase tracking-[0.18em] text-[#4d9bff]">
+              Specialty Rentals, Custom Novelties &amp; Booking
+            </h4>
+            <div className="mt-3 flex flex-wrap gap-2">
+              {[...SPECIALTY_LINKS, ...QUICK_BOOKING_LINKS].map((item) => (
+                <Link
+                  key={item.href}
+                  to={item.href}
+                  className="inline-flex items-center rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-[11.5px] text-white/70 transition-colors hover:border-[#0066FD]/60 hover:bg-white/[0.08] hover:text-[#7DDDFF]"
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+
         {/* Giant wordmark */}
-        <div className="relative mt-16 select-none">
+        <div className="relative mt-14 select-none">
           <InteractiveWordmark
             className="flex max-w-full items-baseline justify-center gap-[0.06em] whitespace-nowrap font-display text-[clamp(1.85rem,10vw,12rem)] font-black italic leading-[0.9] tracking-[-0.03em] sm:text-[clamp(2.6rem,13.5vw,12rem)]"
             segments={[

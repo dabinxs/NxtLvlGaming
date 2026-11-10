@@ -87,17 +87,26 @@ const MobileBottomNav = () => {
   const isEvents =
     pathname === "/gaming-events" ||
     pathname === "/movie-nights" ||
+    pathname === "/led-video-wall-rental" ||
+    pathname === "/inflatable-movie-screen-rental" ||
     pathname === "/trivia-nights";
   const isExperience =
     pathname === "/virtual-reality" ||
+    pathname === "/vr-escape-room-rental" ||
     pathname === "/just-dance" ||
     pathname === "/silent-disco" ||
     pathname === "/sim-racing" ||
     pathname === "/photo-booth" ||
+    pathname === "/360-video-booth" ||
+    pathname === "/mirror-photo-booth-rental" ||
     pathname === "/glow-park" ||
-    pathname === "/explore-experiences";
+    pathname === "/led-glow-swings-rental" ||
+    pathname === "/explore-experiences" ||
+    pathname === "/explore" ||
+    pathname === "/experiences";
   const isNovelties =
     pathname.startsWith("/novelties") ||
+    pathname.startsWith("/custom-") ||
     pathname.startsWith("/build-novelty") ||
     pathname.startsWith("/build") ||
     pathname.startsWith("/novelty-order");

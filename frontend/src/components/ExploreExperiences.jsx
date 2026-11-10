@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import RouteLocalSeoSection from "./RouteLocalSeoSection";
 import { useCmsHomeMedia } from "../lib/cmsContent";
 
 const EXPLORE_ITEMS = [
@@ -56,7 +57,7 @@ const EXPLORE_ITEMS = [
     slug: "silent-disco",
     category: "Experience",
     title: "Silent Disco",
-    desc: "LCD headphones with multiple music channels.",
+    desc: "LED headphones with multiple music channels.",
     href: "/silent-disco",
     defaultImage: "/experience-silent-disco.png",
   },
@@ -107,12 +108,12 @@ const ExploreExperiences = () => {
     <div className="min-h-screen bg-[#05070f] text-foreground flex flex-col">
       <Navbar />
 
-      <main className="flex-1 relative overflow-hidden pt-28 pb-20 sm:pt-36 sm:pb-24 md:pt-44 md:pb-32">
+      <main className="flex-1 relative overflow-hidden">
         {/* Subtle ambient lighting */}
         <div className="pointer-events-none absolute left-1/4 top-32 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-[#0066FD]/10 blur-[160px]" />
         <div className="pointer-events-none absolute right-10 top-1/2 h-[400px] w-[400px] rounded-full bg-[#0066FD]/5 blur-[140px]" />
 
-        <div className="relative z-10 mx-auto max-w-[1340px] px-4 sm:px-6 lg:px-8">
+        <div className="relative z-10 mx-auto max-w-[1340px] px-4 pt-28 pb-20 sm:px-6 sm:pt-36 sm:pb-24 md:pt-44 md:pb-28 lg:px-8">
           {/* Main Title */}
           <h1
             className="font-display text-[clamp(2.1rem,7.5vw,4.5rem)] font-extrabold uppercase leading-[1.05] tracking-tight text-white drop-shadow-[0_4px_24px_rgba(0,0,0,0.8)]"
@@ -163,7 +164,7 @@ const ExploreExperiences = () => {
 
           {/* Cards Grid */}
           <div className="grid grid-cols-1 gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {filteredItems.map((item) => {
+            {filteredItems.map((item, index) => {
               const imageSrc = homeMedia[item.slug] || item.defaultImage;
 
               return (
@@ -178,7 +179,7 @@ const ExploreExperiences = () => {
                       src={imageSrc}
                       alt={item.title}
                       className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-108"
-                      loading="lazy"
+                      loading={index < 4 ? "eager" : "lazy"}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#040814]/80 via-transparent to-transparent opacity-60" />
                   </div>
@@ -214,6 +215,8 @@ const ExploreExperiences = () => {
             })}
           </div>
         </div>
+
+        <RouteLocalSeoSection path="/explore-experiences" />
       </main>
 
       <Footer />

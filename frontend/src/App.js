@@ -30,6 +30,8 @@ import AboutPage from "./components/AboutPage";
 import AdminPage from "./components/AdminPage";
 import ExploreExperiences from "./components/ExploreExperiences";
 import SeoManager from "./components/SeoManager";
+import RouteLocalSeoSection from "./components/RouteLocalSeoSection";
+import { ROUTE_SEO } from "./lib/routeSeoData";
 import { CmsContentProvider, useCmsHomeMedia } from "./lib/cmsContent";
 import { Settings2 } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -38,6 +40,9 @@ import { experiences } from "./mock";
 const EXPERIENCE_SLUGS = ["gaming-events", "movie-nights", "trivia-nights", "virtual-reality", "just-dance", "silent-disco", "sim-racing", "photo-booth", "glow-park"];
 
 const LandingContent = () => {
+  const { pathname } = useLocation();
+  const normalizedPath = pathname === "/" ? "/" : pathname.replace(/\/+$/, "");
+  const routeSeo = ROUTE_SEO[normalizedPath] || ROUTE_SEO["/"];
   const homeMedia = useCmsHomeMedia();
   const homeExperiences = experiences.map((experience, index) => ({
     ...experience,
@@ -47,12 +52,13 @@ const LandingContent = () => {
   <div className="App text-foreground">
     <Navbar />
     <main>
-      <Hero />
+      <Hero seo={routeSeo} />
       <TrustedCollaborations />
       <ChooseExperience experiences={homeExperiences} />
       <LevelUp />
       <Testimonials />
       <WhoWeAre />
+      <RouteLocalSeoSection path={normalizedPath} />
       <ReadyCTA productsFirst />
     </main>
     <Footer showQuoteCTA={false} />
@@ -104,7 +110,7 @@ function App() {
         <Route path="/vr-escape-room-rental" element={<VirtualReality />} />
         <Route path="/photo-booth" element={<VideoBooth360 />} />
         <Route path="/360-video-booth" element={<VideoBooth360 />} />
-        <Route path="/360-booth" element={<VideoBooth360 />} />
+        <Route path="/360-booth" element={<Navigate to="/360-video-booth" replace />} />
         <Route path="/mirror-photo-booth-rental" element={<VideoBooth360 />} />
         <Route path="/just-dance" element={<JustDance />} />
         <Route path="/silent-disco" element={<SilentDisco />} />
@@ -132,7 +138,7 @@ function App() {
         <Route path="/product-page/*" element={<Navigate to="/movie-nights" replace />} />
         <Route path="/video-gaming-events" element={<Navigate to="/gaming-events" replace />} />
         <Route path="/art" element={<Navigate to="/novelties" replace />} />
-        <Route path="/360videobooth" element={<Navigate to="/photo-booth" replace />} />
+        <Route path="/360videobooth" element={<Navigate to="/360-video-booth" replace />} />
         <Route path="/just-dance-party" element={<Navigate to="/just-dance" replace />} />
         <Route path="/copy-of-glow-park" element={<Navigate to="/glow-park" replace />} />
         <Route path="/copy-of-exiciting-new-offer" element={<Navigate to="/glow-park" replace />} />

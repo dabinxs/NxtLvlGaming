@@ -57,17 +57,12 @@
       },
       {
         "source": "/360videobooth",
-        "destination": "/photo-booth",
-        "type": 301
-      },
-      {
-        "source": "/360-video-booth",
-        "destination": "/photo-booth",
+        "destination": "/360-video-booth",
         "type": 301
       },
       {
         "source": "/360-booth",
-        "destination": "/photo-booth",
+        "destination": "/360-video-booth",
         "type": 301
       },
       {

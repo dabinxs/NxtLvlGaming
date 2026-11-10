@@ -4,12 +4,13 @@ import { Link } from "react-router-dom";
 import { motion, useReducedMotion } from "framer-motion";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import RouteLocalSeoSection from "./RouteLocalSeoSection";
 import { submitLeadWithFailover, WEB3FORMS_CONTACT_KEY } from "../lib/leadSubmission";
 import "./ContactPage.css";
 
 const CONTACT_EMAIL = "sales@nextlevelgamingevents.com";
 const CONTACT_PHONE = "978-601-5473";
-const COMPANY_ADDRESS = "HUDSON NH";
+const COMPANY_ADDRESS = "Rebel Rd, Hudson, NH 03051";
 
 
 const topics = ["Plan an event", "Custom novelties", "Partnership", "Something else"];
@@ -142,6 +143,8 @@ const ContactPage = () => {
           <Link to="/quote" className="cta-fill cta-fill--blue">BUILD YOUR EVENT <ArrowUpRight size={17} /></Link>
           <span className="contact-bridge-index" aria-hidden="true">02 — QUOTE PLANNER</span>
         </motion.section>
+
+        <RouteLocalSeoSection path="/contact" />
       </main>
       <Footer />
     </div>

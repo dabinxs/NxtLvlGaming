@@ -11,54 +11,38 @@ import {
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import ReadyCTA from "./ReadyCTA";
+import RouteLocalSeoSection from "./RouteLocalSeoSection";
 import { useCmsPage } from "../lib/cmsContent";
 import { CMS_PAGES } from "../lib/cmsPages";
+import { ROUTE_SEO } from "../lib/routeSeoData";
 
 const OVERVIEW_POINTS = [
-  "Years of event production experience",
-  "Game library across all major consoles",
-  "Screens from 12 ft to a massive 32 ft",
-  "Fully staffed, insured and turnkey",
+  "Event & party planning equipment for gamers",
+  "Bulk esports rental & tournament bracket production",
+  "Giant 12 ft to 40 ft HD screens + modern & retro consoles",
+  "Turnkey video game event management in NH, MA, CT & NC",
 ];
 
 const INCLUDED_FEATURES = [
   {
     icon: Monitor,
     title: "Screens Up To 40 FT",
-    desc: "Massive inflatable and frame screens sized to your crowd and venue.",
+    desc: "Massive inflatable and frame screens sized to transform student unions, gyms, or ballrooms into live esports arenas.",
   },
   {
     icon: Trophy,
-    title: "Gaming Tournaments",
-    desc: "Bracketed competition with live scoring, commentary and grand finals on the big screen.",
+    title: "Tournament Event Production",
+    desc: "End-to-end video gaming competition production with bracket management, live audio commentary, and championship finals.",
   },
   {
     icon: Gamepad2,
-    title: "Gaming Parties",
-    desc: "Consoles like the XBOX One, PlayStation 4, Nintendo Switch, and even retro games like the NES!",
+    title: "PS5, Xbox Series X, Switch & Retro",
+    desc: "Equipped with PlayStation 5, Xbox Series X, PS4, Xbox One, Nintendo Switch, and classic NES consoles ready for every player.",
   },
   {
     icon: Users,
-    title: "Social Gaming",
-    desc: "Lounge-style setups built for crowds — drop in, pick up a controller, play.",
-  },
-];
-
-const GALLERY_IMAGES = [
-  {
-    title: "Multiplayer Gaming Stations",
-    subtitle: "A range of games set up for guests to play together.",
-    src: "/gaming-events-experience-1.png",
-  },
-  {
-    title: "Giant Screen Gaming",
-    subtitle: "Bright, large-scale displays bring every match to life.",
-    src: "/gaming-events-experience-2.png",
-  },
-  {
-    title: "Campus Gaming Events",
-    subtitle: "A full gym transformed into a gaming event space.",
-    src: "/gaming-events-experience-3.png",
+    title: "Real-Life Gaming Experience",
+    desc: "Spacious open-room multiplayer lounges built for 16 to 64+ simultaneous players—far beyond cramped game trucks.",
   },
 ];
 
@@ -72,12 +56,12 @@ const GAMING_PACKAGES = [
     quoteParam: "Deluxe gaming",
     paragraphs: [
       "Includes four 12' screens and our giant 21' to 32' high definition screen.",
-      "Popular games on consoles like the XBOX One, PlayStation 4, Nintendo Switch, and retro games!",
+      "Popular games on PlayStation 5, Xbox Series X, PS4, Xbox One, Nintendo Switch, and classic retro NES titles!",
     ],
     features: [
       "Four 12' screens & giant 21' to 32' HD screen",
-      "XBOX One, PlayStation 4 & Nintendo Switch",
-      "Library of popular games & classic retro titles",
+      "PlayStation, Xbox, Nintendo Switch & retro library",
+      "Popular esports, sports, racing & fighting games",
       "Full turnkey delivery, setup & on-site staff",
     ],
   },
@@ -91,39 +75,55 @@ const GAMING_PACKAGES = [
     quoteParam: "Ultimate gaming",
     paragraphs: [
       "Includes eight of our 12 ft high definition screens, as well as the giant 26ft HD screen.",
-      "Consoles like the XBOX One, PlayStation 4, Nintendo Switch, and even retro games like the NES!",
+      "Consoles including PlayStation 5, Xbox Series X, Nintendo Switch, PS4, Xbox One, and retro NES systems!",
       "On our Premiere Jumbo Screen: Our virtual dance party, which includes YOU as the DJ via smartphone during the event.",
       "In tournament settings, the finals will be played in front of the entire crowd!",
     ],
     features: [
       "Eight 12 ft HD screens + giant 26 ft HD screen",
-      "XBOX One, PS4, Nintendo Switch & NES retro games",
+      "Full console lineup + classic retro NES games",
       "Virtual dance party with smartphone crowd DJ",
       "Grand tournament finals in front of the entire crowd",
     ],
   },
   {
     id: "tournament-package",
-    name: "Tournament Package",
+    name: "Bulk Esports & Tournament Package",
     tagline: "Champions are made from this package!",
-    badge: "Esports Edition",
+    badge: "Esports Production",
     image: "/gaming-tournament-package.jpg",
     quoteParam: "Tournament production",
     paragraphs: [
-      "Compete with colleagues or across an entire campus with our tournament package. Choose from any console game and battle in amazement through our high definition 12 ft screen.",
-      "Streaming is included on our HD jumbo 32ft screen for spectators' entertainment.",
+      "Full video game tournament event production for companies, high schools, and entire college campuses. Battle across high definition 12 ft stations.",
+      "Live championship streaming is displayed on our HD jumbo 32ft spectator screen for hundreds of cheering fans.",
     ],
     features: [
-      "High definition 12 ft player battle screen",
+      "High definition 12 ft player battle stations",
       "HD jumbo 32 ft screen for spectator streaming",
-      "Colleague & campus-wide tournament competition",
-      "Choose from any modern console game",
+      "Complete video gaming tournament event management",
+      "Any competitive esports title & custom brackets",
     ],
   },
 ];
 
 const GamingEvents = () => {
+  const routeSeo = ROUTE_SEO["/gaming-events"];
   const cmsPage = useCmsPage("gaming-events", CMS_PAGES.find((page) => page.slug === "gaming-events"));
+
+  const rawHeroTitle = (cmsPage.heroTitle || "").trim();
+  const isDefaultCmsTitle = !rawHeroTitle || rawHeroTitle.toUpperCase() === "VIDEO GAMING EVENTS";
+  const heroTitle = !isDefaultCmsTitle
+    ? rawHeroTitle
+    : routeSeo.heroDisplayTitle || "LIVE VIDEO GAMING EVENTS & ESPORTS RENTALS";
+
+  const rawHeroSubtitle = (cmsPage.heroSubtitle || "").trim();
+  const isDefaultCmsSubtitle =
+    !rawHeroSubtitle ||
+    rawHeroSubtitle === "Turn your next gathering into an unforgettable multiplayer experience.";
+  const heroSubtitle = isDefaultCmsSubtitle
+    ? "Full-scale esports rental company & video game event planner delivering event & party planning equipment for gamers, bulk esports rentals, and tournament production across NH, MA, CT & NC."
+    : cmsPage.heroSubtitle;
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -135,23 +135,32 @@ const GamingEvents = () => {
       <main>
         {/* ================= HERO SECTION ================= */}
         <section className="relative overflow-hidden pt-36 pb-20 md:pt-44 md:pb-28">
-          {/* Background image from gaming events carousel */}
           <img
             src={cmsPage.heroImage}
-            alt="Gaming event background"
+            alt="Live Gaming Events and Esports Tournament Production Setup"
+            fetchPriority="high"
+            decoding="sync"
             className="absolute inset-0 h-full w-full object-cover object-center"
           />
-          {/* Subtle directional gradient overlay so the photo is vibrant and visible */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#05070f]/90 via-[#05070f]/50 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#05070f]/92 via-[#05070f]/60 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#05070f] via-transparent to-[#05070f]/60" />
           <div className="hero-grid pointer-events-none absolute inset-0 opacity-15" />
           <div className="pointer-events-none absolute left-1/3 top-1/2 h-[400px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#0066FD]/15 blur-[150px]" />
 
           <div className="relative z-10 mx-auto max-w-[1280px] px-5 md:px-8">
-            <h1 className="max-w-4xl font-display text-[clamp(2.5rem,6.5vw,5rem)] font-extrabold uppercase italic leading-[1.04] tracking-tight text-white drop-shadow-[0_6px_24px_rgba(0,0,0,0.9)]">{cmsPage.heroTitle}</h1>
+            {routeSeo.heroEyebrow && (
+              <div className="mb-5 flex items-center gap-3 font-display text-[11px] font-bold uppercase tracking-[0.22em] text-[#7DDDFF]">
+                <span className="h-0.5 w-7 bg-[#0066FD]" />
+                <span>{routeSeo.heroEyebrow}</span>
+              </div>
+            )}
+
+            <h1 className="max-w-4xl font-display text-[clamp(2.35rem,6vw,4.75rem)] font-extrabold uppercase italic leading-[1.04] tracking-tight text-white drop-shadow-[0_6px_24px_rgba(0,0,0,0.9)]">
+              {heroTitle}
+            </h1>
 
             <p className="mt-6 max-w-2xl text-[17px] leading-relaxed text-white/90 drop-shadow-[0_3px_10px_rgba(0,0,0,0.85)] sm:text-[19px]">
-              {cmsPage.heroSubtitle}
+              {heroSubtitle}
             </p>
           </div>
         </section>
@@ -160,30 +169,26 @@ const GamingEvents = () => {
         <section className="relative border-t border-white/5 bg-[#070b16] py-20 md:py-28">
           <div className="mx-auto max-w-[1280px] px-5 md:px-8">
             <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-12 lg:gap-16">
-              {/* Left Column */}
               <div className="lg:col-span-5">
                 <div className="flex items-center gap-3 font-display text-[12px] font-bold uppercase tracking-[0.22em] text-[#7DDDFF]">
                   <span className="h-0.5 w-7 bg-[#0066FD]" />
                   <span>OVERVIEW</span>
                 </div>
                 <h2 className="mt-4 font-display text-[clamp(1.9rem,3.8vw,2.9rem)] font-extrabold uppercase leading-[1.12] tracking-tight text-white">
-                  A FULL GAMING PRODUCTION, DELIVERED
+                  ESPORTS RENTAL &amp; REAL-LIFE GAMING PRODUCTION
                 </h2>
               </div>
 
-              {/* Right Column */}
               <div className="flex flex-col gap-8 lg:col-span-7">
-                <p className="text-[17px] leading-relaxed text-white/70 sm:text-[18px]">
-                  From casual gaming parties to bracketed esports tournaments, we bring the
-                  consoles, the giant screens, sound and the staff.
+                <p className="text-[17px] leading-relaxed text-white/75 sm:text-[18px]">
+                  As a premier New England and North Carolina esports rental company and video game event planner, we deliver complete event &amp; party planning equipment for gamers—from casual social lounges to FEC-scale attractions and full video gaming competition production with consoles, giant 12–40 ft screens, concert sound, and live tournament staff.
                 </p>
 
-                {/* 2x2 Grid of Points */}
                 <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2">
                   {OVERVIEW_POINTS.map((point) => (
                     <div
                       key={point}
-                      className="flex h-[58px] items-center gap-3.5 rounded-xl border border-white/10 bg-[#0c1830]/80 px-5 backdrop-blur-sm transition-all duration-300 hover:border-[#0066FD]/50 hover:bg-[#0c1830]"
+                      className="flex min-h-[58px] items-center gap-3.5 rounded-xl border border-white/10 bg-[#0c1830]/80 px-5 py-2.5 backdrop-blur-sm transition-all duration-300 hover:border-[#0066FD]/50 hover:bg-[#0c1830]"
                     >
                       <Check className="h-4 w-4 shrink-0 text-[#7DDDFF]" strokeWidth={2.6} />
                       <span className="text-[13px] font-medium leading-tight text-white/90 sm:text-[13.5px]">
@@ -210,7 +215,6 @@ const GamingEvents = () => {
               </h2>
             </div>
 
-            {/* 4 Feature Cards (2x2) */}
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
               {INCLUDED_FEATURES.map((item) => {
                 const IconComponent = item.icon;
@@ -250,7 +254,6 @@ const GamingEvents = () => {
               </h2>
             </div>
 
-            {/* 3 Showcase Image Cards */}
             <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
               {cmsPage.gallery.slice(0, 3).map((img, i) => (
                 <div
@@ -283,7 +286,6 @@ const GamingEvents = () => {
 
         {/* ================= PACKAGES SECTION ================= */}
         <section id="packages" className="relative border-t border-white/5 bg-[#05070f] py-24 md:py-32">
-          {/* Subtle directional glow */}
           <div className="pointer-events-none absolute right-1/4 top-1/2 h-[400px] w-[600px] -translate-y-1/2 rounded-full bg-[#0066FD]/10 blur-[160px]" />
 
           <div className="relative z-10 mx-auto max-w-[1280px] px-5 md:px-8">
@@ -302,7 +304,6 @@ const GamingEvents = () => {
               </p>
             </div>
 
-            {/* 3 Package Cards */}
             <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
               {GAMING_PACKAGES.map((pkg) => (
                 <div
@@ -313,7 +314,6 @@ const GamingEvents = () => {
                       : "border-white/10 bg-gradient-to-b from-[#0c1830] to-[#070b16] hover:border-[#0066FD]/50 hover:shadow-[0_16px_40px_rgba(0,102,253,0.18)]"
                   }`}
                 >
-                  {/* Package Image */}
                   <div className="relative aspect-[16/10] w-full overflow-hidden">
                     <img
                       src={pkg.image}
@@ -323,7 +323,6 @@ const GamingEvents = () => {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#070b16] via-[#070b16]/40 to-transparent" />
 
-                    {/* Badge */}
                     <div className="absolute top-4 left-4 z-10">
                       <span
                         className={`inline-flex items-center rounded-full px-3 py-1 font-display text-[11px] font-bold uppercase tracking-wider backdrop-blur-md shadow-lg ${
@@ -337,7 +336,6 @@ const GamingEvents = () => {
                     </div>
                   </div>
 
-                  {/* Package Details */}
                   <div className="flex flex-1 flex-col justify-between p-7">
                     <div>
                       <div className="flex flex-col gap-1">
@@ -349,14 +347,12 @@ const GamingEvents = () => {
                         </p>
                       </div>
 
-                      {/* Info Paragraphs from reference */}
                       <div className="mt-4 space-y-2.5 text-[14px] leading-relaxed text-white/75">
                         {pkg.paragraphs.map((para, pIdx) => (
                           <p key={pIdx}>{para}</p>
                         ))}
                       </div>
 
-                      {/* Highlights */}
                       <ul className="mt-6 space-y-2.5 border-t border-white/10 pt-5">
                         {pkg.features.map((feature, idx) => (
                           <li key={idx} className="flex items-start gap-2.5 text-[13px] text-white/80">
@@ -367,7 +363,6 @@ const GamingEvents = () => {
                       </ul>
                     </div>
 
-                    {/* CTA Button linking to quote section */}
                     <div className="mt-8 pt-4">
                       <Link
                         to={`/quote?package=${encodeURIComponent(pkg.quoteParam)}`}
@@ -387,6 +382,8 @@ const GamingEvents = () => {
             </div>
           </div>
         </section>
+
+        <RouteLocalSeoSection path="/gaming-events" />
 
         {/* ================= READY TO LEVEL UP CTA SECTION ================= */}
         <ReadyCTA />

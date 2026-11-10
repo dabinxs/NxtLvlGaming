@@ -9,59 +9,59 @@ import {
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import ReadyCTA from "./ReadyCTA";
+import RouteLocalSeoSection from "./RouteLocalSeoSection";
 import { useCmsPage } from "../lib/cmsContent";
 import { CMS_PAGES } from "../lib/cmsPages";
+import { ROUTE_SEO } from "../lib/routeSeoData";
 
 const OVERVIEW_POINTS = [
-  "Up to three concurrent DJ channels",
-  "Zero noise complaints guarantee",
-  "LED glow syncs to active channel",
-  "Scales from 50 to 5,000+ guests",
+  "Up to three concurrent DJ & playlist channels",
+  "Zero loudspeaker noise complaints guarantee",
+  "Tri-color LED glow syncs to active channel",
+  "Scales cleanly from 50 to 5,000+ guests",
 ];
 
 const INCLUDED_FEATURES = [
   {
     icon: Headphones,
     title: "LED Headphones",
-    desc: "Premium wireless headphones with channel-color LED glow.",
+    desc: "Sanitized rechargeable wireless headphones with bright channel-color LED glow and individual volume control.",
   },
   {
     icon: Disc,
-    title: "Any Vibe",
-    desc: "Top 40, throwbacks, EDM — or bring your own DJ lineup.",
+    title: "Any Music Vibe",
+    desc: "Run Top 40, throwbacks, hip-hop, and EDM simultaneously—or plug in your own live DJs and Spotify playlists.",
   },
   {
     icon: Radio,
-    title: "Multiple Music Channels",
-    desc: "Switch between different music channels and let every guest choose their own vibe.",
+    title: "Three Broadcast Channels",
+    desc: "Three long-range wireless transmitters let guests flip effortlessly between competing music stations.",
   },
   {
     icon: Sparkles,
     title: "Dynamic Party Lighting",
-    desc: "Vibrant lighting effects that transform any space into an energetic dance floor.",
-  },
-];
-
-const GALLERY_IMAGES = [
-  {
-    title: "Tri-Color LED Glow",
-    subtitle: "Headphones illuminate red, green, or blue based on the channel",
-    src: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1200&q=80",
-  },
-  {
-    title: "3 Simultaneous DJs",
-    subtitle: "Competing live channels keeping everyone hyped",
-    src: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=1200&q=80",
-  },
-  {
-    title: "Zero Noise Complaints",
-    subtitle: "Dance anywhere, anytime — indoors, rooftops, or lawns",
-    src: "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=1200&q=80",
+    desc: "Optional LED uplighting transforms campus quads, rooftops, dining halls, or tents into a vibrant club floor.",
   },
 ];
 
 const SilentDisco = () => {
+  const routeSeo = ROUTE_SEO["/silent-disco"];
   const cmsPage = useCmsPage("silent-disco", CMS_PAGES.find((page) => page.slug === "silent-disco"));
+
+  const rawHeroTitle = (cmsPage.heroTitle || "").trim();
+  const isDefaultCmsTitle = !rawHeroTitle || rawHeroTitle.toUpperCase() === "SILENT DISCO";
+  const heroTitle = !isDefaultCmsTitle
+    ? rawHeroTitle
+    : routeSeo.heroDisplayTitle || "SILENT DISCO WIRELESS HEADPHONE RENTALS";
+
+  const rawHeroSubtitle = (cmsPage.heroSubtitle || "").trim();
+  const isDefaultCmsSubtitle =
+    !rawHeroSubtitle ||
+    rawHeroSubtitle === "LED headphones and multiple music channels for an unforgettable dance experience.";
+  const heroSubtitle = isDefaultCmsSubtitle
+    ? "Tri-color glowing LED wireless headphones supporting up to 3 simultaneous DJ or playlist channels for 50 to 5,000+ guests—zero noise complaints across NH, Boston MA, CT & North Carolina."
+    : cmsPage.heroSubtitle;
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -73,23 +73,32 @@ const SilentDisco = () => {
       <main>
         {/* ================= HERO SECTION ================= */}
         <section className="relative overflow-hidden pt-36 pb-20 md:pt-44 md:pb-28">
-          {/* Background image from Silent Disco carousel */}
           <img
             src={cmsPage.heroImage}
-            alt="Silent disco dance party"
+            alt={routeSeo.heading || "Silent Disco Tri-Color LED Wireless Headphone Party Rental"}
+            fetchPriority="high"
+            decoding="sync"
             className="absolute inset-0 h-full w-full object-cover object-center"
           />
-          {/* Directional gradient overlay for visibility & text contrast */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#05070f]/90 via-[#05070f]/50 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#05070f]/92 via-[#05070f]/60 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#05070f] via-transparent to-[#05070f]/60" />
           <div className="hero-grid pointer-events-none absolute inset-0 opacity-15" />
           <div className="pointer-events-none absolute left-1/3 top-1/2 h-[400px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#0066FD]/15 blur-[150px]" />
 
           <div className="relative z-10 mx-auto max-w-[1280px] px-5 md:px-8">
-            <h1 className="max-w-4xl font-display text-[clamp(2.5rem,6.5vw,5rem)] font-extrabold uppercase italic leading-[1.04] tracking-tight text-white drop-shadow-[0_6px_24px_rgba(0,0,0,0.9)]">{cmsPage.heroTitle}</h1>
+            {routeSeo.heroEyebrow && (
+              <div className="mb-5 flex items-center gap-3 font-display text-[11px] font-bold uppercase tracking-[0.22em] text-[#7DDDFF]">
+                <span className="h-0.5 w-7 bg-[#0066FD]" />
+                <span>{routeSeo.heroEyebrow}</span>
+              </div>
+            )}
+
+            <h1 className="max-w-4xl font-display text-[clamp(2.35rem,6vw,4.75rem)] font-extrabold uppercase italic leading-[1.04] tracking-tight text-white drop-shadow-[0_6px_24px_rgba(0,0,0,0.9)]">
+              {heroTitle}
+            </h1>
 
             <p className="mt-6 max-w-2xl text-[17px] leading-relaxed text-white/90 drop-shadow-[0_3px_10px_rgba(0,0,0,0.85)] sm:text-[19px]">
-              {cmsPage.heroSubtitle}
+              {heroSubtitle}
             </p>
           </div>
         </section>
@@ -98,30 +107,26 @@ const SilentDisco = () => {
         <section className="relative border-t border-white/5 bg-[#070b16] py-20 md:py-28">
           <div className="mx-auto max-w-[1280px] px-5 md:px-8">
             <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-12 lg:gap-16">
-              {/* Left Column */}
               <div className="lg:col-span-5">
                 <div className="flex items-center gap-3 font-display text-[12px] font-bold uppercase tracking-[0.22em] text-[#7DDDFF]">
                   <span className="h-0.5 w-7 bg-[#0066FD]" />
                   <span>OVERVIEW</span>
                 </div>
                 <h2 className="mt-4 font-display text-[clamp(1.9rem,3.8vw,2.9rem)] font-extrabold uppercase leading-[1.12] tracking-tight text-white">
-                  LOUDEST QUIET PARTY YOU'LL EVER THROW
+                  LOUDEST QUIET PARTY YOU&apos;LL EVER THROW
                 </h2>
               </div>
 
-              {/* Right Column */}
               <div className="flex flex-col gap-8 lg:col-span-7">
-                <p className="text-[17px] leading-relaxed text-white/70 sm:text-[18px]">
-                  Guests pick their channel on LED-lit wireless headphones and dance to
-                  their own soundtrack.
+                <p className="text-[17px] leading-relaxed text-white/75 sm:text-[18px]">
+                  Guests choose from three music channels on glowing LED wireless headphones and dance together anywhere—ideal for late-night college quads, rooftops, ballrooms, post-proms, and venues with noise curfews across NH, MA, CT &amp; North Carolina.
                 </p>
 
-                {/* 2x2 Grid of Points */}
                 <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2">
                   {OVERVIEW_POINTS.map((point) => (
                     <div
                       key={point}
-                      className="flex h-[58px] items-center gap-3.5 rounded-xl border border-white/10 bg-[#0c1830]/80 px-5 backdrop-blur-sm transition-all duration-300 hover:border-[#0066FD]/50 hover:bg-[#0c1830]"
+                      className="flex min-h-[58px] items-center gap-3.5 rounded-xl border border-white/10 bg-[#0c1830]/80 px-5 py-2.5 backdrop-blur-sm transition-all duration-300 hover:border-[#0066FD]/50 hover:bg-[#0c1830]"
                     >
                       <Check className="h-4 w-4 shrink-0 text-[#7DDDFF]" strokeWidth={2.6} />
                       <span className="text-[13px] font-medium leading-tight text-white/90 sm:text-[13.5px]">
@@ -148,7 +153,6 @@ const SilentDisco = () => {
               </h2>
             </div>
 
-            {/* 4 Feature Cards (2x2) */}
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
               {INCLUDED_FEATURES.map((item) => {
                 const IconComponent = item.icon;
@@ -188,11 +192,10 @@ const SilentDisco = () => {
               </h2>
             </div>
 
-            {/* 3 Showcase Image Cards */}
             <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
               {cmsPage.gallery.map((img, i) => (
                 <div
-                  key={i}
+                  key={img.id || i}
                   className="group relative overflow-hidden rounded-2xl border border-white/10 bg-[#0c1830] transition-all duration-500 hover:border-[#0066FD]/60 hover:shadow-[0_16px_40px_rgba(0,102,253,0.22)]"
                 >
                   <div className="relative aspect-[4/3] w-full overflow-hidden">
@@ -206,7 +209,7 @@ const SilentDisco = () => {
                   </div>
 
                   <div className="p-6">
-                    <h3 className="font-display text-[18px] font-extrabold uppercase tracking-wide text-white group-hover:text-[#7DDDFF] transition-colors">
+                    <h3 className="font-display text-[18px] font-extrabold uppercase tracking-wide text-white transition-colors group-hover:text-[#7DDDFF]">
                       {img.title}
                     </h3>
                     <p className="mt-2 text-[13.5px] leading-relaxed text-white/60">
@@ -218,6 +221,8 @@ const SilentDisco = () => {
             </div>
           </div>
         </section>
+
+        <RouteLocalSeoSection path="/silent-disco" />
 
         {/* ================= READY TO LEVEL UP CTA SECTION ================= */}
         <ReadyCTA />
