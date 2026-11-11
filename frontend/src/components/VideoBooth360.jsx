@@ -69,9 +69,9 @@ const VideoBooth360 = () => {
     routeSeo.heroTagline || "360 Video Photo Booth  /  Interactive Mirror Photo Booth";
 
   const heroImage = !isBaseRoute && normalizedPath === "/360-video-booth"
-    ? "/photo-booth-experience-2.png"
+    ? "/photo-booth-experience-2.jpg"
     : !isBaseRoute && normalizedPath === "/mirror-photo-booth-rental"
-      ? "/photo-booth-experience-1.png"
+      ? "/photo-booth-experience-1.jpg"
       : cmsPage.heroImage;
 
   useEffect(() => {

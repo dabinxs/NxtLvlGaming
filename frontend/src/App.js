@@ -1,6 +1,6 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import "./App.css";
-import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useLocation, Link } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import TrustedCollaborations from "./components/TrustedCollaborations";
@@ -11,6 +11,7 @@ import WhoWeAre from "./components/WhoWeAre";
 import ReadyCTA from "./components/ReadyCTA";
 import Footer from "./components/Footer";
 import BackToHomeCTA from "./components/BackToHomeCTA";
+import LocalLandingPage from "./components/LocalLandingPage";
 
 import GamingEvents from "./components/GamingEvents";
 import MovieNights from "./components/MovieNights";
@@ -21,21 +22,27 @@ import JustDance from "./components/JustDance";
 import SilentDisco from "./components/SilentDisco";
 import SimRacing from "./components/SimRacing";
 import GlowPark from "./components/GlowPark";
-import Novelties from "./components/Novelties";
-import NoveltyAccess from "./components/NoveltyAccess";
-import QuotePage from "./components/QuotePage";
-import NoveltyOrder from "./components/NoveltyOrder";
-import ContactPage from "./components/ContactPage";
-import AboutPage from "./components/AboutPage";
-import AdminPage from "./components/AdminPage";
 import ExploreExperiences from "./components/ExploreExperiences";
 import SeoManager from "./components/SeoManager";
 import RouteLocalSeoSection from "./components/RouteLocalSeoSection";
 import { ROUTE_SEO } from "./lib/routeSeoData";
 import { CmsContentProvider, useCmsHomeMedia } from "./lib/cmsContent";
 import { Settings2 } from "lucide-react";
-import { Link } from "react-router-dom";
 import { experiences } from "./mock";
+
+const QuotePage = lazy(() => import("./components/QuotePage"));
+const AdminPage = lazy(() => import("./components/AdminPage"));
+const NoveltyAccess = lazy(() => import("./components/NoveltyAccess"));
+const NoveltyOrder = lazy(() => import("./components/NoveltyOrder"));
+const Novelties = lazy(() => import("./components/Novelties"));
+const AboutPage = lazy(() => import("./components/AboutPage"));
+const ContactPage = lazy(() => import("./components/ContactPage"));
+
+const PageLoader = () => (
+  <div className="min-h-screen bg-[#05070f] text-white flex items-center justify-center">
+    <div className="h-9 w-9 animate-spin rounded-full border-2 border-[#0066FD]/30 border-t-[#7DDDFF]" aria-label="Loading page" />
+  </div>
+);
 
 const EXPERIENCE_SLUGS = ["gaming-events", "movie-nights", "trivia-nights", "virtual-reality", "just-dance", "silent-disco", "sim-racing", "photo-booth", "glow-park"];
 
@@ -92,6 +99,7 @@ function App() {
     <BrowserRouter>
       <SeoManager />
       <CmsContentProvider>
+      <Suspense fallback={<PageLoader />}>
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/quote" element={<QuotePage />} />
@@ -122,14 +130,14 @@ function App() {
         <Route path="/custom-pillow-dolls-rental" element={<Novelties />} />
         <Route path="/custom-keychains-rings-novelty" element={<Novelties />} />
         <Route path="/custom-event-socks-bracelets" element={<Novelties />} />
-        <Route path="/north-carolina-event-rentals" element={<Landing />} />
-        <Route path="/new-hampshire-massachusetts-event-rentals" element={<Landing />} />
-        <Route path="/college-school-corporate-events" element={<Landing />} />
-        <Route path="/hudson-nh-party-rentals" element={<Landing />} />
-        <Route path="/manchester-nh-event-rentals" element={<Landing />} />
-        <Route path="/nashua-nh-event-rentals" element={<Landing />} />
-        <Route path="/portsmouth-nh-photo-booth-party-rentals" element={<Landing />} />
-        <Route path="/concord-salem-derry-nh-party-rentals" element={<Landing />} />
+        <Route path="/north-carolina-event-rentals" element={<LocalLandingPage />} />
+        <Route path="/new-hampshire-massachusetts-event-rentals" element={<LocalLandingPage />} />
+        <Route path="/college-school-corporate-events" element={<LocalLandingPage />} />
+        <Route path="/hudson-nh-party-rentals" element={<LocalLandingPage />} />
+        <Route path="/manchester-nh-event-rentals" element={<LocalLandingPage />} />
+        <Route path="/nashua-nh-event-rentals" element={<LocalLandingPage />} />
+        <Route path="/portsmouth-nh-photo-booth-party-rentals" element={<LocalLandingPage />} />
+        <Route path="/concord-salem-derry-nh-party-rentals" element={<LocalLandingPage />} />
         <Route path="/build-novelty" element={<NoveltyAccess />} />
         <Route path="/build" element={<NoveltyAccess />} />
         <Route path="/cms" element={<AdminPage />} />
@@ -148,6 +156,7 @@ function App() {
         <Route path="/covid-19-information" element={<Navigate to="/" replace />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
+      </Suspense>
       <PublicBackToHomeCTA />
       <Link to="/cms" rel="nofollow" aria-label="Open website CMS" title="Website admin dashboard" className="cms-access-button">
         <Settings2 size={19} />

@@ -1,8 +1,10 @@
+import { upgradeMediaUrl } from "./cmsContent";
+
 export const DEFAULT_NOVELTY_CONTENT = {
   heroTitle: "Make Room",
   heroHighlight: "For Wonder.",
   heroSubtitle: "Not every great event needs a screen. Discover tactile, social and surprising experiences designed to give your guests something to talk about long after the night is over.",
-  heroImage: "/novelties-bg.png",
+  heroImage: "/novelties-bg.jpg",
   introHeading: "THE ART OF THE UNEXPECTED.",
   introBody: "Our Novelties collection brings hands-on creativity to your event. These unique, interactive experiences give guests the chance to make, personalize, and take home something special — turning moments into lasting memories.",
   stepsHeading: "START WITH A FEELING.",
@@ -63,7 +65,7 @@ export function noveltyContentFromRow(row) {
     return {
       ...defaultItem,
       ...storedItem,
-      image: isOldAsset ? defaultItem.image : (storedItem.image || defaultItem.image),
+      image: isOldAsset ? defaultItem.image : upgradeMediaUrl(storedItem.image || defaultItem.image),
     };
   });
 
@@ -72,7 +74,7 @@ export function noveltyContentFromRow(row) {
     heroTitle: row?.hero_title || DEFAULT_NOVELTY_CONTENT.heroTitle,
     heroHighlight: data.heroHighlight || DEFAULT_NOVELTY_CONTENT.heroHighlight,
     heroSubtitle: row?.hero_subtitle || DEFAULT_NOVELTY_CONTENT.heroSubtitle,
-    heroImage: row?.hero_image_url || DEFAULT_NOVELTY_CONTENT.heroImage,
+    heroImage: upgradeMediaUrl(row?.hero_image_url) || DEFAULT_NOVELTY_CONTENT.heroImage,
     introHeading: data.introHeading || DEFAULT_NOVELTY_CONTENT.introHeading,
     introBody: data.introBody || DEFAULT_NOVELTY_CONTENT.introBody,
     stepsHeading: data.stepsHeading || DEFAULT_NOVELTY_CONTENT.stepsHeading,

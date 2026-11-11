@@ -383,6 +383,72 @@ const GamingEvents = () => {
           </div>
         </section>
 
+        {/* ================= FEC & TOURNAMENT SPECS SECTION ================= */}
+        <section className="relative border-t border-white/5 bg-[#070b16] py-20 md:py-28">
+          <div className="mx-auto max-w-[1280px] px-5 md:px-8">
+            <div className="mb-12 max-w-3xl">
+              <div className="flex items-center gap-3 font-display text-[12px] font-bold uppercase tracking-[0.22em] text-[#7DDDFF]">
+                <span className="h-0.5 w-7 bg-[#0066FD]" />
+                <span>PRODUCTION SPECS &amp; FEC CAPACITY</span>
+              </div>
+              <h2 className="mt-4 font-display text-[clamp(1.9rem,3.8vw,2.9rem)] font-extrabold uppercase leading-[1.12] tracking-tight text-white">
+                FEC Attractions &amp; Event Planning Equipment for Gamers
+              </h2>
+              <p className="mt-4 text-[16px] leading-relaxed text-white/75">
+                Built as a full Next Level FEC attraction and bulk esports rental, our mobile tournament production gives college campuses, convention planners, and party hosts commercial hardware that outperforms cramped game trucks.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+              <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-[#0c1830] to-[#070e1e] p-7 transition-all duration-300 hover:border-[#0066FD]/50">
+                <span className="inline-block rounded-full border border-[#0066FD]/40 bg-[#0066FD]/15 px-3 py-1 font-display text-[11px] font-bold uppercase tracking-wider text-[#7DDDFF]">
+                  Flexible Floor Plans
+                </span>
+                <h3 className="mt-4 font-display text-[21px] font-extrabold uppercase tracking-wide text-white">
+                  20x25 ft to 40x60 ft Venue Scaling
+                </h3>
+                <p className="mt-3 text-[14.5px] leading-relaxed text-white/70">
+                  We map four to eight 12 ft HD player stations plus a 21 ft–40 ft spectator jumbo screen cleanly into student unions, high school gyms, hotel ballrooms, or outdoor quads using protective floor cabling.
+                </p>
+              </div>
+
+              <div className="rounded-2xl border border-[#0066FD]/45 bg-gradient-to-br from-[#0e1d3b] to-[#070e1e] p-7 shadow-[0_12px_36px_rgba(0,102,253,0.16)] transition-all duration-300 hover:border-[#7DDDFF]/60">
+                <span className="inline-block rounded-full border border-[#7DDDFF]/50 bg-[#0066FD]/25 px-3 py-1 font-display text-[11px] font-bold uppercase tracking-wider text-white">
+                  High-Throughput FEC Scale
+                </span>
+                <h3 className="mt-4 font-display text-[21px] font-extrabold uppercase tracking-wide text-white">
+                  16–64+ Simultaneous Players
+                </h3>
+                <p className="mt-3 text-[14.5px] leading-relaxed text-white/75">
+                  Designed as event and party planning equipment for gamers—featuring PlayStation 5, Xbox Series X, Nintendo Switch, and classic NES systems so crowds compete shoulder-to-shoulder while spectators watch live.
+                </p>
+              </div>
+
+              <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-[#0c1830] to-[#070e1e] p-7 transition-all duration-300 hover:border-[#0066FD]/50">
+                <span className="inline-block rounded-full border border-[#0066FD]/40 bg-[#0066FD]/15 px-3 py-1 font-display text-[11px] font-bold uppercase tracking-wider text-[#7DDDFF]">
+                  Turnkey Tournament Crew
+                </span>
+                <h3 className="mt-4 font-display text-[21px] font-extrabold uppercase tracking-wide text-white">
+                  Video Game Event Planner &amp; Brackets
+                </h3>
+                <p className="mt-3 text-[14.5px] leading-relaxed text-white/70">
+                  Includes full video gaming competition production: custom seeding, digital bracket tracking, Super Smash Bros / Mario Kart / FIFA / NBA 2K rulesets, concert audio, and grand finals on stage.
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-10 flex flex-wrap items-center gap-4">
+              <Link
+                to="/quote?package=Bulk%20Esports%20%26%20Gaming%20Event"
+                className="cta-fill inline-flex items-center gap-2 rounded-full blue-gradient-bg px-7 py-3.5 text-[12.5px] font-bold uppercase tracking-wider text-white shadow-[0_8px_28px_rgba(0,102,253,0.4)]"
+              >
+                <span>Build Your Gaming Event Quote</span>
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+          </div>
+        </section>
+
         <RouteLocalSeoSection path="/gaming-events" />
 
         {/* ================= READY TO LEVEL UP CTA SECTION ================= */}

@@ -134,7 +134,7 @@ const MovieNights = () => {
   const heroImage = normalizedPath === "/led-video-wall-rental"
     ? "/movie-nights-led.jpg"
     : normalizedPath === "/inflatable-movie-screen-rental"
-      ? "/movie-nights-experience-1.png"
+      ? "/movie-nights-experience-1.jpg"
       : cmsPage.heroImage;
 
   const baseCategories = ["LED Video Wall Screens", "Inflatable Screens"];

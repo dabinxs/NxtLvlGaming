@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import {
   Glasses,
   Gamepad2,
   Monitor,
   Users,
   Check,
+  ArrowRight,
 } from "lucide-react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
@@ -245,6 +246,78 @@ const VirtualReality = () => {
                   </div>
                 );
               })}
+            </div>
+          </div>
+        </section>
+
+        {/* ================= VR SPECS & ARENA FORMATS ================= */}
+        <section className="relative border-t border-white/5 bg-[#05070f] py-20 md:py-28">
+          <div className="mx-auto max-w-[1280px] px-5 md:px-8">
+            <div className="mb-12 max-w-3xl">
+              <div className="flex items-center gap-3 font-display text-[12px] font-bold uppercase tracking-[0.22em] text-[#7DDDFF]">
+                <span className="h-0.5 w-7 bg-[#0066FD]" />
+                <span>SPECIFICATIONS &amp; ARENA FORMATS</span>
+              </div>
+              <h2 className="mt-4 font-display text-[clamp(1.9rem,3.8vw,2.9rem)] font-extrabold uppercase leading-[1.12] tracking-tight text-white">
+                VR Event Specs, Capacity &amp; Arena Formats
+              </h2>
+              <p className="mt-4 text-[16px] leading-relaxed text-white/75">
+                Whether you&apos;re searching for a mobile VR experience near me, a portable VR arcade for a campus welcome week, or a shared multiplayer VR arena, our insured crew scales headsets, spectator monitors, and staffing to your floor plan across NH, MA, CT &amp; NC.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+              <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-[#0c1830] to-[#070e1e] p-7 transition-all duration-300 hover:border-[#0066FD]/50">
+                <span className="inline-block rounded-full border border-[#0066FD]/40 bg-[#0066FD]/15 px-3 py-1 font-display text-[11px] font-bold uppercase tracking-wider text-[#7DDDFF]">
+                  Compact Pod Setup
+                </span>
+                <h3 className="mt-4 font-display text-[21px] font-extrabold uppercase tracking-wide text-white">
+                  10x10 ft Single &amp; Dual VR Pods
+                </h3>
+                <p className="mt-3 text-[14.5px] leading-relaxed text-white/70">
+                  Ideal for corporate receptions, hotel ballrooms, and private parties—runs on standard 120V power with 12–16 guests rotated per hour per headset on action VR event games like SUPERHOT VR and Beat Saber.
+                </p>
+              </div>
+
+              <div className="rounded-2xl border border-[#0066FD]/45 bg-gradient-to-br from-[#0e1d3b] to-[#070e1e] p-7 shadow-[0_12px_36px_rgba(0,102,253,0.16)] transition-all duration-300 hover:border-[#7DDDFF]/60">
+                <span className="inline-block rounded-full border border-[#7DDDFF]/50 bg-[#0066FD]/25 px-3 py-1 font-display text-[11px] font-bold uppercase tracking-wider text-white">
+                  Most Popular Campus Layout
+                </span>
+                <h3 className="mt-4 font-display text-[21px] font-extrabold uppercase tracking-wide text-white">
+                  4–8+ Station Mobile VR Arena
+                </h3>
+                <p className="mt-3 text-[14.5px] leading-relaxed text-white/75">
+                  High-capacity portable VR arcade bank built for college orientation weeks, post-proms, and student unions—serving 48–100+ players per hour with live external HD spectator TVs and sanitary disposable face liners.
+                </p>
+              </div>
+
+              <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-[#0c1830] to-[#070e1e] p-7 transition-all duration-300 hover:border-[#0066FD]/50">
+                <span className="inline-block rounded-full border border-[#0066FD]/40 bg-[#0066FD]/15 px-3 py-1 font-display text-[11px] font-bold uppercase tracking-wider text-[#7DDDFF]">
+                  Shared Multiplayer
+                </span>
+                <h3 className="mt-4 font-display text-[21px] font-extrabold uppercase tracking-wide text-white">
+                  20x20 ft 4-Player Escape Room Arena
+                </h3>
+                <p className="mt-3 text-[14.5px] leading-relaxed text-white/70">
+                  Four synchronized headsets inside the same puzzle room—choose Dragon Tower, Time Travel Paradox, Depths of Osiris, or Manor Escape with dedicated VR game-master attendants guiding every team.
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-10 flex flex-wrap items-center gap-4">
+              <Link
+                to="/quote?package=Virtual%20Reality"
+                className="cta-fill inline-flex items-center gap-2 rounded-full blue-gradient-bg px-7 py-3.5 text-[12.5px] font-bold uppercase tracking-wider text-white shadow-[0_8px_28px_rgba(0,102,253,0.4)]"
+              >
+                <span>Check VR Availability &amp; Quote</span>
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                to={isBaseRoute ? "/vr-escape-room-rental" : "/virtual-reality"}
+                className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/5 px-6 py-3.5 text-[12.5px] font-bold uppercase tracking-wider text-white/90 transition-colors hover:border-[#7DDDFF] hover:text-white"
+              >
+                <span>{isBaseRoute ? "Explore 4-Player VR Escape Rooms" : "See Full VR Arcade Lineup"}</span>
+              </Link>
             </div>
           </div>
         </section>

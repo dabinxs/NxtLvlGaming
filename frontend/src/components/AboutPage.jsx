@@ -214,7 +214,7 @@ function AboutPage() {
     <div ref={pageRef} className="about-page" id="top">
       <Navbar topOnly />
       <main>
-        <section className="about-hero" aria-labelledby="about-title" style={{ backgroundImage: "url('/hero-bg.png')" }}>
+        <section className="about-hero" aria-labelledby="about-title" style={{ backgroundImage: "url('/hero-bg.jpg')" }}>
           <div className="about-hero__glow" aria-hidden="true" />
           <p className="about-eyebrow">Next Level Gaming Events</p>
           <h1 id="about-title"><span>The idea</span><span>behind the games</span></h1>

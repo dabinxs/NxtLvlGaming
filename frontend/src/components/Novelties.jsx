@@ -335,7 +335,7 @@ const Novelties = () => {
         {/* ================= SECTION 5: YOUR IDEA MADE TANGIBLE BANNER ================= */}
         <section className="relative overflow-hidden w-full">
           <img
-            src="/tangible-bg.png"
+            src="/tangible-bg.jpg"
             alt="Your Idea Made Tangible background"
             className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none select-none"
             loading="lazy"

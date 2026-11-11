@@ -1,5 +1,5 @@
 const SITE_URL = "https://nextlevelgamingevents.com";
-const DEFAULT_IMAGE = `${SITE_URL}/hero-bg.png`;
+const DEFAULT_IMAGE = `${SITE_URL}/hero-bg.jpg`;
 
 const NH_CITY_LINKS = [
   { label: "Hudson NH Party Rentals (03051 HQ)", href: "/hudson-nh-party-rentals", tag: "Local HQ" },
@@ -48,7 +48,7 @@ const ROUTE_SEO = {
       "Turnkey event & party rentals in NH, Boston MA & NC: giant outdoor movie screens, 360 photo booths, live gaming events, VR, silent disco, glow park & novelties.",
     keywords:
       "event rentals, party rentals, party equipment rentals, event rentals NH, nh party rentals, photo booth rental new hampshire, photo booth nh, nh photo booth rental, portsmouth photo booth rental, portsmouth nh photo booth rental, nh movie screen rental, party rentals Manchester NH, party rentals Nashua NH, party rentals Hudson NH, Boston event rentals, event rentals North Carolina, party rentals Charlotte NC, Raleigh event rentals, esports rental, esports rental company, bulk esports rental, event planning equipment for gamers, party planning equipment for gamers, real life gaming experience, video gaming competition production, video gaming tournament event management, video game tournament event production, video game event management, outdoor movie screen rental, inflatable movie screen rental, mobile LED video wall rental, 360 photo booth rental, mirror photo booth rental, photo booth rental NH MA NC, silent disco rental, virtual reality event rental, virtual reality near me, vr arcade near me, vr arena near me, vr gaming near me, vr event games, VR escape room rental, rent racing simulator near me, sim racing simulator rental, glow swings rental, glow park rental, live gaming events, video game event planner, video game tournaments, gaming competitions near me, college event entertainment, corporate event entertainment, novelties, Next Level Gaming, Nxt Level Gaming",
-    image: `${SITE_URL}/hero-bg.png`,
+    image: `${SITE_URL}/hero-bg.jpg`,
     canonicalPath: "/",
     heroEyebrow: "HUDSON, NH (03051) · NEW ENGLAND · NORTH CAROLINA",
     serviceName: "Turnkey Event & Party Equipment Rentals, Photo Booths, Gaming & Custom Novelties",
@@ -104,7 +104,8 @@ const ROUTE_SEO = {
       "Turnkey live gaming events, esports rental company & video game tournament event production with 12–40ft screens, PS5, Xbox & Switch in NH, Boston MA, CT & NC.",
     keywords:
       "gaming events, real life gaming experience, live gaming events, gaming event, video game event, video game events, video gaming events, video game events near me, esports tournaments near me, video game event planner, video game event management, video gaming tournament event management, video gaming competition production, video game tournament event production, esports rental company, bulk esports rental, event planning equipment for gamers, party planning equipment for gamers, esports rental, next level gaming ct, new england gaming, gaming events this weekend, next level gaming, nxt level gaming, next level fec attraction, video game tournaments, gaming event rental, gaming event planning, boston gaming events, gaming events Boston MA, college gaming events Boston, video game party rental Manchester NH, gaming events Hudson NH, gaming events Portsmouth NH, video gaming event rental New Hampshire, Connecticut gaming events, gaming event rentals Charlotte NC, mobile video game party Raleigh NC, esports tournament production NH MA CT NC, Super Smash Bros tournament rental, Mario Kart event rental Boston MA Charlotte NC",
-    image: `${SITE_URL}/gaming-events-experience-1.png`,
+    image: `${SITE_URL}/gaming-events-experience-1.jpg`,
+    preloadImage: "/experience-gaming-events.avif",
     canonicalPath: "/gaming-events",
     heroEyebrow: "ESPORTS RENTAL COMPANY & TOURNAMENT PRODUCTION · NH, MA, CT & NC",
     heroDisplayTitle: "LIVE VIDEO GAMING EVENTS & ESPORTS RENTALS",
@@ -169,7 +170,7 @@ const ROUTE_SEO = {
       "Rent giant outdoor inflatable movie screens (16–40 ft) & daylight mobile LED video wall trailers in Hudson NH, Manchester, Portsmouth, Boston MA & NC.",
     keywords:
       "nh movie screen rental, outdoor movie screen rental, inflatable movie screen rental, mobile LED video wall trailer rental, movie screen rental NH, hudson nh movie screen rental, manchester nh movie screen rental, portsmouth nh movie screen rental, outdoor movie rental Boston MA, inflatable movie screen rental Charlotte NC, movie screen rental Raleigh NC, drive-in movie screen rental, backyard movie night rental, event rentals NH",
-    image: `${SITE_URL}/experience-movie-nights.png`,
+    image: `${SITE_URL}/experience-movie-nights.jpg`,
     canonicalPath: "/movie-nights",
     heroEyebrow: "NH MOVIE SCREEN RENTALS & MOBILE LED TRAILERS · NH, MA, CT & NC",
     heroDisplayTitle: "OUTDOOR MOVIE SCREEN & LED WALL RENTALS",
@@ -284,7 +285,7 @@ const ROUTE_SEO = {
       "Rent giant 16ft, 21ft, 26ft & 40ft outdoor inflatable movie screens with HD projection, concert audio & FM drive-in transmitters in NH, Boston MA & NC.",
     keywords:
       "inflatable movie screen rental, outdoor movie screen rental, giant movie screen rental, drive-in movie screen rental, backyard movie screen rental, nh movie screen rental, inflatable movie screen rental NH, outdoor movie screen rental Boston MA, inflatable movie screen rental Charlotte NC, movie screen rental Raleigh NC",
-    image: `${SITE_URL}/movie-nights-experience-1.png`,
+    image: `${SITE_URL}/movie-nights-experience-1.jpg`,
     canonicalPath: "/inflatable-movie-screen-rental",
     heroEyebrow: "GIANT 16 FT, 21 FT, 26 FT & 40 FT DRIVE-IN CINEMA SCREENS",
     heroDisplayTitle: "GIANT INFLATABLE MOVIE SCREEN RENTALS",
@@ -337,7 +338,7 @@ const ROUTE_SEO = {
       "Book live-hosted interactive trivia nights & wireless buzzer game show rentals for colleges, schools & corporate events in Hudson NH, Boston MA & NC.",
     keywords:
       "nh trivia night rental, interactive trivia night rental NH, game show rental NH MA NC, corporate trivia host Charlotte NC, college trivia night Raleigh Durham NC, live trivia host New Hampshire Massachusetts, corporate game show rental New England North Carolina, wireless buzzer game show rental",
-    image: `${SITE_URL}/experience-trivia-nights.png`,
+    image: `${SITE_URL}/experience-trivia-nights.jpg`,
     canonicalPath: "/trivia-nights",
     heroEyebrow: "LIVE GAME SHOW HOST · WIRELESS BUZZERS · BIG-SCREEN LEADERBOARDS",
     heroDisplayTitle: "INTERACTIVE TRIVIA NIGHT & GAME SHOW RENTALS",
@@ -383,12 +384,12 @@ const ROUTE_SEO = {
     ],
   },
   "/virtual-reality": {
-    title: "Virtual Reality Rental & VR Escape Room Events | NH, MA & NC",
+    title: "VR Experience, Mobile VR Arcade & VR Escape Rooms | NH, MA & NC",
     description:
-      "Rent mobile VR arcade stations, VR event games (SUPERHOT VR, Beat Saber), VR arena setups & 4-player VR escape rooms in Hudson NH, Portsmouth, Boston MA & NC.",
+      "Book a mobile VR experience, VR arcade, or 4-player VR escape room with VR event games (SUPERHOT VR, Beat Saber) & staff in Hudson NH, Boston & NC.",
     keywords:
-      "vr event games, virtual reality near me, vr arcade near me, vr arena near me, vr gaming near me, superhot virtual reality, nh vr rental, virtual reality rental, VR event rental, VR party rental, virtual reality rental NH, virtual reality rental Boston MA, VR party rental Charlotte NC, mobile VR escape room rental, college VR entertainment, Beat Saber party rental",
-    image: `${SITE_URL}/experience-virtual-reality.png`,
+      "vr event games, vr experience near me, virtual reality near me, vr arcade near me, vr arena near me, vr gaming near me, superhot virtual reality, nh vr rental, virtual reality rental, VR event rental, VR party rental, virtual reality rental NH, virtual reality rental Boston MA, VR party rental Charlotte NC, mobile VR escape room rental, college VR entertainment, Beat Saber party rental",
+    image: `${SITE_URL}/experience-virtual-reality.jpg`,
     canonicalPath: "/virtual-reality",
     heroEyebrow: "MOBILE VR ARCADE, VR ARENA & 4-PLAYER VR ESCAPE ROOMS · NH, MA & NC",
     heroDisplayTitle: "VIRTUAL REALITY RENTALS & VR ESCAPE ROOMS",
@@ -494,7 +495,7 @@ const ROUTE_SEO = {
       "Turnkey photo booth rental New Hampshire, Portsmouth photo booth rentals, 360 video booths & mirror photo booths in Portsmouth, Manchester, Nashua, Hudson & NC.",
     keywords:
       "photo booth rental new hampshire, photo booth nh, nh photo booth rental, portsmouth photo booth rental, portsmouth nh photo booth rental, 360 photo booth rental, photo booth rental, mirror photo booth rental, mirror photobooth rental, photo booth rental NH, manchester nh photo booth rental, nashua nh photo booth rental, hudson nh photo booth rental, concord nh photo booth rental, dover nh photo booth rental, salem nh photo booth rental, 360 video booth rental NH, photo booth rental Boston MA, 360 photo booth rental Charlotte NC, photo booth rental Raleigh NC, interactive photo booth, wedding photo booth rental, corporate photo booth rental",
-    image: `${SITE_URL}/experience-360-video-booth.png`,
+    image: `${SITE_URL}/experience-360-video-booth.jpg`,
     canonicalPath: "/photo-booth",
     heroEyebrow: "PHOTO BOOTH RENTAL NEW HAMPSHIRE · PORTSMOUTH, MANCHESTER, HUDSON & NC",
     heroDisplayTitle: "PHOTO BOOTH RENTALS — 360 VIDEO & MIRROR BOOTHS",
@@ -560,7 +561,7 @@ const ROUTE_SEO = {
       "Rent a 360 slow-motion video booth platform with VIP red carpet, LED studio ring lighting, custom video overlays & instant QR sharing in NH, MA, CT & NC.",
     keywords:
       "360 photo booth rental, 360 video booth rental, 360 camera booth rental, slow motion 360 photo booth rental, 360 photo booth rental NH, portsmouth nh 360 photo booth rental, manchester nh 360 photo booth rental, hudson nh 360 photo booth rental, 360 photo booth rental Boston MA, 360 photo booth rental Charlotte NC, 360 video booth rental Raleigh NC",
-    image: `${SITE_URL}/photo-booth-experience-2.png`,
+    image: `${SITE_URL}/photo-booth-experience-2.jpg`,
     canonicalPath: "/360-video-booth",
     heroEyebrow: "COMMERCIAL 360 CAMERA PLATFORM · INSTANT QR & SMS VIDEO SHARING",
     heroDisplayTitle: "360 VIDEO BOOTH & 360 PHOTO BOOTH RENTAL",
@@ -611,7 +612,7 @@ const ROUTE_SEO = {
       "Rent a 360 slow-motion video booth platform with VIP red carpet, LED studio ring lighting, custom video overlays & instant QR sharing in NH, MA, CT & NC.",
     keywords:
       "360 photo booth rental, 360 video booth rental, 360 camera booth rental, slow motion 360 photo booth rental, 360 photo booth rental NH, 360 photo booth rental Boston MA, 360 photo booth rental Charlotte NC",
-    image: `${SITE_URL}/photo-booth-experience-2.png`,
+    image: `${SITE_URL}/photo-booth-experience-2.jpg`,
     canonicalPath: "/360-video-booth",
     noindex: true,
     serviceName: "360 Slow-Motion Video Booth & 360 Camera Platform Rentals",
@@ -622,7 +623,7 @@ const ROUTE_SEO = {
       "Rent a full-length interactive magic mirror photo booth with touch-screen animations, custom prints, red carpet & attendant in NH, Boston MA, CT & NC.",
     keywords:
       "mirror photo booth rental, magic mirror photobooth rental, magic mirror photo booth rental, interactive mirror photo booth rental, mirror photo booth rental NH, portsmouth nh mirror photo booth rental, manchester nh photo booth rental, mirror photo booth rental Boston MA, mirror photo booth rental Charlotte NC, wedding mirror photo booth rental",
-    image: `${SITE_URL}/photo-booth-experience-1.png`,
+    image: `${SITE_URL}/photo-booth-experience-1.jpg`,
     canonicalPath: "/mirror-photo-booth-rental",
     heroEyebrow: "FULL-LENGTH TOUCH-SCREEN MAGIC MIRROR · PRINTS & DIGITAL SHARING",
     heroDisplayTitle: "INTERACTIVE MIRROR PHOTO BOOTH RENTAL",
@@ -673,7 +674,7 @@ const ROUTE_SEO = {
       "Bring multiplayer Just Dance battles on giant HD screens with concert sound and lighting to your college, school, or event in Hudson NH, MA & North Carolina.",
     keywords:
       "just dance, just dance party rental, nh just dance rental, Just Dance event rental NH MA NC, giant screen dance party rental, college Just Dance party New England North Carolina, interactive dance game rental Boston MA Charlotte NC",
-    image: `${SITE_URL}/experience-just-dance.png`,
+    image: `${SITE_URL}/experience-just-dance.jpg`,
     canonicalPath: "/just-dance",
     heroEyebrow: "MULTIPLAYER DANCE BATTLES · 12–32 FT HD SCREENS & CONCERT SOUND",
     heroDisplayTitle: "JUST DANCE GIANT-SCREEN PARTY RENTALS",
@@ -719,7 +720,7 @@ const ROUTE_SEO = {
       "Rent tri-color LED wireless Silent Disco headphones with 3 channels for 50 to 5,000+ guests in Hudson NH, Manchester, Boston MA & North Carolina.",
     keywords:
       "nh silent disco rental, silent disco rental, silent disco headphone rental, silent disco party rental, silent disco rental NH, silent disco rental Boston MA, silent disco rental Charlotte NC, silent disco rental Raleigh Durham NC, LED headphone party rental",
-    image: `${SITE_URL}/experience-silent-disco.png`,
+    image: `${SITE_URL}/experience-silent-disco.jpg`,
     canonicalPath: "/silent-disco",
     heroEyebrow: "3 SIMULTANEOUS DJ CHANNELS · TRI-COLOR GLOWING LED HEADPHONES",
     heroDisplayTitle: "SILENT DISCO WIRELESS HEADPHONE RENTALS",
@@ -764,12 +765,12 @@ const ROUTE_SEO = {
     ],
   },
   "/sim-racing": {
-    title: "Sim Racing Cockpit & Racing Simulator Rentals | NH, MA & NC",
+    title: "Rent Racing Simulators & Sim Racing Experiences | NH, MA & NC",
     description:
-      "Rent racing simulator near me: force-feedback Sim Racing simulator cockpits with bucket seats, giant-screen telemetry & leaderboards in NH, Boston MA & NC.",
+      "Looking for sim racing places or racing simulator rentals near you? Rent force-feedback cockpit simulators with telemetry & leaderboards in NH, Boston & NC.",
     keywords:
-      "rent racing simulator near me, racing simulator rental near me, nh sim racing rental, sim racing rental, racing simulator rental, sim racing simulator rental, racing simulator event rental, sim racing rental NH MA, racing simulator rental Boston MA, sim racing simulator rental Charlotte NC, racing simulator event rental Raleigh NC, racing simulator rental Connecticut CT, force feedback racing cockpit rental, F1 racing simulator rental",
-    image: `${SITE_URL}/experience-sim-racing.png`,
+      "rent racing simulator near me, racing simulator rental near me, sim racing places near me, nh sim racing rental, sim racing rental, racing simulator rental, sim racing simulator rental, racing simulator event rental, sim racing rental NH MA, racing simulator rental Boston MA, sim racing simulator rental Charlotte NC, racing simulator event rental Raleigh NC, racing simulator rental Connecticut CT, force feedback racing cockpit rental, F1 racing simulator rental",
+    image: `${SITE_URL}/experience-sim-racing.jpg`,
     canonicalPath: "/sim-racing",
     heroEyebrow: "RENT A RACING SIMULATOR · FORCE-FEEDBACK COCKPITS · NH, MA, CT & NC",
     heroDisplayTitle: "SIM RACING COCKPIT & SIMULATOR RENTALS",
@@ -926,7 +927,7 @@ const ROUTE_SEO = {
       "Rent custom event novelty stations in Hudson NH, Boston MA & NC: Patched City trucker hats, beanies, socks, pillow dolls, sequin pillows, keychains, rings & plush bags.",
     keywords:
       "custom event novelties rental, nh custom hat bar rental, party novelty rentals Hudson NH, college novelty event ideas NH MA NC, custom trucker hat bar rental, Patched City trucker hats and beanies, custom event socks, Bead-tastics custom bracelets, custom photo pillow dolls, reversible sequin pillows, intention bracelets, laser engraved wood and metal keychains, stamped custom rings, hammerless ring press, Silly Sacks custom plush bags, custom novelty license plates",
-    image: `${SITE_URL}/novelties-bg.png`,
+    image: `${SITE_URL}/novelties-bg.jpg`,
     canonicalPath: "/novelties",
     heroEyebrow: "01 / CUSTOM EVENT NOVELTIES · HUDSON NH, BOSTON MA & NORTH CAROLINA",
     serviceName: "Custom Event Novelties & On-Site Maker Workshops",
@@ -1022,6 +1023,7 @@ const ROUTE_SEO = {
     keywords:
       "custom trucker hat bar rental, trucker hat bar party rental, Patched City trucker hats and beanies, custom patch hat bar event, DIY trucker hat station college event, custom hat press bar rental NH Boston Charlotte Raleigh",
     image: `${SITE_URL}/novelty-cards/patch-city.jpg`,
+    preloadImage: "/novelties-bg.jpg",
     canonicalPath: "/custom-trucker-hat-bar-rental",
     heroEyebrow: "01 / PATCHED CITY & CUSTOM TRUCKER HAT BAR · NH, MA & NC",
     heroDisplayTitle: "Custom Trucker Hat",
@@ -1077,6 +1079,7 @@ const ROUTE_SEO = {
     keywords:
       "custom photo pillow dolls, custom pillow dolls college event, reversible sequin pillows novelty rental, custom sequence pillows event station, make your own photo pillow event NH MA NC, college orientation novelty stations",
     image: `${SITE_URL}/novelty-cards/pillow-dolls.jpg`,
+    preloadImage: "/novelties-bg.jpg",
     canonicalPath: "/custom-pillow-dolls-rental",
     heroEyebrow: "01 / CUSTOM PHOTO PILLOW DOLLS & SEQUIN PILLOWS · NH, MA & NC",
     heroDisplayTitle: "Custom Pillow Dolls",
@@ -1128,6 +1131,7 @@ const ROUTE_SEO = {
     keywords:
       "laser engraved wood and metal keychains, stamped custom rings event novelty, hammerless ring press rental, custom novelty license plates event station, personalized keychain station college event, custom metal stamped rings NH MA NC",
     image: `${SITE_URL}/novelty-cards/wood-metal-keychains.jpg`,
+    preloadImage: "/novelties-bg.jpg",
     canonicalPath: "/custom-keychains-rings-novelty",
     heroEyebrow: "01 / LASER KEYCHAINS, STAMPED RINGS & LICENSE PLATES · NH, MA & NC",
     heroDisplayTitle: "Laser Keychains,",
@@ -1183,6 +1187,7 @@ const ROUTE_SEO = {
     keywords:
       "custom printed event socks, custom socks novelty station, Bead-tastics custom bracelets, custom intention bracelets event, Silly Sacks custom plush bags, DIY plush backpack college event, college welcome week novelty rentals NH MA NC",
     image: `${SITE_URL}/novelty-cards/custom-socks.jpg`,
+    preloadImage: "/novelties-bg.jpg",
     canonicalPath: "/custom-event-socks-bracelets",
     heroEyebrow: "01 / CUSTOM PRINTED SOCKS, BRACELETS & SILLY SACKS · NH, MA & NC",
     heroDisplayTitle: "Custom Socks,",
@@ -1238,6 +1243,7 @@ const ROUTE_SEO = {
     keywords:
       "About Next Level Gaming, Calvin Reid, Yaw Boateng, Hudson NH event rental company, North Carolina event rental branch, New England college entertainment company",
     image: `${SITE_URL}/about-gaming-event.jpg`,
+    preloadImage: "/hero-bg.jpg",
     canonicalPath: "/about",
     serviceName: "About Next Level Gaming & Novelties — Insured Event Production Team",
     heading: "About Next Level Gaming & Novelties — Hudson NH & North Carolina Team",
@@ -1275,6 +1281,7 @@ const ROUTE_SEO = {
     keywords:
       "contact Next Level Gaming, Hudson NH event rentals phone number, North Carolina event rentals contact, 978-601-5473, sales@nextlevelgamingevents.com",
     image: DEFAULT_IMAGE,
+    preloadImage: "/hero-bg.jpg",
     canonicalPath: "/contact",
     serviceName: "Contact Next Level Gaming & Novelties Booking Office",
     heading: "Contact Next Level Gaming & Novelties — Hudson NH & North Carolina (978-601-5473)",
@@ -1313,6 +1320,7 @@ const ROUTE_SEO = {
     keywords:
       "gaming event rental quote NH NC, outdoor movie screen rental pricing NH MA NC, book college event entertainment Charlotte Raleigh Boston",
     image: DEFAULT_IMAGE,
+    preloadImage: null,
     canonicalPath: "/quote",
     heading: "Request an Event Rental Quote — Next Level Gaming NH, MA & NC",
     summary:
@@ -1324,7 +1332,8 @@ const ROUTE_SEO = {
       "Request pricing and book custom event novelty stations in NH, MA & NC—trucker hats, beanies, socks, bracelets, pillow dolls, sequin pillows & keychains.",
     keywords:
       "order custom event novelties NH NC, college novelty workshop booking North Carolina New England, Patched City hat bar order, custom college orientation giveaways",
-    image: `${SITE_URL}/novelties-bg.png`,
+    image: `${SITE_URL}/novelties-bg.jpg`,
+    preloadImage: null,
     canonicalPath: "/novelty-order",
     heading: "Order Custom Event Novelties — Next Level Gaming NH & NC",
     summary:
@@ -1337,6 +1346,7 @@ const ROUTE_SEO = {
     keywords:
       "explore events, event rentals, party equipment rentals, interactive experiences, video gaming events, next level fec attraction, outdoor movies, silent disco, virtual reality, photo booth, sim racing, glow park",
     image: DEFAULT_IMAGE,
+    preloadImage: "/experience-gaming-events.avif",
     canonicalPath: "/explore-experiences",
     serviceName: "Complete Catalog of Interactive Event & Party Equipment Rentals",
     heading: "Explore What's Next — Interactive Event Rentals in NH, MA, CT & NC",
@@ -1383,7 +1393,8 @@ const ROUTE_SEO = {
       "Turnkey event & party rentals across North Carolina: outdoor movie screens, 360 photo booths, gamer birthday parties, gaming events & novelties in Charlotte, Raleigh & NC.",
     keywords:
       "North Carolina event rentals, party rentals Charlotte NC, Raleigh NC event rentals, party rentals Greensboro NC, Durham NC party rentals, gamer birthday party NC, Eastern NC party rentals, New Bern NC party rentals, 360 photo booth rental Charlotte NC, outdoor movie screen rental Raleigh NC, video game truck alternative NC",
-    image: DEFAULT_IMAGE,
+    image: `${SITE_URL}/experience-virtual-reality.jpg`,
+    heroImageLocal: "/experience-virtual-reality.jpg",
     canonicalPath: "/north-carolina-event-rentals",
     heroEyebrow: "CHARLOTTE · RALEIGH · DURHAM · GREENSBORO · NEW BERN & EASTERN NC",
     heroDisplayTitle: "North Carolina\nEvent & Party Rentals",
@@ -1428,7 +1439,8 @@ const ROUTE_SEO = {
       "Full-service event & party rentals across NH, MA & CT: Portsmouth, Manchester, Nashua, Hudson & Boston photo booths, outdoor movie screens, gaming & VR.",
     keywords:
       "NH event rentals, nh party rentals, nh photo booth rental, nh movie screen rental, Massachusetts event rentals, party rentals Manchester NH, party rentals Nashua NH, party rentals Hudson NH, Portsmouth NH photo booth rental, Portsmouth NH event rentals, Seacoast NH party rentals, Boston MA event rentals, Connecticut event rentals, next level gaming ct, new england gaming, corporate event rentals Boston, college event rentals New England, outdoor movie screen rental NH, 360 photo booth rental Boston",
-    image: DEFAULT_IMAGE,
+    image: `${SITE_URL}/movie-nights-led.jpg`,
+    heroImageLocal: "/movie-nights-led.jpg",
     canonicalPath: "/new-hampshire-massachusetts-event-rentals",
     heroEyebrow: "HUDSON NH HQ (03051) · BOSTON MA · PORTSMOUTH NH · CONNECTICUT",
     heroDisplayTitle: "NH, Massachusetts &\nNew England Rentals",
@@ -1475,7 +1487,8 @@ const ROUTE_SEO = {
       "Turnkey college welcome week, high school post-prom, grad night, and corporate event rentals in NH, MA, New England & North Carolina.",
     keywords:
       "college campus event rentals, university welcome week entertainment, spring weekend rentals, high school post prom entertainment NH MA NC, project graduation party rentals, corporate event entertainment Boston Charlotte Raleigh",
-    image: DEFAULT_IMAGE,
+    image: `${SITE_URL}/gaming-events-experience-3.jpg`,
+    heroImageLocal: "/gaming-events-experience-3.jpg",
     canonicalPath: "/college-school-corporate-events",
     heroEyebrow: "TRUSTED BY 23+ UNIVERSITIES · HIGH SCHOOL POST-PROMS · CORPORATE",
     heroDisplayTitle: "College, School &\nCorporate Event Rentals",
@@ -1522,7 +1535,8 @@ const ROUTE_SEO = {
       "Local Hudson NH party & event equipment rentals on Rebel Rd (03051): 360 photo booths, inflatable movie screens, LED video walls, VR, glow swings & novelties.",
     keywords:
       "hudson nh party rentals, party rentals hudson nh, event rentals hudson nh, photo booth rental hudson nh, outdoor movie screen rental hudson nh, party equipment rentals hudson nh 03051, litchfield nh party rentals, pelham nh party rentals, windham nh party rentals, londonderry nh party rentals",
-    image: DEFAULT_IMAGE,
+    image: `${SITE_URL}/about-big-screen.jpg`,
+    heroImageLocal: "/about-big-screen.jpg",
     canonicalPath: "/hudson-nh-party-rentals",
     heroEyebrow: "REBEL RD, HUDSON, NH 03051 · HOME HEADQUARTERS",
     heroDisplayTitle: "Hudson, NH\nParty & Event Rentals",
@@ -1579,7 +1593,8 @@ const ROUTE_SEO = {
       "Turnkey Manchester NH party & event rentals: 360 photo booths, mirror photo booths, giant outdoor movie screens, LED video walls, VR, glow park & novelties.",
     keywords:
       "manchester nh party rentals, party rentals manchester nh, event rentals manchester nh, manchester nh photo booth rental, photo booth nh, outdoor movie screen rental manchester nh, bedford nh party rentals, goffstown nh party rentals, hooksett nh party rentals, SNHU campus event rentals, Saint Anselm college event rentals",
-    image: DEFAULT_IMAGE,
+    image: `${SITE_URL}/gaming-events-experience-2.jpg`,
+    heroImageLocal: "/gaming-events-experience-2.jpg",
     canonicalPath: "/manchester-nh-event-rentals",
     heroEyebrow: "MANCHESTER · BEDFORD · GOFFSTOWN · HOOKSETT · SNHU & ST. ANSELM",
     heroDisplayTitle: "Manchester, NH\nEvent & Party Rentals",
@@ -1632,7 +1647,8 @@ const ROUTE_SEO = {
       "Book Nashua NH party & event equipment rentals: 360 photo booths, mirror photo booths, outdoor movie screens, mobile LED walls, VR, glow park & custom novelties.",
     keywords:
       "nashua nh party rentals, party rentals nashua nh, event rentals nashua nh, nashua nh photo booth rental, outdoor movie screen rental nashua nh, merrimack nh party rentals, hollis nh party rentals, amherst nh party rentals, milford nh party rentals, Rivier University event rentals",
-    image: DEFAULT_IMAGE,
+    image: `${SITE_URL}/photo-booth-experience-1.jpg`,
+    heroImageLocal: "/photo-booth-experience-1.jpg",
     canonicalPath: "/nashua-nh-event-rentals",
     heroEyebrow: "NASHUA · MERRIMACK · HOLLIS · AMHERST · MILFORD · RIVIER UNIVERSITY",
     heroDisplayTitle: "Nashua, NH\nParty & Event Rentals",
@@ -1674,10 +1690,11 @@ const ROUTE_SEO = {
   "/portsmouth-nh-photo-booth-party-rentals": {
     title: "Portsmouth NH Photo Booth Rental & Seacoast Party Rentals | Next Level",
     description:
-      "Portsmouth NH photo booth rentals (360 video booths & mirror photo booths), outdoor movie screens, LED walls, glow swings & novelties across Seacoast NH.",
+      "Portsmouth NH photo booth rentals (360 video & magic mirror booths) with red carpet, instant QR sharing, movie screens & novelties in Seacoast NH.",
     keywords:
       "portsmouth nh photo booth rental, portsmouth photo booth rental, photo booth rental new hampshire, photo booth nh, nh photo booth rental, portsmouth nh party rentals, seacoast nh party rentals, dover nh party rentals, exeter nh party rentals, hampton nh party rentals, durham nh UNH event rentals, rochester nh party rentals, rye nh wedding photo booth rental",
-    image: `${SITE_URL}/experience-360-video-booth.png`,
+    image: `${SITE_URL}/experience-360-video-booth.jpg`,
+    heroImageLocal: "/experience-360-video-booth.jpg",
     canonicalPath: "/portsmouth-nh-photo-booth-party-rentals",
     heroEyebrow: "PORTSMOUTH · RYE · HAMPTON · EXETER · DOVER · UNH DURHAM",
     heroDisplayTitle: "Portsmouth, NH Photo\nBooth & Party Rentals",
@@ -1731,7 +1748,8 @@ const ROUTE_SEO = {
       "Turnkey party & event equipment rentals in Concord, Salem, Derry, Londonderry & Keene NH: 360 photo booths, movie screens, LED walls, VR, glow park & novelties.",
     keywords:
       "concord nh party rentals, salem nh party rentals, derry nh party rentals, londonderry nh party rentals, windham nh party rentals, keene nh event rentals, hanover nh event rentals, laconia nh party rentals, nh party rentals, nh event rentals",
-    image: DEFAULT_IMAGE,
+    image: `${SITE_URL}/experience-glow-park.jpg`,
+    heroImageLocal: "/experience-glow-park.jpg",
     canonicalPath: "/concord-salem-derry-nh-party-rentals",
     heroEyebrow: "SALEM · DERRY · LONDONDERRY · WINDHAM · CONCORD · LAKES & KEENE NH",
     heroDisplayTitle: "Concord, Salem &\nDerry NH Party Rentals",

@@ -61,7 +61,7 @@ const ContactPage = () => {
       <main>
         <section className="contact-hero" aria-labelledby="contact-title">
           <div className="contact-hero-art" aria-hidden="true">
-            <img src="/hero-bg.png" alt="" />
+            <img src="/hero-bg.jpg" alt="" />
             <div className="contact-hero-image-shade" />
             <div className="contact-hero-sweep" />
             <span className="contact-art-cross contact-art-cross-one" />

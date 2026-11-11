@@ -31,6 +31,106 @@
     ],
     "redirects": [
       {
+        "source": "/hero-bg.png",
+        "destination": "/hero-bg.jpg",
+        "type": 301
+      },
+      {
+        "source": "/experience-360-video-booth.png",
+        "destination": "/experience-360-video-booth.jpg",
+        "type": 301
+      },
+      {
+        "source": "/experience-just-dance.png",
+        "destination": "/experience-just-dance.jpg",
+        "type": 301
+      },
+      {
+        "source": "/experience-movie-nights.png",
+        "destination": "/experience-movie-nights.jpg",
+        "type": 301
+      },
+      {
+        "source": "/experience-silent-disco.png",
+        "destination": "/experience-silent-disco.jpg",
+        "type": 301
+      },
+      {
+        "source": "/experience-sim-racing.png",
+        "destination": "/experience-sim-racing.jpg",
+        "type": 301
+      },
+      {
+        "source": "/experience-trivia-nights.png",
+        "destination": "/experience-trivia-nights.jpg",
+        "type": 301
+      },
+      {
+        "source": "/experience-virtual-reality.png",
+        "destination": "/experience-virtual-reality.jpg",
+        "type": 301
+      },
+      {
+        "source": "/gaming-events-experience-1.png",
+        "destination": "/gaming-events-experience-1.jpg",
+        "type": 301
+      },
+      {
+        "source": "/gaming-events-experience-2.png",
+        "destination": "/gaming-events-experience-2.jpg",
+        "type": 301
+      },
+      {
+        "source": "/gaming-events-experience-3.png",
+        "destination": "/gaming-events-experience-3.jpg",
+        "type": 301
+      },
+      {
+        "source": "/movie-nights-experience-1.png",
+        "destination": "/movie-nights-experience-1.jpg",
+        "type": 301
+      },
+      {
+        "source": "/movie-nights-experience-2.png",
+        "destination": "/movie-nights-experience-2.jpg",
+        "type": 301
+      },
+      {
+        "source": "/movie-nights-experience-3.png",
+        "destination": "/movie-nights-experience-3.jpg",
+        "type": 301
+      },
+      {
+        "source": "/photo-booth-experience-1.png",
+        "destination": "/photo-booth-experience-1.jpg",
+        "type": 301
+      },
+      {
+        "source": "/photo-booth-experience-2.png",
+        "destination": "/photo-booth-experience-2.jpg",
+        "type": 301
+      },
+      {
+        "source": "/photo-booth-experience-3.png",
+        "destination": "/photo-booth-experience-3.jpg",
+        "type": 301
+      },
+      {
+        "source": "/just-dance-gameplay.png",
+        "destination": "/just-dance-gameplay.jpg",
+        "type": 301
+      },
+      {
+        "source": "/novelties-bg.png",
+        "destination": "/novelties-bg.jpg",
+        "type": 301
+      },
+      {
+        "source": "/tangible-bg.png",
+        "destination": "/tangible-bg.jpg",
+        "type": 301
+      },
+      {
         "source": "/gaming-event-party",
         "destination": "/gaming-events",
         "type": 301

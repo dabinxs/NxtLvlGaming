@@ -23,7 +23,7 @@ const EXPLORE_ITEMS = [
     title: "Movie Night",
     desc: "Cinema-style entertainment for any event.",
     href: "/movie-nights",
-    defaultImage: "/experience-movie-nights.png",
+    defaultImage: "/experience-movie-nights.jpg",
   },
   {
     id: "trivia-nights",
@@ -32,7 +32,7 @@ const EXPLORE_ITEMS = [
     title: "Trivia Nights",
     desc: "Interactive trivia for groups and crowds.",
     href: "/trivia-nights",
-    defaultImage: "/experience-trivia-nights.png",
+    defaultImage: "/experience-trivia-nights.jpg",
   },
   {
     id: "virtual-reality",
@@ -41,7 +41,7 @@ const EXPLORE_ITEMS = [
     title: "Virtual Reality",
     desc: "Competitive and social gaming experiences.",
     href: "/virtual-reality",
-    defaultImage: "/experience-virtual-reality.png",
+    defaultImage: "/experience-virtual-reality.jpg",
   },
   {
     id: "just-dance",
@@ -50,7 +50,7 @@ const EXPLORE_ITEMS = [
     title: "Just dance",
     desc: "Follow the on-screen choreography, earn points, and challenge friends.",
     href: "/just-dance",
-    defaultImage: "/experience-just-dance.png",
+    defaultImage: "/experience-just-dance.jpg",
   },
   {
     id: "silent-disco",
@@ -59,7 +59,7 @@ const EXPLORE_ITEMS = [
     title: "Silent Disco",
     desc: "LED headphones with multiple music channels.",
     href: "/silent-disco",
-    defaultImage: "/experience-silent-disco.png",
+    defaultImage: "/experience-silent-disco.jpg",
   },
   {
     id: "sim-racing",
@@ -68,7 +68,7 @@ const EXPLORE_ITEMS = [
     title: "Sim Racing",
     desc: "Pro simulators with competitive racing.",
     href: "/sim-racing",
-    defaultImage: "/experience-sim-racing.png",
+    defaultImage: "/experience-sim-racing.jpg",
   },
   {
     id: "photo-booth",
@@ -77,7 +77,7 @@ const EXPLORE_ITEMS = [
     title: "Photo Booth",
     desc: "360 video and mirror booth experiences guests can enjoy and share.",
     href: "/photo-booth",
-    defaultImage: "/experience-360-video-booth.png",
+    defaultImage: "/experience-360-video-booth.jpg",
   },
   {
     id: "glow-park",

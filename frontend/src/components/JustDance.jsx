@@ -62,8 +62,8 @@ const JustDance = () => {
     ? "Choose a Just Dance song on our giant 12–32 ft HD screens, follow the on-screen choreography with concert sound, and battle friends head-to-head across NH, MA, CT & NC."
     : cmsPage.heroSubtitle;
 
-  const heroImage = ["/experience-just-dance.png", "/just-dance-gameplay.png"].includes(cmsPage.heroImage)
-    ? "/experience-just-dance.png"
+  const heroImage = ["/experience-just-dance.jpg", "/just-dance-gameplay.jpg", "/experience-just-dance.png", "/just-dance-gameplay.png"].includes(cmsPage.heroImage)
+    ? "/experience-just-dance.jpg"
     : cmsPage.heroImage;
   const multiplayerBattle = cmsPage.gallery.find((item) => item.title === "Multiplayer Dance Battles") || cmsPage.gallery[0];
   const experienceCards = [
@@ -71,19 +71,19 @@ const JustDance = () => {
       id: "dance-battles",
       title: "Multiplayer Dance Battles",
       subtitle: multiplayerBattle?.subtitle || "Head-to-head choreography on giant displays.",
-      src: "/experience-just-dance.png",
+      src: "/experience-just-dance.jpg",
     },
     {
       id: "follow-the-coach",
       title: "Follow the On-Screen Coach",
       subtitle: "Watch the dancer, match each move as it appears, and build your score through the song.",
-      src: "/just-dance-gameplay.png",
+      src: "/just-dance-gameplay.jpg",
     },
     {
       id: "beat-your-best",
       title: "Choose a Song, Beat Your Best",
       subtitle: "Pick a track, try its routine, and come back for another round to top your score.",
-      src: "/just-dance-gameplay.png",
+      src: "/just-dance-gameplay.jpg",
     },
   ];
 

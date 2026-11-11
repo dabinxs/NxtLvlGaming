@@ -8,7 +8,7 @@ import {
 } from "lucide-react";
 import { CMS_ADMIN_EMAIL, CMS_ADMIN_EMAILS, CMS_MEDIA_BUCKET, supabase } from "../lib/supabase";
 import { CMS_PAGES } from "../lib/cmsPages";
-import { useCmsContent } from "../lib/cmsContent";
+import { upgradeMediaUrl, useCmsContent } from "../lib/cmsContent";
 import NoveltyAccessManager from "./NoveltyAccessManager";
 import NoveltyPageEditor from "./NoveltyPageEditor";
 import "./AdminPage.css";
@@ -51,11 +51,11 @@ function makeDraft(page, stored, slug) {
     title: stored?.title || page?.title,
     heroTitle: stored?.hero_title || page?.heroTitle,
     heroSubtitle: stored?.hero_subtitle || page?.heroSubtitle,
-    heroImageUrl: stored?.hero_image_url || page?.heroImage,
+    heroImageUrl: upgradeMediaUrl(stored?.hero_image_url || page?.heroImage),
     heroImagePath: stored?.hero_image_path || "",
-    thumbnailImageUrl: stored?.thumbnail_image_url || page?.heroImage,
+    thumbnailImageUrl: upgradeMediaUrl(stored?.thumbnail_image_url || page?.heroImage),
     thumbnailImagePath: stored?.thumbnail_image_path || "",
-    gallery: gallery.map((item) => ({ ...item })),
+    gallery: gallery.map((item) => ({ ...item, src: upgradeMediaUrl(item.src) })),
   };
 }
 

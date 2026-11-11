@@ -119,7 +119,7 @@ export const experiences = [
     title: "Movie",
     highlight: "Nights",
     desc: "32-foot inflatable screens under the stars for movie nights that draw a crowd.",
-    image: "/experience-movie-nights.png",
+    image: "/experience-movie-nights.jpg",
   },
   {
     id: 3,
@@ -127,7 +127,7 @@ export const experiences = [
     title: "Trivia",
     highlight: "Nights",
     desc: "Interactive trivia for groups and crowds with live hosts and scoring.",
-    image: "/experience-trivia-nights.png",
+    image: "/experience-trivia-nights.jpg",
   },
   {
     id: 4,
@@ -135,7 +135,7 @@ export const experiences = [
     title: "Virtual",
     highlight: "Reality",
     desc: "Room-scale VR stations and immersive experiences that wow every guest.",
-    image: "/experience-virtual-reality.png",
+    image: "/experience-virtual-reality.jpg",
   },
   {
     id: 5,
@@ -143,7 +143,7 @@ export const experiences = [
     title: "Just",
     highlight: "Dance",
     desc: "Follow the on-screen choreography, earn points, and challenge friends.",
-    image: "/experience-just-dance.png",
+    image: "/experience-just-dance.jpg",
   },
   {
     id: 6,
@@ -151,7 +151,7 @@ export const experiences = [
     title: "Silent",
     highlight: "Disco",
     desc: "LED headphones with multiple music channels for an unforgettable dance experience.",
-    image: "/experience-silent-disco.png",
+    image: "/experience-silent-disco.jpg",
   },
   {
     id: 7,
@@ -159,7 +159,7 @@ export const experiences = [
     title: "Sim",
     highlight: "Racing",
     desc: "Pro simulators with competitive racing that brings the track to your event.",
-    image: "/experience-sim-racing.png",
+    image: "/experience-sim-racing.jpg",
   },
   {
     id: 8,
@@ -167,7 +167,7 @@ export const experiences = [
     title: "Photo",
     highlight: "Booth",
     desc: "Make your events more fun and memorable with our photobooth experiences. Capture, create, and share amazing moments instantly.",
-    image: "/experience-360-video-booth.png",
+    image: "/experience-360-video-booth.jpg",
   },
   {
     id: 9,

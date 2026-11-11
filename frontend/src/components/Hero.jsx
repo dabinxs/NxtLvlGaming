@@ -4,20 +4,23 @@ import { ChevronRight } from "lucide-react";
 import TextScatter from "./TextScatter";
 import ExploreDestinationsCTA from "./ExploreDestinationsCTA";
 
-const Hero = ({ seo = null }) => {
+const Hero = ({ seo = null, primaryCta = null }) => {
   const heroTitleText = seo?.heroDisplayTitle || "Transform Your Event\nInto Reality";
   const heroSubtitleText =
     seo?.heroSubtitleOverride ||
     "Turnkey event & party rentals across NH, MA & NC — outdoor movie screens, 360 & mirror photo booths, live gaming events, VR, silent disco, glow park & custom novelties.";
+  const heroBgImage = seo?.heroImageLocal || "/hero-bg.jpg";
+  const ctaLabel = primaryCta?.label || "Explore Experiences";
+  const ctaTo = primaryCta?.to || "/explore-experiences";
 
   return (
     <section
       id="top"
       className="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-[#05070f]"
     >
-      {/* Background Image from user */}
+      {/* Background Image */}
       <img
-        src="/hero-bg.png"
+        src={heroBgImage}
         alt={seo?.heading || "Next Level Gaming and Novelties Event Rentals Setup"}
         fetchPriority="high"
         decoding="sync"
@@ -25,7 +28,7 @@ const Hero = ({ seo = null }) => {
       />
 
       {/* Dark overlay for contrast and seamless transition */}
-      <div className="absolute inset-0 bg-gradient-to-t from-[#05070f] via-[#05070f]/50 to-[#05070f]/70" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#05070f] via-[#05070f]/55 to-[#05070f]/75" />
       <div className="absolute inset-0 bg-gradient-to-r from-[#05070f]/80 via-transparent to-[#05070f]/80" />
 
       {/* Subtle ambient blue glow */}
@@ -58,11 +61,11 @@ const Hero = ({ seo = null }) => {
           style={{ animationDelay: "0.2s" }}
         >
           <Link
-            to="/explore-experiences"
+            to={ctaTo}
             data-testid="hero-explore-cta"
             className="cta-fill group inline-flex h-[54px] w-full max-w-[320px] items-center justify-center gap-3 rounded-xl border-2 border-transparent bg-[#0066CC] px-5 text-[13px] font-bold uppercase tracking-[0.06em] text-white shadow-[0_10px_34px_rgba(0,102,204,0.35)] hover:shadow-[0_14px_40px_rgba(0,102,204,0.5)] sm:w-auto sm:px-8"
           >
-            Explore Experiences
+            {ctaLabel}
             <ChevronRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
           </Link>
           <ExploreDestinationsCTA
