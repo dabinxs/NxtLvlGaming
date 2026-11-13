@@ -8,7 +8,7 @@ const Hero = ({ seo = null, primaryCta = null }) => {
   const heroTitleText = seo?.heroDisplayTitle || "Transform Your Event\nInto Reality";
   const heroSubtitleText =
     seo?.heroSubtitleOverride ||
-    "Turnkey event & party rentals across NH, MA & NC — outdoor movie screens, 360 & mirror photo booths, live gaming events, VR, silent disco, glow park & custom novelties.";
+    "Gaming, entertainment, and interactive experiences for unforgettable events.";
   const heroBgImage = seo?.heroImageLocal || "/hero-bg.jpg";
   const ctaLabel = primaryCta?.label || "Explore Experiences";
   const ctaTo = primaryCta?.to || "/explore-experiences";
@@ -35,13 +35,6 @@ const Hero = ({ seo = null, primaryCta = null }) => {
       <div className="pointer-events-none absolute left-1/2 top-1/2 h-[55%] w-[70%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#0066FD]/15 blur-[140px]" />
 
       <div className="relative z-10 flex w-full max-w-5xl flex-col items-center px-5 pt-16 text-center sm:pt-20">
-        {seo?.heroEyebrow && (
-          <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#0066FD]/45 bg-[#050a16]/75 px-4 py-1.5 font-display text-[11px] font-bold uppercase tracking-[0.2em] text-[#7DDDFF] backdrop-blur-md animate-rise">
-            <span className="h-1.5 w-1.5 rounded-full bg-[#7DDDFF]" aria-hidden="true" />
-            <span>{seo.heroEyebrow}</span>
-          </p>
-        )}
-
         <h1
           className="w-full font-display text-[clamp(1.75rem,5vw,4.2rem)] font-extrabold uppercase leading-[1.06] tracking-tight text-white animate-rise drop-shadow-[0_8px_32px_rgba(0,0,0,0.8)]"
           style={{ fontWeight: 800 }}

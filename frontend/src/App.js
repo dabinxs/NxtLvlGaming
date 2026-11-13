@@ -24,7 +24,6 @@ import SimRacing from "./components/SimRacing";
 import GlowPark from "./components/GlowPark";
 import ExploreExperiences from "./components/ExploreExperiences";
 import SeoManager from "./components/SeoManager";
-import RouteLocalSeoSection from "./components/RouteLocalSeoSection";
 import { ROUTE_SEO } from "./lib/routeSeoData";
 import { CmsContentProvider, useCmsHomeMedia } from "./lib/cmsContent";
 import { Settings2 } from "lucide-react";
@@ -65,7 +64,6 @@ const LandingContent = () => {
       <LevelUp />
       <Testimonials />
       <WhoWeAre />
-      <RouteLocalSeoSection path={normalizedPath} />
       <ReadyCTA productsFirst />
     </main>
     <Footer showQuoteCTA={false} />

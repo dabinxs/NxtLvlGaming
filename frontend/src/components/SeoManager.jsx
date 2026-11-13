@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import {
   AREA_SERVED,
-  BASE_HOME_FAQS,
   DEFAULT_IMAGE,
   ROUTE_SEO,
   SITE_URL,
@@ -30,55 +29,9 @@ function upsertLink(selector, attributes) {
   });
 }
 
-function syncBaseFaqSchema(isHome) {
-  const baseScript = document.getElementById("seo-base-schema");
-  if (!baseScript || !baseScript.textContent) return;
-
-  try {
-    const parsed = JSON.parse(baseScript.textContent);
-    if (!Array.isArray(parsed["@graph"])) return;
-
-    const hasFaq = parsed["@graph"].some(
-      (node) => node && node["@type"] === "FAQPage"
-    );
-
-    if (isHome && !hasFaq && Array.isArray(BASE_HOME_FAQS) && BASE_HOME_FAQS.length > 0) {
-      const websiteIndex = parsed["@graph"].findIndex(
-        (node) => node && node["@type"] === "WebSite"
-      );
-      const faqNode = {
-        "@type": "FAQPage",
-        "@id": `${SITE_URL}/#faq`,
-        mainEntity: BASE_HOME_FAQS.map((faq) => ({
-          "@type": "Question",
-          name: faq.q,
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: faq.a,
-          },
-        })),
-      };
-      if (websiteIndex >= 0) {
-        parsed["@graph"].splice(websiteIndex, 0, faqNode);
-      } else {
-        parsed["@graph"].push(faqNode);
-      }
-      baseScript.textContent = JSON.stringify(parsed);
-    } else if (!isHome && hasFaq) {
-      parsed["@graph"] = parsed["@graph"].filter(
-        (node) => !node || node["@type"] !== "FAQPage"
-      );
-      baseScript.textContent = JSON.stringify(parsed);
-    }
-  } catch {
-    // Ignore malformed base schema edits
-  }
-}
-
 function upsertRouteJsonLd(seo, canonicalUrl) {
   const existing = document.getElementById("seo-route-schema");
   const isHome = seo.canonicalPath === "/";
-  syncBaseFaqSchema(isHome);
 
   if (seo.noindex) {
     if (existing) existing.remove();
@@ -153,21 +106,6 @@ function upsertRouteJsonLd(seo, canonicalUrl) {
     }
 
     graph.push(serviceNode);
-  }
-
-  if (!isHome && Array.isArray(seo.faqs) && seo.faqs.length > 0) {
-    graph.push({
-      "@type": "FAQPage",
-      "@id": `${canonicalUrl}#faq`,
-      mainEntity: seo.faqs.map((faq) => ({
-        "@type": "Question",
-        name: faq.q,
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: faq.a,
-        },
-      })),
-    });
   }
 
   let script = existing;

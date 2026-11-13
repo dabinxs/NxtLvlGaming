@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
-import RouteLocalSeoSection from "./RouteLocalSeoSection";
 import { useCmsHomeMedia } from "../lib/cmsContent";
 
 const EXPLORE_ITEMS = [
@@ -215,8 +214,6 @@ const ExploreExperiences = () => {
             })}
           </div>
         </div>
-
-        <RouteLocalSeoSection path="/explore-experiences" />
       </main>
 
       <Footer />

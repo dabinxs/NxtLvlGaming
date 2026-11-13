@@ -10,7 +10,6 @@ import {
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import ReadyCTA from "./ReadyCTA";
-import RouteLocalSeoSection from "./RouteLocalSeoSection";
 import { useCmsPage } from "../lib/cmsContent";
 import { CMS_PAGES } from "../lib/cmsPages";
 import { ROUTE_SEO } from "../lib/routeSeoData";
@@ -172,13 +171,6 @@ const MovieNights = () => {
           <div className="pointer-events-none absolute left-1/3 top-1/2 h-[400px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#0066FD]/15 blur-[150px]" />
 
           <div className="relative z-10 mx-auto max-w-[1280px] px-5 md:px-8">
-            {routeSeo.heroEyebrow && (
-              <div className="mb-5 flex items-center gap-3 font-display text-[11px] font-bold uppercase tracking-[0.22em] text-[#7DDDFF]">
-                <span className="h-0.5 w-7 bg-[#0066FD]" />
-                <span>{routeSeo.heroEyebrow}</span>
-              </div>
-            )}
-
             <h1 className="max-w-4xl font-display text-[clamp(2.35rem,6vw,4.75rem)] font-extrabold uppercase italic leading-[1.04] tracking-tight text-white drop-shadow-[0_6px_24px_rgba(0,0,0,0.9)]">
               {heroTitle}
             </h1>
@@ -366,8 +358,6 @@ const MovieNights = () => {
             </div>
           </div>
         </section>
-
-        <RouteLocalSeoSection path={normalizedPath} />
 
         {/* ================= READY TO LEVEL UP CTA SECTION ================= */}
         <ReadyCTA />

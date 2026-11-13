@@ -6,12 +6,10 @@ import {
   Monitor,
   Flag,
   Check,
-  ArrowRight,
 } from "lucide-react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import ReadyCTA from "./ReadyCTA";
-import RouteLocalSeoSection from "./RouteLocalSeoSection";
 import { useCmsPage } from "../lib/cmsContent";
 import { CMS_PAGES } from "../lib/cmsPages";
 import { ROUTE_SEO } from "../lib/routeSeoData";
@@ -88,13 +86,6 @@ const SimRacing = () => {
           <div className="pointer-events-none absolute left-1/3 top-1/2 h-[400px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#0066FD]/15 blur-[150px]" />
 
           <div className="relative z-10 mx-auto max-w-[1280px] px-5 md:px-8">
-            {routeSeo.heroEyebrow && (
-              <div className="mb-5 flex items-center gap-3 font-display text-[11px] font-bold uppercase tracking-[0.22em] text-[#7DDDFF]">
-                <span className="h-0.5 w-7 bg-[#0066FD]" />
-                <span>{routeSeo.heroEyebrow}</span>
-              </div>
-            )}
-
             <h1 className="max-w-4xl font-display text-[clamp(2.35rem,6vw,4.75rem)] font-extrabold uppercase italic leading-[1.04] tracking-tight text-white drop-shadow-[0_6px_24px_rgba(0,0,0,0.9)]">
               {heroTitle}
             </h1>
@@ -223,74 +214,6 @@ const SimRacing = () => {
             </div>
           </div>
         </section>
-
-        {/* ================= COCKPIT SPECS & TOURNAMENTS SECTION ================= */}
-        <section className="relative border-t border-white/5 bg-[#05070f] py-20 md:py-28">
-          <div className="mx-auto max-w-[1280px] px-5 md:px-8">
-            <div className="mb-12 max-w-3xl">
-              <div className="flex items-center gap-3 font-display text-[12px] font-bold uppercase tracking-[0.22em] text-[#7DDDFF]">
-                <span className="h-0.5 w-7 bg-[#0066FD]" />
-                <span>COCKPIT FOOTPRINT &amp; RACE OPERATIONS</span>
-              </div>
-              <h2 className="mt-4 font-display text-[clamp(1.9rem,3.8vw,2.9rem)] font-extrabold uppercase leading-[1.12] tracking-tight text-white">
-                Cockpit Footprint, Telemetry &amp; Tournament Formats
-              </h2>
-              <p className="mt-4 text-[16px] leading-relaxed text-white/75">
-                Instead of traveling to fixed sim racing places, bring commercial force-feedback cockpit simulators directly to your trade show floor, dealership launch, university quad, or private celebration across NH, Boston MA, CT &amp; North Carolina.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-              <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-[#0c1830] to-[#070e1e] p-7 transition-all duration-300 hover:border-[#0066FD]/50">
-                <span className="inline-block rounded-full border border-[#0066FD]/40 bg-[#0066FD]/15 px-3 py-1 font-display text-[11px] font-bold uppercase tracking-wider text-[#7DDDFF]">
-                  Booth &amp; Ballroom Ready
-                </span>
-                <h3 className="mt-4 font-display text-[21px] font-extrabold uppercase tracking-wide text-white">
-                  6x8 ft Per Cockpit · Standard 120V
-                </h3>
-                <p className="mt-3 text-[14.5px] leading-relaxed text-white/70">
-                  Compact commercial chassis clears standard double doors and freight elevators smoothly—requiring only a 6x8 ft floor bay and a standard 120V circuit per racing rig.
-                </p>
-              </div>
-
-              <div className="rounded-2xl border border-[#0066FD]/45 bg-gradient-to-br from-[#0e1d3b] to-[#070e1e] p-7 shadow-[0_12px_36px_rgba(0,102,253,0.16)] transition-all duration-300 hover:border-[#7DDDFF]/60">
-                <span className="inline-block rounded-full border border-[#7DDDFF]/50 bg-[#0066FD]/25 px-3 py-1 font-display text-[11px] font-bold uppercase tracking-wider text-white">
-                  Crowd-Stopping Telemetry
-                </span>
-                <h3 className="mt-4 font-display text-[21px] font-extrabold uppercase tracking-wide text-white">
-                  Live Telemetry &amp; Fastest-Lap Boards
-                </h3>
-                <p className="mt-3 text-[14.5px] leading-relaxed text-white/75">
-                  External HD monitors mirror cockpit perspective and real-time sector splits, turning spectators into active racers trying to beat the top lap of the day on your leaderboard.
-                </p>
-              </div>
-
-              <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-[#0c1830] to-[#070e1e] p-7 transition-all duration-300 hover:border-[#0066FD]/50">
-                <span className="inline-block rounded-full border border-[#0066FD]/40 bg-[#0066FD]/15 px-3 py-1 font-display text-[11px] font-bold uppercase tracking-wider text-[#7DDDFF]">
-                  Scalable Racing Grid
-                </span>
-                <h3 className="mt-4 font-display text-[21px] font-extrabold uppercase tracking-wide text-white">
-                  Single, Dual &amp; Multi-Rig Heats
-                </h3>
-                <p className="mt-3 text-[14.5px] leading-relaxed text-white/70">
-                  Deploy one flagship rig for hot-lap sponsor contests or link multiple side-by-side simulators for Formula 1, GT3, NASCAR, and rally elimination heats supervised by our race staff.
-                </p>
-              </div>
-            </div>
-
-            <div className="mt-10 flex flex-wrap items-center gap-4">
-              <Link
-                to="/quote?package=Sim%20Racing"
-                className="cta-fill inline-flex items-center gap-2 rounded-full blue-gradient-bg px-7 py-3.5 text-[12.5px] font-bold uppercase tracking-wider text-white shadow-[0_8px_28px_rgba(0,102,253,0.4)]"
-              >
-                <span>Reserve Sim Racing Cockpits</span>
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-            </div>
-          </div>
-        </section>
-
-        <RouteLocalSeoSection path="/sim-racing" />
 
         {/* ================= READY TO LEVEL UP CTA SECTION ================= */}
         <ReadyCTA />

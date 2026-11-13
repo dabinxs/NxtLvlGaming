@@ -2,7 +2,6 @@ import React from "react";
 import { ArrowUpRight, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
 import { footerColumns } from "../mock";
-import { NH_CITY_LINKS, REGIONAL_LINKS, SPECIALTY_LINKS } from "../lib/routeSeoData";
 import InteractiveWordmark from "./InteractiveWordmark";
 
 const FOOTER_LINK_PATHS = {
@@ -22,13 +21,6 @@ const FOOTER_LINK_PATHS = {
   "North Carolina Branch": "/north-carolina-event-rentals",
   "Colleges & Schools": "/college-school-corporate-events",
 };
-
-const QUICK_BOOKING_LINKS = [
-  { label: "Home", href: "/" },
-  { label: "Explore All Experiences", href: "/explore-experiences" },
-  { label: "Request Event Quote", href: "/quote" },
-  { label: "Order Custom Novelties", href: "/novelty-order" },
-];
 
 const Footer = ({ showQuoteCTA = true }) => {
   return (
@@ -126,43 +118,6 @@ const Footer = ({ showQuoteCTA = true }) => {
                 </ul>
               </div>
             ))}
-          </div>
-        </div>
-
-        {/* NH Local City Hubs, Regional Branches & Specialty Services Strip */}
-        <div className="mt-12 grid grid-cols-1 gap-6 border-t border-white/10 pt-8 md:grid-cols-2">
-          <div className="min-w-0">
-            <h4 className="font-display text-[11px] font-semibold uppercase tracking-[0.18em] text-[#4d9bff]">
-              NH City Service Hubs &amp; Regional Branches
-            </h4>
-            <div className="mt-3 flex flex-wrap gap-2">
-              {[...NH_CITY_LINKS, ...REGIONAL_LINKS].map((item) => (
-                <Link
-                  key={item.href}
-                  to={item.href}
-                  className="inline-flex items-center rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-[11.5px] text-white/70 transition-colors hover:border-[#0066FD]/60 hover:bg-white/[0.08] hover:text-[#7DDDFF]"
-                >
-                  {item.label}
-                </Link>
-              ))}
-            </div>
-          </div>
-
-          <div className="min-w-0">
-            <h4 className="font-display text-[11px] font-semibold uppercase tracking-[0.18em] text-[#4d9bff]">
-              Specialty Rentals, Custom Novelties &amp; Booking
-            </h4>
-            <div className="mt-3 flex flex-wrap gap-2">
-              {[...SPECIALTY_LINKS, ...QUICK_BOOKING_LINKS].map((item) => (
-                <Link
-                  key={item.href}
-                  to={item.href}
-                  className="inline-flex items-center rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-[11.5px] text-white/70 transition-colors hover:border-[#0066FD]/60 hover:bg-white/[0.08] hover:text-[#7DDDFF]"
-                >
-                  {item.label}
-                </Link>
-              ))}
-            </div>
           </div>
         </div>
 

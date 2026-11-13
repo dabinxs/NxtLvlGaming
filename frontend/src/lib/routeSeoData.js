@@ -99,9 +99,9 @@ const ROUTE_SEO = {
     ],
   },
   "/gaming-events": {
-    title: "Live Gaming Events, Esports Rental & Video Game Event Planner | NH, MA & NC",
+    title: "Live Gaming Events, Esports Rental & Gaming Equipment | NH, MA & NC",
     description:
-      "Turnkey live gaming events, esports rental company & video game tournament event production with 12–40ft screens, PS5, Xbox & Switch in NH, Boston MA, CT & NC.",
+      "Turnkey live gaming events, esports rental company, video game tournament production & event planning equipment for gamers in NH, Boston MA, CT & NC.",
     keywords:
       "gaming events, real life gaming experience, live gaming events, gaming event, video game event, video game events, video gaming events, video game events near me, esports tournaments near me, video game event planner, video game event management, video gaming tournament event management, video gaming competition production, video game tournament event production, esports rental company, bulk esports rental, event planning equipment for gamers, party planning equipment for gamers, esports rental, next level gaming ct, new england gaming, gaming events this weekend, next level gaming, nxt level gaming, next level fec attraction, video game tournaments, gaming event rental, gaming event planning, boston gaming events, gaming events Boston MA, college gaming events Boston, video game party rental Manchester NH, gaming events Hudson NH, gaming events Portsmouth NH, video gaming event rental New Hampshire, Connecticut gaming events, gaming event rentals Charlotte NC, mobile video game party Raleigh NC, esports tournament production NH MA CT NC, Super Smash Bros tournament rental, Mario Kart event rental Boston MA Charlotte NC",
     image: `${SITE_URL}/gaming-events-experience-1.jpg`,
@@ -384,9 +384,9 @@ const ROUTE_SEO = {
     ],
   },
   "/virtual-reality": {
-    title: "VR Experience, Mobile VR Arcade & VR Escape Rooms | NH, MA & NC",
+    title: "Mobile VR Experience, VR Arcade & VR Event Games | NH, MA & NC",
     description:
-      "Book a mobile VR experience, VR arcade, or 4-player VR escape room with VR event games (SUPERHOT VR, Beat Saber) & staff in Hudson NH, Boston & NC.",
+      "Book a mobile VR experience, VR arena, VR event games (SUPERHOT VR, Beat Saber) & 4-player VR escape rooms with crew in Hudson NH, Boston & NC.",
     keywords:
       "vr event games, vr experience near me, virtual reality near me, vr arcade near me, vr arena near me, vr gaming near me, superhot virtual reality, nh vr rental, virtual reality rental, VR event rental, VR party rental, virtual reality rental NH, virtual reality rental Boston MA, VR party rental Charlotte NC, mobile VR escape room rental, college VR entertainment, Beat Saber party rental",
     image: `${SITE_URL}/experience-virtual-reality.jpg`,
@@ -765,9 +765,9 @@ const ROUTE_SEO = {
     ],
   },
   "/sim-racing": {
-    title: "Rent Racing Simulators & Sim Racing Experiences | NH, MA & NC",
+    title: "Racing Simulator Rental & Sim Racing Cockpits | NH, MA & NC",
     description:
-      "Looking for sim racing places or racing simulator rentals near you? Rent force-feedback cockpit simulators with telemetry & leaderboards in NH, Boston & NC.",
+      "Rent commercial racing simulator cockpits near you with force-feedback steering, telemetry & leaderboards for events in NH, Boston MA, CT & NC.",
     keywords:
       "rent racing simulator near me, racing simulator rental near me, sim racing places near me, nh sim racing rental, sim racing rental, racing simulator rental, sim racing simulator rental, racing simulator event rental, sim racing rental NH MA, racing simulator rental Boston MA, sim racing simulator rental Charlotte NC, racing simulator event rental Raleigh NC, racing simulator rental Connecticut CT, force feedback racing cockpit rental, F1 racing simulator rental",
     image: `${SITE_URL}/experience-sim-racing.jpg`,

@@ -6,7 +6,6 @@ import Hero from "./Hero";
 import TrustedCollaborations from "./TrustedCollaborations";
 import ChooseExperience from "./ChooseExperience";
 import Testimonials from "./Testimonials";
-import RouteLocalSeoSection from "./RouteLocalSeoSection";
 import ReadyCTA from "./ReadyCTA";
 import Footer from "./Footer";
 import { ROUTE_SEO } from "../lib/routeSeoData";
@@ -218,7 +217,6 @@ const LocalLandingPage = () => {
 
         <TrustedCollaborations />
         <Testimonials />
-        <RouteLocalSeoSection path={normalizedPath} />
         <ReadyCTA />
       </main>
 

@@ -5,7 +5,6 @@ import Lenis from "lenis";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import "./AboutPage.css";
-import RouteLocalSeoSection from "./RouteLocalSeoSection";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -272,7 +271,6 @@ function AboutPage() {
             <span className="about-values__aside">Good events bring people together.</span>
           </div>
         </section>
-        <RouteLocalSeoSection path="/about" />
       </main>
       <Footer />
     </div>

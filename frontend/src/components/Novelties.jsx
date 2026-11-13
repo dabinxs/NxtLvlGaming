@@ -3,7 +3,6 @@ import { Link, useLocation } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
-import RouteLocalSeoSection from "./RouteLocalSeoSection";
 import { useCmsContent } from "../lib/cmsContent";
 import { noveltyContentFromRow } from "../lib/noveltyContent";
 import { ROUTE_SEO } from "../lib/routeSeoData";
@@ -76,7 +75,7 @@ const Novelties = () => {
             {/* Tag */}
             <div className="flex flex-wrap items-center gap-3 text-[11px] font-bold uppercase tracking-[0.22em] text-[#0099FF]">
               <span className="h-[2px] w-7 bg-[#0099FF]" />
-              <span>{routeSeo.heroEyebrow || "01 / NOVELTIES"}</span>
+              <span>01 / NOVELTIES</span>
               {!isAliasRoute && (
                 <span className="text-white/40 font-normal">· CURATED FOR THE UNEXPECTED</span>
               )}
@@ -357,8 +356,6 @@ const Novelties = () => {
             </div>
           </div>
         </section>
-
-        <RouteLocalSeoSection path={normalizedPath} variant="novelties" />
       </main>
 
       {/* ================= FOOTER ================= */}
