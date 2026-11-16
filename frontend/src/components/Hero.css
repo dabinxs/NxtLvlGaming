@@ -7,18 +7,20 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   overflow: hidden;
   background-color: #080a26;
-  padding-top: clamp(6.5rem, 14svh, 9.5rem);
+  /* Comfortably below the fixed navbar */
+  padding-top: clamp(4.75rem, 9.5svh, 6.75rem);
 }
 
 .homepage-hero__content {
   position: relative;
   z-index: 10;
   width: 100%;
-  max-width: 1120px;
+  max-width: 1080px;
   margin-inline: auto;
+  margin-top: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -27,27 +29,29 @@
 }
 
 .homepage-hero__title {
-  font-size: clamp(2rem, min(3.8vw, 6svh), 3.75rem);
-  line-height: 1.15;
+  font-size: clamp(1.85rem, min(3.5vw, 5.2svh), 3.4rem);
+  line-height: 1.08;
   letter-spacing: -0.01em;
 }
 
 .homepage-hero__description {
-  margin-top: clamp(0.75rem, 1.8svh, 1.25rem);
+  margin-top: clamp(0.5rem, 1.2svh, 0.85rem);
 }
 
 .homepage-hero__actions {
-  margin-top: clamp(1.25rem, 3.2svh, 2.25rem);
+  margin-top: clamp(0.75rem, 2svh, 1.35rem);
 }
 
 .homepage-hero__artwork {
-  position: relative;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
   z-index: 5;
   width: 100%;
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  margin-top: auto;
   padding-inline: 0;
   pointer-events: none;
   user-select: none;
@@ -56,8 +60,8 @@
 .homepage-hero__stage-wrapper {
   display: flex;
   align-items: flex-end;
-  width: 44%;
-  max-width: clamp(380px, 42vw, 650px);
+  width: 38%;
+  max-width: clamp(280px, 36vw, 540px);
 }
 
 .homepage-hero__stage-wrapper--left {
@@ -72,7 +76,7 @@
   display: block;
   width: 100%;
   height: auto;
-  max-height: clamp(240px, 50svh, 520px);
+  max-height: clamp(190px, 44svh, 440px);
   object-fit: contain;
 }
 
@@ -84,28 +88,22 @@
   object-position: right bottom;
 }
 
-/* Tablet & Desktop Layout */
-@media (min-width: 1024px) {
+/* On shorter viewports (height <= 650px), scale stages modestly to give maximum clearance */
+@media (max-height: 650px) {
   .homepage-hero {
-    min-height: 100svh;
+    padding-top: 4.75rem;
   }
 
-  .homepage-hero__artwork {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
+  .homepage-hero__title {
+    font-size: clamp(1.65rem, 4.5svh, 2.2rem);
   }
 
-  .homepage-hero__content {
-    margin-top: auto;
-    margin-bottom: auto;
-    padding-bottom: clamp(1.5rem, 6svh, 5rem);
+  .homepage-hero__stage {
+    max-height: clamp(160px, 40svh, 230px);
   }
 
   .homepage-hero__stage-wrapper {
-    width: 42%;
-    max-width: clamp(400px, 40vw, 660px);
+    max-width: clamp(250px, 33vw, 360px);
   }
 }
 
@@ -113,13 +111,18 @@
 @media (max-width: 639px) {
   .homepage-hero {
     min-height: auto;
-    padding-top: 6.5rem;
+    padding-top: 5.75rem;
     padding-bottom: 0.5rem;
-    gap: 1.5rem;
+    gap: 1.25rem;
+  }
+
+  .homepage-hero__artwork {
+    position: relative;
+    margin-top: 0.5rem;
   }
 
   .homepage-hero__title {
-    font-size: clamp(1.75rem, 7.5vw, 2.35rem);
+    font-size: clamp(1.65rem, 7.2vw, 2.25rem);
   }
 
   .homepage-hero__stage-wrapper {
@@ -128,6 +131,6 @@
   }
 
   .homepage-hero__stage {
-    max-height: clamp(150px, 38vw, 240px);
+    max-height: clamp(140px, 36vw, 210px);
   }
 }

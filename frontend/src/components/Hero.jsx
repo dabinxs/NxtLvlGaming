@@ -34,26 +34,26 @@ const Hero = ({ seo = null, primaryCta = null, homepage = false }) => {
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#05061a] to-transparent" />
 
         {/* Center ambient glow behind text */}
-        <div className="pointer-events-none absolute left-1/2 top-[38%] h-[320px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#0044ff]/15 blur-[100px]" />
+        <div className="pointer-events-none absolute left-1/2 top-[32%] h-[280px] w-[580px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#0044ff]/15 blur-[90px]" />
 
         {/* Main content: title + subtitle + CTAs */}
-        <div className="homepage-hero__content relative z-10 flex w-full flex-col items-center px-5 text-center">
+        <div className="homepage-hero__content relative z-10 flex w-full flex-col items-center px-4 text-center">
           <h1
-            className="homepage-hero__title w-full max-w-[1040px] font-display font-extrabold uppercase leading-[1.12] tracking-tight text-white drop-shadow-[0_4px_24px_rgba(5,6,26,0.6)]"
+            className="homepage-hero__title w-full max-w-[1000px] font-display font-extrabold uppercase leading-[1.08] tracking-tight text-white drop-shadow-[0_4px_24px_rgba(5,6,26,0.6)]"
             style={{ fontWeight: 800 }}
           >
             <TextScatter text={heroTitleText} />
           </h1>
 
-          <p className="homepage-hero__description max-w-[720px] text-[clamp(0.92rem,1.35vw,1.15rem)] leading-relaxed tracking-[0.02em] text-[#c6ccf2]">
+          <p className="homepage-hero__description max-w-[680px] text-[clamp(0.85rem,1.15vw,1.0625rem)] leading-relaxed tracking-[0.02em] text-[#c6ccf2]">
             {heroSubtitleText}
           </p>
 
-          <div className="homepage-hero__actions flex w-full flex-col items-center justify-center gap-3 sm:w-auto sm:flex-row sm:gap-4">
+          <div className="homepage-hero__actions flex w-full flex-col items-center justify-center gap-2.5 sm:w-auto sm:flex-row sm:gap-3.5">
             <Link
               to={ctaTo}
               data-testid="hero-explore-cta"
-              className="cta-fill group inline-flex h-[58px] w-full max-w-[330px] items-center justify-center gap-3 rounded-2xl border-2 border-transparent bg-[#0873df] px-8 text-[13px] font-bold uppercase tracking-[0.06em] text-white shadow-[0_10px_34px_rgba(0,102,204,0.35)] transition-all hover:bg-[#1485f4] hover:shadow-[0_14px_40px_rgba(0,102,204,0.5)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-200 sm:w-auto sm:px-9"
+              className="cta-fill group inline-flex h-[50px] sm:h-[52px] w-full max-w-[300px] items-center justify-center gap-2.5 rounded-xl sm:rounded-2xl border-2 border-transparent bg-[#0873df] px-6 sm:px-7 text-[12px] sm:text-[13px] font-bold uppercase tracking-[0.06em] text-white shadow-[0_8px_28px_rgba(0,102,204,0.35)] transition-all hover:bg-[#1485f4] hover:shadow-[0_12px_36px_rgba(0,102,204,0.5)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-200 sm:w-auto"
             >
               {ctaLabel}
               <ChevronRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
@@ -62,7 +62,7 @@ const Hero = ({ seo = null, primaryCta = null, homepage = false }) => {
               label="Browse Events & Experiences"
               testId="homepage-explore-destinations-cta"
               compactOnMobile
-              className="cta-fill inline-flex min-h-[58px] w-full max-w-[380px] items-center justify-center gap-2 rounded-2xl border border-white/50 bg-[#080b25]/60 px-6 text-center text-[12px] font-bold uppercase tracking-[0.04em] text-white backdrop-blur-sm transition-colors hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-200 sm:w-auto sm:px-8 sm:text-[13px]"
+              className="cta-fill inline-flex min-h-[50px] sm:min-h-[52px] w-full max-w-[340px] items-center justify-center gap-2 rounded-xl sm:rounded-2xl border border-white/50 bg-[#080b25]/60 px-5 sm:px-6 text-center text-[11.5px] sm:text-[12.5px] font-bold uppercase tracking-[0.04em] text-white backdrop-blur-sm transition-colors hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-200 sm:w-auto"
             />
           </div>
         </div>
