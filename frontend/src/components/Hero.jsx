@@ -34,7 +34,7 @@ const Hero = ({ seo = null, primaryCta = null, homepage = false }) => {
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#05061a] to-transparent" />
 
         {/* Center ambient glow behind text */}
-        <div className="pointer-events-none absolute left-1/2 top-[32%] h-[280px] w-[580px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#0044ff]/15 blur-[90px]" />
+        <div className="pointer-events-none absolute left-1/2 top-1/2 h-[300px] w-[620px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#0044ff]/15 blur-[95px]" />
 
         {/* Main content: title + subtitle + CTAs */}
         <div className="homepage-hero__content relative z-10 flex w-full flex-col items-center px-4 text-center">
