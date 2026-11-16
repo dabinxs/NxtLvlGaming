@@ -51,7 +51,7 @@ const GAMING_PACKAGES = [
     name: "Deluxe Package",
     tagline: "(Yes, the screens are really that thin!)",
     badge: "Deluxe Setup",
-    image: "/experience-gaming-events.avif",
+    image: "/gaming-events-experience-1.jpg",
     quoteParam: "Deluxe gaming",
     paragraphs: [
       "Includes four 12' screens and our giant 21' to 32' high definition screen.",
@@ -120,7 +120,7 @@ const GamingEvents = () => {
     !rawHeroSubtitle ||
     rawHeroSubtitle === "Turn your next gathering into an unforgettable multiplayer experience.";
   const heroSubtitle = isDefaultCmsSubtitle
-    ? "Full-scale esports rental company & video game event planner delivering event & party planning equipment for gamers, bulk esports rentals, and tournament production across NH, MA, CT & NC."
+    ? "Next Level FEC attractions, live gaming events, esports screening & complete event planning equipment for gamers—featuring video gaming tournament event production across NH, MA, CT & NC."
     : cmsPage.heroSubtitle;
 
   useEffect(() => {
@@ -173,7 +173,7 @@ const GamingEvents = () => {
 
               <div className="flex flex-col gap-8 lg:col-span-7">
                 <p className="text-[17px] leading-relaxed text-white/75 sm:text-[18px]">
-                  As a premier New England and North Carolina esports rental company and video game event planner, we deliver complete event &amp; party planning equipment for gamers—from casual social lounges to FEC-scale attractions and full video gaming competition production with consoles, giant 12–40 ft screens, concert sound, and live tournament staff.
+                  Built as a turnkey Next Level FEC attraction and esports screening setup, we supply full event &amp; party planning equipment for gamers—powering live gaming events, video gaming tournament event management, and competition production with consoles, giant 12–40 ft screens, concert sound, and live bracket crew.
                 </p>
 
                 <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2">

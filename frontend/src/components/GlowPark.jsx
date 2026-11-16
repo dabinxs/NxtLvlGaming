@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import {
   Sparkles,
   Gamepad2,
@@ -152,7 +152,11 @@ const GlowPark = () => {
 
               <div className="flex flex-col gap-8 lg:col-span-7">
                 <p className="text-[17px] leading-relaxed text-white/75 sm:text-[18px]">
-                  Bring the complete Glow Park full package to your college quad, darkened gymnasium, ballroom, or festival lawn with 8 illuminated LED glow swings, 4 glowing seesaws, colorful uplighting, and glowing mini golf—delivered and assembled by our NH &amp; NC crew.
+                  Bring the complete Glow Park full package to your college quad, darkened gymnasium, ballroom, or festival lawn with{" "}
+                  <Link to="/led-glow-swings-rental" className="text-[#7DDDFF] underline decoration-[#7DDDFF]/35 underline-offset-4 hover:text-white">
+                    8 illuminated LED glow swings
+                  </Link>
+                  , 4 glowing seesaws, colorful uplighting, and glowing mini golf—delivered and assembled by our NH &amp; NC crew.
                 </p>
 
                 <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2">

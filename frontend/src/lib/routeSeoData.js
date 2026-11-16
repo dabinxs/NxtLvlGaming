@@ -99,13 +99,13 @@ const ROUTE_SEO = {
     ],
   },
   "/gaming-events": {
-    title: "Live Gaming Events, Esports Rental & Gaming Equipment | NH, MA & NC",
+    title: "Live Gaming Events, FEC Attractions & Esports Rentals | NH, MA & NC",
     description:
-      "Turnkey live gaming events, esports rental company, video game tournament production & event planning equipment for gamers in NH, Boston MA, CT & NC.",
+      "Next Level FEC attraction & live gaming events: video gaming tournament event production, esports screening & event planning equipment for gamers in NH, MA & NC.",
     keywords:
-      "gaming events, real life gaming experience, live gaming events, gaming event, video game event, video game events, video gaming events, video game events near me, esports tournaments near me, video game event planner, video game event management, video gaming tournament event management, video gaming competition production, video game tournament event production, esports rental company, bulk esports rental, event planning equipment for gamers, party planning equipment for gamers, esports rental, next level gaming ct, new england gaming, gaming events this weekend, next level gaming, nxt level gaming, next level fec attraction, video game tournaments, gaming event rental, gaming event planning, boston gaming events, gaming events Boston MA, college gaming events Boston, video game party rental Manchester NH, gaming events Hudson NH, gaming events Portsmouth NH, video gaming event rental New Hampshire, Connecticut gaming events, gaming event rentals Charlotte NC, mobile video game party Raleigh NC, esports tournament production NH MA CT NC, Super Smash Bros tournament rental, Mario Kart event rental Boston MA Charlotte NC",
+      "gaming events, real life gaming experience, live gaming events, gaming event, video game event, video game events, video gaming events, video game events near me, esports tournaments near me, esports screening, video game event planner, video game event management, video gaming tournament event management, video gaming competition production, video game tournament event production, esports rental company, bulk esports rental, event planning equipment for gamers, party planning equipment for gamers, esports rental, next level gaming ct, new england gaming, gaming events this weekend, next level gaming, nxt level gaming, next level fec attraction, video game tournaments, gaming event rental, gaming event planning, boston gaming events, gaming events Boston MA, college gaming events Boston, video game party rental Manchester NH, gaming events Hudson NH, gaming events Portsmouth NH, video gaming event rental New Hampshire, Connecticut gaming events, gaming event rentals Charlotte NC, mobile video game party Raleigh NC, esports tournament production NH MA CT NC, Super Smash Bros tournament rental, Mario Kart event rental Boston MA Charlotte NC",
     image: `${SITE_URL}/gaming-events-experience-1.jpg`,
-    preloadImage: "/experience-gaming-events.avif",
+    preloadImage: "/gaming-events-experience-1.jpg",
     canonicalPath: "/gaming-events",
     heroEyebrow: "ESPORTS RENTAL COMPANY & TOURNAMENT PRODUCTION · NH, MA, CT & NC",
     heroDisplayTitle: "LIVE VIDEO GAMING EVENTS & ESPORTS RENTALS",
@@ -384,11 +384,11 @@ const ROUTE_SEO = {
     ],
   },
   "/virtual-reality": {
-    title: "Mobile VR Experience, VR Arcade & VR Event Games | NH, MA & NC",
+    title: "VR Event Games, Mobile VR Room & Arcade Rentals | NH, MA & NC",
     description:
-      "Book a mobile VR experience, VR arena, VR event games (SUPERHOT VR, Beat Saber) & 4-player VR escape rooms with crew in Hudson NH, Boston & NC.",
+      "Book mobile VR rooms, VR event games (SUPERHOT VR, Beat Saber, Pistol Whip) for adults, colleges & events plus 4-player VR escape rooms in NH, Boston & NC.",
     keywords:
-      "vr event games, vr experience near me, virtual reality near me, vr arcade near me, vr arena near me, vr gaming near me, superhot virtual reality, nh vr rental, virtual reality rental, VR event rental, VR party rental, virtual reality rental NH, virtual reality rental Boston MA, VR party rental Charlotte NC, mobile VR escape room rental, college VR entertainment, Beat Saber party rental",
+      "vr event games, vr games near me for adults, vr room near me, virtual reality center near me, vr experience near me, virtual reality near me, vr arcade near me, vr arena near me, vr gaming near me, superhot virtual reality, nh vr rental, virtual reality rental, VR event rental, VR party rental, virtual reality rental NH, virtual reality rental Boston MA, VR party rental Charlotte NC, mobile VR escape room rental, college VR entertainment, Beat Saber party rental",
     image: `${SITE_URL}/experience-virtual-reality.jpg`,
     canonicalPath: "/virtual-reality",
     heroEyebrow: "MOBILE VR ARCADE, VR ARENA & 4-PLAYER VR ESCAPE ROOMS · NH, MA & NC",
@@ -490,7 +490,7 @@ const ROUTE_SEO = {
     ],
   },
   "/photo-booth": {
-    title: "Photo Booth NH | Portsmouth, Manchester & Hudson 360 & Mirror Rentals",
+    title: "Photo Booth NH — 360 Video & Mirror Photo Booth Rentals",
     description:
       "Turnkey photo booth rental New Hampshire, Portsmouth photo booth rentals, 360 video booths & mirror photo booths in Portsmouth, Manchester, Nashua, Hudson & NC.",
     keywords:
@@ -1688,7 +1688,7 @@ const ROUTE_SEO = {
     ],
   },
   "/portsmouth-nh-photo-booth-party-rentals": {
-    title: "Portsmouth NH Photo Booth Rental & Seacoast Party Rentals | Next Level",
+    title: "Portsmouth NH Photo Booth Rental | 360 & Mirror Photo Booths",
     description:
       "Portsmouth NH photo booth rentals (360 video & magic mirror booths) with red carpet, instant QR sharing, movie screens & novelties in Seacoast NH.",
     keywords:

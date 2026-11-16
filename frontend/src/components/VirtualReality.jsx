@@ -134,8 +134,13 @@ const VirtualReality = () => {
 
               <div className="flex flex-col gap-8 lg:col-span-7">
                 <p className="text-[17px] leading-relaxed text-white/75 sm:text-[18px]">
-                  Step into room-scale Virtual Reality stations featuring top VR event games—including{" "}
-                  <strong className="text-white">SUPERHOT VR</strong>, <strong className="text-white">Beat Saber</strong>, Pistol Whip, Job Simulator, and 4-player cooperative VR escape rooms—while friends watch live on external HD spectator TVs across Hudson NH, Portsmouth, Manchester, Boston MA, and North Carolina.
+                  Bring a mobile VR room and arena right to your event featuring top{" "}
+                  <strong className="text-white">VR event games</strong> for adults, colleges, and corporate groups—including{" "}
+                  <strong className="text-white">SUPERHOT VR</strong>, <strong className="text-white">Beat Saber</strong>, Pistol Whip, Job Simulator, and{" "}
+                  <Link to="/vr-escape-room-rental" className="text-[#7DDDFF] underline decoration-[#7DDDFF]/35 underline-offset-4 hover:text-white">
+                    4-player cooperative VR escape rooms
+                  </Link>
+                  —while friends watch live on external HD spectator TVs across Hudson NH, Portsmouth, Manchester, Boston MA, and North Carolina.
                 </p>
 
                 <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2">

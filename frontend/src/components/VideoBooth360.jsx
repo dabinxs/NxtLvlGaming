@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import {
   Camera,
   ScanFace,
@@ -126,7 +126,19 @@ const VideoBooth360 = () => {
 
               <div className="flex flex-col gap-8 lg:col-span-7">
                 <p className="text-[17px] leading-relaxed text-white/75 sm:text-[18px]">
-                  Choose the 360 video photo booth for cinematic slow-motion clips or the interactive mirror photo booth for full-length poses and glossy keepsake prints. Delivered turnkey across Portsmouth, Dover, Exeter, Hudson, Nashua, Manchester, and Concord NH, Greater Boston MA, and North Carolina.
+                  Choose the{" "}
+                  <Link to="/360-video-booth" className="text-[#7DDDFF] underline decoration-[#7DDDFF]/35 underline-offset-4 hover:text-white">
+                    360 video photo booth
+                  </Link>{" "}
+                  for cinematic slow-motion clips or the{" "}
+                  <Link to="/mirror-photo-booth-rental" className="text-[#7DDDFF] underline decoration-[#7DDDFF]/35 underline-offset-4 hover:text-white">
+                    interactive mirror photo booth
+                  </Link>{" "}
+                  for full-length poses and glossy keepsake prints. Delivered turnkey across{" "}
+                  <Link to="/portsmouth-nh-photo-booth-party-rentals" className="text-[#7DDDFF] underline decoration-[#7DDDFF]/35 underline-offset-4 hover:text-white">
+                    Portsmouth
+                  </Link>
+                  , Dover, Exeter, Hudson, Nashua, Manchester, and Concord NH, Greater Boston MA, and North Carolina.
                 </p>
 
                 <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2">

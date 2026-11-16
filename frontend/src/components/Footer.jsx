@@ -133,9 +133,34 @@ const Footer = ({ showQuoteCTA = true }) => {
         </div>
       </div>
 
-      {/* copyright bar */}
-      <div className="mt-8 pb-24 pt-6 lg:py-6">
-        <div className="mx-auto flex max-w-[1280px] flex-col items-center gap-4 px-5 md:flex-row md:gap-6 md:px-8">
+        {/* copyright bar */}
+        <div className="mt-8 pb-24 pt-6 lg:py-6">
+          <div className="mx-auto flex max-w-[1280px] flex-wrap items-center justify-center gap-x-3 gap-y-1.5 px-5 pb-4 text-center text-[11px] tracking-[0.06em] text-white/40 md:px-8">
+            <Link to="/hudson-nh-party-rentals" className="transition-colors hover:text-[#7DDDFF]">Hudson NH</Link>
+            <span aria-hidden="true">·</span>
+            <Link to="/manchester-nh-event-rentals" className="transition-colors hover:text-[#7DDDFF]">Manchester NH</Link>
+            <span aria-hidden="true">·</span>
+            <Link to="/nashua-nh-event-rentals" className="transition-colors hover:text-[#7DDDFF]">Nashua NH</Link>
+            <span aria-hidden="true">·</span>
+            <Link to="/portsmouth-nh-photo-booth-party-rentals" className="transition-colors hover:text-[#7DDDFF]">Portsmouth NH Photo Booth</Link>
+            <span aria-hidden="true">·</span>
+            <Link to="/concord-salem-derry-nh-party-rentals" className="transition-colors hover:text-[#7DDDFF]">Concord &amp; Salem NH</Link>
+            <span aria-hidden="true">·</span>
+            <Link to="/360-video-booth" className="transition-colors hover:text-[#7DDDFF]">360 Video Booth</Link>
+            <span aria-hidden="true">·</span>
+            <Link to="/mirror-photo-booth-rental" className="transition-colors hover:text-[#7DDDFF]">Mirror Photo Booth</Link>
+            <span aria-hidden="true">·</span>
+            <Link to="/led-video-wall-rental" className="transition-colors hover:text-[#7DDDFF]">LED Video Walls</Link>
+            <span aria-hidden="true">·</span>
+            <Link to="/inflatable-movie-screen-rental" className="transition-colors hover:text-[#7DDDFF]">Inflatable Screens</Link>
+            <span aria-hidden="true">·</span>
+            <Link to="/vr-escape-room-rental" className="transition-colors hover:text-[#7DDDFF]">VR Escape Rooms</Link>
+            <span aria-hidden="true">·</span>
+            <Link to="/led-glow-swings-rental" className="transition-colors hover:text-[#7DDDFF]">LED Glow Swings</Link>
+            <span aria-hidden="true">·</span>
+            <Link to="/custom-trucker-hat-bar-rental" className="transition-colors hover:text-[#7DDDFF]">Custom Hat Bar</Link>
+          </div>
+          <div className="mx-auto flex max-w-[1280px] flex-col items-center gap-4 px-5 md:flex-row md:gap-6 md:px-8">
           <div className="flex shrink-0 items-center gap-3">
             <span className="flex gap-1.5" aria-hidden="true">
               <span className="footer-slash" />

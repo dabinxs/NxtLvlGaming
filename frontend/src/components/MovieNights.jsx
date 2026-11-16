@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import {
   Monitor,
   Projector,
@@ -197,7 +197,15 @@ const MovieNights = () => {
 
               <div className="flex flex-col gap-8 lg:col-span-7">
                 <p className="text-[17px] leading-relaxed text-white/75 sm:text-[18px]">
-                  We deliver complete NH movie screen rentals, outdoor inflatable movie screen rentals (16–40 ft), and daylight mobile LED video wall trailers (14–20 ft) backed by concert audio, FM drive-in transmitters, and full on-site crew production across NH, MA, CT &amp; North Carolina.
+                  We deliver complete NH movie screen rentals,{" "}
+                  <Link to="/inflatable-movie-screen-rental" className="text-[#7DDDFF] underline decoration-[#7DDDFF]/35 underline-offset-4 hover:text-white">
+                    outdoor inflatable movie screen rentals (16–40 ft)
+                  </Link>
+                  , and daylight{" "}
+                  <Link to="/led-video-wall-rental" className="text-[#7DDDFF] underline decoration-[#7DDDFF]/35 underline-offset-4 hover:text-white">
+                    mobile LED video wall trailers (14–20 ft)
+                  </Link>{" "}
+                  backed by concert audio, FM drive-in transmitters, and full on-site crew production across NH, MA, CT &amp; North Carolina.
                 </p>
 
                 <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2">

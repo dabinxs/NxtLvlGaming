@@ -3,8 +3,11 @@ const path = require("path");
 const {
   AREA_SERVED,
   DEFAULT_IMAGE,
+  NH_CITY_LINKS,
+  REGIONAL_LINKS,
   ROUTE_SEO,
   SITE_URL,
+  SPECIALTY_LINKS,
 } = require("../src/lib/routeSeoData");
 const { LOCAL_PAGE_CONFIG } = require("../src/lib/localLandingConfig");
 
@@ -191,6 +194,39 @@ function buildRouteHtml(baseHtml, routeKey, seo) {
       ? `<img src="${escapeHtml(preloadHref)}" alt="${escapeHtml(imageAlt)}" width="1200" height="630" fetchpriority="high" decoding="sync" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.4;" />`
       : "";
 
+    const detailsHtml =
+      seo.subhead && seo.details
+        ? `<section style="max-width:1180px;margin:0 auto;padding:48px 20px 16px;">
+        <h2 style="margin:0 0 12px;font-size:22px;color:#ffffff;">${escapeHtml(seo.subhead)}</h2>
+        <p style="margin:0;color:#cbd5e1;line-height:1.7;">${escapeHtml(seo.details)}</p>
+      </section>`
+        : "";
+
+    const highlightsHtml =
+      Array.isArray(seo.highlights) && seo.highlights.length > 0
+        ? `<section style="max-width:1180px;margin:0 auto;padding:24px 20px 16px;">
+        <h2 style="margin:0 0 12px;font-size:20px;color:#ffffff;">What Is Included</h2>
+        <ul style="margin:0;padding-left:20px;color:#cbd5e1;line-height:1.75;">
+          ${seo.highlights.map((h) => `<li>${escapeHtml(h)}</li>`).join("\n          ")}
+        </ul>
+      </section>`
+        : "";
+
+    const offersHtml =
+      Array.isArray(seo.offers) && seo.offers.length > 0
+        ? `<section style="max-width:1180px;margin:0 auto;padding:24px 20px 24px;">
+        <h2 style="margin:0 0 12px;font-size:20px;color:#ffffff;">Packages &amp; Configurations</h2>
+        <ul style="margin:0;padding-left:20px;color:#cbd5e1;line-height:1.75;">
+          ${seo.offers.map((o) => `<li><strong>${escapeHtml(o.name)}:</strong> ${escapeHtml(o.description)}</li>`).join("\n          ")}
+        </ul>
+      </section>`
+        : "";
+
+    const allFooterLinks = [...NH_CITY_LINKS, ...REGIONAL_LINKS, ...SPECIALTY_LINKS]
+      .filter((item, idx, arr) => arr.findIndex((x) => x.href === item.href) === idx)
+      .map((item) => `<a href="${escapeHtml(item.href)}" style="color:#94a3b8;text-decoration:none;">${escapeHtml(item.label)}</a>`)
+      .join(" · ");
+
     const customMainHtml = `<main style="min-height:100vh;background-color:#05070f;color:#ffffff;">
       <header style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;max-width:1240px;margin:0 auto;padding:18px 20px;border-bottom:1px solid rgba(255,255,255,0.08);">
         <a href="/" style="color:#ffffff;text-decoration:none;font-weight:800;font-size:15px;letter-spacing:0.08em;text-transform:uppercase;">Next Level Gaming &amp; Novelties</a>
@@ -203,7 +239,7 @@ function buildRouteHtml(baseHtml, routeKey, seo) {
           <a href="/quote" style="color:#7DDDFF;text-decoration:none;font-weight:700;">Get Quote</a>
         </nav>
       </header>
-      <section style="position:relative;overflow:hidden;min-height:80vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:52px 20px;background-color:#05070f;">
+      <section style="position:relative;overflow:hidden;min-height:86vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:52px 20px;background-color:#05070f;">
         ${heroImgHtml}
         <div style="position:relative;z-index:2;max-width:900px;margin:0 auto;">
           <h1 style="margin:0;font-size:clamp(1.75rem,4.3vw,3.4rem);font-weight:800;line-height:1.08;text-transform:uppercase;color:#ffffff;">${escapeHtml(seo.heroDisplayTitle || seo.heading)}</h1>
@@ -214,6 +250,13 @@ function buildRouteHtml(baseHtml, routeKey, seo) {
           </div>
         </div>
       </section>
+      ${detailsHtml}
+      ${highlightsHtml}
+      ${offersHtml}
+      <footer style="max-width:1180px;margin:24px auto 0;padding:24px 20px 48px;border-top:1px solid rgba(255,255,255,0.08);font-size:12px;line-height:1.8;color:#94a3b8;">
+        <p style="margin:0 0 8px;">${allFooterLinks}</p>
+        <p style="margin:0;"><a href="/about" style="color:#cbd5e1;">About</a> · <a href="/contact" style="color:#cbd5e1;">Contact</a> · <a href="/novelty-order" style="color:#cbd5e1;">Order Custom Novelties</a> · Rebel Rd, Hudson NH 03051 · <a href="tel:9786015473" style="color:#7DDDFF;">978-601-5473</a></p>
+      </footer>
     </main>`;
 
     html = html.replace(/<main\b[^>]*>[\s\S]*?<\/main>/i, customMainHtml);

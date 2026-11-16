@@ -9,7 +9,9 @@ const ReadyCTA = ({ productsFirst = false }) => {
       <div className="relative flex min-h-[520px] items-center justify-center">
         <img
           src="https://images.unsplash.com/photo-1581502446078-63d6464ba4fc?auto=format&fit=crop&w=1600&q=80"
-          alt="Dark event venue"
+          alt="Event venue lighting and interactive production atmosphere"
+          loading="lazy"
+          decoding="async"
           className="absolute inset-0 h-full w-full object-cover"
         />
         <div className="absolute inset-0 bg-[#05070f]/80" />

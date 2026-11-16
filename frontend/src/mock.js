@@ -111,7 +111,7 @@ export const experiences = [
     title: "Gaming",
     highlight: "Events",
     desc: "Full-scale multiplayer setups, consoles and giant screens for any crowd.",
-    image: "/experience-gaming-events.avif",
+    image: "/gaming-events-experience-1.jpg",
   },
   {
     id: 2,

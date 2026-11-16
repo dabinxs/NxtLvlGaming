@@ -21,10 +21,7 @@ const WhoWeAre = () => {
           </h2>
 
           <p className="mt-6 max-w-lg text-[15px] leading-relaxed text-white/60">
-            For over a decade we've produced interactive entertainment that
-            turns gatherings into stories — from 32-foot outdoor cinemas to full
-            esports tournament stages. Every event is delivered, staffed and run
-            by our own crew.
+            For over a decade we&apos;ve produced Next Level FEC attractions and interactive entertainment across NH, MA, and North Carolina — from 32-foot outdoor movie screens, virtual reality rooms, racing simulators, and 360 photo booths to live gaming events and party planning equipment for gamers. Every event is delivered, staffed, and run by our own crew.
           </p>
 
           <Link
@@ -41,7 +38,9 @@ const WhoWeAre = () => {
           <div className="relative overflow-hidden rounded-2xl border border-white/10 shadow-2xl">
             <img
               src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&w=1200&q=80"
-              alt="Crowd celebrating with confetti"
+              alt="Crowd celebrating at interactive live gaming event and entertainment showcase"
+              loading="lazy"
+              decoding="async"
               className="h-[380px] w-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#040814]/60 to-transparent" />

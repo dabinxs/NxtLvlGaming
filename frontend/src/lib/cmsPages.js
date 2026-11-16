@@ -13,7 +13,7 @@ export const CMS_PAGES = [
     slug: "gaming-events",
     title: "Gaming Events",
     kind: "Event",
-    heroImage: "/experience-gaming-events.avif",
+    heroImage: "/gaming-events-experience-1.jpg",
     heroTitle: "VIDEO GAMING EVENTS",
     heroSubtitle: "Turn your next gathering into an unforgettable multiplayer experience.",
     gallery: [
