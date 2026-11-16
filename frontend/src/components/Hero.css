@@ -1,49 +1,138 @@
+/* ─────────────────────────────────────────────
+   HOMEPAGE HERO
+   ───────────────────────────────────────────── */
 .homepage-hero {
-  /* Match the fixed header's footprint, then leave comfortable space for the title. */
-  padding-block-start: clamp(8rem, calc(24svh - 4rem), 15rem);
+  /* Clear the fixed header, then leave space for content */
+  padding-block-start: clamp(7rem, 16svh, 10rem);
+  padding-block-end: 0;
   min-block-size: 100svh;
   display: grid;
-  grid-template-rows: auto minmax(clamp(12rem, 20vw, 24rem), 1fr);
-  row-gap: clamp(1.5rem, 3.5svh, 3rem);
+  /* Row 1: text content, Row 2: artwork that fills the rest */
+  grid-template-rows: auto 1fr;
+  row-gap: 0;
 }
 
+/* ── Content (title + subtitle + CTAs) ── */
 .homepage-hero__content {
   min-inline-size: 0;
+  padding-block-end: clamp(1rem, 2.5svh, 2rem);
 }
 
 .homepage-hero__title {
-  font-size: clamp(2.35rem, min(5.1vw, 6svh), 4.35rem);
+  font-size: clamp(1.9rem, min(3.5vw, 6svh), 3.75rem);
+  line-height: 1.08;
 }
 
 .homepage-hero__description {
-  margin-block-start: clamp(1rem, 2.2svh, 1.5rem);
+  margin-block-start: clamp(0.75rem, 1.8svh, 1.25rem);
 }
 
 .homepage-hero__actions {
-  margin-block-start: clamp(1.5rem, calc(10svh - 3rem), 4rem);
+  margin-block-start: clamp(1.25rem, 3.5svh, 2rem);
 }
 
+.homepage-hero__cta {
+  inline-size: clamp(13.5rem, 16vw, 17rem);
+  min-block-size: clamp(3rem, 7svh, 3.75rem);
+  font-size: clamp(0.75rem, 0.9vw, 0.9375rem);
+}
+
+/* ── Artwork row ── */
 .homepage-hero__artwork {
-  /* Size this row from the space left after the copy, never from the image's width. */
   container-type: size;
   min-inline-size: 0;
-  display: grid;
-  place-items: end center;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  /* No side padding so images bleed to edges like the reference */
+  padding-inline: 0;
+  /* Allow artwork row to grow and fill the remaining height */
+  align-self: stretch;
 }
+
+/* Blue neon glow discs sitting under each stage image */
+.homepage-hero__stage-glow {
+  position: absolute;
+  bottom: 0;
+  block-size: 60px;
+  inline-size: 38%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(0,100,255,0.55) 0%, transparent 70%);
+  filter: blur(18px);
+  z-index: 2;
+}
+
+.homepage-hero__stage-glow--left  { left: 2%; }
+.homepage-hero__stage-glow--right { right: 2%; }
 
 .homepage-hero__stage {
   display: block;
-  inline-size: min(100%, 2172px);
+  /* Images sit at the very bottom of the artwork row */
+  align-self: flex-end;
+  /* No hard pixel width – let container queries decide */
+  inline-size: 42%;
   block-size: auto;
-  max-inline-size: 100%;
+  max-inline-size: 42%;
   max-block-size: 100%;
   object-fit: contain;
-  object-position: center bottom;
+  object-position: left bottom;
+  /* Remove the black background the JPGs may have */
+  mix-blend-mode: lighten;
+  position: relative;
+  z-index: 3;
 }
 
+.homepage-hero__stage--right {
+  object-position: right bottom;
+}
+
+/* Container-query sizing to match each image's natural aspect ratio */
 @supports (width: 1cqw) {
+  .homepage-hero__stage--left {
+    /* original: 1270 × 952 → ratio ≈ 1.334 */
+    inline-size: min(42cqw, calc(100cqh * 1270 / 952), 1270px);
+  }
+
+  .homepage-hero__stage--right {
+    /* same aspect ratio */
+    inline-size: min(42cqw, calc(100cqh * 1270 / 952), 1270px);
+  }
+}
+
+/* ─────────────────────────────────────────────
+   MOBILE  (< 640 px)
+   ───────────────────────────────────────────── */
+@media (max-width: 639px) {
+  .homepage-hero {
+    min-block-size: auto;
+    padding-block-start: 6.5rem;
+    grid-template-rows: auto auto;
+    row-gap: 0;
+  }
+
+  .homepage-hero__title {
+    font-size: clamp(1.6rem, 7vw, 2.5rem);
+  }
+
+  .homepage-hero__cta {
+    inline-size: min(100%, 18rem);
+  }
+
+  .homepage-hero__artwork {
+    container-type: normal;
+    /* Give artwork row a fixed height on mobile */
+    min-block-size: clamp(160px, 45vw, 280px);
+  }
+
   .homepage-hero__stage {
-    /* The original artwork is 3:1. Fit both dimensions without cropping or stretching. */
-    inline-size: min(100cqw, 300cqh, 2172px);
+    inline-size: 48%;
+    max-inline-size: 48%;
+    max-block-size: none;
+  }
+
+  .homepage-hero__stage-glow {
+    block-size: 40px;
+    inline-size: 44%;
+    filter: blur(12px);
   }
 }
