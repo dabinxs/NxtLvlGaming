@@ -18,26 +18,34 @@ const Hero = ({ seo = null, primaryCta = null, homepage = false }) => {
     return (
       <section
         id="top"
-        className="homepage-hero relative isolate w-full bg-[#100e3b]"
+        className="homepage-hero relative isolate w-full bg-[#080a26]"
       >
+        {/* Starfield background */}
         <img
-          src="/indigo-starfield.png"
+          src="/hero-starfield-bg.png"
           alt=""
           fetchPriority="high"
           decoding="async"
-          className="absolute inset-0 h-full w-full object-cover object-center"
+          className="absolute inset-0 h-full w-full object-cover object-center pointer-events-none select-none"
         />
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#171544]/10 via-transparent to-[#08071f]/25" />
 
+        {/* Depth gradients */}
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#090b29]/30 via-transparent to-[#05061a]/50" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#05061a] to-transparent" />
+
+        {/* Center ambient glow behind text */}
+        <div className="pointer-events-none absolute left-1/2 top-[38%] h-[320px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#0044ff]/15 blur-[100px]" />
+
+        {/* Main content: title + subtitle + CTAs */}
         <div className="homepage-hero__content relative z-10 flex w-full flex-col items-center px-5 text-center">
           <h1
-            className="homepage-hero__title w-full max-w-[1180px] font-display font-extrabold uppercase leading-[1.42] tracking-[0.005em] text-white drop-shadow-[0_6px_24px_rgba(6,5,32,0.4)]"
+            className="homepage-hero__title w-full max-w-[1040px] font-display font-extrabold uppercase leading-[1.12] tracking-tight text-white drop-shadow-[0_4px_24px_rgba(5,6,26,0.6)]"
             style={{ fontWeight: 800 }}
           >
             <TextScatter text={heroTitleText} />
           </h1>
 
-          <p className="homepage-hero__description max-w-4xl text-[clamp(0.95rem,1.45vw,1.25rem)] leading-relaxed tracking-[0.035em] text-[#e1e4ff]">
+          <p className="homepage-hero__description max-w-[720px] text-[clamp(0.92rem,1.35vw,1.15rem)] leading-relaxed tracking-[0.02em] text-[#c6ccf2]">
             {heroSubtitleText}
           </p>
 
@@ -45,7 +53,7 @@ const Hero = ({ seo = null, primaryCta = null, homepage = false }) => {
             <Link
               to={ctaTo}
               data-testid="hero-explore-cta"
-              className="cta-fill group inline-flex h-[62px] w-full max-w-[330px] items-center justify-center gap-3 rounded-xl border-2 border-transparent bg-[#0873df] px-7 text-[13px] font-bold uppercase tracking-[0.06em] text-white shadow-[0_10px_34px_rgba(0,102,204,0.3)] transition-all hover:bg-[#1485f4] hover:shadow-[0_14px_40px_rgba(0,102,204,0.45)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-200 sm:w-auto sm:px-9"
+              className="cta-fill group inline-flex h-[58px] w-full max-w-[330px] items-center justify-center gap-3 rounded-2xl border-2 border-transparent bg-[#0873df] px-8 text-[13px] font-bold uppercase tracking-[0.06em] text-white shadow-[0_10px_34px_rgba(0,102,204,0.35)] transition-all hover:bg-[#1485f4] hover:shadow-[0_14px_40px_rgba(0,102,204,0.5)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-200 sm:w-auto sm:px-9"
             >
               {ctaLabel}
               <ChevronRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
@@ -54,21 +62,36 @@ const Hero = ({ seo = null, primaryCta = null, homepage = false }) => {
               label="Browse Events & Experiences"
               testId="homepage-explore-destinations-cta"
               compactOnMobile
-              className="cta-fill inline-flex min-h-[62px] w-full max-w-[380px] items-center justify-center gap-2 rounded-xl border border-white/65 bg-[#080b25]/45 px-6 text-center text-[12px] font-bold uppercase tracking-[0.04em] text-white backdrop-blur-sm transition-colors hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-200 sm:w-auto sm:px-7 sm:text-[13px]"
+              className="cta-fill inline-flex min-h-[58px] w-full max-w-[380px] items-center justify-center gap-2 rounded-2xl border border-white/50 bg-[#080b25]/60 px-6 text-center text-[12px] font-bold uppercase tracking-[0.04em] text-white backdrop-blur-sm transition-colors hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-200 sm:w-auto sm:px-8 sm:text-[13px]"
             />
           </div>
         </div>
 
-        <div className="homepage-hero__artwork relative z-[1]">
-          <img
-            src="/gaming-stage.png"
-            alt="Gaming consoles, trivia stage, movie lounge, racing simulator, photo booth, and mini golf setup"
-            width="2172"
-            height="724"
-            fetchPriority="high"
-            decoding="async"
-            className="homepage-hero__stage pointer-events-none"
-          />
+        {/* Stage Artwork at Bottom Left and Right */}
+        <div className="homepage-hero__artwork relative z-[5] w-full flex items-end justify-between pointer-events-none select-none">
+          <div className="homepage-hero__stage-wrapper homepage-hero__stage-wrapper--left">
+            <img
+              src="/hero-stage-left.png"
+              alt="Nintendo Switch gaming lounge and movie screen setup"
+              width="945"
+              height="539"
+              fetchPriority="high"
+              decoding="async"
+              className="homepage-hero__stage homepage-hero__stage--left"
+            />
+          </div>
+
+          <div className="homepage-hero__stage-wrapper homepage-hero__stage-wrapper--right">
+            <img
+              src="/hero-stage-right.png"
+              alt="Trivia night truss stage, sim racing simulator, silent disco headphones and photo booth setup"
+              width="913"
+              height="590"
+              fetchPriority="high"
+              decoding="async"
+              className="homepage-hero__stage homepage-hero__stage--right"
+            />
+          </div>
         </div>
       </section>
     );
