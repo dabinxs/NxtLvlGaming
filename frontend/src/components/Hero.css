@@ -10,8 +10,8 @@
   justify-content: flex-start;
   overflow: hidden;
   background-color: #080a26;
-  /* Comfortably below the fixed navbar */
-  padding-top: clamp(4.75rem, 9.5svh, 6.75rem);
+  /* Comfortably below the fixed navbar with generous breathing room matching reference */
+  padding-top: clamp(7.5rem, 16svh, 10.5rem);
 }
 
 .homepage-hero__content {
@@ -35,11 +35,11 @@
 }
 
 .homepage-hero__description {
-  margin-top: clamp(0.5rem, 1.2svh, 0.85rem);
+  margin-top: clamp(1rem, 2.4svh, 1.75rem);
 }
 
 .homepage-hero__actions {
-  margin-top: clamp(0.75rem, 2svh, 1.35rem);
+  margin-top: clamp(1.25rem, 3.6svh, 2.25rem);
 }
 
 .homepage-hero__artwork {
@@ -60,8 +60,8 @@
 .homepage-hero__stage-wrapper {
   display: flex;
   align-items: flex-end;
-  width: 38%;
-  max-width: clamp(280px, 36vw, 540px);
+  width: 34%;
+  max-width: clamp(260px, 34vw, 520px);
 }
 
 .homepage-hero__stage-wrapper--left {
@@ -76,7 +76,7 @@
   display: block;
   width: 100%;
   height: auto;
-  max-height: clamp(190px, 44svh, 440px);
+  max-height: clamp(180px, 54svh, 460px);
   object-fit: contain;
 }
 
@@ -88,22 +88,30 @@
   object-position: right bottom;
 }
 
-/* On shorter viewports (height <= 650px), scale stages modestly to give maximum clearance */
+/* On shorter viewports (height <= 650px), preserve sufficient top clearance so title is never under navbar */
 @media (max-height: 650px) {
   .homepage-hero {
-    padding-top: 4.75rem;
+    padding-top: clamp(7rem, 22svh, 7.75rem);
   }
 
   .homepage-hero__title {
-    font-size: clamp(1.65rem, 4.5svh, 2.2rem);
+    font-size: clamp(1.65rem, 4.6svh, 2.15rem);
+  }
+
+  .homepage-hero__description {
+    margin-top: 0.85rem;
+  }
+
+  .homepage-hero__actions {
+    margin-top: 1.15rem;
   }
 
   .homepage-hero__stage {
-    max-height: clamp(160px, 40svh, 230px);
+    max-height: clamp(160px, 48svh, 250px);
   }
 
   .homepage-hero__stage-wrapper {
-    max-width: clamp(250px, 33vw, 360px);
+    max-width: clamp(240px, 33vw, 360px);
   }
 }
 
@@ -111,8 +119,8 @@
 @media (max-width: 639px) {
   .homepage-hero {
     min-height: auto;
-    padding-top: 5.75rem;
-    padding-bottom: 0.5rem;
+    padding-top: 6.25rem;
+    padding-bottom: 0.75rem;
     gap: 1.25rem;
   }
 

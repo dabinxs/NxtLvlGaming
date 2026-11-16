@@ -68,7 +68,7 @@ const Hero = ({ seo = null, primaryCta = null, homepage = false }) => {
         </div>
 
         {/* Stage Artwork at Bottom Left and Right */}
-        <div className="homepage-hero__artwork relative z-[5] w-full flex items-end justify-between pointer-events-none select-none">
+        <div className="homepage-hero__artwork z-[5] w-full flex items-end justify-between pointer-events-none select-none">
           <div className="homepage-hero__stage-wrapper homepage-hero__stage-wrapper--left">
             <img
               src="/hero-stage-left.png"
