@@ -58,7 +58,7 @@ const LandingContent = () => {
   <div className="App text-foreground">
     <Navbar />
     <main>
-      <Hero seo={routeSeo} />
+      <Hero seo={routeSeo} homepage />
       <TrustedCollaborations />
       <ChooseExperience experiences={homeExperiences} />
       <LevelUp />

@@ -1,0 +1,49 @@
+.homepage-hero {
+  /* Match the fixed header's footprint, then leave comfortable space for the title. */
+  padding-block-start: clamp(8rem, calc(24svh - 4rem), 15rem);
+  min-block-size: 100svh;
+  display: grid;
+  grid-template-rows: auto minmax(clamp(12rem, 20vw, 24rem), 1fr);
+  row-gap: clamp(1.5rem, 3.5svh, 3rem);
+}
+
+.homepage-hero__content {
+  min-inline-size: 0;
+}
+
+.homepage-hero__title {
+  font-size: clamp(2.35rem, min(5.1vw, 6svh), 4.35rem);
+}
+
+.homepage-hero__description {
+  margin-block-start: clamp(1rem, 2.2svh, 1.5rem);
+}
+
+.homepage-hero__actions {
+  margin-block-start: clamp(1.5rem, calc(10svh - 3rem), 4rem);
+}
+
+.homepage-hero__artwork {
+  /* Size this row from the space left after the copy, never from the image's width. */
+  container-type: size;
+  min-inline-size: 0;
+  display: grid;
+  place-items: end center;
+}
+
+.homepage-hero__stage {
+  display: block;
+  inline-size: min(100%, 2172px);
+  block-size: auto;
+  max-inline-size: 100%;
+  max-block-size: 100%;
+  object-fit: contain;
+  object-position: center bottom;
+}
+
+@supports (width: 1cqw) {
+  .homepage-hero__stage {
+    /* The original artwork is 3:1. Fit both dimensions without cropping or stretching. */
+    inline-size: min(100cqw, 300cqh, 2172px);
+  }
+}

@@ -3,8 +3,9 @@ import { Link } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
 import TextScatter from "./TextScatter";
 import ExploreDestinationsCTA from "./ExploreDestinationsCTA";
+import "./Hero.css";
 
-const Hero = ({ seo = null, primaryCta = null }) => {
+const Hero = ({ seo = null, primaryCta = null, homepage = false }) => {
   const heroTitleText = seo?.heroDisplayTitle || "Transform Your Event\nInto Reality";
   const heroSubtitleText =
     seo?.heroSubtitleOverride ||
@@ -12,6 +13,66 @@ const Hero = ({ seo = null, primaryCta = null }) => {
   const heroBgImage = seo?.heroImageLocal || "/hero-bg.jpg";
   const ctaLabel = primaryCta?.label || "Explore Experiences";
   const ctaTo = primaryCta?.to || "/explore-experiences";
+
+  if (homepage) {
+    return (
+      <section
+        id="top"
+        className="homepage-hero relative isolate w-full bg-[#100e3b]"
+      >
+        <img
+          src="/indigo-starfield.png"
+          alt=""
+          fetchPriority="high"
+          decoding="async"
+          className="absolute inset-0 h-full w-full object-cover object-center"
+        />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#171544]/10 via-transparent to-[#08071f]/25" />
+
+        <div className="homepage-hero__content relative z-10 flex w-full flex-col items-center px-5 text-center">
+          <h1
+            className="homepage-hero__title w-full max-w-[1180px] font-display font-extrabold uppercase leading-[1.42] tracking-[0.005em] text-white drop-shadow-[0_6px_24px_rgba(6,5,32,0.4)]"
+            style={{ fontWeight: 800 }}
+          >
+            <TextScatter text={heroTitleText} />
+          </h1>
+
+          <p className="homepage-hero__description max-w-4xl text-[clamp(0.95rem,1.45vw,1.25rem)] leading-relaxed tracking-[0.035em] text-[#e1e4ff]">
+            {heroSubtitleText}
+          </p>
+
+          <div className="homepage-hero__actions flex w-full flex-col items-center justify-center gap-3 sm:w-auto sm:flex-row sm:gap-4">
+            <Link
+              to={ctaTo}
+              data-testid="hero-explore-cta"
+              className="cta-fill group inline-flex h-[62px] w-full max-w-[330px] items-center justify-center gap-3 rounded-xl border-2 border-transparent bg-[#0873df] px-7 text-[13px] font-bold uppercase tracking-[0.06em] text-white shadow-[0_10px_34px_rgba(0,102,204,0.3)] transition-all hover:bg-[#1485f4] hover:shadow-[0_14px_40px_rgba(0,102,204,0.45)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-200 sm:w-auto sm:px-9"
+            >
+              {ctaLabel}
+              <ChevronRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+            </Link>
+            <ExploreDestinationsCTA
+              label="Browse Events & Experiences"
+              testId="homepage-explore-destinations-cta"
+              compactOnMobile
+              className="cta-fill inline-flex min-h-[62px] w-full max-w-[380px] items-center justify-center gap-2 rounded-xl border border-white/65 bg-[#080b25]/45 px-6 text-center text-[12px] font-bold uppercase tracking-[0.04em] text-white backdrop-blur-sm transition-colors hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-200 sm:w-auto sm:px-7 sm:text-[13px]"
+            />
+          </div>
+        </div>
+
+        <div className="homepage-hero__artwork relative z-[1]">
+          <img
+            src="/gaming-stage.png"
+            alt="Gaming consoles, trivia stage, movie lounge, racing simulator, photo booth, and mini golf setup"
+            width="2172"
+            height="724"
+            fetchPriority="high"
+            decoding="async"
+            className="homepage-hero__stage pointer-events-none"
+          />
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section
