@@ -109,7 +109,7 @@ const ROUTE_SEO = {
     preloadImage: "/gaming-events-experience-1.jpg",
     canonicalPath: "/gaming-events",
     heroEyebrow: "ESPORTS RENTAL COMPANY & TOURNAMENT PRODUCTION · NH, MA, CT & NC",
-    heroDisplayTitle: "LIVE VIDEO GAMING EVENTS & ESPORTS RENTALS",
+    heroDisplayTitle: "VIDEO GAME EVENT PRODUCTION & LIVE GAMING",
     serviceName: "Live Video Gaming Event Rentals, Esports Rental Company & Video Gaming Competition Production",
     heading: "Live Gaming Events, Esports Rental Company & Video Game Tournament Production in NH, MA, CT & NC",
     summary:
@@ -393,7 +393,7 @@ const ROUTE_SEO = {
     image: `${SITE_URL}/experience-virtual-reality.jpg`,
     canonicalPath: "/virtual-reality",
     heroEyebrow: "MOBILE VR ARCADE, VR ARENA & 4-PLAYER VR ESCAPE ROOMS · NH, MA & NC",
-    heroDisplayTitle: "VIRTUAL REALITY RENTALS & VR ESCAPE ROOMS",
+    heroDisplayTitle: "VR GAMING ARCADE & VR ESCAPE ROOMS",
     serviceName: "Virtual Reality (VR) Event Stations, VR Event Games & Mobile VR Escape Rooms",
     heading: "Virtual Reality Rentals, VR Event Games & Mobile VR Escape Rooms in NH, MA & NC",
     summary:
@@ -499,7 +499,7 @@ const ROUTE_SEO = {
     image: `${SITE_URL}/experience-360-video-booth.jpg`,
     canonicalPath: "/photo-booth",
     heroEyebrow: "PHOTO BOOTH RENTAL NEW HAMPSHIRE · PORTSMOUTH, MANCHESTER, HUDSON & NC",
-    heroDisplayTitle: "PHOTO BOOTH RENTALS — 360 VIDEO & MIRROR BOOTHS",
+    heroDisplayTitle: "PHOTO BOOTH NH — 360 & MIRROR BOOTHS",
     heroTagline: "360 Video Photo Booth  /  Interactive Mirror Photo Booth",
     serviceName: "Interactive Photo Booth, 360 Video Booth & Mirror Photo Booth Rentals",
     heading: "Photo Booth NH Rentals — Portsmouth, Manchester, Hudson, Boston & NC 360 & Mirror Booths",
@@ -774,7 +774,7 @@ const ROUTE_SEO = {
     image: `${SITE_URL}/experience-sim-racing.jpg`,
     canonicalPath: "/sim-racing",
     heroEyebrow: "RENT A RACING SIMULATOR · FORCE-FEEDBACK COCKPITS · NH, MA, CT & NC",
-    heroDisplayTitle: "SIM RACING COCKPIT & SIMULATOR RENTALS",
+    heroDisplayTitle: "RENT RACING SIMULATORS & SIM COCKPITS",
     serviceName: "Sim Racing Cockpit Simulator Event Rentals",
     heading: "Sim Racing Cockpit & Racing Simulator Rentals in NH, MA, CT & NC",
     summary:

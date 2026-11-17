@@ -77,7 +77,7 @@ const VirtualReality = () => {
   const heroSubtitle = !isBaseRoute
     ? routeSeo.heroSubtitleOverride || cmsPage.heroSubtitle
     : isDefaultCmsSubtitle
-      ? "Bring a turnkey mobile VR arcade, multiplayer VR arena, VR event games (SUPERHOT VR, Beat Saber), and 4-player cooperative VR escape rooms to your venue in NH, Boston MA, CT & North Carolina."
+      ? "Rent a turnkey mobile VR gaming arcade with top VR event games (SUPERHOT VR, Beat Saber, Pistol Whip) and 4-player cooperative VR escape rooms delivered right to your venue in NH, Boston MA, CT & North Carolina."
       : cmsPage.heroSubtitle;
 
   const heroImage = normalizedPath === "/vr-escape-room-rental"

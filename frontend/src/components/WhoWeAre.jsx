@@ -21,7 +21,39 @@ const WhoWeAre = () => {
           </h2>
 
           <p className="mt-6 max-w-lg text-[15px] leading-relaxed text-white/60">
-            For over a decade we&apos;ve produced Next Level FEC attractions and interactive entertainment across NH, MA, and North Carolina — from 32-foot outdoor movie screens, virtual reality rooms, racing simulators, and 360 photo booths to live gaming events and party planning equipment for gamers. Every event is delivered, staffed, and run by our own crew.
+            For over a decade we&apos;ve produced{" "}
+            <Link to="/gaming-events" className="text-white/85 underline decoration-[#0066FD]/50 underline-offset-4 hover:text-[#7DDDFF]">
+              Next Level FEC attractions &amp; live gaming events
+            </Link>{" "}
+            across{" "}
+            <Link to="/new-hampshire-massachusetts-event-rentals" className="text-white/85 underline decoration-[#0066FD]/50 underline-offset-4 hover:text-[#7DDDFF]">
+              NH, MA
+            </Link>
+            , and{" "}
+            <Link to="/north-carolina-event-rentals" className="text-white/85 underline decoration-[#0066FD]/50 underline-offset-4 hover:text-[#7DDDFF]">
+              North Carolina
+            </Link>{" "}
+            — from 32-foot{" "}
+            <Link to="/movie-nights" className="text-white/85 underline decoration-[#0066FD]/50 underline-offset-4 hover:text-[#7DDDFF]">
+              outdoor movie screens
+            </Link>
+            ,{" "}
+            <Link to="/virtual-reality" className="text-white/85 underline decoration-[#0066FD]/50 underline-offset-4 hover:text-[#7DDDFF]">
+              VR gaming arcades
+            </Link>
+            ,{" "}
+            <Link to="/sim-racing" className="text-white/85 underline decoration-[#0066FD]/50 underline-offset-4 hover:text-[#7DDDFF]">
+              racing simulators
+            </Link>
+            , and{" "}
+            <Link to="/photo-booth" className="text-white/85 underline decoration-[#0066FD]/50 underline-offset-4 hover:text-[#7DDDFF]">
+              360 photo booths
+            </Link>{" "}
+            to{" "}
+            <Link to="/novelties" className="text-white/85 underline decoration-[#0066FD]/50 underline-offset-4 hover:text-[#7DDDFF]">
+              custom novelties
+            </Link>{" "}
+            and party planning equipment for gamers. Every event is delivered, staffed, and run by our own crew.
           </p>
 
           <Link
