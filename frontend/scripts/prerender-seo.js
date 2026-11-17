@@ -194,34 +194,6 @@ function buildRouteHtml(baseHtml, routeKey, seo) {
       ? `<img src="${escapeHtml(preloadHref)}" alt="${escapeHtml(imageAlt)}" width="1200" height="630" fetchpriority="high" decoding="sync" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.4;" />`
       : "";
 
-    const detailsHtml =
-      seo.subhead && seo.details
-        ? `<section style="max-width:1180px;margin:0 auto;padding:48px 20px 16px;">
-        <h2 style="margin:0 0 12px;font-size:22px;color:#ffffff;">${escapeHtml(seo.subhead)}</h2>
-        <p style="margin:0;color:#cbd5e1;line-height:1.7;">${escapeHtml(seo.details)}</p>
-      </section>`
-        : "";
-
-    const highlightsHtml =
-      Array.isArray(seo.highlights) && seo.highlights.length > 0
-        ? `<section style="max-width:1180px;margin:0 auto;padding:24px 20px 16px;">
-        <h2 style="margin:0 0 12px;font-size:20px;color:#ffffff;">What Is Included</h2>
-        <ul style="margin:0;padding-left:20px;color:#cbd5e1;line-height:1.75;">
-          ${seo.highlights.map((h) => `<li>${escapeHtml(h)}</li>`).join("\n          ")}
-        </ul>
-      </section>`
-        : "";
-
-    const offersHtml =
-      Array.isArray(seo.offers) && seo.offers.length > 0
-        ? `<section style="max-width:1180px;margin:0 auto;padding:24px 20px 24px;">
-        <h2 style="margin:0 0 12px;font-size:20px;color:#ffffff;">Packages &amp; Configurations</h2>
-        <ul style="margin:0;padding-left:20px;color:#cbd5e1;line-height:1.75;">
-          ${seo.offers.map((o) => `<li><strong>${escapeHtml(o.name)}:</strong> ${escapeHtml(o.description)}</li>`).join("\n          ")}
-        </ul>
-      </section>`
-        : "";
-
     const allFooterLinks = [...NH_CITY_LINKS, ...REGIONAL_LINKS, ...SPECIALTY_LINKS]
       .filter((item, idx, arr) => arr.findIndex((x) => x.href === item.href) === idx)
       .map((item) => `<a href="${escapeHtml(item.href)}" style="color:#94a3b8;text-decoration:none;">${escapeHtml(item.label)}</a>`)
@@ -250,9 +222,6 @@ function buildRouteHtml(baseHtml, routeKey, seo) {
           </div>
         </div>
       </section>
-      ${detailsHtml}
-      ${highlightsHtml}
-      ${offersHtml}
       <footer style="max-width:1180px;margin:24px auto 0;padding:24px 20px 48px;border-top:1px solid rgba(255,255,255,0.08);font-size:12px;line-height:1.8;color:#94a3b8;">
         <p style="margin:0 0 8px;">${allFooterLinks}</p>
         <p style="margin:0;"><a href="/about" style="color:#cbd5e1;">About</a> · <a href="/contact" style="color:#cbd5e1;">Contact</a> · <a href="/novelty-order" style="color:#cbd5e1;">Order Custom Novelties</a> · Rebel Rd, Hudson NH 03051 · <a href="tel:9786015473" style="color:#7DDDFF;">978-601-5473</a></p>

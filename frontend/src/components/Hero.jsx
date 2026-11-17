@@ -21,13 +21,16 @@ const Hero = ({ seo = null, primaryCta = null, homepage = false }) => {
         className="homepage-hero relative isolate w-full bg-[#080a26]"
       >
         {/* Starfield background */}
-        <img
-          src="/hero-starfield-bg.png"
-          alt=""
-          fetchPriority="high"
-          decoding="async"
-          className="absolute inset-0 h-full w-full object-cover object-center pointer-events-none select-none"
-        />
+        <picture className="contents">
+          <source srcSet="/hero-starfield-bg.webp" type="image/webp" />
+          <img
+            src="/hero-starfield-bg.png"
+            alt=""
+            fetchPriority="high"
+            decoding="async"
+            className="absolute inset-0 h-full w-full object-cover object-center pointer-events-none select-none"
+          />
+        </picture>
 
         {/* Depth gradients */}
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#090b29]/30 via-transparent to-[#05061a]/50" />
@@ -70,27 +73,33 @@ const Hero = ({ seo = null, primaryCta = null, homepage = false }) => {
         {/* Stage Artwork at Bottom Left and Right */}
         <div className="homepage-hero__artwork z-[5] w-full flex items-end justify-between pointer-events-none select-none">
           <div className="homepage-hero__stage-wrapper homepage-hero__stage-wrapper--left">
-            <img
-              src="/hero-stage-left.png"
-              alt="Nintendo Switch gaming lounge and movie screen setup"
-              width="945"
-              height="539"
-              fetchPriority="high"
-              decoding="async"
-              className="homepage-hero__stage homepage-hero__stage--left"
-            />
+            <picture className="contents">
+              <source srcSet="/hero-stage-left.webp" type="image/webp" />
+              <img
+                src="/hero-stage-left.png"
+                alt="Live gaming events, Nintendo Switch lounge, and outdoor movie screen rental setup"
+                width="945"
+                height="539"
+                fetchPriority="high"
+                decoding="async"
+                className="homepage-hero__stage homepage-hero__stage--left"
+              />
+            </picture>
           </div>
 
           <div className="homepage-hero__stage-wrapper homepage-hero__stage-wrapper--right">
-            <img
-              src="/hero-stage-right.png"
-              alt="Trivia night truss stage, sim racing simulator, silent disco headphones and photo booth setup"
-              width="913"
-              height="590"
-              fetchPriority="high"
-              decoding="async"
-              className="homepage-hero__stage homepage-hero__stage--right"
-            />
+            <picture className="contents">
+              <source srcSet="/hero-stage-right.webp" type="image/webp" />
+              <img
+                src="/hero-stage-right.png"
+                alt="Interactive trivia stage, sim racing simulator, silent disco headphones, and photo booth rental setup"
+                width="913"
+                height="590"
+                fetchPriority="high"
+                decoding="async"
+                className="homepage-hero__stage homepage-hero__stage--right"
+              />
+            </picture>
           </div>
         </div>
       </section>
