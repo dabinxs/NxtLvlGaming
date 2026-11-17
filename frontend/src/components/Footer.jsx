@@ -23,6 +23,7 @@ const FOOTER_LINK_PATHS = {
 };
 
 const Footer = ({ showQuoteCTA = true }) => {
+
   return (
     <footer
       id="footer"
@@ -56,31 +57,23 @@ const Footer = ({ showQuoteCTA = true }) => {
             >
               <span>978-601-5473</span>
             </a>
-            <a
-              href="https://www.google.com/maps/search/?api=1&query=Rebel+Rd+Hudson+NH+03051"
-              target="_blank"
-              rel="noreferrer"
-              className="mt-2 flex items-center gap-2 text-sm text-white/70 transition-colors hover:text-[#7DDDFF]"
-            >
-              <MapPin className="h-4 w-4 shrink-0 text-[#7DDDFF]" />
-              <span>Rebel Rd, Hudson, NH 03051 · NH · MA · CT · NC</span>
+            <a href="https://www.google.com/maps/search/?api=1&query=Hudson+NH" target="_blank" rel="noreferrer" className="mt-2 flex items-center gap-2 text-sm text-white/65 transition-colors hover:text-[#7DDDFF]">
+              <MapPin className="h-4 w-4 text-[#7DDDFF]" /><span>HUDSON NH</span>
             </a>
 
             <div className="mt-8 flex flex-wrap items-center gap-4">
-              {showQuoteCTA && (
-                <Link
-                  to="/quote"
-                  className="cta-fill inline-flex items-center gap-2 rounded-full blue-gradient-bg px-6 py-3 text-[12px] font-semibold uppercase tracking-wide text-white shadow-[0_8px_24px_rgba(0,102,253,0.35)]"
-                >
-                  Get A Quote
-                </Link>
-              )}
+              {showQuoteCTA && <Link
+                to="/quote"
+                className="cta-fill inline-flex items-center gap-2 rounded-full blue-gradient-bg px-6 py-3 text-[12px] font-semibold uppercase tracking-wide text-white shadow-[0_8px_24px_rgba(0,102,253,0.35)]"
+              >
+                Get A Quote
+              </Link>}
               <span
                 data-testid="footer-tagline"
                 className="flex items-center gap-2.5 text-[15px] font-medium text-white/85"
               >
                 <span className="h-2 w-2 rounded-full bg-[#7DDDFF] shadow-[0_0_10px_rgba(125,221,255,0.8)]" />
-                Let&apos;s create an unforgettable experience
+                Let's create an unforgettable experience
               </span>
             </div>
           </div>
@@ -98,17 +91,11 @@ const Footer = ({ showQuoteCTA = true }) => {
                     return (
                       <li key={link}>
                         {targetPath ? (
-                          <Link
-                            to={targetPath}
-                            className="block break-words text-[12.5px] text-white/65 transition-colors hover:text-[#7DDDFF]"
-                          >
+                          <Link to={targetPath} className="block break-words text-[12.5px] text-white/65 transition-colors hover:text-[#7DDDFF]">
                             {link}
                           </Link>
                         ) : (
-                          <a
-                            href="#top"
-                            className="block break-words text-[12.5px] text-white/65 transition-colors hover:text-[#7DDDFF]"
-                          >
+                          <a href="#top" className="block break-words text-[12.5px] text-white/65 transition-colors hover:text-[#7DDDFF]">
                             {link}
                           </a>
                         )}
@@ -122,7 +109,7 @@ const Footer = ({ showQuoteCTA = true }) => {
         </div>
 
         {/* Giant wordmark */}
-        <div className="relative mt-14 select-none">
+        <div className="relative mt-16 select-none">
           <InteractiveWordmark
             className="flex max-w-full items-baseline justify-center gap-[0.06em] whitespace-nowrap font-display text-[clamp(1.85rem,10vw,12rem)] font-black italic leading-[0.9] tracking-[-0.03em] sm:text-[clamp(2.6rem,13.5vw,12rem)]"
             segments={[
@@ -133,34 +120,9 @@ const Footer = ({ showQuoteCTA = true }) => {
         </div>
       </div>
 
-        {/* copyright bar */}
-        <div className="mt-8 pb-24 pt-6 lg:py-6">
-          <div className="mx-auto flex max-w-[1280px] flex-wrap items-center justify-center gap-x-3 gap-y-1.5 px-5 pb-4 text-center text-[11px] tracking-[0.06em] text-white/40 md:px-8">
-            <Link to="/hudson-nh-party-rentals" className="transition-colors hover:text-[#7DDDFF]">Hudson NH</Link>
-            <span aria-hidden="true">·</span>
-            <Link to="/manchester-nh-event-rentals" className="transition-colors hover:text-[#7DDDFF]">Manchester NH</Link>
-            <span aria-hidden="true">·</span>
-            <Link to="/nashua-nh-event-rentals" className="transition-colors hover:text-[#7DDDFF]">Nashua NH</Link>
-            <span aria-hidden="true">·</span>
-            <Link to="/portsmouth-nh-photo-booth-party-rentals" className="transition-colors hover:text-[#7DDDFF]">Portsmouth NH Photo Booth</Link>
-            <span aria-hidden="true">·</span>
-            <Link to="/concord-salem-derry-nh-party-rentals" className="transition-colors hover:text-[#7DDDFF]">Concord &amp; Salem NH</Link>
-            <span aria-hidden="true">·</span>
-            <Link to="/360-video-booth" className="transition-colors hover:text-[#7DDDFF]">360 Video Booth</Link>
-            <span aria-hidden="true">·</span>
-            <Link to="/mirror-photo-booth-rental" className="transition-colors hover:text-[#7DDDFF]">Mirror Photo Booth</Link>
-            <span aria-hidden="true">·</span>
-            <Link to="/led-video-wall-rental" className="transition-colors hover:text-[#7DDDFF]">LED Video Walls</Link>
-            <span aria-hidden="true">·</span>
-            <Link to="/inflatable-movie-screen-rental" className="transition-colors hover:text-[#7DDDFF]">Inflatable Screens</Link>
-            <span aria-hidden="true">·</span>
-            <Link to="/vr-escape-room-rental" className="transition-colors hover:text-[#7DDDFF]">VR Escape Rooms</Link>
-            <span aria-hidden="true">·</span>
-            <Link to="/led-glow-swings-rental" className="transition-colors hover:text-[#7DDDFF]">LED Glow Swings</Link>
-            <span aria-hidden="true">·</span>
-            <Link to="/custom-trucker-hat-bar-rental" className="transition-colors hover:text-[#7DDDFF]">Custom Hat Bar</Link>
-          </div>
-          <div className="mx-auto flex max-w-[1280px] flex-col items-center gap-4 px-5 md:flex-row md:gap-6 md:px-8">
+      {/* copyright bar */}
+      <div className="mt-8 pb-24 pt-6 lg:py-6">
+        <div className="mx-auto flex max-w-[1280px] flex-col items-center gap-4 px-5 md:flex-row md:gap-6 md:px-8">
           <div className="flex shrink-0 items-center gap-3">
             <span className="flex gap-1.5" aria-hidden="true">
               <span className="footer-slash" />

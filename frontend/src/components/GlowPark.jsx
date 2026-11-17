@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
 import {
   Sparkles,
   Gamepad2,
@@ -12,35 +11,34 @@ import Footer from "./Footer";
 import ReadyCTA from "./ReadyCTA";
 import { useCmsPage } from "../lib/cmsContent";
 import { CMS_PAGES } from "../lib/cmsPages";
-import { ROUTE_SEO } from "../lib/routeSeoData";
 
 const OVERVIEW_POINTS = [
-  "Eight illuminated truss-mounted LED glow swings",
-  "Four social multi-rider LED glow seesaws",
-  "Full-color room & outdoor venue uplighting",
-  "Portable glowing mini-golf course with putters",
+  "Eight illuminated glow swings",
+  "Four social glow seesaws",
+  "Colorful room & venue uplighting",
+  "Interactive glowing mini-golf course",
 ];
 
 const INCLUDED_FEATURES = [
   {
     icon: Sparkles,
-    title: "8 LED Glow Swings",
-    desc: "Eight commercial illuminated glow swings suspended from sturdy truss frames create a high-energy social centerpiece.",
+    title: "8 Glow Swings",
+    desc: "Eight illuminated swings create an inviting, high-energy centerpiece for guests to enjoy.",
   },
   {
     icon: Gamepad2,
-    title: "4 LED Glow Seesaws",
-    desc: "Four glowing seesaws bring a playful, shareable activity guests can ride together all evening.",
+    title: "4 Glow Seesaws",
+    desc: "Four glowing seesaws bring a playful, social activity guests can share together.",
   },
   {
     icon: Lightbulb,
-    title: "Colorful Venue Uplighting",
-    desc: "Full-color ambient uplights transform gymnasiums, ballrooms, tents, and outdoor lawns into neon playgrounds.",
+    title: "Colorful Uplighting",
+    desc: "Uplights add vibrant color around the event space and complete the Glow Park atmosphere.",
   },
   {
     icon: CircleDot,
     title: "Glowing Mini Golf",
-    desc: "An interactive glowing LED mini-golf course adds friendly competition for campus events, proms, and parties.",
+    desc: "A glowing mini-golf setup adds a friendly challenge for guests of all ages.",
   },
 ];
 
@@ -66,11 +64,6 @@ const DEFAULT_GALLERY = [
 ];
 
 const GlowPark = () => {
-  const { pathname } = useLocation();
-  const normalizedPath = pathname === "/" ? "/" : pathname.replace(/\/+$/, "");
-  const routeSeo = ROUTE_SEO[normalizedPath] || ROUTE_SEO["/glow-park"];
-  const isBaseRoute = normalizedPath === "/glow-park";
-
   const cmsPage = useCmsPage("glow-park", CMS_PAGES.find((page) => page.slug === "glow-park"));
   const galleryItems = (cmsPage.gallery && cmsPage.gallery.some((item) => item.src))
     ? cmsPage.gallery.map((item, idx) => ({
@@ -79,32 +72,9 @@ const GlowPark = () => {
       }))
     : DEFAULT_GALLERY;
 
-  const rawHeroTitle = (cmsPage.heroTitle || "").trim();
-  const isDefaultCmsTitle = !rawHeroTitle || rawHeroTitle.toUpperCase() === "GLOW PARK EXPERIENCE";
-  const heroTitle =
-    isBaseRoute && !isDefaultCmsTitle
-      ? rawHeroTitle
-      : routeSeo.heroDisplayTitle || "GLOW PARK LED SWINGS & MINI GOLF RENTALS";
-
-  const rawHeroSubtitle = (cmsPage.heroSubtitle || "").trim();
-  const isDefaultCmsSubtitle =
-    !rawHeroSubtitle ||
-    rawHeroSubtitle ===
-      "Light up your event with glowing games, colorful uplighting, and a full-package experience guests can jump right into.";
-  const heroSubtitle = !isBaseRoute
-    ? routeSeo.heroSubtitleOverride || cmsPage.heroSubtitle
-    : isDefaultCmsSubtitle
-      ? "Rent 8 commercial truss-mounted LED glow swings, 4 glowing seesaws, vibrant venue uplighting, and portable glowing mini golf across Hudson NH, Manchester, Portsmouth, Boston MA & North Carolina."
-      : cmsPage.heroSubtitle;
-
-  const heroImage =
-    normalizedPath === "/led-glow-swings-rental"
-      ? "/glow-park-experience-1.jpg"
-      : cmsPage.heroImage || "/experience-glow-park.jpg";
-
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [normalizedPath]);
+  }, []);
 
   return (
     <div className="min-h-screen bg-[#05070f] text-foreground">
@@ -113,25 +83,25 @@ const GlowPark = () => {
       <main>
         {/* ================= HERO SECTION ================= */}
         <section className="relative overflow-hidden pt-36 pb-20 md:pt-44 md:pb-28">
+          {/* Background image from Glow Park carousel */}
           <img
-            src={heroImage}
-            alt={routeSeo.heading || "Glow Park LED Glow Swings Seesaws and Mini Golf Rental"}
-            fetchPriority="high"
-            decoding="sync"
+            src={cmsPage.heroImage || "/experience-glow-park.jpg"}
+            alt="Glow Park Experience event setup"
             className="absolute inset-0 h-full w-full object-cover object-center"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#05070f]/92 via-[#05070f]/60 to-transparent" />
+          {/* Directional gradient overlay for visibility & text contrast */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#05070f]/90 via-[#05070f]/50 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#05070f] via-transparent to-[#05070f]/60" />
           <div className="hero-grid pointer-events-none absolute inset-0 opacity-15" />
           <div className="pointer-events-none absolute left-1/3 top-1/2 h-[400px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#0066FD]/15 blur-[150px]" />
 
           <div className="relative z-10 mx-auto max-w-[1280px] px-5 md:px-8">
-            <h1 className="max-w-4xl font-display text-[clamp(2.35rem,6vw,4.75rem)] font-extrabold uppercase italic leading-[1.04] tracking-tight text-white drop-shadow-[0_6px_24px_rgba(0,0,0,0.9)]">
-              {heroTitle}
+            <h1 className="max-w-4xl font-display text-[clamp(2.5rem,6.5vw,5rem)] font-extrabold uppercase italic leading-[1.04] tracking-tight text-white drop-shadow-[0_6px_24px_rgba(0,0,0,0.9)]">
+              {cmsPage.heroTitle}
             </h1>
 
             <p className="mt-6 max-w-2xl text-[17px] leading-relaxed text-white/90 drop-shadow-[0_3px_10px_rgba(0,0,0,0.85)] sm:text-[19px]">
-              {heroSubtitle}
+              {cmsPage.heroSubtitle}
             </p>
           </div>
         </section>
@@ -140,6 +110,7 @@ const GlowPark = () => {
         <section className="relative border-t border-white/5 bg-[#070b16] py-20 md:py-28">
           <div className="mx-auto max-w-[1280px] px-5 md:px-8">
             <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-12 lg:gap-16">
+              {/* Left Column */}
               <div className="lg:col-span-5">
                 <div className="flex items-center gap-3 font-display text-[12px] font-bold uppercase tracking-[0.22em] text-[#7DDDFF]">
                   <span className="h-0.5 w-7 bg-[#0066FD]" />
@@ -150,20 +121,20 @@ const GlowPark = () => {
                 </h2>
               </div>
 
+              {/* Right Column */}
               <div className="flex flex-col gap-8 lg:col-span-7">
-                <p className="text-[17px] leading-relaxed text-white/75 sm:text-[18px]">
-                  Bring the complete Glow Park full package to your college quad, darkened gymnasium, ballroom, or festival lawn with{" "}
-                  <Link to="/led-glow-swings-rental" className="text-[#7DDDFF] underline decoration-[#7DDDFF]/35 underline-offset-4 hover:text-white">
-                    8 illuminated LED glow swings
-                  </Link>
-                  , 4 glowing seesaws, colorful uplighting, and glowing mini golf—delivered and assembled by our NH &amp; NC crew.
+                <p className="text-[17px] leading-relaxed text-white/70 sm:text-[18px]">
+                  Bring the Glow Park full package to your venue with illuminated attractions,
+                  colorful uplighting, and a glowing mini-golf experience. Guests can move
+                  between activities and make the space their own.
                 </p>
 
+                {/* 2x2 Grid of Points */}
                 <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2">
                   {OVERVIEW_POINTS.map((point) => (
                     <div
                       key={point}
-                      className="flex min-h-[58px] items-center gap-3.5 rounded-xl border border-white/10 bg-[#0c1830]/80 px-5 py-2.5 backdrop-blur-sm transition-all duration-300 hover:border-[#0066FD]/50 hover:bg-[#0c1830]"
+                      className="flex h-[58px] items-center gap-3.5 rounded-xl border border-white/10 bg-[#0c1830]/80 px-5 backdrop-blur-sm transition-all duration-300 hover:border-[#0066FD]/50 hover:bg-[#0c1830]"
                     >
                       <Check className="h-4 w-4 shrink-0 text-[#7DDDFF]" strokeWidth={2.6} />
                       <span className="text-[13px] font-medium leading-tight text-white/90 sm:text-[13.5px]">
@@ -190,6 +161,7 @@ const GlowPark = () => {
               </h2>
             </div>
 
+            {/* 4 Feature Cards (2x2) */}
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
               {INCLUDED_FEATURES.map((item) => {
                 const IconComponent = item.icon;
@@ -229,6 +201,7 @@ const GlowPark = () => {
               </h2>
             </div>
 
+            {/* 3 Showcase Image Cards */}
             <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
               {galleryItems.map((img, i) => (
                 <div

@@ -21,39 +21,10 @@ const WhoWeAre = () => {
           </h2>
 
           <p className="mt-6 max-w-lg text-[15px] leading-relaxed text-white/60">
-            For over a decade we&apos;ve produced{" "}
-            <Link to="/gaming-events" className="text-white/85 underline decoration-[#0066FD]/50 underline-offset-4 hover:text-[#7DDDFF]">
-              Next Level FEC attractions &amp; live gaming events
-            </Link>{" "}
-            across{" "}
-            <Link to="/new-hampshire-massachusetts-event-rentals" className="text-white/85 underline decoration-[#0066FD]/50 underline-offset-4 hover:text-[#7DDDFF]">
-              NH, MA
-            </Link>
-            , and{" "}
-            <Link to="/north-carolina-event-rentals" className="text-white/85 underline decoration-[#0066FD]/50 underline-offset-4 hover:text-[#7DDDFF]">
-              North Carolina
-            </Link>{" "}
-            — from 32-foot{" "}
-            <Link to="/movie-nights" className="text-white/85 underline decoration-[#0066FD]/50 underline-offset-4 hover:text-[#7DDDFF]">
-              outdoor movie screens
-            </Link>
-            ,{" "}
-            <Link to="/virtual-reality" className="text-white/85 underline decoration-[#0066FD]/50 underline-offset-4 hover:text-[#7DDDFF]">
-              VR gaming arcades
-            </Link>
-            ,{" "}
-            <Link to="/sim-racing" className="text-white/85 underline decoration-[#0066FD]/50 underline-offset-4 hover:text-[#7DDDFF]">
-              racing simulators
-            </Link>
-            , and{" "}
-            <Link to="/photo-booth" className="text-white/85 underline decoration-[#0066FD]/50 underline-offset-4 hover:text-[#7DDDFF]">
-              360 photo booths
-            </Link>{" "}
-            to{" "}
-            <Link to="/novelties" className="text-white/85 underline decoration-[#0066FD]/50 underline-offset-4 hover:text-[#7DDDFF]">
-              custom novelties
-            </Link>{" "}
-            and party planning equipment for gamers. Every event is delivered, staffed, and run by our own crew.
+            For over a decade we've produced interactive entertainment that
+            turns gatherings into stories — from 32-foot outdoor cinemas to full
+            esports tournament stages. Every event is delivered, staffed and run
+            by our own crew.
           </p>
 
           <Link
@@ -70,7 +41,7 @@ const WhoWeAre = () => {
           <div className="relative overflow-hidden rounded-2xl border border-white/10 shadow-2xl">
             <img
               src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&w=1200&q=80"
-              alt="Crowd celebrating at interactive live gaming event and entertainment showcase"
+              alt="Crowd celebrating with confetti"
               loading="lazy"
               decoding="async"
               className="h-[380px] w-full object-cover"
