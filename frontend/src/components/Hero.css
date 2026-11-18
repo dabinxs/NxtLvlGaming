@@ -12,7 +12,7 @@
   overflow: clip;
   background-color: #080a26;
   /* Center hero words & CTAs in the middle while leaving comfortable room below for larger corner art */
-  padding-block: clamp(5.25rem, 9svh, 6.5rem) clamp(4.5rem, 11svh, 7.5rem);
+  padding-block: clamp(5.25rem, 9svh, 6.5rem) calc(clamp(4.5rem, 11svh, 7.5rem) + 2.25rem);
 }
 
 .homepage-hero__content {
@@ -91,7 +91,7 @@
 /* On shorter desktop viewports (height <= 700px), keep text centered & artwork bold without touching CTAs */
 @media (min-width: 768px) and (max-height: 700px) {
   .homepage-hero {
-    padding-block: clamp(5rem, 10svh, 5.75rem) clamp(3.5rem, 9svh, 5.5rem);
+    padding-block: clamp(5rem, 10svh, 5.75rem) calc(clamp(3.5rem, 9svh, 5.5rem) + 1.5rem);
   }
 
   .homepage-hero__title {
