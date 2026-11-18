@@ -24,7 +24,8 @@
 }
 
 .nav-menu-trigger--active,
-.nav-dropdown {
+.nav-dropdown,
+.nav-quote-button {
   background: linear-gradient(110deg, #4765c8 0%, #00a4f3 100%);
 }
 

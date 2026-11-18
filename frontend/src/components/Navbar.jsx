@@ -185,7 +185,7 @@ const Navbar = ({ topOnly = false }) => {
           <Link
             to="/quote"
             data-testid="nav-get-quote"
-            className="cta-fill group hidden items-center gap-2 rounded-full bg-[#0066CC] px-6 py-3 text-[13px] font-bold uppercase tracking-[0.04em] text-white shadow-[0_6px_20px_rgba(0,102,204,0.3)] hover:shadow-[0_8px_28px_rgba(0,102,204,0.45)] lg:inline-flex"
+            className="cta-fill nav-quote-button group hidden items-center gap-2 rounded-full px-6 py-3 text-[13px] font-bold uppercase tracking-[0.04em] text-white shadow-[0_6px_20px_rgba(0,102,204,0.3)] hover:shadow-[0_8px_28px_rgba(0,102,204,0.45)] lg:inline-flex"
           >
             Get A Quote
             <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:rotate-45" />
