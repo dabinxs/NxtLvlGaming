@@ -20,28 +20,30 @@
 .gaming-setup__inner {
   position: relative;
   inline-size: 100%;
-  padding: clamp(5.5rem, 5.9vw, 7.4rem) clamp(1.25rem, 2.6vw, 3.5rem)
-    clamp(3rem, 4vw, 5rem);
+  max-inline-size: 1280px;
+  margin-inline: auto;
+  padding: clamp(5.5rem, 5.9vw, 7.4rem) 2rem clamp(3rem, 4vw, 5rem);
 }
 
 .gaming-setup__intro {
   min-block-size: clamp(16rem, 17vw, 21rem);
-  max-inline-size: 42rem;
+  max-inline-size: 38rem;
 }
 
 .gaming-setup__eyebrow {
   display: flex;
   align-items: center;
-  gap: 1.25rem;
-  color: #058bff;
-  font-size: clamp(0.875rem, 1vw, 1.125rem);
+  gap: 0.75rem;
+  color: #7dddff;
+  font-size: 0.75rem;
   font-weight: 700;
   line-height: 1.25;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
 }
 
 .gaming-setup__rule {
-  inline-size: clamp(3rem, 4.6vw, 5.75rem);
+  inline-size: 1.75rem;
   block-size: 2px;
   flex: none;
   background: #058bff;
@@ -50,11 +52,11 @@
 .gaming-setup__title {
   display: flex;
   flex-direction: column;
-  margin-block-start: 1.65rem;
-  font-size: clamp(2.15rem, 2.5vw, 3.15rem);
+  margin-block-start: 1rem;
+  font-size: clamp(1.9rem, 2.3vw, 2.5rem);
   font-weight: 800;
-  line-height: 1.15;
-  letter-spacing: -0.035em;
+  line-height: 1.12;
+  letter-spacing: -0.025em;
   text-transform: uppercase;
 }
 
@@ -63,10 +65,10 @@
 }
 
 .gaming-setup__description {
-  max-inline-size: 39rem;
-  margin-block-start: 1.5rem;
-  font-size: clamp(1rem, 0.95vw, 1.125rem);
-  line-height: 1.95;
+  max-inline-size: 34rem;
+  margin-block-start: 1.25rem;
+  font-size: clamp(0.875rem, 0.95vw, 1rem);
+  line-height: 1.65;
 }
 
 .gaming-setup__cards {
@@ -78,7 +80,7 @@
 
 .gaming-setup__card {
   min-inline-size: 0;
-  block-size: clamp(15rem, 13vw, 16.25rem);
+  block-size: clamp(13rem, 13vw, 14rem);
   overflow: hidden;
   border-radius: clamp(1.5rem, 2vw, 2.25rem);
   background: linear-gradient(180deg, #071a3a, #041329);
@@ -88,14 +90,14 @@
 .gaming-setup__card-media {
   display: grid;
   place-items: center;
-  block-size: 71%;
+  block-size: 65%;
   background: radial-gradient(ellipse at 50% 68%, rgb(5 50 115 / 0.28), transparent 70%);
 }
 
 .gaming-setup__card-media img {
   display: block;
-  inline-size: 100%;
-  block-size: 100%;
+  inline-size: 90%;
+  block-size: 90%;
   object-fit: contain;
 }
 
@@ -125,7 +127,7 @@
   }
 
   .gaming-setup__card {
-    block-size: 16.25rem;
+    block-size: 14rem;
   }
 }
 
@@ -138,6 +140,7 @@
 
   .gaming-setup__inner {
     padding-block-start: 5rem;
+    padding-inline: 1.25rem;
   }
 
   .gaming-setup__intro {
@@ -159,6 +162,6 @@
   }
 
   .gaming-setup__card {
-    block-size: 17rem;
+    block-size: 15rem;
   }
 }
