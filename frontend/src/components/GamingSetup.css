@@ -1,0 +1,164 @@
+.gaming-setup {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: #000;
+  color: #fff;
+}
+
+.gaming-setup__background {
+  position: absolute;
+  z-index: -1;
+  inset-block-start: 0;
+  inset-inline-end: 0;
+  inline-size: 74%;
+  block-size: clamp(30rem, 34vw, 36.25rem);
+  object-fit: cover;
+  object-position: center bottom;
+}
+
+.gaming-setup__inner {
+  position: relative;
+  inline-size: 100%;
+  padding: clamp(5.5rem, 5.9vw, 7.4rem) clamp(1.25rem, 2.6vw, 3.5rem)
+    clamp(3rem, 4vw, 5rem);
+}
+
+.gaming-setup__intro {
+  min-block-size: clamp(16rem, 17vw, 21rem);
+  max-inline-size: 42rem;
+}
+
+.gaming-setup__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  color: #058bff;
+  font-size: clamp(0.875rem, 1vw, 1.125rem);
+  font-weight: 700;
+  line-height: 1.25;
+  text-transform: uppercase;
+}
+
+.gaming-setup__rule {
+  inline-size: clamp(3rem, 4.6vw, 5.75rem);
+  block-size: 2px;
+  flex: none;
+  background: #058bff;
+}
+
+.gaming-setup__title {
+  display: flex;
+  flex-direction: column;
+  margin-block-start: 1.65rem;
+  font-size: clamp(2.15rem, 2.5vw, 3.15rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+}
+
+.gaming-setup__title-accent {
+  color: #078bff;
+}
+
+.gaming-setup__description {
+  max-inline-size: 39rem;
+  margin-block-start: 1.5rem;
+  font-size: clamp(1rem, 0.95vw, 1.125rem);
+  line-height: 1.95;
+}
+
+.gaming-setup__cards {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: clamp(1rem, 1.5vw, 2rem);
+}
+
+.gaming-setup__card {
+  min-inline-size: 0;
+  block-size: clamp(15rem, 13vw, 16.25rem);
+  overflow: hidden;
+  border-radius: clamp(1.5rem, 2vw, 2.25rem);
+  background: linear-gradient(180deg, #071a3a, #041329);
+  box-shadow: 0 18px 36px rgb(0 0 0 / 0.18);
+}
+
+.gaming-setup__card-media {
+  display: grid;
+  place-items: center;
+  block-size: 71%;
+  background: radial-gradient(ellipse at 50% 68%, rgb(5 50 115 / 0.28), transparent 70%);
+}
+
+.gaming-setup__card-media img {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: contain;
+}
+
+.gaming-setup__card-copy {
+  padding-inline: clamp(1rem, 1.4vw, 1.75rem);
+}
+
+.gaming-setup__card-copy h3 {
+  font-size: clamp(0.85rem, 0.95vw, 1.125rem);
+  font-weight: 800;
+  letter-spacing: 0.035em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.gaming-setup__card-copy p {
+  margin-block-start: 0.55rem;
+  color: #c4cee0;
+  font-size: clamp(0.6875rem, 0.65vw, 0.75rem);
+  letter-spacing: 0.045em;
+  line-height: 1.4;
+}
+
+@media (max-width: 1279px) {
+  .gaming-setup__cards {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .gaming-setup__card {
+    block-size: 16.25rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .gaming-setup__background {
+    inline-size: 100%;
+    block-size: 25rem;
+    opacity: 0.52;
+  }
+
+  .gaming-setup__inner {
+    padding-block-start: 5rem;
+  }
+
+  .gaming-setup__intro {
+    min-block-size: 19rem;
+  }
+
+  .gaming-setup__cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 540px) {
+  .gaming-setup__title {
+    font-size: clamp(1.85rem, 7vw, 2.25rem);
+  }
+
+  .gaming-setup__cards {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .gaming-setup__card {
+    block-size: 17rem;
+  }
+}
