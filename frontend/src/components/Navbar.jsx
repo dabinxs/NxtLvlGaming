@@ -128,7 +128,7 @@ const Navbar = ({ topOnly = false }) => {
         data-testid="site-navbar"
         onMouseLeave={scheduleClose}
         className={`fixed inset-x-0 top-0 z-50 px-4 pt-4 pb-3 sm:pt-5 sm:pb-4 transition-[background-color,box-shadow,backdrop-filter] duration-500 ease-in-out ${
-          isScrolled
+          isScrolled && showLinks
             ? "bg-[#050b20]/80 backdrop-blur-xl shadow-[0_12px_32px_rgba(0,0,0,0.28)]"
             : "bg-transparent"
         }`}
