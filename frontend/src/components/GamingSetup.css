@@ -146,6 +146,10 @@
   .gaming-setup__inner {
     z-index: 1;
   }
+
+  .gaming-setup--movie .gaming-setup__cards {
+    margin-block-start: clamp(2.5rem, 3.5vw, 3.5rem);
+  }
 }
 
 @media (max-width: 1279px) {

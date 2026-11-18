@@ -86,7 +86,7 @@ const GamingSetup = ({ variant = "gaming" }) => {
   const setup = setups[variant];
 
   return (
-    <section id="what-is-included" className="gaming-setup">
+    <section id="what-is-included" className={`gaming-setup gaming-setup--${variant}`}>
       <img
         className="gaming-setup__background"
         src={setup.background}
