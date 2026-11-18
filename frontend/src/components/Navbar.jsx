@@ -97,13 +97,11 @@ const Navbar = ({ topOnly = false }) => {
       <header
         data-testid="site-navbar"
         onMouseLeave={scheduleClose}
-        className={`fixed inset-x-0 top-0 z-50 px-4 pt-4 pb-3 sm:pt-5 sm:pb-4 transition-[background-color,box-shadow,backdrop-filter] duration-500 ease-in-out ${
-          isScrolled && showLinks
-            ? "bg-[#050b20]/80 backdrop-blur-xl shadow-[0_12px_32px_rgba(0,0,0,0.28)]"
-            : "bg-transparent"
+        className={`site-navbar fixed inset-x-0 top-0 z-50 px-4 pt-4 pb-3 sm:pt-5 sm:pb-4 ${
+          isScrolled && showLinks ? "site-navbar--scrolled" : ""
         }`}
       >
-        <div className="mx-auto flex w-full max-w-[1400px] items-center justify-between">
+        <div className="relative z-10 mx-auto flex w-full max-w-[1400px] items-center justify-between">
           <Link to="/" className="flex items-center group">
             <img
               src="/logo-3d.png"

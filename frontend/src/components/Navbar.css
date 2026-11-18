@@ -1,3 +1,22 @@
+.site-navbar::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: 0 0 -4rem;
+  pointer-events: none;
+  background: rgb(5 11 32 / 80%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 60%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 60%, transparent 100%);
+  opacity: 0;
+  transition: opacity 500ms ease-in-out;
+}
+
+.site-navbar--scrolled::before {
+  opacity: 1;
+}
+
 .nav-menu-scrim {
   background: rgb(3 5 18 / 55%);
   backdrop-filter: blur(12px);
