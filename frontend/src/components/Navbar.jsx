@@ -80,12 +80,14 @@ const NavDropdown = ({ menuKey }) => {
 const Navbar = ({ topOnly = false }) => {
   const [activeMenu, setActiveMenu] = useState(null);
   const [showNavbar, setShowNavbar] = useState(true);
+  const [isScrolled, setIsScrolled] = useState(false);
   const lastScrollY = useRef(0);
   const closeTimer = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
+      setIsScrolled(currentScrollY > 20);
 
       if (currentScrollY <= 20) {
         setShowNavbar(true);
@@ -104,6 +106,8 @@ const Navbar = ({ topOnly = false }) => {
       lastScrollY.current = currentScrollY;
     };
 
+    lastScrollY.current = window.scrollY;
+    setIsScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, [topOnly]);
@@ -122,7 +126,11 @@ const Navbar = ({ topOnly = false }) => {
       <header
         data-testid="site-navbar"
         onMouseLeave={scheduleClose}
-        className={`fixed inset-x-0 top-0 z-50 px-4 pt-4 sm:pt-5 transition-transform duration-500 ease-in-out ${
+        className={`fixed inset-x-0 top-0 z-50 px-4 pt-4 pb-3 sm:pt-5 sm:pb-4 transition-[transform,background-color,box-shadow,backdrop-filter] duration-500 ease-in-out ${
+          isScrolled
+            ? "bg-[#050b20]/80 backdrop-blur-xl shadow-[0_12px_32px_rgba(0,0,0,0.28)]"
+            : "bg-transparent"
+        } ${
           showNavbar ? "translate-y-0" : "-translate-y-full pointer-events-none"
         }`}
       >
@@ -136,8 +144,7 @@ const Navbar = ({ topOnly = false }) => {
           </Link>
           <nav
             data-testid="nav-links-pill"
-            className="hidden items-center gap-2 rounded-[26px] border-2 border-white/[0.09] px-6 py-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.07)] lg:flex"
-            style={{ background: "linear-gradient(180deg, #031138 0%, #223566 100%)" }}
+            className="hidden items-center gap-6 lg:flex"
           >
             {navLinks.map((l) =>
               l.menu ? (
@@ -152,8 +159,8 @@ const Navbar = ({ topOnly = false }) => {
                     onClick={() => setActiveMenu(activeMenu === l.menu ? null : l.menu)}
                     className={`flex items-center gap-1.5 rounded-xl px-4 py-2 font-display text-[15px] font-bold capitalize transition-all duration-300 ${
                       activeMenu === l.menu
-                        ? "bg-white/[0.08] text-white"
-                        : "text-white hover:bg-white/[0.06]"
+                        ? "text-[#7DDDFF]"
+                        : "text-white hover:text-[#7DDDFF]"
                     }`}
                   >
                     {l.label.toLowerCase()}
@@ -184,7 +191,7 @@ const Navbar = ({ topOnly = false }) => {
                   key={l.label}
                   to={l.href.startsWith("#") ? `/${l.href}` : l.href}
                   onMouseEnter={scheduleClose}
-                  className="rounded-xl px-4 py-2 font-display text-[15px] font-bold capitalize text-white transition-colors hover:bg-white/[0.06]"
+                  className="rounded-xl px-4 py-2 font-display text-[15px] font-bold capitalize text-white transition-colors hover:text-[#7DDDFF]"
                 >
                   {l.label.toLowerCase()}
                 </Link>
