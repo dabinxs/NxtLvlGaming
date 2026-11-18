@@ -79,7 +79,7 @@ const NavDropdown = ({ menuKey }) => {
 
 const Navbar = ({ topOnly = false }) => {
   const [activeMenu, setActiveMenu] = useState(null);
-  const [showNavbar, setShowNavbar] = useState(true);
+  const [showLinks, setShowLinks] = useState(true);
   const [isScrolled, setIsScrolled] = useState(false);
   const lastScrollY = useRef(0);
   const closeTimer = useRef(null);
@@ -90,17 +90,14 @@ const Navbar = ({ topOnly = false }) => {
       setIsScrolled(currentScrollY > 20);
 
       if (currentScrollY <= 20) {
-        setShowNavbar(true);
+        setShowLinks(true);
       } else if (topOnly) {
-        // On focused tools, keep the workspace clear while scrolling back up.
-        // The nav returns only when the page itself reaches the top.
-        setShowNavbar(false);
+        // On focused tools, keep the page links out of the workspace until the top.
+        setShowLinks(false);
       } else if (currentScrollY > lastScrollY.current + 8) {
-        // Scrolling down -> hide navbar
-        setShowNavbar(false);
+        setShowLinks(false);
       } else if (currentScrollY < lastScrollY.current - 8) {
-        // Scrolling up -> show navbar
-        setShowNavbar(true);
+        setShowLinks(true);
       }
 
       lastScrollY.current = currentScrollY;
@@ -111,6 +108,10 @@ const Navbar = ({ topOnly = false }) => {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, [topOnly]);
+
+  useEffect(() => {
+    if (!showLinks) setActiveMenu(null);
+  }, [showLinks]);
 
   const openMenu = (key) => {
     clearTimeout(closeTimer.current);
@@ -126,12 +127,10 @@ const Navbar = ({ topOnly = false }) => {
       <header
         data-testid="site-navbar"
         onMouseLeave={scheduleClose}
-        className={`fixed inset-x-0 top-0 z-50 px-4 pt-4 pb-3 sm:pt-5 sm:pb-4 transition-[transform,background-color,box-shadow,backdrop-filter] duration-500 ease-in-out ${
+        className={`fixed inset-x-0 top-0 z-50 px-4 pt-4 pb-3 sm:pt-5 sm:pb-4 transition-[background-color,box-shadow,backdrop-filter] duration-500 ease-in-out ${
           isScrolled
             ? "bg-[#050b20]/80 backdrop-blur-xl shadow-[0_12px_32px_rgba(0,0,0,0.28)]"
             : "bg-transparent"
-        } ${
-          showNavbar ? "translate-y-0" : "-translate-y-full pointer-events-none"
         }`}
       >
         <div className="mx-auto flex w-full max-w-[1400px] items-center justify-between">
@@ -144,7 +143,11 @@ const Navbar = ({ topOnly = false }) => {
           </Link>
           <nav
             data-testid="nav-links-pill"
-            className="hidden items-center gap-6 lg:flex"
+            aria-hidden={!showLinks}
+            inert={!showLinks}
+            className={`hidden items-center gap-6 transition-[opacity,transform] duration-500 ease-in-out lg:flex ${
+              showLinks ? "translate-y-0 opacity-100" : "pointer-events-none -translate-y-2 opacity-0"
+            }`}
           >
             {navLinks.map((l) =>
               l.menu ? (
