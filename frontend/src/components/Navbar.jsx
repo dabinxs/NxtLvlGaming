@@ -8,10 +8,11 @@ import "./Navbar.css";
 const NavDropdown = ({ menuKey, onNavigate }) => {
   const menu = megaMenus[menuKey];
   if (!menu) return null;
+  const graphic = menuKey === "events" ? "/events-menu-graphic.png" : "/experience-menu-graphic.png";
   return (
     <div className="nav-dropdown__content">
       <p className="nav-dropdown__category">
-        {menuKey === "events" ? "Occasion" : "Experiences"}
+        {menuKey === "events" ? "Occasion" : "Feels"}
       </p>
       <div className="nav-dropdown__links">
         {menu.items.map((it) => (
@@ -24,18 +25,18 @@ const NavDropdown = ({ menuKey, onNavigate }) => {
           >
             {menuKey === "events" && it.title === "Gaming Events"
               ? "Video Gaming Events"
+              : menuKey === "experience" && it.title === "Photo Booth"
+              ? "Photobooth"
               : it.title}
           </Link>
         ))}
       </div>
-      {menuKey === "events" && (
-        <img
-          src="/events-menu-graphic.png"
-          alt=""
-          className="nav-dropdown__graphic"
-          decoding="async"
-        />
-      )}
+      <img
+        src={graphic}
+        alt=""
+        className="nav-dropdown__graphic"
+        decoding="async"
+      />
     </div>
   );
 };
