@@ -11,6 +11,28 @@
     ],
     "headers": [
       {
+        "source": "**",
+        "headers": [
+          {
+            "key": "X-Content-Type-Options",
+            "value": "nosniff"
+          },
+          {
+            "key": "Referrer-Policy",
+            "value": "strict-origin-when-cross-origin"
+          }
+        ]
+      },
+      {
+        "source": "/@(sitemap.xml|robots.txt|llms.txt)",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "public, max-age=3600"
+          }
+        ]
+      },
+      {
         "source": "/static/**",
         "headers": [
           {
@@ -198,6 +220,31 @@
       {
         "source": "/covid-19-information",
         "destination": "/",
+        "type": 301
+      },
+      {
+        "source": "/explore",
+        "destination": "/explore-experiences",
+        "type": 301
+      },
+      {
+        "source": "/experiences",
+        "destination": "/explore-experiences",
+        "type": 301
+      },
+      {
+        "source": "/photo-booths",
+        "destination": "/photo-booth",
+        "type": 301
+      },
+      {
+        "source": "/about-us",
+        "destination": "/about",
+        "type": 301
+      },
+      {
+        "source": "/contact-us",
+        "destination": "/contact",
         "type": 301
       }
     ],

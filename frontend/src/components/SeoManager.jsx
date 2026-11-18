@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import {
   AREA_SERVED,
   DEFAULT_IMAGE,
+  IMAGE_DIMENSIONS,
   ROUTE_SEO,
   SITE_URL,
 } from "../lib/routeSeoData";
@@ -39,19 +40,32 @@ function upsertRouteJsonLd(seo, canonicalUrl) {
   }
 
   const imageUrl = seo.image || DEFAULT_IMAGE;
-  const graph = [
-    {
-      "@type": "WebPage",
-      "@id": `${canonicalUrl}#webpage`,
-      url: canonicalUrl,
-      name: seo.title,
-      description: seo.description,
-      isPartOf: { "@id": `${SITE_URL}/#website` },
-      primaryImageOfPage: {
-        "@type": "ImageObject",
-        url: imageUrl,
-      },
+  const imageDims = IMAGE_DIMENSIONS[imageUrl] || { width: 1024, height: 682 };
+  const imageAlt = seo.heading || seo.title;
+  const webPageNode = {
+    "@type": "WebPage",
+    "@id": `${canonicalUrl}#webpage`,
+    url: canonicalUrl,
+    name: seo.title,
+    description: seo.description,
+    inLanguage: "en-US",
+    isPartOf: { "@id": `${SITE_URL}/#website` },
+    about: { "@id": `${SITE_URL}/#organization` },
+    primaryImageOfPage: {
+      "@type": "ImageObject",
+      url: imageUrl,
+      contentUrl: imageUrl,
+      width: imageDims.width,
+      height: imageDims.height,
+      caption: imageAlt,
     },
+  };
+  if (seo.serviceName) {
+    webPageNode.mainEntity = { "@id": `${canonicalUrl}#service` };
+  }
+
+  const graph = [
+    webPageNode,
     {
       "@type": "BreadcrumbList",
       itemListElement: [
@@ -78,11 +92,17 @@ function upsertRouteJsonLd(seo, canonicalUrl) {
   if (seo.serviceName) {
     const serviceNode = {
       "@type": "Service",
+      "@id": `${canonicalUrl}#service`,
       name: seo.serviceName,
       serviceType: seo.serviceName,
       description: seo.description,
       url: canonicalUrl,
-      image: imageUrl,
+      image: {
+        "@type": "ImageObject",
+        url: imageUrl,
+        width: imageDims.width,
+        height: imageDims.height,
+      },
       provider: {
         "@id": `${SITE_URL}/#organization`,
       },
@@ -129,6 +149,7 @@ const SeoManager = () => {
   useEffect(() => {
     const canonicalUrl = `${SITE_URL}${seo.canonicalPath === "/" ? "/" : seo.canonicalPath}`;
     const imageUrl = seo.image || DEFAULT_IMAGE;
+    const imageDims = IMAGE_DIMENSIONS[imageUrl] || { width: 1024, height: 682 };
     const imageAlt = seo.heading || seo.title;
 
     document.title = seo.title;
@@ -188,6 +209,14 @@ const SeoManager = () => {
       property: "og:image",
       content: imageUrl,
     });
+    upsertMeta('meta[property="og:image:width"]', {
+      property: "og:image:width",
+      content: String(imageDims.width),
+    });
+    upsertMeta('meta[property="og:image:height"]', {
+      property: "og:image:height",
+      content: String(imageDims.height),
+    });
     upsertMeta('meta[property="og:image:alt"]', {
       property: "og:image:alt",
       content: imageAlt,
@@ -205,6 +234,10 @@ const SeoManager = () => {
     upsertMeta('meta[name="twitter:image"]', {
       name: "twitter:image",
       content: imageUrl,
+    });
+    upsertMeta('meta[name="twitter:image:alt"]', {
+      name: "twitter:image:alt",
+      content: imageAlt,
     });
 
     upsertRouteJsonLd(seo, canonicalUrl);

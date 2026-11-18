@@ -102,9 +102,9 @@ const ROUTE_SEO = {
   "/gaming-events": {
     title: "Video Game Event Production & Gaming Rentals | Next Level",
     description:
-      "Next Level FEC attraction & live gaming events: video gaming tournament production, esports screening & event planning equipment for gamers in NH, MA & NC.",
+      "Next Level FEC attraction & live gaming events: video game convention management, tournament production & event planning equipment for gamers. NH/MA/NC.",
     keywords:
-      "gaming events, real life gaming experience, live gaming events, gaming event, video game event, video game events, video gaming events, video game events near me, esports tournaments near me, esports screening, video game event planner, video game event management, video gaming tournament event management, video gaming competition production, video game tournament event production, esports rental company, bulk esports rental, event planning equipment for gamers, party planning equipment for gamers, esports rental, next level gaming ct, new england gaming, gaming events this weekend, next level gaming, nxt level gaming, next level fec attraction, video game tournaments, gaming event rental, gaming event planning, boston gaming events, gaming events Boston MA, college gaming events Boston, video game party rental Manchester NH, gaming events Hudson NH, gaming events Portsmouth NH, video gaming event rental New Hampshire, Connecticut gaming events, gaming event rentals Charlotte NC, mobile video game party Raleigh NC, esports tournament production NH MA CT NC, Super Smash Bros tournament rental, Mario Kart event rental Boston MA Charlotte NC",
+      "gaming events, real life gaming experience, live gaming events, gaming event, video game event, video game events, video gaming events, video game events near me, esports tournaments near me, esports screening, video game event planner, video game event management, video game convention management, video gaming tournament event management, video gaming competition production, video game tournament event production, esports rental company, bulk esports rental, event planning equipment for gamers, party planning equipment for gamers, esports rental, next level gaming ct, new england gaming, gaming events this weekend, next level gaming, nxt level gaming, next level fec attraction, video game tournaments, gaming event rental, gaming event planning, boston gaming events, gaming events Boston MA, college gaming events Boston, video game party rental Manchester NH, gaming events Hudson NH, gaming events Portsmouth NH, video gaming event rental New Hampshire, Connecticut gaming events, gaming event rentals Charlotte NC, mobile video game party Raleigh NC, esports tournament production NH MA CT NC, Super Smash Bros tournament rental, Mario Kart event rental Boston MA Charlotte NC",
     image: `${SITE_URL}/gaming-events-experience-1.jpg`,
     preloadImage: "/gaming-events-experience-1.jpg",
     canonicalPath: "/gaming-events",
@@ -144,6 +144,10 @@ const ROUTE_SEO = {
       {
         name: "Bulk Esports Rental & Video Game Tournament Event Production",
         description: "High-capacity event planning equipment for gamers, custom bracket management, main-stage championship projection, and turnkey video game event management for colleges, schools, and arenas.",
+      },
+      {
+        name: "Video Game Convention Management & Esports Screening Production",
+        description: "Full-scale video game convention management, multi-station console zones, live esports screening displays, and party planning equipment for gamers across NH, MA, CT, and NC.",
       },
     ],
     faqs: [
@@ -387,7 +391,7 @@ const ROUTE_SEO = {
   "/virtual-reality": {
     title: "VR Gaming Arcade & Mobile VR Event Rentals | NH, MA & NC",
     description:
-      "Mobile VR gaming arcade, VR event games (SUPERHOT VR, Beat Saber) for adults, colleges & corporate events plus 4-player VR escape rooms across NH, MA & NC.",
+      "Mobile VR gaming arcade & VR event games (Beat Saber, SUPERHOT VR) for adults, colleges & corporate events plus 4-player VR escape rooms in NH, MA & NC.",
     keywords:
       "vr event games, vr games near me for adults, vr room near me, virtual reality center near me, vr experience near me, virtual reality near me, vr arcade near me, vr arena near me, vr gaming near me, superhot virtual reality, nh vr rental, virtual reality rental, VR event rental, VR party rental, virtual reality rental NH, virtual reality rental Boston MA, VR party rental Charlotte NC, mobile VR escape room rental, college VR entertainment, Beat Saber party rental",
     image: `${SITE_URL}/experience-virtual-reality.jpg`,
@@ -493,7 +497,7 @@ const ROUTE_SEO = {
   "/photo-booth": {
     title: "Photo Booth NH — 360 Video & Mirror Photo Booth Rentals",
     description:
-      "Turnkey photo booth rental New Hampshire, Portsmouth photo booth rentals, 360 video booths & mirror photo booths in Portsmouth, Manchester, Nashua, Hudson & NC.",
+      "Turnkey photo booth rentals in Portsmouth, Manchester, Nashua & Hudson NH: 360 video booths & Magic Mirror booths with prints, props & QR sharing. Quote!",
     keywords:
       "photo booth rental new hampshire, photo booth nh, nh photo booth rental, portsmouth photo booth rental, portsmouth nh photo booth rental, 360 photo booth rental, photo booth rental, mirror photo booth rental, mirror photobooth rental, photo booth rental NH, manchester nh photo booth rental, nashua nh photo booth rental, hudson nh photo booth rental, concord nh photo booth rental, dover nh photo booth rental, salem nh photo booth rental, 360 video booth rental NH, photo booth rental Boston MA, 360 photo booth rental Charlotte NC, photo booth rental Raleigh NC, interactive photo booth, wedding photo booth rental, corporate photo booth rental",
     image: `${SITE_URL}/experience-360-video-booth.jpg`,
@@ -768,7 +772,7 @@ const ROUTE_SEO = {
   "/sim-racing": {
     title: "Rent Racing Simulators & Sim Racing Cockpits | NH, MA & NC",
     description:
-      "Rent commercial racing simulator cockpits near you with force-feedback steering, telemetry & leaderboards for events in NH, Boston MA, CT & NC.",
+      "Rent commercial racing simulators near you with force-feedback wheels, bucket seats, telemetry screens & fastest-lap leaderboards in NH, Boston MA & NC.",
     keywords:
       "rent racing simulator near me, racing simulator rental near me, sim racing places near me, nh sim racing rental, sim racing rental, racing simulator rental, sim racing simulator rental, racing simulator event rental, sim racing rental NH MA, racing simulator rental Boston MA, sim racing simulator rental Charlotte NC, racing simulator event rental Raleigh NC, racing simulator rental Connecticut CT, force feedback racing cockpit rental, F1 racing simulator rental",
     image: `${SITE_URL}/experience-sim-racing.jpg`,
@@ -1341,9 +1345,9 @@ const ROUTE_SEO = {
       "Request pricing and book custom event novelty workshops including Patched City trucker hats and beanies, custom socks, Bead-tastics bracelets, intention bracelets, pillow dolls, sequin pillows, laser-engraved keychains, stamped rings, Silly Sacks, and custom license plates across New Hampshire, Massachusetts, New England, and North Carolina.",
   },
   "/explore-experiences": {
-    title: "Explore All Event Rentals & Experiences | Next Level Gaming NH & NC",
+    title: "All Event Rentals & Interactive Experiences | Next Level",
     description:
-      "Browse all turnkey event rentals from Next Level Gaming: live gaming events, outdoor movie screens, 360 photo booths, VR escape rooms, silent disco, sim racing & glow park.",
+      "Explore 10+ turnkey event & party rentals in NH, MA & NC: live gaming, outdoor movie screens, 360 photo booths, VR arcades, silent disco, glow park & more.",
     keywords:
       "explore events, event rentals, party equipment rentals, interactive experiences, video gaming events, next level fec attraction, outdoor movies, silent disco, virtual reality, photo booth, sim racing, glow park",
     image: DEFAULT_IMAGE,
@@ -1375,16 +1379,16 @@ const ROUTE_SEO = {
     ],
   },
   "/explore": {
-    title: "Explore All Event Rentals & Experiences | Next Level Gaming NH & NC",
+    title: "All Event Rentals & Interactive Experiences | Next Level",
     description:
-      "Browse all turnkey event rentals from Next Level Gaming: live gaming events, outdoor movie screens, 360 photo booths, VR escape rooms, silent disco, sim racing & glow park.",
+      "Explore 10+ turnkey event & party rentals in NH, MA & NC: live gaming, outdoor movie screens, 360 photo booths, VR arcades, silent disco, glow park & more.",
     canonicalPath: "/explore-experiences",
     noindex: true,
   },
   "/experiences": {
-    title: "Explore All Event Rentals & Experiences | Next Level Gaming NH & NC",
+    title: "All Event Rentals & Interactive Experiences | Next Level",
     description:
-      "Browse all turnkey event rentals from Next Level Gaming: live gaming events, outdoor movie screens, 360 photo booths, VR escape rooms, silent disco, sim racing & glow park.",
+      "Explore 10+ turnkey event & party rentals in NH, MA & NC: live gaming, outdoor movie screens, 360 photo booths, VR arcades, silent disco, glow park & more.",
     canonicalPath: "/explore-experiences",
     noindex: true,
   },
@@ -1691,7 +1695,7 @@ const ROUTE_SEO = {
   "/portsmouth-nh-photo-booth-party-rentals": {
     title: "Portsmouth NH Photo Booth Rental | 360 & Mirror Booths",
     description:
-      "Portsmouth NH photo booth rentals (360 video & magic mirror booths) with red carpet, instant QR sharing, movie screens & novelties in Seacoast NH.",
+      "Rent a 360 video booth or Magic Mirror photo booth in Portsmouth, NH. Red carpet, studio lighting, custom prints, props & crew. Fast quote!",
     keywords:
       "portsmouth nh photo booth rental, portsmouth photo booth rental, photo booth rental new hampshire, photo booth nh, nh photo booth rental, portsmouth nh party rentals, seacoast nh party rentals, dover nh party rentals, exeter nh party rentals, hampton nh party rentals, durham nh UNH event rentals, rochester nh party rentals, rye nh wedding photo booth rental",
     image: `${SITE_URL}/experience-360-video-booth.jpg`,
@@ -1854,9 +1858,38 @@ const AREA_SERVED = [
   { "@type": "State", name: "Vermont" },
 ];
 
+const IMAGE_DIMENSIONS = {
+  [`${SITE_URL}/hero-bg.jpg`]: { width: 1024, height: 436 },
+  [`${SITE_URL}/gaming-events-experience-1.jpg`]: { width: 1280, height: 721 },
+  [`${SITE_URL}/gaming-events-experience-2.jpg`]: { width: 1280, height: 624 },
+  [`${SITE_URL}/gaming-events-experience-3.jpg`]: { width: 1280, height: 623 },
+  [`${SITE_URL}/experience-movie-nights.jpg`]: { width: 1280, height: 720 },
+  [`${SITE_URL}/movie-nights-led.jpg`]: { width: 1024, height: 576 },
+  [`${SITE_URL}/movie-nights-experience-1.jpg`]: { width: 1280, height: 720 },
+  [`${SITE_URL}/experience-trivia-nights.jpg`]: { width: 1280, height: 873 },
+  [`${SITE_URL}/experience-virtual-reality.jpg`]: { width: 1440, height: 810 },
+  [`${SITE_URL}/about-vr-event.jpeg`]: { width: 1200, height: 675 },
+  [`${SITE_URL}/experience-360-video-booth.jpg`]: { width: 1280, height: 999 },
+  [`${SITE_URL}/photo-booth-experience-1.jpg`]: { width: 1440, height: 703 },
+  [`${SITE_URL}/photo-booth-experience-2.jpg`]: { width: 505, height: 446 },
+  [`${SITE_URL}/experience-just-dance.jpg`]: { width: 1440, height: 810 },
+  [`${SITE_URL}/experience-silent-disco.jpg`]: { width: 827, height: 467 },
+  [`${SITE_URL}/experience-sim-racing.jpg`]: { width: 1280, height: 960 },
+  [`${SITE_URL}/experience-glow-park.jpg`]: { width: 1024, height: 768 },
+  [`${SITE_URL}/glow-park-experience-1.jpg`]: { width: 768, height: 1024 },
+  [`${SITE_URL}/novelties-bg.jpg`]: { width: 1024, height: 420 },
+  [`${SITE_URL}/novelty-cards/patch-city.jpg`]: { width: 900, height: 667 },
+  [`${SITE_URL}/novelty-cards/pillow-dolls.jpg`]: { width: 900, height: 667 },
+  [`${SITE_URL}/novelty-cards/wood-metal-keychains.jpg`]: { width: 900, height: 599 },
+  [`${SITE_URL}/novelty-cards/custom-socks.jpg`]: { width: 900, height: 562 },
+  [`${SITE_URL}/about-gaming-event.jpg`]: { width: 1440, height: 960 },
+  [`${SITE_URL}/about-big-screen.jpg`]: { width: 1024, height: 682 },
+};
+
 module.exports = {
   SITE_URL,
   DEFAULT_IMAGE,
+  IMAGE_DIMENSIONS,
   NH_CITY_LINKS,
   REGIONAL_LINKS,
   SPECIALTY_LINKS,

@@ -3,6 +3,7 @@ const path = require("path");
 const {
   AREA_SERVED,
   DEFAULT_IMAGE,
+  IMAGE_DIMENSIONS,
   NH_CITY_LINKS,
   REGIONAL_LINKS,
   ROUTE_SEO,
@@ -29,7 +30,9 @@ function buildRouteHtml(baseHtml, routeKey, seo) {
   const canonicalPath = seo.canonicalPath === "/" ? "/" : seo.canonicalPath;
   const canonicalUrl = `${SITE_URL}${canonicalPath}`;
   const imageUrl = seo.image || DEFAULT_IMAGE;
+  const imageDims = IMAGE_DIMENSIONS[imageUrl] || { width: 1024, height: 682 };
   const imageAlt = seo.heading || seo.title;
+  const buildDateIso = new Date().toISOString().slice(0, 10);
   const localCfg = LOCAL_PAGE_CONFIG[routeKey] || null;
   const preloadHref =
     seo.preloadImage === null
@@ -99,6 +102,14 @@ function buildRouteHtml(baseHtml, routeKey, seo) {
     `<meta property="og:image" content="${imageUrl}"/>`
   );
   html = html.replace(
+    /<meta\s+property="og:image:width"\s+content="[^"]*"\s*\/?>/i,
+    `<meta property="og:image:width" content="${imageDims.width}"/>`
+  );
+  html = html.replace(
+    /<meta\s+property="og:image:height"\s+content="[^"]*"\s*\/?>/i,
+    `<meta property="og:image:height" content="${imageDims.height}"/>`
+  );
+  html = html.replace(
     /<meta\s+property="og:image:alt"\s+content="[^"]*"\s*\/?>/i,
     `<meta property="og:image:alt" content="${escapeHtml(imageAlt)}"/>`
   );
@@ -114,21 +125,37 @@ function buildRouteHtml(baseHtml, routeKey, seo) {
     /<meta\s+name="twitter:image"\s+content="[^"]*"\s*\/?>/i,
     `<meta name="twitter:image" content="${imageUrl}"/>`
   );
+  html = html.replace(
+    /<meta\s+name="twitter:image:alt"\s+content="[^"]*"\s*\/?>/i,
+    `<meta name="twitter:image:alt" content="${escapeHtml(imageAlt)}"/>`
+  );
 
   if (!seo.noindex) {
-    const routeGraph = [
-      {
-        "@type": "WebPage",
-        "@id": `${canonicalUrl}#webpage`,
-        url: canonicalUrl,
-        name: seo.title,
-        description: seo.description,
-        isPartOf: { "@id": `${SITE_URL}/#website` },
-        primaryImageOfPage: {
-          "@type": "ImageObject",
-          url: imageUrl,
-        },
+    const webPageNode = {
+      "@type": "WebPage",
+      "@id": `${canonicalUrl}#webpage`,
+      url: canonicalUrl,
+      name: seo.title,
+      description: seo.description,
+      inLanguage: "en-US",
+      dateModified: buildDateIso,
+      isPartOf: { "@id": `${SITE_URL}/#website` },
+      about: { "@id": `${SITE_URL}/#organization` },
+      primaryImageOfPage: {
+        "@type": "ImageObject",
+        url: imageUrl,
+        contentUrl: imageUrl,
+        width: imageDims.width,
+        height: imageDims.height,
+        caption: imageAlt,
       },
+    };
+    if (seo.serviceName) {
+      webPageNode.mainEntity = { "@id": `${canonicalUrl}#service` };
+    }
+
+    const routeGraph = [
+      webPageNode,
       {
         "@type": "BreadcrumbList",
         itemListElement: [
@@ -146,11 +173,17 @@ function buildRouteHtml(baseHtml, routeKey, seo) {
     if (seo.serviceName) {
       const serviceNode = {
         "@type": "Service",
+        "@id": `${canonicalUrl}#service`,
         name: seo.serviceName,
         serviceType: seo.serviceName,
         description: seo.description,
         url: canonicalUrl,
-        image: imageUrl,
+        image: {
+          "@type": "ImageObject",
+          url: imageUrl,
+          width: imageDims.width,
+          height: imageDims.height,
+        },
         provider: { "@id": `${SITE_URL}/#organization` },
         areaServed: AREA_SERVED,
       };
@@ -191,7 +224,7 @@ function buildRouteHtml(baseHtml, routeKey, seo) {
     html = html.replace(/<main\b[^>]*>[\s\S]*?<\/main>/i, noindexMainHtml);
   } else if (seo.heading && seo.summary) {
     const heroImgHtml = preloadHref
-      ? `<img src="${escapeHtml(preloadHref)}" alt="${escapeHtml(imageAlt)}" width="1200" height="630" fetchpriority="high" decoding="sync" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.4;" />`
+      ? `<img src="${escapeHtml(preloadHref)}" alt="${escapeHtml(imageAlt)}" width="${imageDims.width}" height="${imageDims.height}" fetchpriority="high" decoding="sync" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.4;" />`
       : "";
 
     const allFooterLinks = [...NH_CITY_LINKS, ...REGIONAL_LINKS, ...SPECIALTY_LINKS]
