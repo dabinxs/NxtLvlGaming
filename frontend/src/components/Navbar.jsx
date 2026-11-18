@@ -1,78 +1,41 @@
 import React, { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import {
-  ChevronDown,
-  ArrowUpRight,
-  Gamepad2,
-  Trophy,
-  Users,
-  Clapperboard,
-  Projector,
-  Film,
-  Brain,
-  Lightbulb,
-  ListChecks,
-  Glasses,
-  Music,
-  Headphones,
-  Car,
-  Camera,
-  Sparkles,
-} from "lucide-react";
+import { ChevronDown, ArrowUpRight } from "lucide-react";
 import { navLinks, megaMenus } from "../mock";
 import MobileBottomNav from "./MobileBottomNav";
+import "./Navbar.css";
 
-const ICONS = {
-  Gamepad2,
-  Trophy,
-  Users,
-  Clapperboard,
-  Projector,
-  Film,
-  Brain,
-  Lightbulb,
-  ListChecks,
-  Glasses,
-  Music,
-  Headphones,
-  Car,
-  Camera,
-  Sparkles,
-};
-
-const Icon = ({ name, className }) => {
-  const Cmp = ICONS[name] || Gamepad2;
-  return <Cmp className={className} />;
-};
-
-const NavDropdown = ({ menuKey }) => {
+const NavDropdown = ({ menuKey, onNavigate }) => {
   const menu = megaMenus[menuKey];
   if (!menu) return null;
   return (
-    <div className="flex flex-col gap-3">
-      {menu.items.map((it) => (
-        <Link
-          key={it.title}
-          to={it.href || "#footer"}
-          data-testid={`menu-item-${it.title.toLowerCase().replace(/\s+/g, "-")}`}
-          className="group flex items-center gap-3.5 rounded-[16px] p-2.5 transition-colors hover:bg-white/[0.08]"
-        >
-          <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-[14px] border border-white/10 bg-[#293d6b]/45 transition-all duration-200 group-hover:border-[#0066FD]/60 group-hover:bg-[#0066FD]/20">
-            <Icon
-              name={it.icon}
-              className="h-5 w-5 text-white/85 transition-colors group-hover:text-[#7DDDFF]"
-            />
-          </span>
-          <span className="min-w-0">
-            <span className="block text-[14px] font-bold text-white transition-colors group-hover:text-[#7DDDFF]">
-              {it.title}
-            </span>
-            <span className="mt-1 block text-[12px] leading-snug text-white/55">
-              {it.desc}
-            </span>
-          </span>
-        </Link>
-      ))}
+    <div className="nav-dropdown__content">
+      <p className="nav-dropdown__category">
+        {menuKey === "events" ? "Occasion" : "Experiences"}
+      </p>
+      <div className="nav-dropdown__links">
+        {menu.items.map((it) => (
+          <Link
+            key={it.title}
+            to={it.href || "#footer"}
+            onClick={onNavigate}
+            data-testid={`menu-item-${it.title.toLowerCase().replace(/\s+/g, "-")}`}
+            className="nav-dropdown__link"
+          >
+            {menuKey === "events" && it.title === "Gaming Events"
+              ? "Video Gaming Events"
+              : it.title}
+          </Link>
+        ))}
+      </div>
+      {menuKey === "events" && (
+        <img
+          src="/events-menu-graphic.png"
+          alt=""
+          className="nav-dropdown__graphic"
+          decoding="async"
+        />
+      )}
     </div>
   );
 };
@@ -124,6 +87,13 @@ const Navbar = ({ topOnly = false }) => {
 
   return (
     <>
+      {activeMenu && (
+        <div
+          className="nav-menu-scrim fixed inset-0 z-40"
+          aria-hidden="true"
+          onClick={() => setActiveMenu(null)}
+        />
+      )}
       <header
         data-testid="site-navbar"
         onMouseLeave={scheduleClose}
@@ -159,10 +129,12 @@ const Navbar = ({ topOnly = false }) => {
                 >
                   <button
                     data-testid={`nav-trigger-${l.menu}`}
-                    onClick={() => setActiveMenu(activeMenu === l.menu ? null : l.menu)}
-                    className={`flex items-center gap-1.5 rounded-xl px-4 py-2 font-display text-[15px] font-bold capitalize transition-all duration-300 ${
+                    onClick={() => openMenu(l.menu)}
+                    aria-expanded={activeMenu === l.menu}
+                    aria-controls={`nav-dropdown-${l.menu}`}
+                    className={`nav-menu-trigger flex min-h-14 items-center gap-1.5 rounded-2xl px-5 font-display text-[15px] font-bold capitalize transition-colors duration-300 ${
                       activeMenu === l.menu
-                        ? "text-[#7DDDFF]"
+                        ? "nav-menu-trigger--active text-white"
                         : "text-white hover:text-[#7DDDFF]"
                     }`}
                   >
@@ -177,15 +149,13 @@ const Navbar = ({ topOnly = false }) => {
                   {/* Floating Popover Dropdown directly under the nav item */}
                   {activeMenu === l.menu && (
                     <div
+                      id={`nav-dropdown-${l.menu}`}
                       data-testid={`dropdown-${l.menu}`}
-                      className="absolute left-0 top-full mt-6 w-[340px] rounded-[22px] border-2 border-white/[0.09] p-3.5 shadow-[0_25px_60px_rgba(0,0,0,0.7)] backdrop-blur-xl z-50 before:absolute before:-top-6 before:inset-x-0 before:h-6"
-                      style={{
-                        background: "linear-gradient(180deg, #031138 0%, #1e2e58 100%)",
-                      }}
+                      className={`nav-dropdown nav-dropdown--${l.menu}`}
                       onMouseEnter={() => clearTimeout(closeTimer.current)}
                       onMouseLeave={scheduleClose}
                     >
-                      <NavDropdown menuKey={l.menu} />
+                      <NavDropdown menuKey={l.menu} onNavigate={() => setActiveMenu(null)} />
                     </div>
                   )}
                 </div>

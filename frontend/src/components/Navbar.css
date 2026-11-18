@@ -1,0 +1,103 @@
+.nav-menu-scrim {
+  background: rgb(3 5 18 / 55%);
+  backdrop-filter: blur(12px);
+  animation: nav-scrim-enter 240ms ease-out both;
+}
+
+.nav-menu-trigger--active,
+.nav-dropdown {
+  background: linear-gradient(110deg, #4765c8 0%, #00a4f3 100%);
+}
+
+.nav-dropdown {
+  position: absolute;
+  z-index: 50;
+  inset-block-start: calc(100% + 0.625rem);
+  inset-inline-start: 50%;
+  inline-size: 22rem;
+  padding: 3.5rem 3.5rem 3.625rem;
+  border-radius: 4rem;
+  box-shadow: 0 24px 56px rgb(2 4 25 / 36%);
+  animation: nav-dropdown-enter 280ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.nav-dropdown::before {
+  position: absolute;
+  inset-block-end: 100%;
+  inset-inline: 0;
+  block-size: 0.75rem;
+  content: "";
+}
+
+.nav-dropdown--experience {
+  inline-size: 24rem;
+  padding-block: 2.75rem;
+}
+
+.nav-dropdown__content {
+  position: relative;
+}
+
+.nav-dropdown__category {
+  margin-block-end: 2rem;
+  color: rgb(255 255 255 / 74%);
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.nav-dropdown__links {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.nav-dropdown__link {
+  color: #fff;
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.25;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 180ms ease, transform 180ms ease;
+}
+
+.nav-dropdown__link:hover,
+.nav-dropdown__link:focus-visible {
+  color: #e4f9ff;
+  transform: translateX(4px);
+}
+
+.nav-dropdown__graphic {
+  position: absolute;
+  inset-inline-end: -5.5rem;
+  inset-block-end: -5rem;
+  inline-size: 9.5rem;
+  block-size: auto;
+  pointer-events: none;
+  filter: drop-shadow(0 12px 18px rgb(20 10 84 / 34%));
+  animation: nav-graphic-bounce 760ms cubic-bezier(0.22, 0.7, 0.22, 1) both;
+}
+
+@keyframes nav-scrim-enter {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes nav-dropdown-enter {
+  from { opacity: 0; transform: translate(-50%, 8px) scale(0.98); }
+  to { opacity: 1; transform: translate(-50%, 0) scale(1); }
+}
+
+@keyframes nav-graphic-bounce {
+  0% { opacity: 0; transform: translateY(42px) scale(0.85); }
+  58% { opacity: 1; transform: translateY(-9px) scale(1.035); }
+  78% { transform: translateY(3px) scale(0.99); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-menu-scrim,
+  .nav-dropdown,
+  .nav-dropdown__graphic {
+    animation-duration: 0.01ms;
+  }
+}
