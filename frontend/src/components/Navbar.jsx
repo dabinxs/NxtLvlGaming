@@ -31,12 +31,16 @@ const NavDropdown = ({ menuKey, onNavigate }) => {
           </Link>
         ))}
       </div>
-      <img
-        src={graphic}
-        alt=""
-        className="nav-dropdown__graphic"
-        decoding="async"
-      />
+      <picture className="contents">
+        <source srcSet={graphic.replace(".png", ".webp")} type="image/webp" />
+        <img
+          src={graphic}
+          alt=""
+          className="nav-dropdown__graphic"
+          loading="lazy"
+          decoding="async"
+        />
+      </picture>
     </div>
   );
 };

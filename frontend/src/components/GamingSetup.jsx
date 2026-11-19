@@ -87,13 +87,16 @@ const GamingSetup = ({ variant = "gaming" }) => {
 
   return (
     <section id="what-is-included" className={`gaming-setup gaming-setup--${variant}`}>
-      <img
-        className="gaming-setup__background"
-        src={setup.background}
-        alt=""
-        loading="lazy"
-        decoding="async"
-      />
+      <picture className="contents">
+        <source srcSet={setup.background.replace(".png", ".webp")} type="image/webp" />
+        <img
+          className="gaming-setup__background"
+          src={setup.background}
+          alt=""
+          loading="lazy"
+          decoding="async"
+        />
+      </picture>
       <div className="gaming-setup__inner">
         <div className="gaming-setup__intro">
           <div className="gaming-setup__eyebrow">
@@ -113,7 +116,10 @@ const GamingSetup = ({ variant = "gaming" }) => {
           {setup.equipment.map((item) => (
             <article className="gaming-setup__card" key={item.title}>
               <div className="gaming-setup__card-media">
-                <img src={item.image} alt={item.alt} loading="lazy" decoding="async" />
+                <picture className="contents">
+                  <source srcSet={item.image.replace(".png", ".webp")} type="image/webp" />
+                  <img src={item.image} alt={item.alt} loading="lazy" decoding="async" />
+                </picture>
               </div>
               <div className="gaming-setup__card-copy">
                 <h3>{item.title}</h3>
