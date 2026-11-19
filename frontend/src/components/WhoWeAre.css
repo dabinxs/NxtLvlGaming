@@ -18,7 +18,7 @@
   min-height: 655px;
   padding: 34px 38px;
   border-radius: 100px;
-  background: linear-gradient(135deg, #012cbd 0%, #00a4f3 100%);
+  background: linear-gradient(135deg, #00a4f3 0%, #012cbd 100%);
 }
 
 .who-we-are__gallery {
@@ -26,7 +26,7 @@
   place-items: center;
   min-width: 0;
   border-radius: 100px;
-  background: linear-gradient(180deg, #f642f1 0%, #250e74 100%);
+  background: linear-gradient(180deg, #250e74 0%, #f642f1 100%);
 }
 
 .who-we-are__photos {
