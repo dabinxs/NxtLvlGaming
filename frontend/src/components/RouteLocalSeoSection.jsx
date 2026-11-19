@@ -48,7 +48,7 @@ const RouteLocalSeoSection = ({ path = "/", variant = "default" }) => {
             <div className="mt-6 rounded-2xl border border-white/10 bg-[#050a16]/80 p-5 text-[13px] leading-relaxed text-white/75">
               <div className="flex items-start gap-2.5 text-white/90 font-semibold">
                 <MapPin className={`mt-0.5 h-4 w-4 shrink-0 ${accentText}`} />
-                <span>HQ: Rebel Rd, Hudson, NH 03051 &amp; North Carolina Branch</span>
+                <span>HQ: Hudson, NH 03051 &amp; North Carolina Branch</span>
               </div>
               <div className="mt-2.5 flex items-center gap-2.5 text-white/80">
                 <Phone className={`h-4 w-4 shrink-0 ${accentText}`} />

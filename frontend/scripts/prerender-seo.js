@@ -259,7 +259,7 @@ function buildRouteHtml(baseHtml, routeKey, seo) {
       </section>
       <footer style="max-width:1180px;margin:24px auto 0;padding:24px 20px 48px;border-top:1px solid rgba(255,255,255,0.08);font-size:12px;line-height:1.8;color:#94a3b8;">
         <p style="margin:0 0 8px;">${allFooterLinks}</p>
-        <p style="margin:0;"><a href="/about" style="color:#cbd5e1;">About</a> · <a href="/contact" style="color:#cbd5e1;">Contact</a> · <a href="/novelty-order" style="color:#cbd5e1;">Order Custom Novelties</a> · Rebel Rd, Hudson NH 03051 · <a href="tel:9786015473" style="color:#7DDDFF;">978-601-5473</a></p>
+        <p style="margin:0;"><a href="/about" style="color:#cbd5e1;">About</a> · <a href="/contact" style="color:#cbd5e1;">Contact</a> · <a href="/novelty-order" style="color:#cbd5e1;">Order Custom Novelties</a> · Hudson, NH 03051 · <a href="tel:9786015473" style="color:#7DDDFF;">978-601-5473</a></p>
       </footer>
     </main>`;
 

@@ -55,12 +55,12 @@ const ROUTE_SEO = {
     serviceName: "Turnkey Event & Party Equipment Rentals, Photo Booths, Gaming & Custom Novelties",
     heading: "Event & Party Rentals, Interactive Entertainment & Gaming Events in NH, MA & NC",
     summary:
-      "Next Level Gaming & Novelties is a full-service party equipment rental company headquartered on Rebel Rd in Hudson, New Hampshire (03051) with a regional branch serving North Carolina. Our insured crew delivers, sets up, and staffs giant outdoor inflatable movie screens, daylight mobile LED video walls, 360 video and interactive mirror photo booths, live gaming events and esports tournament production, room-scale Virtual Reality stations, Silent Disco wireless headphones, Sim Racing simulators, Glow Park LED swings, live Trivia Nights, and 11 custom novelty workshops.",
+      "Next Level Gaming & Novelties is a full-service party equipment rental company headquartered in Hudson, New Hampshire (03051) with a regional branch serving North Carolina. Our insured crew delivers, sets up, and staffs giant outdoor inflatable movie screens, daylight mobile LED video walls, 360 video and interactive mirror photo booths, live gaming events and esports tournament production, room-scale Virtual Reality stations, Silent Disco wireless headphones, Sim Racing simulators, Glow Park LED swings, live Trivia Nights, and 11 custom novelty workshops.",
     subhead: "Serving Hudson, Manchester, Nashua, Portsmouth NH, Greater Boston, CT & North Carolina",
     details:
       "Trusted by 23+ universities and colleges, high school post-proms, municipal festivals, corporate teams, and private celebrations across Hudson, Nashua, Manchester, Portsmouth, Salem, Derry, and Concord NH, Greater Boston and Massachusetts, Connecticut, and North Carolina (Charlotte, Raleigh, Durham, Chapel Hill, Greensboro, and New Bern NC).",
     highlights: [
-      "Headquartered on Rebel Rd, Hudson NH (03051) + North Carolina Regional Branch",
+      "Headquartered in Hudson, NH (03051) + North Carolina Regional Branch",
       "360 Slow-Motion Video Booths & Full-Length Magic Mirror Photo Booths",
       "16–40 ft Inflatable Movie Screens & 14–20 ft Daylight Mobile LED Video Walls",
       "Room-Scale VR Arcades, 4-Player VR Escape Rooms & Force-Feedback Sim Racing",
@@ -79,7 +79,7 @@ const ROUTE_SEO = {
     faqs: [
       {
         q: "Where can I rent video gaming events, photo booths, outdoor movie screens, and event entertainment in NH, MA, and North Carolina?",
-        a: "Next Level Gaming & Novelties is headquartered on Rebel Rd in Hudson, New Hampshire (03051) with a regional branch serving North Carolina (Charlotte, Raleigh, Durham, Chapel Hill, Greensboro, Winston-Salem, Cary, Wilmington, New Bern, and Asheville). We deliver turnkey gaming events, outdoor inflatable and mobile LED movie screens, VR stations, 360 and mirror photo booths, silent disco, sim racing, glow parks, trivia nights, and custom event novelties across NH, MA, CT, New England, and North Carolina.",
+        a: "Next Level Gaming & Novelties is headquartered in Hudson, New Hampshire (03051) with a regional branch serving North Carolina (Charlotte, Raleigh, Durham, Chapel Hill, Greensboro, Winston-Salem, Cary, Wilmington, New Bern, and Asheville). We deliver turnkey gaming events, outdoor inflatable and mobile LED movie screens, VR stations, 360 and mirror photo booths, silent disco, sim racing, glow parks, trivia nights, and custom event novelties across NH, MA, CT, New England, and North Carolina.",
       },
       {
         q: "What is included in a Next Level Gaming & Novelties event rental package?",
@@ -1017,7 +1017,7 @@ const ROUTE_SEO = {
       },
       {
         q: "Where can we rent custom novelty stations in New Hampshire, Massachusetts, and North Carolina?",
-        a: "From our Rebel Rd headquarters in Hudson, NH (03051) and our North Carolina branch, we deliver staffed novelty workshops across Hudson, Nashua, Manchester, Portsmouth, Boston, Worcester, Hartford, New Haven, Charlotte, Raleigh, Durham, and Greensboro.",
+        a: "From our headquarters in Hudson, NH (03051) and our North Carolina branch, we deliver staffed novelty workshops across Hudson, Nashua, Manchester, Portsmouth, Boston, Worcester, Hartford, New Haven, Charlotte, Raleigh, Durham, and Greensboro.",
       },
     ],
   },
@@ -1253,13 +1253,13 @@ const ROUTE_SEO = {
     serviceName: "About Next Level Gaming & Novelties — Insured Event Production Team",
     heading: "About Next Level Gaming & Novelties — Hudson NH & North Carolina Team",
     summary:
-      "Founded by Calvin Reid and Yaw Boateng, Next Level Gaming & Novelties is headquartered on Rebel Rd in Hudson, New Hampshire (03051) with an expanding regional branch in North Carolina, bringing over 10 years of turnkey event production experience across multiplayer gaming, esports tournaments, outdoor inflatable and mobile LED movie screens, VR, 360 photo booths, and custom novelty workshops.",
+      "Founded by Calvin Reid and Yaw Boateng, Next Level Gaming & Novelties is headquartered in Hudson, New Hampshire (03051) with an expanding regional branch in North Carolina, bringing over 10 years of turnkey event production experience across multiplayer gaming, esports tournaments, outdoor inflatable and mobile LED movie screens, VR, 360 photo booths, and custom novelty workshops.",
     subhead: "10+ Years of Insured Turnkey Production Across 23+ Universities, Schools & Corporate Clients",
     details:
       "From a loud game of Madden in 2007 to producing large-scale interactive events for Harvard, Boston University, Penn State, Babson, Quinnipiac, Holy Cross, and hundreds of campuses, high schools, municipalities, and corporations across NH, MA, CT, RI, ME, VT, NC, NY, NJ, PA, and FL.",
     highlights: [
       "Founded by Calvin Reid & Yaw Boateng — 10+ years in interactive event production",
-      "New England Headquarters: Rebel Rd, Hudson, NH 03051 (978-601-5473)",
+      "New England Headquarters: Hudson, NH 03051 (978-601-5473)",
       "Regional Branch Serving North Carolina (Charlotte, Raleigh, Durham, Greensboro)",
       "Full Commercial General Liability Insurance for Universities & Municipalities",
     ],
@@ -1291,12 +1291,12 @@ const ROUTE_SEO = {
     serviceName: "Contact Next Level Gaming & Novelties Booking Office",
     heading: "Contact Next Level Gaming & Novelties — Hudson NH & North Carolina (978-601-5473)",
     summary:
-      "Get in touch with Next Level Gaming & Novelties on Rebel Rd in Hudson, New Hampshire (03051) or our North Carolina branch to check availability and request pricing for gaming events, outdoor movie screens, mobile LED walls, VR escape rooms, 360 and mirror photo booths, silent disco, sim racing, glow park swings, or custom novelties.",
+      "Get in touch with Next Level Gaming & Novelties in Hudson, New Hampshire (03051) or our North Carolina branch to check availability and request pricing for gaming events, outdoor movie screens, mobile LED walls, VR escape rooms, 360 and mirror photo booths, silent disco, sim racing, glow park swings, or custom novelties.",
     subhead: "Fast Availability Checks & Venue Spec Guidance for NH, MA, CT & NC",
     details:
       "Call 978-601-5473, email sales@nextlevelgamingevents.com, or build a custom package online anytime for rapid recommendations on room layout, power, screen sizing, and bundled event pricing.",
     highlights: [
-      "Hudson, NH Warehouse HQ: Rebel Rd, Hudson, NH 03051",
+      "Hudson, NH Local HQ: Hudson, NH 03051",
       "Direct Booking Line: 978-601-5473 · Email: sales@nextlevelgamingevents.com",
       "Regional Branch Coverage Across North Carolina (Charlotte, Raleigh, Durham, Greensboro)",
       "Open Daily for Quotes, Site Logistics & Multi-Attraction Bundles",
@@ -1362,7 +1362,7 @@ const ROUTE_SEO = {
       "Combine single attractions or multi-station campus and corporate bundles with unified delivery, setup, staffing, and commercial liability insurance.",
     highlights: [
       "Complete lineup of indoor & outdoor turnkey experiences",
-      "Delivered from Rebel Rd, Hudson NH (03051) & our North Carolina branch",
+      "Delivered from Hudson, NH (03051) & our North Carolina branch",
       "Commercial-grade equipment with trained on-site event crew",
       "Popular multi-attraction bundles for college welcome weeks, post-proms & corporate days",
     ],
@@ -1450,14 +1450,14 @@ const ROUTE_SEO = {
     heroEyebrow: "HUDSON NH HQ (03051) · BOSTON MA · PORTSMOUTH NH · CONNECTICUT",
     heroDisplayTitle: "NH, Massachusetts &\nNew England Rentals",
     heroSubtitleOverride:
-      "Headquartered on Rebel Rd in Hudson, NH: full-service photo booths, 16–40 ft movie screens, mobile LED walls, live gaming tournaments, VR escape rooms, glow park & custom novelties across NH, MA, CT & RI.",
+      "Headquartered in Hudson, NH (03051): full-service photo booths, 16–40 ft movie screens, mobile LED walls, live gaming tournaments, VR escape rooms, glow park & custom novelties across NH, MA, CT & RI.",
     serviceName: "New Hampshire, Massachusetts & New England Interactive Event Rentals",
     heading: "NH, MA & New England Event Rentals — Hudson, Manchester, Portsmouth, Boston & CT",
     summary:
       "Headquartered in Hudson, New Hampshire (03051), Next Level Gaming & Novelties delivers turnkey party rentals, event entertainment, giant inflatable and mobile LED movie screens, 360 photo booths, mirror photo booths, video gaming tournaments, Virtual Reality stations, Silent Disco headphones, Sim Racing simulators, Glow Park LED swings, Trivia Nights, and custom novelty workshops across Hudson, Nashua, Manchester, Portsmouth, Dover, Exeter, Hampton, Salem, Derry, Londonderry, Concord NH, Boston, Cambridge, Lowell, Worcester, Springfield MA, and Connecticut (Hartford, New Haven, Hamden, Danbury, Stamford, New London CT).",
     subhead: "Direct Dispatch Across Southern NH, Seacoast NH, Greater Boston & Connecticut",
     details:
-      "For over ten years, our Rebel Rd Hudson NH warehouse has served Southern, Central, and Seacoast New Hampshire, the Merrimack Valley, Greater Boston, Central and Western Massachusetts, Rhode Island, Connecticut, Maine, and Vermont.",
+      "For over ten years, our Hudson, NH headquarters has served Southern, Central, and Seacoast New Hampshire, the Merrimack Valley, Greater Boston, Central and Western Massachusetts, Rhode Island, Connecticut, Maine, and Vermont.",
     highlights: [
       "Direct local NH coverage: Hudson, Manchester, Nashua, Portsmouth, Concord, Salem & Derry",
       "Greater Boston & Massachusetts: Boston, Cambridge, Lowell, Worcester & Springfield",
@@ -1474,7 +1474,7 @@ const ROUTE_SEO = {
     faqs: [
       {
         q: "Where is Next Level Gaming located in New Hampshire?",
-        a: "We are headquartered on Rebel Rd in Hudson, NH (03051) and deliver interactive entertainment across Southern, Central, and Seacoast New Hampshire (Manchester, Nashua, Portsmouth, Concord, Dover, Exeter, Salem, Derry), Greater Boston, Connecticut, and throughout New England.",
+        a: "We are headquartered in Hudson, NH (03051) and deliver interactive entertainment across Southern, Central, and Seacoast New Hampshire (Manchester, Nashua, Portsmouth, Concord, Dover, Exeter, Salem, Derry), Greater Boston, Connecticut, and throughout New England.",
       },
       {
         q: "Do you deliver photo booth rentals and gaming events to Portsmouth NH, Boston MA, and Connecticut?",
@@ -1537,7 +1537,7 @@ const ROUTE_SEO = {
   "/hudson-nh-party-rentals": {
     title: "Hudson NH Party & Event Rentals | Next Level (03051 HQ)",
     description:
-      "Local Hudson NH party & event equipment rentals on Rebel Rd (03051): 360 photo booths, inflatable movie screens, LED video walls, VR, glow swings & novelties.",
+      "Local Hudson NH party & event equipment rentals in Hudson, NH (03051): 360 photo booths, inflatable movie screens, LED video walls, VR, glow swings & novelties.",
     areaServed: [
       { "@type": "City", name: "Hudson, NH" },
       { "@type": "City", name: "Litchfield, NH" },
@@ -1552,19 +1552,19 @@ const ROUTE_SEO = {
     image: `${SITE_URL}/about-big-screen.jpg`,
     heroImageLocal: "/about-big-screen.jpg",
     canonicalPath: "/hudson-nh-party-rentals",
-    heroEyebrow: "REBEL RD, HUDSON, NH 03051 · HOME HEADQUARTERS",
+    heroEyebrow: "HUDSON, NH 03051 · HOME HEADQUARTERS",
     heroDisplayTitle: "Hudson, NH\nParty & Event Rentals",
     heroSubtitleOverride:
-      "Dispatched directly from our Rebel Rd headquarters in Hudson, NH (03051): 360 photo booths, mirror photo booths, 16–40 ft movie screens, mobile LED walls, VR, glow swings, gaming events & custom novelties.",
+      "Dispatched directly from our headquarters in Hudson, NH (03051): 360 photo booths, mirror photo booths, 16–40 ft movie screens, mobile LED walls, VR, glow swings, gaming events & custom novelties.",
     serviceName: "Hudson, NH Party Equipment Rentals & Custom Event Novelties",
-    heading: "Hudson, NH Party Equipment Rentals & Event Entertainment (Rebel Rd, 03051)",
+    heading: "Hudson, NH Party Equipment Rentals & Event Entertainment (Hudson, NH 03051)",
     summary:
-      "Headquartered locally on Rebel Rd in Hudson, New Hampshire (03051), Next Level Gaming Events & Novelties is Hudson's home-grown party equipment rental service and custom event novelty provider serving Hudson, Litchfield, Pelham, Windham, Londonderry, Derry, Salem, Merrimack, and Nashua NH.",
+      "Headquartered locally in Hudson, New Hampshire (03051), Next Level Gaming Events & Novelties is Hudson's home-grown party equipment rental service and custom event novelty provider serving Hudson, Litchfield, Pelham, Windham, Londonderry, Derry, Salem, Merrimack, and Nashua NH.",
     subhead: "Fastest Local NH Crew Dispatch for Schools, Parks, Backyards & Venues",
     details:
-      "Whether planning an Alvirne High School post-prom, a Hudson NH backyard or Benson Park movie night, a corporate picnic, or a private milestone birthday, our Rebel Rd team handles delivery, commercial setup, live staffing, and teardown.",
+      "Whether planning an Alvirne High School post-prom, a Hudson NH backyard or Benson Park movie night, a corporate picnic, or a private milestone birthday, our Hudson, NH team handles delivery, commercial setup, live staffing, and teardown.",
     highlights: [
-      "Headquartered locally at Rebel Rd, Hudson, NH 03051 — 978-601-5473",
+      "Headquartered locally in Hudson, NH 03051 — 978-601-5473",
       "Serving Hudson, Litchfield, Pelham, Windham, Londonderry & Greater Nashua",
       "Local Hudson Photo Booth NH, Outdoor Movie Screen & Glow Park rentals",
       "All 11 DIY Custom Novelties (Patched City Trucker Hats, Pillow Dolls & Socks)",
@@ -1593,11 +1593,11 @@ const ROUTE_SEO = {
     faqs: [
       {
         q: "Where is Next Level Gaming Events & Novelties located in Hudson, NH?",
-        a: "Our main New England equipment warehouse and headquarters is located on Rebel Rd, Hudson, NH 03051, open daily for quotes and event bookings at 978-601-5473.",
+        a: "Our main New England equipment warehouse and headquarters is based in Hudson, NH (03051), open daily for quotes and event bookings at 978-601-5473.",
       },
       {
         q: "Which neighboring towns around Hudson, NH (03051) do you serve fastest?",
-        a: "Because our HQ is right on Rebel Rd in Hudson, NH, we provide rapid local delivery across Hudson, Litchfield, Pelham, Windham, Nashua, Londonderry, Derry, Salem, and Merrimack NH.",
+        a: "Because our HQ is right in Hudson, NH (03051), we provide rapid local delivery across Hudson, Litchfield, Pelham, Windham, Nashua, Londonderry, Derry, Salem, and Merrimack NH.",
       },
     ],
   },
@@ -1628,7 +1628,7 @@ const ROUTE_SEO = {
       "Next Level Gaming Events & Novelties delivers turnkey party equipment rentals, 360 photo booths, mirror photo booths, outdoor inflatable movie screens, daylight mobile LED video wall trailers, Glow Park LED swings, Virtual Reality escape rooms, Silent Disco headphones, Sim Racing simulators, live gaming tournaments, and 11 custom novelty workshops across Manchester, Bedford, Goffstown, Hooksett, Auburn, and Candia, New Hampshire.",
     subhead: "Serving Manchester NH Campuses, Elm Street Venues, Ballrooms & Neighborhoods",
     details:
-      "Only 20 minutes up the Everett Turnpike / I-93 from our Rebel Rd warehouse in Hudson NH, our insured event crew outfits Southern New Hampshire University (SNHU), Saint Anselm College, Manchester high schools, downtown Elm Street venues, and private celebrations.",
+      "Only 20 minutes up the Everett Turnpike / I-93 from our headquarters in Hudson, NH, our insured event crew outfits Southern New Hampshire University (SNHU), Saint Anselm College, Manchester high schools, downtown Elm Street venues, and private celebrations.",
     highlights: [
       "20-minute crew dispatch from Hudson NH (03051) to Greater Manchester",
       "Manchester NH 360 Slow-Motion Video Booth & Magic Mirror Photo Booths",
@@ -1655,7 +1655,7 @@ const ROUTE_SEO = {
     faqs: [
       {
         q: "How far is your warehouse from Manchester, NH?",
-        a: "Our Rebel Rd headquarters in Hudson, NH (03051) is just 20 minutes south of Manchester, NH, allowing us to deliver and staff events across Manchester, Bedford, Goffstown, and Hooksett every day of the week.",
+        a: "Our headquarters in Hudson, NH (03051) is just 20 minutes south of Manchester, NH, allowing us to deliver and staff events across Manchester, Bedford, Goffstown, and Hooksett every day of the week.",
       },
       {
         q: "Do you provide photo booths and big screens for SNHU, Saint Anselm, and Manchester corporate venues?",
@@ -1688,12 +1688,12 @@ const ROUTE_SEO = {
     serviceName: "Nashua, NH Party Equipment Rentals, Photo Booths & Custom Novelties",
     heading: "Nashua, NH Party & Event Equipment Rentals — Movie Screens, 360 Booths & Novelties",
     summary:
-      "Just across the Taylor Falls Bridge from our Rebel Rd headquarters in Hudson, Next Level Gaming Events & Novelties provides turnkey Nashua NH party rentals, 360 photo booths, mirror photo booths, giant inflatable movie screens, mobile LED video wall trailers, VR escape rooms, Glow Park LED swings, Silent Disco headphones, Sim Racing cockpits, live gaming events, and custom novelty maker workshops across Nashua, Merrimack, Hollis, Brookline, Amherst, and Milford NH.",
+      "Just across the Taylor Falls Bridge from our headquarters in Hudson, NH, Next Level Gaming Events & Novelties provides turnkey Nashua NH party rentals, 360 photo booths, mirror photo booths, giant inflatable movie screens, mobile LED video wall trailers, VR escape rooms, Glow Park LED swings, Silent Disco headphones, Sim Racing cockpits, live gaming events, and custom novelty maker workshops across Nashua, Merrimack, Hollis, Brookline, Amherst, and Milford NH.",
     subhead: "Immediate Local Delivery Across Greater Nashua & Route 3 Corridor",
     details:
       "From Rivier University campus activities and Nashua North & South post-proms to Mine Falls Park concerts, country club weddings, corporate outings, and backyard celebrations, every rental includes delivery, setup, staffing, and teardown.",
     highlights: [
-      "Immediate neighbor dispatch across the bridge from Rebel Rd, Hudson NH",
+      "Immediate neighbor dispatch across the bridge from Hudson, NH (03051)",
       "Serving all Nashua ZIPs (03060, 03062, 03063, 03064) plus Merrimack, Hollis & Amherst",
       "360 Video Booths, Mirror Photo Booths & 16–40 ft Outdoor Movie Screens",
       "Live Gaming Events, VR Escape Rooms, Sim Racing & 11 Custom Novelties",
@@ -1807,7 +1807,7 @@ const ROUTE_SEO = {
       "From Southern New Hampshire's I-93 corridor (Salem, Windham, Derry, and Londonderry NH) to the state capital in Concord, the Lakes Region (Laconia, Meredith), Keene, and Hanover/Lebanon NH, Next Level Gaming Events & Novelties delivers turnkey party rentals, 360 photo booths, mirror photo booths, giant outdoor movie screens, mobile LED video walls, VR escape rooms, Glow Park LED swings, Silent Disco headphones, Sim Racing cockpits, and custom novelty workshops.",
     subhead: "Statewide New Hampshire Event Production for Towns, Schools, Colleges & Parties",
     details:
-      "Just minutes from our Rebel Rd Hudson NH warehouse, we outfit Salem/Windham/Derry/Londonderry events, Concord civic gatherings, New England College, Plymouth State, Keene State, Colby-Sawyer, Franklin Pierce, and Dartmouth campus celebrations.",
+      "Just minutes from our Hudson, NH headquarters, we outfit Salem/Windham/Derry/Londonderry events, Concord civic gatherings, New England College, Plymouth State, Keene State, Colby-Sawyer, Franklin Pierce, and Dartmouth campus celebrations.",
     highlights: [
       "Immediate proximity to Salem, Windham, Derry & Londonderry NH (Route 111 / I-93)",
       "Statewide NH travel to Concord, Henniker, Keene, Plymouth, Laconia & Hanover",

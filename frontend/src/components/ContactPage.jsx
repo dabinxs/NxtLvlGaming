@@ -9,7 +9,7 @@ import "./ContactPage.css";
 
 const CONTACT_EMAIL = "sales@nextlevelgamingevents.com";
 const CONTACT_PHONE = "978-601-5473";
-const COMPANY_ADDRESS = "Rebel Rd, Hudson, NH 03051";
+const COMPANY_ADDRESS = "Hudson, NH 03051";
 
 
 const topics = ["Plan an event", "Custom novelties", "Partnership", "Something else"];

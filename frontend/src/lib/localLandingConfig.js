@@ -1,11 +1,11 @@
 const LOCAL_PAGE_CONFIG = {
   "/hudson-nh-party-rentals": {
     heroImage: "/about-big-screen.jpg",
-    dispatchBadge: "REBEL RD WAREHOUSE · HUDSON, NH 03051",
+    dispatchBadge: "LOCAL NH HEADQUARTERS · HUDSON, NH 03051",
     dispatchNote:
-      "Dispatched directly from our Rebel Rd equipment warehouse in Hudson, NH—meaning fastest local morning load-ins and zero long-distance freight fees across Hudson, Litchfield, Pelham, Windham, and Southern Hillsborough County.",
+      "Dispatched directly from our local Hudson, NH headquarters—meaning fastest local morning load-ins and zero long-distance freight fees across Hudson, Litchfield, Pelham, Windham, and Southern Hillsborough County.",
     sectionEyebrow: "HUDSON, NH HOME BASE LOGISTICS",
-    sectionTitle: "Direct Rebel Rd Dispatch Across Hudson & Bordering Towns",
+    sectionTitle: "Direct Local Dispatch Across Hudson & Bordering Towns",
     carouselTitle: "Popular Hudson, NH Rental Experiences",
     experienceOrder: [
       "movie-nights",
@@ -20,7 +20,7 @@ const LOCAL_PAGE_CONFIG = {
     ],
     localContextHeading: "Local Parks, Schools & Neighborhoods We Outfit Around Hudson, NH",
     localContextCopy:
-      "Because our crew stages right here on Rebel Rd in 03051, we regularly bring 16–40 ft outdoor inflatable movie screens, daylight mobile LED walls, 360 and Magic Mirror photo booths, gamer birthday arenas, and custom novelty bars to school post-proms, town greens, and backyard celebrations throughout Hudson, Litchfield, Pelham, and Windham.",
+      "Because our crew stages right here in Hudson, NH (03051), we regularly bring 16–40 ft outdoor inflatable movie screens, daylight mobile LED walls, 360 and Magic Mirror photo booths, gamer birthday arenas, and custom novelty bars to school post-proms, town greens, and backyard celebrations throughout Hudson, Litchfield, Pelham, and Windham.",
     localVenues: [
       { name: "Benson Park Lawns & Amphitheater", setting: "Town Movie Nights & Festivals · Hudson, NH" },
       { name: "Alvirne High School Campus & Gyms", setting: "Senior Post-Prom, Grad Nights & pep rallies" },
