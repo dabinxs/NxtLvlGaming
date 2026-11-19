@@ -1,57 +1,39 @@
 import React from "react";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import "./WhoWeAre.css";
 
-const WhoWeAre = () => {
-  return (
-    <section id="who-we-are" className="relative bg-[#05070f] py-24">
-      <div className="mx-auto grid max-w-[1280px] grid-cols-1 items-center gap-12 px-5 md:px-8 lg:grid-cols-2">
-        <div>
-          <div className="mb-5 flex items-center gap-3">
-            <span className="h-px w-10 bg-white/30" />
-            <span className="font-display text-[11px] font-medium uppercase tracking-[0.35em] text-white/50">
-              Who Are We
-            </span>
-          </div>
+const photos = [
+  { src: "/who-movie-night.png", alt: "Guests watching an outdoor movie at sunset" },
+  { src: "/who-gaming-lounge.png", alt: "Guests playing games together in an esports lounge" },
+  { src: "/who-heat-press.png", alt: "Guests gathered around a heat press demonstration" },
+  { src: "/who-gaming-event.jpg", alt: "Guests at a large video gaming event" },
+];
 
-          <h2 className="font-display text-[clamp(2rem,5vw,3.4rem)] font-extrabold uppercase leading-[0.95] text-white" style={{ fontWeight: 800 }}>
-            More Than Gaming. It's
-            <br />
-            An <span className="blue-gradient-text">Experience</span>
-          </h2>
-
-          <p className="mt-6 max-w-lg text-[15px] leading-relaxed text-white/60">
-            For over a decade we've produced interactive entertainment that
-            turns gatherings into stories — from 32-foot outdoor cinemas to full
-            esports tournament stages. Every event is delivered, staffed and run
-            by our own crew.
-          </p>
-
-          <Link
-            to="/about"
-            className="cta-fill cta-fill--blue group mt-8 inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 text-[13px] font-semibold uppercase tracking-wide text-white"
-          >
-            Learn More
-            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-          </Link>
-        </div>
-
-        <div className="relative">
-          <div className="absolute -inset-3 rounded-3xl bg-[#7DDDFF]/10 blur-2xl" />
-          <div className="relative overflow-hidden rounded-2xl border border-white/10 shadow-2xl">
-            <img
-              src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&w=1200&q=80"
-              alt="Crowd celebrating with confetti"
-              loading="lazy"
-              decoding="async"
-              className="h-[380px] w-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#040814]/60 to-transparent" />
-          </div>
+const WhoWeAre = () => (
+  <section id="who-we-are" className="who-we-are" aria-labelledby="who-we-are-title" style={{ backgroundImage: "url('/indigo-starfield.png')" }}>
+    <div className="who-we-are__card">
+      <div className="who-we-are__gallery">
+        <div className="who-we-are__photos">
+          {photos.map(({ src, alt }) => (
+            <img key={src} src={src} alt={alt} loading="lazy" decoding="async" />
+          ))}
         </div>
       </div>
-    </section>
-  );
-};
+      <div className="who-we-are__copy">
+        <h2 id="who-we-are-title" className="font-display">More Than Gaming<br />Its An Experience</h2>
+        <p>
+          For over a decade we've produced interactive entertainment that turns
+          gatherings into stories. Every event is delivered, staffed and run by
+          our own crew.
+        </p>
+        <Link to="/about" className="who-we-are__link">
+          Learn more <ArrowRight aria-hidden="true" size={20} />
+        </Link>
+      </div>
+      <img className="who-we-are__controller" src="/who-controller.png" alt="" loading="lazy" decoding="async" />
+    </div>
+  </section>
+);
 
 export default WhoWeAre;

@@ -1,0 +1,116 @@
+.who-we-are {
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: clamp(7rem, 13vh, 8rem) 0;
+  background-color: #090921;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.who-we-are__card {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: clamp(2rem, 4vw, 5rem);
+  width: min(78vw, 1480px);
+  min-height: 655px;
+  padding: 34px 38px;
+  border-radius: 100px;
+  background: linear-gradient(135deg, #012cbd 0%, #00a4f3 100%);
+}
+
+.who-we-are__gallery {
+  display: grid;
+  place-items: center;
+  min-width: 0;
+  border-radius: 100px;
+  background: linear-gradient(180deg, #f642f1 0%, #250e74 100%);
+}
+
+.who-we-are__photos {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  width: 75%;
+}
+
+.who-we-are__photos img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1.85;
+  object-fit: cover;
+}
+
+.who-we-are__copy {
+  align-self: end;
+  min-width: 0;
+  padding-bottom: 3rem;
+  color: #fff;
+}
+
+.who-we-are__copy h2 {
+  margin: 0;
+  font-size: clamp(2rem, 2.6vw, 3.1rem);
+  font-weight: 800;
+  line-height: 1.15;
+  text-transform: uppercase;
+}
+
+.who-we-are__copy p {
+  max-width: 34rem;
+  margin: 1.4rem 0 0;
+  font-size: clamp(1rem, 1.1vw, 1.3rem);
+  font-weight: 500;
+  line-height: 1.7;
+}
+
+.who-we-are__link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  min-height: 4.25rem;
+  margin-top: 4.2rem;
+  padding: 0 1.7rem;
+  border-radius: 1.5rem;
+  background: #00a4f3;
+  color: #fff;
+  font-size: 1.35rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background-color 180ms ease, transform 180ms ease;
+}
+
+.who-we-are__link:hover,
+.who-we-are__link:focus-visible { background: #24bbff; transform: translateY(-2px); }
+
+.who-we-are__controller {
+  position: absolute;
+  z-index: 1;
+  top: -4.5rem;
+  right: 1rem;
+  width: clamp(10rem, 15vw, 15rem);
+  height: auto;
+  pointer-events: none;
+}
+
+@media (max-width: 1200px) {
+  .who-we-are__card { width: calc(100% - 4rem); min-height: 560px; border-radius: 5rem; }
+  .who-we-are__gallery { border-radius: 4.5rem; }
+  .who-we-are__copy { padding-bottom: 1.5rem; }
+  .who-we-are__link { margin-top: 2.5rem; }
+}
+
+@media (max-width: 800px) {
+  .who-we-are { min-height: 0; padding: 6rem 1rem 5rem; }
+  .who-we-are__card { grid-template-columns: 1fr; gap: 2rem; width: 100%; min-height: 0; padding: 1.25rem 1.25rem 2.5rem; border-radius: 3rem; }
+  .who-we-are__gallery { min-height: 20rem; border-radius: 2.25rem; }
+  .who-we-are__photos { width: 84%; gap: 0.5rem; }
+  .who-we-are__copy { padding: 0 0.5rem; }
+  .who-we-are__copy h2 { font-size: clamp(1.9rem, 6vw, 3rem); }
+  .who-we-are__copy p { font-size: 1rem; }
+  .who-we-are__link { min-height: 3.5rem; margin-top: 2rem; font-size: 1rem; }
+  .who-we-are__controller { top: -3.5rem; right: 0.5rem; width: clamp(7rem, 25vw, 11rem); }
+}
