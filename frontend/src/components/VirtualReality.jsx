@@ -61,7 +61,9 @@ const VirtualReality = () => {
           {/* Visible VR Hero Background Image */}
           <img
             src={cmsPage.heroImage}
-            alt="Virtual Reality background"
+            alt="Mobile VR gaming arcade and room-scale Virtual Reality event rental stations in NH, MA and NC"
+            fetchPriority="high"
+            decoding="sync"
             className="absolute inset-0 h-full w-full object-cover object-center scale-105"
           />
           {/* Dark gradient overlay tuned for readability while keeping the photo visible */}

@@ -66,7 +66,9 @@ const VideoBooth360 = () => {
           {/* Background image from the Photo Booth homepage card */}
           <img
             src={cmsPage.heroImage}
-            alt="Photobooth experience at an event"
+            alt="360 slow-motion video booth and interactive Magic Mirror photo booth rental setup in Portsmouth and New Hampshire"
+            fetchPriority="high"
+            decoding="sync"
             className="absolute inset-0 h-full w-full object-cover object-center"
           />
           {/* Directional gradient overlay for visibility & text contrast */}

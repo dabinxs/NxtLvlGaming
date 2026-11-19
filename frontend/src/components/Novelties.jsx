@@ -23,7 +23,9 @@ const Novelties = () => {
           {/* Background image uploaded by user (unzoomed positioning) */}
           <img
             src={content.heroImage}
-            alt="Novelties background"
+            alt="Custom event novelties and on-site DIY maker workshops including trucker hats, pillow dolls, and custom socks"
+            fetchPriority="high"
+            decoding="sync"
             className="absolute inset-0 h-full w-full object-cover object-right pointer-events-none select-none z-0"
           />
 

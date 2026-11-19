@@ -1538,6 +1538,15 @@ const ROUTE_SEO = {
     title: "Hudson NH Party & Event Rentals | Next Level (03051 HQ)",
     description:
       "Local Hudson NH party & event equipment rentals on Rebel Rd (03051): 360 photo booths, inflatable movie screens, LED video walls, VR, glow swings & novelties.",
+    areaServed: [
+      { "@type": "City", name: "Hudson, NH" },
+      { "@type": "City", name: "Litchfield, NH" },
+      { "@type": "City", name: "Pelham, NH" },
+      { "@type": "City", name: "Windham, NH" },
+      { "@type": "City", name: "Londonderry, NH" },
+      { "@type": "City", name: "Nashua, NH" },
+      { "@type": "State", name: "New Hampshire" },
+    ],
     keywords:
       "hudson nh party rentals, party rentals hudson nh, event rentals hudson nh, photo booth rental hudson nh, outdoor movie screen rental hudson nh, party equipment rentals hudson nh 03051, litchfield nh party rentals, pelham nh party rentals, windham nh party rentals, londonderry nh party rentals",
     image: `${SITE_URL}/about-big-screen.jpg`,
@@ -1596,6 +1605,14 @@ const ROUTE_SEO = {
     title: "Manchester NH Party Rentals, Photo Booths, Screens & VR",
     description:
       "Turnkey Manchester NH party & event rentals: 360 photo booths, mirror photo booths, giant outdoor movie screens, LED video walls, VR, glow park & novelties.",
+    areaServed: [
+      { "@type": "City", name: "Manchester, NH" },
+      { "@type": "City", name: "Bedford, NH" },
+      { "@type": "City", name: "Goffstown, NH" },
+      { "@type": "City", name: "Hooksett, NH" },
+      { "@type": "City", name: "Auburn, NH" },
+      { "@type": "State", name: "New Hampshire" },
+    ],
     keywords:
       "manchester nh party rentals, party rentals manchester nh, event rentals manchester nh, manchester nh photo booth rental, photo booth nh, outdoor movie screen rental manchester nh, bedford nh party rentals, goffstown nh party rentals, hooksett nh party rentals, SNHU campus event rentals, Saint Anselm college event rentals",
     image: `${SITE_URL}/gaming-events-experience-2.jpg`,
@@ -1650,6 +1667,15 @@ const ROUTE_SEO = {
     title: "Nashua NH Party Rentals — Photo Booths, Screens & Novelties",
     description:
       "Nashua NH party & event equipment rentals: 360 photo booths, mirror booths, outdoor movie screens, LED walls, VR, glow park & custom novelties.",
+    areaServed: [
+      { "@type": "City", name: "Nashua, NH" },
+      { "@type": "City", name: "Hudson, NH" },
+      { "@type": "City", name: "Merrimack, NH" },
+      { "@type": "City", name: "Hollis, NH" },
+      { "@type": "City", name: "Amherst, NH" },
+      { "@type": "City", name: "Milford, NH" },
+      { "@type": "State", name: "New Hampshire" },
+    ],
     keywords:
       "nashua nh party rentals, party rentals nashua nh, event rentals nashua nh, nashua nh photo booth rental, outdoor movie screen rental nashua nh, merrimack nh party rentals, hollis nh party rentals, amherst nh party rentals, milford nh party rentals, Rivier University event rentals",
     image: `${SITE_URL}/photo-booth-experience-1.jpg`,
@@ -1684,6 +1710,10 @@ const ROUTE_SEO = {
         name: "Nashua NH Photo Booth, Movie Screen & Glow Park Rentals",
         description: "Turnkey 360 video booths, mirror photo booths, 16–40 ft inflatable movie screens, mobile LED walls, and LED glow swings in Nashua and Merrimack NH.",
       },
+      {
+        name: "Nashua NH Event AV Equipment, LED Video Walls & Concert Sound Rentals",
+        description: "Commercial daylight mobile LED video walls, giant HD projection screens, concert-grade audio towers, and event AV production delivered to Nashua NH venues.",
+      },
     ],
     faqs: [
       {
@@ -1696,6 +1726,17 @@ const ROUTE_SEO = {
     title: "Portsmouth NH Photo Booth Rental | 360 & Mirror Booths",
     description:
       "Rent a 360 video booth or Magic Mirror photo booth in Portsmouth, NH. Red carpet, studio lighting, custom prints, props & crew. Fast quote!",
+    areaServed: [
+      { "@type": "City", name: "Portsmouth, NH" },
+      { "@type": "City", name: "Rye, NH" },
+      { "@type": "City", name: "New Castle, NH" },
+      { "@type": "City", name: "Hampton, NH" },
+      { "@type": "City", name: "Exeter, NH" },
+      { "@type": "City", name: "Durham, NH" },
+      { "@type": "City", name: "Dover, NH" },
+      { "@type": "City", name: "Rochester, NH" },
+      { "@type": "State", name: "New Hampshire" },
+    ],
     keywords:
       "portsmouth nh photo booth rental, portsmouth photo booth rental, photo booth rental new hampshire, photo booth nh, nh photo booth rental, portsmouth nh party rentals, seacoast nh party rentals, dover nh party rentals, exeter nh party rentals, hampton nh party rentals, durham nh UNH event rentals, rochester nh party rentals, rye nh wedding photo booth rental",
     image: `${SITE_URL}/experience-360-video-booth.jpg`,

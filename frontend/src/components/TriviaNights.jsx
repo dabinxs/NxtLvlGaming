@@ -76,7 +76,9 @@ const TriviaNights = () => {
           {/* Background image from trivia nights carousel */}
           <img
             src={cmsPage.heroImage}
-            alt="Trivia night crowd and friends"
+            alt="Live-hosted interactive trivia night and wireless buzzer game show rental in NH, MA and NC"
+            fetchPriority="high"
+            decoding="sync"
             className="absolute inset-0 h-full w-full object-cover object-center"
           />
           {/* Directional gradient overlay for visibility & text contrast */}

@@ -76,7 +76,9 @@ const SilentDisco = () => {
           {/* Background image from Silent Disco carousel */}
           <img
             src={cmsPage.heroImage}
-            alt="Silent disco dance party"
+            alt="3-channel LED wireless Silent Disco headphone party rental for colleges and events in NH, MA and NC"
+            fetchPriority="high"
+            decoding="sync"
             className="absolute inset-0 h-full w-full object-cover object-center"
           />
           {/* Directional gradient overlay for visibility & text contrast */}

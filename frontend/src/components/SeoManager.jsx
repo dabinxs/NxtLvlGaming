@@ -106,7 +106,7 @@ function upsertRouteJsonLd(seo, canonicalUrl) {
       provider: {
         "@id": `${SITE_URL}/#organization`,
       },
-      areaServed: AREA_SERVED,
+      areaServed: seo.areaServed || AREA_SERVED,
     };
 
     if (Array.isArray(seo.offers) && seo.offers.length > 0) {

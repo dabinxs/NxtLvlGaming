@@ -86,7 +86,9 @@ const GlowPark = () => {
           {/* Background image from Glow Park carousel */}
           <img
             src={cmsPage.heroImage || "/experience-glow-park.jpg"}
-            alt="Glow Park Experience event setup"
+            alt="Glow Park illuminated LED swings, seesaws, and glowing mini golf event rental in NH, MA and NC"
+            fetchPriority="high"
+            decoding="sync"
             className="absolute inset-0 h-full w-full object-cover object-center"
           />
           {/* Directional gradient overlay for visibility & text contrast */}

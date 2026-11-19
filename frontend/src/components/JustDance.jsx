@@ -85,7 +85,9 @@ const JustDance = () => {
           {/* Background image from Just Dance carousel */}
           <img
             src={heroImage}
-            alt="Guests playing Just Dance together on a large screen"
+            alt="Multiplayer Just Dance giant-screen event party rental with concert sound and lighting in NH, MA and NC"
+            fetchPriority="high"
+            decoding="sync"
             className="absolute inset-0 h-full w-full object-cover object-center"
           />
           {/* Directional gradient overlay for visibility & text contrast */}

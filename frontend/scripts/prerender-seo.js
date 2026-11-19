@@ -130,6 +130,8 @@ function buildRouteHtml(baseHtml, routeKey, seo) {
     `<meta name="twitter:image:alt" content="${escapeHtml(imageAlt)}"/>`
   );
 
+  html = html.replace(/<script\s+id="seo-route-schema"[\s\S]*?<\/script>/i, "");
+
   if (!seo.noindex) {
     const webPageNode = {
       "@type": "WebPage",
@@ -185,7 +187,7 @@ function buildRouteHtml(baseHtml, routeKey, seo) {
           height: imageDims.height,
         },
         provider: { "@id": `${SITE_URL}/#organization` },
-        areaServed: AREA_SERVED,
+        areaServed: seo.areaServed || AREA_SERVED,
       };
 
       if (Array.isArray(seo.offers) && seo.offers.length > 0) {

@@ -94,7 +94,9 @@ const MovieNights = () => {
           {/* Background image from movie nights carousel */}
           <img
             src={cmsPage.heroImage}
-            alt="Movie Night under the stars"
+            alt="Giant outdoor inflatable movie screen and mobile LED video wall rental setup in NH, MA and NC"
+            fetchPriority="high"
+            decoding="sync"
             className="absolute inset-0 h-full w-full object-cover object-center"
           />
           {/* Directional gradient overlay for high visibility & contrast */}

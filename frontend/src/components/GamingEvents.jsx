@@ -109,7 +109,9 @@ const GamingEvents = () => {
           {/* Background image from gaming events carousel */}
           <img
             src={cmsPage.heroImage}
-            alt="Gaming event background"
+            alt="Live video gaming event production, multiplayer console stations, and esports tournament screens in NH, MA and NC"
+            fetchPriority="high"
+            decoding="sync"
             className="absolute inset-0 h-full w-full object-cover object-center"
           />
           {/* Subtle directional gradient overlay so the photo is vibrant and visible */}
