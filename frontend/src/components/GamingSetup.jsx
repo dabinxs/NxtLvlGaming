@@ -67,6 +67,39 @@ const movieEquipment = [
   },
 ];
 
+const triviaEquipment = [
+  {
+    title: "Interactive Trivia",
+    description: "Multimedia questions and live scoring.",
+    image: "/trivia-setup-screen.png",
+    alt: "Inflatable screen showing a trivia night question",
+  },
+  {
+    title: "Large Display",
+    description: "Questions and leaderboards up to 32 ft.",
+    image: "/trivia-setup-leaderboard.png",
+    alt: "Large screen showing live trivia rankings",
+  },
+  {
+    title: "Any Size Group",
+    description: "From small teams to full venues.",
+    image: "/trivia-setup-group.png",
+    alt: "Neon group icon",
+  },
+  {
+    title: "Custom Categories",
+    description: "Themed rounds for any crowd.",
+    image: "/trivia-setup-categories.png",
+    alt: "Trivia category cards for pop culture, science, history and geography",
+  },
+  {
+    title: "Event Setup",
+    description: "Lighting, seating & full production.",
+    image: "/trivia-setup-truss.png",
+    alt: "Lit trivia night stage truss",
+  },
+];
+
 const setups = {
   gaming: {
     heading: "Gaming Equipment",
@@ -80,6 +113,13 @@ const setups = {
     background: "/movie-setup-background.png",
     equipment: movieEquipment,
   },
+  trivia: {
+    heading: "Trivia Nights",
+    description: "Event-ready gear for a seamless and immersive trivia experience.",
+    background: "/trivia-setup-background.png",
+    equipment: triviaEquipment,
+    webp: false,
+  },
 };
 
 const GamingSetup = ({ variant = "gaming" }) => {
@@ -88,7 +128,7 @@ const GamingSetup = ({ variant = "gaming" }) => {
   return (
     <section id="what-is-included" className={`gaming-setup gaming-setup--${variant}`}>
       <picture className="contents">
-        <source srcSet={setup.background.replace(".png", ".webp")} type="image/webp" />
+        {setup.webp !== false && <source srcSet={setup.background.replace(".png", ".webp")} type="image/webp" />}
         <img
           className="gaming-setup__background"
           src={setup.background}
@@ -117,7 +157,7 @@ const GamingSetup = ({ variant = "gaming" }) => {
             <article className="gaming-setup__card" key={item.title}>
               <div className="gaming-setup__card-media">
                 <picture className="contents">
-                  <source srcSet={item.image.replace(".png", ".webp")} type="image/webp" />
+                  {setup.webp !== false && <source srcSet={item.image.replace(".png", ".webp")} type="image/webp" />}
                   <img src={item.image} alt={item.alt} loading="lazy" decoding="async" />
                 </picture>
               </div>

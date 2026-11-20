@@ -1,14 +1,9 @@
 import React, { useEffect } from "react";
-import {
-  Brain,
-  Monitor,
-  Users,
-  Layers,
-  Check,
-} from "lucide-react";
+import { Check } from "lucide-react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import ReadyCTA from "./ReadyCTA";
+import GamingSetup from "./GamingSetup";
 import { useCmsPage } from "../lib/cmsContent";
 import { CMS_PAGES } from "../lib/cmsPages";
 
@@ -17,29 +12,6 @@ const OVERVIEW_POINTS = [
   "Custom content for your audience",
   "Real-time scoring and leaderboards",
   "Perfect for campus, corporate and venues",
-];
-
-const INCLUDED_FEATURES = [
-  {
-    icon: Brain,
-    title: "Interactive Trivia",
-    desc: "Professionally hosted rounds with multimedia questions and live scoring.",
-  },
-  {
-    icon: Monitor,
-    title: "Large Display",
-    desc: "Questions, timers and leaderboards projected on screens up to 32 ft.",
-  },
-  {
-    icon: Users,
-    title: "Any Size Group",
-    desc: "Team-based play that scales from a dozen friends to a full venue.",
-  },
-  {
-    icon: Layers,
-    title: "Custom Categories",
-    desc: "Themed rounds built around your crowd, company or celebration.",
-  },
 ];
 
 const GALLERY_IMAGES = [
@@ -137,45 +109,7 @@ const TriviaNights = () => {
           </div>
         </section>
 
-        {/* ================= WHAT IS INCLUDED SECTION ================= */}
-        <section id="what-is-included" className="relative py-24 md:py-32">
-          <div className="mx-auto max-w-[1280px] px-5 md:px-8">
-            <div className="mb-12">
-              <div className="flex items-center gap-3 font-display text-[12px] font-bold uppercase tracking-[0.22em] text-[#7DDDFF]">
-                <span className="h-0.5 w-7 bg-[#0066FD]" />
-                <span>WHAT IS INCLUDED</span>
-              </div>
-              <h2 className="mt-4 font-display text-[clamp(1.9rem,3.8vw,2.9rem)] font-extrabold uppercase leading-[1.12] tracking-tight text-white">
-                Everything Needed For The Ultimate Trivia Show
-              </h2>
-            </div>
-
-            {/* 4 Feature Cards (2x2) */}
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-              {INCLUDED_FEATURES.map((item) => {
-                const IconComponent = item.icon;
-                return (
-                  <div
-                    key={item.title}
-                    className="group relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-[#0c1830] to-[#070e1e] p-8 transition-all duration-300 hover:border-[#0066FD]/50 hover:shadow-[0_12px_36px_rgba(0,102,253,0.18)]"
-                  >
-                    <div className="flex h-14 w-14 items-center justify-center rounded-xl border border-[#0066FD]/35 bg-[#0066FD]/15 text-[#7DDDFF] shadow-[0_0_20px_rgba(0,102,253,0.2)] transition-all duration-300 group-hover:scale-110 group-hover:border-[#0066FD]/60 group-hover:bg-[#0066FD]/25">
-                      <IconComponent className="h-7 w-7" strokeWidth={2} />
-                    </div>
-
-                    <h3 className="mt-6 font-display text-[20px] font-extrabold uppercase tracking-wide text-white transition-colors group-hover:text-[#7DDDFF]">
-                      {item.title}
-                    </h3>
-
-                    <p className="mt-3 text-[15px] leading-relaxed text-white/70">
-                      {item.desc}
-                    </p>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </section>
+        <GamingSetup variant="trivia" />
 
         {/* ================= SEE IT IN ACTION / THE EXPERIENCE ================= */}
         <section className="relative border-t border-white/5 bg-[#070b16] py-24 md:py-32">
