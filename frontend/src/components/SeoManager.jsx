@@ -63,6 +63,11 @@ function upsertRouteJsonLd(seo, canonicalUrl) {
   if (seo.serviceName) {
     webPageNode.mainEntity = { "@id": `${canonicalUrl}#service` };
   }
+  if (Array.isArray(seo.relatedLinks) && seo.relatedLinks.length > 0) {
+    webPageNode.relatedLink = seo.relatedLinks
+      .filter((item) => item && item.href)
+      .map((item) => `${SITE_URL}${item.href}`);
+  }
 
   const graph = [
     webPageNode,

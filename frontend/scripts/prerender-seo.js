@@ -155,6 +155,11 @@ function buildRouteHtml(baseHtml, routeKey, seo) {
     if (seo.serviceName) {
       webPageNode.mainEntity = { "@id": `${canonicalUrl}#service` };
     }
+    if (Array.isArray(seo.relatedLinks) && seo.relatedLinks.length > 0) {
+      webPageNode.relatedLink = seo.relatedLinks
+        .filter((item) => item && item.href)
+        .map((item) => `${SITE_URL}${item.href}`);
+    }
 
     const routeGraph = [
       webPageNode,
@@ -234,6 +239,61 @@ function buildRouteHtml(baseHtml, routeKey, seo) {
       .map((item) => `<a href="${escapeHtml(item.href)}" style="color:#94a3b8;text-decoration:none;">${escapeHtml(item.label)}</a>`)
       .join(" · ");
 
+    const detailsParts = [];
+    if (seo.subhead || seo.details) {
+      detailsParts.push(
+        `<section style="max-width:1180px;margin:0 auto;padding:24px 20px;color:#cbd5e1;font-size:15px;line-height:1.7;">` +
+          (seo.subhead ? `<h2 style="margin:0 0 10px;font-size:22px;color:#ffffff;">${escapeHtml(seo.subhead)}</h2>` : "") +
+          (seo.details ? `<p style="margin:0 0 12px;">${escapeHtml(seo.details)}</p>` : "") +
+          (Array.isArray(seo.highlights) && seo.highlights.length
+            ? `<ul style="margin:0;padding-left:20px;">${seo.highlights.map((h) => `<li>${escapeHtml(h)}</li>`).join("")}</ul>`
+            : "") +
+        `</section>`
+      );
+    }
+    if (localCfg) {
+      const pkgHtml = Array.isArray(localCfg.featuredPackages)
+        ? localCfg.featuredPackages
+            .map(
+              (pkg) =>
+                `<article style="margin:0 0 12px;"><h3 style="margin:0 0 4px;font-size:17px;color:#ffffff;">${escapeHtml(pkg.title)}</h3><p style="margin:0;">${escapeHtml(pkg.specs)} — ${escapeHtml(pkg.desc)} <a href="${escapeHtml(pkg.href)}" style="color:#7DDDFF;">View Specs</a></p></article>`
+            )
+            .join("")
+        : "";
+      const venueHtml = Array.isArray(localCfg.localVenues)
+        ? `<ul style="margin:8px 0 0;padding-left:20px;">${localCfg.localVenues
+            .map((v) => `<li><strong>${escapeHtml(v.name)}</strong>: ${escapeHtml(v.setting)}</li>`)
+            .join("")}</ul>`
+        : "";
+      detailsParts.push(
+        `<section style="max-width:1180px;margin:0 auto;padding:16px 20px;color:#cbd5e1;font-size:15px;line-height:1.7;">` +
+          `<h2 style="margin:0 0 10px;font-size:22px;color:#ffffff;">${escapeHtml(localCfg.sectionTitle || localCfg.localContextHeading || "")}</h2>` +
+          (localCfg.dispatchNote ? `<p style="margin:0 0 12px;">${escapeHtml(localCfg.dispatchNote)}</p>` : "") +
+          pkgHtml +
+          (localCfg.localContextHeading ? `<h3 style="margin:16px 0 6px;font-size:18px;color:#ffffff;">${escapeHtml(localCfg.localContextHeading)}</h3>` : "") +
+          (localCfg.localContextCopy ? `<p style="margin:0 0 8px;">${escapeHtml(localCfg.localContextCopy)}</p>` : "") +
+          venueHtml +
+        `</section>`
+      );
+    } else if (Array.isArray(seo.offers) && seo.offers.length) {
+      detailsParts.push(
+        `<section style="max-width:1180px;margin:0 auto;padding:16px 20px;color:#cbd5e1;font-size:15px;line-height:1.7;">` +
+          `<h2 style="margin:0 0 10px;font-size:20px;color:#ffffff;">Available Rental Packages</h2>` +
+          seo.offers
+            .map((o) => `<article style="margin:0 0 10px;"><h3 style="margin:0 0 4px;font-size:16px;color:#ffffff;">${escapeHtml(o.name)}</h3><p style="margin:0;">${escapeHtml(o.description)}</p></article>`)
+            .join("") +
+        `</section>`
+      );
+    }
+    if (Array.isArray(seo.faqs) && seo.faqs.length) {
+      detailsParts.push(
+        `<section style="max-width:1180px;margin:0 auto;padding:16px 20px;color:#cbd5e1;font-size:14px;line-height:1.7;">` +
+          `<h2 style="margin:0 0 10px;font-size:20px;color:#ffffff;">Frequently Asked Questions</h2><dl style="margin:0;">` +
+          seo.faqs.map((f) => `<dt style="font-weight:700;color:#ffffff;margin-top:10px;">${escapeHtml(f.q)}</dt><dd style="margin:4px 0 0;">${escapeHtml(f.a)}</dd>`).join("") +
+        `</dl></section>`
+      );
+    }
+
     const customMainHtml = `<main style="min-height:100vh;background-color:#05070f;color:#ffffff;">
       <header style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;max-width:1240px;margin:0 auto;padding:18px 20px;border-bottom:1px solid rgba(255,255,255,0.08);">
         <a href="/" style="color:#ffffff;text-decoration:none;font-weight:800;font-size:15px;letter-spacing:0.08em;text-transform:uppercase;">Next Level Gaming &amp; Novelties</a>
@@ -257,6 +317,7 @@ function buildRouteHtml(baseHtml, routeKey, seo) {
           </div>
         </div>
       </section>
+      ${detailsParts.join("\n")}
       <footer style="max-width:1180px;margin:24px auto 0;padding:24px 20px 48px;border-top:1px solid rgba(255,255,255,0.08);font-size:12px;line-height:1.8;color:#94a3b8;">
         <p style="margin:0 0 8px;">${allFooterLinks}</p>
         <p style="margin:0;"><a href="/about" style="color:#cbd5e1;">About</a> · <a href="/contact" style="color:#cbd5e1;">Contact</a> · <a href="/novelty-order" style="color:#cbd5e1;">Order Custom Novelties</a> · Hudson, NH 03051 · <a href="tel:9786015473" style="color:#7DDDFF;">978-601-5473</a></p>

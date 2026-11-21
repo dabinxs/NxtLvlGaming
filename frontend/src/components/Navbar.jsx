@@ -108,11 +108,16 @@ const Navbar = ({ topOnly = false }) => {
       >
         <div className="relative z-10 mx-auto flex w-full max-w-[1400px] items-center justify-between">
           <Link to="/" className="flex items-center group">
-            <img
-              src="/logo-3d.png"
-              alt="Next Level Gaming and Novelties"
-              className="h-14 sm:h-16 md:h-20 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
-            />
+            <picture className="contents">
+              <source srcSet="/logo-3d.webp" type="image/webp" />
+              <img
+                src="/logo-3d.png"
+                alt="Next Level Gaming and Novelties"
+                fetchPriority="high"
+                decoding="sync"
+                className="h-14 sm:h-16 md:h-20 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+              />
+            </picture>
           </Link>
           <nav
             data-testid="nav-links-pill"

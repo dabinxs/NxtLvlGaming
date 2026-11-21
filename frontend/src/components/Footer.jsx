@@ -57,7 +57,7 @@ const Footer = ({ showQuoteCTA = true }) => {
             >
               <span>978-601-5473</span>
             </a>
-            <a href="https://www.google.com/maps/search/?api=1&query=Hudson+NH" target="_blank" rel="noreferrer" className="mt-2 flex items-center gap-2 text-sm text-white/65 transition-colors hover:text-[#7DDDFF]">
+            <a href="https://maps.app.goo.gl/GtLAEfGbnUhzCq567" target="_blank" rel="noreferrer" className="mt-2 flex items-center gap-2 text-sm text-white/65 transition-colors hover:text-[#7DDDFF]">
               <MapPin className="h-4 w-4 text-[#7DDDFF]" /><span>HUDSON NH</span>
             </a>
 

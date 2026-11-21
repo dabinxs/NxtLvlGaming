@@ -82,12 +82,18 @@ const ChooseExperience = ({
                 }}
               >
                 <div className="lenticular-face relative">
-                  <img
-                    src={exp.image}
-                    alt={`${exp.title} ${exp.highlight}`}
-                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-700"
-                    loading="lazy"
-                  />
+                  <picture className="contents">
+                    {exp.image && exp.image.startsWith("/experience-") && exp.image.endsWith(".jpg") && (
+                      <source srcSet={exp.image.replace(/\.jpg$/, ".webp")} type="image/webp" />
+                    )}
+                    <img
+                      src={exp.image}
+                      alt={`${exp.title} ${exp.highlight} rental by Next Level Gaming`}
+                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-700"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </picture>
                   <div className="absolute inset-0 bg-gradient-to-t from-[#040814] via-[#040814]/60 to-[#040814]/25" />
                   <span className="lenticular-sheen" />
                   <div
