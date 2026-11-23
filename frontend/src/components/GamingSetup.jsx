@@ -100,6 +100,39 @@ const triviaEquipment = [
   },
 ];
 
+const vrEquipment = [
+  {
+    title: "VR Headsets",
+    description: "Headsets and motion controllers for immersive play.",
+    image: "/vr-setup-headset.png",
+    alt: "Neon VR headset and motion controllers",
+  },
+  {
+    title: "Game Library",
+    description: "A range of games for every kind of player.",
+    image: "/vr-setup-games.png",
+    alt: "Neon dashboard showing a selection of VR games",
+  },
+  {
+    title: "Spectator Display",
+    description: "Share the action on a large screen.",
+    image: "/vr-setup-display.png",
+    alt: "Large event display beneath a neon-lit stage truss",
+  },
+  {
+    title: "Game Categories",
+    description: "Action, adventure, racing and puzzles.",
+    image: "/vr-setup-categories.png",
+    alt: "Neon cards for action, adventure, racing and puzzle games",
+  },
+  {
+    title: "Event Setup",
+    description: "Lighting, displays and full production.",
+    image: "/vr-setup-stage.png",
+    alt: "Neon-lit VR event stage installation",
+  },
+];
+
 const setups = {
   gaming: {
     heading: "Gaming Equipment",
@@ -118,6 +151,13 @@ const setups = {
     description: "Event-ready gear for a seamless and immersive trivia experience.",
     background: "/trivia-setup-background.png",
     equipment: triviaEquipment,
+    webp: false,
+  },
+  vr: {
+    heading: "Virtual Reality",
+    description: "Event-ready gear for a seamless and immersive VR experience.",
+    background: "/vr-setup-background.png",
+    equipment: vrEquipment,
     webp: false,
   },
 };

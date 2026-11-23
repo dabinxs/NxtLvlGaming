@@ -151,7 +151,8 @@
     margin-block-start: clamp(2.5rem, 3.5vw, 3.5rem);
   }
 
-  .gaming-setup--trivia .gaming-setup__cards {
+  .gaming-setup--trivia .gaming-setup__cards,
+  .gaming-setup--vr .gaming-setup__cards {
     margin-block-start: clamp(5rem, 7vw, 8rem);
   }
 }
