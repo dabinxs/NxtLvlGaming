@@ -105,6 +105,86 @@
   object-fit: contain;
 }
 
+.gaming-setup--dance .gaming-setup__eyebrow,
+.gaming-setup--dance .gaming-setup__rule {
+  color: #00d9eb;
+}
+
+.gaming-setup--dance .gaming-setup__rule {
+  background: #00d9eb;
+}
+
+.gaming-setup--dance .gaming-setup__title-accent {
+  inline-size: fit-content;
+  background: linear-gradient(110deg, #04dce7, #00a4f3);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.gaming-setup__scoreboard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.25rem;
+  inline-size: 88%;
+  block-size: 78%;
+  padding: 0.35rem;
+  border: 2px solid #00a4f3;
+  border-radius: 0.85rem;
+  background: #031233;
+  box-shadow: 0 0 10px #00a4f3, inset 0 0 12px rgb(0 164 243 / 30%);
+}
+
+.gaming-setup__score-row {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  min-block-size: 0;
+  flex: 1;
+  padding-inline: 0.35rem;
+  border: 1px solid #00a4f3;
+  border-radius: 0.5rem;
+  box-shadow: inset 0 0 8px rgb(0 164 243 / 26%);
+  color: #fff;
+  font-size: clamp(0.65rem, 0.85vw, 0.9rem);
+}
+
+.gaming-setup__score-row--first {
+  border-color: #ffcc37;
+  box-shadow: inset 0 0 9px rgb(255 195 22 / 27%);
+  color: #ffe48f;
+}
+
+.gaming-setup__score-row--third {
+  border-color: #e751f5;
+  box-shadow: inset 0 0 9px rgb(231 81 245 / 30%);
+}
+
+.gaming-setup__score-row svg {
+  inline-size: 1rem;
+  block-size: 1rem;
+  flex: none;
+  color: #ffcb36;
+}
+
+.gaming-setup__score-rank {
+  display: grid;
+  place-items: center;
+  inline-size: 1.1rem;
+  block-size: 1.1rem;
+  flex: none;
+  border-radius: 50%;
+  background: rgb(255 255 255 / 18%);
+  font-weight: 800;
+}
+
+.gaming-setup__score-row strong {
+  margin-inline-start: auto;
+  font-size: 1em;
+  font-weight: 800;
+}
+
 .gaming-setup__card-copy {
   padding-inline: clamp(1rem, 1.4vw, 1.75rem);
 }
@@ -152,7 +232,8 @@
   }
 
   .gaming-setup--trivia .gaming-setup__cards,
-  .gaming-setup--vr .gaming-setup__cards {
+  .gaming-setup--vr .gaming-setup__cards,
+  .gaming-setup--dance .gaming-setup__cards {
     margin-block-start: clamp(5rem, 7vw, 8rem);
   }
 }

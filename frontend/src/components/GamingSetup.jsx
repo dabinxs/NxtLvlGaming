@@ -1,4 +1,5 @@
 import React from "react";
+import { Trophy } from "lucide-react";
 import "./GamingSetup.css";
 
 const gamingEquipment = [
@@ -133,6 +134,38 @@ const vrEquipment = [
   },
 ];
 
+const danceEquipment = [
+  {
+    title: "Follow the Coach",
+    description: "Match the moves on screen.",
+    image: "/dance-setup-screen.png",
+    alt: "Neon inflatable screen showing an on-screen dancer",
+  },
+  {
+    title: "Pick a Song",
+    description: "Choose a track and jump in.",
+    image: "/dance-setup-playlist.png",
+    alt: "Neon music playlist display",
+  },
+  {
+    title: "Track Your Score",
+    description: "Earn points with every move.",
+    type: "score",
+  },
+  {
+    title: "Multiplayer Battles",
+    description: "Take turns or go head-to-head.",
+    image: "/dance-setup-battle.png",
+    alt: "Two neon dancers facing off in a versus battle",
+  },
+  {
+    title: "Event Setup",
+    description: "Lighting, seating & full production.",
+    image: "/dance-setup-stage.png",
+    alt: "Neon-lit dance stage with an LED screen",
+  },
+];
+
 const setups = {
   gaming: {
     heading: "Gaming Equipment",
@@ -158,6 +191,13 @@ const setups = {
     description: "Event-ready gear for a seamless and immersive VR experience.",
     background: "/vr-setup-background.png",
     equipment: vrEquipment,
+    webp: false,
+  },
+  dance: {
+    heading: "Just Dance",
+    description: "Event-ready gear for a high-energy dance experience.",
+    background: "/dance-setup-background.png",
+    equipment: danceEquipment,
     webp: false,
   },
 };
@@ -196,10 +236,28 @@ const GamingSetup = ({ variant = "gaming" }) => {
           {setup.equipment.map((item) => (
             <article className="gaming-setup__card" key={item.title}>
               <div className="gaming-setup__card-media">
-                <picture className="contents">
-                  {setup.webp !== false && <source srcSet={item.image.replace(".png", ".webp")} type="image/webp" />}
-                  <img src={item.image} alt={item.alt} loading="lazy" decoding="async" />
-                </picture>
+                {item.type === "score" ? (
+                  <div className="gaming-setup__scoreboard" role="img" aria-label="Neon dance leaderboard with scores 12,480, 11,920 and 10,840">
+                    <div className="gaming-setup__score-row gaming-setup__score-row--first">
+                      <Trophy aria-hidden="true" />
+                      <span className="gaming-setup__score-rank">1</span>
+                      <strong>12,480</strong>
+                    </div>
+                    <div className="gaming-setup__score-row gaming-setup__score-row--second">
+                      <span className="gaming-setup__score-rank">2</span>
+                      <strong>11,920</strong>
+                    </div>
+                    <div className="gaming-setup__score-row gaming-setup__score-row--third">
+                      <span className="gaming-setup__score-rank">3</span>
+                      <strong>10,840</strong>
+                    </div>
+                  </div>
+                ) : (
+                  <picture className="contents">
+                    {setup.webp !== false && <source srcSet={item.image.replace(".png", ".webp")} type="image/webp" />}
+                    <img src={item.image} alt={item.alt} loading="lazy" decoding="async" />
+                  </picture>
+                )}
               </div>
               <div className="gaming-setup__card-copy">
                 <h3>{item.title}</h3>
