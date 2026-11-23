@@ -166,6 +166,40 @@ const danceEquipment = [
   },
 ];
 
+const discoEquipment = [
+  {
+    title: "LED Headphones",
+    description: "Wireless headphones with LED glow.",
+    image: "/disco-setup-headphones.png",
+    alt: "Wireless LED headphones with channel-color glow",
+  },
+  {
+    title: "Any Vibe",
+    description: "Top 40, throwbacks, EDM or your DJ.",
+    image: "/disco-setup-vibe.png",
+    alt: "Crowd dancing with wireless headphones under party lighting",
+    fit: "cover",
+  },
+  {
+    title: "Music Channels",
+    description: "Switch channels and choose your vibe.",
+    image: "/disco-setup-channels.png",
+    alt: "Three neon music channel indicators",
+  },
+  {
+    title: "Party Lighting",
+    description: "Lighting that energizes the floor.",
+    image: "/disco-setup-lighting.png",
+    alt: "Truss lighting rig with colorful spotlights",
+  },
+  {
+    title: "Event Setup",
+    description: "Headphones, channels and full production.",
+    image: "/disco-setup-stage.png",
+    alt: "Silent disco event audio setup with headphones, console and speaker",
+  },
+];
+
 const setups = {
   gaming: {
     heading: "Gaming Equipment",
@@ -198,6 +232,13 @@ const setups = {
     description: "Event-ready gear for a high-energy dance experience.",
     background: "/dance-setup-background.png",
     equipment: danceEquipment,
+    webp: false,
+  },
+  disco: {
+    heading: "Silent Disco",
+    description: "LED headphones and multiple music channels for an unforgettable dance experience.",
+    background: "/disco-setup-background.png",
+    equipment: discoEquipment,
     webp: false,
   },
 };
@@ -255,7 +296,13 @@ const GamingSetup = ({ variant = "gaming" }) => {
                 ) : (
                   <picture className="contents">
                     {setup.webp !== false && <source srcSet={item.image.replace(".png", ".webp")} type="image/webp" />}
-                    <img src={item.image} alt={item.alt} loading="lazy" decoding="async" />
+                    <img
+                      src={item.image}
+                      alt={item.alt}
+                      loading="lazy"
+                      decoding="async"
+                      className={item.fit === "cover" ? "gaming-setup__card-img--cover" : undefined}
+                    />
                   </picture>
                 )}
               </div>

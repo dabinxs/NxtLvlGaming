@@ -111,12 +111,32 @@
 }
 
 .gaming-setup--dance .gaming-setup__eyebrow,
-.gaming-setup--dance .gaming-setup__rule {
+.gaming-setup--dance .gaming-setup__rule,
+.gaming-setup--disco .gaming-setup__eyebrow,
+.gaming-setup--disco .gaming-setup__rule {
   color: #00d9eb;
 }
 
-.gaming-setup--dance .gaming-setup__rule {
+.gaming-setup--dance .gaming-setup__rule,
+.gaming-setup--disco .gaming-setup__rule {
   background: #00d9eb;
+}
+
+.gaming-setup--disco .gaming-setup__title-accent {
+  inline-size: fit-content;
+  background: linear-gradient(110deg, #0066fd, #00d9eb);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.gaming-setup__card-media img.gaming-setup__card-img--cover {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+  -webkit-mask-image: linear-gradient(to bottom, #000 80%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 80%, transparent 100%);
 }
 
 .gaming-setup__scoreboard {
@@ -230,7 +250,8 @@
 
   .gaming-setup--trivia .gaming-setup__cards,
   .gaming-setup--vr .gaming-setup__cards,
-  .gaming-setup--dance .gaming-setup__cards {
+  .gaming-setup--dance .gaming-setup__cards,
+  .gaming-setup--disco .gaming-setup__cards {
     margin-block-start: clamp(5rem, 7vw, 8rem);
   }
 }
