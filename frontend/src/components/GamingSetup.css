@@ -131,6 +131,15 @@
   color: transparent;
 }
 
+.gaming-setup--disco .gaming-setup__card-media {
+  grid-template-rows: minmax(0, 1fr);
+}
+
+.gaming-setup--disco .gaming-setup__card:first-child .gaming-setup__card-media img {
+  inline-size: 78%;
+  block-size: 78%;
+}
+
 .gaming-setup__card-media img.gaming-setup__card-img--cover {
   inline-size: 100%;
   block-size: 100%;
