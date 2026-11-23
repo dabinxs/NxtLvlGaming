@@ -75,16 +75,16 @@
   margin-top: 4.2rem;
   padding: 0 1.7rem;
   border-radius: 1.5rem;
-  background: #00a4f3;
+  background: var(--brand-blue-gradient);
   color: #fff;
   font-size: 1.35rem;
   font-weight: 700;
   text-decoration: none;
-  transition: background-color 180ms ease, transform 180ms ease;
+  transition: filter 180ms ease, transform 180ms ease;
 }
 
 .who-we-are__link:hover,
-.who-we-are__link:focus-visible { background: #24bbff; transform: translateY(-2px); }
+.who-we-are__link:focus-visible { filter: brightness(1.12); transform: translateY(-2px); }
 
 .who-we-are__controller {
   position: absolute;

@@ -61,7 +61,12 @@
 }
 
 .gaming-setup__title-accent {
-  color: #078bff;
+  inline-size: fit-content;
+  background: var(--brand-blue-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
 }
 
 .gaming-setup__description {
@@ -112,14 +117,6 @@
 
 .gaming-setup--dance .gaming-setup__rule {
   background: #00d9eb;
-}
-
-.gaming-setup--dance .gaming-setup__title-accent {
-  inline-size: fit-content;
-  background: linear-gradient(110deg, #04dce7, #00a4f3);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
 }
 
 .gaming-setup__scoreboard {

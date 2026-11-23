@@ -56,7 +56,7 @@ const Hero = ({ seo = null, primaryCta = null, homepage = false }) => {
             <Link
               to={ctaTo}
               data-testid="hero-explore-cta"
-              className="cta-fill group inline-flex h-[50px] sm:h-[52px] w-full max-w-[300px] items-center justify-center gap-2.5 rounded-xl sm:rounded-2xl border-2 border-transparent bg-[#0873df] px-6 sm:px-7 text-[12px] sm:text-[13px] font-bold uppercase tracking-[0.06em] text-white shadow-[0_8px_28px_rgba(0,102,204,0.35)] transition-all hover:bg-[#1485f4] hover:shadow-[0_12px_36px_rgba(0,102,204,0.5)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-200 sm:w-auto"
+              className="cta-fill group inline-flex h-[50px] sm:h-[52px] w-full max-w-[300px] items-center justify-center gap-2.5 rounded-xl sm:rounded-2xl border-2 border-transparent blue-gradient-bg px-6 sm:px-7 text-[12px] sm:text-[13px] font-bold uppercase tracking-[0.06em] text-white shadow-[0_8px_28px_rgba(0,102,204,0.35)] transition-all hover:shadow-[0_12px_36px_rgba(0,102,204,0.5)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-200 sm:w-auto"
             >
               {ctaLabel}
               <ChevronRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
@@ -149,7 +149,7 @@ const Hero = ({ seo = null, primaryCta = null, homepage = false }) => {
           <Link
             to={ctaTo}
             data-testid="hero-explore-cta"
-            className="cta-fill group inline-flex h-[54px] w-full max-w-[320px] items-center justify-center gap-3 rounded-xl border-2 border-transparent bg-[#0066CC] px-5 text-[13px] font-bold uppercase tracking-[0.06em] text-white shadow-[0_10px_34px_rgba(0,102,204,0.35)] hover:shadow-[0_14px_40px_rgba(0,102,204,0.5)] sm:w-auto sm:px-8"
+            className="cta-fill group inline-flex h-[54px] w-full max-w-[320px] items-center justify-center gap-3 rounded-xl border-2 border-transparent blue-gradient-bg px-5 text-[13px] font-bold uppercase tracking-[0.06em] text-white shadow-[0_10px_34px_rgba(0,102,204,0.35)] hover:shadow-[0_14px_40px_rgba(0,102,204,0.5)] sm:w-auto sm:px-8"
           >
             {ctaLabel}
             <ChevronRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />

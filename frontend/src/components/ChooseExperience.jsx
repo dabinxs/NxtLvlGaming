@@ -105,7 +105,7 @@ const ChooseExperience = ({
                       style={{ fontWeight: 800 }}
                     >
                       {exp.title}{" "}
-                      <span className="text-[#1E90FF]">{exp.highlight}</span>
+                      <span className="blue-gradient-text">{exp.highlight}</span>
                     </h3>
                     <p className="mx-auto mt-3 max-w-md text-[14.5px] text-white/80 drop-shadow sm:text-[15px]">
                       {exp.desc}

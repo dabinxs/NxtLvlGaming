@@ -46,7 +46,7 @@ const Novelties = () => {
             {/* Main Headline */}
             <h1 className="mt-6 font-serif text-[clamp(3.2rem,7.5vw,6.5rem)] font-normal leading-[1.04] tracking-tight text-white">
               {content.heroTitle} <br />
-              <span className="italic font-serif text-[#0099FF] drop-shadow-[0_0_30px_rgba(0,153,255,0.45)]">
+              <span className="italic font-serif blue-gradient-text drop-shadow-[0_0_30px_rgba(0,153,255,0.45)]">
                 {content.heroHighlight}
               </span>
             </h1>
@@ -60,7 +60,7 @@ const Novelties = () => {
             <div className="mt-10 flex flex-wrap items-center gap-4">
               <a
                 href="/build-novelty"
-                className="group inline-flex h-[52px] items-center justify-center gap-2.5 rounded-full bg-[#0099FF] px-8 text-[12px] font-bold uppercase tracking-[0.1em] text-white shadow-[0_0_24px_rgba(0,153,255,0.4)] transition-all duration-300 hover:bg-[#0088EE] hover:shadow-[0_0_36px_rgba(0,153,255,0.6)]"
+                className="group inline-flex h-[52px] items-center justify-center gap-2.5 rounded-full blue-gradient-bg px-8 text-[12px] font-bold uppercase tracking-[0.1em] text-white shadow-[0_0_24px_rgba(0,153,255,0.4)] transition-all duration-300 hover:brightness-110 hover:shadow-[0_0_36px_rgba(0,153,255,0.6)]"
               >
                 CUSTOMIZE YOUR NOVELTIES
                 <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -278,12 +278,12 @@ const Novelties = () => {
           <div className="relative z-10 flex flex-col items-center justify-center text-center py-24 md:py-32 px-6">
             <h2 className="font-serif text-[clamp(3rem,7.5vw,6.5rem)] font-extrabold uppercase leading-[1.0] tracking-tight">
               <span className="text-white">YOUR IDEA</span><br />
-              <span className="italic text-[#00C8FF] drop-shadow-[0_0_40px_rgba(0,200,255,0.6)]">MADE TANGIBLE.</span>
+              <span className="italic blue-gradient-text drop-shadow-[0_0_40px_rgba(0,200,255,0.6)]">MADE TANGIBLE.</span>
             </h2>
             <div className="mt-10">
               <a
                 href="/build-novelty"
-                className="inline-flex h-[54px] items-center justify-center gap-3 rounded-full bg-[#0099FF] px-10 text-[13px] font-bold uppercase tracking-[0.15em] text-white shadow-[0_0_30px_rgba(0,153,255,0.5)] transition-all duration-300 hover:bg-[#0088EE] hover:shadow-[0_0_50px_rgba(0,153,255,0.7)]"
+                className="inline-flex h-[54px] items-center justify-center gap-3 rounded-full blue-gradient-bg px-10 text-[13px] font-bold uppercase tracking-[0.15em] text-white shadow-[0_0_30px_rgba(0,153,255,0.5)] transition-all duration-300 hover:brightness-110 hover:shadow-[0_0_50px_rgba(0,153,255,0.7)]"
               >
                 START BUILD →
               </a>

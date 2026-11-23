@@ -184,7 +184,7 @@ const Navbar = ({ topOnly = false }) => {
           <Link
             to="/quote"
             data-testid="mobile-top-quote"
-            className="cta-fill inline-flex lg:hidden items-center gap-1.5 rounded-full bg-[#0066CC] px-3.5 py-1.5 sm:px-4 sm:py-2 text-[11px] font-bold uppercase tracking-wider text-white shadow-[0_4px_16px_rgba(0,102,204,0.35)] active:scale-95 transition-all"
+            className="cta-fill inline-flex lg:hidden items-center gap-1.5 rounded-full blue-gradient-bg px-3.5 py-1.5 sm:px-4 sm:py-2 text-[11px] font-bold uppercase tracking-wider text-white shadow-[0_4px_16px_rgba(0,102,204,0.35)] active:scale-95 transition-all"
           >
             <span>Get Quote</span>
             <ArrowUpRight className="h-3.5 w-3.5" />

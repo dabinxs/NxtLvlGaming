@@ -119,7 +119,7 @@ const ExploreExperiences = () => {
             style={{ fontWeight: 800 }}
           >
             EXPLORE WHAT'S{" "}
-            <span className="text-[#0099FF] drop-shadow-[0_0_35px_rgba(0,153,255,0.45)]">
+            <span className="blue-gradient-text drop-shadow-[0_0_35px_rgba(0,153,255,0.45)]">
               NEXT
             </span>
           </h1>

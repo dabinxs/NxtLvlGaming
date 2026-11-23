@@ -126,8 +126,8 @@
 .quote-input-with-action:focus-within { border-color: rgba(41, 119, 255, .7); box-shadow: 0 0 0 3px rgba(0, 102, 253, .09); }
 .quote-input-with-action input { width: 100%; min-width: 0; border: 0; outline: 0; background: transparent; color: #eff4ff; font: inherit; font-size: 12px; }
 .quote-input-with-action input::placeholder { color: #52627a; }
-.quote-input-with-action button { display: flex; width: 34px; height: 34px; flex: 0 0 auto; align-items: center; justify-content: center; border: 0; border-radius: 8px; background: #216cff; color: #fff; cursor: pointer; transition: background .18s ease; }
-.quote-input-with-action button:hover { background: #3983ff; }
+.quote-input-with-action button { display: flex; width: 34px; height: 34px; flex: 0 0 auto; align-items: center; justify-content: center; border: 0; border-radius: 8px; background: var(--brand-blue-gradient); color: #fff; cursor: pointer; transition: filter .18s ease; }
+.quote-input-with-action button:hover { filter: brightness(1.12); }
 .quote-input-with-action button:disabled { cursor: wait; opacity: .7; }
 .quote-lookup-message { min-height: 28px; margin: 8px 0 10px; color: #70829d; font-size: 10px; line-height: 1.5; }
 .quote-lookup-message.is-error { color: #ff9b9b; }
@@ -196,8 +196,8 @@
 .quote-back-button { border: 1px solid rgba(145, 171, 218, .2); background: transparent; color: #d2dbea; }
 .quote-back-button:hover:not(:disabled) { border-color: rgba(145, 171, 218, .42); background: rgba(255, 255, 255, .04); }
 .quote-back-button:disabled { opacity: 0; cursor: default; }
-.quote-continue-button { min-width: 143px; border: 1px solid #2474ff; background: linear-gradient(105deg, #236cff, #087dec); color: #fff; box-shadow: 0 7px 20px rgba(0, 102, 253, .19); }
-.quote-continue-button:hover:not(:disabled) { transform: translateY(-1px); background: linear-gradient(105deg, #347dff, #1594f3); box-shadow: 0 10px 25px rgba(0, 102, 253, .29); }
+.quote-continue-button { min-width: 143px; border: 1px solid #4765c8; background: var(--brand-blue-gradient); color: #fff; box-shadow: 0 7px 20px rgba(0, 102, 253, .19); }
+.quote-continue-button:hover:not(:disabled) { transform: translateY(-1px); filter: brightness(1.12); box-shadow: 0 10px 25px rgba(0, 102, 253, .29); }
 .quote-continue-button:disabled { border-color: rgba(105, 126, 159, .15); background: rgba(73, 91, 121, .2); color: #58677f; box-shadow: none; cursor: not-allowed; }
 .quote-required-note { margin: 9px 0 0; color: #7e8da3; font-size: 10px; text-align: right; }
 

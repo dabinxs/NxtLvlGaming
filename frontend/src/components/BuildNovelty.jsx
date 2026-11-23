@@ -1874,7 +1874,7 @@ const BuildNovelty = () => {
                   {/* PROMINENT VIEW FULL SKETCH BUTTON */}
                   <button
                   onClick={() => { if (advancedProductPreview) setAdvancedProductPreview(false); setIsFullSketchMode(true); }}
-                    className="ml-2 inline-flex items-center gap-1.5 rounded-full bg-[#0099FF] px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-white shadow-[0_0_15px_rgba(0,153,255,0.4)] hover:bg-[#0088EE] hover:scale-105 transition-all"
+                    className="ml-2 inline-flex items-center gap-1.5 rounded-full blue-gradient-bg px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-white shadow-[0_0_15px_rgba(0,153,255,0.4)] hover:brightness-110 hover:scale-105 transition-all"
                   >
                     <Maximize2 className="h-3.5 w-3.5" />
                     <span>VIEW FULL SKETCH ↗</span>
@@ -2052,7 +2052,7 @@ const BuildNovelty = () => {
             <div className="flex justify-end pt-2">
               <button
                 onClick={handleGenerate}
-                className="group inline-flex h-[56px] items-center justify-center gap-3 rounded-full bg-[#0099FF] px-10 text-xs font-bold uppercase tracking-[0.15em] text-white shadow-[0_0_30px_rgba(0,153,255,0.4)] transition-all duration-300 hover:bg-[#0088EE] hover:shadow-[0_0_50px_rgba(0,153,255,0.75)] hover:scale-105"
+                className="group inline-flex h-[56px] items-center justify-center gap-3 rounded-full blue-gradient-bg px-10 text-xs font-bold uppercase tracking-[0.15em] text-white shadow-[0_0_30px_rgba(0,153,255,0.4)] transition-all duration-300 hover:brightness-110 hover:shadow-[0_0_50px_rgba(0,153,255,0.75)] hover:scale-105"
               >
                 GENERATE →
               </button>
@@ -2120,7 +2120,7 @@ const BuildNovelty = () => {
 
               <button
                 onClick={() => setIsFullSketchMode(false)}
-                className="inline-flex items-center gap-2 rounded-full bg-[#0099FF] px-5 py-2 text-xs font-bold uppercase tracking-wider text-white shadow-[0_0_20px_rgba(0,153,255,0.4)] hover:bg-[#0088EE]"
+                className="inline-flex items-center gap-2 rounded-full blue-gradient-bg px-5 py-2 text-xs font-bold uppercase tracking-wider text-white shadow-[0_0_20px_rgba(0,153,255,0.4)] hover:brightness-110"
               >
                 <CheckCircle2 className="h-4 w-4" />
                 <span>SAVE SKETCH</span>
@@ -2537,7 +2537,7 @@ const BuildNovelty = () => {
                   <button
                     onClick={handleConfirmSubmit}
                     disabled={isSavingDesign}
-                    className="inline-flex items-center gap-2 rounded-full bg-[#0099FF] px-7 py-3 text-xs font-bold uppercase tracking-wider text-white shadow-[0_0_20px_rgba(0,153,255,0.5)] hover:bg-[#0088EE]"
+                    className="inline-flex items-center gap-2 rounded-full blue-gradient-bg px-7 py-3 text-xs font-bold uppercase tracking-wider text-white shadow-[0_0_20px_rgba(0,153,255,0.5)] hover:brightness-110"
                   >
                     {isSavingDesign ? "SAVING DESIGN…" : "GET DESIGN"} <ArrowRight className="h-4 w-4" />
                   </button>

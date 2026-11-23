@@ -11,7 +11,7 @@
   border: 1px solid rgba(125, 221, 255, .5);
   border-radius: 999px;
   padding: 0 18px;
-  background: linear-gradient(135deg, #123c79, #0a2148);
+  background: var(--brand-blue-gradient);
   color: #f2f8ff;
   font-size: 12px;
   font-weight: 800;
@@ -22,7 +22,7 @@
 
 .back-home-cta:hover {
   border-color: rgba(125, 221, 255, .8);
-  background: linear-gradient(135deg, #174a91, #0d2b5b);
+  filter: brightness(1.12);
 }
 
 .back-home-cta:focus-visible {

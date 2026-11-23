@@ -144,7 +144,7 @@ const LevelUp = () => {
         <div className="mt-5 flex items-center justify-center">
           <Link
             to="/novelties"
-            className="cta-fill group inline-flex h-[50px] sm:h-[54px] items-center justify-center gap-3 rounded-xl border-2 border-transparent bg-[#0066CC] px-8 text-[12px] sm:text-[13px] font-bold uppercase tracking-[0.06em] text-white shadow-[0_10px_34px_rgba(0,102,204,0.35)] hover:shadow-[0_14px_40px_rgba(0,102,204,0.5)] transition-all duration-300"
+            className="cta-fill group inline-flex h-[50px] sm:h-[54px] items-center justify-center gap-3 rounded-xl border-2 border-transparent blue-gradient-bg px-8 text-[12px] sm:text-[13px] font-bold uppercase tracking-[0.06em] text-white shadow-[0_10px_34px_rgba(0,102,204,0.35)] hover:shadow-[0_14px_40px_rgba(0,102,204,0.5)] transition-all duration-300"
           >
             Explore Custom Novelties
             <ChevronRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
