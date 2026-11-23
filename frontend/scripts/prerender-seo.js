@@ -26,6 +26,18 @@ function toRootRelative(url) {
   return "/" + url.replace(/^https?:\/\/[^/]+\/?/i, "");
 }
 
+function toCanonicalPath(href) {
+  if (!href) return null;
+  const targetSeo = ROUTE_SEO[href];
+  return targetSeo?.canonicalPath || href;
+}
+
+function toCanonicalUrl(href) {
+  const canonicalPath = toCanonicalPath(href);
+  if (!canonicalPath) return null;
+  return `${SITE_URL}${canonicalPath === "/" ? "/" : canonicalPath}`;
+}
+
 function buildRouteHtml(baseHtml, routeKey, seo) {
   const canonicalPath = seo.canonicalPath === "/" ? "/" : seo.canonicalPath;
   const canonicalUrl = `${SITE_URL}${canonicalPath}`;
@@ -133,32 +145,59 @@ function buildRouteHtml(baseHtml, routeKey, seo) {
   html = html.replace(/<script\s+id="seo-route-schema"[\s\S]*?<\/script>/i, "");
 
   if (!seo.noindex) {
+    const imageObj = {
+      "@type": "ImageObject",
+      url: imageUrl,
+      contentUrl: imageUrl,
+      width: imageDims.width,
+      height: imageDims.height,
+      representativeOfPage: true,
+      caption: imageAlt,
+    };
+    const fullBodyText = [
+      seo.summary,
+      seo.details,
+      localCfg?.dispatchNote,
+      localCfg?.localContextCopy,
+      ...(Array.isArray(seo.highlights) ? seo.highlights : []),
+    ]
+      .filter(Boolean)
+      .join(" ");
+
     const webPageNode = {
       "@type": "WebPage",
       "@id": `${canonicalUrl}#webpage`,
       url: canonicalUrl,
       name: seo.title,
+      headline: seo.heading || seo.title,
       description: seo.description,
+      ...(seo.summary ? { abstract: seo.summary } : {}),
+      ...(fullBodyText ? { text: fullBodyText } : {}),
       inLanguage: "en-US",
       dateModified: buildDateIso,
       isPartOf: { "@id": `${SITE_URL}/#website` },
       about: { "@id": `${SITE_URL}/#organization` },
-      primaryImageOfPage: {
-        "@type": "ImageObject",
-        url: imageUrl,
-        contentUrl: imageUrl,
-        width: imageDims.width,
-        height: imageDims.height,
-        caption: imageAlt,
-      },
+      image: imageObj,
+      primaryImageOfPage: imageObj,
     };
     if (seo.serviceName) {
       webPageNode.mainEntity = { "@id": `${canonicalUrl}#service` };
     }
-    if (Array.isArray(seo.relatedLinks) && seo.relatedLinks.length > 0) {
-      webPageNode.relatedLink = seo.relatedLinks
-        .filter((item) => item && item.href)
-        .map((item) => `${SITE_URL}${item.href}`);
+
+    const rawLinks = [
+      ...(Array.isArray(seo.relatedLinks) ? seo.relatedLinks : []),
+      ...NH_CITY_LINKS,
+      ...REGIONAL_LINKS,
+    ];
+    const canonicalLinks = Array.from(
+      new Set(
+        rawLinks
+          .map((item) => toCanonicalUrl(item?.href))
+          .filter((url) => url && url !== canonicalUrl)
+      )
+    );
+    if (canonicalLinks.length > 0) {
+      webPageNode.relatedLink = canonicalLinks;
     }
 
     const routeGraph = [
@@ -178,37 +217,82 @@ function buildRouteHtml(baseHtml, routeKey, seo) {
     ];
 
     if (seo.serviceName) {
+      const richServiceDesc =
+        [
+          seo.summary,
+          seo.details,
+          localCfg?.dispatchNote,
+          localCfg?.localContextCopy,
+        ]
+          .filter(Boolean)
+          .join(" ") || seo.description;
+
       const serviceNode = {
         "@type": "Service",
         "@id": `${canonicalUrl}#service`,
         name: seo.serviceName,
         serviceType: seo.serviceName,
-        description: seo.description,
+        ...(seo.subhead || seo.heroEyebrow ? { slogan: seo.subhead || seo.heroEyebrow } : {}),
+        description: richServiceDesc,
         url: canonicalUrl,
-        image: {
-          "@type": "ImageObject",
-          url: imageUrl,
-          width: imageDims.width,
-          height: imageDims.height,
-        },
+        image: imageObj,
         provider: { "@id": `${SITE_URL}/#organization` },
         areaServed: seo.areaServed || AREA_SERVED,
       };
 
-      if (Array.isArray(seo.offers) && seo.offers.length > 0) {
+      const combinedOffers = [
+        ...(Array.isArray(seo.offers) ? seo.offers : []),
+        ...(Array.isArray(localCfg?.featuredPackages)
+          ? localCfg.featuredPackages.map((pkg) => ({
+              name: pkg.title,
+              description: `${pkg.specs} — ${pkg.desc}`,
+              url: toCanonicalUrl(pkg.href) || canonicalUrl,
+            }))
+          : []),
+      ];
+
+      if (combinedOffers.length > 0) {
         serviceNode.hasOfferCatalog = {
           "@type": "OfferCatalog",
           name: `${seo.serviceName} — Packages & Products`,
-          itemListElement: seo.offers.map((offer) => ({
+          itemListElement: combinedOffers.map((offer) => ({
             "@type": "Offer",
             itemOffered: {
               "@type": "Service",
               name: offer.name,
               description: offer.description,
-              url: canonicalUrl,
+              url: offer.url || canonicalUrl,
             },
           })),
         };
+      }
+
+      const additionalProps = [
+        ...(Array.isArray(seo.highlights)
+          ? seo.highlights.map((h, idx) => ({
+              "@type": "PropertyValue",
+              name: `Highlight ${idx + 1}`,
+              value: h,
+            }))
+          : []),
+        ...(Array.isArray(localCfg?.localVenues)
+          ? localCfg.localVenues.map((v) => ({
+              "@type": "PropertyValue",
+              name: v.name,
+              value: v.setting,
+            }))
+          : []),
+        ...(Array.isArray(seo.faqs)
+          ? seo.faqs.map((f) => ({
+              "@type": "PropertyValue",
+              name: f.q,
+              value: f.a,
+            }))
+          : []),
+      ];
+
+      if (additionalProps.length > 0) {
+        serviceNode.additionalProperty = additionalProps;
       }
 
       routeGraph.push(serviceNode);
@@ -231,11 +315,15 @@ function buildRouteHtml(baseHtml, routeKey, seo) {
     html = html.replace(/<main\b[^>]*>[\s\S]*?<\/main>/i, noindexMainHtml);
   } else if (seo.heading && seo.summary) {
     const heroImgHtml = preloadHref
-      ? `<img src="${escapeHtml(preloadHref)}" alt="${escapeHtml(imageAlt)}" width="${imageDims.width}" height="${imageDims.height}" fetchpriority="high" decoding="sync" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.4;" />`
+      ? `<img src="${escapeHtml(preloadHref)}" alt="${escapeHtml(imageAlt)}" width="${imageDims.width}" height="${imageDims.height}" fetchpriority="high" decoding="sync" style="display:block;max-width:100%;height:auto;margin:0 auto 24px;border-radius:16px;" />`
       : "";
 
     const allFooterLinks = [...NH_CITY_LINKS, ...REGIONAL_LINKS, ...SPECIALTY_LINKS]
-      .filter((item, idx, arr) => arr.findIndex((x) => x.href === item.href) === idx)
+      .map((item) => ({
+        label: item.label,
+        href: toCanonicalPath(item.href),
+      }))
+      .filter((item, idx, arr) => item.href && arr.findIndex((x) => x.href === item.href) === idx)
       .map((item) => `<a href="${escapeHtml(item.href)}" style="color:#94a3b8;text-decoration:none;">${escapeHtml(item.label)}</a>`)
       .join(" · ");
 
@@ -256,13 +344,19 @@ function buildRouteHtml(baseHtml, routeKey, seo) {
         ? localCfg.featuredPackages
             .map(
               (pkg) =>
-                `<article style="margin:0 0 12px;"><h3 style="margin:0 0 4px;font-size:17px;color:#ffffff;">${escapeHtml(pkg.title)}</h3><p style="margin:0;">${escapeHtml(pkg.specs)} — ${escapeHtml(pkg.desc)} <a href="${escapeHtml(pkg.href)}" style="color:#7DDDFF;">View Specs</a></p></article>`
+                `<article style="margin:0 0 12px;"><h3 style="margin:0 0 4px;font-size:17px;color:#ffffff;">${escapeHtml(pkg.title)}</h3><p style="margin:0;">${escapeHtml(pkg.specs)} — ${escapeHtml(pkg.desc)} <a href="${escapeHtml(toCanonicalPath(pkg.href) || pkg.href)}" style="color:#7DDDFF;">View Specs</a></p></article>`
             )
             .join("")
         : "";
       const venueHtml = Array.isArray(localCfg.localVenues)
         ? `<ul style="margin:8px 0 0;padding-left:20px;">${localCfg.localVenues
-            .map((v) => `<li><strong>${escapeHtml(v.name)}</strong>: ${escapeHtml(v.setting)}</li>`)
+            .map((v) => {
+              const cHref = toCanonicalPath(v.href);
+              const titleHtml = cHref
+                ? `<a href="${escapeHtml(cHref)}" style="color:#7DDDFF;text-decoration:none;font-weight:700;">${escapeHtml(v.name)}</a>`
+                : `<strong>${escapeHtml(v.name)}</strong>`;
+              return `<li>${titleHtml}: ${escapeHtml(v.setting)}</li>`;
+            })
             .join("")}</ul>`
         : "";
       detailsParts.push(
@@ -307,8 +401,8 @@ function buildRouteHtml(baseHtml, routeKey, seo) {
         </nav>
       </header>
       <section style="position:relative;overflow:hidden;min-height:86vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:52px 20px;background-color:#05070f;">
-        ${heroImgHtml}
         <div style="position:relative;z-index:2;max-width:900px;margin:0 auto;">
+          ${heroImgHtml}
           <h1 style="margin:0;font-size:clamp(1.75rem,4.3vw,3.4rem);font-weight:800;line-height:1.08;text-transform:uppercase;color:#ffffff;">${escapeHtml(seo.heroDisplayTitle || seo.heading)}</h1>
           <p style="margin:18px auto 0;max-width:740px;font-size:16px;line-height:1.65;color:#e2e8f0;">${escapeHtml(seo.summary)}</p>
           <div style="margin-top:24px;display:flex;flex-wrap:wrap;justify-content:center;gap:12px;">

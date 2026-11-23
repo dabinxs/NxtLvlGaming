@@ -122,11 +122,13 @@ const MobileBottomNav = () => {
   return (
     <>
       {/* Floating Popover Sheet for Events */}
-      {openDrawer === "events" && (
-        <div
-          className="fixed inset-0 z-[60] flex flex-col justify-end bg-black/60 backdrop-blur-sm p-3 pb-24 lg:hidden animate-fade-in"
-          onClick={closeDrawer}
-        >
+      <div
+        hidden={openDrawer !== "events"}
+        aria-hidden={openDrawer !== "events"}
+        style={{ display: openDrawer === "events" ? undefined : "none" }}
+        className="fixed inset-0 z-[60] flex flex-col justify-end bg-black/60 backdrop-blur-sm p-3 pb-24 lg:hidden animate-fade-in"
+        onClick={closeDrawer}
+      >
           <div
             className="mx-auto w-full max-w-[390px] rounded-[26px] border border-white/15 bg-gradient-to-b from-[#0c1a38] to-[#050b18] p-4 shadow-[0_20px_60px_rgba(0,0,0,0.85)]"
             onClick={(e) => e.stopPropagation()}
@@ -200,14 +202,15 @@ const MobileBottomNav = () => {
             </Link>
           </div>
         </div>
-      )}
 
       {/* Floating Popover Sheet for Experience */}
-      {openDrawer === "experience" && (
-        <div
-          className="fixed inset-0 z-[60] flex flex-col justify-end bg-black/60 backdrop-blur-sm p-3 pb-24 lg:hidden animate-fade-in"
-          onClick={closeDrawer}
-        >
+      <div
+        hidden={openDrawer !== "experience"}
+        aria-hidden={openDrawer !== "experience"}
+        style={{ display: openDrawer === "experience" ? undefined : "none" }}
+        className="fixed inset-0 z-[60] flex flex-col justify-end bg-black/60 backdrop-blur-sm p-3 pb-24 lg:hidden animate-fade-in"
+        onClick={closeDrawer}
+      >
           <div
             className="mx-auto w-full max-w-[390px] rounded-[26px] border border-white/15 bg-gradient-to-b from-[#0c1a38] to-[#050b18] p-4 shadow-[0_20px_60px_rgba(0,0,0,0.85)] max-h-[75vh] overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
@@ -290,7 +293,6 @@ const MobileBottomNav = () => {
             </Link>
           </div>
         </div>
-      )}
 
       {/* Floating Bottom Nav Capsule Dock */}
       <nav

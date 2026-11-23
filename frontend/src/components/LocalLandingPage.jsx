@@ -187,22 +187,27 @@ const LocalLandingPage = () => {
               </div>
 
               <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                {localConfig.localVenues.map((venue) => (
-                  <div
-                    key={venue.name}
-                    className="flex items-start gap-3.5 rounded-2xl border border-white/10 bg-[#0c1830]/70 p-5 transition-colors hover:border-[#0066FD]/50"
-                  >
-                    <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-[#7DDDFF]" />
-                    <div>
-                      <h4 className="font-display text-[15px] font-extrabold uppercase tracking-wide text-white">
-                        {venue.name}
-                      </h4>
-                      <p className="mt-1 text-[13px] leading-snug text-white/65">
-                        {venue.setting}
-                      </p>
-                    </div>
-                  </div>
-                ))}
+                {localConfig.localVenues.map((venue) => {
+                  const VenueCard = venue.href ? Link : "div";
+                  const cardProps = venue.href ? { to: venue.href } : {};
+                  return (
+                    <VenueCard
+                      key={venue.name}
+                      {...cardProps}
+                      className="flex items-start gap-3.5 rounded-2xl border border-white/10 bg-[#0c1830]/70 p-5 transition-colors hover:border-[#0066FD]/50"
+                    >
+                      <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-[#7DDDFF]" />
+                      <div>
+                        <h4 className="font-display text-[15px] font-extrabold uppercase tracking-wide text-white">
+                          {venue.name}
+                        </h4>
+                        <p className="mt-1 text-[13px] leading-snug text-white/65">
+                          {venue.setting}
+                        </p>
+                      </div>
+                    </VenueCard>
+                  );
+                })}
               </div>
             </div>
           </div>

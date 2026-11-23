@@ -218,28 +218,24 @@ const setups = {
     description: "Event-ready gear for a seamless and immersive trivia experience.",
     background: "/trivia-setup-background.png",
     equipment: triviaEquipment,
-    webp: false,
   },
   vr: {
     heading: "Virtual Reality",
     description: "Event-ready gear for a seamless and immersive VR experience.",
     background: "/vr-setup-background.png",
     equipment: vrEquipment,
-    webp: false,
   },
   dance: {
     heading: "Just Dance",
     description: "Event-ready gear for a high-energy dance experience.",
     background: "/dance-setup-background.png",
     equipment: danceEquipment,
-    webp: false,
   },
   disco: {
     heading: "Silent Disco",
     description: "LED headphones and multiple music channels for an unforgettable dance experience.",
     background: "/disco-setup-background.png",
     equipment: discoEquipment,
-    webp: false,
   },
 };
 

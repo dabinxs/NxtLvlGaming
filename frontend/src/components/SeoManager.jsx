@@ -4,9 +4,19 @@ import {
   AREA_SERVED,
   DEFAULT_IMAGE,
   IMAGE_DIMENSIONS,
+  NH_CITY_LINKS,
+  REGIONAL_LINKS,
   ROUTE_SEO,
   SITE_URL,
 } from "../lib/routeSeoData";
+import { LOCAL_PAGE_CONFIG } from "../lib/localLandingConfig";
+
+function toCanonicalHref(href) {
+  if (!href) return null;
+  const targetSeo = ROUTE_SEO[href];
+  const canonicalPath = targetSeo?.canonicalPath || href;
+  return `${SITE_URL}${canonicalPath === "/" ? "/" : canonicalPath}`;
+}
 
 function upsertMeta(selector, attributes) {
   let element = document.head.querySelector(selector);
@@ -30,9 +40,10 @@ function upsertLink(selector, attributes) {
   });
 }
 
-function upsertRouteJsonLd(seo, canonicalUrl) {
+function upsertRouteJsonLd(seo, canonicalUrl, routeKey) {
   const existing = document.getElementById("seo-route-schema");
   const isHome = seo.canonicalPath === "/";
+  const localCfg = LOCAL_PAGE_CONFIG[routeKey] || null;
 
   if (seo.noindex) {
     if (existing) existing.remove();
@@ -42,31 +53,62 @@ function upsertRouteJsonLd(seo, canonicalUrl) {
   const imageUrl = seo.image || DEFAULT_IMAGE;
   const imageDims = IMAGE_DIMENSIONS[imageUrl] || { width: 1024, height: 682 };
   const imageAlt = seo.heading || seo.title;
+  const imageObj = {
+    "@type": "ImageObject",
+    url: imageUrl,
+    contentUrl: imageUrl,
+    width: imageDims.width,
+    height: imageDims.height,
+    representativeOfPage: true,
+    caption: imageAlt,
+  };
+  const fullBodyText = [
+    seo.summary,
+    seo.details,
+    localCfg?.dispatchNote,
+    localCfg?.localContextCopy,
+    ...(Array.isArray(seo.highlights) ? seo.highlights : []),
+  ]
+    .filter(Boolean)
+    .join(" ");
+
   const webPageNode = {
     "@type": "WebPage",
     "@id": `${canonicalUrl}#webpage`,
     url: canonicalUrl,
     name: seo.title,
+    headline: seo.heading || seo.title,
     description: seo.description,
+    ...(seo.summary ? { abstract: seo.summary } : {}),
+    ...(fullBodyText ? { text: fullBodyText } : {}),
     inLanguage: "en-US",
     isPartOf: { "@id": `${SITE_URL}/#website` },
     about: { "@id": `${SITE_URL}/#organization` },
-    primaryImageOfPage: {
-      "@type": "ImageObject",
-      url: imageUrl,
-      contentUrl: imageUrl,
-      width: imageDims.width,
-      height: imageDims.height,
-      caption: imageAlt,
-    },
+    image: imageObj,
+    primaryImageOfPage: imageObj,
   };
   if (seo.serviceName) {
     webPageNode.mainEntity = { "@id": `${canonicalUrl}#service` };
   }
-  if (Array.isArray(seo.relatedLinks) && seo.relatedLinks.length > 0) {
-    webPageNode.relatedLink = seo.relatedLinks
-      .filter((item) => item && item.href)
-      .map((item) => `${SITE_URL}${item.href}`);
+
+  const rawLinks = [
+    ...(Array.isArray(seo.relatedLinks) ? seo.relatedLinks : []),
+    ...NH_CITY_LINKS,
+    ...REGIONAL_LINKS,
+  ];
+  const canonicalLinks = Array.from(
+    new Set(
+      rawLinks
+        .map((item) => toCanonicalHref(item?.href))
+        .filter((url) => url && url !== canonicalUrl)
+    )
+  );
+  if (canonicalLinks.length > 0) {
+    if (isHome) {
+      webPageNode.significantLink = canonicalLinks;
+    } else {
+      webPageNode.relatedLink = canonicalLinks;
+    }
   }
 
   const graph = [
@@ -95,39 +137,83 @@ function upsertRouteJsonLd(seo, canonicalUrl) {
   ];
 
   if (seo.serviceName) {
+    const richServiceDesc = [
+      seo.summary,
+      seo.details,
+      localCfg?.dispatchNote,
+      localCfg?.localContextCopy,
+    ]
+      .filter(Boolean)
+      .join(" ") || seo.description;
+
     const serviceNode = {
       "@type": "Service",
       "@id": `${canonicalUrl}#service`,
       name: seo.serviceName,
       serviceType: seo.serviceName,
-      description: seo.description,
+      ...(seo.subhead || seo.heroEyebrow ? { slogan: seo.subhead || seo.heroEyebrow } : {}),
+      description: richServiceDesc,
       url: canonicalUrl,
-      image: {
-        "@type": "ImageObject",
-        url: imageUrl,
-        width: imageDims.width,
-        height: imageDims.height,
-      },
+      image: imageObj,
       provider: {
         "@id": `${SITE_URL}/#organization`,
       },
       areaServed: seo.areaServed || AREA_SERVED,
     };
 
-    if (Array.isArray(seo.offers) && seo.offers.length > 0) {
+    const combinedOffers = [
+      ...(Array.isArray(seo.offers) ? seo.offers : []),
+      ...(Array.isArray(localCfg?.featuredPackages)
+        ? localCfg.featuredPackages.map((pkg) => ({
+            name: pkg.title,
+            description: `${pkg.specs} — ${pkg.desc}`,
+            url: toCanonicalHref(pkg.href) || canonicalUrl,
+          }))
+        : []),
+    ];
+
+    if (combinedOffers.length > 0) {
       serviceNode.hasOfferCatalog = {
         "@type": "OfferCatalog",
         name: `${seo.serviceName} — Packages & Products`,
-        itemListElement: seo.offers.map((offer) => ({
+        itemListElement: combinedOffers.map((offer) => ({
           "@type": "Offer",
           itemOffered: {
             "@type": "Service",
             name: offer.name,
             description: offer.description,
-            url: canonicalUrl,
+            url: offer.url || canonicalUrl,
           },
         })),
       };
+    }
+
+    const additionalProps = [
+      ...(Array.isArray(seo.highlights)
+        ? seo.highlights.map((h, idx) => ({
+            "@type": "PropertyValue",
+            name: `Highlight ${idx + 1}`,
+            value: h,
+          }))
+        : []),
+      ...(Array.isArray(localCfg?.localVenues)
+        ? localCfg.localVenues.map((v) => ({
+            "@type": "PropertyValue",
+            name: v.name,
+            value: v.setting,
+          }))
+        : []),
+      ...(Array.isArray(seo.faqs)
+        ? seo.faqs.map((f) => ({
+            "@type": "PropertyValue",
+            name: f.q,
+            value: f.a,
+          }))
+        : []),
+    ];
+
+    if (additionalProps.length > 0) {
+      serviceNode.additionalProperty = additionalProps;
     }
 
     graph.push(serviceNode);
@@ -245,8 +331,8 @@ const SeoManager = () => {
       content: imageAlt,
     });
 
-    upsertRouteJsonLd(seo, canonicalUrl);
-  }, [pathname, seo]);
+    upsertRouteJsonLd(seo, canonicalUrl, normalizedPath);
+  }, [pathname, normalizedPath, seo]);
 
   return null;
 };

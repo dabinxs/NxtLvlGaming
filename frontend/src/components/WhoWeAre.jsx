@@ -16,7 +16,10 @@ const WhoWeAre = () => (
       <div className="who-we-are__gallery">
         <div className="who-we-are__photos">
           {photos.map(({ src, alt }) => (
-            <img key={src} src={src} alt={alt} loading="lazy" decoding="async" />
+            <picture key={src} className="contents">
+              {src.endsWith(".png") && <source srcSet={src.replace(/\.png$/, ".webp")} type="image/webp" />}
+              <img src={src} alt={alt} loading="lazy" decoding="async" />
+            </picture>
           ))}
         </div>
       </div>
@@ -31,7 +34,10 @@ const WhoWeAre = () => (
           Learn more <ArrowRight aria-hidden="true" size={20} />
         </Link>
       </div>
-      <img className="who-we-are__controller" src="/who-controller.png" alt="" loading="lazy" decoding="async" />
+      <picture className="contents">
+        <source srcSet="/who-controller.webp" type="image/webp" />
+        <img className="who-we-are__controller" src="/who-controller.png" alt="" loading="lazy" decoding="async" />
+      </picture>
     </div>
   </section>
 );

@@ -155,17 +155,18 @@ const Navbar = ({ topOnly = false }) => {
                   </button>
 
                   {/* Floating Popover Dropdown directly under the nav item */}
-                  {activeMenu === l.menu && (
-                    <div
-                      id={`nav-dropdown-${l.menu}`}
-                      data-testid={`dropdown-${l.menu}`}
-                      className={`nav-dropdown nav-dropdown--${l.menu}`}
-                      onMouseEnter={() => clearTimeout(closeTimer.current)}
-                      onMouseLeave={scheduleClose}
-                    >
-                      <NavDropdown menuKey={l.menu} onNavigate={() => setActiveMenu(null)} />
-                    </div>
-                  )}
+                  <div
+                    id={`nav-dropdown-${l.menu}`}
+                    data-testid={activeMenu === l.menu ? `dropdown-${l.menu}` : undefined}
+                    hidden={activeMenu !== l.menu}
+                    aria-hidden={activeMenu !== l.menu}
+                    style={{ display: activeMenu === l.menu ? undefined : "none" }}
+                    className={`nav-dropdown nav-dropdown--${l.menu}`}
+                    onMouseEnter={() => clearTimeout(closeTimer.current)}
+                    onMouseLeave={scheduleClose}
+                  >
+                    <NavDropdown menuKey={l.menu} onNavigate={() => setActiveMenu(null)} />
+                  </div>
                 </div>
               ) : (
                 <Link

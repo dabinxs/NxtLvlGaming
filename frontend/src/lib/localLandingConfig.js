@@ -22,12 +22,12 @@ const LOCAL_PAGE_CONFIG = {
     localContextCopy:
       "Because our crew stages right here in Hudson, NH (03051), we regularly bring 16–40 ft outdoor inflatable movie screens, daylight mobile LED walls, 360 and Magic Mirror photo booths, gamer birthday arenas, and custom novelty bars to school post-proms, town greens, and backyard celebrations throughout Hudson, Litchfield, Pelham, and Windham.",
     localVenues: [
-      { name: "Benson Park Lawns & Amphitheater", setting: "Town Movie Nights & Festivals · Hudson, NH" },
-      { name: "Alvirne High School Campus & Gyms", setting: "Senior Post-Prom, Grad Nights & pep rallies" },
-      { name: "Hudson Community Center & Library Green", setting: "Indoor Trivia, VR & Youth Programs" },
-      { name: "Campbell High School & Talent Fields", setting: "Litchfield, NH School & Athletic Events" },
-      { name: "Pelham Town Green & Hobbs Center", setting: "Summer Concerts, LED Screens & Glow Swings" },
-      { name: "Windham Common & Castleton Venues", setting: "Weddings, Mirror Photo Booths & Backyard Cinema" },
+      { name: "Benson Park Lawns & Amphitheater", setting: "Town Movie Nights & Festivals · Hudson, NH", href: "/movie-nights" },
+      { name: "Alvirne High School Campus & Gyms", setting: "Senior Post-Prom, Grad Nights & pep rallies", href: "/college-school-corporate-events" },
+      { name: "Hudson Community Center & Library Green", setting: "Indoor Trivia, VR & Youth Programs", href: "/nashua-nh-event-rentals" },
+      { name: "Campbell High School & Talent Fields", setting: "Litchfield, NH School & Athletic Events", href: "/manchester-nh-event-rentals" },
+      { name: "Pelham Town Green & Hobbs Center", setting: "Summer Concerts, LED Screens & Glow Swings", href: "/concord-salem-derry-nh-party-rentals" },
+      { name: "Windham Common & Castleton Venues", setting: "Weddings, Mirror Photo Booths & Backyard Cinema", href: "/portsmouth-nh-photo-booth-party-rentals" },
     ],
     featuredPackages: [
       {
@@ -35,7 +35,7 @@ const LOCAL_PAGE_CONFIG = {
         title: "Hudson 16–40 ft Outdoor Movie Screen",
         specs: "HD Projection + Concert Audio + FM Drive-In Radio",
         desc: "Ideal for Alvirne community screenings, HOA block parties, and backyard cinema nights with full crew operation.",
-        href: "/inflatable-movie-screen-rental",
+        href: "/movie-nights",
         quoteParam: "Hudson Outdoor Movie Screen",
       },
       {
@@ -79,12 +79,12 @@ const LOCAL_PAGE_CONFIG = {
     localContextCopy:
       "From SNHU and Saint Anselm College welcome weeks to downtown Elm Street corporate mixers, Bedford estate weddings, and Manchester high school lock-ins, we deliver commercial-grade production sized cleanly for downtown freight elevators or open athletic fields.",
     localVenues: [
-      { name: "SNHU Student Center & Athletic Complex", setting: "Esports Tournaments, Silent Disco & Novelties" },
-      { name: "Saint Anselm College Campus (Goffstown)", setting: "Spring Weekend, VR Escape Rooms & Movie Nights" },
-      { name: "Elm Street Hotel & Downtown Ballrooms", setting: "360 Photo Booths, Mirror Booths & Trivia" },
-      { name: "Livingston Park & Stark Park Greens", setting: "Daylight Mobile LED Trailers & Community Cinema" },
-      { name: "Bedford Country Clubs & Gala Venues", setting: "Wedding Mirror Booths & Uplighting Lounges" },
-      { name: "Manchester High Schools & Hooksett Fields", setting: "Post-Prom Glow Parks & Multi-Console Arenas" },
+      { name: "SNHU Student Center & Athletic Complex", setting: "Esports Tournaments, Silent Disco & Novelties", href: "/college-school-corporate-events" },
+      { name: "Saint Anselm College Campus (Goffstown)", setting: "Spring Weekend, VR Escape Rooms & Movie Nights", href: "/virtual-reality" },
+      { name: "Elm Street Hotel & Downtown Ballrooms", setting: "360 Photo Booths, Mirror Booths & Trivia", href: "/portsmouth-nh-photo-booth-party-rentals" },
+      { name: "Livingston Park & Stark Park Greens", setting: "Daylight Mobile LED Trailers & Community Cinema", href: "/hudson-nh-party-rentals" },
+      { name: "Bedford Country Clubs & Gala Venues", setting: "Wedding Mirror Booths & Uplighting Lounges", href: "/nashua-nh-event-rentals" },
+      { name: "Manchester High Schools & Hooksett Fields", setting: "Post-Prom Glow Parks & Multi-Console Arenas", href: "/concord-salem-derry-nh-party-rentals" },
     ],
     featuredPackages: [
       {
@@ -136,12 +136,12 @@ const LOCAL_PAGE_CONFIG = {
     localContextCopy:
       "Bordering Nashua directly from Hudson, we handle last-minute availability checks, multi-station Rivier University student programs, corporate picnics along the Daniel Webster Highway and Somerset Parkway, and backyard milestone parties across Hollis, Brookline, and Milford.",
     localVenues: [
-      { name: "Rivier University Campus (South Main St)", setting: "Orientation Week, Novelty Bars & Trivia Nights" },
-      { name: "Mine Falls Park & Greeley Park Bandstand", setting: "Outdoor Inflatable Movie Screens & Sound" },
-      { name: "Nashua Country Club & Sky Meadow CC", setting: "Magic Mirror Photo Booths & VIP Receptions" },
-      { name: "Nashua North & Nashua South High Schools", setting: "Project Graduation, VR & Glow Park Swings" },
-      { name: "Merrimack Wasserman Park & Route 3", setting: "Corporate Family Days & Mobile LED Screens" },
-      { name: "Hollis, Brookline, Amherst & Milford", setting: "Force-Feedback Sim Racing & Private Parties" },
+      { name: "Rivier University Campus (South Main St)", setting: "Orientation Week, Novelty Bars & Trivia Nights", href: "/novelties" },
+      { name: "Mine Falls Park & Greeley Park Bandstand", setting: "Outdoor Inflatable Movie Screens & Sound", href: "/hudson-nh-party-rentals" },
+      { name: "Nashua Country Club & Sky Meadow CC", setting: "Magic Mirror Photo Booths & VIP Receptions", href: "/portsmouth-nh-photo-booth-party-rentals" },
+      { name: "Nashua North & Nashua South High Schools", setting: "Project Graduation, VR & Glow Park Swings", href: "/manchester-nh-event-rentals" },
+      { name: "Merrimack Wasserman Park & Route 3", setting: "Corporate Family Days & Mobile LED Screens", href: "/concord-salem-derry-nh-party-rentals" },
+      { name: "Hollis, Brookline, Amherst & Milford", setting: "Force-Feedback Sim Racing & Private Parties", href: "/new-hampshire-massachusetts-event-rentals" },
     ],
     featuredPackages: [
       {
@@ -193,12 +193,12 @@ const LOCAL_PAGE_CONFIG = {
     localContextCopy:
       "Portsmouth photo booth rentals need clean venue load-in, discreet cabling, and refined presentation for waterfront hotels and historic brick venues—plus coastal outdoor options like tri-color Silent Disco headphones where neighborhood noise ordinances apply.",
     localVenues: [
-      { name: "Downtown Portsmouth Hotels & Jazz Ballrooms", setting: "Compact 8x8 Magic Mirror & 360 Photo Booths" },
-      { name: "Wentworth by the Sea & New Castle Coast", setting: "Black-Tie Wedding Photo Booths & Uplighting" },
-      { name: "Prescott Park & Peirce Island Waterfront", setting: "Mobile LED Screens & Evening Cinema" },
-      { name: "UNH Durham Campus (MUB & Field House)", setting: "Large-Crowd Silent Disco, VR & Custom Hat Bar" },
-      { name: "Phillips Exeter Academy & Exeter Common", setting: "Glow Park Swings, Trivia & Gaming Tournaments" },
-      { name: "Hampton Beach, Rye, Dover & Rochester", setting: "Summer Boardwalk Activations & Post-Proms" },
+      { name: "Downtown Portsmouth Hotels & Jazz Ballrooms", setting: "Compact 8x8 Magic Mirror & 360 Photo Booths", href: "/photo-booth" },
+      { name: "Wentworth by the Sea & New Castle Coast", setting: "Black-Tie Wedding Photo Booths & Uplighting", href: "/hudson-nh-party-rentals" },
+      { name: "Prescott Park & Peirce Island Waterfront", setting: "Mobile LED Screens & Evening Cinema", href: "/movie-nights" },
+      { name: "UNH Durham Campus (MUB & Field House)", setting: "Large-Crowd Silent Disco, VR & Custom Hat Bar", href: "/manchester-nh-event-rentals" },
+      { name: "Phillips Exeter Academy & Exeter Common", setting: "Glow Park Swings, Trivia & Gaming Tournaments", href: "/nashua-nh-event-rentals" },
+      { name: "Hampton Beach, Rye, Dover & Rochester", setting: "Summer Boardwalk Activations & Post-Proms", href: "/concord-salem-derry-nh-party-rentals" },
     ],
     featuredPackages: [
       {
@@ -206,7 +206,7 @@ const LOCAL_PAGE_CONFIG = {
         title: "Portsmouth 360 Slow-Motion Video Booth",
         specs: "Fits 3–5 Guests · Custom Overlay + Instant QR",
         desc: "Motorized 360 camera arm, VIP stanchions, red carpet, and studio LED ring lighting ready for waterfront celebrations.",
-        href: "/360-video-booth",
+        href: "/photo-booth",
         quoteParam: "Portsmouth 360 Video Booth",
       },
       {
@@ -214,7 +214,7 @@ const LOCAL_PAGE_CONFIG = {
         title: "Interactive Magic Mirror Photo Booth",
         specs: "8x8 ft Footprint · On-Glass Signature + Prints",
         desc: "Full-length reflective touch-screen mirror with animated voice prompts, instant glossy print strips, and attendant.",
-        href: "/mirror-photo-booth-rental",
+        href: "/photo-booth",
         quoteParam: "Portsmouth Mirror Photo Booth",
       },
       {
@@ -250,12 +250,12 @@ const LOCAL_PAGE_CONFIG = {
     localContextCopy:
       "From Route 28 shopping & Tuscan Village plazas in Salem and Pinkerton Academy nights in Derry to capital city civic celebrations in Concord, New England College in Henniker, and Dartmouth/PSU/Keene State weekends, we bring uniform commercial rigging and COI protection statewide.",
     localVenues: [
-      { name: "Tuscan Village & Salem Route 28 Plazas", setting: "Daylight LED Walls, 360 Booths & Family Days" },
-      { name: "Derry & Londonderry Schools & Commons", setting: "Post-Prom Glow Park Swings & Indoor VR Arcades" },
-      { name: "Concord State House Plaza & Capitol Halls", setting: "Municipal Festivals, Trivia & Outdoor Cinema" },
-      { name: "New England College (Henniker, NH)", setting: "Giant-Screen Just Dance, Gaming & Hat Bars" },
-      { name: "Plymouth State & Keene State Campuses", setting: "Mobile VR Escape Rooms & 3-Channel Silent Disco" },
-      { name: "Dartmouth Green & Lakes Region Venues", setting: "Full-Package Campus Weekends & Summer Gatherings" },
+      { name: "Tuscan Village & Salem Route 28 Plazas", setting: "Daylight LED Walls, 360 Booths & Family Days", href: "/hudson-nh-party-rentals" },
+      { name: "Derry & Londonderry Schools & Commons", setting: "Post-Prom Glow Park Swings & Indoor VR Arcades", href: "/manchester-nh-event-rentals" },
+      { name: "Concord State House Plaza & Capitol Halls", setting: "Municipal Festivals, Trivia & Outdoor Cinema", href: "/nashua-nh-event-rentals" },
+      { name: "New England College (Henniker, NH)", setting: "Giant-Screen Just Dance, Gaming & Hat Bars", href: "/just-dance" },
+      { name: "Plymouth State & Keene State Campuses", setting: "Mobile VR Escape Rooms & 3-Channel Silent Disco", href: "/portsmouth-nh-photo-booth-party-rentals" },
+      { name: "Dartmouth Green & Lakes Region Venues", setting: "Full-Package Campus Weekends & Summer Gatherings", href: "/new-hampshire-massachusetts-event-rentals" },
     ],
     featuredPackages: [
       {
@@ -263,7 +263,7 @@ const LOCAL_PAGE_CONFIG = {
         title: "Glow Park Swings, Seesaws & Mini Golf",
         specs: "8 LED Swings + 4 Seesaws + Freestanding Truss",
         desc: "Self-supporting illuminated truss swings and neon mini golf requiring zero ceiling rigging inside gyms or tents.",
-        href: "/led-glow-swings-rental",
+        href: "/glow-park",
         quoteParam: "I-93 NH Glow Park",
       },
       {
@@ -271,7 +271,7 @@ const LOCAL_PAGE_CONFIG = {
         title: "4-Player Cooperative VR Escape Rooms",
         specs: "Room-Scale Headsets + Live TV Monitor + Staff",
         desc: "Teams collaborate in Dragon Tower or Manor Escape while action stations run SUPERHOT VR and Beat Saber.",
-        href: "/vr-escape-room-rental",
+        href: "/virtual-reality",
         quoteParam: "Central NH VR Escape Room",
       },
       {
@@ -307,12 +307,12 @@ const LOCAL_PAGE_CONFIG = {
     localContextCopy:
       "Trusted by Harvard, Boston University, Babson, Holy Cross, Springfield College, Quinnipiac, Western Connecticut State, and Connecticut College, our New England crews run synchronized multi-truck setups from Greater Boston and Worcester to Hartford, New Haven, and Providence.",
     localVenues: [
-      { name: "Boston & Cambridge Campuses (BU, Harvard, Fisher)", setting: "Urban Student Union Load-Ins & Indoor Arenas" },
-      { name: "Wellesley, Framingham & Worcester (Babson, Holy Cross)", setting: "Spring Weekends, Trivia & Novelty Bars" },
-      { name: "Western MA & Pioneer Valley (Springfield, Amherst)", setting: "Giant Just Dance & Multi-Screen Gaming" },
-      { name: "Connecticut Hubs (Hartford, New Haven, Hamden, Danbury)", setting: "Quinnipiac, WCSU & Conn College Productions" },
-      { name: "Rhode Island Coast (Newport & Providence / Salve Regina)", setting: "Waterfront 360 Booths & Silent Discos" },
-      { name: "Lowell, Chelmsford & Southern ME / VT Corridors", setting: "Daylight LED Tailgate Trailers & Festivals" },
+      { name: "Boston & Cambridge Campuses (BU, Harvard, Fisher)", setting: "Urban Student Union Load-Ins & Indoor Arenas", href: "/portsmouth-nh-photo-booth-party-rentals" },
+      { name: "Wellesley, Framingham & Worcester (Babson, Holy Cross)", setting: "Spring Weekends, Trivia & Novelty Bars", href: "/manchester-nh-event-rentals" },
+      { name: "Western MA & Pioneer Valley (Springfield, Amherst)", setting: "Giant Just Dance & Multi-Screen Gaming", href: "/nashua-nh-event-rentals" },
+      { name: "Connecticut Hubs (Hartford, New Haven, Hamden, Danbury)", setting: "Quinnipiac, WCSU & Conn College Productions", href: "/hudson-nh-party-rentals" },
+      { name: "Rhode Island Coast (Newport & Providence / Salve Regina)", setting: "Waterfront 360 Booths & Silent Discos", href: "/concord-salem-derry-nh-party-rentals" },
+      { name: "Lowell, Chelmsford & Southern ME / VT Corridors", setting: "Daylight LED Tailgate Trailers & Festivals", href: "/movie-nights" },
     ],
     featuredPackages: [
       {
@@ -320,7 +320,7 @@ const LOCAL_PAGE_CONFIG = {
         title: "14–20 ft Daylight Mobile LED Video Wall",
         specs: "High-Nit LED Panels + Hydraulic Trailer + PA",
         desc: "Run live sports watch parties, graduation simulcasts, and campus concerts right in direct afternoon New England sun.",
-        href: "/led-video-wall-rental",
+        href: "/movie-nights",
         quoteParam: "New England Mobile LED Trailer",
       },
       {
@@ -364,12 +364,12 @@ const LOCAL_PAGE_CONFIG = {
     localContextCopy:
       "Rather than hauling gear from New England, our North Carolina branch keeps local crews and core commercial inventory ready for Research Triangle tech company field days, Charlotte Uptown conventions, HBCU & ACC/CUSA campus weekends, and Eastern NC waterfront celebrations.",
     localVenues: [
-      { name: "Charlotte Uptown, South End & Concord Motor Corridor", setting: "Sim Racing, Corporate Mixers & Trade Shows" },
-      { name: "Raleigh, Cary & Research Triangle Park (RTP)", setting: "VR Escape Rooms, Trivia & Company Field Days" },
-      { name: "Durham & Chapel Hill Campus Corridors", setting: "Bulk Esports, Custom Hat Bars & Pillow Dolls" },
-      { name: "Greensboro, Winston-Salem & High Point Triad", setting: "Indoor Glow Parks, Photo Booths & Proms" },
-      { name: "New Bern Waterfront & Greenville (Eastern NC)", setting: "Outdoor Movie Screens & Community Block Parties" },
-      { name: "Wilmington, Fayetteville & Western NC Venues", setting: "Daylight LED Walls & Multi-Station Orientations" },
+      { name: "Charlotte Uptown, South End & Concord Motor Corridor", setting: "Sim Racing, Corporate Mixers & Trade Shows", href: "/sim-racing" },
+      { name: "Raleigh, Cary & Research Triangle Park (RTP)", setting: "VR Escape Rooms, Trivia & Company Field Days", href: "/trivia-nights" },
+      { name: "Durham & Chapel Hill Campus Corridors", setting: "Bulk Esports, Custom Hat Bars & Pillow Dolls", href: "/college-school-corporate-events" },
+      { name: "Greensboro, Winston-Salem & High Point Triad", setting: "Indoor Glow Parks, Photo Booths & Proms", href: "/photo-booth" },
+      { name: "New Bern Waterfront & Greenville (Eastern NC)", setting: "Outdoor Movie Screens & Community Block Parties", href: "/movie-nights" },
+      { name: "Wilmington, Fayetteville & Western NC Venues", setting: "Daylight LED Walls & Multi-Station Orientations", href: "/glow-park" },
     ],
     featuredPackages: [
       {
@@ -421,12 +421,12 @@ const LOCAL_PAGE_CONFIG = {
     localContextCopy:
       "Risk management teams love our clean vendor packets, floor-safe cable ramps, and dedicated crew leads. Activity planners love pairing fast-turnaround stations—like Custom Hat Bars (50–200 items/hr), 3-channel Silent Discos, 4-player VR Escape Rooms, and Bulk Esports—so queues stay fast and photo feeds stay packed.",
     localVenues: [
-      { name: "College Student Unions & Field Houses", setting: "Welcome Week, Midnight Mania & Spring Weekend" },
-      { name: "Intramural Quads & Campus Commons", setting: "26–40 ft Cinema Screens & 20 ft Daylight LED Walls" },
-      { name: "High School Gymnasiums & Cafeterias", setting: "All-Night Safe Post-Proms & Project Graduation" },
-      { name: "Enterprise & RTP Tech Campuses", setting: "Team Building, Family Fun Days & Launch Nights" },
-      { name: "Convention Center & Trade Show Booths", setting: "Branded Sim Racing Leaderboards & 360 Video Booths" },
-      { name: "Hotel Conference Ballrooms & Galas", setting: "Live Buzzer Trivia Shows & Magic Mirror Prints" },
+      { name: "College Student Unions & Field Houses", setting: "Welcome Week, Midnight Mania & Spring Weekend", href: "/gaming-events" },
+      { name: "Intramural Quads & Campus Commons", setting: "26–40 ft Cinema Screens & 20 ft Daylight LED Walls", href: "/movie-nights" },
+      { name: "High School Gymnasiums & Cafeterias", setting: "All-Night Safe Post-Proms & Project Graduation", href: "/glow-park" },
+      { name: "Enterprise & RTP Tech Campuses", setting: "Team Building, Family Fun Days & Launch Nights", href: "/north-carolina-event-rentals" },
+      { name: "Convention Center & Trade Show Booths", setting: "Branded Sim Racing Leaderboards & 360 Video Booths", href: "/portsmouth-nh-photo-booth-party-rentals" },
+      { name: "Hotel Conference Ballrooms & Galas", setting: "Live Buzzer Trivia Shows & Magic Mirror Prints", href: "/manchester-nh-event-rentals" },
     ],
     featuredPackages: [
       {
@@ -442,7 +442,7 @@ const LOCAL_PAGE_CONFIG = {
         title: "4-Player Cooperative VR Escape Rooms",
         specs: "Synchronized Headsets + Live Spectator Displays",
         desc: "Teams communicate in virtual rooms (Dragon Tower, Manor Escape) ideal for student orientation & corporate offsites.",
-        href: "/vr-escape-room-rental",
+        href: "/virtual-reality",
         quoteParam: "Campus & Corporate VR Escape Room",
       },
       {
