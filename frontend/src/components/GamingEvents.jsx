@@ -37,6 +37,7 @@ const GAMING_PACKAGES = [
   {
     id: "deluxe-package",
     name: "Deluxe Package",
+    alt: "Deluxe live gaming event rental package with four 12 ft HD screens, giant 21-32 ft screen, and event planning equipment for gamers",
     tagline: "(Yes, the screens are really that thin!)",
     badge: "Deluxe Setup",
     image: "/gaming-events-experience-1.jpg",
@@ -55,6 +56,7 @@ const GAMING_PACKAGES = [
   {
     id: "ultimate-package",
     name: "Ultimate Package",
+    alt: "Ultimate live gaming events and Next Level FEC attraction package with eight 12 ft screens, 26 ft jumbo screen, and virtual DJ",
     tagline: "(Yeah...we know, it's awesome!)",
     badge: "Most Popular",
     popular: true,
@@ -76,6 +78,7 @@ const GAMING_PACKAGES = [
   {
     id: "tournament-package",
     name: "Tournament Package",
+    alt: "Video gaming tournament event production and video gaming convention production package with 32 ft esports spectator streaming screen",
     tagline: "Champions are made from this package!",
     badge: "Esports Edition",
     image: "/gaming-tournament-package.jpg",
@@ -195,7 +198,7 @@ const GamingEvents = () => {
                   <div className="relative aspect-[4/3] w-full overflow-hidden">
                     <img
                       src={img.src}
-                      alt={img.title}
+                      alt={img.alt || img.title}
                       className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                       loading="lazy"
                     />
@@ -252,7 +255,7 @@ const GamingEvents = () => {
                   <div className="relative aspect-[16/10] w-full overflow-hidden">
                     <img
                       src={pkg.image}
-                      alt={pkg.name}
+                      alt={pkg.alt || pkg.name}
                       className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                       loading="lazy"
                     />

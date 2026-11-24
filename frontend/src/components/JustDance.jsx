@@ -29,18 +29,21 @@ const JustDance = () => {
       title: "Multiplayer Dance Battles",
       subtitle: multiplayerBattle?.subtitle || "Head-to-head choreography on giant displays.",
       src: "/experience-just-dance.jpg",
+      alt: "Just Dance giant-screen party rental and multiplayer dance battle stage in NH, MA and NC",
     },
     {
       id: "follow-the-coach",
       title: "Follow the On-Screen Coach",
       subtitle: "Watch the dancer, match each move as it appears, and build your score through the song.",
       src: "/just-dance-gameplay.jpg",
+      alt: "College campus Just Dance event production with concert audio and giant projection screen",
     },
     {
       id: "beat-your-best",
       title: "Choose a Song, Beat Your Best",
       subtitle: "Pick a track, try its routine, and come back for another round to top your score.",
       src: "/just-dance-gameplay.jpg",
+      alt: "Interactive Just Dance party rental for college welcome weeks, post-proms and corporate events",
     },
   ];
   useEffect(() => {
@@ -144,7 +147,7 @@ const JustDance = () => {
                   <div className="relative aspect-[4/3] w-full overflow-hidden">
                     <img
                       src={img.src}
-                      alt={img.title}
+                      alt={img.alt || img.title}
                       className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                       loading="lazy"
                     />

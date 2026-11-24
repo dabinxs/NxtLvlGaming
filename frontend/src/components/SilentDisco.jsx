@@ -135,7 +135,7 @@ const SilentDisco = () => {
                   <div className="relative aspect-[4/3] w-full overflow-hidden">
                     <img
                       src={img.src}
-                      alt={img.title}
+                      alt={img.alt || img.title}
                       className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                       loading="lazy"
                     />

@@ -1,11 +1,11 @@
 export const POPULAR_VR_GAMES = [
-  { id: "vr-beat-saber", title: "Beat Saber", subtitle: "Slash through the beat, dodge obstacles, and move to the music.", image: "https://cdn.akamai.steamstatic.com/steam/apps/620980/header.jpg", cover: true },
-  { id: "vr-job-simulator", title: "Job Simulator", subtitle: "Try delightfully absurd jobs in a playful robot-run world.", image: "https://cdn.akamai.steamstatic.com/steam/apps/448280/header.jpg", cover: true },
-  { id: "vr-superhot", title: "SUPERHOT VR", subtitle: "Time moves when you move in this tactical action game.", image: "https://cdn.akamai.steamstatic.com/steam/apps/617830/header.jpg", cover: true },
-  { id: "vr-walkabout-mini-golf", title: "Walkabout Mini Golf", subtitle: "Play relaxed mini-golf across imaginative courses.", image: "https://cdn.akamai.steamstatic.com/steam/apps/1408230/header.jpg", cover: true },
-  { id: "vr-pistol-whip", title: "Pistol Whip", subtitle: "Dodge, aim, and shoot through rhythm-driven action scenes.", image: "https://cdn.akamai.steamstatic.com/steam/apps/1079800/header.jpg", cover: true },
-  { id: "vr-overcooked", title: "Overcooked!", subtitle: "Work together in a fast-paced kitchen where teamwork keeps every order moving.", image: "https://cdn.akamai.steamstatic.com/steam/apps/448510/header.jpg", cover: true },
-  { id: "vr-overcooked-2", title: "Overcooked! 2", subtitle: "Team up for even more chaotic co-op cooking challenges.", image: "https://cdn.akamai.steamstatic.com/steam/apps/728880/header.jpg", cover: true },
+  { id: "vr-beat-saber", title: "Beat Saber", subtitle: "Slash through the beat, dodge obstacles, and move to the music.", image: "https://cdn.akamai.steamstatic.com/steam/apps/620980/header.jpg", cover: true, alt: "Beat Saber rhythm VR event game for virtual reality party rentals in NH, MA and Durham NC" },
+  { id: "vr-job-simulator", title: "Job Simulator", subtitle: "Try delightfully absurd jobs in a playful robot-run world.", image: "https://cdn.akamai.steamstatic.com/steam/apps/448280/header.jpg", cover: true, alt: "Job Simulator interactive virtual reality game for events and college VR arcade rentals" },
+  { id: "vr-superhot", title: "SUPERHOT VR", subtitle: "Time moves when you move in this tactical action game.", image: "https://cdn.akamai.steamstatic.com/steam/apps/617830/header.jpg", cover: true, alt: "SUPERHOT VR action virtual reality game for adult corporate events and VR arena rentals" },
+  { id: "vr-walkabout-mini-golf", title: "Walkabout Mini Golf", subtitle: "Play relaxed mini-golf across imaginative courses.", image: "https://cdn.akamai.steamstatic.com/steam/apps/1408230/header.jpg", cover: true, alt: "Walkabout Mini Golf multiplayer VR event game for corporate team building and parties" },
+  { id: "vr-pistol-whip", title: "Pistol Whip", subtitle: "Dodge, aim, and shoot through rhythm-driven action scenes.", image: "https://cdn.akamai.steamstatic.com/steam/apps/1079800/header.jpg", cover: true, alt: "Pistol Whip arcade action VR game for adults and live virtual reality event rentals" },
+  { id: "vr-overcooked", title: "Overcooked!", subtitle: "Work together in a fast-paced kitchen where teamwork keeps every order moving.", image: "https://cdn.akamai.steamstatic.com/steam/apps/448510/header.jpg", cover: true, alt: "Overcooked cooperative multiplayer event game for campus and corporate gaming events" },
+  { id: "vr-overcooked-2", title: "Overcooked! 2", subtitle: "Team up for even more chaotic co-op cooking challenges.", image: "https://cdn.akamai.steamstatic.com/steam/apps/728880/header.jpg", cover: true, alt: "Overcooked 2 co-op party game for live gaming events and college tournaments" },
 ].map((game) => ({ ...game, src: game.image }));
 
 export const CMS_PAGES = [
@@ -17,9 +17,9 @@ export const CMS_PAGES = [
     heroTitle: "VIDEO GAMING EVENTS",
     heroSubtitle: "Turn your next gathering into an unforgettable multiplayer experience.",
     gallery: [
-      { id: "gaming-1", title: "Multiplayer Gaming Stations", subtitle: "A range of games set up for guests to play together.", image: "/gaming-events-experience-1.jpg" },
-      { id: "gaming-2", title: "Giant Screen Gaming", subtitle: "Bright, large-scale displays bring every match to life.", image: "/gaming-events-experience-2.jpg" },
-      { id: "gaming-3", title: "Campus Gaming Events", subtitle: "A full gym transformed into a gaming event space.", image: "/gaming-events-experience-3.jpg" },
+      { id: "gaming-1", title: "Multiplayer Gaming Stations", subtitle: "A range of games set up for guests to play together.", image: "/gaming-events-experience-1.jpg", alt: "Live gaming events and event planning equipment for gamers with multiplayer PS5, Xbox and Switch stations" },
+      { id: "gaming-2", title: "Giant Screen Gaming", subtitle: "Bright, large-scale displays bring every match to life.", image: "/gaming-events-experience-2.jpg", alt: "Video game event production and video gaming tournament event production on giant 12 ft to 32 ft HD screens" },
+      { id: "gaming-3", title: "Campus Gaming Events", subtitle: "A full gym transformed into a gaming event space.", image: "/gaming-events-experience-3.jpg", alt: "Next Level FEC attraction and video gaming convention production setup inside a college gymnasium in NH, MA and NC" },
     ],
   },
   {
@@ -30,8 +30,8 @@ export const CMS_PAGES = [
     heroTitle: "MOVIE NIGHTS",
     heroSubtitle: "Bring the big-screen experience to your school, venue, or community.",
     gallery: [
-      { id: "movie-led", title: "LED TRAILER / VIDEO WALL SCREEN SET UP", subtitle: "A mobile LED trailer and video wall setup for vibrant, high-visibility movie nights.", image: "/movie-nights-led.jpg" },
-      { id: "movie-inflatable", title: "INFLATABLE SCREEN SET UP", subtitle: "A large-format inflatable cinema screen for memorable outdoor movie nights.", image: "/movie-nights-experience-1.jpg" },
+      { id: "movie-led", title: "LED TRAILER / VIDEO WALL SCREEN SET UP", subtitle: "A mobile LED trailer and video wall setup for vibrant, high-visibility movie nights.", image: "/movie-nights-led.jpg", alt: "14 ft to 20 ft daylight mobile LED video wall trailer rental for outdoor movie nights and tailgates in NH, MA and NC" },
+      { id: "movie-inflatable", title: "INFLATABLE SCREEN SET UP", subtitle: "A large-format inflatable cinema screen for memorable outdoor movie nights.", image: "/movie-nights-experience-1.jpg", alt: "16 ft to 40 ft giant outdoor inflatable movie screen rental with concert audio and FM drive-in radio in NH, MA and NC" },
     ],
   },
   {
@@ -42,9 +42,9 @@ export const CMS_PAGES = [
     heroTitle: "TRIVIA NIGHTS",
     heroSubtitle: "Interactive trivia for groups and crowds, led by lively hosts and live scoring.",
     gallery: [
-      { id: "trivia-1", title: "Team Trivia Battles", subtitle: "High-energy rounds with live digital buzzers.", image: "https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&w=1200&q=80" },
-      { id: "trivia-2", title: "Live Leaderboards", subtitle: "Real-time scores and timers on giant displays.", image: "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1200&q=80" },
-      { id: "trivia-3", title: "Crowd Engagement", subtitle: "From intimate groups to 500+ seat ballrooms.", image: "https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=1200&q=80" },
+      { id: "trivia-1", title: "Team Trivia Battles", subtitle: "High-energy rounds with live digital buzzers.", image: "https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&w=1200&q=80", alt: "Interactive live trivia night and wireless buzzer game show rental for corporate holiday parties and colleges" },
+      { id: "trivia-2", title: "Live Leaderboards", subtitle: "Real-time scores and timers on giant displays.", image: "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1200&q=80", alt: "Giant-screen live trivia game show leaderboard rental in Hudson NH, Manchester, Boston and North Carolina" },
+      { id: "trivia-3", title: "Crowd Engagement", subtitle: "From intimate groups to 500+ seat ballrooms.", image: "https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=1200&q=80", alt: "Hosted corporate and college trivia night entertainment across New Hampshire, Massachusetts and NC" },
     ],
   },
   {
@@ -55,10 +55,10 @@ export const CMS_PAGES = [
     heroTitle: "VIRTUAL REALITY",
     heroSubtitle: "Immersive VR stations that pull crowds and drop jaws.",
     gallery: [
-      { id: "vr-1", title: "Dragon Tower", subtitle: "Step into a fantastical VR adventure.", image: "/vr-games/dragon-tower.png" },
-      { id: "vr-2", title: "Time Travel Paradox", subtitle: "Journey across time in virtual reality.", image: "/vr-games/time-travel-paradox.png" },
-      { id: "vr-3", title: "Depths of Osiris", subtitle: "Explore an immersive underwater world.", image: "/vr-games/depths-of-osiris.png" },
-      { id: "vr-4", title: "Manor Escape", subtitle: "Solve puzzles and escape the manor.", image: "/vr-games/manor-escape.png" },
+      { id: "vr-1", title: "Dragon Tower", subtitle: "Step into a fantastical VR adventure.", image: "/vr-games/dragon-tower.png", alt: "Dragon Tower 4-player cooperative mobile VR escape room and virtual reality game for events in NH, MA and Durham NC" },
+      { id: "vr-2", title: "Time Travel Paradox", subtitle: "Journey across time in virtual reality.", image: "/vr-games/time-travel-paradox.png", alt: "Time Travel Paradox multiplayer VR event game for corporate team building and college VR rentals" },
+      { id: "vr-3", title: "Depths of Osiris", subtitle: "Explore an immersive underwater world.", image: "/vr-games/depths-of-osiris.png", alt: "Depths of Osiris underwater VR escape room attraction for mobile virtual reality rentals in Durham, Raleigh, Charlotte and NH" },
+      { id: "vr-4", title: "Manor Escape", subtitle: "Solve puzzles and escape the manor.", image: "/vr-games/manor-escape.png", alt: "Manor Escape cooperative virtual reality game for events, adults, and campus VR arcade rentals" },
       ...POPULAR_VR_GAMES,
     ],
   },
@@ -70,9 +70,9 @@ export const CMS_PAGES = [
     heroTitle: "PHOTOBOOTH",
     heroSubtitle: "Capture, create, and share amazing moments instantly.",
     gallery: [
-      { id: "booth-1", title: "Photobooth Moments", subtitle: "Fun, shareable memories from your event.", image: "/photo-booth-experience-1.jpg" },
-      { id: "booth-2", title: "360 Video & Mirror Photobooth", subtitle: "Choose a cinematic video or an interactive mirror photo.", image: "/photo-booth-experience-2.jpg" },
-      { id: "booth-3", title: "Party Props & Poses", subtitle: "Guests strike a pose and make photobooth memories together.", image: "/photo-booth-experience-3.jpg" },
+      { id: "booth-1", title: "Photobooth Moments", subtitle: "Fun, shareable memories from your event.", image: "/photo-booth-experience-1.jpg", alt: "Portsmouth NH photo booth rental and New Hampshire interactive Magic Mirror photo booth with instant prints" },
+      { id: "booth-2", title: "360 Video & Mirror Photobooth", subtitle: "Choose a cinematic video or an interactive mirror photo.", image: "/photo-booth-experience-2.jpg", alt: "360 photo booth rental and slow-motion 360 video booth platform in Portsmouth, Manchester, Nashua and Hudson NH" },
+      { id: "booth-3", title: "Party Props & Poses", subtitle: "Guests strike a pose and make photobooth memories together.", image: "/photo-booth-experience-3.jpg", alt: "Turnkey NH photo booth rental with red carpet, VIP stanchions, party props and attendant for weddings and holiday parties" },
     ],
   },
   {
@@ -83,9 +83,9 @@ export const CMS_PAGES = [
     heroTitle: "JUST DANCE",
     heroSubtitle: "Choose a Just Dance song, follow the on-screen choreography, and earn points. Play solo, take turns, or challenge friends head-to-head.",
     gallery: [
-      { id: "dance-1", title: "Multiplayer Dance Battles", subtitle: "Head-to-head choreography on giant displays.", image: "/experience-just-dance.jpg" },
-      { id: "dance-2", title: "Follow the On-Screen Coach", subtitle: "Watch the dancer, match each move as it appears, and build your score through the song.", image: "/just-dance-gameplay.jpg" },
-      { id: "dance-3", title: "Choose a Song, Beat Your Best", subtitle: "Pick a track, try its routine, and come back for another round to top your score.", image: "/just-dance-gameplay.jpg" },
+      { id: "dance-1", title: "Multiplayer Dance Battles", subtitle: "Head-to-head choreography on giant displays.", image: "/experience-just-dance.jpg", alt: "Just Dance giant-screen party rental and multiplayer dance battle stage in NH, MA and NC" },
+      { id: "dance-2", title: "Follow the On-Screen Coach", subtitle: "Watch the dancer, match each move as it appears, and build your score through the song.", image: "/just-dance-gameplay.jpg", alt: "College campus Just Dance event production with concert audio and giant projection screen" },
+      { id: "dance-3", title: "Choose a Song, Beat Your Best", subtitle: "Pick a track, try its routine, and come back for another round to top your score.", image: "/just-dance-gameplay.jpg", alt: "Interactive Just Dance party rental for college welcome weeks, post-proms and corporate events" },
     ],
   },
   {
@@ -96,9 +96,9 @@ export const CMS_PAGES = [
     heroTitle: "SILENT DISCO",
     heroSubtitle: "LED headphones and multiple music channels for an unforgettable dance experience.",
     gallery: [
-      { id: "disco-1", title: "Tri-Color LED Glow", subtitle: "Headphones illuminate by channel.", image: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1200&q=80" },
-      { id: "disco-2", title: "Multiple DJs", subtitle: "Competing live channels keep everyone hyped.", image: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=1200&q=80" },
-      { id: "disco-3", title: "Zero Noise Complaints", subtitle: "Dance anywhere, indoors or out.", image: "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=1200&q=80" },
+      { id: "disco-1", title: "Tri-Color LED Glow", subtitle: "Headphones illuminate by channel.", image: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1200&q=80", alt: "Tri-color LED wireless Silent Disco headphone rental for 50 to 5000 guests in NH, Boston MA and NC" },
+      { id: "disco-2", title: "Multiple DJs", subtitle: "Competing live channels keep everyone hyped.", image: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=1200&q=80", alt: "3-channel Silent Disco party equipment rental with three simultaneous DJ transmitters" },
+      { id: "disco-3", title: "Zero Noise Complaints", subtitle: "Dance anywhere, indoors or out.", image: "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=1200&q=80", alt: "Late-night campus and outdoor Silent Disco headphone party rental in Portsmouth, Manchester, Hudson NH and NC" },
     ],
   },
   {
@@ -109,9 +109,9 @@ export const CMS_PAGES = [
     heroTitle: "SIM RACING",
     heroSubtitle: "Pro simulators and competitive racing, brought right to your event.",
     gallery: [
-      { id: "racing-1", title: "Cockpit Sim Rigs", subtitle: "Force-feedback wheels and responsive pedals.", image: "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=1200&q=80" },
-      { id: "racing-2", title: "Giant Screen Telemetry", subtitle: "Track positions and fastest-lap leaderboards.", image: "https://images.unsplash.com/photo-1511994298241-608e28f14fde?auto=format&fit=crop&w=1200&q=80" },
-      { id: "racing-3", title: "Tournament Grid Battles", subtitle: "Heats, qualifiers, and championship finishes.", image: "https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=1200&q=80" },
+      { id: "racing-1", title: "Cockpit Sim Rigs", subtitle: "Force-feedback wheels and responsive pedals.", image: "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=1200&q=80", alt: "Rent a racing simulator cockpit with force-feedback steering wheel, pedals and bucket seat in NH, MA, CT and NC" },
+      { id: "racing-2", title: "Giant Screen Telemetry", subtitle: "Track positions and fastest-lap leaderboards.", image: "https://images.unsplash.com/photo-1511994298241-608e28f14fde?auto=format&fit=crop&w=1200&q=80", alt: "Commercial sim racing simulator rental with live fastest-lap telemetry leaderboard displays for trade shows and corporate events" },
+      { id: "racing-3", title: "Tournament Grid Battles", subtitle: "Heats, qualifiers, and championship finishes.", image: "https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=1200&q=80", alt: "Head-to-head F1 and GT sim racing tournament rental in Hudson NH, Boston MA, Charlotte and Raleigh NC" },
     ],
   },
   {
@@ -122,9 +122,9 @@ export const CMS_PAGES = [
     heroTitle: "GLOW PARK EXPERIENCE",
     heroSubtitle: "Light up your event with glowing games, colorful uplighting, and a full-package experience guests can jump right into.",
     gallery: [
-      { id: "glow-swings", title: "Glow Swings", subtitle: "Eight illuminated swings bring a bright, playful centerpiece to your event.", image: "/glow-park-experience-1.jpg" },
-      { id: "glow-seesaws", title: "Glow Seesaws", subtitle: "Four glowing seesaws add an easy-to-share group activity.", image: "/glow-park-experience-2.jpg" },
-      { id: "glow-mini-golf", title: "Colorful Uplighting & Glow", subtitle: "Vibrant uplighting and glowing attractions transform any indoor or outdoor space.", image: "/glow-park-experience-3.jpg" },
+      { id: "glow-swings", title: "Glow Swings", subtitle: "Eight illuminated swings bring a bright, playful centerpiece to your event.", image: "/glow-park-experience-1.jpg", alt: "8 commercial truss-mounted LED glow swings rental for college glow nights and events in NH, MA and NC" },
+      { id: "glow-seesaws", title: "Glow Seesaws", subtitle: "Four glowing seesaws add an easy-to-share group activity.", image: "/glow-park-experience-2.jpg", alt: "4 illuminated LED glow seesaws rental for indoor gyms and outdoor festivals in Hudson, Manchester and Portsmouth NH" },
+      { id: "glow-mini-golf", title: "Colorful Uplighting & Glow", subtitle: "Vibrant uplighting and glowing attractions transform any indoor or outdoor space.", image: "/glow-park-experience-3.jpg", alt: "Glow Park experience with glowing LED mini golf course and full-room uplighting rental in NH, MA and NC" },
     ],
   },
 ];

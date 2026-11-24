@@ -120,7 +120,7 @@ const VirtualReality = () => {
                   <div className={`relative flex aspect-[4/3] w-full items-center justify-center overflow-hidden ${game.cover ? "bg-[#0c1830]" : "bg-[#e9f0f4] p-4"}`}>
                     <img
                       src={game.src}
-                      alt={`${game.title} VR game artwork`}
+                      alt={game.alt || `${game.title} VR game artwork`}
                       className={`h-full w-full transition-transform duration-700 group-hover:scale-105 ${game.cover ? "object-cover" : "max-h-full max-w-full object-contain"}`}
                       loading="lazy"
                     />
