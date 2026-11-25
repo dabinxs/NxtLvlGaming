@@ -104,7 +104,7 @@ const ROUTE_SEO = {
     description:
       "Live gaming events, video gaming tournament event production & event planning equipment for gamers: PS5/Xbox/Switch stations & 12–40ft screens in NH, MA & NC.",
     keywords:
-      "video game event production, video gaming tournament event production, video gaming convention production, event planning equipment for gamers, live gaming events, next level fec attraction, gaming events, real life gaming experience, gaming event, video game event, video game events, video gaming events, video game events near me, esports tournaments near me, esports screening, video game event planner, video game event management, video game convention management, video gaming tournament event management, video gaming competition production, video game tournament event production, esports rental company, bulk esports rental, party planning equipment for gamers, esports rental, next level gaming ct, new england gaming, gaming events this weekend, next level gaming, nxt level gaming, video game tournaments, gaming event rental, gaming event planning, boston gaming events, gaming events Boston MA, college gaming events Boston, video game party rental Manchester NH, gaming events Hudson NH, gaming events Portsmouth NH, video gaming event rental New Hampshire, Connecticut gaming events, gaming event rentals Charlotte NC, mobile video game party Raleigh NC, esports tournament production NH MA CT NC, Super Smash Bros tournament rental, Mario Kart event rental Boston MA Charlotte NC",
+      "video game event production, video gaming tournament event production, video gaming convention production, esports convention production, private gaming party, video game event planner, event planning equipment for gamers, live gaming events, next level fec attraction, gaming events, real life gaming experience, gaming event, video game event, video game events, video gaming events, video game events near me, esports tournaments near me, esports screening, video game event management, video game convention management, video gaming tournament event management, video gaming competition production, video game tournament event production, esports rental company, bulk esports rental, party planning equipment for gamers, esports rental, next level gaming ct, new england gaming, gaming events this weekend, next level gaming, nxt level gaming, video game tournaments, gaming event rental, gaming event planning, boston gaming events, gaming events Boston MA, college gaming events Boston, video game party rental Manchester NH, gaming events Hudson NH, gaming events Portsmouth NH, video gaming event rental New Hampshire, Connecticut gaming events, gaming event rentals Charlotte NC, mobile video game party Raleigh NC, esports tournament production NH MA CT NC, Super Smash Bros tournament rental, Mario Kart event rental Boston MA Charlotte NC",
     image: `${SITE_URL}/gaming-events-experience-1.jpg`,
     preloadImage: "/gaming-events-experience-1.jpg",
     canonicalPath: "/gaming-events",
@@ -113,14 +113,14 @@ const ROUTE_SEO = {
     serviceName: "Video Game Event Production, Live Gaming Events & Esports Tournament Rentals",
     heading: "Video Game Event Production, Live Gaming Events & Video Gaming Tournament Event Production in NH, MA, CT & NC",
     summary:
-      "Next Level Gaming & Novelties (Nxt Level Gaming) is a premier New England and North Carolina video game event production company, esports rental company, and Next Level FEC attraction provider delivering turnkey live gaming events, video gaming tournament event production, video gaming convention production, bulk esports rentals, and event & party planning equipment for gamers across Hudson, Nashua, Manchester, Portsmouth, and Concord NH, Greater Boston and Massachusetts, Connecticut (Hartford, New Haven, Hamden, Danbury, Stamford, New London CT), and North Carolina (Charlotte, Raleigh, Durham, Greensboro NC).",
+      "Next Level Gaming & Novelties (Nxt Level Gaming) is a premier New England and North Carolina video game event production company, video game event planner, esports rental company, and Next Level FEC attraction provider delivering turnkey live gaming events, private gaming party setups, video gaming tournament event production, video gaming convention production, esports convention production, bulk esports rentals, and event & party planning equipment for gamers across Hudson, Nashua, Manchester, Portsmouth, and Concord NH, Greater Boston and Massachusetts, Connecticut (Hartford, New Haven, Hamden, Danbury, Stamford, New London CT), and North Carolina (Charlotte, Raleigh, Durham, Greensboro NC).",
     subhead: "Full-Scale Video Gaming Tournament Event Production, Consoles & 12–40 ft Jumbo Screens",
     details:
-      "From Deluxe four-screen lounges to Ultimate eight-screen arenas and full Bulk Esports & Video Gaming Convention Production with PlayStation 5, Xbox Series X, Nintendo Switch, and classic retro NES consoles, our crew brings every controller, bracket, concert speaker, and 12 ft to 40 ft HD spectator screen needed for a real-life gaming experience, corporate holiday party, or campus championship.",
+      "From a private gaming party or Deluxe four-screen lounge to Ultimate eight-screen arenas and full Bulk Esports, Esports Convention Production, and Video Gaming Convention Production with PlayStation 5, Xbox Series X, Nintendo Switch, and classic retro NES consoles, our crew brings every controller, bracket, concert speaker, and 12 ft to 40 ft HD spectator screen needed for a real-life gaming experience, corporate holiday party, or campus championship.",
     highlights: [
       "Complete event & party planning equipment for gamers — 16 to 64+ simultaneous players",
-      "Full video game event production, tournament bracket management & convention production",
-      "Next Level FEC attraction & bulk esports rental packages for campuses, arenas & holiday events",
+      "Full video game event production, tournament bracket management & esports convention production",
+      "Turnkey private gaming party lounges, Next Level FEC attraction & bulk esports rental packages",
       "PlayStation 5, Xbox Series X, Nintendo Switch & classic retro NES library",
       "Serving Hudson NH, Manchester, Boston, Connecticut (CT) & North Carolina",
     ],
@@ -134,8 +134,8 @@ const ROUTE_SEO = {
     ],
     offers: [
       {
-        name: "Deluxe Live Gaming Event Rental Package",
-        description: "Four 12 ft HD multiplayer gaming stations plus a giant 21 ft to 32 ft HD spectator screen, modern consoles (PS5, Xbox Series X, Switch), concert sound, and on-site event crew.",
+        name: "Private Gaming Party & Deluxe Live Gaming Event Rental Package",
+        description: "Turnkey private gaming party and campus gaming setup with four 12 ft HD multiplayer gaming stations plus a giant 21 ft to 32 ft HD spectator screen, modern consoles (PS5, Xbox Series X, Switch), concert sound, and on-site event crew.",
       },
       {
         name: "Ultimate Live Gaming Event & Next Level FEC Attraction Package",
@@ -146,8 +146,8 @@ const ROUTE_SEO = {
         description: "High-capacity event planning equipment for gamers, custom bracket management, main-stage championship projection, and turnkey video game event production for colleges, schools, and arenas.",
       },
       {
-        name: "Video Gaming Convention Production & Esports Screening Management",
-        description: "Full-scale video gaming convention production, video game convention management, multi-station console zones, live esports screening displays, and party planning equipment for gamers across NH, MA, CT, and NC.",
+        name: "Video Gaming Convention Production & Esports Convention Production",
+        description: "Full-scale video gaming convention production, esports convention production, video game event planner services, multi-station console zones, live esports screening displays, and party planning equipment for gamers across NH, MA, CT, and NC.",
       },
     ],
     faqs: [

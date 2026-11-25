@@ -1,5 +1,5 @@
-import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import {
   AREA_SERVED,
   DEFAULT_IMAGE,
@@ -8,15 +8,28 @@ import {
   REGIONAL_LINKS,
   ROUTE_SEO,
   SITE_URL,
+  SPECIALTY_LINKS,
 } from "../lib/routeSeoData";
 import { LOCAL_PAGE_CONFIG } from "../lib/localLandingConfig";
 
-function toCanonicalHref(href) {
+function toCanonicalPath(href) {
   if (!href) return null;
   const targetSeo = ROUTE_SEO[href];
-  const canonicalPath = targetSeo?.canonicalPath || href;
+  return targetSeo?.canonicalPath || href;
+}
+
+function toCanonicalHref(href) {
+  const canonicalPath = toCanonicalPath(href);
+  if (!canonicalPath) return null;
   return `${SITE_URL}${canonicalPath === "/" ? "/" : canonicalPath}`;
 }
+
+const CANONICAL_DIRECTORY_LINKS = [...NH_CITY_LINKS, ...REGIONAL_LINKS, ...SPECIALTY_LINKS]
+  .map((item) => ({
+    label: item.label,
+    href: toCanonicalPath(item.href),
+  }))
+  .filter((item, idx, arr) => item.href && arr.findIndex((x) => x.href === item.href) === idx);
 
 function upsertMeta(selector, attributes) {
   let element = document.head.querySelector(selector);
@@ -334,7 +347,86 @@ const SeoManager = () => {
     upsertRouteJsonLd(seo, canonicalUrl, normalizedPath);
   }, [pathname, normalizedPath, seo]);
 
-  return null;
+  if (seo.noindex) {
+    return null;
+  }
+
+  const localCfg = LOCAL_PAGE_CONFIG[normalizedPath] || null;
+
+  return (
+    <aside
+      id="seo-route-context"
+      hidden
+      aria-hidden="true"
+      style={{ display: "none" }}
+    >
+      {seo.heading && <h2>{seo.heading}</h2>}
+      {seo.summary && <p>{seo.summary}</p>}
+      {seo.subhead && <h3>{seo.subhead}</h3>}
+      {seo.details && <p>{seo.details}</p>}
+      {Array.isArray(seo.highlights) && seo.highlights.length > 0 && (
+        <ul>
+          {seo.highlights.map((item, idx) => (
+            <li key={idx}>{item}</li>
+          ))}
+        </ul>
+      )}
+      {localCfg && (
+        <section>
+          {localCfg.sectionTitle && <h3>{localCfg.sectionTitle}</h3>}
+          {localCfg.dispatchNote && <p>{localCfg.dispatchNote}</p>}
+          {Array.isArray(localCfg.featuredPackages) &&
+            localCfg.featuredPackages.map((pkg) => (
+              <article key={pkg.title}>
+                <h4>{pkg.title}</h4>
+                <p>
+                  {pkg.specs} — {pkg.desc}{" "}
+                  <Link to={toCanonicalPath(pkg.href) || pkg.href}>View Specs</Link>
+                </p>
+              </article>
+            ))}
+          {localCfg.localContextHeading && <h4>{localCfg.localContextHeading}</h4>}
+          {localCfg.localContextCopy && <p>{localCfg.localContextCopy}</p>}
+        </section>
+      )}
+      {Array.isArray(seo.offers) && seo.offers.length > 0 && (
+        <section>
+          <h3>Available Rental Packages</h3>
+          {seo.offers.map((offer) => (
+            <article key={offer.name}>
+              <h4>{offer.name}</h4>
+              <p>{offer.description}</p>
+            </article>
+          ))}
+        </section>
+      )}
+      {Array.isArray(seo.faqs) && seo.faqs.length > 0 && (
+        <section>
+          <h3>Frequently Asked Questions</h3>
+          <dl>
+            {seo.faqs.map((faq) => (
+              <React.Fragment key={faq.q}>
+                <dt>{faq.q}</dt>
+                <dd>{faq.a}</dd>
+              </React.Fragment>
+            ))}
+          </dl>
+        </section>
+      )}
+      <nav aria-label="Service Area and Experience Directory">
+        {CANONICAL_DIRECTORY_LINKS.map((item) => (
+          <Link key={item.href} to={item.href}>
+            {item.label}
+          </Link>
+        ))}
+        <Link to="/explore-experiences">All Event Experiences</Link>
+        <Link to="/about">About Next Level Gaming &amp; Novelties</Link>
+        <Link to="/contact">Contact Hudson NH 03051 &amp; North Carolina Crew</Link>
+        <Link to="/quote">Request Event Rental Quote</Link>
+        <Link to="/novelty-order">Order Custom Event Novelties</Link>
+      </nav>
+    </aside>
+  );
 };
 
 export default SeoManager;

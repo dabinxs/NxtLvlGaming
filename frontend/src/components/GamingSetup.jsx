@@ -205,31 +205,31 @@ const racingEquipment = [
     title: "Pro Simulators",
     description: "Force-feedback wheels, pedals & racing seats.",
     image: "/racing-setup-rig.png",
-    alt: "Professional sim racing seat with force-feedback wheel and pedals",
+    alt: "Rent a racing simulator cockpit with force-feedback steering wheel, pedals and bucket seat in NH, MA, CT and NC",
   },
   {
     title: "Live Leaderboards",
     description: "Fastest-lap boards on the big screen.",
     image: "/racing-setup-leaderboard.png",
-    alt: "Neon live leaderboard showing drivers and lap times",
+    alt: "Sim racing simulator rental with live fastest-lap telemetry leaderboard screen for corporate events and trade shows",
   },
   {
     title: "Giant Screen",
     description: "Every turn and overtake on massive displays.",
     image: "/racing-setup-screen.png",
-    alt: "Giant inflatable screen showing a racing simulator track",
+    alt: "Giant HD spectator screen for sim racing event rentals in Hudson NH, Boston MA, Charlotte and Raleigh NC",
   },
   {
     title: "Tournament Formats",
     description: "Time trials, heats & grand finals.",
     image: "/racing-setup-tournament.png",
-    alt: "Neon racing tournament bracket with trophy and checkered flags",
+    alt: "Head-to-head F1 and GT racing simulator tournament bracket management for colleges and parties",
   },
   {
     title: "Event Setup",
     description: "Racing seats, screens & full production.",
     image: "/racing-setup-stage.png",
-    alt: "Three racing simulators beneath a lit event stage truss",
+    alt: "Turnkey multi-cockpit sim racing stage production delivered and staffed across NH, MA, CT and North Carolina",
   },
 ];
 
@@ -238,31 +238,31 @@ const photoboothEquipment = [
     title: "360 Video Photobooth",
     description: "Capture dynamic slow-motion videos.",
     image: "/photobooth-setup-360-video.png",
-    alt: "Neon 360 video booth platform with revolving camera and ring light",
+    alt: "Portsmouth NH 360 photo booth rental and slow-motion 360 video booth platform with LED ring light in NH, MA and NC",
   },
   {
     title: "Mirror Photobooth",
     description: "Take interactive full-length photos.",
     image: "/photobooth-setup-mirror.png",
-    alt: "Interactive touchscreen mirror photobooth with camera and ring light",
+    alt: "Interactive full-length Magic Mirror photo booth rental in Portsmouth, Manchester, Nashua and Hudson NH",
   },
   {
     title: "Props & Overlays",
     description: "Fun props and custom event overlays.",
     image: "/photobooth-setup-props.png",
-    alt: "Gold party props, sunglasses and feather boa for photobooth photos",
+    alt: "NH photo booth rental party props, custom wedding and holiday party overlays, and instant keepsake prints",
   },
   {
     title: "Event-Ready Setup",
     description: "Professional setup and on-site staff.",
     image: "/photobooth-setup-stage.png",
-    alt: "Photobooth event stage with truss lighting and camera backdrop",
+    alt: "Turnkey Portsmouth NH photo booth rental setup with red carpet, VIP stanchions, studio lighting and attendant",
   },
   {
     title: "Share Instantly",
     description: "Easily save and share your photos.",
     image: "/photobooth-setup-sharing.png",
-    alt: "Neon group photo cards with a sharing arrow",
+    alt: "Instant QR code, SMS and digital photo booth sharing for weddings, proms and corporate events in NH, MA and NC",
   },
 ];
 
@@ -271,31 +271,31 @@ const glowEquipment = [
     title: "8 Glow Swings",
     description: "Inviting, illuminated swings.",
     image: "/glow-setup-swings.png",
-    alt: "Three illuminated ring swings in cyan, pink and green",
+    alt: "8 commercial truss-mounted LED glow swings rental for Glow Park events in Hudson NH, Boston MA and NC",
   },
   {
     title: "4 Glow Seesaws",
     description: "Playful, social activity.",
     image: "/glow-setup-seesaws.png",
-    alt: "Blue and magenta illuminated seesaws",
+    alt: "4 illuminated multi-rider LED glow seesaws rental for college glow nights, post-proms and festivals",
   },
   {
     title: "Colorful Uplighting",
     description: "Vibrant color for any venue.",
     image: "/glow-setup-uplighting.png",
-    alt: "Neon lit palms and glowing cube lights",
+    alt: "Full-venue programmable LED glow party uplighting rental across New Hampshire, Massachusetts and North Carolina",
   },
   {
     title: "Glowing Mini Golf",
     description: "Friendly challenge for all ages.",
     image: "/glow-setup-golf.png",
-    alt: "Two neon mini golf lanes with glowing flags",
+    alt: "Portable glowing LED mini golf course rental included with the Glow Park experience",
   },
   {
     title: "Event Setup",
     description: "Games, lighting & full production.",
     image: "/glow-setup-stage.png",
-    alt: "Glow Park swings, seesaws and mini golf beneath event lighting",
+    alt: "Turnkey Glow Park experience rental with 8 LED swings, 4 glow seesaws, mini golf and uplighting",
   },
 ];
 
@@ -341,21 +341,18 @@ const setups = {
     description: "Pro simulators and competitive racing, brought right to your event.",
     background: "/racing-setup-background.png",
     equipment: racingEquipment,
-    webp: false,
   },
   photobooth: {
     heading: "Photobooth",
     description: "360 video photobooth and mirror photobooth for fun, shareable moments.",
     background: "/photobooth-setup-background.png",
     equipment: photoboothEquipment,
-    webp: false,
   },
   glow: {
     heading: "Glow Park",
     description: "Glowing games, colorful uplighting, and a full package guests can jump right into.",
     background: "/glow-setup-background.png",
     equipment: glowEquipment,
-    webp: false,
   },
 };
 
