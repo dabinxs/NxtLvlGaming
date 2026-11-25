@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 import "./WhoWeAre.css";
 
 const photos = [
-  { src: "/who-movie-night.png", alt: "Guests watching an outdoor movie at sunset" },
-  { src: "/who-gaming-lounge.png", alt: "Guests playing games together in an esports lounge" },
-  { src: "/who-heat-press.png", alt: "Guests gathered around a heat press demonstration" },
+  { src: "/who-movie-night.webp", alt: "Guests watching an outdoor movie at sunset" },
+  { src: "/who-gaming-lounge.webp", alt: "Guests playing games together in an esports lounge" },
+  { src: "/who-heat-press.webp", alt: "Guests gathered around a heat press demonstration" },
   { src: "/who-gaming-event.jpg", alt: "Guests at a large video gaming event" },
 ];
 
@@ -16,10 +16,7 @@ const WhoWeAre = () => (
       <div className="who-we-are__gallery">
         <div className="who-we-are__photos">
           {photos.map(({ src, alt }) => (
-            <picture key={src} className="contents">
-              {src.endsWith(".png") && <source srcSet={src.replace(/\.png$/, ".webp")} type="image/webp" />}
-              <img src={src} alt={alt} loading="lazy" decoding="async" />
-            </picture>
+            <img key={src} src={src} alt={alt} loading="lazy" decoding="async" />
           ))}
         </div>
       </div>
@@ -34,10 +31,7 @@ const WhoWeAre = () => (
           Learn more <ArrowRight aria-hidden="true" size={20} />
         </Link>
       </div>
-      <picture className="contents">
-        <source srcSet="/who-controller.webp" type="image/webp" />
-        <img className="who-we-are__controller" src="/who-controller.png" alt="" loading="lazy" decoding="async" />
-      </picture>
+      <img className="who-we-are__controller" src="/who-controller.webp" alt="" loading="lazy" decoding="async" />
     </div>
   </section>
 );
