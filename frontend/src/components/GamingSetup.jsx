@@ -233,6 +233,39 @@ const racingEquipment = [
   },
 ];
 
+const photoboothEquipment = [
+  {
+    title: "360 Video Photobooth",
+    description: "Capture dynamic slow-motion videos.",
+    image: "/photobooth-setup-360-video.png",
+    alt: "Neon 360 video booth platform with revolving camera and ring light",
+  },
+  {
+    title: "Mirror Photobooth",
+    description: "Take interactive full-length photos.",
+    image: "/photobooth-setup-mirror.png",
+    alt: "Interactive touchscreen mirror photobooth with camera and ring light",
+  },
+  {
+    title: "Props & Overlays",
+    description: "Fun props and custom event overlays.",
+    image: "/photobooth-setup-props.png",
+    alt: "Gold party props, sunglasses and feather boa for photobooth photos",
+  },
+  {
+    title: "Event-Ready Setup",
+    description: "Professional setup and on-site staff.",
+    image: "/photobooth-setup-stage.png",
+    alt: "Photobooth event stage with truss lighting and camera backdrop",
+  },
+  {
+    title: "Share Instantly",
+    description: "Easily save and share your photos.",
+    image: "/photobooth-setup-sharing.png",
+    alt: "Neon group photo cards with a sharing arrow",
+  },
+];
+
 const setups = {
   gaming: {
     heading: "Gaming Equipment",
@@ -275,6 +308,13 @@ const setups = {
     description: "Pro simulators and competitive racing, brought right to your event.",
     background: "/racing-setup-background.png",
     equipment: racingEquipment,
+    webp: false,
+  },
+  photobooth: {
+    heading: "Photobooth",
+    description: "360 video photobooth and mirror photobooth for fun, shareable moments.",
+    background: "/photobooth-setup-background.png",
+    equipment: photoboothEquipment,
     webp: false,
   },
 };

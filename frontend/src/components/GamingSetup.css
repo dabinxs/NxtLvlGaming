@@ -261,7 +261,8 @@
   .gaming-setup--vr .gaming-setup__cards,
   .gaming-setup--dance .gaming-setup__cards,
   .gaming-setup--disco .gaming-setup__cards,
-  .gaming-setup--racing .gaming-setup__cards {
+  .gaming-setup--racing .gaming-setup__cards,
+  .gaming-setup--photobooth .gaming-setup__cards {
     margin-block-start: clamp(5rem, 7vw, 8rem);
   }
 }
