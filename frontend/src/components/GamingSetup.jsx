@@ -200,6 +200,39 @@ const discoEquipment = [
   },
 ];
 
+const racingEquipment = [
+  {
+    title: "Pro Simulators",
+    description: "Force-feedback wheels, pedals & racing seats.",
+    image: "/racing-setup-rig.png",
+    alt: "Professional sim racing seat with force-feedback wheel and pedals",
+  },
+  {
+    title: "Live Leaderboards",
+    description: "Fastest-lap boards on the big screen.",
+    image: "/racing-setup-leaderboard.png",
+    alt: "Neon live leaderboard showing drivers and lap times",
+  },
+  {
+    title: "Giant Screen",
+    description: "Every turn and overtake on massive displays.",
+    image: "/racing-setup-screen.png",
+    alt: "Giant inflatable screen showing a racing simulator track",
+  },
+  {
+    title: "Tournament Formats",
+    description: "Time trials, heats & grand finals.",
+    image: "/racing-setup-tournament.png",
+    alt: "Neon racing tournament bracket with trophy and checkered flags",
+  },
+  {
+    title: "Event Setup",
+    description: "Racing seats, screens & full production.",
+    image: "/racing-setup-stage.png",
+    alt: "Three racing simulators beneath a lit event stage truss",
+  },
+];
+
 const setups = {
   gaming: {
     heading: "Gaming Equipment",
@@ -236,6 +269,13 @@ const setups = {
     description: "LED headphones and multiple music channels for an unforgettable dance experience.",
     background: "/disco-setup-background.png",
     equipment: discoEquipment,
+  },
+  racing: {
+    heading: "Sim Racing",
+    description: "Pro simulators and competitive racing, brought right to your event.",
+    background: "/racing-setup-background.png",
+    equipment: racingEquipment,
+    webp: false,
   },
 };
 
