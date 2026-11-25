@@ -266,6 +266,39 @@ const photoboothEquipment = [
   },
 ];
 
+const glowEquipment = [
+  {
+    title: "8 Glow Swings",
+    description: "Inviting, illuminated swings.",
+    image: "/glow-setup-swings.png",
+    alt: "Three illuminated ring swings in cyan, pink and green",
+  },
+  {
+    title: "4 Glow Seesaws",
+    description: "Playful, social activity.",
+    image: "/glow-setup-seesaws.png",
+    alt: "Blue and magenta illuminated seesaws",
+  },
+  {
+    title: "Colorful Uplighting",
+    description: "Vibrant color for any venue.",
+    image: "/glow-setup-uplighting.png",
+    alt: "Neon lit palms and glowing cube lights",
+  },
+  {
+    title: "Glowing Mini Golf",
+    description: "Friendly challenge for all ages.",
+    image: "/glow-setup-golf.png",
+    alt: "Two neon mini golf lanes with glowing flags",
+  },
+  {
+    title: "Event Setup",
+    description: "Games, lighting & full production.",
+    image: "/glow-setup-stage.png",
+    alt: "Glow Park swings, seesaws and mini golf beneath event lighting",
+  },
+];
+
 const setups = {
   gaming: {
     heading: "Gaming Equipment",
@@ -315,6 +348,13 @@ const setups = {
     description: "360 video photobooth and mirror photobooth for fun, shareable moments.",
     background: "/photobooth-setup-background.png",
     equipment: photoboothEquipment,
+    webp: false,
+  },
+  glow: {
+    heading: "Glow Park",
+    description: "Glowing games, colorful uplighting, and a full package guests can jump right into.",
+    background: "/glow-setup-background.png",
+    equipment: glowEquipment,
     webp: false,
   },
 };

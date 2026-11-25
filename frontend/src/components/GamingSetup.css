@@ -110,12 +110,14 @@
   object-fit: contain;
 }
 
-.gaming-setup--photobooth .gaming-setup__card-media {
+.gaming-setup--photobooth .gaming-setup__card-media,
+.gaming-setup--glow .gaming-setup__card-media {
   grid-template-rows: minmax(0, 1fr);
   overflow: hidden;
 }
 
-.gaming-setup--photobooth .gaming-setup__card-media img {
+.gaming-setup--photobooth .gaming-setup__card-media img,
+.gaming-setup--glow .gaming-setup__card-media img {
   min-block-size: 0;
   max-block-size: 100%;
 }
@@ -272,7 +274,8 @@
   .gaming-setup--dance .gaming-setup__cards,
   .gaming-setup--disco .gaming-setup__cards,
   .gaming-setup--racing .gaming-setup__cards,
-  .gaming-setup--photobooth .gaming-setup__cards {
+  .gaming-setup--photobooth .gaming-setup__cards,
+  .gaming-setup--glow .gaming-setup__cards {
     margin-block-start: clamp(5rem, 7vw, 8rem);
   }
 }
