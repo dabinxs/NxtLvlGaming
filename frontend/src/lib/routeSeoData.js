@@ -5,28 +5,28 @@ const NH_CITY_LINKS = [
   { label: "Hudson NH Party Rentals (03051 HQ)", href: "/hudson-nh-party-rentals", tag: "Local HQ" },
   { label: "Manchester NH Event Rentals", href: "/manchester-nh-event-rentals", tag: "NH Hub" },
   { label: "Nashua NH Party Rentals", href: "/nashua-nh-event-rentals", tag: "NH Hub" },
-  { label: "Portsmouth NH Photo Booth & Party Rentals", href: "/portsmouth-nh-photo-booth-party-rentals", tag: "Seacoast NH" },
+  { label: "Portsmouth NH Photo Booth Rental & Party Rentals", href: "/portsmouth-nh-photo-booth-party-rentals", tag: "Seacoast NH" },
   { label: "Concord, Salem & Derry NH Party Rentals", href: "/concord-salem-derry-nh-party-rentals", tag: "Statewide NH" },
 ];
 
 const REGIONAL_LINKS = [
   { label: "NH, MA, CT & New England Event Rentals", href: "/new-hampshire-massachusetts-event-rentals", tag: "New England" },
-  { label: "North Carolina Branch (Charlotte, Raleigh & Eastern NC)", href: "/north-carolina-event-rentals", tag: "NC Branch" },
+  { label: "North Carolina Branch (Charlotte, Raleigh, Durham & Eastern NC)", href: "/north-carolina-event-rentals", tag: "NC Branch" },
   { label: "College, High School Post-Prom & Corporate Events", href: "/college-school-corporate-events", tag: "Campus & Corp" },
 ];
 
 const SPECIALTY_LINKS = [
-  { label: "Live Gaming Events & Esports Rentals", href: "/gaming-events" },
-  { label: "Outdoor Movie Nights", href: "/movie-nights" },
+  { label: "Video Game Event Production, Live Gaming Events & Event Planning Equipment for Gamers", href: "/gaming-events" },
+  { label: "Outdoor Movie Nights & 16–40 ft Inflatable / LED Screens", href: "/movie-nights" },
   { label: "16–40 ft Inflatable Movie Screens", href: "/inflatable-movie-screen-rental" },
   { label: "14–20 ft Mobile LED Video Walls", href: "/led-video-wall-rental" },
-  { label: "NH & Seacoast Photo Booth Rentals", href: "/photo-booth" },
+  { label: "NH Photo Booth Rental & Photo Booth Rental New Hampshire (360 & Mirror)", href: "/photo-booth" },
   { label: "360 Slow-Motion Video Booth", href: "/360-video-booth" },
   { label: "Interactive Mirror Photo Booth", href: "/mirror-photo-booth-rental" },
-  { label: "Virtual Reality & VR Event Games", href: "/virtual-reality" },
+  { label: "VR Event Games, Virtual Reality Games for Events & Mobile VR Escape Rooms", href: "/virtual-reality" },
   { label: "4-Player Mobile VR Escape Rooms", href: "/vr-escape-room-rental" },
-  { label: "Sim Racing Cockpit Simulators", href: "/sim-racing" },
-  { label: "Glow Park Experience", href: "/glow-park" },
+  { label: "Sim Racing & Race Car Simulator Rentals", href: "/sim-racing" },
+  { label: "Glow Park Experience & LED Glow Swings", href: "/glow-park" },
   { label: "LED Glow Swings & Seesaws", href: "/led-glow-swings-rental" },
   { label: "3-Channel Silent Disco Headphones", href: "/silent-disco" },
   { label: "Interactive Live Trivia Nights", href: "/trivia-nights" },
@@ -134,20 +134,20 @@ const ROUTE_SEO = {
     ],
     offers: [
       {
-        name: "Private Gaming Party & Deluxe Live Gaming Event Rental Package",
-        description: "Turnkey private gaming party and campus gaming setup with four 12 ft HD multiplayer gaming stations plus a giant 21 ft to 32 ft HD spectator screen, modern consoles (PS5, Xbox Series X, Switch), concert sound, and on-site event crew.",
+        name: "Live Gaming Events & Private Gaming Party Rental Package",
+        description: "Turnkey private gaming party and campus live gaming events setup with four 12 ft HD multiplayer gaming stations plus a giant 21 ft to 32 ft HD spectator screen, modern consoles (PS5, Xbox Series X, Switch), concert sound, and on-site event crew.",
       },
       {
-        name: "Ultimate Live Gaming Event & Next Level FEC Attraction Package",
+        name: "Next Level FEC Attraction & Ultimate Live Gaming Event Package",
         description: "Eight 12 ft HD gaming screens plus a colossal 26 ft jumbo championship screen, virtual smartphone DJ dance party integration, and full technician staffing.",
       },
       {
-        name: "Bulk Esports Rental & Video Gaming Tournament Event Production",
-        description: "High-capacity event planning equipment for gamers, custom bracket management, main-stage championship projection, and turnkey video game event production for colleges, schools, and arenas.",
+        name: "Event Planning Equipment for Gamers & Video Gaming Tournament Event Production",
+        description: "High-capacity event planning equipment for gamers, custom bracket management, main-stage championship projection, and turnkey video gaming tournament event production for colleges, schools, and arenas.",
       },
       {
-        name: "Video Gaming Convention Production & Esports Convention Production",
-        description: "Full-scale video gaming convention production, esports convention production, video game event planner services, multi-station console zones, live esports screening displays, and party planning equipment for gamers across NH, MA, CT, and NC.",
+        name: "Video Game Event Production, Video Gaming Convention Production & Video Game Event Management",
+        description: "Full-scale video game event production, video gaming convention production, esports convention production, video game event management, multi-station console zones, live esports screening displays, and party planning equipment for gamers across NH, MA, CT, and NC.",
       },
     ],
     faqs: [
@@ -533,15 +533,15 @@ const ROUTE_SEO = {
     ],
     offers: [
       {
-        name: "360 Slow-Motion Video Photo Booth Platform Rental",
+        name: "NH Photo Booth Rental — 360 Slow-Motion Video Photo Booth Platform",
         description: "Motorized 360-degree rotating camera platform with studio LED ring lighting, custom slow-motion video overlays, music tracks, and instant QR/SMS sharing.",
       },
       {
-        name: "Interactive Full-Length Mirror Photo Booth Rental",
+        name: "Photo Booth Rental New Hampshire — Interactive Full-Length Magic Mirror Booth",
         description: "Touch-screen full-length mirror photo booth with animated voice prompts, interactive glass signature drawing, party props, and instant keepsake prints.",
       },
       {
-        name: "VIP Red Carpet, Stanchions & On-Site Booth Attendant Package",
+        name: "Portsmouth Photo Booth Rental, Manchester & Hudson NH VIP Red Carpet Package",
         description: "Included with every NH, MA, CT & NC photo booth rental: red carpet entrance, velvet ropes, custom event graphics, and full setup and attendant service.",
       },
     ],
@@ -776,24 +776,24 @@ const ROUTE_SEO = {
   "/sim-racing": {
     title: "Rent Racing Simulators & Sim Racing Cockpits | NH, MA & NC",
     description:
-      "Rent commercial racing simulators near you with force-feedback wheels, bucket seats, telemetry screens & fastest-lap leaderboards in NH, Boston MA & NC.",
+      "Rent commercial racing simulators & race car simulators near you with force-feedback wheels, bucket seats & fastest-lap leaderboards in NH, Boston MA & NC.",
     keywords:
-      "rent racing simulator near me, racing simulator rental near me, sim racing places near me, nh sim racing rental, sim racing rental, racing simulator rental, sim racing simulator rental, racing simulator event rental, sim racing rental NH MA, racing simulator rental Boston MA, sim racing simulator rental Charlotte NC, racing simulator event rental Raleigh NC, racing simulator rental Connecticut CT, force feedback racing cockpit rental, F1 racing simulator rental",
+      "rent racing simulator near me, car simulator near me, race car simulator rental, car simulator rental, racing simulator rental near me, sim racing places near me, nh sim racing rental, sim racing rental, racing simulator rental, sim racing simulator rental, racing simulator event rental, sim racing rental NH MA, racing simulator rental Boston MA, sim racing simulator rental Charlotte NC, racing simulator event rental Raleigh NC, racing simulator rental Connecticut CT, force feedback racing cockpit rental, F1 racing simulator rental",
     image: `${SITE_URL}/experience-sim-racing.jpg`,
     canonicalPath: "/sim-racing",
     heroEyebrow: "RENT A RACING SIMULATOR · FORCE-FEEDBACK COCKPITS · NH, MA, CT & NC",
     heroDisplayTitle: "RENT RACING SIMULATORS & SIM COCKPITS",
-    serviceName: "Sim Racing Cockpit Simulator Event Rentals",
-    heading: "Sim Racing Cockpit & Racing Simulator Rentals in NH, MA, CT & NC",
+    serviceName: "Sim Racing Cockpit & Race Car Simulator Event Rentals",
+    heading: "Sim Racing Cockpit & Race Car Simulator Rentals in NH, MA, CT & NC",
     summary:
-      "Looking to rent a racing simulator near you? Bring authentic motorsport competition to your corporate trade show, dealership event, college campus, or private celebration with Sim Racing cockpit simulator rentals from Next Level Gaming & Novelties across Hudson NH, Manchester, Nashua, Portsmouth, Boston MA, Connecticut, and North Carolina (Charlotte, Concord, Raleigh, Durham, Greensboro NC).",
+      "Looking to rent a racing simulator or searching for a car simulator near you? Bring authentic motorsport competition to your corporate trade show, dealership event, college campus, or private celebration with Sim Racing cockpit and race car simulator rentals from Next Level Gaming & Novelties across Hudson NH, Manchester, Nashua, Portsmouth, Boston MA, Connecticut, and North Carolina (Charlotte, Concord, Raleigh, Durham, Greensboro NC).",
     subhead: "Force-Feedback Steering Wheels, Bucket Seats & Live Fastest-Lap Leaderboards",
     details:
-      "Each turnkey Sim Racing rig combines responsive force-feedback steering wheels, pedal sets, authentic bucket racing seats, external big-screen spectator telemetry, and live fastest-lap leaderboard challenges supervised by our race crew.",
+      "Each turnkey Sim Racing and car simulator rig combines responsive force-feedback steering wheels, pedal sets, authentic bucket racing seats, external big-screen spectator telemetry, and live fastest-lap leaderboard challenges supervised by our race crew.",
     highlights: [
       "Pro force-feedback racing wheels, precision pedals & ergonomic bucket seats",
       "Drive Formula 1, GT3, NASCAR, rally & supercars on international circuits",
-      "Side-by-side multi-rig setups with live fastest-lap tournament leaderboards",
+      "Side-by-side multi-car simulator setups with live fastest-lap tournament leaderboards",
       "Delivered for trade shows, corporate parties & colleges across NH, MA, CT & NC",
     ],
     relatedLinks: [
@@ -805,15 +805,19 @@ const ROUTE_SEO = {
     ],
     offers: [
       {
-        name: "Force-Feedback Sim Racing Cockpit Simulator Rental",
+        name: "Rent Racing Simulator & Race Car Simulator Cockpit Package",
         description: "Full-size racing simulator cockpit with bucket seat, force-feedback wheel and pedals, HD telemetry monitor, and on-site racing attendant.",
       },
       {
-        name: "Multi-Cockpit Head-to-Head Racing Tournament & Fastest-Lap Leaderboard",
+        name: "Multi-Car Simulator Head-to-Head Racing Tournament & Fastest-Lap Leaderboard",
         description: "Side-by-side Sim Racing simulator cockpits linked for head-to-head racing competitions and fastest-lap leaderboard challenges at trade shows, colleges, and corporate events.",
       },
     ],
     faqs: [
+      {
+        q: "Where can I find a car simulator near me or rent a racing simulator for an event?",
+        a: "Next Level Gaming & Novelties delivers commercial force-feedback race car simulators directly to your venue across New Hampshire (Hudson, Manchester, Nashua, Portsmouth), Greater Boston & Massachusetts, Connecticut, and North Carolina (Charlotte, Concord, Raleigh, Durham, Greensboro).",
+      },
       {
         q: "What equipment comes with your racing simulator rental?",
         a: "Each Sim Racing cockpit features an authentic racing bucket seat, precision force-feedback steering wheel and pedal set, high-definition display, surround audio, and live fastest-lap leaderboard tracking managed by our crew.",
@@ -1773,12 +1777,16 @@ const ROUTE_SEO = {
     ],
     offers: [
       {
-        name: "Portsmouth NH 360 Slow-Motion Video Booth & Mirror Photo Booth Rental",
-        description: "Red-carpet 360 video platform and full-length interactive mirror photo booth with custom Seacoast event overlays, props, and on-site attendant.",
+        name: "Portsmouth NH Photo Booth Rental — 360 Slow-Motion Video Booth",
+        description: "Red-carpet 360 video platform with studio LED ring lighting, custom Seacoast event overlays, instant QR/SMS video sharing, props, and on-site attendant in Portsmouth, NH.",
       },
       {
-        name: "Seacoast NH Outdoor Movie Screen, Glow Park & Silent Disco Rentals",
-        description: "16–40 ft inflatable movie screens, 14–20 ft daylight mobile LED walls, LED glow swings, and 3-channel silent disco headphones across Portsmouth, Dover, Exeter, and Durham NH.",
+        name: "Portsmouth Photo Booth Rental — Interactive Magic Mirror Photo Booth",
+        description: "Full-length touch-screen Magic Mirror photo booth rental in Portsmouth, Rye, Exeter, Hampton, Dover, and Durham NH with instant print keepsakes and glass signature signing.",
+      },
+      {
+        name: "Photo Booth Rental New Hampshire & Seacoast Event Bundle (Movie Screens, Glow Park & Silent Disco)",
+        description: "Combine Portsmouth NH photo booth rentals with 16–40 ft inflatable movie screens, 14–20 ft daylight mobile LED walls, LED glow swings, and 3-channel silent disco headphones.",
       },
     ],
     faqs: [

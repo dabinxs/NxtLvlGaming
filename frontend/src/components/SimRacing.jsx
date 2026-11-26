@@ -48,7 +48,9 @@ const SimRacing = () => {
           {/* Background image from Sim Racing carousel */}
           <img
             src={cmsPage.heroImage}
-            alt="Commercial force-feedback sim racing cockpit simulator rental with live leaderboard screens in NH, MA and NC"
+            alt="Commercial force-feedback sim racing cockpit and race car simulator rental with live leaderboard screens in NH, MA and NC"
+            width="1280"
+            height="960"
             fetchPriority="high"
             decoding="sync"
             className="absolute inset-0 h-full w-full object-cover object-center"

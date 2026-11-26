@@ -49,6 +49,8 @@ const TriviaNights = () => {
           <img
             src={cmsPage.heroImage}
             alt="Live-hosted interactive trivia night and wireless buzzer game show rental in NH, MA and NC"
+            width="1280"
+            height="873"
             fetchPriority="high"
             decoding="sync"
             className="absolute inset-0 h-full w-full object-cover object-center"

@@ -49,6 +49,8 @@ const SilentDisco = () => {
           <img
             src={cmsPage.heroImage}
             alt="3-channel LED wireless Silent Disco headphone party rental for colleges and events in NH, MA and NC"
+            width="827"
+            height="467"
             fetchPriority="high"
             decoding="sync"
             className="absolute inset-0 h-full w-full object-cover object-center"

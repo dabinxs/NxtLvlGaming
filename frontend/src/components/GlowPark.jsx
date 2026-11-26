@@ -59,6 +59,8 @@ const GlowPark = () => {
           <img
             src={cmsPage.heroImage || "/experience-glow-park.jpg"}
             alt="Glow Park illuminated LED swings, seesaws, and glowing mini golf event rental in NH, MA and NC"
+            width="1024"
+            height="768"
             fetchPriority="high"
             decoding="sync"
             className="absolute inset-0 h-full w-full object-cover object-center"

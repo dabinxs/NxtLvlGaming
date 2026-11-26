@@ -50,7 +50,9 @@ const VideoBooth360 = () => {
           {/* Background image from the Photo Booth homepage card */}
           <img
             src={cmsPage.heroImage}
-            alt="360 slow-motion video booth and interactive Magic Mirror photo booth rental setup in Portsmouth and New Hampshire"
+            alt="Portsmouth NH photo booth rental, 360 slow-motion video booth and interactive Magic Mirror photo booth rental in New Hampshire"
+            width="1280"
+            height="999"
             fetchPriority="high"
             decoding="sync"
             className="absolute inset-0 h-full w-full object-cover object-center"
