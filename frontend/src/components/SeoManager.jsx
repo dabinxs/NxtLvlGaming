@@ -413,6 +413,21 @@ const SeoManager = () => {
           </dl>
         </section>
       )}
+      {Array.isArray(seo.relatedLinks) && seo.relatedLinks.length > 0 && (
+        <nav aria-label="Related Experiences and Service Areas">
+          {seo.relatedLinks
+            .map((item) => ({
+              label: item.label,
+              href: toCanonicalPath(item.href),
+            }))
+            .filter((item, idx, arr) => item.href && arr.findIndex((x) => x.href === item.href) === idx)
+            .map((item) => (
+              <Link key={item.href} to={item.href}>
+                {item.label}
+              </Link>
+            ))}
+        </nav>
+      )}
       <nav aria-label="Service Area and Experience Directory">
         {CANONICAL_DIRECTORY_LINKS.map((item) => (
           <Link key={item.href} to={item.href}>

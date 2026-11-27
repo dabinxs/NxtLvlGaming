@@ -145,6 +145,7 @@ function buildRouteHtml(baseHtml, routeKey, seo) {
   html = html.replace(/<script\s+id="seo-route-schema"[\s\S]*?<\/script>/i, "");
 
   if (!seo.noindex) {
+    const isHome = canonicalPath === "/";
     const imageObj = {
       "@type": "ImageObject",
       url: imageUrl,
@@ -197,7 +198,11 @@ function buildRouteHtml(baseHtml, routeKey, seo) {
       )
     );
     if (canonicalLinks.length > 0) {
-      webPageNode.relatedLink = canonicalLinks;
+      if (isHome) {
+        webPageNode.significantLink = canonicalLinks;
+      } else {
+        webPageNode.relatedLink = canonicalLinks;
+      }
     }
 
     const routeGraph = [
@@ -206,12 +211,16 @@ function buildRouteHtml(baseHtml, routeKey, seo) {
         "@type": "BreadcrumbList",
         itemListElement: [
           { "@type": "ListItem", position: 1, name: "Home", item: `${SITE_URL}/` },
-          {
-            "@type": "ListItem",
-            position: 2,
-            name: seo.serviceName || seo.heading || seo.title.split("|")[0].trim(),
-            item: canonicalUrl,
-          },
+          ...(!isHome
+            ? [
+                {
+                  "@type": "ListItem",
+                  position: 2,
+                  name: seo.serviceName || seo.heading || seo.title.split("|")[0].trim(),
+                  item: canonicalUrl,
+                },
+              ]
+            : []),
         ],
       },
     ];
@@ -436,10 +445,10 @@ function run() {
   let count = 0;
 
   for (const [routeKey, seo] of Object.entries(ROUTE_SEO)) {
-    if (routeKey === "/" || routeKey === "/360-booth") continue;
-    const cleanRoute = routeKey.replace(/^\/+/, "");
+    if (routeKey === "/360-booth") continue;
+    const outFileName = routeKey === "/" ? "index.html" : `${routeKey.replace(/^\/+/, "")}.html`;
     const outHtml = buildRouteHtml(baseHtml, routeKey, seo);
-    fs.writeFileSync(path.join(buildDir, `${cleanRoute}.html`), outHtml, "utf8");
+    fs.writeFileSync(path.join(buildDir, outFileName), outHtml, "utf8");
     count++;
   }
 
